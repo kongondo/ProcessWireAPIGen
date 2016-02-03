@@ -1,9 +1,12 @@
 # ProcessWire Auto-Generated API
 
-These are [ApiGen](http://www.apigen.org/) PHP Documentation for the CMS [ProcessWire](http://processwire.com). 
+These are [ApiGen](http://www.apigen.org/) PHP Documentation for the CMF/CMS [ProcessWire](http://processwire.com). 
 
+## Important
+Please note that these are **technical documentation** not aimed at the *average* ProcessWire user but developers who are curious or need to find out in more detail about a specific ProcessWire class or function and/or use this as a reference. Most of the technical stuff here steps outside ProcessWire's public API into the inner workings of the CMF/CMS. If you would like to know more about such stuff, then this is for you. For all other use, please use the regular [ProcessWire API docs](http://processwire.com/api/) and the ProcessWire [Cheatsheet](http://cheatsheet.processwire.com/). 
 
-The documentation covers everything under the **'/wire/' folder, both .php and .module files**. All the current active ProcessWire branches listed below are separately documented. Each branch's documentation is auto-generated at regular intervals. Currently, the master branch, once at the beginning of every month, the dev and devns branches weekly, every Friday. 
+## About
+The documentation covers everything under the **'/wire/' folder, both .php and .module files**. All the current active ProcessWire branches listed below are separately documented. Each branch's documentation is *auto-generated* at regular intervals. Currently, the master branch, once at the beginning of *every month*, the dev and devns branches weekly, *every Friday*. This means that unless otherwise stated, these docs should roughly be in step with the latests versions of ProcessWire.
 
 
 The individual project files are located in sub-folders named according to their branch. Please note that GitHub will truncate a file list when it goes beyond 1000. If looking for a particular file, just search for it.
@@ -12,7 +15,7 @@ The individual project files are located in sub-folders named according to their
 The documentation is generated using an older version of [ApiGen](https://github.com/ApiGen/ApiGen/), so there ~~could~~ will be bugs. I will update to the latest version of the document generator in the near future. Please report any bugs by filing an [issue](https://github.com/kongondo/ProcessWireAPIGen/issues), thanks.
 
 
-Please note that since these docs are auto-generated and auto-uploaded to GitHub, there might be the occasional hiccup. Please also let me know if you come across any wonkiness :-).
+Please note that since these docs are auto-generated and auto-uploaded to GitHub, there might be the occasional hiccup. Please let me know if you come across any wonkiness :-).
 
 
 ### ProcessWire API Documentation
