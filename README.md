@@ -8,8 +8,8 @@ The Documentation is [here]('http://kongondo.github.io/ProcessWireAPIGen/master/
 
 ### Documentation for other branches:
 
-[Dev branch]('http://kongondo.github.io/ProcessWireAPIGenDev/)
+[Dev branch]('http://kongondo.github.io/ProcessWireAPIGen/dev/)
 
 
-[Dev namespace-d branch]('http://kongondo.github.io/ProcessWireAPIGenDevNameSpaced/)
+[Dev namespace-d branch]('http://kongondo.github.io/ProcessWireAPIGen/devns/)
 
