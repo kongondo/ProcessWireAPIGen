@@ -28,7 +28,7 @@ The documentation is generated using an older version of [ApiGen](https://github
 Please note that since these docs are auto-generated and auto-uploaded to GitHub, there might be the occasional hiccup. Please let me know if you come across any wonkiness :-).
 
 
-## ProcessWire API Documentation
+## The ProcessWire API Documentation
 
 * Master Branch API [docs](http://kongondo.github.io/ProcessWireAPIGen/master/)
 * Dev Branch API [docs](http://kongondo.github.io/ProcessWireAPIGen/dev/)
