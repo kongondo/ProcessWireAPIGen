@@ -42,7 +42,7 @@ The current theme used in the docs is 'sublime text', a custom theme I hacked to
 
 ## Known Bugs
 
-* Some pages generated with extra *...* just before the HTML suffix, resulting in 404s. Upgrading to a newer version of ApiGen will probably fix this. In the meantime, delete the extra *...* in the URL and you are good to go.
+* Some pages generated with extra **...** just before the HTML suffix, resulting in 404s. Upgrading to a newer version of ApiGen will probably fix this. In the meantime, delete the extra *...* in the URL and you are good to go.
 
 ## Support Forum
 
