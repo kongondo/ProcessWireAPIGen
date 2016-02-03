@@ -28,18 +28,23 @@ The documentation is generated using an older version of [ApiGen](https://github
 Please note that since these docs are auto-generated and auto-uploaded to GitHub, there might be the occasional hiccup. Please let me know if you come across any wonkiness :-).
 
 
-### ProcessWire API Documentation
+## ProcessWire API Documentation
 
 * Master Branch API [docs](http://kongondo.github.io/ProcessWireAPIGen/master/)
 * Dev Branch API [docs](http://kongondo.github.io/ProcessWireAPIGen/dev/)
 * Dev Namespace Branch API [docs](http://kongondo.github.io/ProcessWireAPIGen/devns/)
 
 
-### Other stuff
+## Other stuff
 
 The current theme used in the docs is 'sublime text', a custom theme I hacked together based on the default ApiGen theme. I am working on a theme switcher for those who'd prefer a lighter variant.
 
 
-### Known Bugs
+## Known Bugs
 
 * Some pages generated with extra *...* just before the HTML suffix, resulting in 404s. Upgrading to a newer version of ApiGen will probably fix this. In the meantime, delete the extra *...* in the URL and you are good to go.
+
+## Support Forum
+
+Discuss this project at the ProcessWire [forums](https://processwire.com/talk/topic/12116-processwire-apigen-dynamic-up-to-date-all-branches/).
+
