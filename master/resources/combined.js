@@ -1,6 +1,6 @@
 
 var ApiGen = ApiGen || {};
-ApiGen.config = {"require":{"min":"2.8.0"},"resources":{"resources":"resources"},"templates":{"common":{"overview.latte":"index.html","combined.js.latte":"resources\/combined.js","elementlist.js.latte":"elementlist.js","404.latte":"404.html"},"optional":{"sitemap":{"filename":"sitemap.xml","template":"sitemap.xml.latte"},"opensearch":{"filename":"opensearch.xml","template":"opensearch.xml.latte"},"robots":{"filename":"robots.txt","template":"robots.txt.latte"}},"main":{"package":{"filename":"package-%s.html","template":"package.latte"},"namespace":{"filename":"namespace-%s.html","template":"namespace.latte"},"class":{"filename":"class-%s.html","template":"class.latte"},"constant":{"filename":"constant-%s.html","template":"constant.latte"},"function":{"filename":"function-%s.html","template":"function.latte"},"source":{"filename":"source-%s.html","template":"source.latte"},"tree":{"filename":"tree.html","template":"tree.latte"},"deprecated":{"filename":"deprecated.html","template":"deprecated.latte"},"todo":{"filename":"todo.html","template":"todo.latte"}}},"options":{"elementDetailsCollapsed":true,"elementsOrder":"natural"},"config":"F:\\CMS\\pear\\data\\ApiGen\\templates\\default\\config.neon"};
+ApiGen.config = {"require":{"min":"2.8.0"},"resources":{"resources":"resources"},"templates":{"common":{"overview.latte":"index.html","combined.js.latte":"resources\/combined.js","elementlist.js.latte":"elementlist.js","404.latte":"404.html"},"optional":{"sitemap":{"filename":"sitemap.xml","template":"sitemap.xml.latte"},"opensearch":{"filename":"opensearch.xml","template":"opensearch.xml.latte"},"robots":{"filename":"robots.txt","template":"robots.txt.latte"}},"main":{"package":{"filename":"package-%s.html","template":"package.latte"},"namespace":{"filename":"namespace-%s.html","template":"namespace.latte"},"class":{"filename":"class-%s.html","template":"class.latte"},"constant":{"filename":"constant-%s.html","template":"constant.latte"},"function":{"filename":"function-%s.html","template":"function.latte"},"source":{"filename":"source-%s.html","template":"source.latte"},"tree":{"filename":"tree.html","template":"tree.latte"},"deprecated":{"filename":"deprecated.html","template":"deprecated.latte"},"todo":{"filename":"todo.html","template":"todo.latte"}}},"options":{"elementDetailsCollapsed":true,"elementsOrder":"natural"},"config":"F:\\CMS\\pear\\data\\ApiGen\\templates\\sublime\\config.neon"};
 
 
 /*! jQuery v1.7 jquery.com | jquery.org/license */
@@ -1262,3 +1262,37 @@ $(function() {
 	});
 });
 
+/***
+ *	Simple theme switcher for ProcessWire ApiGen project http://kongondo.github.io/ProcessWireAPIGen/
+ *	@author: Francis Otieno (kongondo) 4 February 2016
+ *
+ *
+ *
+ */
+$(document).ready(function() {
+	var b = $('body');
+	/* saved state */
+	// get the saved theme
+	var savedTheme = $.cookie('theme');
+	// if saved is 'dark' theme, and class='dark' to body in case it doesn't have it
+	if(savedTheme == 'dark' && !b.hasClass('dark')) b.addClass('dark');
+
+	/* switching themes */
+	$(document).on("click", "a.themes", function(e) {
+		e.preventDefault();
+		var switcher = $(this).attr('id');
+		// if we are switching to the dark theme, apply class='dark' to body in case it doesn't have it
+		if(switcher =='dark' && savedTheme != 'dark' && !b.hasClass('dark')) {
+			b.addClass('dark');
+			// set a 1 year cookie
+			$.cookie('theme', 'dark', {expires: 365});// @note: cookie plugin defined in resources/combined.js
+		}
+		// otherwise, we want the light theme (default) so remove class='dark' + no need for cookie (delete it)
+		else {
+			b.removeClass('dark');
+			$(b +"[class='']").removeAttr('class');// remove empty class attribute
+			$.cookie('theme', null);
+
+		}
+	});
+});
