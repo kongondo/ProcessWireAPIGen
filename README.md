@@ -37,7 +37,7 @@ Please note that since these docs are auto-generated and auto-uploaded to GitHub
 
 ## Other stuff
 
-The current theme used in the docs is 'sublime text', a custom theme I hacked together based on the default ApiGen theme. I am working on a theme switcher for those who'd prefer a lighter variant.
+The theme used in the documentation is 'sublime text', a custom theme I hacked together based on the default ApiGen theme. By default the documentation will be displayed using the default ApiGen theme. If you prefer a darker theme, select it in the theme switcher.
 
 
 ## Known Bugs
