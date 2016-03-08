@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeComments/FieldtypeComments.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1866428016"></script>
+	<script type="text/javascript" src="elementlist.js?1026752193"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.9 devns</span>
+			<span>Overview version 3.0.10 devns</span>
 		</a>
 
 
@@ -111,6 +111,9 @@
 				<li><a href="class-ProcessWire.Fuel.html">Fuel</a></li>
 				<li><a href="class-ProcessWire.HookEvent.html">HookEvent</a></li>
 				<li><a href="class-ProcessWire.ImageSizer.html">ImageSizer</a></li>
+				<li><a href="class-ProcessWire.ImageSizerEngine.html">ImageSizerEngine</a></li>
+				<li><a href="class-ProcessWire.ImageSizerEngineGD.html">ImageSizerEngineGD</a></li>
+				<li><a href="class-ProcessWire.ImageSizerEngineIMagick.html">ImageSizerEngineIMagick</a></li>
 				<li><a href="class-ProcessWire.Inputfield.html">Inputfield</a></li>
 				<li><a href="class-ProcessWire.InputfieldAsmSelect.html">InputfieldAsmSelect</a></li>
 				<li><a href="class-ProcessWire.InputfieldButton.html">InputfieldButton</a></li>
@@ -361,7 +364,6 @@
 				<li><a href="class-ProcessWire.FieldtypeLanguageInterface.html">FieldtypeLanguageInterface</a></li>
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
-				<li><a href="class-ProcessWire.ImageSizerInterface.html">ImageSizerInterface</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
@@ -1479,7 +1481,7 @@
 </span><span id="998" class="l"><a class="l" href="#998"> 998: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$f</span> == <span class="php-quote">'page'</span>) <span class="php-var">$f</span> = <span class="php-quote">'pages_id'</span>;
 </span><span id="999" class="l"><a class="l" href="#999"> 999: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$f</span> == <span class="php-quote">'user'</span>) <span class="php-var">$f</span> = <span class="php-quote">'created_users_id'</span>;
 </span><span id="1000" class="l"><a class="l" href="#1000">1000: </a>
-</span><span id="1001" class="l"><a class="l" href="#1001">1001: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$f</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'id'</span>, <span class="php-quote">'status'</span>, <span class="php-quote">'created'</span>, <span class="php-quote">'pages_id'</span>, <span class="php-quote">'parent_id'</span>, <span class="php-quote">'created_users_id'</span>, <span class="php-quote">'upvotes'</span>, <span class="php-quote">'downvotes'</span>))) {
+</span><span id="1001" class="l"><a class="l" href="#1001">1001: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$f</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'id'</span>, <span class="php-quote">'status'</span>, <span class="php-quote">'created'</span>, <span class="php-quote">'pages_id'</span>, <span class="php-quote">'parent_id'</span>, <span class="php-quote">'created_users_id'</span>, <span class="php-quote">'upvotes'</span>, <span class="php-quote">'downvotes'</span>, <span class="php-quote">'stars'</span>))) {
 </span><span id="1002" class="l"><a class="l" href="#1002">1002: </a>                <span class="php-var">$_sql</span> .= <span class="php-quote">&quot;AND </span><span class="php-var">$f$operator</span><span class="php-quote">&quot;</span> . ((int) <span class="php-var">$value</span>)  . <span class="php-quote">&quot; &quot;</span>;
 </span><span id="1003" class="l"><a class="l" href="#1003">1003: </a>
 </span><span id="1004" class="l"><a class="l" href="#1004">1004: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$f</span> == <span class="php-quote">'start'</span>) {

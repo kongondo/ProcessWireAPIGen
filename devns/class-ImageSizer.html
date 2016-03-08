@@ -7,7 +7,7 @@
 	<title>Class ImageSizer | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1866428016"></script>
+	<script type="text/javascript" src="elementlist.js?1026752193"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.9 devns</span>
+			<span>Overview version 3.0.10 devns</span>
 		</a>
 
 
@@ -412,20 +412,19 @@
 
 	<div class="description">
 	
-<p>ProcessWire ImageSizer</p>
+<p>ProcessWire ImageSizer with Engines for ProcessWire 3.x</p>
 
-<p>ImageSizer handles resizing of a single JPG, GIF, or PNG image using GD2.</p>
-
-<p>ImageSizer class includes ideas adapted from comments found at PHP.net in the
-GD functions documentation.</p>
+<p>ImageSizer handles resizing of a single JPG, GIF, or PNG image using GD2 or
+another supported and configured engine. (Imagick, ImageMagick, Netpbm)</p>
 
 <p>Code for IPTC, auto rotation and sharpening by Horst Nogajski. <a
 href="http://nogajski.de/">http://nogajski.de/</a></p>
 
 <p>Other user contributions as noted.</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
-href="https://processwire.com">https://processwire.com</a></p>
+<p>Copyright (C) 2016 by Horst Nogajski and Ryan Cramer This file licensed under
+Mozilla Public License v2.0 <a
+href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 
 	</div>
 
@@ -483,43 +482,31 @@ href="https://processwire.com">https://processwire.com</a></p>
 			<a href="class-ProcessWire.ImageSizer.html#____resize">___resize()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#___construct">__construct()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#___get">__get()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_calculateUSMfactor">calculateUSMfactor()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_checkMemoryForImage">checkMemoryForImage()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_checkOrientation">checkOrientation()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_croppingValue">croppingValue()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_croppingValueStr">croppingValueStr()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_freadint">freadint()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_gammaCorrection">gammaCorrection()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_getBooleanValue">getBooleanValue()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_getCropDimensions">getCropDimensions()</a>, 
+			<a href="class-ProcessWire.ImageSizer.html#_getEngine">getEngine()</a>, 
+			<a href="class-ProcessWire.ImageSizer.html#_getEngines">getEngines()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_getExtension">getExtension()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_getFilename">getFilename()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_getHeight">getHeight()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_getImageType">getImageType()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_getOptions">getOptions()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_getProportionalHeight">getProportionalHeight()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_getProportionalWidth">getProportionalWidth()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_getResizeDimensions">getResizeDimensions()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_getWidth">getWidth()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_hasAlphaChannel">hasAlphaChannel()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_imFlip">imFlip()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_imRotate">imRotate()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_imSharpen">imSharpen()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_imageIsAnimatedGif">imageIsAnimatedGif()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_imageIsRotated">imageIsRotated()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_imageResetIPTC">imageResetIPTC()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_iptcMakeTag">iptcMakeTag()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_iptcPrepareData">iptcPrepareData()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_isModified">isModified()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_loadImageInfo">loadImageInfo()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_prepareImageLayer">prepareImageLayer()</a>, 
+			<a href="class-ProcessWire.ImageSizer.html#_newDefaultImageSizerEngine">newDefaultImageSizerEngine()</a>, 
+			<a href="class-ProcessWire.ImageSizer.html#_newImageSizerEngine">newImageSizerEngine()</a>, 
+			<a href="class-ProcessWire.ImageSizer.html#_resizeFallback">resizeFallback()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setAutoRotation">setAutoRotation()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setCropExtra">setCropExtra()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setCropping">setCropping()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setDefaultGamma">setDefaultGamma()</a>, 
+			<a href="class-ProcessWire.ImageSizer.html#_setFilename">setFilename()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setFlip">setFlip()</a>, 
+			<a href="class-ProcessWire.ImageSizer.html#_setForceEngine">setForceEngine()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setHidpi">setHidpi()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_setImageInfo">setImageInfo()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setModified">setModified()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setOptions">setOptions()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setQuality">setQuality()</a>, 
@@ -528,9 +515,8 @@ href="https://processwire.com">https://processwire.com</a></p>
 			<a href="class-ProcessWire.ImageSizer.html#_setSharpening">setSharpening()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setTimeLimit">setTimeLimit()</a>, 
 			<a href="class-ProcessWire.ImageSizer.html#_setUpscaling">setUpscaling()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_sharpeningValueStr">sharpeningValueStr()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_unsharpMask">unsharpMask()</a>, 
-			<a href="class-ProcessWire.ImageSizer.html#_writeBackIptc">writeBackIptc()</a>
+			<a href="class-ProcessWire.ImageSizer.html#_setUseUSM">setUseUSM()</a>, 
+			<a href="class-ProcessWire.ImageSizer.html#_sharpeningValueStr">sharpeningValueStr()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -609,31 +595,13 @@ href="https://processwire.com">https://processwire.com</a></p>
 	<caption>Properties inherited from <a href="class-ProcessWire.ImageSizer.html#properties">ProcessWire\ImageSizer</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-ProcessWire.ImageSizer.html#$autoRotation"><var>$autoRotation</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$cropExtra"><var>$cropExtra</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$cropping"><var>$cropping</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$croppingValues"><var>$croppingValues</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$defaultGamma"><var>$defaultGamma</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$extension"><var>$extension</var></a>, 
+			<a href="class-ProcessWire.ImageSizer.html#$defaultEngineName"><var>$defaultEngineName</var></a>, 
+			<a href="class-ProcessWire.ImageSizer.html#$engine"><var>$engine</var></a>, 
 			<a href="class-ProcessWire.ImageSizer.html#$filename"><var>$filename</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$flip"><var>$flip</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$image"><var>$image</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$imageType"><var>$imageType</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$info"><var>$info</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$iptcRaw"><var>$iptcRaw</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$memoryCheckFactor"><var>$memoryCheckFactor</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$modified"><var>$modified</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$optionNames"><var>$optionNames</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$options"><var>$options</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$quality"><var>$quality</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$rotate"><var>$rotate</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$scale"><var>$scale</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$sharpening"><var>$sharpening</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$sharpeningValues"><var>$sharpeningValues</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$supportedImageTypes"><var>$supportedImageTypes</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$upscaling"><var>$upscaling</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$usmValue"><var>$usmValue</var></a>, 
-			<a href="class-ProcessWire.ImageSizer.html#$validIptcTags"><var>$validIptcTags</var></a>
+			<a href="class-ProcessWire.ImageSizer.html#$forceEngineName"><var>$forceEngineName</var></a>, 
+			<a href="class-ProcessWire.ImageSizer.html#$initialOptions"><var>$initialOptions</var></a>, 
+			<a href="class-ProcessWire.ImageSizer.html#$initialized"><var>$initialized</var></a>, 
+			<a href="class-ProcessWire.ImageSizer.html#$knownEngines"><var>$knownEngines</var></a>
 		</code></td>
 	</tr>
 	</table>
