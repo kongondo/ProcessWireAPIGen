@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessPageSearch/ProcessPageSearch.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1311294761"></script>
+	<script type="text/javascript" src="elementlist.js?193540940"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.11 devns</span>
+			<span>Overview version 3.0.12 devns</span>
 		</a>
 
 
@@ -271,6 +271,7 @@
 				<li><a href="class-ProcessWire.ProcessUser.html">ProcessUser</a></li>
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
+				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -1345,172 +1346,173 @@
 </span><span id="862" class="l"><a class="l" href="#862"> 862: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;adminSearchMode &amp;&amp; <span class="php-var">$this</span>-&gt;user-&gt;isSuperuser()) {
 </span><span id="863" class="l"><a class="l" href="#863"> 863: </a>            <span class="php-comment">// enable search to include users when adminSearchMode and superuser</span>
 </span><span id="864" class="l"><a class="l" href="#864"> 864: </a>            <span class="php-var">$a</span>[<span class="php-quote">'matches'</span>] = <span class="php-var">$this</span>-&gt;findOtherTypes(<span class="php-var">$this</span>-&gt;input-&gt;get(<span class="php-quote">'admin_search'</span>));   
-</span><span id="865" class="l"><a class="l" href="#865"> 865: </a>            <span class="php-var">$users</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'users'</span>)-&gt;find(<span class="php-quote">&quot;name%=&quot;</span> . <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$this</span>-&gt;input-&gt;get(<span class="php-quote">'admin_search'</span>))); 
-</span><span id="866" class="l"><a class="l" href="#866"> 866: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$users</span>)) <span class="php-var">$matches</span>-&gt;prepend(<span class="php-var">$users</span>);
-</span><span id="867" class="l"><a class="l" href="#867"> 867: </a>        }
-</span><span id="868" class="l"><a class="l" href="#868"> 868: </a>
-</span><span id="869" class="l"><a class="l" href="#869"> 869: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$matches</span> <span class="php-keyword1">as</span> <span class="php-var">$page</span>) {
-</span><span id="870" class="l"><a class="l" href="#870"> 870: </a>            <span class="php-comment">/** @var Page $page */</span>
-</span><span id="871" class="l"><a class="l" href="#871"> 871: </a>
-</span><span id="872" class="l"><a class="l" href="#872"> 872: </a>            <span class="php-var">$p</span> = <span class="php-keyword1">array</span>(
-</span><span id="873" class="l"><a class="l" href="#873"> 873: </a>                <span class="php-quote">'id'</span> =&gt; <span class="php-var">$page</span>-&gt;id, 
-</span><span id="874" class="l"><a class="l" href="#874"> 874: </a>                <span class="php-quote">'parent_id'</span> =&gt; <span class="php-var">$page</span>-&gt;parent_id, 
-</span><span id="875" class="l"><a class="l" href="#875"> 875: </a>                <span class="php-quote">'template'</span> =&gt; <span class="php-var">$page</span>-&gt;template-&gt;name, 
-</span><span id="876" class="l"><a class="l" href="#876"> 876: </a>                <span class="php-quote">'path'</span> =&gt; <span class="php-var">$page</span>-&gt;path, 
-</span><span id="877" class="l"><a class="l" href="#877"> 877: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-var">$page</span>-&gt;name, 
-</span><span id="878" class="l"><a class="l" href="#878"> 878: </a>                );
-</span><span id="879" class="l"><a class="l" href="#879"> 879: </a>            
-</span><span id="880" class="l"><a class="l" href="#880"> 880: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;adminSearchMode) {
-</span><span id="881" class="l"><a class="l" href="#881"> 881: </a>                <span class="php-comment">// don't include non-editable pages in admin search mode</span>
-</span><span id="882" class="l"><a class="l" href="#882"> 882: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;editable()) {
-</span><span id="883" class="l"><a class="l" href="#883"> 883: </a>                    <span class="php-var">$a</span>[<span class="php-quote">'total'</span>]--;
-</span><span id="884" class="l"><a class="l" href="#884"> 884: </a>                    <span class="php-keyword1">continue</span>; 
-</span><span id="885" class="l"><a class="l" href="#885"> 885: </a>                }
-</span><span id="886" class="l"><a class="l" href="#886"> 886: </a>                <span class="php-comment">// include the type of match and URL to edit, when in adminSearchMode</span>
-</span><span id="887" class="l"><a class="l" href="#887"> 887: </a>                <span class="php-var">$p</span>[<span class="php-quote">'type'</span>] = <span class="php-var">$this</span>-&gt;_x(<span class="php-quote">'Pages'</span>, <span class="php-quote">'match-type'</span>);
-</span><span id="888" class="l"><a class="l" href="#888"> 888: </a>                <span class="php-var">$p</span>[<span class="php-quote">'editUrl'</span>] = <span class="php-var">$page</span>-&gt;editable() ? <span class="php-var">$this</span>-&gt;config-&gt;urls-&gt;admin . <span class="php-quote">'page/edit/?id='</span> . <span class="php-var">$page</span>-&gt;id : <span class="php-quote">''</span>;
-</span><span id="889" class="l"><a class="l" href="#889"> 889: </a>            }
-</span><span id="890" class="l"><a class="l" href="#890"> 890: </a>            
-</span><span id="891" class="l"><a class="l" href="#891"> 891: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$display</span>[<span class="php-quote">'name'</span>]) &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$display</span>[<span class="php-quote">'format'</span>])) {
-</span><span id="892" class="l"><a class="l" href="#892"> 892: </a>                <span class="php-comment">// use display format, returning a 'value' property containing the formatted value</span>
-</span><span id="893" class="l"><a class="l" href="#893"> 893: </a>                <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;getMarkup(<span class="php-var">$display</span>[<span class="php-quote">'format'</span>]);
-</span><span id="894" class="l"><a class="l" href="#894"> 894: </a>                <span class="php-var">$p</span>[<span class="php-var">$display</span>[<span class="php-quote">'name'</span>]] = <span class="php-var">$value</span>; 
-</span><span id="895" class="l"><a class="l" href="#895"> 895: </a>                
-</span><span id="896" class="l"><a class="l" href="#896"> 896: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="897" class="l"><a class="l" href="#897"> 897: </a>                <span class="php-comment">// use display fields</span>
-</span><span id="898" class="l"><a class="l" href="#898"> 898: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$display</span> <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$key</span>) {
-</span><span id="899" class="l"><a class="l" href="#899"> 899: </a>
-</span><span id="900" class="l"><a class="l" href="#900"> 900: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'template_label'</span>) {
-</span><span id="901" class="l"><a class="l" href="#901"> 901: </a>                        <span class="php-var">$p</span>[<span class="php-quote">'template_label'</span>] = <span class="php-var">$page</span>-&gt;template-&gt;<span class="php-var">$templateLabel</span> ? <span class="php-var">$page</span>-&gt;template-&gt;<span class="php-var">$templateLabel</span> : <span class="php-var">$page</span>-&gt;template-&gt;label;
-</span><span id="902" class="l"><a class="l" href="#902"> 902: </a>                        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$p</span>[<span class="php-quote">'template_label'</span>])) <span class="php-var">$p</span>[<span class="php-quote">'template_label'</span>] = <span class="php-var">$page</span>-&gt;template-&gt;name;
-</span><span id="903" class="l"><a class="l" href="#903"> 903: </a>                        <span class="php-keyword1">continue</span>;
-</span><span id="904" class="l"><a class="l" href="#904"> 904: </a>                    }
-</span><span id="905" class="l"><a class="l" href="#905"> 905: </a>
-</span><span id="906" class="l"><a class="l" href="#906"> 906: </a>                    <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;get(<span class="php-var">$key</span>);
-</span><span id="907" class="l"><a class="l" href="#907"> 907: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>) &amp;&amp; <span class="php-var">$this</span>-&gt;adminSearchMode) {
-</span><span id="908" class="l"><a class="l" href="#908"> 908: </a>                        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'title'</span>) <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;name; <span class="php-comment">// prevent empty title</span>
-</span><span id="909" class="l"><a class="l" href="#909"> 909: </a>                    }
-</span><span id="910" class="l"><a class="l" href="#910"> 910: </a>
-</span><span id="911" class="l"><a class="l" href="#911"> 911: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_object</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;setupObjectMatch(<span class="php-var">$value</span>);
-</span><span id="912" class="l"><a class="l" href="#912"> 912: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;setupArrayMatch(<span class="php-var">$value</span>);
-</span><span id="913" class="l"><a class="l" href="#913"> 913: </a>
-</span><span id="914" class="l"><a class="l" href="#914"> 914: </a>                    <span class="php-var">$p</span>[<span class="php-var">$key</span>] = <span class="php-var">$value</span>;
-</span><span id="915" class="l"><a class="l" href="#915"> 915: </a>                }
-</span><span id="916" class="l"><a class="l" href="#916"> 916: </a>            }
-</span><span id="917" class="l"><a class="l" href="#917"> 917: </a>
-</span><span id="918" class="l"><a class="l" href="#918"> 918: </a>            <span class="php-var">$a</span>[<span class="php-quote">'matches'</span>][] = <span class="php-var">$p</span>;
-</span><span id="919" class="l"><a class="l" href="#919"> 919: </a>        }
-</span><span id="920" class="l"><a class="l" href="#920"> 920: </a>
-</span><span id="921" class="l"><a class="l" href="#921"> 921: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">json_encode</span>(<span class="php-var">$a</span>);     
-</span><span id="922" class="l"><a class="l" href="#922"> 922: </a>    }
-</span><span id="923" class="l"><a class="l" href="#923"> 923: </a>
-</span><span id="924" class="l"><a class="l" href="#924"> 924: </a>    <span class="php-comment">/**
-</span></span><span id="925" class="l"><a class="l" href="#925"> 925: </a><span class="php-comment">     * Convert object to an array where possible, otherwise convert to a string
-</span></span><span id="926" class="l"><a class="l" href="#926"> 926: </a><span class="php-comment">     *
-</span></span><span id="927" class="l"><a class="l" href="#927"> 927: </a><span class="php-comment">     * For use by renderMatchesAjax
-</span></span><span id="928" class="l"><a class="l" href="#928"> 928: </a><span class="php-comment">     *
-</span></span><span id="929" class="l"><a class="l" href="#929"> 929: </a><span class="php-comment">     */</span>
-</span><span id="930" class="l"><a class="l" href="#930"> 930: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_setupObjectMatch" href="#_setupObjectMatch">setupObjectMatch</a>(<span class="php-var">$o</span>) {
-</span><span id="931" class="l"><a class="l" href="#931"> 931: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$o</span> <span class="php-keyword1">instanceof</span> Page) {
-</span><span id="932" class="l"><a class="l" href="#932"> 932: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>(
-</span><span id="933" class="l"><a class="l" href="#933"> 933: </a>                <span class="php-quote">'id'</span> =&gt; <span class="php-var">$o</span>-&gt;id,
-</span><span id="934" class="l"><a class="l" href="#934"> 934: </a>                <span class="php-quote">'parent_id'</span> =&gt; <span class="php-var">$o</span>-&gt;parent_id,
-</span><span id="935" class="l"><a class="l" href="#935"> 935: </a>                <span class="php-quote">'template'</span> =&gt; <span class="php-var">$o</span>-&gt;template-&gt;name,
-</span><span id="936" class="l"><a class="l" href="#936"> 936: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-var">$o</span>-&gt;name,
-</span><span id="937" class="l"><a class="l" href="#937"> 937: </a>                <span class="php-quote">'path'</span> =&gt; <span class="php-var">$o</span>-&gt;path,
-</span><span id="938" class="l"><a class="l" href="#938"> 938: </a>                <span class="php-quote">'title'</span> =&gt; <span class="php-var">$o</span>-&gt;title
-</span><span id="939" class="l"><a class="l" href="#939"> 939: </a>            ); 
-</span><span id="940" class="l"><a class="l" href="#940"> 940: </a>        }
-</span><span id="941" class="l"><a class="l" href="#941"> 941: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$o</span> <span class="php-keyword1">instanceof</span> WireData || <span class="php-var">$o</span> <span class="php-keyword1">instanceof</span> WireArray) <span class="php-keyword1">return</span> <span class="php-var">$o</span>-&gt;getArray();
-</span><span id="942" class="l"><a class="l" href="#942"> 942: </a>        <span class="php-keyword1">return</span> (string) <span class="php-var">$o</span>;
-</span><span id="943" class="l"><a class="l" href="#943"> 943: </a>    }
-</span><span id="944" class="l"><a class="l" href="#944"> 944: </a>
-</span><span id="945" class="l"><a class="l" href="#945"> 945: </a>    <span class="php-comment">/**
-</span></span><span id="946" class="l"><a class="l" href="#946"> 946: </a><span class="php-comment">     * Filter an array converting any indexes containing objects to arrays or strings
-</span></span><span id="947" class="l"><a class="l" href="#947"> 947: </a><span class="php-comment">     *
-</span></span><span id="948" class="l"><a class="l" href="#948"> 948: </a><span class="php-comment">     * For use by renderMatchesAjax
-</span></span><span id="949" class="l"><a class="l" href="#949"> 949: </a><span class="php-comment">     *
-</span></span><span id="950" class="l"><a class="l" href="#950"> 950: </a><span class="php-comment">     */</span>
-</span><span id="951" class="l"><a class="l" href="#951"> 951: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_setupArrayMatch" href="#_setupArrayMatch">setupArrayMatch</a>(<span class="php-keyword1">array</span> <span class="php-var">$a</span>) {
-</span><span id="952" class="l"><a class="l" href="#952"> 952: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$a</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
-</span><span id="953" class="l"><a class="l" href="#953"> 953: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_object</span>(<span class="php-var">$value</span>)) <span class="php-var">$a</span>[<span class="php-var">$key</span>] = <span class="php-var">$this</span>-&gt;setupObjectMatch(<span class="php-var">$value</span>);
-</span><span id="954" class="l"><a class="l" href="#954"> 954: </a>                <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$a</span>[<span class="php-var">$key</span>] = <span class="php-var">$this</span>-&gt;setupArrayMatch(<span class="php-var">$value</span>); 
-</span><span id="955" class="l"><a class="l" href="#955"> 955: </a>        }
-</span><span id="956" class="l"><a class="l" href="#956"> 956: </a>        <span class="php-keyword1">return</span> <span class="php-var">$a</span>; 
-</span><span id="957" class="l"><a class="l" href="#957"> 957: </a>    }
-</span><span id="958" class="l"><a class="l" href="#958"> 958: </a>
-</span><span id="959" class="l"><a class="l" href="#959"> 959: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_renderSearchForm" href="#_renderSearchForm">renderSearchForm</a>(<span class="php-var">$placeholder</span> = <span class="php-quote">''</span>) {
-</span><span id="960" class="l"><a class="l" href="#960"> 960: </a>
-</span><span id="961" class="l"><a class="l" href="#961"> 961: </a>        <span class="php-var">$q</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$this</span>-&gt;input-&gt;get-&gt;q, <span class="php-num">0</span>, <span class="php-num">128</span>);
-</span><span id="962" class="l"><a class="l" href="#962"> 962: </a>        <span class="php-var">$q</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$q</span>); 
-</span><span id="963" class="l"><a class="l" href="#963"> 963: </a>        <span class="php-var">$adminURL</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;urls-&gt;admin; 
-</span><span id="964" class="l"><a class="l" href="#964"> 964: </a>        
-</span><span id="965" class="l"><a class="l" href="#965"> 965: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$placeholder</span>) {
-</span><span id="966" class="l"><a class="l" href="#966"> 966: </a>            <span class="php-var">$placeholder</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities1(<span class="php-var">$placeholder</span>); 
-</span><span id="967" class="l"><a class="l" href="#967"> 967: </a>            <span class="php-var">$placeholder</span> = <span class="php-quote">&quot; placeholder='</span><span class="php-var">$placeholder</span><span class="php-quote">'&quot;</span>;
-</span><span id="968" class="l"><a class="l" href="#968"> 968: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="969" class="l"><a class="l" href="#969"> 969: </a>            <span class="php-var">$placeholder</span> = <span class="php-quote">''</span>;
-</span><span id="970" class="l"><a class="l" href="#970"> 970: </a>        }
-</span><span id="971" class="l"><a class="l" href="#971"> 971: </a>
-</span><span id="972" class="l"><a class="l" href="#972"> 972: </a>        <span class="php-var">$out</span> =  <span class="php-quote">&quot;\n&lt;form id='ProcessPageSearchForm' data-action='</span><span class="php-var">{$adminURL}</span><span class="php-quote">page/search/' action='</span><span class="php-var">{$adminURL}</span><span class="php-quote">page/search/' method='get'&gt;&quot;</span> .
-</span><span id="973" class="l"><a class="l" href="#973"> 973: </a>            <span class="php-quote">&quot;\n\t&lt;label for='ProcessPageSearchQuery'&gt;&lt;i class='fa fa-search'&gt;&lt;/i&gt;&lt;/label&gt;&quot;</span> . 
-</span><span id="974" class="l"><a class="l" href="#974"> 974: </a>            <span class="php-quote">&quot;\n\t&lt;input type='text' id='ProcessPageSearchQuery' name='q' value='</span><span class="php-var">$q</span><span class="php-quote">'</span><span class="php-var">$placeholder</span><span class="php-quote"> /&gt;&quot;</span> .
-</span><span id="975" class="l"><a class="l" href="#975"> 975: </a>            <span class="php-quote">&quot;\n\t&lt;input type='submit' id='ProcessPageSearchSubmit' name='search' value='Search' /&gt;&quot;</span> . <span class="php-comment">//&quot; . $this-&gt;_x('Search', 'input') . &quot;' /&gt;&quot; . // Text that appears as the placeholder text in the top search submit input</span>
-</span><span id="976" class="l"><a class="l" href="#976"> 976: </a>            <span class="php-quote">&quot;\n\t&lt;input type='hidden' name='show_options' value='1' /&gt;&quot;</span> .
-</span><span id="977" class="l"><a class="l" href="#977"> 977: </a>            <span class="php-quote">&quot;\n\t&lt;span id='ProcessPageSearchStatus'&gt;&lt;/span&gt;&quot;</span> .
-</span><span id="978" class="l"><a class="l" href="#978"> 978: </a>            <span class="php-quote">&quot;\n&lt;/form&gt;&quot;</span>;
-</span><span id="979" class="l"><a class="l" href="#979"> 979: </a>
-</span><span id="980" class="l"><a class="l" href="#980"> 980: </a>        <span class="php-keyword1">return</span> <span class="php-var">$out</span>;
-</span><span id="981" class="l"><a class="l" href="#981"> 981: </a>
-</span><span id="982" class="l"><a class="l" href="#982"> 982: </a>    }
-</span><span id="983" class="l"><a class="l" href="#983"> 983: </a>
-</span><span id="984" class="l"><a class="l" href="#984"> 984: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="985" class="l"><a class="l" href="#985"> 985: </a>
-</span><span id="986" class="l"><a class="l" href="#986"> 986: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
-</span><span id="987" class="l"><a class="l" href="#987"> 987: </a>        <span class="php-var">$modules</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>);
-</span><span id="988" class="l"><a class="l" href="#988"> 988: </a>
-</span><span id="989" class="l"><a class="l" href="#989"> 989: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
-</span><span id="990" class="l"><a class="l" href="#990"> 990: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'searchFields'</span>);
-</span><span id="991" class="l"><a class="l" href="#991"> 991: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>])) <span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>] = <span class="php-quote">'title body'</span>;
-</span><span id="992" class="l"><a class="l" href="#992"> 992: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>])) <span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>] = <span class="php-keyword2">implode</span>(<span class="php-quote">' '</span>, <span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>]);
-</span><span id="993" class="l"><a class="l" href="#993"> 993: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>]);
-</span><span id="994" class="l"><a class="l" href="#994"> 994: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Default fields to search&quot;</span>);
-</span><span id="995" class="l"><a class="l" href="#995"> 995: </a>        <span class="php-var">$description</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Enter the names for one or more text-based fields that you want to search, separating each by a space.&quot;</span>); <span class="php-comment">// Default fields description</span>
-</span><span id="996" class="l"><a class="l" href="#996"> 996: </a>        <span class="php-var">$inputfield</span>-&gt;description = <span class="php-var">$description</span>; 
-</span><span id="997" class="l"><a class="l" href="#997"> 997: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$inputfield</span>);
-</span><span id="998" class="l"><a class="l" href="#998"> 998: </a>        
-</span><span id="999" class="l"><a class="l" href="#999"> 999: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
-</span><span id="1000" class="l"><a class="l" href="#1000">1000: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'searchFields2'</span>);
-</span><span id="1001" class="l"><a class="l" href="#1001">1001: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>])) <span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>] = <span class="php-quote">'title'</span>;
-</span><span id="1002" class="l"><a class="l" href="#1002">1002: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>])) <span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>] = <span class="php-keyword2">implode</span>(<span class="php-quote">' '</span>, <span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>]);
-</span><span id="1003" class="l"><a class="l" href="#1003">1003: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>]);
-</span><span id="1004" class="l"><a class="l" href="#1004">1004: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Field(s) to search in admin search (ajax) mode&quot;</span>);
-</span><span id="1005" class="l"><a class="l" href="#1005">1005: </a>        <span class="php-var">$inputfield</span>-&gt;description = <span class="php-var">$description</span>;
-</span><span id="1006" class="l"><a class="l" href="#1006">1006: </a>        <span class="php-var">$inputfield</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;We recommend limiting this to 1 or 2 fields at the most since results populate a live autocomplete field. Typically you would just search the title.&quot;</span>); <span class="php-comment">// Fields to search description</span>
-</span><span id="1007" class="l"><a class="l" href="#1007">1007: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$inputfield</span>);
-</span><span id="1008" class="l"><a class="l" href="#1008">1008: </a>
-</span><span id="1009" class="l"><a class="l" href="#1009">1009: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
-</span><span id="1010" class="l"><a class="l" href="#1010">1010: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'displayField'</span>);
-</span><span id="1011" class="l"><a class="l" href="#1011">1011: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'displayField'</span>]) ? <span class="php-var">$data</span>[<span class="php-quote">'displayField'</span>] : <span class="php-quote">'name'</span>);
-</span><span id="1012" class="l"><a class="l" href="#1012">1012: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Default field name(s) to display in search results&quot;</span>);
-</span><span id="1013" class="l"><a class="l" href="#1013">1013: </a>        <span class="php-var">$inputfield</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;If specifying more than one field, separate each with a space.&quot;</span>);
-</span><span id="1014" class="l"><a class="l" href="#1014">1014: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$inputfield</span>);
-</span><span id="1015" class="l"><a class="l" href="#1015">1015: </a>
-</span><span id="1016" class="l"><a class="l" href="#1016">1016: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldSelect&quot;</span>);
-</span><span id="1017" class="l"><a class="l" href="#1017">1017: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'operator'</span>);
-</span><span id="1018" class="l"><a class="l" href="#1018">1018: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'operator'</span>]) ? <span class="php-var">$data</span>[<span class="php-quote">'operator'</span>] : self::defaultOperator);
-</span><span id="1019" class="l"><a class="l" href="#1019">1019: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Default search operator&quot;</span>);
-</span><span id="1020" class="l"><a class="l" href="#1020">1020: </a>        <span class="php-keyword1">foreach</span>(self::getOperators() <span class="php-keyword1">as</span> <span class="php-var">$operator</span> =&gt; <span class="php-var">$label</span>) {
-</span><span id="1021" class="l"><a class="l" href="#1021">1021: </a>            <span class="php-var">$inputfield</span>-&gt;addOption(<span class="php-var">$operator</span>, <span class="php-quote">&quot;</span><span class="php-var">$operator</span><span class="php-quote"> </span><span class="php-var">$label</span><span class="php-quote">&quot;</span>); 
-</span><span id="1022" class="l"><a class="l" href="#1022">1022: </a>        }
-</span><span id="1023" class="l"><a class="l" href="#1023">1023: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$inputfield</span>);
-</span><span id="1024" class="l"><a class="l" href="#1024">1024: </a>
-</span><span id="1025" class="l"><a class="l" href="#1025">1025: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="1026" class="l"><a class="l" href="#1026">1026: </a>    }
-</span><span id="1027" class="l"><a class="l" href="#1027">1027: </a>
+</span><span id="865" class="l"><a class="l" href="#865"> 865: </a>            <span class="php-var">$users</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'users'</span>)-&gt;find(<span class="php-quote">&quot;name%=&quot;</span> . 
+</span><span id="866" class="l"><a class="l" href="#866"> 866: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$this</span>-&gt;input-&gt;get(<span class="php-quote">'admin_search'</span>), Sanitizer::toAscii)); 
+</span><span id="867" class="l"><a class="l" href="#867"> 867: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$users</span>)) <span class="php-var">$matches</span>-&gt;prepend(<span class="php-var">$users</span>);
+</span><span id="868" class="l"><a class="l" href="#868"> 868: </a>        }
+</span><span id="869" class="l"><a class="l" href="#869"> 869: </a>
+</span><span id="870" class="l"><a class="l" href="#870"> 870: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$matches</span> <span class="php-keyword1">as</span> <span class="php-var">$page</span>) {
+</span><span id="871" class="l"><a class="l" href="#871"> 871: </a>            <span class="php-comment">/** @var Page $page */</span>
+</span><span id="872" class="l"><a class="l" href="#872"> 872: </a>
+</span><span id="873" class="l"><a class="l" href="#873"> 873: </a>            <span class="php-var">$p</span> = <span class="php-keyword1">array</span>(
+</span><span id="874" class="l"><a class="l" href="#874"> 874: </a>                <span class="php-quote">'id'</span> =&gt; <span class="php-var">$page</span>-&gt;id, 
+</span><span id="875" class="l"><a class="l" href="#875"> 875: </a>                <span class="php-quote">'parent_id'</span> =&gt; <span class="php-var">$page</span>-&gt;parent_id, 
+</span><span id="876" class="l"><a class="l" href="#876"> 876: </a>                <span class="php-quote">'template'</span> =&gt; <span class="php-var">$page</span>-&gt;template-&gt;name, 
+</span><span id="877" class="l"><a class="l" href="#877"> 877: </a>                <span class="php-quote">'path'</span> =&gt; <span class="php-var">$page</span>-&gt;path, 
+</span><span id="878" class="l"><a class="l" href="#878"> 878: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-var">$page</span>-&gt;name, 
+</span><span id="879" class="l"><a class="l" href="#879"> 879: </a>                );
+</span><span id="880" class="l"><a class="l" href="#880"> 880: </a>            
+</span><span id="881" class="l"><a class="l" href="#881"> 881: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;adminSearchMode) {
+</span><span id="882" class="l"><a class="l" href="#882"> 882: </a>                <span class="php-comment">// don't include non-editable pages in admin search mode</span>
+</span><span id="883" class="l"><a class="l" href="#883"> 883: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;editable()) {
+</span><span id="884" class="l"><a class="l" href="#884"> 884: </a>                    <span class="php-var">$a</span>[<span class="php-quote">'total'</span>]--;
+</span><span id="885" class="l"><a class="l" href="#885"> 885: </a>                    <span class="php-keyword1">continue</span>; 
+</span><span id="886" class="l"><a class="l" href="#886"> 886: </a>                }
+</span><span id="887" class="l"><a class="l" href="#887"> 887: </a>                <span class="php-comment">// include the type of match and URL to edit, when in adminSearchMode</span>
+</span><span id="888" class="l"><a class="l" href="#888"> 888: </a>                <span class="php-var">$p</span>[<span class="php-quote">'type'</span>] = <span class="php-var">$this</span>-&gt;_x(<span class="php-quote">'Pages'</span>, <span class="php-quote">'match-type'</span>);
+</span><span id="889" class="l"><a class="l" href="#889"> 889: </a>                <span class="php-var">$p</span>[<span class="php-quote">'editUrl'</span>] = <span class="php-var">$page</span>-&gt;editable() ? <span class="php-var">$this</span>-&gt;config-&gt;urls-&gt;admin . <span class="php-quote">'page/edit/?id='</span> . <span class="php-var">$page</span>-&gt;id : <span class="php-quote">''</span>;
+</span><span id="890" class="l"><a class="l" href="#890"> 890: </a>            }
+</span><span id="891" class="l"><a class="l" href="#891"> 891: </a>            
+</span><span id="892" class="l"><a class="l" href="#892"> 892: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$display</span>[<span class="php-quote">'name'</span>]) &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$display</span>[<span class="php-quote">'format'</span>])) {
+</span><span id="893" class="l"><a class="l" href="#893"> 893: </a>                <span class="php-comment">// use display format, returning a 'value' property containing the formatted value</span>
+</span><span id="894" class="l"><a class="l" href="#894"> 894: </a>                <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;getMarkup(<span class="php-var">$display</span>[<span class="php-quote">'format'</span>]);
+</span><span id="895" class="l"><a class="l" href="#895"> 895: </a>                <span class="php-var">$p</span>[<span class="php-var">$display</span>[<span class="php-quote">'name'</span>]] = <span class="php-var">$value</span>; 
+</span><span id="896" class="l"><a class="l" href="#896"> 896: </a>                
+</span><span id="897" class="l"><a class="l" href="#897"> 897: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="898" class="l"><a class="l" href="#898"> 898: </a>                <span class="php-comment">// use display fields</span>
+</span><span id="899" class="l"><a class="l" href="#899"> 899: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$display</span> <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$key</span>) {
+</span><span id="900" class="l"><a class="l" href="#900"> 900: </a>
+</span><span id="901" class="l"><a class="l" href="#901"> 901: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'template_label'</span>) {
+</span><span id="902" class="l"><a class="l" href="#902"> 902: </a>                        <span class="php-var">$p</span>[<span class="php-quote">'template_label'</span>] = <span class="php-var">$page</span>-&gt;template-&gt;<span class="php-var">$templateLabel</span> ? <span class="php-var">$page</span>-&gt;template-&gt;<span class="php-var">$templateLabel</span> : <span class="php-var">$page</span>-&gt;template-&gt;label;
+</span><span id="903" class="l"><a class="l" href="#903"> 903: </a>                        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$p</span>[<span class="php-quote">'template_label'</span>])) <span class="php-var">$p</span>[<span class="php-quote">'template_label'</span>] = <span class="php-var">$page</span>-&gt;template-&gt;name;
+</span><span id="904" class="l"><a class="l" href="#904"> 904: </a>                        <span class="php-keyword1">continue</span>;
+</span><span id="905" class="l"><a class="l" href="#905"> 905: </a>                    }
+</span><span id="906" class="l"><a class="l" href="#906"> 906: </a>
+</span><span id="907" class="l"><a class="l" href="#907"> 907: </a>                    <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;get(<span class="php-var">$key</span>);
+</span><span id="908" class="l"><a class="l" href="#908"> 908: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>) &amp;&amp; <span class="php-var">$this</span>-&gt;adminSearchMode) {
+</span><span id="909" class="l"><a class="l" href="#909"> 909: </a>                        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'title'</span>) <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;name; <span class="php-comment">// prevent empty title</span>
+</span><span id="910" class="l"><a class="l" href="#910"> 910: </a>                    }
+</span><span id="911" class="l"><a class="l" href="#911"> 911: </a>
+</span><span id="912" class="l"><a class="l" href="#912"> 912: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_object</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;setupObjectMatch(<span class="php-var">$value</span>);
+</span><span id="913" class="l"><a class="l" href="#913"> 913: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;setupArrayMatch(<span class="php-var">$value</span>);
+</span><span id="914" class="l"><a class="l" href="#914"> 914: </a>
+</span><span id="915" class="l"><a class="l" href="#915"> 915: </a>                    <span class="php-var">$p</span>[<span class="php-var">$key</span>] = <span class="php-var">$value</span>;
+</span><span id="916" class="l"><a class="l" href="#916"> 916: </a>                }
+</span><span id="917" class="l"><a class="l" href="#917"> 917: </a>            }
+</span><span id="918" class="l"><a class="l" href="#918"> 918: </a>
+</span><span id="919" class="l"><a class="l" href="#919"> 919: </a>            <span class="php-var">$a</span>[<span class="php-quote">'matches'</span>][] = <span class="php-var">$p</span>;
+</span><span id="920" class="l"><a class="l" href="#920"> 920: </a>        }
+</span><span id="921" class="l"><a class="l" href="#921"> 921: </a>
+</span><span id="922" class="l"><a class="l" href="#922"> 922: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">json_encode</span>(<span class="php-var">$a</span>);     
+</span><span id="923" class="l"><a class="l" href="#923"> 923: </a>    }
+</span><span id="924" class="l"><a class="l" href="#924"> 924: </a>
+</span><span id="925" class="l"><a class="l" href="#925"> 925: </a>    <span class="php-comment">/**
+</span></span><span id="926" class="l"><a class="l" href="#926"> 926: </a><span class="php-comment">     * Convert object to an array where possible, otherwise convert to a string
+</span></span><span id="927" class="l"><a class="l" href="#927"> 927: </a><span class="php-comment">     *
+</span></span><span id="928" class="l"><a class="l" href="#928"> 928: </a><span class="php-comment">     * For use by renderMatchesAjax
+</span></span><span id="929" class="l"><a class="l" href="#929"> 929: </a><span class="php-comment">     *
+</span></span><span id="930" class="l"><a class="l" href="#930"> 930: </a><span class="php-comment">     */</span>
+</span><span id="931" class="l"><a class="l" href="#931"> 931: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_setupObjectMatch" href="#_setupObjectMatch">setupObjectMatch</a>(<span class="php-var">$o</span>) {
+</span><span id="932" class="l"><a class="l" href="#932"> 932: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$o</span> <span class="php-keyword1">instanceof</span> Page) {
+</span><span id="933" class="l"><a class="l" href="#933"> 933: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>(
+</span><span id="934" class="l"><a class="l" href="#934"> 934: </a>                <span class="php-quote">'id'</span> =&gt; <span class="php-var">$o</span>-&gt;id,
+</span><span id="935" class="l"><a class="l" href="#935"> 935: </a>                <span class="php-quote">'parent_id'</span> =&gt; <span class="php-var">$o</span>-&gt;parent_id,
+</span><span id="936" class="l"><a class="l" href="#936"> 936: </a>                <span class="php-quote">'template'</span> =&gt; <span class="php-var">$o</span>-&gt;template-&gt;name,
+</span><span id="937" class="l"><a class="l" href="#937"> 937: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-var">$o</span>-&gt;name,
+</span><span id="938" class="l"><a class="l" href="#938"> 938: </a>                <span class="php-quote">'path'</span> =&gt; <span class="php-var">$o</span>-&gt;path,
+</span><span id="939" class="l"><a class="l" href="#939"> 939: </a>                <span class="php-quote">'title'</span> =&gt; <span class="php-var">$o</span>-&gt;title
+</span><span id="940" class="l"><a class="l" href="#940"> 940: </a>            ); 
+</span><span id="941" class="l"><a class="l" href="#941"> 941: </a>        }
+</span><span id="942" class="l"><a class="l" href="#942"> 942: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$o</span> <span class="php-keyword1">instanceof</span> WireData || <span class="php-var">$o</span> <span class="php-keyword1">instanceof</span> WireArray) <span class="php-keyword1">return</span> <span class="php-var">$o</span>-&gt;getArray();
+</span><span id="943" class="l"><a class="l" href="#943"> 943: </a>        <span class="php-keyword1">return</span> (string) <span class="php-var">$o</span>;
+</span><span id="944" class="l"><a class="l" href="#944"> 944: </a>    }
+</span><span id="945" class="l"><a class="l" href="#945"> 945: </a>
+</span><span id="946" class="l"><a class="l" href="#946"> 946: </a>    <span class="php-comment">/**
+</span></span><span id="947" class="l"><a class="l" href="#947"> 947: </a><span class="php-comment">     * Filter an array converting any indexes containing objects to arrays or strings
+</span></span><span id="948" class="l"><a class="l" href="#948"> 948: </a><span class="php-comment">     *
+</span></span><span id="949" class="l"><a class="l" href="#949"> 949: </a><span class="php-comment">     * For use by renderMatchesAjax
+</span></span><span id="950" class="l"><a class="l" href="#950"> 950: </a><span class="php-comment">     *
+</span></span><span id="951" class="l"><a class="l" href="#951"> 951: </a><span class="php-comment">     */</span>
+</span><span id="952" class="l"><a class="l" href="#952"> 952: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_setupArrayMatch" href="#_setupArrayMatch">setupArrayMatch</a>(<span class="php-keyword1">array</span> <span class="php-var">$a</span>) {
+</span><span id="953" class="l"><a class="l" href="#953"> 953: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$a</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
+</span><span id="954" class="l"><a class="l" href="#954"> 954: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_object</span>(<span class="php-var">$value</span>)) <span class="php-var">$a</span>[<span class="php-var">$key</span>] = <span class="php-var">$this</span>-&gt;setupObjectMatch(<span class="php-var">$value</span>);
+</span><span id="955" class="l"><a class="l" href="#955"> 955: </a>                <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$a</span>[<span class="php-var">$key</span>] = <span class="php-var">$this</span>-&gt;setupArrayMatch(<span class="php-var">$value</span>); 
+</span><span id="956" class="l"><a class="l" href="#956"> 956: </a>        }
+</span><span id="957" class="l"><a class="l" href="#957"> 957: </a>        <span class="php-keyword1">return</span> <span class="php-var">$a</span>; 
+</span><span id="958" class="l"><a class="l" href="#958"> 958: </a>    }
+</span><span id="959" class="l"><a class="l" href="#959"> 959: </a>
+</span><span id="960" class="l"><a class="l" href="#960"> 960: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_renderSearchForm" href="#_renderSearchForm">renderSearchForm</a>(<span class="php-var">$placeholder</span> = <span class="php-quote">''</span>) {
+</span><span id="961" class="l"><a class="l" href="#961"> 961: </a>
+</span><span id="962" class="l"><a class="l" href="#962"> 962: </a>        <span class="php-var">$q</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$this</span>-&gt;input-&gt;get-&gt;q, <span class="php-num">0</span>, <span class="php-num">128</span>);
+</span><span id="963" class="l"><a class="l" href="#963"> 963: </a>        <span class="php-var">$q</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$q</span>); 
+</span><span id="964" class="l"><a class="l" href="#964"> 964: </a>        <span class="php-var">$adminURL</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;urls-&gt;admin; 
+</span><span id="965" class="l"><a class="l" href="#965"> 965: </a>        
+</span><span id="966" class="l"><a class="l" href="#966"> 966: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$placeholder</span>) {
+</span><span id="967" class="l"><a class="l" href="#967"> 967: </a>            <span class="php-var">$placeholder</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities1(<span class="php-var">$placeholder</span>); 
+</span><span id="968" class="l"><a class="l" href="#968"> 968: </a>            <span class="php-var">$placeholder</span> = <span class="php-quote">&quot; placeholder='</span><span class="php-var">$placeholder</span><span class="php-quote">'&quot;</span>;
+</span><span id="969" class="l"><a class="l" href="#969"> 969: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="970" class="l"><a class="l" href="#970"> 970: </a>            <span class="php-var">$placeholder</span> = <span class="php-quote">''</span>;
+</span><span id="971" class="l"><a class="l" href="#971"> 971: </a>        }
+</span><span id="972" class="l"><a class="l" href="#972"> 972: </a>
+</span><span id="973" class="l"><a class="l" href="#973"> 973: </a>        <span class="php-var">$out</span> =  <span class="php-quote">&quot;\n&lt;form id='ProcessPageSearchForm' data-action='</span><span class="php-var">{$adminURL}</span><span class="php-quote">page/search/' action='</span><span class="php-var">{$adminURL}</span><span class="php-quote">page/search/' method='get'&gt;&quot;</span> .
+</span><span id="974" class="l"><a class="l" href="#974"> 974: </a>            <span class="php-quote">&quot;\n\t&lt;label for='ProcessPageSearchQuery'&gt;&lt;i class='fa fa-search'&gt;&lt;/i&gt;&lt;/label&gt;&quot;</span> . 
+</span><span id="975" class="l"><a class="l" href="#975"> 975: </a>            <span class="php-quote">&quot;\n\t&lt;input type='text' id='ProcessPageSearchQuery' name='q' value='</span><span class="php-var">$q</span><span class="php-quote">'</span><span class="php-var">$placeholder</span><span class="php-quote"> /&gt;&quot;</span> .
+</span><span id="976" class="l"><a class="l" href="#976"> 976: </a>            <span class="php-quote">&quot;\n\t&lt;input type='submit' id='ProcessPageSearchSubmit' name='search' value='Search' /&gt;&quot;</span> . <span class="php-comment">//&quot; . $this-&gt;_x('Search', 'input') . &quot;' /&gt;&quot; . // Text that appears as the placeholder text in the top search submit input</span>
+</span><span id="977" class="l"><a class="l" href="#977"> 977: </a>            <span class="php-quote">&quot;\n\t&lt;input type='hidden' name='show_options' value='1' /&gt;&quot;</span> .
+</span><span id="978" class="l"><a class="l" href="#978"> 978: </a>            <span class="php-quote">&quot;\n\t&lt;span id='ProcessPageSearchStatus'&gt;&lt;/span&gt;&quot;</span> .
+</span><span id="979" class="l"><a class="l" href="#979"> 979: </a>            <span class="php-quote">&quot;\n&lt;/form&gt;&quot;</span>;
+</span><span id="980" class="l"><a class="l" href="#980"> 980: </a>
+</span><span id="981" class="l"><a class="l" href="#981"> 981: </a>        <span class="php-keyword1">return</span> <span class="php-var">$out</span>;
+</span><span id="982" class="l"><a class="l" href="#982"> 982: </a>
+</span><span id="983" class="l"><a class="l" href="#983"> 983: </a>    }
+</span><span id="984" class="l"><a class="l" href="#984"> 984: </a>
+</span><span id="985" class="l"><a class="l" href="#985"> 985: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="986" class="l"><a class="l" href="#986"> 986: </a>
+</span><span id="987" class="l"><a class="l" href="#987"> 987: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
+</span><span id="988" class="l"><a class="l" href="#988"> 988: </a>        <span class="php-var">$modules</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>);
+</span><span id="989" class="l"><a class="l" href="#989"> 989: </a>
+</span><span id="990" class="l"><a class="l" href="#990"> 990: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
+</span><span id="991" class="l"><a class="l" href="#991"> 991: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'searchFields'</span>);
+</span><span id="992" class="l"><a class="l" href="#992"> 992: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>])) <span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>] = <span class="php-quote">'title body'</span>;
+</span><span id="993" class="l"><a class="l" href="#993"> 993: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>])) <span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>] = <span class="php-keyword2">implode</span>(<span class="php-quote">' '</span>, <span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>]);
+</span><span id="994" class="l"><a class="l" href="#994"> 994: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'searchFields'</span>]);
+</span><span id="995" class="l"><a class="l" href="#995"> 995: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Default fields to search&quot;</span>);
+</span><span id="996" class="l"><a class="l" href="#996"> 996: </a>        <span class="php-var">$description</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Enter the names for one or more text-based fields that you want to search, separating each by a space.&quot;</span>); <span class="php-comment">// Default fields description</span>
+</span><span id="997" class="l"><a class="l" href="#997"> 997: </a>        <span class="php-var">$inputfield</span>-&gt;description = <span class="php-var">$description</span>; 
+</span><span id="998" class="l"><a class="l" href="#998"> 998: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$inputfield</span>);
+</span><span id="999" class="l"><a class="l" href="#999"> 999: </a>        
+</span><span id="1000" class="l"><a class="l" href="#1000">1000: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
+</span><span id="1001" class="l"><a class="l" href="#1001">1001: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'searchFields2'</span>);
+</span><span id="1002" class="l"><a class="l" href="#1002">1002: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>])) <span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>] = <span class="php-quote">'title'</span>;
+</span><span id="1003" class="l"><a class="l" href="#1003">1003: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>])) <span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>] = <span class="php-keyword2">implode</span>(<span class="php-quote">' '</span>, <span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>]);
+</span><span id="1004" class="l"><a class="l" href="#1004">1004: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'searchFields2'</span>]);
+</span><span id="1005" class="l"><a class="l" href="#1005">1005: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Field(s) to search in admin search (ajax) mode&quot;</span>);
+</span><span id="1006" class="l"><a class="l" href="#1006">1006: </a>        <span class="php-var">$inputfield</span>-&gt;description = <span class="php-var">$description</span>;
+</span><span id="1007" class="l"><a class="l" href="#1007">1007: </a>        <span class="php-var">$inputfield</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;We recommend limiting this to 1 or 2 fields at the most since results populate a live autocomplete field. Typically you would just search the title.&quot;</span>); <span class="php-comment">// Fields to search description</span>
+</span><span id="1008" class="l"><a class="l" href="#1008">1008: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$inputfield</span>);
+</span><span id="1009" class="l"><a class="l" href="#1009">1009: </a>
+</span><span id="1010" class="l"><a class="l" href="#1010">1010: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
+</span><span id="1011" class="l"><a class="l" href="#1011">1011: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'displayField'</span>);
+</span><span id="1012" class="l"><a class="l" href="#1012">1012: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'displayField'</span>]) ? <span class="php-var">$data</span>[<span class="php-quote">'displayField'</span>] : <span class="php-quote">'name'</span>);
+</span><span id="1013" class="l"><a class="l" href="#1013">1013: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Default field name(s) to display in search results&quot;</span>);
+</span><span id="1014" class="l"><a class="l" href="#1014">1014: </a>        <span class="php-var">$inputfield</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;If specifying more than one field, separate each with a space.&quot;</span>);
+</span><span id="1015" class="l"><a class="l" href="#1015">1015: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$inputfield</span>);
+</span><span id="1016" class="l"><a class="l" href="#1016">1016: </a>
+</span><span id="1017" class="l"><a class="l" href="#1017">1017: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldSelect&quot;</span>);
+</span><span id="1018" class="l"><a class="l" href="#1018">1018: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'operator'</span>);
+</span><span id="1019" class="l"><a class="l" href="#1019">1019: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'operator'</span>]) ? <span class="php-var">$data</span>[<span class="php-quote">'operator'</span>] : self::defaultOperator);
+</span><span id="1020" class="l"><a class="l" href="#1020">1020: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Default search operator&quot;</span>);
+</span><span id="1021" class="l"><a class="l" href="#1021">1021: </a>        <span class="php-keyword1">foreach</span>(self::getOperators() <span class="php-keyword1">as</span> <span class="php-var">$operator</span> =&gt; <span class="php-var">$label</span>) {
+</span><span id="1022" class="l"><a class="l" href="#1022">1022: </a>            <span class="php-var">$inputfield</span>-&gt;addOption(<span class="php-var">$operator</span>, <span class="php-quote">&quot;</span><span class="php-var">$operator</span><span class="php-quote"> </span><span class="php-var">$label</span><span class="php-quote">&quot;</span>); 
+</span><span id="1023" class="l"><a class="l" href="#1023">1023: </a>        }
+</span><span id="1024" class="l"><a class="l" href="#1024">1024: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$inputfield</span>);
+</span><span id="1025" class="l"><a class="l" href="#1025">1025: </a>
+</span><span id="1026" class="l"><a class="l" href="#1026">1026: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="1027" class="l"><a class="l" href="#1027">1027: </a>    }
 </span><span id="1028" class="l"><a class="l" href="#1028">1028: </a>
-</span><span id="1029" class="l"><a class="l" href="#1029">1029: </a>}
-</span><span id="1030" class="l"><a class="l" href="#1030">1030: </a></span></code></pre>
+</span><span id="1029" class="l"><a class="l" href="#1029">1029: </a>
+</span><span id="1030" class="l"><a class="l" href="#1030">1030: </a>}
+</span><span id="1031" class="l"><a class="l" href="#1031">1031: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

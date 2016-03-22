@@ -8,7 +8,7 @@
 	<title>File modules/PagePathHistory.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1311294761"></script>
+	<script type="text/javascript" src="elementlist.js?193540940"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.11 devns</span>
+			<span>Overview version 3.0.12 devns</span>
 		</a>
 
 
@@ -271,6 +271,7 @@
 				<li><a href="class-ProcessWire.ProcessUser.html">ProcessUser</a></li>
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
+				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -587,7 +588,7 @@
 </span><span id="104" class="l"><a class="l" href="#104">104: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_int</span>(<span class="php-var">$language</span>) || <span class="php-keyword2">ctype_digit</span>(<span class="php-var">$language</span>)) {
 </span><span id="105" class="l"><a class="l" href="#105">105: </a>            <span class="php-var">$language</span> = <span class="php-var">$languages</span>-&gt;get((int) <span class="php-var">$language</span>);
 </span><span id="106" class="l"><a class="l" href="#106">106: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$language</span>) &amp;&amp; <span class="php-var">$language</span>) {
-</span><span id="107" class="l"><a class="l" href="#107">107: </a>            <span class="php-var">$language</span> = <span class="php-var">$languages</span>-&gt;get(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$language</span>));
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>            <span class="php-var">$language</span> = <span class="php-var">$languages</span>-&gt;get(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageNameUTF8(<span class="php-var">$language</span>));
 </span><span id="108" class="l"><a class="l" href="#108">108: </a>        }
 </span><span id="109" class="l"><a class="l" href="#109">109: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$language</span> &amp;&amp; !<span class="php-var">$language</span>-&gt;id) <span class="php-var">$language</span> = <span class="php-keyword1">null</span>;
 </span><span id="110" class="l"><a class="l" href="#110">110: </a>        <span class="php-keyword1">return</span> <span class="php-var">$language</span>;
@@ -605,7 +606,7 @@
 </span><span id="122" class="l"><a class="l" href="#122">122: </a>        
 </span><span id="123" class="l"><a class="l" href="#123">123: </a>        <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
 </span><span id="124" class="l"><a class="l" href="#124">124: </a>        <span class="php-var">$table</span> = self::dbTableName;
-</span><span id="125" class="l"><a class="l" href="#125">125: </a>        <span class="php-var">$path</span> = <span class="php-quote">'/'</span> . <span class="php-keyword2">trim</span>(<span class="php-var">$path</span>, <span class="php-quote">'/'</span>);
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>        <span class="php-var">$path</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pagePathName(<span class="php-quote">'/'</span> . <span class="php-keyword2">trim</span>(<span class="php-var">$path</span>, <span class="php-quote">'/'</span>), Sanitizer::toAscii);
 </span><span id="126" class="l"><a class="l" href="#126">126: </a>        <span class="php-var">$language</span> = <span class="php-var">$this</span>-&gt;getLanguage(<span class="php-var">$language</span>);
 </span><span id="127" class="l"><a class="l" href="#127">127: </a>
 </span><span id="128" class="l"><a class="l" href="#128">128: </a>        <span class="php-var">$sql</span> = <span class="php-quote">&quot;INSERT INTO </span><span class="php-var">$table</span><span class="php-quote"> SET path=:path, pages_id=:pages_id, created=NOW()&quot;</span>;
@@ -624,7 +625,7 @@
 </span><span id="141" class="l"><a class="l" href="#141">141: </a>
 </span><span id="142" class="l"><a class="l" href="#142">142: </a>        <span class="php-comment">// delete any possible entries that overlap with the $page since are no longer applicable</span>
 </span><span id="143" class="l"><a class="l" href="#143">143: </a>        <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-quote">&quot;DELETE FROM </span><span class="php-var">$table</span><span class="php-quote"> WHERE path=:path LIMIT 1&quot;</span>);
-</span><span id="144" class="l"><a class="l" href="#144">144: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">&quot;:path&quot;</span>, <span class="php-keyword2">rtrim</span>(<span class="php-var">$page</span>-&gt;path, <span class="php-quote">'/'</span>));
+</span><span id="144" class="l"><a class="l" href="#144">144: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">&quot;:path&quot;</span>, <span class="php-keyword2">rtrim</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pagePathName(<span class="php-var">$page</span>-&gt;path, Sanitizer::toAscii), <span class="php-quote">'/'</span>));
 </span><span id="145" class="l"><a class="l" href="#145">145: </a>        <span class="php-var">$query</span>-&gt;execute();
 </span><span id="146" class="l"><a class="l" href="#146">146: </a>    }
 </span><span id="147" class="l"><a class="l" href="#147">147: </a>
@@ -656,7 +657,7 @@
 </span><span id="173" class="l"><a class="l" href="#173">173: </a>        <span class="php-keyword1">try</span> {
 </span><span id="174" class="l"><a class="l" href="#174">174: </a>            <span class="php-var">$query</span>-&gt;execute();
 </span><span id="175" class="l"><a class="l" href="#175">175: </a>            <span class="php-keyword1">while</span>(<span class="php-var">$row</span> = <span class="php-var">$query</span>-&gt;fetch(\PDO::FETCH_NUM)) {
-</span><span id="176" class="l"><a class="l" href="#176">176: </a>                <span class="php-var">$paths</span>[] = <span class="php-var">$row</span>[<span class="php-num">0</span>];
+</span><span id="176" class="l"><a class="l" href="#176">176: </a>                <span class="php-var">$paths</span>[] = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pagePathName(<span class="php-var">$row</span>[<span class="php-num">0</span>], Sanitizer::toUTF8);
 </span><span id="177" class="l"><a class="l" href="#177">177: </a>            }
 </span><span id="178" class="l"><a class="l" href="#178">178: </a>        } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
 </span><span id="179" class="l"><a class="l" href="#179">179: </a>            <span class="php-comment">// intentionally blank</span>
@@ -778,139 +779,141 @@
 </span><span id="295" class="l"><a class="l" href="#295">295: </a>        
 </span><span id="296" class="l"><a class="l" href="#296">296: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;newNullPage();
 </span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-var">$pathRemoved</span> = <span class="php-quote">''</span>;
-</span><span id="298" class="l"><a class="l" href="#298">298: </a>        <span class="php-var">$path</span> = <span class="php-quote">'/'</span> . <span class="php-keyword2">trim</span>(<span class="php-var">$path</span>, <span class="php-quote">'/'</span>);
-</span><span id="299" class="l"><a class="l" href="#299">299: </a>        <span class="php-var">$cnt</span> = <span class="php-num">0</span>;
-</span><span id="300" class="l"><a class="l" href="#300">300: </a>        <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
-</span><span id="301" class="l"><a class="l" href="#301">301: </a>        <span class="php-var">$table</span> = self::dbTableName;
-</span><span id="302" class="l"><a class="l" href="#302">302: </a>        <span class="php-var">$languages</span> = <span class="php-var">$this</span>-&gt;getLanguages();
-</span><span id="303" class="l"><a class="l" href="#303">303: </a>
-</span><span id="304" class="l"><a class="l" href="#304">304: </a>        <span class="php-keyword1">while</span>(<span class="php-keyword2">strlen</span>(<span class="php-var">$path</span>) &amp;&amp; !<span class="php-var">$page</span>-&gt;id &amp;&amp; <span class="php-var">$cnt</span> &lt; self::maxSegments) {
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>        <span class="php-var">$cnt</span> = <span class="php-num">0</span>;
+</span><span id="299" class="l"><a class="l" href="#299">299: </a>        <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>        <span class="php-var">$table</span> = self::dbTableName;
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>        <span class="php-var">$languages</span> = <span class="php-var">$this</span>-&gt;getLanguages();
+</span><span id="302" class="l"><a class="l" href="#302">302: </a>        
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$level</span>) <span class="php-var">$path</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pagePathName(<span class="php-var">$path</span>, Sanitizer::toAscii);
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>        <span class="php-var">$path</span> = <span class="php-quote">'/'</span> . <span class="php-keyword2">trim</span>(<span class="php-var">$path</span>, <span class="php-quote">'/'</span>);
 </span><span id="305" class="l"><a class="l" href="#305">305: </a>
-</span><span id="306" class="l"><a class="l" href="#306">306: </a>            <span class="php-var">$sql</span> = <span class="php-quote">&quot;SELECT pages_id &quot;</span>;
-</span><span id="307" class="l"><a class="l" href="#307">307: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$languages</span>) <span class="php-var">$sql</span> .= <span class="php-quote">&quot;, language_id &quot;</span>;
-</span><span id="308" class="l"><a class="l" href="#308">308: </a>            <span class="php-var">$sql</span> .= <span class="php-quote">&quot;FROM </span><span class="php-var">$table</span><span class="php-quote"> WHERE path=:path&quot;</span>;
-</span><span id="309" class="l"><a class="l" href="#309">309: </a>            <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-var">$sql</span>);
-</span><span id="310" class="l"><a class="l" href="#310">310: </a>            <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">&quot;:path&quot;</span>, <span class="php-var">$path</span>); 
-</span><span id="311" class="l"><a class="l" href="#311">311: </a>            <span class="php-var">$error</span> = <span class="php-keyword1">false</span>;
-</span><span id="312" class="l"><a class="l" href="#312">312: </a>            
-</span><span id="313" class="l"><a class="l" href="#313">313: </a>            <span class="php-keyword1">try</span> {
-</span><span id="314" class="l"><a class="l" href="#314">314: </a>                <span class="php-var">$query</span>-&gt;execute();
-</span><span id="315" class="l"><a class="l" href="#315">315: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
-</span><span id="316" class="l"><a class="l" href="#316">316: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'log'</span>)-&gt;error(<span class="php-quote">'PagePathHistory::getPage() - '</span> . <span class="php-var">$e</span>-&gt;getMessage());
-</span><span id="317" class="l"><a class="l" href="#317">317: </a>                <span class="php-var">$error</span> = <span class="php-keyword1">true</span>;
-</span><span id="318" class="l"><a class="l" href="#318">318: </a>            }
-</span><span id="319" class="l"><a class="l" href="#319">319: </a>            
-</span><span id="320" class="l"><a class="l" href="#320">320: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$error</span>) <span class="php-keyword1">break</span>;
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>        <span class="php-keyword1">while</span>(<span class="php-keyword2">strlen</span>(<span class="php-var">$path</span>) &amp;&amp; !<span class="php-var">$page</span>-&gt;id &amp;&amp; <span class="php-var">$cnt</span> &lt; self::maxSegments) {
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>            <span class="php-var">$sql</span> = <span class="php-quote">&quot;SELECT pages_id &quot;</span>;
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$languages</span>) <span class="php-var">$sql</span> .= <span class="php-quote">&quot;, language_id &quot;</span>;
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>            <span class="php-var">$sql</span> .= <span class="php-quote">&quot;FROM </span><span class="php-var">$table</span><span class="php-quote"> WHERE path=:path&quot;</span>;
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>            <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-var">$sql</span>);
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>            <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">&quot;:path&quot;</span>, <span class="php-var">$path</span>); 
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>            <span class="php-var">$error</span> = <span class="php-keyword1">false</span>;
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>            
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>            <span class="php-keyword1">try</span> {
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>                <span class="php-var">$query</span>-&gt;execute();
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'log'</span>)-&gt;error(<span class="php-quote">'PagePathHistory::getPage() - '</span> . <span class="php-var">$e</span>-&gt;getMessage());
+</span><span id="319" class="l"><a class="l" href="#319">319: </a>                <span class="php-var">$error</span> = <span class="php-keyword1">true</span>;
+</span><span id="320" class="l"><a class="l" href="#320">320: </a>            }
 </span><span id="321" class="l"><a class="l" href="#321">321: </a>            
-</span><span id="322" class="l"><a class="l" href="#322">322: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$query</span>-&gt;rowCount() &gt; <span class="php-num">0</span>) {
-</span><span id="323" class="l"><a class="l" href="#323">323: </a>                <span class="php-comment">// found a match</span>
-</span><span id="324" class="l"><a class="l" href="#324">324: </a>                <span class="php-var">$row</span> = <span class="php-var">$query</span>-&gt;fetch(\PDO::FETCH_NUM);
-</span><span id="325" class="l"><a class="l" href="#325">325: </a>                <span class="php-var">$pages_id</span> = (int) <span class="php-var">$row</span>[<span class="php-num">0</span>];
-</span><span id="326" class="l"><a class="l" href="#326">326: </a>                <span class="php-var">$language_id</span> = <span class="php-var">$languages</span> &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$row</span>[<span class="php-num">1</span>]) ? <span class="php-var">$row</span>[<span class="php-num">1</span>] : <span class="php-num">0</span>;
-</span><span id="327" class="l"><a class="l" href="#327">327: </a>                <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;pages-&gt;get((int) <span class="php-var">$pages_id</span>);
-</span><span id="328" class="l"><a class="l" href="#328">328: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$language_id</span>) <span class="php-var">$page</span>-&gt;setQuietly(<span class="php-quote">&quot;_language&quot;</span>, <span class="php-var">$this</span>-&gt;getLanguage(<span class="php-var">$language_id</span>));
-</span><span id="329" class="l"><a class="l" href="#329">329: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="330" class="l"><a class="l" href="#330">330: </a>                <span class="php-comment">// didn't find a match, we'll pop the last segment off and try again for the parent</span>
-</span><span id="331" class="l"><a class="l" href="#331">331: </a>                <span class="php-var">$pos</span> = <span class="php-keyword2">strrpos</span>(<span class="php-var">$path</span>, <span class="php-quote">'/'</span>);
-</span><span id="332" class="l"><a class="l" href="#332">332: </a>                <span class="php-var">$pathRemoved</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$path</span>, <span class="php-var">$pos</span>) . <span class="php-var">$pathRemoved</span>;
-</span><span id="333" class="l"><a class="l" href="#333">333: </a>                <span class="php-var">$path</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$path</span>, <span class="php-num">0</span>, <span class="php-var">$pos</span>);
-</span><span id="334" class="l"><a class="l" href="#334">334: </a>            }
-</span><span id="335" class="l"><a class="l" href="#335">335: </a>            
-</span><span id="336" class="l"><a class="l" href="#336">336: </a>            <span class="php-var">$query</span>-&gt;closeCursor();
-</span><span id="337" class="l"><a class="l" href="#337">337: </a>            <span class="php-var">$cnt</span>++;
-</span><span id="338" class="l"><a class="l" href="#338">338: </a>        } 
-</span><span id="339" class="l"><a class="l" href="#339">339: </a>
-</span><span id="340" class="l"><a class="l" href="#340">340: </a>        <span class="php-comment">// if no page was found, then we can stop trying now</span>
-</span><span id="341" class="l"><a class="l" href="#341">341: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;id) <span class="php-keyword1">return</span> <span class="php-var">$page</span>; 
-</span><span id="342" class="l"><a class="l" href="#342">342: </a>
-</span><span id="343" class="l"><a class="l" href="#343">343: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$cnt</span> &gt; <span class="php-num">1</span>) {
-</span><span id="344" class="l"><a class="l" href="#344">344: </a>            <span class="php-comment">// a parent match was found if our counter is &gt; 1</span>
-</span><span id="345" class="l"><a class="l" href="#345">345: </a>            <span class="php-var">$parent</span> = <span class="php-var">$page</span>; 
-</span><span id="346" class="l"><a class="l" href="#346">346: </a>            <span class="php-comment">// use the new parent path and add the removed components back on to it</span>
-</span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-var">$path</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$parent</span>-&gt;path, <span class="php-quote">'/'</span>) . <span class="php-var">$pathRemoved</span>; 
-</span><span id="348" class="l"><a class="l" href="#348">348: </a>            <span class="php-comment">// see if it might exist at the new parent's URL</span>
-</span><span id="349" class="l"><a class="l" href="#349">349: </a>            <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;getByPath(<span class="php-var">$path</span>, <span class="php-keyword1">array</span>(
-</span><span id="350" class="l"><a class="l" href="#350">350: </a>                <span class="php-quote">'useHistory'</span> =&gt; <span class="php-keyword1">false</span>,
-</span><span id="351" class="l"><a class="l" href="#351">351: </a>                <span class="php-quote">'useLanguages'</span> =&gt; <span class="php-var">$languages</span> ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>
-</span><span id="352" class="l"><a class="l" href="#352">352: </a>            )); 
-</span><span id="353" class="l"><a class="l" href="#353">353: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id) {
-</span><span id="354" class="l"><a class="l" href="#354">354: </a>                <span class="php-comment">// found a page</span>
-</span><span id="355" class="l"><a class="l" href="#355">355: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$languages</span>) {
-</span><span id="356" class="l"><a class="l" href="#356">356: </a>                    <span class="php-var">$language</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupportPageNames'</span>)-&gt;getPagePathLanguage(<span class="php-var">$path</span>, <span class="php-var">$page</span>);
-</span><span id="357" class="l"><a class="l" href="#357">357: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$language</span>) <span class="php-var">$page</span>-&gt;setQuietly(<span class="php-quote">'_language'</span>, <span class="php-var">$language</span>);
-</span><span id="358" class="l"><a class="l" href="#358">358: </a>                }
-</span><span id="359" class="l"><a class="l" href="#359">359: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$level</span> &lt; self::maxSegments) {
-</span><span id="360" class="l"><a class="l" href="#360">360: </a>                <span class="php-comment">// if not, then go recursive, trying again</span>
-</span><span id="361" class="l"><a class="l" href="#361">361: </a>                <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;getPage(<span class="php-var">$path</span>, <span class="php-var">$level</span> + <span class="php-num">1</span>);
-</span><span id="362" class="l"><a class="l" href="#362">362: </a>            }
-</span><span id="363" class="l"><a class="l" href="#363">363: </a>        }
-</span><span id="364" class="l"><a class="l" href="#364">364: </a>        
-</span><span id="365" class="l"><a class="l" href="#365">365: </a>        <span class="php-keyword1">return</span> <span class="php-var">$page</span>;   
-</span><span id="366" class="l"><a class="l" href="#366">366: </a>    }
-</span><span id="367" class="l"><a class="l" href="#367">367: </a>
-</span><span id="368" class="l"><a class="l" href="#368">368: </a>    <span class="php-comment">/**
-</span></span><span id="369" class="l"><a class="l" href="#369">369: </a><span class="php-comment">     * When a page is deleted, remove it from our redirects list as well
-</span></span><span id="370" class="l"><a class="l" href="#370">370: </a><span class="php-comment">     *
-</span></span><span id="371" class="l"><a class="l" href="#371">371: </a><span class="php-comment">     */</span>
-</span><span id="372" class="l"><a class="l" href="#372">372: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hookPageDeleted" href="#_hookPageDeleted">hookPageDeleted</a>(HookEvent <span class="php-var">$event</span>) {
-</span><span id="373" class="l"><a class="l" href="#373">373: </a>        <span class="php-var">$page</span> = <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>];
-</span><span id="374" class="l"><a class="l" href="#374">374: </a>        <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
-</span><span id="375" class="l"><a class="l" href="#375">375: </a>        <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-quote">&quot;DELETE FROM &quot;</span> . self::dbTableName . <span class="php-quote">&quot; WHERE pages_id=:pages_id&quot;</span>); 
-</span><span id="376" class="l"><a class="l" href="#376">376: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">&quot;:pages_id&quot;</span>, <span class="php-var">$page</span>-&gt;id, \PDO::PARAM_INT);
-</span><span id="377" class="l"><a class="l" href="#377">377: </a>        <span class="php-var">$query</span>-&gt;execute();
-</span><span id="378" class="l"><a class="l" href="#378">378: </a>    }
-</span><span id="379" class="l"><a class="l" href="#379">379: </a>
-</span><span id="380" class="l"><a class="l" href="#380">380: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____install" href="#____install">___install</a>() {
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$error</span>) <span class="php-keyword1">break</span>;
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>            
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$query</span>-&gt;rowCount() &gt; <span class="php-num">0</span>) {
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>                <span class="php-comment">// found a match</span>
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>                <span class="php-var">$row</span> = <span class="php-var">$query</span>-&gt;fetch(\PDO::FETCH_NUM);
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>                <span class="php-var">$pages_id</span> = (int) <span class="php-var">$row</span>[<span class="php-num">0</span>];
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>                <span class="php-var">$language_id</span> = <span class="php-var">$languages</span> &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$row</span>[<span class="php-num">1</span>]) ? <span class="php-var">$row</span>[<span class="php-num">1</span>] : <span class="php-num">0</span>;
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>                <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;pages-&gt;get((int) <span class="php-var">$pages_id</span>);
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$language_id</span>) <span class="php-var">$page</span>-&gt;setQuietly(<span class="php-quote">&quot;_language&quot;</span>, <span class="php-var">$this</span>-&gt;getLanguage(<span class="php-var">$language_id</span>));
+</span><span id="331" class="l"><a class="l" href="#331">331: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="332" class="l"><a class="l" href="#332">332: </a>                <span class="php-comment">// didn't find a match, we'll pop the last segment off and try again for the parent</span>
+</span><span id="333" class="l"><a class="l" href="#333">333: </a>                <span class="php-var">$pos</span> = <span class="php-keyword2">strrpos</span>(<span class="php-var">$path</span>, <span class="php-quote">'/'</span>);
+</span><span id="334" class="l"><a class="l" href="#334">334: </a>                <span class="php-var">$pathRemoved</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$path</span>, <span class="php-var">$pos</span>) . <span class="php-var">$pathRemoved</span>;
+</span><span id="335" class="l"><a class="l" href="#335">335: </a>                <span class="php-var">$path</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$path</span>, <span class="php-num">0</span>, <span class="php-var">$pos</span>);
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>            }
+</span><span id="337" class="l"><a class="l" href="#337">337: </a>            
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>            <span class="php-var">$query</span>-&gt;closeCursor();
+</span><span id="339" class="l"><a class="l" href="#339">339: </a>            <span class="php-var">$cnt</span>++;
+</span><span id="340" class="l"><a class="l" href="#340">340: </a>        } 
+</span><span id="341" class="l"><a class="l" href="#341">341: </a>
+</span><span id="342" class="l"><a class="l" href="#342">342: </a>        <span class="php-comment">// if no page was found, then we can stop trying now</span>
+</span><span id="343" class="l"><a class="l" href="#343">343: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;id) <span class="php-keyword1">return</span> <span class="php-var">$page</span>; 
+</span><span id="344" class="l"><a class="l" href="#344">344: </a>
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$cnt</span> &gt; <span class="php-num">1</span>) {
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>            <span class="php-comment">// a parent match was found if our counter is &gt; 1</span>
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-var">$parent</span> = <span class="php-var">$page</span>; 
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>            <span class="php-comment">// use the new parent path and add the removed components back on to it</span>
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>            <span class="php-var">$path</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$parent</span>-&gt;path, <span class="php-quote">'/'</span>) . <span class="php-var">$pathRemoved</span>; 
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>            <span class="php-comment">// see if it might exist at the new parent's URL</span>
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>            <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;getByPath(<span class="php-var">$path</span>, <span class="php-keyword1">array</span>(
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>                <span class="php-quote">'useHistory'</span> =&gt; <span class="php-keyword1">false</span>,
+</span><span id="353" class="l"><a class="l" href="#353">353: </a>                <span class="php-quote">'useLanguages'</span> =&gt; <span class="php-var">$languages</span> ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>
+</span><span id="354" class="l"><a class="l" href="#354">354: </a>            )); 
+</span><span id="355" class="l"><a class="l" href="#355">355: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id) {
+</span><span id="356" class="l"><a class="l" href="#356">356: </a>                <span class="php-comment">// found a page</span>
+</span><span id="357" class="l"><a class="l" href="#357">357: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$languages</span>) {
+</span><span id="358" class="l"><a class="l" href="#358">358: </a>                    <span class="php-var">$language</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupportPageNames'</span>)-&gt;getPagePathLanguage(<span class="php-var">$path</span>, <span class="php-var">$page</span>);
+</span><span id="359" class="l"><a class="l" href="#359">359: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$language</span>) <span class="php-var">$page</span>-&gt;setQuietly(<span class="php-quote">'_language'</span>, <span class="php-var">$language</span>);
+</span><span id="360" class="l"><a class="l" href="#360">360: </a>                }
+</span><span id="361" class="l"><a class="l" href="#361">361: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$level</span> &lt; self::maxSegments) {
+</span><span id="362" class="l"><a class="l" href="#362">362: </a>                <span class="php-comment">// if not, then go recursive, trying again</span>
+</span><span id="363" class="l"><a class="l" href="#363">363: </a>                <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;getPage(<span class="php-var">$path</span>, <span class="php-var">$level</span> + <span class="php-num">1</span>);
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>            }
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>        }
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>        
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>        <span class="php-keyword1">return</span> <span class="php-var">$page</span>;   
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>    }
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>    <span class="php-comment">/**
+</span></span><span id="371" class="l"><a class="l" href="#371">371: </a><span class="php-comment">     * When a page is deleted, remove it from our redirects list as well
+</span></span><span id="372" class="l"><a class="l" href="#372">372: </a><span class="php-comment">     *
+</span></span><span id="373" class="l"><a class="l" href="#373">373: </a><span class="php-comment">     */</span>
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hookPageDeleted" href="#_hookPageDeleted">hookPageDeleted</a>(HookEvent <span class="php-var">$event</span>) {
+</span><span id="375" class="l"><a class="l" href="#375">375: </a>        <span class="php-var">$page</span> = <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>];
+</span><span id="376" class="l"><a class="l" href="#376">376: </a>        <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
+</span><span id="377" class="l"><a class="l" href="#377">377: </a>        <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-quote">&quot;DELETE FROM &quot;</span> . self::dbTableName . <span class="php-quote">&quot; WHERE pages_id=:pages_id&quot;</span>); 
+</span><span id="378" class="l"><a class="l" href="#378">378: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">&quot;:pages_id&quot;</span>, <span class="php-var">$page</span>-&gt;id, \PDO::PARAM_INT);
+</span><span id="379" class="l"><a class="l" href="#379">379: </a>        <span class="php-var">$query</span>-&gt;execute();
+</span><span id="380" class="l"><a class="l" href="#380">380: </a>    }
 </span><span id="381" class="l"><a class="l" href="#381">381: </a>
-</span><span id="382" class="l"><a class="l" href="#382">382: </a>        <span class="php-var">$sql</span> =  <span class="php-quote">&quot;CREATE TABLE &quot;</span> . self::dbTableName . <span class="php-quote">&quot; (&quot;</span> . 
-</span><span id="383" class="l"><a class="l" href="#383">383: </a>                <span class="php-quote">&quot;path VARCHAR(255) NOT NULL, &quot;</span> . 
-</span><span id="384" class="l"><a class="l" href="#384">384: </a>                <span class="php-quote">&quot;pages_id INT UNSIGNED NOT NULL, &quot;</span> .
-</span><span id="385" class="l"><a class="l" href="#385">385: </a>                <span class="php-quote">&quot;language_id INT UNSIGNED DEFAULT 0, &quot;</span> . <span class="php-comment">// v2</span>
-</span><span id="386" class="l"><a class="l" href="#386">386: </a>                <span class="php-quote">&quot;created TIMESTAMP NOT NULL, &quot;</span> . 
-</span><span id="387" class="l"><a class="l" href="#387">387: </a>                <span class="php-quote">&quot;PRIMARY KEY path (path), &quot;</span> . 
-</span><span id="388" class="l"><a class="l" href="#388">388: </a>                <span class="php-quote">&quot;INDEX pages_id (pages_id), &quot;</span> . 
-</span><span id="389" class="l"><a class="l" href="#389">389: </a>                <span class="php-quote">&quot;INDEX created (created) &quot;</span> . 
-</span><span id="390" class="l"><a class="l" href="#390">390: </a>                <span class="php-quote">&quot;) ENGINE=</span><span class="php-var">{$this-&gt;config-&gt;dbEngine}</span><span class="php-quote"> DEFAULT CHARSET=</span><span class="php-var">{$this-&gt;config-&gt;dbCharset}</span><span class="php-quote">&quot;</span>;
-</span><span id="391" class="l"><a class="l" href="#391">391: </a>
-</span><span id="392" class="l"><a class="l" href="#392">392: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;<span class="php-keyword2">exec</span>(<span class="php-var">$sql</span>); 
+</span><span id="382" class="l"><a class="l" href="#382">382: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____install" href="#____install">___install</a>() {
+</span><span id="383" class="l"><a class="l" href="#383">383: </a>
+</span><span id="384" class="l"><a class="l" href="#384">384: </a>        <span class="php-var">$sql</span> =  <span class="php-quote">&quot;CREATE TABLE &quot;</span> . self::dbTableName . <span class="php-quote">&quot; (&quot;</span> . 
+</span><span id="385" class="l"><a class="l" href="#385">385: </a>                <span class="php-quote">&quot;path VARCHAR(255) NOT NULL, &quot;</span> . 
+</span><span id="386" class="l"><a class="l" href="#386">386: </a>                <span class="php-quote">&quot;pages_id INT UNSIGNED NOT NULL, &quot;</span> .
+</span><span id="387" class="l"><a class="l" href="#387">387: </a>                <span class="php-quote">&quot;language_id INT UNSIGNED DEFAULT 0, &quot;</span> . <span class="php-comment">// v2</span>
+</span><span id="388" class="l"><a class="l" href="#388">388: </a>                <span class="php-quote">&quot;created TIMESTAMP NOT NULL, &quot;</span> . 
+</span><span id="389" class="l"><a class="l" href="#389">389: </a>                <span class="php-quote">&quot;PRIMARY KEY path (path), &quot;</span> . 
+</span><span id="390" class="l"><a class="l" href="#390">390: </a>                <span class="php-quote">&quot;INDEX pages_id (pages_id), &quot;</span> . 
+</span><span id="391" class="l"><a class="l" href="#391">391: </a>                <span class="php-quote">&quot;INDEX created (created) &quot;</span> . 
+</span><span id="392" class="l"><a class="l" href="#392">392: </a>                <span class="php-quote">&quot;) ENGINE=</span><span class="php-var">{$this-&gt;config-&gt;dbEngine}</span><span class="php-quote"> DEFAULT CHARSET=</span><span class="php-var">{$this-&gt;config-&gt;dbCharset}</span><span class="php-quote">&quot;</span>;
 </span><span id="393" class="l"><a class="l" href="#393">393: </a>
-</span><span id="394" class="l"><a class="l" href="#394">394: </a>    }
+</span><span id="394" class="l"><a class="l" href="#394">394: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;<span class="php-keyword2">exec</span>(<span class="php-var">$sql</span>); 
 </span><span id="395" class="l"><a class="l" href="#395">395: </a>
-</span><span id="396" class="l"><a class="l" href="#396">396: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() {
-</span><span id="397" class="l"><a class="l" href="#397">397: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;query(<span class="php-quote">&quot;DROP TABLE &quot;</span> . self::dbTableName); 
-</span><span id="398" class="l"><a class="l" href="#398">398: </a>    }
-</span><span id="399" class="l"><a class="l" href="#399">399: </a>
-</span><span id="400" class="l"><a class="l" href="#400">400: </a>    <span class="php-comment">/**
-</span></span><span id="401" class="l"><a class="l" href="#401">401: </a><span class="php-comment">     * Upgrade PagePathHistory module schema
-</span></span><span id="402" class="l"><a class="l" href="#402">402: </a><span class="php-comment">     * 
-</span></span><span id="403" class="l"><a class="l" href="#403">403: </a><span class="php-comment">     * @param int $fromVersion
-</span></span><span id="404" class="l"><a class="l" href="#404">404: </a><span class="php-comment">     * @param int $toVersion
-</span></span><span id="405" class="l"><a class="l" href="#405">405: </a><span class="php-comment">     * 
-</span></span><span id="406" class="l"><a class="l" href="#406">406: </a><span class="php-comment">     */</span>
-</span><span id="407" class="l"><a class="l" href="#407">407: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____upgrade" href="#____upgrade">___upgrade</a>(<span class="php-var">$fromVersion</span>, <span class="php-var">$toVersion</span>) {
-</span><span id="408" class="l"><a class="l" href="#408">408: </a>        
-</span><span id="409" class="l"><a class="l" href="#409">409: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$fromVersion</span> == <span class="php-num">1</span>) {
+</span><span id="396" class="l"><a class="l" href="#396">396: </a>    }
+</span><span id="397" class="l"><a class="l" href="#397">397: </a>
+</span><span id="398" class="l"><a class="l" href="#398">398: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() {
+</span><span id="399" class="l"><a class="l" href="#399">399: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;query(<span class="php-quote">&quot;DROP TABLE &quot;</span> . self::dbTableName); 
+</span><span id="400" class="l"><a class="l" href="#400">400: </a>    }
+</span><span id="401" class="l"><a class="l" href="#401">401: </a>
+</span><span id="402" class="l"><a class="l" href="#402">402: </a>    <span class="php-comment">/**
+</span></span><span id="403" class="l"><a class="l" href="#403">403: </a><span class="php-comment">     * Upgrade PagePathHistory module schema
+</span></span><span id="404" class="l"><a class="l" href="#404">404: </a><span class="php-comment">     * 
+</span></span><span id="405" class="l"><a class="l" href="#405">405: </a><span class="php-comment">     * @param int $fromVersion
+</span></span><span id="406" class="l"><a class="l" href="#406">406: </a><span class="php-comment">     * @param int $toVersion
+</span></span><span id="407" class="l"><a class="l" href="#407">407: </a><span class="php-comment">     * 
+</span></span><span id="408" class="l"><a class="l" href="#408">408: </a><span class="php-comment">     */</span>
+</span><span id="409" class="l"><a class="l" href="#409">409: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____upgrade" href="#____upgrade">___upgrade</a>(<span class="php-var">$fromVersion</span>, <span class="php-var">$toVersion</span>) {
 </span><span id="410" class="l"><a class="l" href="#410">410: </a>        
-</span><span id="411" class="l"><a class="l" href="#411">411: </a>            <span class="php-var">$messagePrefix</span> = <span class="php-quote">&quot;PagePathHistory v</span><span class="php-var">$fromVersion</span><span class="php-quote"> =&gt; v</span><span class="php-var">$toVersion</span><span class="php-quote">: &quot;</span>;
-</span><span id="412" class="l"><a class="l" href="#412">412: </a>            <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
-</span><span id="413" class="l"><a class="l" href="#413">413: </a>            <span class="php-var">$table</span> = self::dbTableName;
-</span><span id="414" class="l"><a class="l" href="#414">414: </a>            
-</span><span id="415" class="l"><a class="l" href="#415">415: </a>            <span class="php-keyword1">try</span> {
-</span><span id="416" class="l"><a class="l" href="#416">416: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD language_id INT UNSIGNED DEFAULT 0&quot;</span>);
-</span><span id="417" class="l"><a class="l" href="#417">417: </a>                <span class="php-var">$message</span> = <span class="php-quote">&quot;Added 'language_id' column&quot;</span>;
-</span><span id="418" class="l"><a class="l" href="#418">418: </a>                <span class="php-var">$error</span> = <span class="php-keyword1">false</span>;
-</span><span id="419" class="l"><a class="l" href="#419">419: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
-</span><span id="420" class="l"><a class="l" href="#420">420: </a>                <span class="php-var">$error</span> = <span class="php-keyword1">true</span>;
-</span><span id="421" class="l"><a class="l" href="#421">421: </a>                <span class="php-var">$message</span> = <span class="php-var">$e</span>-&gt;getMessage();
-</span><span id="422" class="l"><a class="l" href="#422">422: </a>            }
-</span><span id="423" class="l"><a class="l" href="#423">423: </a>            
-</span><span id="424" class="l"><a class="l" href="#424">424: </a>            <span class="php-var">$message</span> = <span class="php-var">$messagePrefix</span> . <span class="php-var">$message</span>;
-</span><span id="425" class="l"><a class="l" href="#425">425: </a>            <span class="php-var">$error</span> ? <span class="php-var">$this</span>-&gt;error(<span class="php-var">$message</span>) : <span class="php-var">$this</span>-&gt;message(<span class="php-var">$message</span>);
-</span><span id="426" class="l"><a class="l" href="#426">426: </a>        }
-</span><span id="427" class="l"><a class="l" href="#427">427: </a>    }
-</span><span id="428" class="l"><a class="l" href="#428">428: </a>
-</span><span id="429" class="l"><a class="l" href="#429">429: </a>}
-</span><span id="430" class="l"><a class="l" href="#430">430: </a></span></code></pre>
+</span><span id="411" class="l"><a class="l" href="#411">411: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$fromVersion</span> == <span class="php-num">1</span>) {
+</span><span id="412" class="l"><a class="l" href="#412">412: </a>        
+</span><span id="413" class="l"><a class="l" href="#413">413: </a>            <span class="php-var">$messagePrefix</span> = <span class="php-quote">&quot;PagePathHistory v</span><span class="php-var">$fromVersion</span><span class="php-quote"> =&gt; v</span><span class="php-var">$toVersion</span><span class="php-quote">: &quot;</span>;
+</span><span id="414" class="l"><a class="l" href="#414">414: </a>            <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
+</span><span id="415" class="l"><a class="l" href="#415">415: </a>            <span class="php-var">$table</span> = self::dbTableName;
+</span><span id="416" class="l"><a class="l" href="#416">416: </a>            
+</span><span id="417" class="l"><a class="l" href="#417">417: </a>            <span class="php-keyword1">try</span> {
+</span><span id="418" class="l"><a class="l" href="#418">418: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD language_id INT UNSIGNED DEFAULT 0&quot;</span>);
+</span><span id="419" class="l"><a class="l" href="#419">419: </a>                <span class="php-var">$message</span> = <span class="php-quote">&quot;Added 'language_id' column&quot;</span>;
+</span><span id="420" class="l"><a class="l" href="#420">420: </a>                <span class="php-var">$error</span> = <span class="php-keyword1">false</span>;
+</span><span id="421" class="l"><a class="l" href="#421">421: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
+</span><span id="422" class="l"><a class="l" href="#422">422: </a>                <span class="php-var">$error</span> = <span class="php-keyword1">true</span>;
+</span><span id="423" class="l"><a class="l" href="#423">423: </a>                <span class="php-var">$message</span> = <span class="php-var">$e</span>-&gt;getMessage();
+</span><span id="424" class="l"><a class="l" href="#424">424: </a>            }
+</span><span id="425" class="l"><a class="l" href="#425">425: </a>            
+</span><span id="426" class="l"><a class="l" href="#426">426: </a>            <span class="php-var">$message</span> = <span class="php-var">$messagePrefix</span> . <span class="php-var">$message</span>;
+</span><span id="427" class="l"><a class="l" href="#427">427: </a>            <span class="php-var">$error</span> ? <span class="php-var">$this</span>-&gt;error(<span class="php-var">$message</span>) : <span class="php-var">$this</span>-&gt;message(<span class="php-var">$message</span>);
+</span><span id="428" class="l"><a class="l" href="#428">428: </a>        }
+</span><span id="429" class="l"><a class="l" href="#429">429: </a>    }
+</span><span id="430" class="l"><a class="l" href="#430">430: </a>
+</span><span id="431" class="l"><a class="l" href="#431">431: </a>}
+</span><span id="432" class="l"><a class="l" href="#432">432: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

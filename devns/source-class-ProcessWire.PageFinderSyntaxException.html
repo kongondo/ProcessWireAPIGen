@@ -8,7 +8,7 @@
 	<title>File core/PageFinder.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1311294761"></script>
+	<script type="text/javascript" src="elementlist.js?193540940"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.11 devns</span>
+			<span>Overview version 3.0.12 devns</span>
 		</a>
 
 
@@ -271,6 +271,7 @@
 				<li><a href="class-ProcessWire.ProcessUser.html">ProcessUser</a></li>
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
+				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -1802,7 +1803,7 @@
 </span><span id="1319" class="l"><a class="l" href="#1319">1319: </a>            <span class="php-var">$selectorValue</span> = <span class="php-var">$selector</span>-&gt;value;
 </span><span id="1320" class="l"><a class="l" href="#1320">1320: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$langNames</span>) <span class="php-var">$selectorValue</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupportPageNames'</span>)-&gt;updatePath(<span class="php-var">$selectorValue</span>); 
 </span><span id="1321" class="l"><a class="l" href="#1321">1321: </a>            <span class="php-var">$parts</span> = <span class="php-keyword2">explode</span>(<span class="php-quote">'/'</span>, <span class="php-keyword2">rtrim</span>(<span class="php-var">$selectorValue</span>, <span class="php-quote">'/'</span>)); 
-</span><span id="1322" class="l"><a class="l" href="#1322">1322: </a>            <span class="php-var">$part</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-keyword2">array_pop</span>(<span class="php-var">$parts</span>)); 
+</span><span id="1322" class="l"><a class="l" href="#1322">1322: </a>            <span class="php-var">$part</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-keyword2">array_pop</span>(<span class="php-var">$parts</span>), Sanitizer::toAscii)); 
 </span><span id="1323" class="l"><a class="l" href="#1323">1323: </a>            <span class="php-var">$sql</span> = <span class="php-quote">&quot;pages.name='</span><span class="php-var">$part</span><span class="php-quote">'&quot;</span>;
 </span><span id="1324" class="l"><a class="l" href="#1324">1324: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$langNames</span>) <span class="php-keyword1">foreach</span>(<span class="php-var">$langNames</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span>) <span class="php-var">$sql</span> .= <span class="php-quote">&quot; OR pages.</span><span class="php-var">$name</span><span class="php-quote">='</span><span class="php-var">$part</span><span class="php-quote">'&quot;</span>;
 </span><span id="1325" class="l"><a class="l" href="#1325">1325: </a>            <span class="php-var">$query</span>-&gt;where(<span class="php-var">$sql</span>); 
@@ -1814,7 +1815,7 @@
 </span><span id="1331" class="l"><a class="l" href="#1331">1331: </a>
 </span><span id="1332" class="l"><a class="l" href="#1332">1332: </a>        <span class="php-comment">/** @noinspection PhpAssignmentInConditionInspection */</span>
 </span><span id="1333" class="l"><a class="l" href="#1333">1333: </a>        <span class="php-keyword1">while</span>(<span class="php-var">$n</span> = <span class="php-keyword2">count</span>(<span class="php-var">$parts</span>)) {
-</span><span id="1334" class="l"><a class="l" href="#1334">1334: </a>            <span class="php-var">$part</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-keyword2">array_pop</span>(<span class="php-var">$parts</span>)); 
+</span><span id="1334" class="l"><a class="l" href="#1334">1334: </a>            <span class="php-var">$part</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-keyword2">array_pop</span>(<span class="php-var">$parts</span>), Sanitizer::toAscii)); 
 </span><span id="1335" class="l"><a class="l" href="#1335">1335: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strlen</span>(<span class="php-var">$part</span>)) {
 </span><span id="1336" class="l"><a class="l" href="#1336">1336: </a>                <span class="php-var">$alias</span> = <span class="php-quote">&quot;parent</span><span class="php-var">$n</span><span class="php-quote">&quot;</span>;
 </span><span id="1337" class="l"><a class="l" href="#1337">1337: </a>                <span class="php-comment">//$query-&gt;join(&quot;pages AS $alias ON ($lastAlias.parent_id=$alias.id AND $alias.name='$part')&quot;);</span>
@@ -1876,7 +1877,7 @@
 </span><span id="1393" class="l"><a class="l" href="#1393">1393: </a>                    <span class="php-comment">// convert parent fields like '/about/company/history' to the equivalent ID</span>
 </span><span id="1394" class="l"><a class="l" href="#1394">1394: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$values</span> <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$v</span>) {
 </span><span id="1395" class="l"><a class="l" href="#1395">1395: </a>                        <span class="php-keyword1">if</span>(<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$v</span><span class="php-quote">&quot;</span>)) <span class="php-keyword1">continue</span>; 
-</span><span id="1396" class="l"><a class="l" href="#1396">1396: </a>                        <span class="php-var">$v</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pagePathName(<span class="php-var">$v</span>); 
+</span><span id="1396" class="l"><a class="l" href="#1396">1396: </a>                        <span class="php-var">$v</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pagePathName(<span class="php-var">$v</span>, Sanitizer::toAscii); 
 </span><span id="1397" class="l"><a class="l" href="#1397">1397: </a>                        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$v</span>, <span class="php-quote">'/'</span>) === <span class="php-keyword1">false</span>) <span class="php-var">$v</span> = <span class="php-quote">&quot;/</span><span class="php-var">$v</span><span class="php-quote">&quot;</span>; <span class="php-comment">// prevent a plain string with no slashes</span>
 </span><span id="1398" class="l"><a class="l" href="#1398">1398: </a>                        <span class="php-comment">// convert path to id</span>
 </span><span id="1399" class="l"><a class="l" href="#1399">1399: </a>                        <span class="php-var">$parent</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get(<span class="php-var">$v</span>); 
@@ -1949,13 +1950,13 @@
 </span><span id="1466" class="l"><a class="l" href="#1466">1466: </a>                    <span class="php-comment">// handle one or more space-separated full words match to 'name' field in any order</span>
 </span><span id="1467" class="l"><a class="l" href="#1467">1467: </a>                    <span class="php-var">$s</span> = <span class="php-quote">''</span>;
 </span><span id="1468" class="l"><a class="l" href="#1468">1468: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-keyword2">explode</span>(<span class="php-quote">' '</span>, <span class="php-var">$value</span>) <span class="php-keyword1">as</span> <span class="php-var">$word</span>) {
-</span><span id="1469" class="l"><a class="l" href="#1469">1469: </a>                        <span class="php-var">$word</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$word</span>)); 
+</span><span id="1469" class="l"><a class="l" href="#1469">1469: </a>                        <span class="php-var">$word</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$word</span>, Sanitizer::toAscii)); 
 </span><span id="1470" class="l"><a class="l" href="#1470">1470: </a>                        <span class="php-var">$s</span> .= (<span class="php-var">$s</span> ? <span class="php-quote">' AND '</span> : <span class="php-quote">''</span>) . <span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote">.</span><span class="php-var">$field</span><span class="php-quote"> RLIKE '&quot;</span> . <span class="php-quote">'[[:&lt;:]]'</span> . <span class="php-var">$word</span> . <span class="php-quote">'[[:&gt;:]]'</span> . <span class="php-quote">&quot;'&quot;</span>;
 </span><span id="1471" class="l"><a class="l" href="#1471">1471: </a>                    }
 </span><span id="1472" class="l"><a class="l" href="#1472">1472: </a>
 </span><span id="1473" class="l"><a class="l" href="#1473">1473: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$isName</span> &amp;&amp; <span class="php-keyword2">in_array</span>(<span class="php-var">$operator</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'%='</span>, <span class="php-quote">'^='</span>, <span class="php-quote">'$='</span>, <span class="php-quote">'%^='</span>, <span class="php-quote">'%$='</span>, <span class="php-quote">'*='</span>))) {
 </span><span id="1474" class="l"><a class="l" href="#1474">1474: </a>                    <span class="php-comment">// handle partial match to 'name' field</span>
-</span><span id="1475" class="l"><a class="l" href="#1475">1475: </a>                    <span class="php-var">$value</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$value</span>));
+</span><span id="1475" class="l"><a class="l" href="#1475">1475: </a>                    <span class="php-var">$value</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$value</span>, Sanitizer::toAscii));
 </span><span id="1476" class="l"><a class="l" href="#1476">1476: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> == <span class="php-quote">'^='</span> || <span class="php-var">$operator</span> == <span class="php-quote">'%^='</span>) <span class="php-var">$value</span> = <span class="php-quote">&quot;</span><span class="php-var">$value</span><span class="php-quote">%&quot;</span>;
 </span><span id="1477" class="l"><a class="l" href="#1477">1477: </a>                        <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> == <span class="php-quote">'$='</span> || <span class="php-var">$operator</span> == <span class="php-quote">'%$='</span>) <span class="php-var">$value</span> = <span class="php-quote">&quot;%</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>;
 </span><span id="1478" class="l"><a class="l" href="#1478">1478: </a>                        <span class="php-keyword1">else</span> <span class="php-var">$value</span> = <span class="php-quote">&quot;%</span><span class="php-var">$value</span><span class="php-quote">%&quot;</span>;
@@ -1965,7 +1966,7 @@
 </span><span id="1482" class="l"><a class="l" href="#1482">1482: </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> PageFinderSyntaxException(<span class="php-quote">&quot;Operator '</span><span class="php-var">{$operator}</span><span class="php-quote">' is not supported for '</span><span class="php-var">$field</span><span class="php-quote">'.&quot;</span>); 
 </span><span id="1483" class="l"><a class="l" href="#1483">1483: </a>
 </span><span id="1484" class="l"><a class="l" href="#1484">1484: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="1485" class="l"><a class="l" href="#1485">1485: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$isName</span>) <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$value</span>); 
+</span><span id="1485" class="l"><a class="l" href="#1485">1485: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$isName</span>) <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$value</span>, Sanitizer::toAscii); 
 </span><span id="1486" class="l"><a class="l" href="#1486">1486: </a>                    <span class="php-var">$value</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$value</span>); 
 </span><span id="1487" class="l"><a class="l" href="#1487">1487: </a>                    <span class="php-var">$s</span> = <span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote">.&quot;</span> . <span class="php-var">$field</span> . <span class="php-var">$operator</span> . ((<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>) &amp;&amp; <span class="php-var">$field</span> != <span class="php-quote">'name'</span>) ? ((int) <span class="php-var">$value</span>) : <span class="php-quote">&quot;'</span><span class="php-var">$value</span><span class="php-quote">'&quot;</span>);
 </span><span id="1488" class="l"><a class="l" href="#1488">1488: </a>                }
