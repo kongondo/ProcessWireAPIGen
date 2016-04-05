@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PageTraversal | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?193540940"></script>
+	<script type="text/javascript" src="elementlist.js?3545656823"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.12 devns</span>
+			<span>Overview version 3.0.13 devns</span>
 		</a>
 
 
@@ -510,7 +510,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PageTraversal.html#4-415" title="Go to source code">core/PageTraversal.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PageTraversal.html#4-477" title="Go to source code">core/PageTraversal.php</a><br>
 	</div>
 
 
@@ -528,7 +528,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numChildren">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#16-53" title="Go to source code">numChildren</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean|string|integer <var>$selector</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#16-58" title="Go to source code">numChildren</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean|string|integer|array <var>$selector</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -551,8 +551,8 @@ options for the $selector argument.</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>boolean|string|integer</code><br>$selector When not specified, result includes all children without conditions,
-same as $page-&gt;numChildren property. When a string, a selector string is
+					<dd><code>boolean|string|integer|array</code><br>$selector When not specified, result includes all children without conditions,
+same as $page-&gt;numChildren property. When a string or array, a selector is
 assumed and quantity will be counted based on selector. When boolean true,
 number includes only visible children (excludes unpublished, hidden, no-access,
 etc.) When boolean false, number includes all children without conditions,
@@ -583,7 +583,7 @@ also includes unpublished pages if user has page-edit permission).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_children">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#55-76" title="Go to source code">children</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#60-86" title="Go to source code">children</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -602,7 +602,7 @@ also includes unpublished pages if user has page-edit permission).</dd>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string</code><br>$selector Selector to use, or blank to return all children</dd>
+					<dd><code>string|array</code><br>$selector Selector to use, or blank to return all children</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options</dd>
 				</dl></div>
@@ -629,7 +629,7 @@ also includes unpublished pages if user has page-edit permission).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_child">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#78-97" title="Go to source code">child</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#88-112" title="Go to source code">child</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -651,7 +651,7 @@ than a PageArray</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string</code><br>$selector Selector to use, or blank to return the first child.</dd>
+					<dd><code>string|array</code><br>$selector Selector to use, or blank to return the first child.</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options</dd>
 				</dl></div>
@@ -678,7 +678,7 @@ than a PageArray</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parents">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#99-115" title="Go to source code">parents</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#114-130" title="Go to source code">parents</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -699,7 +699,7 @@ selector.</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string</code><br>$selector Optional selector string to filter parents by</dd>
+					<dd><code>string|array</code><br>$selector Optional selector string to filter parents by</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -724,7 +724,7 @@ selector.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parentsUntil">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#117-151" title="Go to source code">parentsUntil</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$selector</var> = <span class="php-quote">''</span></span>, <span>string <var>$filter</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#132-173" title="Go to source code">parentsUntil</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$filter</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -743,10 +743,10 @@ selector.</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$selector May either be a selector string or Page to stop at. Results will not
-include this.</dd>
+					<dd><code>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array</code><br>$selector May either be a selector or Page to stop at. Results will not include
+this.</dd>
 					<dt><var>$filter</var></dt>
-					<dd><code>string</code><br>$filter Optional selector string to filter matched pages by</dd>
+					<dd><code>string|array</code><br>$filter Optional selector to filter matched pages by</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -771,7 +771,7 @@ include this.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rootParent">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#154-169" title="Go to source code">rootParent</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#176-191" title="Go to source code">rootParent</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -815,7 +815,7 @@ include this.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_siblings">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#171-190" title="Go to source code">siblings</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#193-216" title="Go to source code">siblings</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -862,7 +862,7 @@ specify "id!=$page".</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_next">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#192-226" title="Go to source code">next</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#218-255" title="Go to source code">next</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -894,8 +894,8 @@ argument to this function.</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string</code><br>$selector Optional selector string. When specified, will find nearest next
-sibling that matches.</dd>
+					<dd><code>string|array</code><br>$selector Optional selector. When specified, will find nearest next sibling that
+matches.</dd>
 					<dt><var>$siblings</var></dt>
 					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$siblings Optional siblings to use instead of the default. May also be specified
 as first argument when no selector needed.</dd>
@@ -923,7 +923,7 @@ as first argument when no selector needed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prev">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#241-275" title="Go to source code">prev</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#270-307" title="Go to source code">prev</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -955,8 +955,8 @@ argument to this function.</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string</code><br>$selector Optional selector string. When specified, will find nearest previous
-sibling that matches.</dd>
+					<dd><code>string|array</code><br>$selector Optional selector. When specified, will find nearest previous sibling
+that matches.</dd>
 					<dt><var>$siblings</var></dt>
 					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$siblings Optional siblings to use instead of the default. May also be specified
 as first argument when no selector needed.</dd>
@@ -984,7 +984,7 @@ as first argument when no selector needed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_nextAll">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#277-305" title="Go to source code">nextAll</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#309-341" title="Go to source code">nextAll</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1003,8 +1003,7 @@ as first argument when no selector needed.</dd>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string</code><br>$selector Optional selector string. When specified, will filter the found
-siblings.</dd>
+					<dd><code>string|array</code><br>$selector Optional selector. When specified, will filter the found siblings.</dd>
 					<dt><var>$siblings</var></dt>
 					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$siblings Optional siblings to use instead of the default.</dd>
 				</dl></div>
@@ -1031,7 +1030,7 @@ siblings.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prevAll">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#307-331" title="Go to source code">prevAll</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#343-371" title="Go to source code">prevAll</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1050,8 +1049,7 @@ siblings.</dd>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string</code><br>$selector Optional selector string. When specified, will filter the found
-siblings.</dd>
+					<dd><code>string|array</code><br>$selector Optional selector. When specified, will filter the found siblings.</dd>
 					<dt><var>$siblings</var></dt>
 					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$siblings Optional siblings to use instead of the default.</dd>
 				</dl></div>
@@ -1078,7 +1076,7 @@ siblings.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_nextUntil">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#333-372" title="Go to source code">nextUntil</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$selector</var> = <span class="php-quote">''</span></span>, <span>string <var>$filter</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#373-423" title="Go to source code">nextUntil</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$filter</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1097,10 +1095,10 @@ siblings.</dd>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$selector May either be a selector string or Page to stop at. Results will not
-include this.</dd>
+					<dd><code>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array</code><br>$selector May either be a selector or Page to stop at. Results will not include
+this.</dd>
 					<dt><var>$filter</var></dt>
-					<dd><code>string</code><br>$filter Optional selector string to filter matched pages by</dd>
+					<dd><code>string|array</code><br>$filter Optional selector to filter matched pages by</dd>
 					<dt><var>$siblings</var></dt>
 					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|null</code><br>$siblings Optional PageArray of siblings to use instead of all from the page.</dd>
 				</dl></div>
@@ -1127,7 +1125,7 @@ include this.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prevUntil">#</a>
-		<code><a href="source-class-ProcessWire.PageTraversal.html#374-413" title="Go to source code">prevUntil</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$selector</var> = <span class="php-quote">''</span></span>, <span>string <var>$filter</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageTraversal.html#425-475" title="Go to source code">prevUntil</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$filter</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$siblings</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1146,10 +1144,10 @@ include this.</dd>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$selector</var></dt>
-					<dd><code>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$selector May either be a selector string or Page to stop at. Results will not
-include this.</dd>
+					<dd><code>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array</code><br>$selector May either be a selector or Page to stop at. Results will not include
+this.</dd>
 					<dt><var>$filter</var></dt>
-					<dd><code>string</code><br>$filter Optional selector string to filter matched pages by</dd>
+					<dd><code>string|array</code><br>$filter Optional selector string to filter matched pages by</dd>
 					<dt><var>$siblings</var></dt>
 					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|null</code><br>$siblings Optional PageArray of siblings to use instead of all from the page.</dd>
 				</dl></div>

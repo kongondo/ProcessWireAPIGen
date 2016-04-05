@@ -8,7 +8,7 @@
 	<title>File core/Inputfield.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?193540940"></script>
+	<script type="text/javascript" src="elementlist.js?3545656823"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.12 devns</span>
+			<span>Overview version 3.0.13 devns</span>
 		</a>
 
 
@@ -1566,7 +1566,7 @@
 </span></span><span id="1082" class="l"><a class="l" href="#1082">1082: </a><span class="php-comment">     * If not, then this should return the default HTML for the Inputfield,
 </span></span><span id="1083" class="l"><a class="l" href="#1083">1083: </a><span class="php-comment">     * where supported. 
 </span></span><span id="1084" class="l"><a class="l" href="#1084">1084: </a><span class="php-comment">     * 
-</span></span><span id="1085" class="l"><a class="l" href="#1085">1085: </a><span class="php-comment">     * If this returns blank, then it means either custom HTML is not supported.
+</span></span><span id="1085" class="l"><a class="l" href="#1085">1085: </a><span class="php-comment">     * If this returns blank, then it means custom HTML is not supported.
 </span></span><span id="1086" class="l"><a class="l" href="#1086">1086: </a><span class="php-comment">     *
 </span></span><span id="1087" class="l"><a class="l" href="#1087">1087: </a><span class="php-comment">     * @param array $attr When populated with key=value, tags will be replaced. 
 </span></span><span id="1088" class="l"><a class="l" href="#1088">1088: </a><span class="php-comment">     * @return array
@@ -1579,48 +1579,50 @@
 </span></span><span id="1095" class="l"><a class="l" href="#1095">1095: </a><span class="php-comment">            
 </span></span><span id="1096" class="l"><a class="l" href="#1096">1096: </a><span class="php-comment">            $html = str_replace('{attr}', $this-&gt;getAttributesString($attr), $html);    
 </span></span><span id="1097" class="l"><a class="l" href="#1097">1097: </a><span class="php-comment">            
-</span></span><span id="1098" class="l"><a class="l" href="#1098">1098: </a><span class="php-comment">        } else {
+</span></span><span id="1098" class="l"><a class="l" href="#1098">1098: </a><span class="php-comment">            // @todo remove any other {tags} that might be present
 </span></span><span id="1099" class="l"><a class="l" href="#1099">1099: </a><span class="php-comment">            
-</span></span><span id="1100" class="l"><a class="l" href="#1100">1100: </a><span class="php-comment">            // a version of html where the {tags} get replaced with blanks
-</span></span><span id="1101" class="l"><a class="l" href="#1101">1101: </a><span class="php-comment">            // used for testing if more attributes present without possibility
-</span></span><span id="1102" class="l"><a class="l" href="#1102">1102: </a><span class="php-comment">            // of those attributes being injected
-</span></span><span id="1103" class="l"><a class="l" href="#1103">1103: </a><span class="php-comment">            // $_html = $html;
-</span></span><span id="1104" class="l"><a class="l" href="#1104">1104: </a><span class="php-comment">            
-</span></span><span id="1105" class="l"><a class="l" href="#1105">1105: </a><span class="php-comment">            // extract value so that a substitution can't result in input-injected tags
-</span></span><span id="1106" class="l"><a class="l" href="#1106">1106: </a><span class="php-comment">            if(isset($attr['value'])) {
-</span></span><span id="1107" class="l"><a class="l" href="#1107">1107: </a><span class="php-comment">                $value = $attr['value'];
-</span></span><span id="1108" class="l"><a class="l" href="#1108">1108: </a><span class="php-comment">                unset($attr['value']); 
-</span></span><span id="1109" class="l"><a class="l" href="#1109">1109: </a><span class="php-comment">            } else {
-</span></span><span id="1110" class="l"><a class="l" href="#1110">1110: </a><span class="php-comment">                $value = null;
-</span></span><span id="1111" class="l"><a class="l" href="#1111">1111: </a><span class="php-comment">            }
-</span></span><span id="1112" class="l"><a class="l" href="#1112">1112: </a><span class="php-comment">            // populate attributes
-</span></span><span id="1113" class="l"><a class="l" href="#1113">1113: </a><span class="php-comment">            foreach($attr as $name =&gt; $v) {
-</span></span><span id="1114" class="l"><a class="l" href="#1114">1114: </a><span class="php-comment">                $tag = '{' . $name . '}';
-</span></span><span id="1115" class="l"><a class="l" href="#1115">1115: </a><span class="php-comment">                if(strpos($html, $tag) === false) continue; 
-</span></span><span id="1116" class="l"><a class="l" href="#1116">1116: </a><span class="php-comment">                $v = htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); 
-</span></span><span id="1117" class="l"><a class="l" href="#1117">1117: </a><span class="php-comment">                $html = str_replace($tag, $v, $html);
-</span></span><span id="1118" class="l"><a class="l" href="#1118">1118: </a><span class="php-comment">                //$_html = str_replace($tag, '', $html); 
-</span></span><span id="1119" class="l"><a class="l" href="#1119">1119: </a><span class="php-comment">            }
-</span></span><span id="1120" class="l"><a class="l" href="#1120">1120: </a><span class="php-comment">            // see if any non-value attributes are left
-</span></span><span id="1121" class="l"><a class="l" href="#1121">1121: </a><span class="php-comment">            $pos = strpos($html, '{'); 
-</span></span><span id="1122" class="l"><a class="l" href="#1122">1122: </a><span class="php-comment">            if($pos !== false &amp;&amp; $pos != strpos($html, '{value}')) {
-</span></span><span id="1123" class="l"><a class="l" href="#1123">1123: </a><span class="php-comment">                // there are unpopulated tags that need to be removed
-</span></span><span id="1124" class="l"><a class="l" href="#1124">1124: </a><span class="php-comment">                preg_match_all('/\{[-_a-zA-Z0-9]+\}/', $html, $matches); 
-</span></span><span id="1125" class="l"><a class="l" href="#1125">1125: </a><span class="php-comment">            }
-</span></span><span id="1126" class="l"><a class="l" href="#1126">1126: </a><span class="php-comment">            // once all other attributes populated, we can populate {value}
-</span></span><span id="1127" class="l"><a class="l" href="#1127">1127: </a><span class="php-comment">            if($value !== null) {
-</span></span><span id="1128" class="l"><a class="l" href="#1128">1128: </a><span class="php-comment">                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-</span></span><span id="1129" class="l"><a class="l" href="#1129">1129: </a><span class="php-comment">                $html = str_replace('{value}', $value, $html);
-</span></span><span id="1130" class="l"><a class="l" href="#1130">1130: </a><span class="php-comment">                $_html = str_replace('{value}', '', $html);
-</span></span><span id="1131" class="l"><a class="l" href="#1131">1131: </a><span class="php-comment">            }
-</span></span><span id="1132" class="l"><a class="l" href="#1132">1132: </a><span class="php-comment">            // if ther
-</span></span><span id="1133" class="l"><a class="l" href="#1133">1133: </a><span class="php-comment">        }
-</span></span><span id="1134" class="l"><a class="l" href="#1134">1134: </a><span class="php-comment">        return $html;   
-</span></span><span id="1135" class="l"><a class="l" href="#1135">1135: </a><span class="php-comment">    }
-</span></span><span id="1136" class="l"><a class="l" href="#1136">1136: </a><span class="php-comment">     */</span>
-</span><span id="1137" class="l"><a class="l" href="#1137">1137: </a>
-</span><span id="1138" class="l"><a class="l" href="#1138">1138: </a>}
-</span><span id="1139" class="l"><a class="l" href="#1139">1139: </a></span></code></pre>
+</span></span><span id="1100" class="l"><a class="l" href="#1100">1100: </a><span class="php-comment">        } else {
+</span></span><span id="1101" class="l"><a class="l" href="#1101">1101: </a><span class="php-comment">            
+</span></span><span id="1102" class="l"><a class="l" href="#1102">1102: </a><span class="php-comment">            // a version of html where the {tags} get replaced with blanks
+</span></span><span id="1103" class="l"><a class="l" href="#1103">1103: </a><span class="php-comment">            // used for testing if more attributes present without possibility
+</span></span><span id="1104" class="l"><a class="l" href="#1104">1104: </a><span class="php-comment">            // of those attributes being injected
+</span></span><span id="1105" class="l"><a class="l" href="#1105">1105: </a><span class="php-comment">            // $_html = $html;
+</span></span><span id="1106" class="l"><a class="l" href="#1106">1106: </a><span class="php-comment">            
+</span></span><span id="1107" class="l"><a class="l" href="#1107">1107: </a><span class="php-comment">            // extract value so that a substitution can't result in input-injected tags
+</span></span><span id="1108" class="l"><a class="l" href="#1108">1108: </a><span class="php-comment">            if(isset($attr['value'])) {
+</span></span><span id="1109" class="l"><a class="l" href="#1109">1109: </a><span class="php-comment">                $value = $attr['value'];
+</span></span><span id="1110" class="l"><a class="l" href="#1110">1110: </a><span class="php-comment">                unset($attr['value']); 
+</span></span><span id="1111" class="l"><a class="l" href="#1111">1111: </a><span class="php-comment">            } else {
+</span></span><span id="1112" class="l"><a class="l" href="#1112">1112: </a><span class="php-comment">                $value = null;
+</span></span><span id="1113" class="l"><a class="l" href="#1113">1113: </a><span class="php-comment">            }
+</span></span><span id="1114" class="l"><a class="l" href="#1114">1114: </a><span class="php-comment">            // populate attributes
+</span></span><span id="1115" class="l"><a class="l" href="#1115">1115: </a><span class="php-comment">            foreach($attr as $name =&gt; $v) {
+</span></span><span id="1116" class="l"><a class="l" href="#1116">1116: </a><span class="php-comment">                $tag = '{' . $name . '}';
+</span></span><span id="1117" class="l"><a class="l" href="#1117">1117: </a><span class="php-comment">                if(strpos($html, $tag) === false) continue; 
+</span></span><span id="1118" class="l"><a class="l" href="#1118">1118: </a><span class="php-comment">                $v = htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); 
+</span></span><span id="1119" class="l"><a class="l" href="#1119">1119: </a><span class="php-comment">                $html = str_replace($tag, $v, $html);
+</span></span><span id="1120" class="l"><a class="l" href="#1120">1120: </a><span class="php-comment">                //$_html = str_replace($tag, '', $html); 
+</span></span><span id="1121" class="l"><a class="l" href="#1121">1121: </a><span class="php-comment">            }
+</span></span><span id="1122" class="l"><a class="l" href="#1122">1122: </a><span class="php-comment">            // see if any non-value attributes are left
+</span></span><span id="1123" class="l"><a class="l" href="#1123">1123: </a><span class="php-comment">            $pos = strpos($html, '{'); 
+</span></span><span id="1124" class="l"><a class="l" href="#1124">1124: </a><span class="php-comment">            if($pos !== false &amp;&amp; $pos != strpos($html, '{value}')) {
+</span></span><span id="1125" class="l"><a class="l" href="#1125">1125: </a><span class="php-comment">                // there are unpopulated tags that need to be removed
+</span></span><span id="1126" class="l"><a class="l" href="#1126">1126: </a><span class="php-comment">                preg_match_all('/\{[-_a-zA-Z0-9]+\}/', $html, $matches); 
+</span></span><span id="1127" class="l"><a class="l" href="#1127">1127: </a><span class="php-comment">            }
+</span></span><span id="1128" class="l"><a class="l" href="#1128">1128: </a><span class="php-comment">            // once all other attributes populated, we can populate {value}
+</span></span><span id="1129" class="l"><a class="l" href="#1129">1129: </a><span class="php-comment">            if($value !== null) {
+</span></span><span id="1130" class="l"><a class="l" href="#1130">1130: </a><span class="php-comment">                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+</span></span><span id="1131" class="l"><a class="l" href="#1131">1131: </a><span class="php-comment">                $html = str_replace('{value}', $value, $html);
+</span></span><span id="1132" class="l"><a class="l" href="#1132">1132: </a><span class="php-comment">                $_html = str_replace('{value}', '', $html);
+</span></span><span id="1133" class="l"><a class="l" href="#1133">1133: </a><span class="php-comment">            }
+</span></span><span id="1134" class="l"><a class="l" href="#1134">1134: </a><span class="php-comment">            // if ther
+</span></span><span id="1135" class="l"><a class="l" href="#1135">1135: </a><span class="php-comment">        }
+</span></span><span id="1136" class="l"><a class="l" href="#1136">1136: </a><span class="php-comment">        return $html;   
+</span></span><span id="1137" class="l"><a class="l" href="#1137">1137: </a><span class="php-comment">    }
+</span></span><span id="1138" class="l"><a class="l" href="#1138">1138: </a><span class="php-comment">     */</span> 
+</span><span id="1139" class="l"><a class="l" href="#1139">1139: </a>
+</span><span id="1140" class="l"><a class="l" href="#1140">1140: </a>}
+</span><span id="1141" class="l"><a class="l" href="#1141">1141: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

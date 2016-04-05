@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Selectors | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?193540940"></script>
+	<script type="text/javascript" src="elementlist.js?3545656823"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.12 devns</span>
+			<span>Overview version 3.0.13 devns</span>
 		</a>
 
 
@@ -558,7 +558,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Selectors.html#15-847" title="Go to source code">core/Selectors.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Selectors.html#15-1060" title="Go to source code">core/Selectors.php</a><br>
 	</div>
 
 
@@ -576,7 +576,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#94-102" title="Go to source code">__construct</a>( <span>string|null <var>$selectorStr</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#94-102" title="Go to source code">__construct</a>( <span>string|null|array <var>$selector</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -594,9 +594,9 @@ objects, iterable in this object.</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$selectorStr</var></dt>
-					<dd><code>string|null</code><br>Selector string. If not provided here, please follow-up with a
-setSelectorString($str) call.</dd>
+					<dt><var>$selector</var></dt>
+					<dd><code>string|null|array</code><br>$selector Selector string or array. If not provided here, please follow-up with
+a setSelectorString($str) call.</dd>
 				</dl></div>
 
 
@@ -619,24 +619,26 @@ setSelectorString($str) call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#104-112" title="Go to source code">init</a>( <span>string <var>$selectorStr</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#104-116" title="Go to source code">init</a>( <span>string|array <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Alias for setSelectorString() method</p>
+<p>Set the selector string or array (if not set already from the
+constructor)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Alias for setSelectorString() method</p>
+<p>Set the selector string or array (if not set already from the
+constructor)</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$selectorStr</var></dt>
-					<dd><code>string</code><br>$selectorStr</dd>
+					<dt><var>$selector</var></dt>
+					<dd><code>string|array</code><br>$selector</dd>
 				</dl></div>
 
 
@@ -657,17 +659,17 @@ setSelectorString($str) call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSelectorString">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#114-123" title="Go to source code">setSelectorString</a>( <span>string <var>$selectorStr</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#118-127" title="Go to source code">setSelectorString</a>( <span>string <var>$selectorStr</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the selector string (if not provided to constructor)</p>
+<p>Set the selector string</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the selector string (if not provided to constructor)</p>
+<p>Set the selector string</p>
 
 
 
@@ -695,7 +697,7 @@ setSelectorString($str) call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_import">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#125-139" title="Go to source code">import</a>( <span>string|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#129-143" title="Go to source code">import</a>( <span>string|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span> )</code>
 
 		<div class="description short">
 			
@@ -743,7 +745,7 @@ setSelectorString($str) call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidItem">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#141-147" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#145-151" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -787,7 +789,7 @@ setSelectorString($str) call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeBlankItem">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#149-155" title="Go to source code">makeBlankItem</a>( )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#153-159" title="Go to source code">makeBlankItem</a>( )</code>
 
 		<div class="description short">
 			
@@ -830,7 +832,7 @@ setSelectorString($str) call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addType">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#157-173" title="Go to source code">addType</a>( <span>string <var>$operator</var></span>, <span>string <var>$class</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#161-177" title="Go to source code">addType</a>( <span>string <var>$operator</var></span>, <span>string <var>$class</var></span> )</code>
 
 		<div class="description short">
 			
@@ -873,7 +875,7 @@ runtime. See Selector.php</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOperatorChars">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#175-181" title="Go to source code">getOperatorChars</a>( )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#179-185" title="Go to source code">getOperatorChars</a>( )</code>
 
 		<div class="description short">
 			
@@ -906,7 +908,7 @@ runtime. See Selector.php</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_stringHasOperator">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#183-237" title="Go to source code">stringHasOperator</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#187-241" title="Go to source code">stringHasOperator</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -948,7 +950,7 @@ runtime. See Selector.php</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_stringHasSelector">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#239-274" title="Go to source code">stringHasSelector</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#243-278" title="Go to source code">stringHasSelector</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -992,7 +994,7 @@ runtime. See Selector.php</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#277-295" title="Go to source code">create</a>( <span>string <var>$field</var></span>, <span>string <var>$operator</var></span>, <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#281-299" title="Go to source code">create</a>( <span>string <var>$field</var></span>, <span>string <var>$operator</var></span>, <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1042,7 +1044,7 @@ runtime. See Selector.php</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractString">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#298-336" title="Go to source code">extractString</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#302-340" title="Go to source code">extractString</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1087,7 +1089,7 @@ commas)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractGroup">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#338-359" title="Go to source code">extractGroup</a>( <span>string <var>&amp; $str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#342-363" title="Go to source code">extractGroup</a>( <span>string <var>&amp; $str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1134,7 +1136,7 @@ grouping with other blank grouped items</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractField">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#361-388" title="Go to source code">extractField</a>( <span>string <var>&amp; $str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#365-392" title="Go to source code">extractField</a>( <span>string <var>&amp; $str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1178,7 +1180,7 @@ $str.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractOperator">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#391-408" title="Go to source code">extractOperator</a>( <span>string <var>&amp; $str</var></span>, <span>array <var>$operatorChars</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#395-412" title="Go to source code">extractOperator</a>( <span>string <var>&amp; $str</var></span>, <span>array <var>$operatorChars</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1224,7 +1226,7 @@ from $str.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractValueQuick">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#410-479" title="Go to source code">extractValueQuick</a>( <span>string <var>&amp; $str</var></span>, <span>string <var>$openingQuote</var></span>, <span>string <var>$closingQuote</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#414-483" title="Go to source code">extractValueQuick</a>( <span>string <var>&amp; $str</var></span>, <span>string <var>$openingQuote</var></span>, <span>string <var>$closingQuote</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1273,7 +1275,7 @@ otherwise</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractValue">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#481-582" title="Go to source code">extractValue</a>( <span>string <var>&amp; $str</var></span>, <span>string <var>&amp; $quote</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#485-586" title="Go to source code">extractValue</a>( <span>string <var>&amp; $str</var></span>, <span>string <var>&amp; $quote</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1319,7 +1321,7 @@ $str.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseValue">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#584-601" title="Go to source code">parseValue</a>( <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#588-605" title="Go to source code">parseValue</a>( <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1364,7 +1366,7 @@ resolves to<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setParseVars">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#603-613" title="Go to source code">setParseVars</a>( <span>boolean <var>$parseVars</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#607-617" title="Go to source code">setParseVars</a>( <span>boolean <var>$parseVars</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1405,7 +1407,7 @@ parsing.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_selectorHasVar">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#615-632" title="Go to source code">selectorHasVar</a>( <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#619-636" title="Go to source code">selectorHasVar</a>( <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1447,7 +1449,7 @@ parsing.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_valueHasVar">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#634-654" title="Go to source code">valueHasVar</a>( <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#638-658" title="Go to source code">valueHasVar</a>( <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1492,7 +1494,7 @@ now.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_matches">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#656-685" title="Go to source code">matches</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#660-689" title="Go to source code">matches</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1534,7 +1536,7 @@ now.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#687-693" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#691-697" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -1562,45 +1564,86 @@ now.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="arrayToSelectorString" id="_arrayToSelectorString">
+	<tr data-order="getSelectorArrayType" id="_getSelectorArrayType">
 
 		<td class="attributes"><code>
-			 public static
-			string
+			 protected 
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_arrayToSelectorString">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#696-787" title="Go to source code">arrayToSelectorString</a>( <span>array <var>$a</var></span> )</code>
+		<a class="anchor" href="#_getSelectorArrayType">#</a>
+		<code><a href="source-class-ProcessWire.Selectors.html#699-710" title="Go to source code">getSelectorArrayType</a>( <span>mixed <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Utility method to convert array to selector string (work in progress, future
-use)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getOperatorFromField" id="_getOperatorFromField">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getOperatorFromField">#</a>
+		<code><a href="source-class-ProcessWire.Selectors.html#712-729" title="Go to source code">getOperatorFromField</a>( <span>mixed <var>&amp; $field</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSelectorArray" id="_setSelectorArray">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSelectorArray">#</a>
+		<code><a href="source-class-ProcessWire.Selectors.html#732-791" title="Go to source code">setSelectorArray</a>( <span>array <var>$a</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create this Selectors object from an array</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Utility method to convert array to selector string (work in progress, future
-use)</p>
-
-<p>Accepts regular indexed or associative array.</p>
-
-<p>When given an associative array, the keys are assumed to be field names. An
-operator may be appended to this field name. If no operator is present, then "="
-is assumed. The values may be string, int or array. When given an array, it is
-assumed the values are OR values.</p>
-
-<p>When given a regular array, the value may be an int or a string. if the value
-contains an operator, it is assumed to be a key=value statement. If the value is
-an integer or integer string, it is assumed to be a page ID. Otherwise, if the
-value contains no operator, it is discarded.</p>
-
-<p>Currently this method does no sanitization, it only converts an array to a
-selector string.</p>
+<p>Create this Selectors object from an array</p>
 
 
 
@@ -1610,16 +1653,64 @@ selector string.</p>
 					<dd><code>array</code><br>$a</dd>
 				</dl></div>
 
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="makeSelectorArrayItem" id="_makeSelectorArrayItem">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_makeSelectorArrayItem">#</a>
+		<code><a href="source-class-ProcessWire.Selectors.html#793-977" title="Go to source code">makeSelectorArrayItem</a>( <span>string|integer <var>$key</var></span>, <span>array <var>$data</var></span>, <span>string <var>$dataType</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Return an array of an individual Selector info, for use by setSelectorArray()
+method</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return an array of an individual Selector info, for use by setSelectorArray()
+method</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string|integer</code><br>$key</dd>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data</dd>
+					<dt><var>$dataType</var></dt>
+					<dd><code>string</code><br>$dataType One of 'string', 'array', 'assoc', or 'verbose'</dd>
+				</dl></div>
+
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code>array</code><br>
 				</div>
 
-
-				<h4>Todo</h4>
+				<h4>Throws</h4>
 				<div class="list">
-						this method is not yet functional or in use<br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
+
 
 
 		</div>
@@ -1636,7 +1727,7 @@ selector string.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_keyValueStringToArray">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#789-828" title="Go to source code">keyValueStringToArray</a>( <span>string <var>$s</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#979-1018" title="Go to source code">keyValueStringToArray</a>( <span>string <var>$s</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1692,7 +1783,7 @@ fast/simple needs</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_arrayToKeyValueString">#</a>
-		<code><a href="source-class-ProcessWire.Selectors.html#830-845" title="Go to source code">arrayToKeyValueString</a>( <span>mixed <var>$a</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Selectors.html#1020-1035" title="Go to source code">arrayToKeyValueString</a>( <span>mixed <var>$a</var></span> )</code>
 
 		<div class="description short">
 			
