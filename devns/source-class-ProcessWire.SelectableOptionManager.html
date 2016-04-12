@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeOptions/SelectableOptionManager.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?3545656823"></script>
+	<script type="text/javascript" src="elementlist.js?617121622"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.13 devns</span>
+			<span>Overview version 3.0.14 devns</span>
 		</a>
 
 
@@ -1199,13 +1199,13 @@
 </span><span id="715" class="l"><a class="l" href="#715">715: </a>
 </span><span id="716" class="l"><a class="l" href="#716">716: </a>            <span class="php-keyword1">try</span> {
 </span><span id="717" class="l"><a class="l" href="#717">717: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD </span><span class="php-var">$titleCol</span><span class="php-quote"> TEXT&quot;</span>);
-</span><span id="718" class="l"><a class="l" href="#718">718: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD UNIQUE </span><span class="php-var">$titleCol</span><span class="php-quote"> (</span><span class="php-var">$titleCol</span><span class="php-quote">(255), fields_id)&quot;</span>);
+</span><span id="718" class="l"><a class="l" href="#718">718: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD UNIQUE </span><span class="php-var">$titleCol</span><span class="php-quote"> (</span><span class="php-var">$titleCol</span><span class="php-quote">(250), fields_id)&quot;</span>);
 </span><span id="719" class="l"><a class="l" href="#719">719: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
 </span><span id="720" class="l"><a class="l" href="#720">720: </a>                <span class="php-var">$this</span>-&gt;error(<span class="php-var">$e</span>-&gt;getMessage());
 </span><span id="721" class="l"><a class="l" href="#721">721: </a>            }
 </span><span id="722" class="l"><a class="l" href="#722">722: </a>            <span class="php-keyword1">try</span> {
-</span><span id="723" class="l"><a class="l" href="#723">723: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD </span><span class="php-var">$valueCol</span><span class="php-quote"> VARCHAR(255)&quot;</span>);
-</span><span id="724" class="l"><a class="l" href="#724">724: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD INDEX </span><span class="php-var">$valueCol</span><span class="php-quote"> (</span><span class="php-var">$valueCol</span><span class="php-quote">(255), fields_id)&quot;</span>);
+</span><span id="723" class="l"><a class="l" href="#723">723: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD </span><span class="php-var">$valueCol</span><span class="php-quote"> VARCHAR(250)&quot;</span>);
+</span><span id="724" class="l"><a class="l" href="#724">724: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD INDEX </span><span class="php-var">$valueCol</span><span class="php-quote"> (</span><span class="php-var">$valueCol</span><span class="php-quote">(250), fields_id)&quot;</span>);
 </span><span id="725" class="l"><a class="l" href="#725">725: </a>                <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;ALTER TABLE </span><span class="php-var">$table</span><span class="php-quote"> ADD FULLTEXT </span><span class="php-var">{$titleCol}</span><span class="php-quote">_</span><span class="php-var">$valueCol</span><span class="php-quote"> (</span><span class="php-var">$titleCol</span><span class="php-quote">, </span><span class="php-var">$valueCol</span><span class="php-quote">)&quot;</span>);
 </span><span id="726" class="l"><a class="l" href="#726">726: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
 </span><span id="727" class="l"><a class="l" href="#727">727: </a>                <span class="php-var">$this</span>-&gt;error(<span class="php-var">$e</span>-&gt;getMessage());
@@ -1250,11 +1250,11 @@
 </span><span id="766" class="l"><a class="l" href="#766">766: </a>                <span class="php-quote">&quot;fields_id INT UNSIGNED NOT NULL, &quot;</span> .
 </span><span id="767" class="l"><a class="l" href="#767">767: </a>                <span class="php-quote">&quot;option_id INT UNSIGNED NOT NULL, &quot;</span> .
 </span><span id="768" class="l"><a class="l" href="#768">768: </a>                <span class="php-quote">&quot;`title` TEXT, &quot;</span> .
-</span><span id="769" class="l"><a class="l" href="#769">769: </a>                <span class="php-quote">&quot;`value` VARCHAR(255), &quot;</span> .
+</span><span id="769" class="l"><a class="l" href="#769">769: </a>                <span class="php-quote">&quot;`value` VARCHAR(250), &quot;</span> .
 </span><span id="770" class="l"><a class="l" href="#770">770: </a>                <span class="php-quote">&quot;sort INT UNSIGNED NOT NULL, &quot;</span> .
 </span><span id="771" class="l"><a class="l" href="#771">771: </a>                <span class="php-quote">&quot;PRIMARY KEY (fields_id, option_id), &quot;</span> .
-</span><span id="772" class="l"><a class="l" href="#772">772: </a>                <span class="php-quote">&quot;UNIQUE title (title(255), fields_id), &quot;</span> .
-</span><span id="773" class="l"><a class="l" href="#773">773: </a>                <span class="php-quote">&quot;INDEX `value` (`value`(255), fields_id), &quot;</span> .
+</span><span id="772" class="l"><a class="l" href="#772">772: </a>                <span class="php-quote">&quot;UNIQUE title (title(250), fields_id), &quot;</span> .
+</span><span id="773" class="l"><a class="l" href="#773">773: </a>                <span class="php-quote">&quot;INDEX `value` (`value`(250), fields_id), &quot;</span> .
 </span><span id="774" class="l"><a class="l" href="#774">774: </a>                <span class="php-quote">&quot;INDEX sort (sort, fields_id), &quot;</span> .
 </span><span id="775" class="l"><a class="l" href="#775">775: </a>                <span class="php-quote">&quot;FULLTEXT title_value (`title`, `value`)&quot;</span> .
 </span><span id="776" class="l"><a class="l" href="#776">776: </a>                <span class="php-quote">&quot;) ENGINE=</span><span class="php-var">$engine</span><span class="php-quote"> DEFAULT CHARSET=</span><span class="php-var">$charset</span><span class="php-quote">&quot;</span>;

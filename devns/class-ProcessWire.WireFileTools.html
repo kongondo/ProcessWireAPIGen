@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireFileTools | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?3545656823"></script>
+	<script type="text/javascript" src="elementlist.js?617121622"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.13 devns</span>
+			<span>Overview version 3.0.14 devns</span>
 		</a>
 
 
@@ -527,7 +527,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireFileTools.html#4-558" title="Go to source code">core/WireFileTools.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireFileTools.html#4-716" title="Go to source code">core/WireFileTools.php</a><br>
 	</div>
 
 
@@ -1090,29 +1090,103 @@ Note current dir is always allowed.</dd>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getNamespace" id="_getNamespace">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNamespace">#</a>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#533-629" title="Go to source code">getNamespace</a>( <span>string <var>$file</var></span>, <span>boolean <var>$fileIsContents</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the namespace used in the given .php or .module file</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the namespace used in the given .php or .module file</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file File name or file data (if file data, specify true for 2nd argument)</dd>
+					<dt><var>$fileIsContents</var></dt>
+					<dd><code>boolean</code><br>$fileIsContents Specify true if the given $file is actually the contents of the
+file, rather than file name.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Actual found namespace or "\" (root namespace) if none found<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="compile" id="_compile">
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compile">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#533-536" title="Go to source code">compile</a>( <span>mixed <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#631-650" title="Go to source code">compile</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>Compile the given file</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Compile the given file</p>
+
+<p>This and the following compile() methods are shortcuts to using ProcessWire's
+FileCompiler class. These methods are also used by files compiled by
+FileCompiler.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file File to compile</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Optional associative array of the following: - includes (bool): Also
+compile files include()'d from the given $file? (default=true) - namespace
+(bool): Compile to make compatible with ProcessWire namespace? (default=true) -
+modules (bool): Allow FileCompilerModule module's to process the file as well?
+(default=false) - skipIfNamespace (bool): Return source $file if it declares a
+namespace (default=false)</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Full path and filename of compiled file, or returns original $file is
+compilation is not necessary.<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if given invalid $file or other fatal error<br>
+				</div>
 
 
 
@@ -1123,25 +1197,46 @@ Note current dir is always allowed.</dd>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileInclude">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#538-541" title="Go to source code">compileInclude</a>( <span>mixed <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#652-666" title="Go to source code">compileInclude</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>Compile and include() the given file</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Compile and include() the given file</p>
+
+<p>See phpdoc in compile() method for details on all arguments.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -1152,25 +1247,46 @@ Note current dir is always allowed.</dd>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileIncludeOnce">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#543-546" title="Go to source code">compileIncludeOnce</a>( <span>mixed <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#668-682" title="Go to source code">compileIncludeOnce</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>Compile and include_once() the given file</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Compile and include_once() the given file</p>
+
+<p>See phpdoc in compile() method for details on all arguments.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -1181,25 +1297,46 @@ Note current dir is always allowed.</dd>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileRequire">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#548-551" title="Go to source code">compileRequire</a>( <span>mixed <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#684-698" title="Go to source code">compileRequire</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>Compile and require() the given file</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Compile and require() the given file</p>
+
+<p>See phpdoc in compile() method for details on all arguments.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -1210,25 +1347,46 @@ Note current dir is always allowed.</dd>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileRequireOnce">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#553-556" title="Go to source code">compileRequireOnce</a>( <span>mixed <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#700-714" title="Go to source code">compileRequireOnce</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>Compile and require_once() the given file</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Compile and require_once() the given file</p>
+
+<p>See phpdoc in compile() method for details on all arguments.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
