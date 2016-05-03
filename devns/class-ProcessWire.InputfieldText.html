@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldText | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -644,22 +644,20 @@
 
 		<div class="description short">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render the HTML input element(s) markup, ready for insertion in an HTML
+form.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render the HTML input element(s) markup, ready for insertion in an HTML
+form.</p>
 
-<p>The method as it appears here does not actually output an Inputfield.
-However, subclasses should render the output for an Inputfield and then call
-upon this parent render method to output any children (if applicable).</p>
+<p>This is an abstract method that descending Inputfield module classes are
+required to implement.</p>
 
-<p>This includes the output of any child Inputfields (if applicable). Children
-are presented as list items in an unordered list.</p>
+<p>#pw-group-output</p>
 
 
 
@@ -679,7 +677,7 @@ are presented as list items in an unordered list.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
@@ -698,9 +696,15 @@ are presented as list items in an unordered list.</p>
 			
 <p>Get all attributes specified for this Inputfield</p>
 
+<p>#pw-internal</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
 
 
 
@@ -721,34 +725,52 @@ are presented as list items in an unordered list.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAttribute">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldText.html#62-68" title="Go to source code">setAttribute</a>( <span>string|array <var>$key</var></span>, <span>string|integer <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldText.html#62-68" title="Go to source code">setAttribute</a>( <span>string|array <var>$key</var></span>, <span>string|integer|array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set a Formfield attribute to accompany this Inputfield's output</p>
+<p>Set an attribute</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set a Formfield attribute to accompany this Inputfield's output</p>
+<p>Set an attribute</p>
 
-<p>The key may contain multiple keys by being specified as an array, or by being
-a string with multiple keys separated by "+" signs i.e. setAttribute("id+name",
-"template");</p>
+<ul>
+	<li>For most public API use, you might consider using the the shorter
+	<code>Inputfield::attr()</code> method instead.</li>
 
-<p>If the value param is an array, then it will instruct the attribute to hold
-multiple values. Future calls to setAttribute() will enforce the array type for
-that attribute.</p>
+	<li>When setting the <code>class</code> attribute is is preferable to use the
+	<code>Inputfield::addClass()</code> method.</li>
+
+	<li>The <code>$key</code> argument may contain multiple keys by being specified
+	as an array, or by being a string with multiple keys separated by "+" or "|",
+	for example: <code>$inputfield-&gt;setAttribute("id+name",
+	"template")</code>.</li>
+
+	<li>If the <code>$value</code> argument is an array, it will instruct the
+	attribute to hold multiple values. Future calls to setAttribute() will enforce
+	the array type for that attribute.</li>
+</ul>
+
+<p>~~~~~ // Set the name attribute $inputfield-&gt;setAttribute('name',
+'my_field_name');</p>
+
+<p>// Set the name and id attributes at the same time
+$inputfield-&gt;setAttribute('name+id', 'my_field_name'); ~~~~~</p>
+
+<p>#pw-internal Giving public API preference to the attr() method instead</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|array</code><br>$key</dd>
+					<dd><code>string|array</code><br>$key Specify one of the following: - Name of attribute (string) - Names of
+attributes (array) - String with names of attributes split by "+" or "|"</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer</code><br>$value</dd>
+					<dd><code>string|integer|array</code><br>$value Value of attribute to set.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -757,6 +779,10 @@ that attribute.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_attr">ProcessWire\Inputfield::attr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_removeAttr">ProcessWire\Inputfield::removeAttr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_addClass">ProcessWire\Inputfield::addClass()</a></code></code><br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.Inputfield.html#_setAttribute">ProcessWire\Inputfield::setAttribute()</a></code></div>
@@ -808,22 +834,35 @@ that attribute.</p>
 
 		<div class="description short">
 			
-<p>Process the input from the given WireInputData (usually $input-&gt;get or
-$input-&gt;post), load and clean the value for use in this Inputfield.</p>
+<p>Process input for this Inputfield directly from the POST (or GET)
+variables</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Process the input from the given WireInputData (usually $input-&gt;get or
-$input-&gt;post), load and clean the value for use in this Inputfield.</p>
+<p>Process input for this Inputfield directly from the POST (or GET)
+variables</p>
+
+<p>This method should pull the value from the given <code>$input</code>
+ragument, sanitize/validate it, and populate it to the <code>value</code>
+attribute of this Inputfield.</p>
+
+<p>Inputfield modules should implement this method if the built-in one here
+doesn't solve their need. If this one does solve their need, then they should
+add any additional sanitization or validation to the
+<code>Inputfield::setAttribute('value', $value)</code> method to occur when
+given the <code>value</code> attribute.</p>
+
+<p>#pw-group-input</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$input</var></dt>
-					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input</dd>
+					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input User input where value should be pulled from (typically
+<code>$input-&gt;post</code>)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -862,21 +901,48 @@ $input-&gt;post), load and clean the value for use in this Inputfield.</p>
 			
 <p>Get any custom configuration fields for this Inputfield</p>
 
-<p>Intended to be extended by each Inputfield as needed to add more config
-options.</p>
+<ul>
+	<li>Intended to be extended by each Inputfield as needed to add more config
+	options.</li>
 
-<p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
-are assumed to be for runtime use and are NOT stored in the database.</p>
+	<li>The returned InputfieldWrapper ultimately ends up as the "Input" tab in the
+	fields editor (admin).</li>
+
+	<li>Descending Inputfield classes should first call this method from the parent
+	class to get the default configuration fields and the InputfieldWrapper they can
+	add to.</li>
+
+	<li>Returned Inputfield instances with a name attribute that starts with an
+	underscore, i.e. "_myname" are assumed to be for runtime use and are NOT stored
+	in the database.</li>
+
+	<li>If you prefer, you may instead implement the
+	<code>Inputfield::getConfigArray()</code> method as an alternative.</li>
+</ul>
+
+<p>~~~~ // Example getConfigInputfields() implementation public function
+___getConfigInputfields() { // Get the defaults and $inputfields wrapper we can
+add to $inputfields = parent::___getConfigInputfields(); // Add a new Inputfield
+to it $f = $this-&gt;wire('modules')-&gt;get('InputfieldText');
+$f-&gt;attr('name', 'first_name'); $f-&gt;attr('value',
+$this-&gt;get('first_name')); $f-&gt;label = 'Your First Name';
+$inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
+
+<p>#pw-group-module</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>Populated with Inputfield instances<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Inputfield::getConfigArray()<br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.Inputfield.html#____getConfigInputfields">ProcessWire\Inputfield::___getConfigInputfields()</a></code></div>
@@ -899,15 +965,29 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 
 		<div class="description short">
 			
-<p>Return a list of Inputfield names from getConfigInputfields() that are
-allowed in fieldgroup/template context</p>
+<p>Return a list of config property names allowed for fieldgroup/template
+context</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return a list of Inputfield names from getConfigInputfields() that are
-allowed in fieldgroup/template context</p>
+<p>Return a list of config property names allowed for fieldgroup/template
+context</p>
+
+<p>These should be the names of Inputfields returned by
+<code>Inputfield::getConfigInputfields()</code> or
+<code>Inputfield::getConfigArray()</code> that are allowed in
+fieldgroup/template context.</p>
+
+<p>The config property names specified here are allowed to be configured within
+the context of a given <code>Fieldgroup</code>, enabling the user to configure
+them independently per template in the admin.</p>
+
+<p>This is the equivalent to the <code>Fieldtype::getConfigAllowContext()</code>
+method, but for the "Input" tab rather than the "Details" tab.</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -923,6 +1003,10 @@ allowed in fieldgroup/template context</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Fieldtype::getConfigAllowContext()<br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.Inputfield.html#____getConfigAllowContext">ProcessWire\Inputfield::___getConfigAllowContext()</a></code></div>
@@ -1018,6 +1102,7 @@ allowed in fieldgroup/template context</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 

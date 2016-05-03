@@ -7,7 +7,7 @@
 	<title>Class NullPage | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -414,6 +414,18 @@
 	
 <p>ProcessWire NullPage</p>
 
+<p>#pw-summary NullPage is a type of Page object returned by many API methods to
+indicate a non-match. #pw-body = The simplest way to detect a NullPage is
+typically by checking the value of the <code>$page-&gt;id</code> property. If it
+happens to be 0 then for most practical purposes, you have a NullPage. A
+NullPage object has all of the same methods and properties as a regular
+<code>Page</code> but there's not much point in calling upon them since they
+will always be empty. ~~~~~ $item = $pages-&gt;get("featured=1");</p>
+
+<p>if(!$item-&gt;id) { // this is a NullPage }</p>
+
+<p>if($item instanceof NullPage) { // this is a NullPage } ~~~~~ #pw-body</p>
+
 <p>Placeholder class for non-existant and non-saveable Page. Many API functions
 return a NullPage to indicate no match.</p>
 
@@ -641,6 +653,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

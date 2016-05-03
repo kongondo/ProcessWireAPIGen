@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireDatabasePDO | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -488,6 +488,9 @@
 	
 <p>Database class provides a layer on top of mysqli</p>
 
+<p>#pw-summary All database operations in ProcessWire are performed via this
+PDO-style database class.</p>
+
 	</div>
 
 	<dl class="tree">
@@ -526,7 +529,7 @@
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireDatabasePDO.html#13-468" title="Go to source code">core/WireDatabasePDO.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireDatabasePDO.html#14-688" title="Go to source code">core/WireDatabasePDO.php</a><br>
 	</div>
 
 
@@ -544,7 +547,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInstance">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#56-94" title="Go to source code">getInstance</a>( <span><code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code> <var>$config</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#67-107" title="Go to source code">getInstance</a>( <span><code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code> <var>$config</var></span> )</code>
 
 		<div class="description short">
 			
@@ -558,6 +561,8 @@
 
 <p>If you need to make other PDO connections, just instantiate a new
 WireDatabasePDO (or native PDO) rather than calling this getInstance method.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -593,16 +598,33 @@ WireDatabasePDO (or native PDO) rather than calling this getInstance method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#96-102" title="Go to source code">__construct</a>( <span>mixed <var>$dsn</var></span>, <span>mixed <var>$username</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$password</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$driver_options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#109-126" title="Go to source code">__construct</a>( <span>mixed <var>$dsn</var></span>, <span>null <var>$username</var> = <span class="php-keyword1">null</span></span>, <span>null <var>$password</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$driver_options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>Construct WireDatabasePDO</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Construct WireDatabasePDO</p>
+
+<p>#pw-internal</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dsn</var></dt>
+					<dd><code>mixed</code><br>$dsn</dd>
+					<dt><var>$username</var></dt>
+					<dd><code>null</code><br>$username</dd>
+					<dt><var>$password</var></dt>
+					<dd><code>null</code><br>$password</dd>
+					<dt><var>$driver_options</var></dt>
+					<dd><code>array</code><br>$driver_options</dd>
+				</dl></div>
 
 
 
@@ -624,20 +646,21 @@ WireDatabasePDO (or native PDO) rather than calling this getInstance method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pdo">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#104-120" title="Go to source code">pdo</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#128-146" title="Go to source code">pdo</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return the current PDO connection instance</p>
+<p>Return the actual current PDO connection instance</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the current PDO connection instance</p>
+<p>Return the actual current PDO connection instance</p>
 
-<p>Use this instead of $this-&gt;pdo because it restores a lost connection
-automatically.</p>
+<p>If connection is lost, this will restore it automatically.</p>
+
+<p>#pw-group-PDO</p>
 
 
 
@@ -657,26 +680,42 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_errorCode">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#123-125" title="Go to source code">errorCode</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#148-159" title="Go to source code">errorCode</a>( )</code>
 
 		<div class="description short">
 			
+<p>Fetch the SQLSTATE associated with the last operation on the statement
+handle</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Fetch the SQLSTATE associated with the last operation on the statement
+handle</p>
+
+<p>#pw-group-PDO</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdostatement.errorcode.php">http://php.net/manual/en/pdostatement.errorcode.php</a><br>
+				</div>
 
 
 		</div>
@@ -686,26 +725,42 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_errorInfo">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#127-129" title="Go to source code">errorInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#161-172" title="Go to source code">errorInfo</a>( )</code>
 
 		<div class="description short">
 			
+<p>Fetch extended error information associated with the last operation on the
+database handle</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Fetch extended error information associated with the last operation on the
+database handle</p>
+
+<p>#pw-group-PDO</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
 
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.errorinfo.php">http://php.net/manual/en/pdo.errorinfo.php</a><br>
+				</div>
 
 
 		</div>
@@ -715,26 +770,45 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttribute">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#131-133" title="Go to source code">getAttribute</a>( <span>mixed <var>$attribute</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#174-186" title="Go to source code">getAttribute</a>( <span>integer <var>$attribute</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Retrieve a database connection attribute</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Retrieve a database connection attribute</p>
+
+<p>#pw-group-PDO</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attribute</var></dt>
+					<dd><code>integer</code><br>$attribute</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>
+				</div>
 
 
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.getattribute.php">http://php.net/manual/en/pdo.getattribute.php</a><br>
+				</div>
 
 
 		</div>
@@ -744,26 +818,47 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAttribute">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#135-137" title="Go to source code">setAttribute</a>( <span>mixed <var>$attribute</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#188-201" title="Go to source code">setAttribute</a>( <span>integer <var>$attribute</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Sets an attribute on the database handle</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Sets an attribute on the database handle</p>
+
+<p>#pw-group-PDO</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attribute</var></dt>
+					<dd><code>integer</code><br>$attribute</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
 
 
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.setattribute.php">http://php.net/manual/en/pdo.setattribute.php</a><br>
+				</div>
 
 
 		</div>
@@ -773,26 +868,45 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastInsertId">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#139-141" title="Go to source code">lastInsertId</a>( <span>mixed <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#203-215" title="Go to source code">lastInsertId</a>( <span>string|null <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Returns the ID of the last inserted row or sequence value</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Returns the ID of the last inserted row or sequence value</p>
+
+<p>#pw-group-PDO</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string|null</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.lastinsertid.php">http://php.net/manual/en/pdo.lastinsertid.php</a><br>
+				</div>
 
 
 		</div>
@@ -802,26 +916,49 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-PDOStatement.html">PDOStatement</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_query">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#143-146" title="Go to source code">query</a>( <span>mixed <var>$statement</var></span>, <span>mixed <var>$note</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#217-231" title="Go to source code">query</a>( <span>string <var>$statement</var></span>, <span>string <var>$note</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Executes an SQL statement, returning a result set as a PDOStatement
+object</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Executes an SQL statement, returning a result set as a PDOStatement
+object</p>
+
+<p>#pw-group-PDO</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$statement</var></dt>
+					<dd><code>string</code><br>$statement</dd>
+					<dt><var>$note</var></dt>
+					<dd><code>string</code><br>$note</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-PDOStatement.html">PDOStatement</a></code></code><br>
+				</div>
 
 
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.query.php">http://php.net/manual/en/pdo.query.php</a><br>
+				</div>
 
 
 		</div>
@@ -831,26 +968,40 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_beginTransaction">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#148-150" title="Go to source code">beginTransaction</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#233-244" title="Go to source code">beginTransaction</a>( )</code>
 
 		<div class="description short">
 			
+<p>Initiates a transaction</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Initiates a transaction</p>
+
+<p>#pw-group-PDO</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
 
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.begintransaction.php">http://php.net/manual/en/pdo.begintransaction.php</a><br>
+				</div>
 
 
 		</div>
@@ -860,26 +1011,40 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_inTransaction">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#152-154" title="Go to source code">inTransaction</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#246-257" title="Go to source code">inTransaction</a>( )</code>
 
 		<div class="description short">
 			
+<p>Checks if inside a transaction</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Checks if inside a transaction</p>
+
+<p>#pw-group-PDO</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
 
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.intransaction.php">http://php.net/manual/en/pdo.intransaction.php</a><br>
+				</div>
 
 
 		</div>
@@ -889,26 +1054,40 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_commit">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#156-158" title="Go to source code">commit</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#259-270" title="Go to source code">commit</a>( )</code>
 
 		<div class="description short">
 			
+<p>Commits a transaction</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Commits a transaction</p>
+
+<p>#pw-group-PDO</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
 
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.commit.php">http://php.net/manual/en/pdo.commit.php</a><br>
+				</div>
 
 
 		</div>
@@ -918,26 +1097,40 @@ automatically.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rollBack">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#160-162" title="Go to source code">rollBack</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#272-283" title="Go to source code">rollBack</a>( )</code>
 
 		<div class="description short">
 			
+<p>Rolls back a transaction</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Rolls back a transaction</p>
+
+<p>#pw-group-PDO</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
 
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.rollback.php">http://php.net/manual/en/pdo.rollback.php</a><br>
+				</div>
 
 
 		</div>
@@ -954,7 +1147,7 @@ automatically.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prepare">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#179-195" title="Go to source code">prepare</a>( <span>string <var>$statement</var></span>, <span>array|string <var>$driver_options</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$note</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#302-321" title="Go to source code">prepare</a>( <span>string <var>$statement</var></span>, <span>array|string <var>$driver_options</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$note</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -965,6 +1158,8 @@ automatically.</p>
 		<div class="description detailed hidden">
 			
 <p>Prepare an SQL statement for accepting bound parameters</p>
+
+<p>#pw-group-PDO</p>
 
 
 
@@ -984,6 +1179,10 @@ automatically.</p>
 				</div>
 
 
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.prepare.php">http://php.net/manual/en/pdo.prepare.php</a><br>
+				</div>
 
 
 		</div>
@@ -1000,7 +1199,7 @@ automatically.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_exec">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#197-214" title="Go to source code">exec</a>( <span>string|<code><a href="class-PDOStatement.html">PDOStatement</a></code> <var>$statement</var></span>, <span>string <var>$note</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#323-343" title="Go to source code">exec</a>( <span>string|<code><a href="class-PDOStatement.html">PDOStatement</a></code> <var>$statement</var></span>, <span>string <var>$note</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1014,6 +1213,8 @@ automatically.</p>
 
 <p>If given a PDOStatement, this method behaves the same as the execute()
 method.</p>
+
+<p>#pw-group-PDO</p>
 
 
 
@@ -1035,6 +1236,10 @@ method.</p>
 					<code><code><a href="class-PDOException.html">PDOException</a></code></code><br>
 				</div>
 
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.exec.php">http://php.net/manual/en/pdo.exec.php</a><br>
+				</div>
 
 
 		</div>
@@ -1051,7 +1256,7 @@ method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#216-281" title="Go to source code">execute</a>( <span><code><a href="class-PDOStatement.html">PDOStatement</a></code> <var>$query</var></span>, <span>boolean <var>$throw</var> = <span class="php-keyword1">true</span></span>, <span>integer <var>$maxTries</var> = <span class="php-num">3</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#345-426" title="Go to source code">execute</a>( <span><code><a href="class-PDOStatement.html">PDOStatement</a></code> <var>$query</var></span>, <span>boolean <var>$throw</var> = <span class="php-keyword1">true</span></span>, <span>integer <var>$maxTries</var> = <span class="php-num">3</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1062,6 +1267,19 @@ method.</p>
 		<div class="description detailed hidden">
 			
 <p>Execute a PDO statement, with retry and error handling</p>
+
+<p>Given a PDOStatement ($query) this method will execute the statement and
+return true or false as to whether it was successful.</p>
+
+<p>Unlike other PDO methods, this one (native to ProcessWire) will retry queries
+if they failed due to a lost connection. By default it will retry up to 3 times,
+but you can adjust this number as needed in the arguments.</p>
+
+<p>~~~~~ // prepare the query $query = $database-&gt;prepare("SELECT id, name
+FROM pages LIMIT 10"); // you can do the following, rather than native PDO
+$query-&gt;execute(); $database-&gt;execute($query); ~~~~~</p>
+
+<p>#pw-group-custom</p>
 
 
 
@@ -1077,7 +1295,8 @@ method.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True on success, false on failure. Note if you want this, specify $throw=false
+in your arguments.<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -1101,7 +1320,7 @@ method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____unknownColumnError">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#283-289" title="Go to source code">___unknownColumnError</a>( <span>string <var>$column</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#428-436" title="Go to source code">___unknownColumnError</a>( <span>string <var>$column</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1114,6 +1333,8 @@ column</p>
 			
 <p>Hookable method called by execute() method when query encounters an unknown
 column</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1134,24 +1355,51 @@ column</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			array|boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_queryLog">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#291-295" title="Go to source code">queryLog</a>( <span>mixed <var>$sql</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$note</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#438-456" title="Go to source code">queryLog</a>( <span>string <var>$sql</var> = <span class="php-quote">''</span></span>, <span>string <var>$note</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Log a query, or return logged queries</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Log a query, or return logged queries</p>
+
+<ul>
+	<li>To log a query, provide the $sql argument containing the query
+	(string).</li>
+
+	<li>To retrieve the query log, call this method with no arguments.</li>
+
+	<li>Note the core only populates the query log when
+	<code>$config-&gt;debug</code> mode is active.</li>
+</ul>
+
+<p>#pw-group-custom</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sql</var></dt>
+					<dd><code>string</code><br>$sql Query (string) to log</dd>
+					<dt><var>$note</var></dt>
+					<dd><code>string</code><br>$note Any additional debugging notes about the query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br>Returns query log array, or boolean true if you've logged a query<br>
+				</div>
 
 
 
@@ -1170,7 +1418,7 @@ column</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTables">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#297-313" title="Go to source code">getTables</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#458-477" title="Go to source code">getTables</a>( <span>boolean <var>$allowCache</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1182,12 +1430,23 @@ column</p>
 			
 <p>Get array of all tables in this database.</p>
 
+<p>Note that this method caches its result unless you specify boolean false for
+the $allowCache argument.</p>
+
+<p>#pw-group-custom</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$allowCache</var></dt>
+					<dd><code>boolean</code><br>$allowCache Specify false if you don't want result to be cached or pulled from
+cache (default=true)</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>
+					<code>array</code><br>Returns array of table names<br>
 				</div>
 
 
@@ -1207,7 +1466,7 @@ column</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isOperator">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#315-324" title="Go to source code">isOperator</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#479-498" title="Go to source code">isOperator</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1219,17 +1478,22 @@ column</p>
 			
 <p>Is the given string a database comparison operator?</p>
 
+<p>#pw-group-custom</p>
+
+<p>~~~~~ if($database-&gt;isOperator('&gt;=')) { // given string is a valid
+database operator } else { // not a valid database operator } ~~~~~</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$str</var></dt>
-					<dd><code>string</code><br>$str 1-2 character opreator to test</dd>
+					<dd><code>string</code><br>$str 1-2 character operator to test</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if it's valid, false if not<br>
 				</div>
 
 
@@ -1251,7 +1515,7 @@ column</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escapeTable">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#326-338" title="Go to source code">escapeTable</a>( <span>string <var>$table</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#500-514" title="Go to source code">escapeTable</a>( <span>string <var>$table</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1263,17 +1527,19 @@ column</p>
 			
 <p>Sanitize a table name for _a-zA-Z0-9</p>
 
+<p>#pw-group-sanitization</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$table</var></dt>
-					<dd><code>string</code><br>$table</dd>
+					<dd><code>string</code><br>$table String containing table name</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code>string</code><br>Sanitized table name<br>
 				</div>
 
 
@@ -1293,7 +1559,7 @@ column</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escapeCol">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#340-349" title="Go to source code">escapeCol</a>( <span>string <var>$col</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#516-527" title="Go to source code">escapeCol</a>( <span>string <var>$col</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1304,6 +1570,8 @@ column</p>
 		<div class="description detailed hidden">
 			
 <p>Sanitize a column name for _a-zA-Z0-9</p>
+
+<p>#pw-group-sanitization</p>
 
 
 
@@ -1335,7 +1603,7 @@ column</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escapeTableCol">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#351-362" title="Go to source code">escapeTableCol</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#529-542" title="Go to source code">escapeTableCol</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1346,6 +1614,8 @@ column</p>
 		<div class="description detailed hidden">
 			
 <p>Sanitize a table.column string, where either part is optional</p>
+
+<p>#pw-group-sanitization</p>
 
 
 
@@ -1377,7 +1647,7 @@ column</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escapeStr">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#364-373" title="Go to source code">escapeStr</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#544-555" title="Go to source code">escapeStr</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1390,6 +1660,8 @@ quotes</p>
 			
 <p>Escape a string value, same as $db-&gt;quote() but without surrounding
 quotes</p>
+
+<p>#pw-group-sanitization</p>
 
 
 
@@ -1421,7 +1693,7 @@ quotes</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_quote">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#387-396" title="Go to source code">quote</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#571-584" title="Go to source code">quote</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1432,6 +1704,8 @@ quotes</p>
 		<div class="description detailed hidden">
 			
 <p>Quote and escape a string value</p>
+
+<p>#pw-group-sanitization #pw-group-PDO</p>
 
 
 
@@ -1447,6 +1721,10 @@ quotes</p>
 				</div>
 
 
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://php.net/manual/en/pdo.quote.php">http://php.net/manual/en/pdo.quote.php</a><br>
+				</div>
 
 
 		</div>
@@ -1463,7 +1741,7 @@ quotes</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escapeLike">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#398-408" title="Go to source code">escapeLike</a>( <span>string <var>$like</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#586-598" title="Go to source code">escapeLike</a>( <span>string <var>$like</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1476,6 +1754,8 @@ phrase</p>
 			
 <p>Escape a string value, plus escape characters necessary for a MySQL 'LIKE'
 phrase</p>
+
+<p>#pw-group-sanitization</p>
 
 
 
@@ -1507,16 +1787,27 @@ phrase</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDebugMode">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#410-412" title="Go to source code">setDebugMode</a>( <span>mixed <var>$debugMode</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#600-610" title="Go to source code">setDebugMode</a>( <span>mixed <var>$debugMode</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set whether debug mode is enabled for this database instance</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set whether debug mode is enabled for this database instance</p>
+
+<p>#pw-internal</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$debugMode</var></dt>
+					<dd><code>mixed</code><br>$debugMode</dd>
+				</dl></div>
 
 
 
@@ -1529,42 +1820,32 @@ phrase</p>
 
 		<td class="attributes"><code>
 			 public 
-			mixed|null
+			mixed|null|<code><a href="class-PDO.html">PDO</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#414-417" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#612-620" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get an object property by direct reference or NULL if it doesn't exist</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get an object property by direct reference or NULL if it doesn't exist</p>
-
-<p>If not overridden, this is primarily used as a shortcut for the fuel()
-method.</p>
-
-<p>Descending classes may have their own __get() but must pass control to this
-one when they can't find something.</p>
-
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$name</dd>
+					<dd><code>string</code><br>$key</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed|null</code><br>
+					<code>mixed|null|<code><a href="class-PDO.html">PDO</a></code></code><br>
 				</div>
 
 
@@ -1586,14 +1867,20 @@ one when they can't find something.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_closeConnection">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#419-421" title="Go to source code">closeConnection</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#622-630" title="Go to source code">closeConnection</a>( )</code>
 
 		<div class="description short">
 			
+<p>Close the PDO connection</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Close the PDO connection</p>
+
+<p>#pw-group-custom</p>
+
 
 
 
@@ -1615,7 +1902,7 @@ one when they can't find something.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getVariable">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#423-440" title="Go to source code">getVariable</a>( <span>string <var>$name</var></span>, <span>boolean <var>$cache</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#632-657" title="Go to source code">getVariable</a>( <span>string <var>$name</var></span>, <span>boolean <var>$cache</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1627,12 +1914,18 @@ one when they can't find something.</p>
 			
 <p>Get the value of a MySQL variable</p>
 
+<p>~~~~~ // Get the minimum fulltext index word length $value =
+$database-&gt;getVariable('ft_min_word_len'); echo $value; // outputs "4"
+~~~~~</p>
+
+<p>#pw-group-custom</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name</dd>
+					<dd><code>string</code><br>$name Name of MySQL variable you want to retrieve</dd>
 					<dt><var>$cache</var></dt>
 					<dd><code>boolean</code><br>$cache Allow use of cached values?</dd>
 				</dl></div>
@@ -1659,7 +1952,7 @@ one when they can't find something.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_backups">#</a>
-		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#442-466" title="Go to source code">backups</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireDatabasePDO.html#659-686" title="Go to source code">backups</a>( )</code>
 
 		<div class="description short">
 			
@@ -1675,6 +1968,8 @@ connection</p>
 
 <p>See WireDatabaseBackup class for usage.</p>
 
+<p>#pw-group-custom</p>
+
 
 
 
@@ -1688,6 +1983,10 @@ connection</p>
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code>|<code><a href="class-Exception.html">Exception</a></code></code><br>on fatal error<br>
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireDatabaseBackup.html">ProcessWire\WireDatabaseBackup</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1714,6 +2013,7 @@ connection</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -1774,7 +2074,7 @@ connection</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireDatabasePDO.html#19-23" title="Go to source code"><var>$queryLog</var></a>
+				<a href="source-class-ProcessWire.WireDatabasePDO.html#22-26" title="Go to source code"><var>$queryLog</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -1801,7 +2101,7 @@ connection</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireDatabasePDO.html#25-29" title="Go to source code"><var>$debugMode</var></a>
+				<a href="source-class-ProcessWire.WireDatabasePDO.html#28-32" title="Go to source code"><var>$debugMode</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -1821,6 +2121,33 @@ connection</p>
 			</div>
 		</div></td>
 	</tr>
+	<tr data-order="tablesCache" id="$tablesCache">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.WireDatabasePDO.html#34-40" title="Go to source code"><var>$tablesCache</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$tablesCache" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Cached result from getTables() method</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Cached result from getTables() method</p>
+
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="pdo" id="$pdo">
 		<td class="attributes"><code>
 			protected  
@@ -1828,7 +2155,7 @@ connection</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireDatabasePDO.html#31-35" title="Go to source code"><var>$pdo</var></a>
+				<a href="source-class-ProcessWire.WireDatabasePDO.html#42-46" title="Go to source code"><var>$pdo</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1855,7 +2182,7 @@ connection</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireDatabasePDO.html#37-46" title="Go to source code"><var>$pdoConfig</var></a>
+				<a href="source-class-ProcessWire.WireDatabasePDO.html#48-57" title="Go to source code"><var>$pdoConfig</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'dsn'</span> =&gt; <span class="php-quote">''</span>, 
@@ -1887,7 +2214,7 @@ connection</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireDatabasePDO.html#48-54" title="Go to source code"><var>$variableCache</var></a>
+				<a href="source-class-ProcessWire.WireDatabasePDO.html#59-65" title="Go to source code"><var>$variableCache</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

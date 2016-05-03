@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeCheckbox | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -614,6 +614,10 @@ zero value, blank object or array</p>
 <p>Return the blank value for this fieldtype, whether that is a blank string,
 zero value, blank object or array</p>
 
+<p>Default/non-implemented behavior is to return a blanks string.</p>
+
+<p>#pw-group-loading</p>
+
 
 
 				<h4>Parameters</h4>
@@ -652,17 +656,26 @@ zero value, blank object or array</p>
 
 		<div class="description short">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
-<p>This method should remove anything that's invalid from the given value. If it
-can't be sanitized, it should be blanked. This method filters every value set to
-a Page instance.</p>
+<ul>
+	<li>Implementation is required by Fieldtype modules, as this method is
+	abstract.</li>
+
+	<li>This method should remove anything that's invalid from the given value. If
+	it can't be sanitized, it should be made blank.</li>
+
+	<li>This method filters every value set to a Page instance, so it should do it's
+	thing as quickly as possible.</li>
+</ul>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -702,28 +715,30 @@ a Page instance.</p>
 
 		<div class="description short">
 			
-<p>Render a markup string of the value</p>
+<p>Render a markup string of the value.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Render a markup string of the value</p>
+<p>Render a markup string of the value.</p>
 
 <p>Non-markup components should also be entity encoded where appropriate.</p>
 
 <p>Most Fieldtypes don't need to implement this since the default covers most
 scenarios.</p>
 
-<p>This is different from formatValue() in that it always returns a string (or
-object that can be typecast to a string) that is output ready with markup.
-Further, this method may be used to render specific properties in compound
-fieldtypes. The intention here is primarily for admin output purposes, but can
-be used front-end where applicable.</p>
+<p>This is different from <code>Fieldtype::formatValue()</code> in that it
+always returns a string (or object that can be typecast to a string) that is
+output ready with markup. Further, this method may be used to render specific
+properties in compound Fieldtypes. The intention here is primarily for admin
+output purposes, but can be used front-end where applicable.</p>
 
-<p>This is different from Inputfield::renderValue() in that the context may be
-outside that of an Inputfield, as Inputfields can have external CSS or JS
-dependencies.</p>
+<p>This is different from <code>Inputfield::renderValue()</code> in that the
+context may be outside that of an Inputfield, as Inputfields can have external
+CSS or JS dependencies.</p>
+
+<p>#pw-group-formatting</p>
 
 
 
@@ -734,7 +749,8 @@ dependencies.</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that $value comes from</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value Optionally specify the $page-&gt;getFormatted(value), value must be a
+					<dd><code>mixed</code><br>$value Optionally specify the value returned by
+<code>$page-&gt;getFormatted('field')</code>. When specified, value must be a
 formatted value. If null or not specified (recommended), it will be retrieved
 automatically.</dd>
 					<dt><var>$property</var></dt>
@@ -772,34 +788,26 @@ specify additional config options before typecasting it to a string.<br>
 
 		<div class="description short">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
-<p>Abstract Template Method: child classes should override this. Code snippet is
-for example purposes only.</p>
-
-<p>Page and Field are provided as params in case the Fieldtype needs them for
-any custom population with the Inputfield. However, most Fieldtypes won't need
-them since Inputfield objects don't have any Page dependencies (!) The Field
-class handles setting all standard Inputfield attributes rather than this method
-to reduce code duplication in Inputfield modules.</p>
-
-<p>(!) See FieldtypeFile for an example that uses both Page and Field
-params.</p>
+<p>#pw-group-other</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfield will be for</dd>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that the Inputfield will be for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -838,31 +846,38 @@ params.</p>
 			
 <p>Get the database schema for this field</p>
 
-<p>Should return an array like the following, indexed by field name with type
-details as the value (as it would be in an SQL statement) Indexes are passed
-through with a 'keys' array. Note that 'pages_id' as a field and primary key may
-be retrieved by starting with the parent schema return from this root
-getDatabaseSchema method.</p>
+<ul>
+	<li>Should return an array like in the example below, indexed by field name with
+	type details as the value (as it would be in an SQL statement).</li>
 
-<p>array( 'data' =&gt; 'mediumtext NOT NULL', 'keys' =&gt; array( 'FULLTEXT KEY
-data (data)', ), 'xtra' =&gt; array( // optional extras, MySQL defaults will be
-used if ommitted 'append' =&gt; 'ENGINE=MyISAM DEFAULT CHARSET=latin1'<br />
+	<li>Indexes are passed through with a <code>keys</code> array. Note that
+	<code>pages_id</code> as a field and primary key may be retrieved by starting
+	with the parent schema return from the built-in getDatabaseSchema() method.</li>
+
+	<li>At minimum, each Fieldtype must add a <code>data</code> field as well as an
+	index for it.</li>
+
+	<li>If you want a PHP <code>NULL</code> value to become a NULL in the database,
+	your column definition must specify: <code>DEFAULT NULL</code>.</li>
+</ul>
+
+<p>~~~~~~ array( 'data' =&gt; 'mediumtext NOT NULL', 'keys' =&gt; array(
+'primary' =&gt; 'PRIMARY KEY (<code>pages_id</code>)', 'FULLTEXT KEY data
+(data)', ), 'xtra' =&gt; array( // optional extras, MySQL defaults will be used
+if omitted 'append' =&gt; 'ENGINE={$this-&gt;config-&gt;dbEngine} ' . 'DEFAULT
+CHARSET={$this-&gt;config-&gt;dbCharset}'<br />
 // true (default) if this schema provides all storage for this fieldtype. //
-false if other storage is involved with this fieldtype, beyond this schema (like
-repeaters, PageTable, etc.) 'all' =&gt; true, ) );</p>
+false if other storage is involved with this fieldtype, beyond this schema //
+(like repeaters, PageTable, etc.) 'all' =&gt; true, ) ); ~~~~~~</p>
 
-<p>At minimum, each Fieldtype must add a 'data' field as well as an index for
-it.</p>
-
-<p>If you want a PHP NULL value to become a NULL in the database, your column
-definition must specify: DEFAULT NULL</p>
+<p>#pw-group-creating</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but usually should not.</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but typically isn't.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1017,6 +1032,7 @@ with this field</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

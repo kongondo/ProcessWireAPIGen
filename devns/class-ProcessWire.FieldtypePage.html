@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypePage | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -778,9 +778,9 @@ classes.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfield will be for</dd>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that the Inputfield will be for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -924,9 +924,11 @@ float or array</p>
 <p>If an array is returned, it should only contain: strings, ints, floats or
 more arrays of those types. This is intended for web service exports.</p>
 
-<p>If not overridden, this takes on the same behavior as sleepValue(). However,
-if overridden, it is intended to be more verbose than wakeupValue, where
-applicable.</p>
+<p>If not overridden, this takes on the same behavior as
+<code>Fieldtype::sleepValue()</code>. However, if overridden, it is intended to
+be more verbose than wakeupValue, where applicable.</p>
+
+<p>#pw-group-formatting</p>
 
 
 
@@ -1049,28 +1051,30 @@ applicable.</p>
 
 		<div class="description short">
 			
-<p>Render a markup string of the value</p>
+<p>Render a markup string of the value.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Render a markup string of the value</p>
+<p>Render a markup string of the value.</p>
 
 <p>Non-markup components should also be entity encoded where appropriate.</p>
 
 <p>Most Fieldtypes don't need to implement this since the default covers most
 scenarios.</p>
 
-<p>This is different from formatValue() in that it always returns a string (or
-object that can be typecast to a string) that is output ready with markup.
-Further, this method may be used to render specific properties in compound
-fieldtypes. The intention here is primarily for admin output purposes, but can
-be used front-end where applicable.</p>
+<p>This is different from <code>Fieldtype::formatValue()</code> in that it
+always returns a string (or object that can be typecast to a string) that is
+output ready with markup. Further, this method may be used to render specific
+properties in compound Fieldtypes. The intention here is primarily for admin
+output purposes, but can be used front-end where applicable.</p>
 
-<p>This is different from Inputfield::renderValue() in that the context may be
-outside that of an Inputfield, as Inputfields can have external CSS or JS
-dependencies.</p>
+<p>This is different from <code>Inputfield::renderValue()</code> in that the
+context may be outside that of an Inputfield, as Inputfields can have external
+CSS or JS dependencies.</p>
+
+<p>#pw-group-formatting</p>
 
 
 
@@ -1081,7 +1085,8 @@ dependencies.</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that $value comes from</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value Optionally specify the $page-&gt;getFormatted(value), value must be a
+					<dd><code>mixed</code><br>$value Optionally specify the value returned by
+<code>$page-&gt;getFormatted('field')</code>. When specified, value must be a
 formatted value. If null or not specified (recommended), it will be retrieved
 automatically.</dd>
 					<dt><var>$property</var></dt>
@@ -1558,7 +1563,7 @@ custom subfield</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but usually should not.</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but typically isn't.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2041,6 +2046,7 @@ Field object. - returns array of PageArray objects if $field argument is TRUE
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Users | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -488,6 +488,8 @@
 	
 <p>The Users class serves as the $users API variable.</p>
 
+<p>#pw-summary Manages all users (User objects) in ProcessWire.</p>
+
 	</div>
 
 	<dl class="tree">
@@ -535,7 +537,7 @@
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Users.html#4-112" title="Go to source code">core/Users.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Users.html#4-122" title="Go to source code">core/Users.php</a><br>
 	</div>
 
 
@@ -553,7 +555,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Users.html#15-18" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|integer|string|array <var>$templates</var> = <span class="php-keyword1">array</span>()</span>, <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array <var>$parents</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Users.html#25-28" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|integer|string|array <var>$templates</var> = <span class="php-keyword1">array</span>()</span>, <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array <var>$parents</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -591,26 +593,24 @@ objects)</dd>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|null
+			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Users.html#20-31" title="Go to source code">get</a>( <span>string <var>$selectorString</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Users.html#30-39" title="Go to source code">get</a>( <span>string <var>$selectorString</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get the user identified by $selectorString</p>
+<p>Get the user by name, ID or selector string</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the user identified by $selectorString</p>
-
-<p>Selector string may also be user ID or name.</p>
+<p>Get the user by name, ID or selector string</p>
 
 
 
@@ -622,7 +622,7 @@ objects)</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>|null</code><br>
 				</div>
 
 
@@ -644,7 +644,7 @@ objects)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCurrentUser">#</a>
-		<code><a href="source-class-ProcessWire.Users.html#33-58" title="Go to source code">setCurrentUser</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Users.html#41-66" title="Go to source code">setCurrentUser</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
 
 		<div class="description short">
 			
@@ -682,7 +682,7 @@ objects)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loaded">#</a>
-		<code><a href="source-class-ProcessWire.Users.html#60-71" title="Go to source code">loaded</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Users.html#68-79" title="Go to source code">loaded</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -722,7 +722,7 @@ objects)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCurrentUser">#</a>
-		<code><a href="source-class-ProcessWire.Users.html#73-82" title="Go to source code">getCurrentUser</a>( )</code>
+		<code><a href="source-class-ProcessWire.Users.html#81-90" title="Go to source code">getCurrentUser</a>( )</code>
 
 		<div class="description short">
 			
@@ -759,7 +759,7 @@ objects)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getGuestUser">#</a>
-		<code><a href="source-class-ProcessWire.Users.html#84-97" title="Go to source code">getGuestUser</a>( )</code>
+		<code><a href="source-class-ProcessWire.Users.html#92-105" title="Go to source code">getGuestUser</a>( )</code>
 
 		<div class="description short">
 			
@@ -796,7 +796,7 @@ objects)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newUser">#</a>
-		<code><a href="source-class-ProcessWire.Users.html#99-110" title="Go to source code">newUser</a>( )</code>
+		<code><a href="source-class-ProcessWire.Users.html#107-120" title="Go to source code">newUser</a>( )</code>
 
 		<div class="description short">
 			
@@ -807,6 +807,8 @@ objects)</dd>
 		<div class="description detailed hidden">
 			
 <p>Return new User instance</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -876,6 +878,7 @@ objects)</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -936,7 +939,7 @@ objects)</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Users.html#12" title="Go to source code"><var>$currentUser</var></a>
+				<a href="source-class-ProcessWire.Users.html#22" title="Go to source code"><var>$currentUser</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -959,7 +962,7 @@ objects)</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Users.html#13" title="Go to source code"><var>$guestUser</var></a>
+				<a href="source-class-ProcessWire.Users.html#23" title="Go to source code"><var>$guestUser</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>

@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ProcessPageListActions | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -488,16 +488,23 @@
 	
 <p>ProcessWire Base Class "Wire"</p>
 
-<p>Classes that descend from this have access to a wire() method containing all
-of ProcessWire's API variables. Descending classes can specify which methods
-should be "hookable" by precending the method name with 3 underscores: "___".
-This class provides the interface for tracking changes to object properties.</p>
+<p>#pw-summary Wire is the base class for most ProcessWire classes and modules.
+#pw-body = Wire derived classes have a <code>$this-&gt;wire()</code> method that
+provides access to ProcessWire's API variables. API variables can also be
+accessed as local properties in most cases. Wire also provides basic methods for
+tracking changes and managing runtime notices specific to the instance.</p>
 
-<p>This file is licensed under the MIT license <a
-href="https://processwire.com/about/license/mit/">https://processwire.com/about/license/mit/</a></p>
+<p>Wire derived classes can specify which methods are "hookable" by precending
+the method name with 3 underscores like this: <code>___myMethod()</code>. Other
+classes can then hook either before or after that method, modifying arguments or
+return values. Several other hook methods are also provided for Wire derived
+classes that are hooking into others. #pw-body #pw-order-groups
+common,identification,hooks,notices,changes,hooker</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
+
+<p>#pw-use-constants</p>
 
 	</div>
 
@@ -724,6 +731,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

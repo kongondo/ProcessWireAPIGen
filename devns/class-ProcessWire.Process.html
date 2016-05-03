@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Process | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -491,7 +491,15 @@
 <p>Process is the base Module class for each part of ProcessWire's web
 admin.</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>#pw-summary Process modules are self contained applications that run in the
+ProcessWire admin. #pw-summary-views Applicable only to Process modules that are
+using external output/view files. #pw-summary-module-interface See the
+<code>Module</code> interface for full details on these methods.
+#pw-order-groups common,views,module-interface,hooker #pw-body = Please be sure
+to see the <code>Module</code> interface for full details on methods you can
+specify in a Process module. #pw-body</p>
+
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <p>This file is licensed under the MIT license <a
@@ -582,7 +590,7 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Process.html#4-480" title="Go to source code">core/Process.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Process.html#4-552" title="Go to source code">core/Process.php</a><br>
 	</div>
 
 
@@ -600,7 +608,7 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#103" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#111" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -631,7 +639,7 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#105-111" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#113-121" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -644,6 +652,8 @@ JS files</p>
 			
 <p>Per the Module interface, Initialize the Process, loading any related CSS or
 JS files</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -666,17 +676,28 @@ JS files</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____execute">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#113-119" title="Go to source code">___execute</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#123-137" title="Go to source code">___execute</a>( )</code>
 
 		<div class="description short">
 			
-<p>Execute this Process and return the output</p>
+<p>Execute this Process and return the output. You may have any number of
+execute[name] methods, triggered by URL segments.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Execute this Process and return the output</p>
+<p>Execute this Process and return the output. You may have any number of
+execute[name] methods, triggered by URL segments.</p>
+
+<p>When any execute() method returns a string, it us used as the actual output.
+When the method returns an associative array, it is considered an array of
+variables to send to the output view layer.</p>
+
+<p>This execute() method is called when no URL segments are present. You may
+have any number of execute() methods, i.e. <code>executeFoo()</code> would be
+called for the URL <code>./foo/</code> and <code>executeBarBaz()</code> would be
+called for the URL <code>./bar-baz/</code>.</p>
 
 
 
@@ -703,17 +724,19 @@ JS files</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____executed">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#121-127" title="Go to source code">___executed</a>( <span>string <var>$method</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#139-147" title="Go to source code">___executed</a>( <span>string <var>$method</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Hookable method automatically called after execute() method has finished</p>
+<p>Hookable method automatically called after execute() method has finished.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Hookable method automatically called after execute() method has finished</p>
+<p>Hookable method automatically called after execute() method has finished.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -741,7 +764,7 @@ JS files</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#129-139" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#149-161" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -752,6 +775,8 @@ JS files</p>
 		<div class="description detailed hidden">
 			
 <p>Get a value stored in this Process</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -785,7 +810,7 @@ JS files</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSingular">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#141-147" title="Go to source code">isSingular</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#163-171" title="Go to source code">isSingular</a>( )</code>
 
 		<div class="description short">
 			
@@ -798,6 +823,8 @@ memory</p>
 			
 <p>Per the Module interface, Process modules only retain one instance in
 memory</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -820,7 +847,7 @@ memory</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isAutoload">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#149-155" title="Go to source code">isAutoload</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#173-181" title="Go to source code">isAutoload</a>( )</code>
 
 		<div class="description short">
 			
@@ -833,6 +860,8 @@ from the API</p>
 			
 <p>Per the Module interface, Process modules are not loaded until requested from
 from the API</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -855,17 +884,19 @@ from the API</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____headline">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#157-167" title="Go to source code">___headline</a>( <span>string <var>$headline</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#183-197" title="Go to source code">___headline</a>( <span>string <var>$headline</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the current headline to appear in the interface</p>
+<p>Set the current primary headline to appear in the admin interface</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the current headline to appear in the interface</p>
+<p>Set the current primary headline to appear in the admin interface</p>
+
+<p>~~~~~ $this-&gt;headline("Hello World"); ~~~~~</p>
 
 
 
@@ -897,17 +928,19 @@ from the API</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____browserTitle">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#169-179" title="Go to source code">___browserTitle</a>( <span>string <var>$title</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#199-213" title="Go to source code">___browserTitle</a>( <span>string <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the current browser &lt;title&gt;</p>
+<p>Set the current browser title tag</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the current browser &lt;title&gt;</p>
+<p>Set the current browser title tag</p>
+
+<p>~~~~~ $this-&gt;browserTitle("Hello World"); ~~~~~</p>
 
 
 
@@ -939,7 +972,7 @@ from the API</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____breadcrumb">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#181-201" title="Go to source code">___breadcrumb</a>( <span>string <var>$href</var></span>, <span>string <var>$label</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#215-239" title="Go to source code">___breadcrumb</a>( <span>string <var>$href</var></span>, <span>string <var>$label</var></span> )</code>
 
 		<div class="description short">
 			
@@ -951,14 +984,16 @@ from the API</p>
 			
 <p>Add a breadcrumb</p>
 
+<p>~~~~~ $this-&gt;breadcrumb("../", "Widgets"); ~~~~~</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$href</var></dt>
-					<dd><code>string</code><br>$href</dd>
+					<dd><code>string</code><br>$href URL of breadcrumb</dd>
 					<dt><var>$label</var></dt>
-					<dd><code>string</code><br>$label</dd>
+					<dd><code>string</code><br>$label Label for breadcrumb</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -983,20 +1018,25 @@ from the API</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#203-234" title="Go to source code">___install</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#241-277" title="Go to source code">___install</a>( )</code>
 
 		<div class="description short">
 			
-<p>Per the Module interface, Install the Process module</p>
+<p>Per the Module interface, Install the module</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Per the Module interface, Install the Process module</p>
+<p>Per the Module interface, Install the module</p>
 
 <p>By default a permission equal to the name of the class is installed, unless
-overridden with the 'permission' property in getModuleInfo().</p>
+overridden with the 'permission' property in your module information array.</p>
+
+<p>See the <code>Module</code> interface and the <code>install</code> method
+there for more details.</p>
+
+<p>#pw-group-module-interface</p>
 
 
 
@@ -1019,7 +1059,7 @@ overridden with the 'permission' property in getModuleInfo().</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstall">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#236-246" title="Go to source code">___uninstall</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#279-293" title="Go to source code">___uninstall</a>( )</code>
 
 		<div class="description short">
 			
@@ -1032,7 +1072,12 @@ overridden with the 'permission' property in getModuleInfo().</p>
 <p>Uninstall this Process</p>
 
 <p>Note that the Modules class handles removal of any Permissions that the
-Process may have installed</p>
+Process may have installed.</p>
+
+<p>See the <code>Module</code> interface and the <code>uninstall</code> method
+there for more details.</p>
+
+<p>#pw-group-module-interface</p>
 
 
 
@@ -1055,7 +1100,7 @@ Process may have installed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____upgrade">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#248-258" title="Go to source code">___upgrade</a>( <span>mixed <var>$fromVersion</var></span>, <span>mixed <var>$toVersion</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#295-309" title="Go to source code">___upgrade</a>( <span>mixed <var>$fromVersion</var></span>, <span>mixed <var>$toVersion</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1067,14 +1112,19 @@ Process may have installed</p>
 			
 <p>Called when module version changes</p>
 
+<p>See the <code>Module</code> interface and the <code>upgrade</code> method
+there for more details.</p>
+
+<p>#pw-group-module-interface</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$fromVersion</var></dt>
-					<dd><code>mixed</code><br>$fromVersion</dd>
+					<dd><code>mixed</code><br>$fromVersion Previous version</dd>
 					<dt><var>$toVersion</var></dt>
-					<dd><code>mixed</code><br>$toVersion</dd>
+					<dd><code>mixed</code><br>$toVersion New version</dd>
 				</dl></div>
 
 
@@ -1099,7 +1149,7 @@ Process may have installed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____installPage">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#260-302" title="Go to source code">___installPage</a>( <span>string <var>$name</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|string|integer|null <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$title</var> = <span class="php-quote">''</span></span>, <span>string|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var> = <span class="php-quote">'admin'</span></span>, <span>array <var>$extras</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#311-355" title="Go to source code">___installPage</a>( <span>string <var>$name</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|string|integer|null <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$title</var> = <span class="php-quote">''</span></span>, <span>string|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var> = <span class="php-quote">'admin'</span></span>, <span>array <var>$extras</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1114,6 +1164,8 @@ Process</p>
 Process</p>
 
 <p>To be called by Process module's ___install() method.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -1159,7 +1211,7 @@ Or omit and admin root is assumed</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstallPage">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#304-326" title="Go to source code">___uninstallPage</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#357-381" title="Go to source code">___uninstallPage</a>( )</code>
 
 		<div class="description short">
 			
@@ -1175,6 +1227,8 @@ Or omit and admin root is assumed</dd>
 all.</p>
 
 <p>To be called by the Process module's ___uninstall() method.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -1201,7 +1255,7 @@ all.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____executeNavJSON">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#328-422" title="Go to source code">___executeNavJSON</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#383-479" title="Go to source code">___executeNavJSON</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1215,8 +1269,10 @@ all.</p>
 
 <p>Optional/applicable only to Process modules that manage groups of items.</p>
 
-<p>This method is only used if your getModuleInfo returns TRUE for
-useNavJSON</p>
+<p>This method is only used if your module information array contains a
+<code>useNavJSON</code> property with boolean true.</p>
+
+<p>#pw-internal @todo work on documenting this method further</p>
 
 
 
@@ -1252,17 +1308,30 @@ useNavJSON</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setViewFile">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#424-439" title="Go to source code">setViewFile</a>( <span>string <var>$file</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#481-502" title="Go to source code">setViewFile</a>( <span>string <var>$file</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the file to use for the output view, if different from default</p>
+<p>Set the file to use for the output view, if different from default.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the file to use for the output view, if different from default</p>
+<p>Set the file to use for the output view, if different from default.</p>
+
+<ul>
+	<li>The default view file for the execute() method would be:
+	./views/execute.php</li>
+
+	<li>The default view file for an executeFooBar() method would be:
+	./views/execute-foo-bar.php</li>
+
+	<li>To specify your own view file independently of these defaults, use this
+	method.</li>
+</ul>
+
+<p>#pw-group-views</p>
 
 
 
@@ -1298,24 +1367,26 @@ useNavJSON</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getViewFile">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#441-449" title="Go to source code">getViewFile</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#504-514" title="Go to source code">getViewFile</a>( )</code>
 
 		<div class="description short">
 			
-<p>If a view file has been set, this returns the full path to it</p>
+<p>If a view file has been set, this returns the full path to it.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>If a view file has been set, this returns the full path to it</p>
+<p>If a view file has been set, this returns the full path to it.</p>
+
+<p>#pw-group-views</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>Blank if no view file set, full path and file if set<br>
+					<code>string</code><br>Blank if no view file set, full path and file if set.<br>
 				</div>
 
 
@@ -1335,25 +1406,30 @@ useNavJSON</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setViewVars">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#451-469" title="Go to source code">setViewVars</a>( <span>string|array <var>$key</var></span>, <span>mixed|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Process.html#516-539" title="Go to source code">setViewVars</a>( <span>string|array <var>$key</var></span>, <span>mixed|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Set a variable that will be passed to the output view</p>
+<p>Set a variable that will be passed to the output view.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set a variable that will be passed to the output view</p>
+<p>Set a variable that will be passed to the output view.</p>
+
+<p>You can also do this by having your execute() method(s) return an associative
+array of variables to send to the view file.</p>
+
+<p>#pw-group-views</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|array</code><br>$key Property to set, or array of property=&gt;value to set (leaving 2nd
-argument as null)</dd>
+					<dd><code>string|array</code><br>$key Property to set, or array of <code>[property =&gt; value]</code> to set
+(leaving 2nd argument as null)</dd>
 					<dt><var>$value</var></dt>
 					<dd><code>mixed|null</code><br>$value Value to set</dd>
 				</dl></div>
@@ -1384,7 +1460,7 @@ argument as null)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getViewVars">#</a>
-		<code><a href="source-class-ProcessWire.Process.html#471-479" title="Go to source code">getViewVars</a>( )</code>
+		<code><a href="source-class-ProcessWire.Process.html#541-551" title="Go to source code">getViewVars</a>( )</code>
 
 		<div class="description short">
 			
@@ -1395,6 +1471,8 @@ argument as null)</dd>
 		<div class="description detailed hidden">
 			
 <p>Get all variables set for the output view</p>
+
+<p>#pw-group-views</p>
 
 
 
@@ -1459,6 +1537,7 @@ argument as null)</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -1519,7 +1598,7 @@ argument as null)</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Process.html#85-93" title="Go to source code"><var>$_viewFile</var></a>
+				<a href="source-class-ProcessWire.Process.html#93-101" title="Go to source code"><var>$_viewFile</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">''</span></code></td>
 		<td class="description"><div>
@@ -1549,7 +1628,7 @@ setViewVars()</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Process.html#95-101" title="Go to source code"><var>$_viewVars</var></a>
+				<a href="source-class-ProcessWire.Process.html#103-109" title="Go to source code"><var>$_viewVars</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\HookEvent | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -491,6 +491,12 @@
 <p>Instances of HookEvent are passed to Hook handlers when their requested
 method has been called.</p>
 
+<p>#pw-summary HookEvent is a type provided to hook functions with information
+about the event. #pw-body = ~~~~~~ // Example
+$wire-&gt;addHookAfter('Pages::saved', function(HookEvent $event) { $page =
+$event-&gt;arguments(0); $event-&gt;message("You saved page $page-&gt;path");
+}); ~~~~~~ #pw-body</p>
+
 <p>HookEvents have the following properties available:</p>
 
 	</div>
@@ -544,7 +550,7 @@ method has been called.</p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.HookEvent.html#11-191" title="Go to source code">core/HookEvent.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.HookEvent.html#11-235" title="Go to source code">core/HookEvent.php</a><br>
 	</div>
 
 
@@ -562,7 +568,7 @@ method has been called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#37-50" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#48-61" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -597,7 +603,7 @@ method has been called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_arguments">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#52-70" title="Go to source code">arguments</a>( <span>integer <var>$n</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#63-99" title="Go to source code">arguments</a>( <span>integer <var>$n</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -609,14 +615,25 @@ method has been called.</p>
 			
 <p>Retrieve or set a hooked function argument</p>
 
+<p>~~~~~ // Retrieve first argument by index (0=first) $page =
+$event-&gt;arguments(0);</p>
+
+<p>// Retrieve array of all arguments $arguments = $event-&gt;arguments();</p>
+
+<p>// Retrieve argument by name $page = $event-&gt;arguments('page');</p>
+
+<p>// Set first argument by index $event-&gt;arguments(0, $page);</p>
+
+<p>// Set first argument by name $event-&gt;arguments('page', $page); ~~~~~</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$n</var></dt>
 					<dd><code>integer</code><br>$n Zero based number of the argument you want to retrieve, where 0 is the first.
-Omit to return array of all arguments. May also be the string 'name' of the
-argument.</dd>
+May also be a string containing the argument name. Omit to return array of all
+arguments.</dd>
 					<dt><var>$value</var></dt>
 					<dd><code>mixed</code><br>$value Value that you want to set to this argument, or omit to only return the
 argument.</dd>
@@ -644,7 +661,7 @@ argument.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_argumentsByName">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#72-102" title="Go to source code">argumentsByName</a>( <span>string <var>$n</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#101-139" title="Go to source code">argumentsByName</a>( <span>string <var>$n</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -658,8 +675,14 @@ specified argument</p>
 <p>Returns an array of all arguments indexed by name, or the value of a single
 specified argument</p>
 
-<p>Note: arguments('name') can also be used as a shorter synonym for
-argumentsByName('name');</p>
+<p>Note: <code>$event-&gt;arguments('name')</code> can also be used as a shorter
+synonym for <code>$event-&gt;argumentsByName('name')</code>.</p>
+
+<p>~~~~~ // Get an array of all arguments indexed by name $arguments =
+$event-&gt;argumentsByName();</p>
+
+<p>// Get a specific argument by name $page =
+$event-&gt;argumentsByName('page'); ~~~~~</p>
 
 
 
@@ -692,7 +715,7 @@ argument values returned.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setArgument">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#105-129" title="Go to source code">setArgument</a>( <span>integer|string <var>$n</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#142-168" title="Go to source code">setArgument</a>( <span>integer|string <var>$n</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -708,6 +731,8 @@ arguments() function</p>
 
 <p>Only useful with 'before' hooks, where the argument can be manipulated before
 being sent to the hooked function.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -745,7 +770,7 @@ being sent to the hooked function.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getArgumentNames">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#131-157" title="Go to source code">getArgumentNames</a>( )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#170-196" title="Go to source code">getArgumentNames</a>( )</code>
 
 		<div class="description short">
 			
@@ -782,7 +807,7 @@ being sent to the hooked function.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeHook">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#159-177" title="Go to source code">removeHook</a>( <span>string|null <var>$hookId</var></span> )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#198-221" title="Go to source code">removeHook</a>( <span>string|null <var>$hookId</var></span> )</code>
 
 		<div class="description short">
 			
@@ -796,6 +821,9 @@ being sent to the hooked function.</p>
 
 <p>To remove the hook that this event is for, call it with the $hookId argument
 as null or blank.</p>
+
+<p>~~~~~ // Remove this hook event, preventing it from executing again
+$event-&gt;removeHook(null); ~~~~~</p>
 
 
 
@@ -822,14 +850,14 @@ as null or blank.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#179-188" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#223-232" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -844,6 +872,10 @@ as null or blank.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
 
@@ -902,6 +934,7 @@ as null or blank.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -961,7 +994,7 @@ as null or blank.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.HookEvent.html#31-35" title="Go to source code"><var>$argumentNames</var></a>
+				<a href="source-class-ProcessWire.HookEvent.html#42-46" title="Go to source code"><var>$argumentNames</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

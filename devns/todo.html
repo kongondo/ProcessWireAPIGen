@@ -7,7 +7,7 @@
 	<title>Todo | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -546,11 +546,6 @@ default value in [brackets]. True and false (boolean) values may be specified by
 		<td>Update saveField to accept array of field names as an option.</td>
 	</tr>
 	<tr>
-		<td class="name" rowspan="1"><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></td>
-		<td>PW3 move permissions to use Page hierarchy or Page reference for parent/child
-relationships between permissions</td>
-	</tr>
-	<tr>
 		<td class="name" rowspan="1"><a href="class-ProcessWire.ProcessModule.html">ProcessWire\ProcessModule</a></td>
 		<td>add support for module configuration inputfields with useLanguages option</td>
 	</tr>
@@ -561,6 +556,14 @@ relationships between permissions</td>
 browser title?)</td>
 	</tr>
 	<tr>
+		<td class="name" rowspan="2"><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></td>
+		<td>can we implement next() and prev() like on Page, as alias to getNext() and
+getPrev()?</td></tr><tr>
+		<td>narrow down to one method of addition and removal, especially for removal, i.e.
+make shift() run through remove() ProcessWire 3.x (development), Copyright 2015
+by Ryan Cramer <a href="https://processwire.com">https://processwire.com</a></td>
+	</tr>
+	<tr>
 		<td class="name" rowspan="2"><a href="class-ProcessWire.Session.html">ProcessWire\Session</a></td>
 		<td>enable login/forceLogin to recognize non-HTTP use of login, when no session
 needs to be maintained</td></tr><tr>
@@ -568,7 +571,15 @@ needs to be maintained</td></tr><tr>
 	</tr>
 	<tr>
 		<td class="name" rowspan="1"><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></td>
-		<td>add multi-language option for redirectLogin setting</td>
+		<td>add multi-language option for redirectLogin setting Identification</td>
+	</tr>
+	<tr>
+		<td class="name" rowspan="2"><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></td>
+		<td>can we implement next() and prev() like on Page, as alias to getNext() and
+getPrev()?</td></tr><tr>
+		<td>narrow down to one method of addition and removal, especially for removal, i.e.
+make shift() run through remove() ProcessWire 3.x (development), Copyright 2015
+by Ryan Cramer <a href="https://processwire.com">https://processwire.com</a></td>
 	</tr>
 	</table>
 
@@ -577,11 +588,6 @@ needs to be maintained</td></tr><tr>
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr>
-		<td class="name" rowspan="1"><a href="class-ProcessWire.Fieldtypes.html">ProcessWire\Fieldtypes</a></td>
-		<td class="name" rowspan="1"><code><a href="class-ProcessWire.Fieldtypes.html#_getIterator">getIterator()</a></code></td>
-		<td>can we return $this rather than ArrayObject?</td>
-	</tr>
 	<tr>
 		<td class="name" rowspan="1"><a href="class-ProcessWire.FileCompiler.html">ProcessWire\FileCompiler</a></td>
 		<td class="name" rowspan="1"><code><a href="class-ProcessWire.FileCompiler.html#_compileComments">compileComments()</a></code></td>
@@ -630,7 +636,7 @@ method down further.</td>
 	</tr>
 	<tr>
 		<td class="name" rowspan="2"><a href="class-ProcessWire.Modules.html">ProcessWire\Modules</a></td>
-		<td class="name" rowspan="2"><code><a href="class-ProcessWire.Modules.html#_isConfigurableModule">isConfigurableModule()</a></code></td>
+		<td class="name" rowspan="2"><code><a href="class-ProcessWire.Modules.html#_isConfigurable">isConfigurable()</a></code></td>
 		<td>all ConfigurableModule methods need to be split out into their own class
 (ConfigurableModules?)</td></tr><tr>
 		<td>this method has two distinct parts (file and interface) that need to be split in
@@ -652,25 +658,9 @@ two methods.</td>
 		<td>move to separate class so that this functionality can be used elsewhere</td>
 	</tr>
 	<tr>
-		<td class="name" rowspan="1"><a href="class-ProcessWire.Sanitizer.html">ProcessWire\Sanitizer</a></td>
-		<td class="name" rowspan="1"><code><a href="class-ProcessWire.Sanitizer.html#_url">url()</a></code></td>
-		<td>add TLD validation</td>
-	</tr>
-	<tr>
 		<td class="name" rowspan="1"><a href="class-ProcessWire.Session.html">ProcessWire\Session</a></td>
 		<td class="name" rowspan="1"><code><a href="class-ProcessWire.Session.html#_maintenance">maintenance()</a></code></td>
 		<td>add extra gc checks</td>
-	</tr>
-	<tr>
-		<td class="name" rowspan="1"><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></td>
-		<td class="name" rowspan="1"><code><a href="class-ProcessWire.WireArray.html#_data">data()</a></code></td>
-		<td>Consider whether the utility of this may go beyond WireArray and perhaps into
-Wire.</td>
-	</tr>
-	<tr>
-		<td class="name" rowspan="1"><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></td>
-		<td class="name" rowspan="1"><code><a href="class-ProcessWire.WireArray.html#_getIterator">getIterator()</a></code></td>
-		<td>can we return $this rather than ArrayObject?</td>
 	</tr>
 	<tr>
 		<td class="name" rowspan="1"><a href="class-ProcessWire.WireDatabaseBackup.html">ProcessWire\WireDatabaseBackup</a></td>

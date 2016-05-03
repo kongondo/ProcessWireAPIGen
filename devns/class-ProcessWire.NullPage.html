@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\NullPage | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -488,6 +488,18 @@
 	
 <p>ProcessWire NullPage</p>
 
+<p>#pw-summary NullPage is a type of Page object returned by many API methods to
+indicate a non-match. #pw-body = The simplest way to detect a NullPage is
+typically by checking the value of the <code>$page-&gt;id</code> property. If it
+happens to be 0 then for most practical purposes, you have a NullPage. A
+NullPage object has all of the same methods and properties as a regular
+<code>Page</code> but there's not much point in calling upon them since they
+will always be empty. ~~~~~ $item = $pages-&gt;get("featured=1");</p>
+
+<p>if(!$item-&gt;id) { // this is a NullPage }</p>
+
+<p>if($item instanceof NullPage) { // this is a NullPage } ~~~~~ #pw-body</p>
+
 <p>Placeholder class for non-existant and non-saveable Page. Many API functions
 return a NullPage to indicate no match.</p>
 
@@ -556,7 +568,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.NullPage.html#4-30" title="Go to source code">core/NullPage.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.NullPage.html#4-174" title="Go to source code">core/NullPage.php</a><br>
 	</div>
 
 
@@ -567,28 +579,32 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_path">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#15" title="Go to source code">path</a>( )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#36-42" title="Go to source code">path</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns the Page's path from the site root.</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the Page's path from the site root.</p>
+<p>#pw-internal</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
 
@@ -602,39 +618,34 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#16" title="Go to source code">url</a>( )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#44-50" title="Go to source code">url</a>( )</code>
 
 		<div class="description short">
 			
-<p>Like path() but comes from server document root (which may or may not be
-different)</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Like path() but comes from server document root (which may or may not be
-different)</p>
-
-<p>Does not include urlSegment, if applicable. Does not include protocol and
-hostname -- use httpUrl() for that.</p>
+<p>#pw-internal</p>
 
 
 
 
-
-
-				<h4>See</h4>
+				<h4>Returns</h4>
 				<div class="list">
-						<code><code><a href="class-ProcessWire.NullPage.html#_path">ProcessWire\NullPage::path()</a></code></code><br>
+					<code>string</code><br>
 				</div>
+
+
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.Page.html#_url">ProcessWire\Page::url()</a></code></div>
@@ -646,38 +657,38 @@ hostname -- use httpUrl() for that.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#17" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#52-60" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the value of a page property</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the value of a page property</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key Property to set</dd>
+					<dd><code>string</code><br>$key</dd>
 					<dt><var>$value</var></dt>
 					<dd><code>mixed</code><br>$value</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>Reference to this Page<br>
+					<code>mixed</code><br>$this<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -685,10 +696,6 @@ hostname -- use httpUrl() for that.</p>
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
 
-				<h4>See</h4>
-				<div class="list">
-						<code><code><a href="class-ProcessWire.Page.html#___set">ProcessWire\Page::__set()</a></code></code><br>
-				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.Page.html#_set">ProcessWire\Page::set()</a></code></div>
@@ -700,40 +707,36 @@ hostname -- use httpUrl() for that.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
+			null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parent">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#18" title="Go to source code">parent</a>( <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#62-69" title="Go to source code">parent</a>( <span>string <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Return this page's parent Page, or the closest parent matching the given
-selector.</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return this page's parent Page, or the closest parent matching the given
-selector.</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$selector</var></dt>
-					<dd><code>string|array</code><br>$selector Optional selector string. When used, it returns the closest parent
-matching the selector.</dd>
+					<dd><code>string</code><br>$selector</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>Returns a Page or a NullPage when there is no parent or the selector string did
-not match any parents.<br>
+					<code>null</code><br>
 				</div>
 
 
@@ -755,26 +758,24 @@ not match any parents.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parents">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#19" title="Go to source code">parents</a>( <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#71-79" title="Go to source code">parents</a>( <span>string <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Return this page's parent pages, or the parent pages matching the given
-selector.</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return this page's parent pages, or the parent pages matching the given
-selector.</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$selector</var></dt>
-					<dd><code>string|array</code><br>$selector Optional selector string to filter parents by</dd>
+					<dd><code>string</code><br>$selector</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -782,6 +783,10 @@ selector.</p>
 					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -794,28 +799,32 @@ selector.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#20" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#81-87" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns the Page's ID in a string</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the Page's ID in a string</p>
+<p>#pw-internal</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
 
@@ -836,17 +845,17 @@ selector.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isHidden">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#21" title="Go to source code">isHidden</a>( )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#89-95" title="Go to source code">isHidden</a>( )</code>
 
 		<div class="description short">
 			
-<p>Does this page have a 'hidden' status?</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Does this page have a 'hidden' status?</p>
+<p>#pw-internal</p>
 
 
 
@@ -868,31 +877,31 @@ selector.</p>
 
 		<td class="attributes"><code>
 			 public 
-			PageFilesManager
+			null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filesManager">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#22" title="Go to source code">filesManager</a>( )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#97-103" title="Go to source code">filesManager</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return instance of PagefileManager specific to this Page</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return instance of PagefileManager specific to this Page</p>
+<p>#pw-internal</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>PageFilesManager</code><br>
+					<code>null</code><br>
 				</div>
 
 
@@ -907,35 +916,37 @@ selector.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
+			<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____rootParent">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#23" title="Go to source code">___rootParent</a>( )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#105-112" title="Go to source code">___rootParent</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get the lowest-level, non-homepage parent of this page</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the lowest-level, non-homepage parent of this page</p>
-
-<p>rootParents typically comprise the first level of navigation on a site.</p>
+<p>#pw-internal</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>
+					<code><code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -955,29 +966,26 @@ selector.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_siblings">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#24" title="Go to source code">siblings</a>( <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#114-123" title="Go to source code">siblings</a>( <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Return this Page's sibling pages, optionally filtered by a selector.</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return this Page's sibling pages, optionally filtered by a selector.</p>
-
-<p>Note that the siblings include the current page. To exclude the current page,
-specify "id!=$page".</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$selector</var></dt>
-					<dd><code>string|array</code><br>$selector Optional selector to filter siblings by.</dd>
+					<dd><code>string</code><br>$selector</dd>
 					<dt><var>$options</var></dt>
-					<dd></dd>
+					<dd><code>array</code><br>$options</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -985,6 +993,10 @@ specify "id!=$page".</p>
 					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -1004,26 +1016,26 @@ specify "id!=$page".</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_children">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#25" title="Go to source code">children</a>( <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#125-134" title="Go to source code">children</a>( <span>string <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Return this page's children pages, optionally filtered by a selector</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return this page's children pages, optionally filtered by a selector</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$selector</var></dt>
-					<dd><code>string</code><br>$selector Selector to use, or omit to return all children</dd>
+					<dd><code>string</code><br>$selector</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Options per Pages::find</dd>
+					<dd><code>array</code><br>$options</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1031,6 +1043,10 @@ specify "id!=$page".</p>
 					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -1043,40 +1059,42 @@ specify "id!=$page".</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
+			<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAccessParent">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#26" title="Go to source code">getAccessParent</a>( <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#136-144" title="Go to source code">getAccessParent</a>( <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Returns the parent page that has the template from which we get our
-role/access settings from</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the parent page that has the template from which we get our
-role/access settings from</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$type</var></dt>
-					<dd><code>string</code><br>$type Specify one of 'view', 'edit', 'add', or 'create' (default='view')</dd>
+					<dd><code>string</code><br>$type</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>Returns NullPage if none found<br>
+					<code><code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -1096,27 +1114,24 @@ role/access settings from</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAccessRoles">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#27" title="Go to source code">getAccessRoles</a>( <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#146-154" title="Go to source code">getAccessRoles</a>( <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Return the PageArray of roles that have access to this page</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the PageArray of roles that have access to this page</p>
-
-<p>This is determined from the page's template. If the page's template has roles
-turned off, then it will go down the tree till it finds usable roles to use.</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$type</var></dt>
-					<dd><code>string</code><br>$type May be 'view', 'edit', 'create' or 'add' (default='view')</dd>
+					<dd><code>string</code><br>$type</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1124,6 +1139,10 @@ turned off, then it will go down the tree till it finds usable roles to use.</p>
 					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -1143,28 +1162,26 @@ turned off, then it will go down the tree till it finds usable roles to use.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasAccessRole">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#28" title="Go to source code">hasAccessRole</a>( <span>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code> <var>$role</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#156-164" title="Go to source code">hasAccessRole</a>( <span>integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|string <var>$role</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Returns whether this page has the given access role</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns whether this page has the given access role</p>
-
-<p>Given access role may be a role name, role ID or Role object</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$role</var></dt>
-					<dd><code>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code></code><br>$role</dd>
+					<dd><code>integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|string</code><br>$role</dd>
 					<dt><var>$type</var></dt>
-					<dd><code>string</code><br>$type May be 'view', 'edit', 'create' or 'add' (default is 'view')</dd>
+					<dd><code>string</code><br>$type</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1191,31 +1208,24 @@ turned off, then it will go down the tree till it finds usable roles to use.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isChanged">#</a>
-		<code><a href="source-class-ProcessWire.NullPage.html#29" title="Go to source code">isChanged</a>( <span>string <var>$what</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.NullPage.html#166-173" title="Go to source code">isChanged</a>( <span>string <var>$what</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Has the Page (or optionally one of it's fields) changed since it was
-loaded?</p>
+<p>#pw-internal</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Has the Page (or optionally one of it's fields) changed since it was
-loaded?</p>
-
-<p>Assumes that Pages has turned on this Page's change tracking with a call to
-setTrackChanges(). Pages that are new (i.e. don't yet exist in the DB) always
-return true.</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$what</var></dt>
-					<dd><code>string</code><br>$what If specified, only checks the given property for changes rather than the
-whole page.</dd>
+					<dd><code>string</code><br>$what</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1361,6 +1371,7 @@ whole page.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

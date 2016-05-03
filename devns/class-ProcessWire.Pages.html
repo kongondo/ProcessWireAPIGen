@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Pages | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -538,13 +538,15 @@ href="https://processwire.com">https://processwire.com</a></p>
 				<b>Link:</b>
 				<a href="http://processwire.com/api/selectors/">Official Selectors Documentation
 
+#pw-summary Enables loading and manipulation of Page objects, to and from the database.
+
 PROPERTIES
 ==========</a><br>
 				<b>Todo:</b>
 				Add a getCopy method that does a getById($id, array('cache' =&gt; false) ?<br>
 				<b>Todo:</b>
 				Update saveField to accept array of field names as an option.<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Pages.html#4-1153" title="Go to source code">core/Pages.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Pages.html#4-1509" title="Go to source code">core/Pages.php</a><br>
 	</div>
 
 
@@ -562,7 +564,7 @@ PROPERTIES
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#121-134" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#123-136" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
 
 		<div class="description short">
 			
@@ -602,7 +604,7 @@ PROPERTIES
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#136-142" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#138-146" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -613,6 +615,8 @@ PROPERTIES
 		<div class="description detailed hidden">
 			
 <p>Initialize $pages API var by preloading some pages</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -635,17 +639,24 @@ PROPERTIES
 
 		<td class="name"><div>
 		<a class="anchor" href="#_count">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#149-159" title="Go to source code">count</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#153-173" title="Go to source code">count</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Count and return how many pages will match the given selector string</p>
+<p>Count and return how many pages will match the given selector.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Count and return how many pages will match the given selector string</p>
+<p>Count and return how many pages will match the given selector.</p>
+
+<p>If no selector provided, it returns count of all pages in site.</p>
+
+<p>~~~~~~~~~ // Return count of how may pages in the site use the blog-post
+template $numBlogPosts = $pages-&gt;count("template=blog-post"); ~~~~~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -654,7 +665,7 @@ PROPERTIES
 					<dt><var>$selector</var></dt>
 					<dd><code>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code></code><br>$selector Specify selector, or omit to retrieve a site-wide count.</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array|string</code><br>$options See $options in Pages::find</dd>
+					<dd><code>array|string</code><br>$options See $options for $pages-&gt;find().</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -663,6 +674,10 @@ PROPERTIES
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Pages::find()<br>
+				</div>
 
 
 		</div>
@@ -679,7 +694,7 @@ PROPERTIES
 
 		<td class="name"><div>
 		<a class="anchor" href="#____find">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#161-185" title="Go to source code">___find</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#175-207" title="Go to source code">___find</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -693,10 +708,10 @@ PageArray.</p>
 <p>Given a Selector string, return the Page objects that match in a
 PageArray.</p>
 
-<p>Non-visible pages are excluded unless an include=hidden|unpublished|all mode
-is specified in the selector string, or in the $options array. If 'all' mode is
-specified, then non-accessible pages (via access control) can also be
-included.</p>
+<p>~~~~~ // Find all pages using template "building" with 25 or more floors
+$skyscrapers = $pages-&gt;find("template=building, floors&gt;=25"); ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -706,26 +721,31 @@ included.</p>
 					<dd><code>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code></code><br>$selector Specify selector (standard usage), but can also accept page ID or
 array of page IDs.</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array|string</code><br>$options Optional one or more options that can modify certain behaviors. May be
-assoc array or key=value string. - findOne: boolean - apply optimizations for
-finding a single page - findAll: boolean - find all pages with no exculsions
-(same as include=all option) - getTotal: boolean - whether to set returning
-PageArray's "total" property (default: true except when findOne=true) -
-loadPages: boolean - whether to populate the returned PageArray with found pages
-(default: true). The only reason why you'd want to change this to false would be
-if you only needed the count details from the PageArray: getTotal(), getStart(),
-getLimit, etc. This is intended as an optimization for Pages::count(). Does not
-apply if $selectorString argument is an array. - caller: string - optional name
-of calling function, for debugging purposes, i.e. pages.count - include: string
-- Optional inclusion mode of 'hidden', 'unpublished' or 'all'. Default=none.
-Typically you would specify this directly in the selector string, so the option
-is mainly useful if your first argument is not a string. - loadOptions: array -
-Optional assoc array of options to pass to getById() load options.</dd>
+					<dd><code>array|string</code><br>$options One or more options that can modify certain behaviors. May be
+associative array or "key=value" selector string. - <code>findOne</code>
+(boolean): Apply optimizations for finding a single page. - <code>findAll</code>
+(boolean): Find all pages with no exculsions (same as include=all option). -
+<code>getTotal</code> (boolean): Whether to set returning PageArray's "total"
+property (default: true except when findOne=true). - <code>loadPages</code>
+(boolean): Whether to populate the returned PageArray with found pages (default:
+true). The only reason why you'd want to change this to false would be if you
+only needed the count details from the PageArray: getTotal(), getStart(),
+getLimit, etc. This is intended as an optimization for $pages-&gt;count(). Does
+not apply if $selector argument is an array. - <code>caller</code> (string):
+Optional name of calling function, for debugging purposes, i.e. pages.count -
+<code>include</code> (string): Optional inclusion mode of 'hidden',
+'unpublished' or 'all'. Default=none. Typically you would specify this directly
+in the selector string, so the option is mainly useful if your first argument is
+not a string. - <code>loadOptions</code> (array): Optional assoc array of
+options to pass to getById() load options.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>
+					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>Pages that matched the given selector. Non-visible pages are excluded unless an
+"include=x" mode is specified in the selector (where "x" is "hidden",
+"unpublished" or "all"). If "all" is specified, then non-accessible pages (via
+access control) can also be included.<br>
 				</div>
 
 
@@ -745,7 +765,7 @@ Optional assoc array of options to pass to getById() load options.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findOne">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#187-202" title="Go to source code">findOne</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#209-233" title="Go to source code">findOne</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -759,28 +779,41 @@ PageArray)</p>
 <p>Like find() but returns only the first match as a Page object (not
 PageArray)</p>
 
-<p>This is functionally similar to the get() method except that its default
-behavior is to filter for access control and hidden/unpublished/etc. states, in
-the same way that the find() method does. You can add an "include=..." to your
-selector string to bypass. This method also accepts an $options arrray, whereas
-get() does not.</p>
+<p>This is functionally similar to the <code>get()</code> method except that its
+default behavior is to filter for access control and hidden/unpublished/etc.
+states, in the same way that the <code>find()</code> method does. You can add an
+<code>include=...</code> to your selector string to bypass. This method also
+accepts an <code>$options</code> array, whereas <code>get()</code> does not.</p>
+
+<p>~~~~~~ // Find the newest page using the blog-post template $blogPost =
+$pages-&gt;findOne("template=blog-post, sort=-created"); ~~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$selector</var></dt>
-					<dd><code>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code></code><br>$selector</dd>
+					<dd><code>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code></code><br>$selector Selector string, array or Selectors object</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array|string</code><br>$options See $options for Pages::find</dd>
+					<dd><code>array|string</code><br>$options See $options for $pages-&gt;find()</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>
+					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>Returns a Page on success, or a NullPage (having id=0) on failure<br>
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.0<br>
+				</div>
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Pages.html#_get">ProcessWire\Pages::get()</a></code></code>, Pages::find()<br>
+				</div>
 
 
 		</div>
@@ -797,7 +830,7 @@ get() does not.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#204-213" title="Go to source code">get</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#235-260" title="Go to source code">get</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|integer <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -809,21 +842,38 @@ get() does not.</p>
 			
 <p>Returns the first page matching the given selector with no exclusions</p>
 
+<p>Use this method when you need to retrieve a specific page without exclusions
+for access control or page status.</p>
+
+<p>~~~~~~ // Get a page by ID $p = $pages-&gt;get(1234);</p>
+
+<p>// Get a page by path $p = $pages-&gt;get('/about/contact/');</p>
+
+<p>// Get a random 'skyscraper' page by selector string $p =
+$pages-&gt;get('template=skyscraper, sort=random'); ~~~~~~</p>
+
+<p>#pw-group-retrieval</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$selector</var></dt>
-					<dd><code>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code></code><br>$selector</dd>
+					<dd><code>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|integer</code><br>$selector Selector string, array or Selectors object. May also be page path or
+ID.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
 					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>Always returns a Page object, but will return NullPage (with id=0) when no match
-found<br>
+found.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Pages.html#_findOne">ProcessWire\Pages::findOne()</a></code></code>, Pages::find()<br>
+				</div>
 
 
 		</div>
@@ -840,41 +890,48 @@ found<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____save">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#215-238" title="Go to source code">___save</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#262-295" title="Go to source code">___save</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Save a page object and it's fields to database.</p>
+<p>Save a page object and its fields to database.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Save a page object and it's fields to database.</p>
+<p>Save a page object and its fields to database.</p>
 
-<p>If the page is new, it will be inserted. If existing, it will be updated.</p>
+<p>If the page is new, it will be inserted. If existing, it will be updated.
+This is the same as calling <code>$page-&gt;save()</code>. If you want to just
+save a particular field in a Page, use <code>$page-&gt;save($fieldName)</code>
+instead.</p>
 
-<p>This is the same as calling $page-&gt;save()</p>
+<p>~~~~~~ // Modify a page and save it $p =
+$pages-&gt;get('/festivals/decatur/beer/'); $p-&gt;of(false); // turn off output
+formatting, if it's on $p-&gt;title = "Decatur Beer Festival"; $p-&gt;summary =
+"Come and enjoy fine beer and good company at the Decatur Beer Festival.";
+$pages-&gt;save($p); ~~~~~~</p>
 
-<p>If you want to just save a particular field in a Page, use
-$page-&gt;save($fieldName) instead.</p>
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page object to save</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Optional array with the following optional elements: 'uncacheAll' =&gt;
-boolean - Whether the memory cache should be cleared (default=true)
-'resetTrackChanges' =&gt; boolean - Whether the page's change tracking should be
-reset (default=true) 'quiet' =&gt; boolean - When true, modified date and
-modified_users_id won't be updated (default=false) 'adjustName' =&gt; boolean -
-Adjust page name to ensure it is unique within its parent (default=false)
-'forceID' =&gt; integer - use this ID instead of an auto-assigned on (new page)
-or current ID (existing page) 'ignoreFamily' =&gt; boolean - Bypass check of
-allowed family/parent settings when saving (default=false)</dd>
+					<dd><code>array</code><br>$options Optional array to modify default behavior, with one or more of the
+following: - <code>uncacheAll</code> (boolean): Whether the memory cache should
+be cleared (default=true) - <code>resetTrackChanges</code> (boolean): Whether
+the page's change tracking should be reset (default=true) - <code>quiet</code>
+(boolean): When true, modified date and modified_users_id won't be updated
+(default=false) - <code>adjustName</code> (boolean): Adjust page name to ensure
+it is unique within its parent (default=false) - <code>forceID</code> (integer):
+Use this ID instead of an auto-assigned one (new page) or current ID (existing
+page) - <code>ignoreFamily</code> (boolean): Bypass check of allowed
+family/parent settings when saving (default=false)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -887,6 +944,10 @@ allowed family/parent settings when saving (default=false)</dd>
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Page.html#_save">ProcessWire\Page::save()</a></code></code>, Pages::saveField()<br>
+				</div>
 
 
 		</div>
@@ -903,37 +964,43 @@ allowed family/parent settings when saving (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveField">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#240-254" title="Go to source code">___saveField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#297-321" title="Go to source code">___saveField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Save just a field from the given page as used by Page::save($field)</p>
+<p>Save only a field from the given page</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Save just a field from the given page as used by Page::save($field)</p>
+<p>Save only a field from the given page</p>
 
-<p>This function is public, but the preferred manner to call it is with
-$page-&gt;save($field)</p>
+<p>This is the same as calling <code>$page-&gt;save($field)</code>.</p>
+
+<p>~~~~~ // Update the summary field on $page and save it $page-&gt;summary =
+"Those who know do not speak. Those who speak do not know.";
+$pages-&gt;saveField($page, 'summary'); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page to save</dd>
 					<dt><var>$field</var></dt>
 					<dd><code>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field object or name (string)</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array|string</code><br>$options Specify option 'quiet' =&gt; true, to bypass updating of
-modified_users_id and modified time.</dd>
+					<dd><code>array|string</code><br>$options Optionally specify one or more of the following to modify default
+behavior: - <code>quiet</code> (boolean): Specify true to bypass updating of
+modified user and time (default=false).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>True on success<br>
+					<code>boolean</code><br>True on success, false on failure<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -941,6 +1008,10 @@ modified_users_id and modified time.</dd>
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Page.html#_save">ProcessWire\Page::save()</a></code></code>, <code><code><a href="class-ProcessWire.Page.html#_setAndSave">ProcessWire\Page::setAndSave()</a></code></code>, Pages::save()<br>
+				</div>
 
 
 		</div>
@@ -957,20 +1028,32 @@ modified_users_id and modified time.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____add">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#256-272" title="Go to source code">___add</a>( <span>string|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span>string|integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#323-357" title="Go to source code">___add</a>( <span>string|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span>string|integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Add a new page using the given template to the given parent</p>
+<p>Add a new page using the given template and parent</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Add a new page using the given template to the given parent</p>
+<p>Add a new page using the given template and parent</p>
 
-<p>If no name is specified one will be assigned based on the current
-timestamp.</p>
+<p>If no page "name" is specified, one will be automatically assigned.</p>
+
+<p>~~~~~ // Add new page using 'skyscraper' template into Atlanta $building =
+$pages-&gt;add('skyscraper', '/skyscrapers/atlanta/');</p>
+
+<p>// Same as above, but with specifying a name/title as well: $building =
+$pages-&gt;add('skyscraper', '/skyscrapers/atlanta/', 'Symphony Tower');</p>
+
+<p>// Same as above, but with specifying several properties: $building =
+$pages-&gt;add('skyscraper', '/skyscrapers/atlanta/', [ 'title' =&gt; 'Symphony
+Tower', 'summary' =&gt; 'A 41-story skyscraper located at 1180 Peachtree
+Street', 'height' =&gt; 657, 'floors' =&gt; 41 ]); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -982,16 +1065,16 @@ timestamp.</p>
 					<dd><code>string|integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$parent Parent path, ID or Page object</dd>
 					<dt><var>$name</var></dt>
 					<dd><code>string</code><br>$name Optional name or title of page. If none provided, one will be
-automatically assigned based on microtime stamp. If you want to specify a
-different name and title then specify the $name argument, and $values['title'].</dd>
+automatically assigned. If you want to specify a different name and title then
+specify the $name argument, and $values['title'].</dd>
 					<dt><var>$values</var></dt>
-					<dd><code>array</code><br>$values Field values to assign to page (optional). If $name is ommitted, this
-may also be 3rd param.</dd>
+					<dd><code>array</code><br>$values Field values to assign to page (optional). If $name is omitted, this may
+also be 3rd param.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>Returned page has output formatting off.<br>
+					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>New page ready to populate. Note that this page has output formatting off.<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -1008,24 +1091,43 @@ may also be 3rd param.</dd>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
+			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____clone">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#274-290" title="Go to source code">___clone</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#359-397" title="Go to source code">___clone</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Clone an entire page, it's assets and children and return it.</p>
+<p>Clone entire page return it.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Clone an entire page, it's assets and children and return it.</p>
+<p>Clone entire page return it.</p>
+
+<p>This also clones any file assets assets associated with the page. The clone
+is recursive by default, cloning children (and so on) as well. To clone only the
+page without children, specify false for the <code>$recursive</code>
+argument.</p>
+
+<p>Warning: this method can fail when recursive and cloning a page with huge
+amounts of children (or descendent family), and adequate resources (like memory
+or time limit) are not available.</p>
+
+<p>~~~~~ // Clone the Westin Peachtree skyscraper page $building =
+$pages-&gt;get('/skyscrapers/atlanta/westin-peachtree/'); $copy =
+$pages-&gt;clone($building);</p>
+
+<p>// Bonus: Now that the clone exists, lets move and rename it $copy-&gt;parent
+= '/skyscrapers/detroit/'; $copy-&gt;title = 'Renaissance Center';
+$copy-&gt;name = 'renaissance-center'; $copy-&gt;save(); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -1034,19 +1136,19 @@ may also be 3rd param.</dd>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that you want to clone</dd>
 					<dt><var>$parent</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$parent New parent, if different (default=same parent)</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|null</code><br>$parent New parent, if different (default=null, which implies same parent)</dd>
 					<dt><var>$recursive</var></dt>
 					<dd><code>boolean</code><br>$recursive Clone the children too? (default=true)</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array|string</code><br>$options Optional options that can be passed to clone or save - forceID (int):
-force a specific ID - set (array): Array of properties to set to the clone (you
-can also do this later) - recursionLevel (int): recursion level, for internal
-use only.</dd>
+					<dd><code>array|string</code><br>$options Options that can be passed to modify default behavior of clone or save:
+- <code>forceID</code> (int): force a specific ID. - <code>set</code> (array):
+Array of properties to set to the clone (you can also do this later). -
+<code>recursionLevel</code> (int): recursion level, for internal use only.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>the newly cloned page or a NullPage() with id=0 if unsuccessful.<br>
+					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>The newly cloned Page or a NullPage() with id=0 if unsuccessful.<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -1070,34 +1172,41 @@ use only.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____delete">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#292-309" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#399-424" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Permanently delete a page and it's fields.</p>
+<p>Permanently delete a page, its fields and assets.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Permanently delete a page and it's fields.</p>
+<p>Permanently delete a page, its fields and assets.</p>
 
-<p>Unlike trash(), pages deleted here are not restorable.</p>
+<p>Unlike trash(), pages deleted here are not restorable. If you attempt to
+delete a page with children, and don't specifically set the
+<code>$recursive</code> argument to <code>true</code>, then this method will
+throw an exception. If a recursive delete fails for any reason, an exception
+will also will be thrown.</p>
 
-<p>If you attempt to delete a page with children, and don't specifically set the
-$recursive param to True, then this method will throw an exception. If a
-recursive delete fails for any reason, an exception will be thrown.</p>
+<p>~~~~~ // Delete a product page $product =
+$pages-&gt;get('/products/foo-bar-widget/'); $pages-&gt;delete($product);
+~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page to delete</dd>
 					<dt><var>$recursive</var></dt>
 					<dd><code>boolean</code><br>$recursive If set to true, then this will attempt to delete all children too.</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Optional settings to change behavior (for the future)</dd>
+					<dd><code>array</code><br>$options Optional settings to change behavior (for the future, none currently in
+use).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1111,6 +1220,10 @@ requested.<br>
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>on fatal error<br>
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						Pages::trash()<br>
+				</div>
 
 
 		</div>
@@ -1127,7 +1240,7 @@ requested.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____trash">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#311-324" title="Go to source code">___trash</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$save</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#426-450" title="Go to source code">___trash</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$save</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1139,23 +1252,30 @@ requested.<br>
 			
 <p>Move a page to the trash</p>
 
-<p>If you have already set the parent to somewhere in the trash, then this
-method won't attempt to set it again.</p>
+<p>When a page is moved to the trash, it is in a "delete pending" state. Once
+trashed, the page can be either restored to its original location, or
+permanently deleted (when the trash is emptied).</p>
+
+<p>~~~~~ // Trash a product page $product =
+$pages-&gt;get('/products/foo-bar-widget/'); $pages-&gt;trash($product);
+~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page to trash</dd>
 					<dt><var>$save</var></dt>
-					<dd><code>boolean</code><br>$save Set to false if you will perform the save() call, as is the case when
-called from the Pages::save() method.</dd>
+					<dd><code>boolean</code><br>$save Set to false if you will perform your own save() call afterwards to
+complete the operation. Omit otherwise. Primarily for internal use.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>Returns true on success, false on failure.<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -1163,6 +1283,10 @@ called from the Pages::save() method.</dd>
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						Pages::restore(), Pages::emptyTrash(), Pages::delete()<br>
+				</div>
 
 
 		</div>
@@ -1171,7 +1295,7 @@ called from the Pages::save() method.</dd>
 	<tr data-order="___restore" id="____restore">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 			boolean
 			
 			</code>
@@ -1179,39 +1303,49 @@ called from the Pages::save() method.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____restore">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#326-339" title="Go to source code">___restore</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$save</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#452-475" title="Go to source code">___restore</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$save</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Restore a page from the trash back to a non-trash state</p>
+<p>Restore a page in the trash back to its original location and state</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Restore a page from the trash back to a non-trash state</p>
+<p>Restore a page in the trash back to its original location and state</p>
 
-<p>Note that this method assumes already have set a new parent, but have not yet
-saved. If you do not set a new parent, then it will restore to the original
-parent, when possible.</p>
+<p>If you want to restore the page to some location other than its original
+location, set the <code>$page-&gt;parent</code> property of the page to contain
+the location you want it to restore to. Otherwise the page will restore to its
+original location, when possible to do so.</p>
+
+<p>~~~~~ // Grab a page from the trash and restore it $trashedPage =
+$pages-&gt;get(1234); $pages-&gt;restore($trashedPage); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that is in the trash that you want to restore</dd>
 					<dt><var>$save</var></dt>
-					<dd><code>boolean</code><br>$save Set to false if you only want to prep the page for restore (i.e. being
-saved elsewhere)</dd>
+					<dd><code>boolean</code><br>$save Set to false if you only want to prep the page for restore (i.e. you will
+save the page yourself later). Primarily for internal use.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True on success, false on failure.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Pages::trash()<br>
+				</div>
 
 
 		</div>
@@ -1228,7 +1362,7 @@ saved elsewhere)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____emptyTrash">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#346-357" title="Go to source code">___emptyTrash</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#482-502" title="Go to source code">___emptyTrash</a>( )</code>
 
 		<div class="description short">
 			
@@ -1240,7 +1374,13 @@ saved elsewhere)</dd>
 			
 <p>Delete all pages in the trash</p>
 
-<p>Populates error notices when there are errors deleting specific pages.</p>
+<p>Note that once the trash is emptied, pages in the trash are permanently
+deleted. This method populates error notices when there are errors deleting
+specific pages.</p>
+
+<p>~~~~~ // Empty the trash $pages-&gt;emptyTrash(); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -1252,6 +1392,10 @@ if not all pages could be deleted and error notices may be present.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Pages::trash(), Pages::restore()<br>
+				</div>
 
 
 		</div>
@@ -1268,7 +1412,7 @@ if not all pages could be deleted and error notices may be present.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getById">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#359-398" title="Go to source code">getById</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|string <var>$_ids</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|array|null <var>$template</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$parent_id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#504-567" title="Go to source code">getById</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|string <var>$_ids</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|array|null <var>$template</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$parent_id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1280,75 +1424,104 @@ if not all pages could be deleted and error notices may be present.<br>
 			
 <p>Given an array or CSV string of Page IDs, return a PageArray</p>
 
-<p>Optionally specify an $options array rather than a template for argument 2.
-When present, the 'template' and 'parent_id' arguments may be provided in the
-given $options array. These options may be specified:</p>
+<p>Note that this method is primarily for internal use and most of the options
+available are specific to the needs of core methods that utilize them. All pages
+loaded by ProcessWire pass through this method.</p>
 
-<p>LOAD OPTIONS (argument 2 array):</p>
+<p>Optionally specify an <code>$options</code> array rather than a template for
+argument 2. When present, the <code>template</code> and <code>parent_id</code>
+arguments may be provided in the given $options array. These options may be
+specified:</p>
 
-<ul>
-	<li>cache: boolean, default=true. place loaded pages in memory cache?</li>
-
-	<li>getFromCache: boolean, default=true. Allow use of previously cached pages in
-	memory (rather than re-loading it from DB)?</li>
-
-	<li>template: instance of Template (see $template argument)</li>
-
-	<li>parent_id: integer (see $parent_id argument)</li>
-
-	<li>getNumChildren: boolean, default=true. Specify false to disable retrieval
-	and population of 'numChildren' Page property.</li>
-
-	<li>getOne: boolean, default=false. Specify true to return just one Page object,
-	rather than a PageArray.</li>
-
-	<li>autojoin: boolean, default=true. Allow use of autojoin option?</li>
-
-	<li>joinFields: array, default=empty. Autojoin the field names specified in this
-	array, regardless of field settings (requires autojoin=true).</li>
-
-	<li>joinSortfield: boolean, default=true. Whether the 'sortfield' property will
-	be joined to the page.</li>
-
-	<li>findTemplates: boolean, default=true. Determine which templates will be used
-	(when no template specified) for more specific autojoins.</li>
-
-	<li>pageClass: string, default=auto-detect. Class to instantiate Page objects
-	with. Leave blank to determine from template.</li>
-
-	<li>pageArrayClass: string, default=PageArray. PageArray-derived class to store
-	pages in (when 'getOne' is false).</li>
-</ul>
-
-<p>Use the $options array for potential speed optimizations:</p>
+<p><strong>LOAD OPTIONS (argument 2 array):</strong></p>
 
 <ul>
-	<li>Specify a 'template' with your call, when possible, so that this method
-	doesn't have to determine it separately.</li>
+	<li><code>cache</code> (boolean): Place loaded pages in memory cache?
+	(default=true)</li>
 
-	<li>Specify false for 'getNumChildren' for potential speed optimization when you
-	know for certain pages will not have children.</li>
+	<li><code>getFromCache</code> (boolean): Allow use of previously cached pages in
+	memory (rather than re-loading it from DB)? (default=true)</li>
 
-	<li>Specify false for 'autojoin' for potential speed optimization in certain
-	scenarios (can also be a bottleneck, so be sure to test).</li>
+	<li><code>template</code> (Template): Instance of Template, see the $template
+	argument for details.</li>
 
-	<li>Specify false for 'joinSortfield' for potential speed optimization when you
-	know the Page will not have children or won't need to know the order.</li>
+	<li><code>parent_id</code> (integer): Parent ID, see $parent_id argument for
+	details.</li>
 
-	<li>Specify false for 'findTemplates' so this method doesn't have to look them
-	up. Potential speed optimization if you have few autojoin fields globally.</li>
+	<li><code>getNumChildren</code> (boolean): Specify false to disable retrieval
+	and population of 'numChildren' Page property. (default=true)</li>
 
-	<li>Note that if you specify false for 'findTemplates' the pageClass is assumed
-	to be 'Page' unless you specify something different for the 'pageClass'
-	option.</li>
+	<li><code>getOne</code> (boolean): Specify true to return just one Page object,
+	rather than a PageArray. (default=false)</li>
+
+	<li><code>autojoin</code> (boolean): Allow use of autojoin option?
+	(default=true)</li>
+
+	<li><code>joinFields</code> (array): Autojoin the field names specified in this
+	array, regardless of field settings (requires autojoin=true).
+	(default=empty)</li>
+
+	<li><code>joinSortfield</code> (boolean): Whether the 'sortfield' property will
+	be joined to the page. (default=true)</li>
+
+	<li><code>findTemplates</code> (boolean): Determine which templates will be used
+	(when no template specified) for more specific autojoins. (default=true)</li>
+
+	<li><code>pageClass</code> (string): Class to instantiate Page objects with.
+	Leave blank to determine from template. (default=auto-detect)</li>
+
+	<li><code>pageArrayClass</code> (string): PageArray-derived class to store pages
+	in (when 'getOne' is false). (default=PageArray)</li>
 </ul>
+
+<p><strong>Use the <code>$options</code> array for potential speed
+optimizations:</strong></p>
+
+<ul>
+	<li>Specify a <code>template</code> with your call, when possible, so that this
+	method doesn't have to determine it separately.</li>
+
+	<li>Specify false for <code>getNumChildren</code> for potential speed
+	optimization when you know for certain pages will not have children.</li>
+
+	<li>Specify false for <code>autojoin</code> for potential speed optimization in
+	certain scenarios (can also be a bottleneck, so be sure to test).</li>
+
+	<li>Specify false for <code>joinSortfield</code> for potential speed
+	optimization when you know the Page will not have children or won't need to know
+	the order.</li>
+
+	<li>Specify false for <code>findTemplates</code> so this method doesn't have to
+	look them up. Potential speed optimization if you have few autojoin fields
+	globally.</li>
+
+	<li>Note that if you specify false for <code>findTemplates</code> the pageClass
+	is assumed to be 'Page' unless you specify something different for the
+	'pageClass' option.</li>
+</ul>
+
+<p>~~~~~ // Retrieve pages by IDs in CSV string $items =
+$pages-&gt;getById("1111,2222,3333");</p>
+
+<p>// Retrieve pages by IDs in PHP array $items =
+$pages-&gt;getById([1111,2222,3333]);</p>
+
+<p>// Specify that retrieved pages are using template 'skyscraper' as an
+optimization $items = $pages-&gt;getById([1111,2222,3333],
+$templates-&gt;get('skyscraper'));</p>
+
+<p>// Retrieve pages with $options array $items =
+$pages-&gt;getById([1111,2222,3333], [ 'template' =&gt;
+$templates-&gt;get('skyscraper'), 'parent_id' =&gt; 1024 ]); ~~~~~</p>
+
+<p>#pw-advanced</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$_ids</var></dt>
-					<dd><code>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|string</code><br>$_ids Array of IDs or CSV string of IDs</dd>
+					<dd><code>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|string</code><br>$_ids Array of Page IDs or CSV string of Page IDs.</dd>
 					<dt><var>$template</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|array|null</code><br>$template Specify a template to make the load faster, because it won't have to
 attempt to join all possible fields... just those used by the template.
@@ -1386,35 +1559,38 @@ a PageArray.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPath">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#400-423" title="Go to source code">getPath</a>( <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$id</var></span>, <span>null|array|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#569-599" title="Go to source code">getPath</a>( <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$id</var></span>, <span>null|array|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Given an ID return a path to a page, without loading the actual page</p>
+<p>Given an ID, return a path to a page, without loading the actual page</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given an ID return a path to a page, without loading the actual page</p>
-
-<h1>Please note</h1>
+<p>Given an ID, return a path to a page, without loading the actual page</p>
 
 <ol>
 	<li>Always returns path in default language, unless a language argument/option
 	is specified.</li>
 
-	<li>Path may be different from 'url' as it doesn't include
-	$config-&gt;urls-&gt;root at the beginning.</li>
+	<li>Path may be different from 'url' as it doesn't include the root URL at the
+	beginning.</li>
 
-	<li>In most cases, it's preferable to use $page-&gt;path() rather than this
-	method. This method is here just for cases where a path is needed without
-	loading the page.</li>
+	<li>In most cases, it's preferable to use <code>$page-&gt;path()</code> rather
+	than this method. This method is here just for cases where a path is needed
+	without loading the page.</li>
 
-	<li>It's possible for there to be Page::path() hooks, and this method completely
-	bypasses them, which is another reason not to use it unless you know such hooks
-	aren't applicable to you.</li>
+	<li>It's possible for there to be <code>Page::path()</code> hooks, and this
+	method completely bypasses them, which is another reason not to use it unless
+	you know such hooks aren't applicable to you.</li>
 </ol>
+
+<p>~~~~~ // Get the path for page having ID 1234 $path =
+$pages-&gt;getPath(1234); echo "Path for page 1234 is: $path"; ~~~~~</p>
+
+<p>#pw-advanced</p>
 
 
 
@@ -1423,22 +1599,27 @@ a PageArray.<br>
 					<dt><var>$id</var></dt>
 					<dd><code>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$id ID of the page you want the path to</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>null|array|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string</code><br>$options Specify $options array or Language object, id or name. Allowed options:
-- language (int|string|anguage): To retrieve in non-default language, specify
-language object, ID or name (default=null) - useCache (bool): Allow pulling
-paths from already loaded pages? (default=true) - usePagePaths (bool): Allow
-pulling paths from PagePaths module, if installed? (default=true)</dd>
+					<dd><code>null|array|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string</code><br>$options Specify $options array or Language object, id or name. Allowed options
+include: - <code>language</code> (int|string|anguage): To retrieve in
+non-default language, specify language object, ID or name (default=null) -
+<code>useCache</code> (bool): Allow pulling paths from already loaded pages?
+(default=true) - <code>usePagePaths</code> (bool): Allow pulling paths from
+PagePaths module, if installed? (default=true)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>Path to page or blank on error/not-found<br>
+					<code>string</code><br>Path to page or blank on error/not-found.<br>
 				</div>
 
 
 				<h4>Since</h4>
 				<div class="list">
 						3.0.6<br>
+				</div>
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Page.html#_path">ProcessWire\Page::path()</a></code></code><br>
 				</div>
 
 
@@ -1456,7 +1637,7 @@ pulling paths from PagePaths module, if installed? (default=true)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__path">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#425-434" title="Go to source code">_path</a>( <span>integer <var>$id</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#601-610" title="Go to source code">_path</a>( <span>integer <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1498,7 +1679,7 @@ pulling paths from PagePaths module, if installed? (default=true)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getByPath">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#436-458" title="Go to source code">getByPath</a>( <span>mixed <var>$path</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#612-650" title="Go to source code">getByPath</a>( <span>string <var>$path</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1512,30 +1693,41 @@ more options</p>
 <p>Get a page by its path, similar to $pages-&gt;get('/path/to/page/') but with
 more options</p>
 
-<h1>Please note</h1>
-
 <ol>
 	<li>There are no exclusions for page status or access. If needed, you should
 	validate access on any page returned from this method.</li>
 
-	<li>In a multi-language environment, you must specify the $useLanguages option
-	to be true, if you want a result for a $path that is (or might be) a
-	multi-language path. Otherwise, multi-language paths will make this method
-	return a NullPage (or 0 if getID option is true).</li>
+	<li>In a multi-language environment, you must specify the
+	<code>$useLanguages</code> option to be true, if you want a result for a $path
+	that is (or might be) a multi-language path. Otherwise, multi-language paths
+	will make this method return a NullPage (or 0 if getID option is true).</li>
 </ol>
+
+<p>~~~~~ // Get a page by path $p =
+$pages-&gt;getByPath('/skyscrapers/atlanta/191-peachtree/');</p>
+
+<p>// Now validate that the page we retrieved is valid if($p-&gt;id &amp;&amp;
+$p-&gt;viewable()) { // Page is valid to display }</p>
+
+<p>// Get a page by path with options $p =
+$pages-&gt;getByPath('/products/widget/', [ 'useLanguages' =&gt; true,
+'useHistory' =&gt; true ]); ~~~~~</p>
+
+<p>#pw-advanced</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$path</var></dt>
-					<dd><code>mixed</code><br>$path</dd>
+					<dd><code>string</code><br>$path Path of page you want to retrieve.</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array|boolean</code><br>$options array of options (below), or specify boolean for $useLanguages option
-only. - getID: Specify true to just return the page ID (default=false) -
-useLanguages: Specify true to allow retrieval by language-specific paths
-(default=false) - useHistory: Allow use of previous paths used by the page, if
-PagePathHistory module is installed (default=false)</dd>
+only. - <code>getID</code> (int): Specify true to just return the page ID
+(default=false). - <code>useLanguages</code> (bool): Specify true to allow
+retrieval by language-specific paths (default=false). - <code>useHistory</code>
+(bool): Allow use of previous paths used by the page, if PagePathHistory module
+is installed (default=false).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1564,7 +1756,7 @@ PagePathHistory module is installed (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____setupNew">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#460-472" title="Go to source code">___setupNew</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#652-666" title="Go to source code">___setupNew</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1584,6 +1776,8 @@ PagePathHistory module is installed (default=false)</dd>
 
 	<li>Assigns a 'sort' value'.</li>
 </ul>
+
+<p>#pw-internal</p>
 
 
 
@@ -1611,7 +1805,7 @@ PagePathHistory module is installed (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____setupPageName">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#474-490" title="Go to source code">___setupPageName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#668-686" title="Go to source code">___setupPageName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1628,6 +1822,8 @@ temporary untitled name.</p>
 
 <p>Page will be populated with the name given. This method will not populate
 names to pages that already have a name, unless the name is "untitled"</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1663,7 +1859,7 @@ returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____touch">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#492-503" title="Go to source code">___touch</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array <var>$pages</var></span>, <span>null|integer|string <var>$modified</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#688-716" title="Go to source code">___touch</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array <var>$pages</var></span>, <span>null|integer|string <var>$modified</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1675,12 +1871,27 @@ returned.<br>
 			
 <p>Update page modification time to now (or the given modification time)</p>
 
+<p>This behaves essentially the same as the unix <code>touch</code> command, but
+for ProcessWire pages.</p>
+
+<p>~~~~~ // Touch the current $page to current date/time
+$pages-&gt;touch($page);</p>
+
+<p>// Touch the current $page and set modification date to 2016/10/24
+$pages-&gt;touch($page, "2016-10-24 00:00");</p>
+
+<p>// Touch all "skyscraper" pages in "Atlanta" to current date/time
+$skyscrapers = $pages-&gt;find("template=skyscraper, parent=/cities/atlanta/");
+$pages-&gt;touch($skyscrapers); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$pages</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array</code><br>$pages May be Page, PageArray or array of page IDs (integers)</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array</code><br>$pages May be Page, PageArray or array of page IDs (integers).</dd>
 					<dt><var>$modified</var></dt>
 					<dd><code>null|integer|string</code><br>$modified Omit to update to now, or specify unix timestamp or strtotime()
 recognized time string</dd>
@@ -1696,6 +1907,10 @@ recognized time string</dd>
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if given invalid format for $modified argument or failed database query<br>
 				</div>
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.0<br>
+				</div>
 
 
 		</div>
@@ -1712,7 +1927,7 @@ recognized time string</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSaveable">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#505-520" title="Go to source code">isSaveable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>&amp; $reason</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$fieldName</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#718-735" title="Go to source code">isSaveable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>&amp; $reason</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$fieldName</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1726,6 +1941,8 @@ recognized time string</dd>
 
 <p>Note: this does not account for user permission checking. It only checks if
 the page is in a state to be saveable via the API.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1764,7 +1981,7 @@ saveable)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isDeleteable">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#522-534" title="Go to source code">isDeleteable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#737-751" title="Go to source code">isDeleteable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1778,6 +1995,8 @@ saveable)</dd>
 
 <p>Note: this does not account for user permission checking. It only checks if
 the page is in a state to be deleteable via the API.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1809,7 +2028,7 @@ the page is in a state to be deleteable via the API.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCache">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#536-549" title="Go to source code">getCache</a>( <span>integer|string|null <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#753-768" title="Go to source code">getCache</a>( <span>integer|string|null <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1825,6 +2044,8 @@ the page is in a state to be deleteable via the API.</p>
 cache.</p>
 
 <p>You may also pass in the string "id=123", where 123 is the page_id</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1856,7 +2077,7 @@ cache.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cache">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#551-559" title="Go to source code">cache</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#770-780" title="Go to source code">cache</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1867,6 +2088,8 @@ cache.</p>
 		<div class="description detailed hidden">
 			
 <p>Cache the given page.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1894,7 +2117,7 @@ cache.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_uncache">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#561-586" title="Go to source code">uncache</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|null <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#782-808" title="Go to source code">uncache</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|null <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1908,9 +2131,11 @@ argument</p>
 <p>Remove the given page(s) from the cache, or uncache all by omitting $page
 argument</p>
 
-<p>Note: When any $page argument is given, this does not remove pages from
-selectorCache. When no $page argument is given, this method behaves the same as
-$pages-&gt;uncacheAll().</p>
+<p>When no $page argument is given, this method behaves the same as
+$pages-&gt;uncacheAll(). When any $page argument is given, this does not remove
+pages from selectorCache.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1919,9 +2144,9 @@ $pages-&gt;uncacheAll().</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|null</code><br>$page Page to uncache, or omit to uncache all.</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Additional options to modify behavior: - shallow (bool): By default,
-this method also calls $page-&gt;uncache(). To prevent call to
-$page-&gt;uncache(), set 'shallow' =&gt; true.</dd>
+					<dd><code>array</code><br>$options Additional options to modify behavior: - <code>shallow</code> (bool):
+By default, this method also calls $page-&gt;uncache(). To prevent that call,
+set this to true.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1946,19 +2171,34 @@ $page-&gt;uncache(), set 'shallow' =&gt; true.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_uncacheAll">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#588-597" title="Go to source code">uncacheAll</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#810-847" title="Go to source code">uncacheAll</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Remove all pages from the cache, same as $pages-&gt;uncache() with no
-arguments</p>
+<p>Remove all pages from the cache (to clear memory)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Remove all pages from the cache, same as $pages-&gt;uncache() with no
-arguments</p>
+<p>Remove all pages from the cache (to clear memory)</p>
+
+<p>This method clears all pages that ProcessWire has cached in memory, making
+room for more pages to be loaded. Use of this method (along with pagination) may
+be necessary when modifying or calculating from thousand of pages.</p>
+
+<p>~~~~~ // calculate total dollar value of all 50000+ products in inventory
+$total = 0; $start = 0; $limit = 500;</p>
+
+<p>do { $products = $pages-&gt;find("template=product, start=$start,
+limit=$limit"); if(!$products-&gt;count()) break; foreach($products as $product)
+{ $total += ($product-&gt;qty * $product-&gt;price); } unset($products); $start
++= $limit; // clear cache to make room for another 500 products
+$pages-&gt;uncacheAll(); } while(true);</p>
+
+<p>echo "Total value of all products: $" . number_format($total); ~~~~~</p>
+
+<p>#pw-advanced</p>
 
 
 
@@ -1966,6 +2206,10 @@ arguments</p>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Optional Page that initiated the uncacheAll</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Options to modify default behavior: - <code>shallow</code> (bool): By
+default, this method also calls $page-&gt;uncache(). To prevent that call, set
+this to true.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1990,7 +2234,7 @@ arguments</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sortfields">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#599-612" title="Go to source code">sortfields</a>( <span>boolean <var>$reset</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#849-864" title="Go to source code">sortfields</a>( <span>boolean <var>$reset</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2001,6 +2245,8 @@ arguments</p>
 		<div class="description detailed hidden">
 			
 <p>For internal Page instance access, return the Pages sortfields property</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2032,7 +2278,7 @@ arguments</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#614-626" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#866-878" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2076,7 +2322,7 @@ arguments</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOutputFormatting">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#628-638" title="Go to source code">setOutputFormatting</a>( <span>boolean <var>$outputFormatting</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#880-896" title="Go to source code">setOutputFormatting</a>( <span>boolean <var>$outputFormatting</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2088,7 +2334,13 @@ arguments</p>
 			
 <p>Set whether loaded pages have their outputFormatting turn on or off</p>
 
-<p>By default, it is turned on.</p>
+<p>This affects pages loaded after this method has been called. By default,
+output formatting is turned on on the front-end of the site, and off on the
+back-end (admin) of the site.</p>
+
+<p>See the Pages::of() method alias, which is preferred for the public API.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2098,6 +2350,62 @@ arguments</p>
 					<dd><code>boolean</code><br>$outputFormatting</dd>
 				</dl></div>
 
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="of" id="_of">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_of">#</a>
+		<code><a href="source-class-ProcessWire.Pages.html#898-926" title="Go to source code">of</a>( <span>null|boolean <var>$of</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get or set the current output formatting state</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get or set the current output formatting state</p>
+
+<p>This affects pages loaded after this method has been called. By default,
+output formatting is turned on on the front-end of the site, and off on the
+back-end (admin) of the site.</p>
+
+<p>~~~~~ // Dictate that loaded pages should have output formatting enabled
+$pages-&gt;of(true);</p>
+
+<p>// Get the output formatting state for future loaded pages
+if($pages-&gt;of()) { echo "Output formatting is ON"; } else { echo "Output
+formatting is OFF"; } ~~~~~</p>
+
+<p>#pw-advanced</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$of</var></dt>
+					<dd><code>null|boolean</code><br>$of Specify boolean to set output formatting state, or omit to get output
+formatting state.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>Returns current output formatting state.<br>
+				</div>
 
 
 
@@ -2116,7 +2424,7 @@ arguments</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_debugLog">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#640-658" title="Go to source code">debugLog</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span>, <span>string <var>$details</var> = <span class="php-quote">''</span></span>, <span>string|object <var>$result</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#928-948" title="Go to source code">debugLog</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span>, <span>string <var>$details</var> = <span class="php-quote">''</span></span>, <span>string|object <var>$result</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2129,6 +2437,8 @@ arguments</p>
 <p>Log a Pages class event</p>
 
 <p>Only active in debug mode.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2160,7 +2470,7 @@ arguments</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDebugLog">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#660-675" title="Go to source code">getDebugLog</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#950-967" title="Go to source code">getDebugLog</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2173,6 +2483,8 @@ arguments</p>
 <p>Get the Pages class debug log</p>
 
 <p>Only active in debug mode</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2204,7 +2516,7 @@ arguments</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageFinder">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#677-685" title="Go to source code">getPageFinder</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#969-979" title="Go to source code">getPageFinder</a>( )</code>
 
 		<div class="description short">
 			
@@ -2215,6 +2527,8 @@ arguments</p>
 		<div class="description detailed hidden">
 			
 <p>Return a PageFinder object, ready to use</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2241,7 +2555,7 @@ arguments</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAutojoin">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#687-698" title="Go to source code">setAutojoin</a>( <span>boolean <var>$autojoin</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#981-994" title="Go to source code">setAutojoin</a>( <span>boolean <var>$autojoin</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2255,6 +2569,8 @@ arguments</p>
 
 <p>Default should always be true, and you may use this to turn it off
 temporarily, but you should remember to turn it back on</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2282,7 +2598,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newPageArray">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#700-717" title="Go to source code">newPageArray</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#996-1015" title="Go to source code">newPageArray</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2293,6 +2609,8 @@ temporarily, but you should remember to turn it back on</p>
 		<div class="description detailed hidden">
 			
 <p>Return a new/blank PageArray</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2324,7 +2642,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newPage">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#719-744" title="Go to source code">newPage</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1017-1044" title="Go to source code">newPage</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2335,6 +2653,8 @@ temporarily, but you should remember to turn it back on</p>
 		<div class="description detailed hidden">
 			
 <p>Return a new/blank Page object (in memory only)</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2366,7 +2686,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newNullPage">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#746-760" title="Go to source code">newNullPage</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1046-1062" title="Go to source code">newNullPage</a>( )</code>
 
 		<div class="description short">
 			
@@ -2377,6 +2697,8 @@ temporarily, but you should remember to turn it back on</p>
 		<div class="description detailed hidden">
 			
 <p>Return a new NullPage</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2403,7 +2725,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#777-794" title="Go to source code">__invoke</a>( <span>string|integer|array <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1081-1098" title="Go to source code">__invoke</a>( <span>string|integer|array <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2449,7 +2771,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_log">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#796-809" title="Go to source code">log</a>( <span>mixed <var>$str</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1100-1115" title="Go to source code">log</a>( <span>mixed <var>$str</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2460,6 +2782,8 @@ $pages-&gt;getById($key);</p>
 		<div class="description detailed hidden">
 			
 <p>Save to pages activity log, if enabled in config</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2493,7 +2817,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loader">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#811-817" title="Go to source code">loader</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1117-1125" title="Go to source code">loader</a>( )</code>
 
 		<div class="description short">
 			
@@ -2506,7 +2830,7 @@ $pages-&gt;getById($key);</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.PagesLoader.html">ProcessWire\PagesLoader</a></code></code><br>
+					<code><code><a href="class-ProcessWire.PagesLoader.html">ProcessWire\PagesLoader</a></code></code><br>#pw-internal<br>
 				</div>
 
 
@@ -2526,7 +2850,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editor">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#819-826" title="Go to source code">editor</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1127-1136" title="Go to source code">editor</a>( )</code>
 
 		<div class="description short">
 			
@@ -2539,7 +2863,7 @@ $pages-&gt;getById($key);</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.PagesEditor.html">ProcessWire\PagesEditor</a></code></code><br>
+					<code><code><a href="class-ProcessWire.PagesEditor.html">ProcessWire\PagesEditor</a></code></code><br>#pw-internal<br>
 				</div>
 
 
@@ -2559,7 +2883,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cacher">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#828-834" title="Go to source code">cacher</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1138-1146" title="Go to source code">cacher</a>( )</code>
 
 		<div class="description short">
 			
@@ -2572,7 +2896,7 @@ $pages-&gt;getById($key);</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.PagesLoaderCache.html">ProcessWire\PagesLoaderCache</a></code></code><br>
+					<code><code><a href="class-ProcessWire.PagesLoaderCache.html">ProcessWire\PagesLoaderCache</a></code></code><br>#pw-internal<br>
 				</div>
 
 
@@ -2592,7 +2916,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trasher">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#836-843" title="Go to source code">trasher</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1148-1157" title="Go to source code">trasher</a>( )</code>
 
 		<div class="description short">
 			
@@ -2605,7 +2929,7 @@ $pages-&gt;getById($key);</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.PagesTrash.html">ProcessWire\PagesTrash</a></code></code><br>
+					<code><code><a href="class-ProcessWire.PagesTrash.html">ProcessWire\PagesTrash</a></code></code><br>#pw-internal<br>
 				</div>
 
 
@@ -2625,7 +2949,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saved">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#850-870" title="Go to source code">___saved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$changes</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1164-1186" title="Go to source code">___saved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$changes</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2637,9 +2961,11 @@ $pages-&gt;getById($key);</p>
 			
 <p>Hook called after a page is successfully saved</p>
 
-<p>This is the same as Pages::save, except that it occurs before other
-save-related hooks (below), Whereas Pages::save occurs after. In most cases, the
-distinction does not matter.</p>
+<p>This is the same as hooking after <code>Pages::save</code>, except that it
+occurs before other save-related hooks. Whereas <code>Pages::save</code> hooks
+occur after. In most cases, the distinction does not matter.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -2672,24 +2998,26 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____added">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#872-884" title="Go to source code">___added</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1188-1202" title="Go to source code">___added</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Hook called when a new page has been added</p>
+<p>Hook called after a new page has been added</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Hook called when a new page has been added</p>
+<p>Hook called after a new page has been added</p>
+
+<p>#pw-hooker</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that was added.</dd>
 				</dl></div>
 
 
@@ -2710,7 +3038,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____moved">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#886-900" title="Go to source code">___moved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1204-1220" title="Go to source code">___moved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2722,14 +3050,17 @@ Wire::getChanges(true) for details.</dd>
 			
 <p>Hook called when a page has been moved from one parent to another</p>
 
-<p>Note the previous parent is in $page-&gt;parentPrevious</p>
+<p>Note the previous parent is accessible in the
+<code>$page-&gt;parentPrevious</code> property.</p>
+
+<p>#pw-hooker</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that was moved.</dd>
 				</dl></div>
 
 
@@ -2750,7 +3081,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____templateChanged">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#902-916" title="Go to source code">___templateChanged</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1222-1238" title="Go to source code">___templateChanged</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2762,14 +3093,17 @@ Wire::getChanges(true) for details.</dd>
 			
 <p>Hook called when a page's template has been changed</p>
 
-<p>Note the previous template is in $page-&gt;templatePrevious</p>
+<p>Note the previous template is available in the
+<code>$page-&gt;templatePrevious</code> property.</p>
+
+<p>#pw-hooker</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that had its template changed.</dd>
 				</dl></div>
 
 
@@ -2790,7 +3124,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____trashed">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#918-926" title="Go to source code">___trashed</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1240-1250" title="Go to source code">___trashed</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2802,12 +3136,14 @@ Wire::getChanges(true) for details.</dd>
 			
 <p>Hook called when a page has been moved to the trash</p>
 
+<p>#pw-hooker</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that was moved to the trash</dd>
 				</dl></div>
 
 
@@ -2828,24 +3164,26 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____restored">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#928-936" title="Go to source code">___restored</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1252-1262" title="Go to source code">___restored</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Hook called when a page has been moved OUT of the trash</p>
+<p>Hook called when a page has been moved OUT of the trash (restored)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Hook called when a page has been moved OUT of the trash</p>
+<p>Hook called when a page has been moved OUT of the trash (restored)</p>
+
+<p>#pw-hooker</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that was restored</dd>
 				</dl></div>
 
 
@@ -2866,7 +3204,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#938-956" title="Go to source code">___saveReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1264-1284" title="Go to source code">___saveReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2878,9 +3216,12 @@ Wire::getChanges(true) for details.</dd>
 			
 <p>Hook called just before a page is saved</p>
 
-<p>May be preferable to a before(save) hook because you know for sure a save
-will be executed immediately after this is called. Whereas you don't necessarily
-know that when before(save) is called, as an error may prevent it.</p>
+<p>May be preferable to a before <code>Pages::save</code> hook because you know
+for sure a save will be executed immediately after this is called. Whereas you
+don't necessarily know that when the before <code>Pages::save</code> is called,
+as an error may prevent it.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -2892,7 +3233,7 @@ know that when before(save) is called, as an error may prevent it.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>Optional extra data to add to pages save query.<br>
+					<code>array</code><br>Optional extra data to add to pages save query, which the hook can populate.<br>
 				</div>
 
 
@@ -2912,7 +3253,7 @@ know that when before(save) is called, as an error may prevent it.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleteReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#958-972" title="Go to source code">___deleteReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1286-1302" title="Go to source code">___deleteReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2926,15 +3267,18 @@ touched</p>
 <p>Hook called when a page is about to be deleted, but before data has been
 touched</p>
 
-<p>This is different from a before(delete) hook because this hook is called once
-it has been confirmed that the page is deleteable and WILL be deleted.</p>
+<p>This is different from a before <code>Pages::delete</code> hook because this
+hook is called once it has been confirmed that the page is deleteable and
+<em>will</em> be deleted.</p>
+
+<p>#pw-hooker</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that is about to be deleted.</dd>
 				</dl></div>
 
 
@@ -2955,24 +3299,26 @@ it has been confirmed that the page is deleteable and WILL be deleted.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleted">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#974-987" title="Go to source code">___deleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1304-1319" title="Go to source code">___deleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Hook called when a page and it's data have been deleted</p>
+<p>Hook called after a page and its data have been deleted</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Hook called when a page and it's data have been deleted</p>
+<p>Hook called after a page and its data have been deleted</p>
+
+<p>#pw-hooker</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that was deleted</dd>
 				</dl></div>
 
 
@@ -2993,7 +3339,7 @@ it has been confirmed that the page is deleteable and WILL be deleted.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____cloneReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#989-996" title="Go to source code">___cloneReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$copy</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1321-1330" title="Go to source code">___cloneReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$copy</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3006,6 +3352,8 @@ touched</p>
 			
 <p>Hook called when a page is about to be cloned, but before data has been
 touched</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3035,7 +3383,7 @@ touched</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____cloned">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#998-1007" title="Go to source code">___cloned</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$copy</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1332-1343" title="Go to source code">___cloned</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$copy</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3046,6 +3394,8 @@ touched</p>
 		<div class="description detailed hidden">
 			
 <p>Hook called when a page has been cloned</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3075,7 +3425,7 @@ touched</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____renamed">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1009-1030" title="Go to source code">___renamed</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1345-1368" title="Go to source code">___renamed</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3089,16 +3439,18 @@ change)</p>
 <p>Hook called when a page has been renamed (i.e. had it's name field
 change)</p>
 
-<p>The previous name can be accessed at $page-&gt;namePrevious; The new name can
-be accessed at $page-&gt;name</p>
+<p>The previous name can be accessed at <code>$page-&gt;namePrevious</code>. The
+new name can be accessed at <code>$page-&gt;name</code>.</p>
 
 <p>This hook is only called when a page's name changes. It is not called when a
 page is moved unless the name was changed at the same time.</p>
 
-<p>MULTI-LANGUAGE: Also note this hook may be called if a page's multi-language
-name changes. In those cases the language-specific name is stored in "name123"
-while the previous value is stored in "-name123" where 123 is the language
-ID.</p>
+<p><strong>Multi-language note:</strong> Also note this hook may be called if a
+page's multi-language name changes. In those cases the language-specific name is
+stored in "name123" while the previous value is stored in "-name123" (where 123
+is the language ID).</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3126,7 +3478,7 @@ ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____statusChanged">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1032-1068" title="Go to source code">___statusChanged</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1370-1408" title="Go to source code">___statusChanged</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3138,7 +3490,9 @@ ID.</p>
 			
 <p>Hook called when a page status has been changed and saved</p>
 
-<p>Previous status may be accessed at $page-&gt;statusPrevious</p>
+<p>Previous status may be accessed at <code>$page-&gt;statusPrevious</code>.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3166,7 +3520,7 @@ ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____statusChangeReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1070-1083" title="Go to source code">___statusChangeReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1410-1425" title="Go to source code">___statusChangeReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3178,7 +3532,9 @@ ID.</p>
 			
 <p>Hook called when a page's status is about to be changed and saved</p>
 
-<p>Previous status may be accessed at $page-&gt;statusPrevious</p>
+<p>Previous status may be accessed at <code>$page-&gt;statusPrevious</code>.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3206,7 +3562,7 @@ ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____published">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1085-1093" title="Go to source code">___published</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1427-1437" title="Go to source code">___published</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3217,6 +3573,8 @@ ID.</p>
 		<div class="description detailed hidden">
 			
 <p>Hook called after an unpublished page has just been published</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3244,7 +3602,7 @@ ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____unpublished">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1095-1103" title="Go to source code">___unpublished</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1439-1449" title="Go to source code">___unpublished</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3255,6 +3613,8 @@ ID.</p>
 		<div class="description detailed hidden">
 			
 <p>Hook called after published page has just been unpublished</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3282,7 +3642,7 @@ ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____publishReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1105-1111" title="Go to source code">___publishReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1451-1459" title="Go to source code">___publishReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3293,6 +3653,8 @@ ID.</p>
 		<div class="description detailed hidden">
 			
 <p>Hook called right before an unpublished page is published and saved</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3320,7 +3682,7 @@ ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____unpublishReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1113-1119" title="Go to source code">___unpublishReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1461-1469" title="Go to source code">___unpublishReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3331,6 +3693,8 @@ ID.</p>
 		<div class="description detailed hidden">
 			
 <p>Hook called right before a published page is unpublished and saved</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3358,7 +3722,7 @@ ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____found">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1121-1131" title="Go to source code">___found</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$pages</var></span>, <span>array <var>$details</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1471-1483" title="Go to source code">___found</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$pages</var></span>, <span>array <var>$details</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3372,6 +3736,8 @@ in the resulting PageArray</p>
 <p>Hook called at the end of a $pages-&gt;find(), includes extra info not seen
 in the resulting PageArray</p>
 
+<p>#pw-hooker</p>
+
 
 
 				<h4>Parameters</h4>
@@ -3379,10 +3745,10 @@ in the resulting PageArray</p>
 					<dt><var>$pages</var></dt>
 					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$pages The pages that were found</dd>
 					<dt><var>$details</var></dt>
-					<dd><code>array</code><br>$details Extra information on how the pages were found, including: - PageFinder
-$pageFinder The PageFinder instance that was used - array $pagesInfo The array
-returned by PageFinder - array $options Options that were passed to
-$pages-&gt;find()</dd>
+					<dd><code>array</code><br>$details Extra information on how the pages were found, including: -
+<code>pageFinder</code> (PageFinder): The PageFinder instance that was used. -
+<code>pagesInfo</code> (array): The array returned by PageFinder. -
+<code>options</code> (array): Options that were passed to $pages-&gt;find().</dd>
 				</dl></div>
 
 
@@ -3403,17 +3769,19 @@ $pages-&gt;find()</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveFieldReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1133-1140" title="Go to source code">___saveFieldReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1485-1494" title="Go to source code">___saveFieldReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Hook called when Pages::saveField is going to execute</p>
+<p>Hook called when Pages::saveField is ready to execute</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Hook called when Pages::saveField is going to execute</p>
+<p>Hook called when Pages::saveField is ready to execute</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3443,7 +3811,7 @@ $pages-&gt;find()</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____savedField">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1142-1151" title="Go to source code">___savedField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1496-1507" title="Go to source code">___savedField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3454,6 +3822,8 @@ $pages-&gt;find()</dd>
 		<div class="description detailed hidden">
 			
 <p>Hook called after Pages::saveField successfully executes</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -3493,6 +3863,7 @@ $pages-&gt;find()</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -3537,7 +3908,7 @@ $pages-&gt;find()</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Pages.html#73-77" title="Go to source code"><b>nameMaxLength</b></a>
+				<a href="source-class-ProcessWire.Pages.html#75-79" title="Go to source code"><b>nameMaxLength</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">128</span></code></td>
 		<td class="description"><div>
@@ -3561,7 +3932,7 @@ $pages-&gt;find()</dd>
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Pages.html#79-83" title="Go to source code"><b>defaultRootName</b></a>
+				<a href="source-class-ProcessWire.Pages.html#81-85" title="Go to source code"><b>defaultRootName</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">'home'</span></code></td>
 		<td class="description"><div>
@@ -3604,7 +3975,7 @@ $pages-&gt;find()</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#85-89" title="Go to source code"><var>$sortfields</var></a>
+				<a href="source-class-ProcessWire.Pages.html#87-91" title="Go to source code"><var>$sortfields</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -3631,7 +4002,7 @@ $pages-&gt;find()</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#91-95" title="Go to source code"><var>$debugLog</var></a>
+				<a href="source-class-ProcessWire.Pages.html#93-97" title="Go to source code"><var>$debugLog</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -3658,7 +4029,7 @@ $pages-&gt;find()</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#97-101" title="Go to source code"><var>$loader</var></a>
+				<a href="source-class-ProcessWire.Pages.html#99-103" title="Go to source code"><var>$loader</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -3681,7 +4052,7 @@ $pages-&gt;find()</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#103-107" title="Go to source code"><var>$editor</var></a>
+				<a href="source-class-ProcessWire.Pages.html#105-109" title="Go to source code"><var>$editor</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -3704,7 +4075,7 @@ $pages-&gt;find()</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#109-113" title="Go to source code"><var>$cacher</var></a>
+				<a href="source-class-ProcessWire.Pages.html#111-115" title="Go to source code"><var>$cacher</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -3727,7 +4098,7 @@ $pages-&gt;find()</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#115-119" title="Go to source code"><var>$trasher</var></a>
+				<a href="source-class-ProcessWire.Pages.html#117-121" title="Go to source code"><var>$trasher</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>

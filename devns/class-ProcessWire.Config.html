@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Config | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -496,6 +496,9 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
+<p>#pw-summary Holds ProcessWire configuration settings as defined in
+/wire/config.php and /site/config.php.</p>
+
 	</div>
 
 	<dl class="tree">
@@ -545,7 +548,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<b>See:</b>
 				/wire/config.php for more detailed descriptions of all config properties.<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Config.html#3-244" title="Go to source code">core/Config.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Config.html#3-299" title="Go to source code">core/Config.php</a><br>
 	</div>
 
 
@@ -563,27 +566,32 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#144-155" title="Go to source code">url</a>( <span>string <var>$for</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#146-165" title="Go to source code">url</a>( <span>string <var>$for</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get URL for requested resource</p>
+<p>Get URL for requested resource or module</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get URL for requested resource</p>
+<p>Get URL for requested resource or module</p>
 
-<p>$config-&gt;url('something') is a shorter alternative for
-$config-&gt;urls-&gt;get('something');</p>
+<p><code>$config-&gt;url('something')</code> is a shorter alternative for
+<code>$config-&gt;urls-&gt;get('something')</code>.</p>
+
+<p>~~~~~ // Get the admin URL $url = $config-&gt;url('admin');</p>
+
+<p>// Same thing, using alternate syntax $url = $config-&gt;urls-&gt;admin;
+~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$for</var></dt>
-					<dd><code>string</code><br>$for Predefined PW URLs property or module class name</dd>
+					<dd><code>string</code><br>$for Predefined ProcessWire URLs property or module name</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -601,24 +609,39 @@ $config-&gt;urls-&gt;get('something');</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			null|string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_urls">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#157" title="Go to source code">urls</a>( <span>mixed <var>$for</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#167-176" title="Go to source code">urls</a>( <span>string <var>$for</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Alias for the url() method</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Alias for the url() method</p>
+
+<p>#pw-internal</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$for</var></dt>
+					<dd><code>string</code><br>$for Predefined ProcessWire URLs property or module name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>null|string</code><br>
+				</div>
 
 
 
@@ -637,27 +660,33 @@ $config-&gt;urls-&gt;get('something');</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_path">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#159-170" title="Go to source code">path</a>( <span>string <var>$for</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#178-197" title="Go to source code">path</a>( <span>string <var>$for</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get disk path for requested resource</p>
+<p>Get disk path for requested resource or module</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get disk path for requested resource</p>
+<p>Get disk path for requested resource or module</p>
 
-<p>$config-&gt;path('something') is a shorter alternative for
-$config-&gt;paths-&gt;get('something');</p>
+<p><code>$config-&gt;path('something')</code> is a shorter alternative for
+<code>$config-&gt;paths-&gt;get('something')</code>.</p>
+
+<p>~~~~~ // Get the PW installation root disk path $path =
+$config-&gt;path('root');</p>
+
+<p>// Same thing, using alternate syntax $path = $config-&gt;paths-&gt;root;
+~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$for</var></dt>
-					<dd><code>string</code><br>$for Predefined PW paths property or module class name</dd>
+					<dd><code>string</code><br>$for Predefined ProcessWire paths property or module class name</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -675,24 +704,39 @@ $config-&gt;paths-&gt;get('something');</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			null|string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_paths">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#172" title="Go to source code">paths</a>( <span>mixed <var>$for</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#199-208" title="Go to source code">paths</a>( <span>string <var>$for</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Alias for the path() method</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Alias for the path() method</p>
+
+<p>#pw-internal</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$for</var></dt>
+					<dd><code>string</code><br>$for Predefined ProcessWire paths property or module name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>null|string</code><br>
+				</div>
 
 
 
@@ -704,14 +748,14 @@ $config-&gt;paths-&gt;get('something');</p>
 
 		<td class="attributes"><code>
 			 public 
-			array|mixed|null|this
+			array|mixed|null|<code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_js">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#180-243" title="Go to source code">js</a>( <span>string|array <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#216-298" title="Go to source code">js</a>( <span>string|array <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -722,6 +766,9 @@ $config-&gt;paths-&gt;get('something');</p>
 		<div class="description detailed hidden">
 			
 <p>Set or retrieve a config value to be shared with javascript</p>
+
+<p>Values are set to the Javascript variable
+<code>ProcessWire.config[key]</code>.</p>
 
 <ol>
 	<li>Specify a $key and $value to set a JS config value.</li>
@@ -739,6 +786,14 @@ $config-&gt;paths-&gt;get('something');</p>
 	<li>Specify no params to retrieve in array of all existing set values.</li>
 </ol>
 
+<p>~~~~~ // Set a property from PHP $config-&gt;js('mySettings', [ 'foo' =&gt;
+'bar', 'bar' =&gt; 123, ]);</p>
+
+<p>// Get a property (from PHP) $mySettings = $config-&gt;js('mySettings');
+~~~~~ ~~~~~ // Get a property (from Javascript): var mySettings =
+ProcessWire.config.mySettings; console.log(mySettings.foo);
+console.log(mySettings.bar); ~~~~~</p>
+
 
 
 				<h4>Parameters</h4>
@@ -751,7 +806,7 @@ $config-&gt;paths-&gt;get('something');</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array|mixed|null|this</code><br>
+					<code>array|mixed|null|<code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code></code><br>$this<br>
 				</div>
 
 
@@ -811,6 +866,7 @@ $config-&gt;paths-&gt;get('something');</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -871,7 +927,7 @@ $config-&gt;paths-&gt;get('something');</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Config.html#174-178" title="Go to source code"><var>$jsFields</var></a>
+				<a href="source-class-ProcessWire.Config.html#210-214" title="Go to source code"><var>$jsFields</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

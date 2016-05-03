@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldCKEditor | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -654,24 +654,38 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<div class="description short">
 			
-<p>Set the Inputfield's parent, set a new/existing attribute, or set a custom
-data value</p>
+<p>Set a property or attribute to the Inputfield</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the Inputfield's parent, set a new/existing attribute, or set a custom
-data value</p>
+<p>Set a property or attribute to the Inputfield</p>
+
+<ul>
+	<li>Use this for setting properties like parent, collapsed, required,
+	columnWidth, etc.</li>
+
+	<li>You can also set properties directly via <code>$inputfield-&gt;property =
+	$value</code>.</li>
+
+	<li>If setting an attribute (like name, id, etc.) this will work, but it is
+	preferable to use the <code>Inputfield::attr()</code> method.</li>
+
+	<li>If setting any kind of "class" it is preferable to use the
+	<code>Inputfield::addClass()</code> method.</li>
+</ul>
+
+<p>#pw-group-settings</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property to set</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
+					<dd><code>mixed</code><br>$value Value of property</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -783,35 +797,48 @@ URL</dd>
 
 		<div class="description short">
 			
-<p>Called before render() or renderValue() method by InputfieldWrapper, before
-Inputfield-specific CSS/JS files added</p>
+<p>Method called right before Inputfield markup is rendered, so that any
+dependencies can be loaded as well.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Called before render() or renderValue() method by InputfieldWrapper, before
-Inputfield-specific CSS/JS files added</p>
+<p>Method called right before Inputfield markup is rendered, so that any
+dependencies can be loaded as well.</p>
 
-<p>In this case used to populate any required CSS/JS files. The return value is
-true if assets were just added, and false if assets have already been added in a
-previous call. This distinction probably doesn't matter in most usages, but here
-just in case a descending class needs to know when/if to add additional assets
-(i.e. when this function returns true).</p>
+<p>Called before <code>Inputfield::render()</code> or
+<code>Inputfield::renderValue()</code> method by the parent
+<code>InputfieldWrapper</code> instance. If you are calling either of those
+methods yourself for some reason, make sure that you call this
+<code>renderReady()</code> method first.</p>
+
+<p>The default behavior of this method is to populate Inputfield-specific CSS
+and JS file assets into <code>$config-&gt;styles</code> and
+<code>$config-&gt;scripts</code>.</p>
+
+<p>The return value is true if assets were just added, and false if assets have
+already been added in a previous call. This distinction probably doesn't matter
+in most usages, but here just in case a descending class needs to know when/if
+to add additional assets (i.e. when this method returns true).</p>
+
+<p>#pw-group-output</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$parent</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent Inputfield/wrapper that is rendering it or null if no parent.</dd>
+					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent InputfieldWrapper that is rendering it, or null if no parent.</dd>
 					<dt><var>$renderValueMode</var></dt>
-					<dd><code>boolean</code><br>$renderValueMode Whether renderValueMode will be used.</dd>
+					<dd><code>boolean</code><br>$renderValueMode Specify true only if this is for
+<code>Inputfield::renderValue()</code> rather than
+<code>Inputfield::render()</code>.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if assets were just added, false if already added.<br>
 				</div>
 
 
@@ -1110,7 +1137,8 @@ purposes</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$input</var></dt>
-					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input</dd>
+					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input User input where value should be pulled from (typically
+<code>$input-&gt;post</code>)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1194,21 +1222,48 @@ string to return JSON string.</dd>
 			
 <p>Get any custom configuration fields for this Inputfield</p>
 
-<p>Intended to be extended by each Inputfield as needed to add more config
-options.</p>
+<ul>
+	<li>Intended to be extended by each Inputfield as needed to add more config
+	options.</li>
 
-<p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
-are assumed to be for runtime use and are NOT stored in the database.</p>
+	<li>The returned InputfieldWrapper ultimately ends up as the "Input" tab in the
+	fields editor (admin).</li>
+
+	<li>Descending Inputfield classes should first call this method from the parent
+	class to get the default configuration fields and the InputfieldWrapper they can
+	add to.</li>
+
+	<li>Returned Inputfield instances with a name attribute that starts with an
+	underscore, i.e. "_myname" are assumed to be for runtime use and are NOT stored
+	in the database.</li>
+
+	<li>If you prefer, you may instead implement the
+	<code>Inputfield::getConfigArray()</code> method as an alternative.</li>
+</ul>
+
+<p>~~~~ // Example getConfigInputfields() implementation public function
+___getConfigInputfields() { // Get the defaults and $inputfields wrapper we can
+add to $inputfields = parent::___getConfigInputfields(); // Add a new Inputfield
+to it $f = $this-&gt;wire('modules')-&gt;get('InputfieldText');
+$f-&gt;attr('name', 'first_name'); $f-&gt;attr('value',
+$this-&gt;get('first_name')); $f-&gt;label = 'Your First Name';
+$inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
+
+<p>#pw-group-module</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>Populated with Inputfield instances<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Inputfield::getConfigArray()<br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.InputfieldTextarea.html#____getConfigInputfields">ProcessWire\InputfieldTextarea::___getConfigInputfields()</a></code></div>
@@ -1319,6 +1374,7 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 

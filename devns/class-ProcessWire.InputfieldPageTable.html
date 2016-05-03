@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldPageTable | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -638,35 +638,48 @@ for repeaters.<br>
 
 		<div class="description short">
 			
-<p>Called before render() or renderValue() method by InputfieldWrapper, before
-Inputfield-specific CSS/JS files added</p>
+<p>Method called right before Inputfield markup is rendered, so that any
+dependencies can be loaded as well.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Called before render() or renderValue() method by InputfieldWrapper, before
-Inputfield-specific CSS/JS files added</p>
+<p>Method called right before Inputfield markup is rendered, so that any
+dependencies can be loaded as well.</p>
 
-<p>In this case used to populate any required CSS/JS files. The return value is
-true if assets were just added, and false if assets have already been added in a
-previous call. This distinction probably doesn't matter in most usages, but here
-just in case a descending class needs to know when/if to add additional assets
-(i.e. when this function returns true).</p>
+<p>Called before <code>Inputfield::render()</code> or
+<code>Inputfield::renderValue()</code> method by the parent
+<code>InputfieldWrapper</code> instance. If you are calling either of those
+methods yourself for some reason, make sure that you call this
+<code>renderReady()</code> method first.</p>
+
+<p>The default behavior of this method is to populate Inputfield-specific CSS
+and JS file assets into <code>$config-&gt;styles</code> and
+<code>$config-&gt;scripts</code>.</p>
+
+<p>The return value is true if assets were just added, and false if assets have
+already been added in a previous call. This distinction probably doesn't matter
+in most usages, but here just in case a descending class needs to know when/if
+to add additional assets (i.e. when this method returns true).</p>
+
+<p>#pw-group-output</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$parent</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent Inputfield/wrapper that is rendering it or null if no parent.</dd>
+					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent InputfieldWrapper that is rendering it, or null if no parent.</dd>
 					<dt><var>$renderValueMode</var></dt>
-					<dd><code>boolean</code><br>$renderValueMode Whether renderValueMode will be used.</dd>
+					<dd><code>boolean</code><br>$renderValueMode Specify true only if this is for
+<code>Inputfield::renderValue()</code> rather than
+<code>Inputfield::render()</code>.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if assets were just added, false if already added.<br>
 				</div>
 
 
@@ -1458,6 +1471,7 @@ defined in the defined template</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 

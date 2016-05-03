@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireArray | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -496,15 +496,6 @@ jQuery-like usability. Many methods act upon the array and return $this, which
 enables WireArrays to be used for fluent interfaces. WireArray is the base of
 the PageArray (subclass) which is the most used instance.</p>
 
-<p>TODO narrow down to one method of addition and removal, especially for
-removal, i.e. make shift() run through remove()</p>
-
-<p>This file is licensed under the MIT license <a
-href="https://processwire.com/about/license/mit/">https://processwire.com/about/license/mit/</a></p>
-
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
-href="https://processwire.com">https://processwire.com</a></p>
-
 	</div>
 
 	<dl class="tree">
@@ -579,7 +570,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireArray.html#4-1821" title="Go to source code">core/WireArray.php</a><br>
+				<b>Todo:</b>
+				can we implement next() and prev() like on Page, as alias to getNext() and
+getPrev()?<br>
+				<b>Todo:</b>
+				narrow down to one method of addition and removal, especially for removal, i.e.
+make shift() run through remove() ProcessWire 3.x (development), Copyright 2015
+by Ryan Cramer <a href="https://processwire.com">https://processwire.com</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireArray.html#4-2221" title="Go to source code">core/WireArray.php</a><br>
 	</div>
 
 
@@ -597,26 +595,29 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidItem">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#58-67" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#69-82" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Template mehod that descendant classes may use to validate items added to
-this WireArray</p>
+<p>Is the given item valid for storange in this array?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Template mehod that descendant classes may use to validate items added to
+<p>Is the given item valid for storange in this array?</p>
+
+<p>Template method that descending classes may use to validate items added to
 this WireArray</p>
+
+<p>#pw-group-info</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>mixed</code><br>$item Item to add</dd>
+					<dd><code>mixed</code><br>$item Item to test for validity</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -641,26 +642,29 @@ this WireArray</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidKey">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#70-80" title="Go to source code">isValidKey</a>( <span>string|integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#84-98" title="Go to source code">isValidKey</a>( <span>string|integer <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Template method that descendant classes may use to validate the key of items
-added to this WireArray</p>
+<p>Is the given item key valid for use in this array?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Is the given item key valid for use in this array?</p>
+
 <p>Template method that descendant classes may use to validate the key of items
 added to this WireArray</p>
+
+<p>#pw-group-info</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|integer</code><br>$key</dd>
+					<dd><code>string|integer</code><br>$key Key to test</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -685,7 +689,7 @@ added to this WireArray</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isIdentical">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#82-108" title="Go to source code">isIdentical</a>( <span><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span>, <span>boolean|integer <var>$strict</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#100-128" title="Go to source code">isIdentical</a>( <span><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span>, <span>boolean|integer <var>$strict</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -697,6 +701,8 @@ added to this WireArray</p>
 			
 <p>Is the given WireArray identical to this one?</p>
 
+<p>#pw-group-info</p>
+
 
 
 				<h4>Parameters</h4>
@@ -704,14 +710,16 @@ added to this WireArray</p>
 					<dt><var>$items</var></dt>
 					<dd><code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>$items</dd>
 					<dt><var>$strict</var></dt>
-					<dd><code>boolean|integer</code><br>$strict When true (default), compares items, item object instances, order, and
-any other data contained in WireArray. When false, compares only items in the
-WireArray resolve to the same order and values (though not object instances).</dd>
+					<dd><code>boolean|integer</code><br>$strict Use strict mode? Optionally specify one of the following:
+<code>true</code> (boolean): Default. Compares items, item object instances,
+order, and any other data contained in WireArray. <code>false</code> (boolean):
+Compares only that items in the WireArray resolve to the same order and values
+(though not object instances).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if identical, false if not.<br>
 				</div>
 
 
@@ -731,33 +739,38 @@ WireArray resolve to the same order and values (though not object instances).</d
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemKey">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#110-125" title="Go to source code">getItemKey</a>( <span>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#130-148" title="Go to source code">getItemKey</a>( <span>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Template method that descendant classes may use to find a key from the item
-itself, or null if disabled.</p>
+<p>Get the array key for the given item</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Template method that descendant classes may use to find a key from the item
-itself, or null if disabled.</p>
+<p>Get the array key for the given item</p>
 
-<p>Used by add() and prepend()</p>
+<ul>
+	<li>This is a template method that descendant classes may use to find a key from
+	the item itself, or null if disabled.</li>
+
+	<li>This method is used internally by the add() and prepend() methods.</li>
+</ul>
+
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item</dd>
+					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item Item to get key for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|null</code><br>
+					<code>string|integer|null</code><br>Found key, or null if not found.<br>
 				</div>
 
 
@@ -777,17 +790,19 @@ itself, or null if disabled.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeBlankItem">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#127-138" title="Go to source code">makeBlankItem</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#150-163" title="Go to source code">makeBlankItem</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get a blank copy of an item of the type that this WireArray holds</p>
+<p>Get a new/blank item of the type that this WireArray holds</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a blank copy of an item of the type that this WireArray holds</p>
+<p>Get a new/blank item of the type that this WireArray holds</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -799,7 +814,7 @@ itself, or null if disabled.</p>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If class doesn't implement this method.<br>
 				</div>
 
 
@@ -818,17 +833,19 @@ itself, or null if disabled.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeNew">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#140-150" title="Go to source code">makeNew</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#165-177" title="Go to source code">makeNew</a>( )</code>
 
 		<div class="description short">
 			
-<p>Creates a new blank instance of itself, for internal use.</p>
+<p>Creates a new blank instance of this WireArray, for internal use.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Creates a new blank instance of itself, for internal use.</p>
+<p>Creates a new blank instance of this WireArray, for internal use.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -855,22 +872,22 @@ itself, or null if disabled.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeCopy">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#152-163" title="Go to source code">makeCopy</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#179-192" title="Go to source code">makeCopy</a>( )</code>
 
 		<div class="description short">
 			
-<p>Creates a new populated (copy/cloen) instance of itself, for internal
-use.</p>
+<p>Creates a new populated copy/clone of this WireArray</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Creates a new populated (copy/cloen) instance of itself, for internal
-use.</p>
+<p>Creates a new populated copy/clone of this WireArray</p>
 
 <p>Same as a clone, except that descending classes may wish to replace the clone
 call a manually created WireArray to prevent deep cloning.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -890,24 +907,32 @@ call a manually created WireArray to prevent deep cloning.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_import">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#165-185" title="Go to source code">import</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#194-219" title="Go to source code">import</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Import items into this WireArray.</p>
+<p>Import the given item(s) into this WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Import items into this WireArray.</p>
+<p>Import the given item(s) into this WireArray.</p>
+
+<ul>
+	<li>Adds imported items to the end of the WireArray.</li>
+
+	<li>Skips over any items already present in the WireArray.</li>
+</ul>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -919,12 +944,12 @@ call a manually created WireArray to prevent deep cloning.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>This instance.<br>
+					<code>mixed</code><br>$this<br>
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given items not compatible with the WireArray<br>
 				</div>
 
 
@@ -936,14 +961,14 @@ call a manually created WireArray to prevent deep cloning.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_add">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#187-216" title="Go to source code">add</a>( <span>integer|string|array|object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#221-258" title="Go to source code">add</a>( <span>integer|string|array|object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -955,6 +980,10 @@ call a manually created WireArray to prevent deep cloning.</p>
 			
 <p>Add an item to the end of the WireArray.</p>
 
+<p>~~~~~ $items-&gt;add($item); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
+
 
 
 				<h4>Parameters</h4>
@@ -965,14 +994,18 @@ call a manually created WireArray to prevent deep cloning.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>This instance.<br>
+					<code>mixed</code><br>$this<br>
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given an item that can't be stored by this WireArray.<br>
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_prepend">ProcessWire\WireArray::prepend()</a></code></code>, <code><code><a href="class-ProcessWire.WireArray.html#_append">ProcessWire\WireArray::append()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -989,7 +1022,7 @@ call a manually created WireArray to prevent deep cloning.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__insert">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#218-259" title="Go to source code">_insert</a>( <span>integer|string|array|object <var>$item</var></span>, <span>integer|string|array|object <var>$existingItem</var></span>, <span>boolean <var>$insertBefore</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#260-301" title="Go to source code">_insert</a>( <span>integer|string|array|object <var>$item</var></span>, <span>integer|string|array|object <var>$existingItem</var></span>, <span>boolean <var>$insertBefore</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1042,7 +1075,7 @@ functions</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_insertBefore">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#261-271" title="Go to source code">insertBefore</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$item</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$existingItem</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#303-319" title="Go to source code">insertBefore</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$item</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$existingItem</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1054,14 +1087,18 @@ functions</p>
 			
 <p>Insert an item before an existing item</p>
 
+<p>~~~~~ $items-&gt;insertBefore($newItem, $existingItem); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer</code><br>$item Item you want to insert</dd>
+					<dd><code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer</code><br>$item Item you want to insert.</dd>
 					<dt><var>$existingItem</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer</code><br>$existingItem Item already present that you want to insert before</dd>
+					<dd><code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer</code><br>$existingItem Item already present that you want to insert before.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1086,7 +1123,7 @@ functions</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_insertAfter">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#273-283" title="Go to source code">insertAfter</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$item</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$existingItem</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#321-337" title="Go to source code">insertAfter</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$item</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$existingItem</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1097,6 +1134,10 @@ functions</p>
 		<div class="description detailed hidden">
 			
 <p>Insert an item after an existing item</p>
+
+<p>~~~~~ $items-&gt;insertAfter($newItem, $existingItem); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -1130,7 +1171,7 @@ functions</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_replace">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#285-326" title="Go to source code">replace</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$itemA</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$itemB</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#339-387" title="Go to source code">replace</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$itemA</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|integer <var>$itemB</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1142,9 +1183,19 @@ functions</p>
 			
 <p>Replace one item with the other</p>
 
-<p>If both items are already present, they will change places. If one item is
-not already present, it will replace the one that is. If neither item is
-present, both will be added at the end.</p>
+<ul>
+	<li>The order of the arguments does not matter.</li>
+
+	<li>If both items are already present, they will change places.</li>
+
+	<li>If one item is not already present, it will replace the one that is.</li>
+
+	<li>If neither item is present, both will be added at the end.</li>
+</ul>
+
+<p>~~~~~ $items-&gt;replace($existingItem, $newItem); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -1178,17 +1229,19 @@ present, both will be added at the end.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#328-346" title="Go to source code">set</a>( <span>integer|string <var>$key</var></span>, <span>integer|string|array|object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#389-409" title="Go to source code">set</a>( <span>integer|string <var>$key</var></span>, <span>integer|string|array|object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Sets an index in the WireArray.</p>
+<p>Set an item by key in the WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Sets an index in the WireArray.</p>
+<p>Set an item by key in the WireArray.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -1197,7 +1250,7 @@ present, both will be added at the end.</p>
 					<dt><var>$key</var></dt>
 					<dd><code>integer|string</code><br>$key Key of item to set.</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>integer|string|array|object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$value Value of item.</dd>
+					<dd><code>integer|string|array|object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$value Item value to set.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1207,7 +1260,7 @@ present, both will be added at the end.</p>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given an item not compatible with this WireArray.<br>
 				</div>
 
 
@@ -1226,7 +1279,7 @@ present, both will be added at the end.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#348-362" title="Go to source code">__set</a>( <span>integer|string <var>$property</var></span>, <span>integer|string|array|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#411-425" title="Go to source code">__set</a>( <span>integer|string <var>$property</var></span>, <span>integer|string|array|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1273,7 +1326,7 @@ arrays.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___isset">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#364-373" title="Go to source code">__isset</a>( <span>string|integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#427-436" title="Go to source code">__isset</a>( <span>string|integer <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1315,7 +1368,7 @@ arrays.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___unset">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#375-383" title="Go to source code">__unset</a>( <span>integer|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#438-446" title="Go to source code">__unset</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1353,7 +1406,7 @@ arrays.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setArray">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#385-397" title="Go to source code">setArray</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#448-462" title="Go to source code">setArray</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1367,12 +1420,14 @@ once</p>
 <p>Like set() but accepts an array or WireArray to set multiple values at
 once</p>
 
+<p>#pw-group-manipulation</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd><code>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>$data</dd>
+					<dd><code>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>$data Array or WireArray of data that you want to set.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1397,20 +1452,22 @@ once</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#400-460" title="Go to source code">get</a>( <span>integer|string|array <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#465-528" title="Go to source code">get</a>( <span>integer|string|array <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Returns the value of the item at the given index, or false if not set.</p>
+<p>Returns the value of the item at the given index, or null if not set.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the value of the item at the given index, or false if not set.</p>
+<p>Returns the value of the item at the given index, or null if not set.</p>
 
 <p>You may also specify a selector, in which case this method will return the
-same result as the findOne() method.</p>
+same result as the <code>WireArray::findOne()</code> method.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1448,7 +1505,7 @@ will be returned, indexed by your keys.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#462-478" title="Go to source code">__get</a>( <span>integer|string <var>$property</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#530-546" title="Go to source code">__get</a>( <span>integer|string <var>$property</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1496,28 +1553,47 @@ call.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getProperty">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#480-504" title="Go to source code">getProperty</a>( <span>string <var>$property</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#548-588" title="Go to source code">getProperty</a>( <span>string <var>$property</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get a predefined property of the array or extra data that has been set.</p>
+<p>Get a predefined property of the array, or extra data that has been set.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a predefined property of the array or extra data that has been set.</p>
+<p>Get a predefined property of the array, or extra data that has been set.</p>
 
-<p>These map to functions form the array and are here for convenience.
-Properties include count, last, first, keys, values. These can also be accessed
-by direct reference.</p>
+<p>Default properties include;</p>
+
+<ul>
+	<li><code>count</code> (int): Number of items present in this WireArray.</li>
+
+	<li><code>last</code> (mixed): Last item in this WireArray.</li>
+
+	<li><code>first</code> (mixed): First item in this WireArray.</li>
+
+	<li><code>keys</code> (array): Keys used in this WireArray.</li>
+
+	<li><code>values</code> (array): Values present in this WireArray.</li>
+</ul>
+
+<p>These can also be accessed by direct reference.</p>
+
+<p>~~~~~ // Get count $count = $items-&gt;getProperty('count');</p>
+
+<p>// Same as above using direct access property $count = $items-&gt;count;
+~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$property</var></dt>
-					<dd><code>string</code><br>$property</dd>
+					<dd><code>string</code><br>$property Name of property to retrieve</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1542,21 +1618,21 @@ by direct reference.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemThatMatches">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#506-533" title="Go to source code">getItemThatMatches</a>( <span>string <var>$key</var></span>, <span>string|integer|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#590-617" title="Go to source code">getItemThatMatches</a>( <span>string <var>$key</var></span>, <span>string|integer|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return the first item in this WireArray having a property called $key with
-the value of $value or NULL if not matched.</p>
+<p>Return the first item in this WireArray having a property named $key with
+$value, or NULL if not found.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the first item in this WireArray having a property called $key with
-the value of $value or NULL if not matched.</p>
+<p>Return the first item in this WireArray having a property named $key with
+$value, or NULL if not found.</p>
 
-<p>Used internally by get() and has().</p>
+<p>Used internally by get() and has() methods.</p>
 
 
 
@@ -1590,20 +1666,34 @@ the value of $value or NULL if not matched.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#535-572" title="Go to source code">has</a>( <span>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#619-676" title="Go to source code">has</a>( <span>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Does this WireArray have the given index or match the given selector?</p>
+<p>Does this WireArray have the given item, index, or match the given
+selector?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Does this WireArray have the given index or match the given selector?</p>
+<p>Does this WireArray have the given item, index, or match the given
+selector?</p>
 
-<p>If the WireArray uses numeric keys, then this will also match a wire's "name"
-field.</p>
+<p>If the WireArray uses numeric keys, then this will also match a WireData
+object's "name" field.</p>
+
+<p>~~~~~ // See if it has a given $item if($items-&gt;has($item)) { // Has the
+given $item }</p>
+
+<p>// See if it has an object with a "name" property matching our text
+if($items-&gt;has("name=something")) { // Has an item with a "name" property
+equal to "something" }</p>
+
+<p>// Same as above, but works since "name" is assumed for many types
+if($items-&gt;has("something")) { // It has it } ~~~~~</p>
+
+<p>#pw-group-retrieval #pw-group-info</p>
 
 
 
@@ -1635,17 +1725,21 @@ field.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getArray">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#574-582" title="Go to source code">getArray</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#678-689" title="Go to source code">getArray</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get a regular PHP array of all the items in this WireArray.</p>
+<p>Get a PHP array of all the items in this WireArray with original keys
+maintained</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a regular PHP array of all the items in this WireArray.</p>
+<p>Get a PHP array of all the items in this WireArray with original keys
+maintained</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1656,6 +1750,10 @@ field.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_getValues">ProcessWire\WireArray::getValues()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1672,20 +1770,22 @@ field.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAll">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#584-594" title="Go to source code">getAll</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#691-703" title="Go to source code">getAll</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns all items in the WireArray.</p>
+<p>Returns all items in the WireArray (for syntax convenience)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns all items in the WireArray.</p>
+<p>Returns all items in the WireArray (for syntax convenience)</p>
 
-<p>This is for syntax convenience, as it simply eturns this instance of the
+<p>This is for syntax convenience, as it simply returns this instance of the
 WireArray.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1712,17 +1812,19 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getKeys">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#597-605" title="Go to source code">getKeys</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#706-716" title="Go to source code">getKeys</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns an array of all keys used in this WireArray.</p>
+<p>Returns a regular PHP array of all keys used in this WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns an array of all keys used in this WireArray.</p>
+<p>Returns a regular PHP array of all keys used in this WireArray.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1749,17 +1851,23 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getValues">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#607-615" title="Go to source code">getValues</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#718-732" title="Go to source code">getValues</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns an array of all values used in this WireArray.</p>
+<p>Returns a regular PHP array of all values used in this WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns an array of all values used in this WireArray.</p>
+<p>Returns a regular PHP array of all values used in this WireArray.</p>
+
+<p>Unlike the <code>WireArray::getArray()</code> method, this does not attempt
+to maintain original keys of the items. The returned array is reindexed from
+0.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1770,6 +1878,10 @@ WireArray.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_getArray">ProcessWire\WireArray::getArray()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1786,20 +1898,35 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRandom">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#618-641" title="Go to source code">getRandom</a>( <span>integer <var>$num</var> = <span class="php-num">1</span></span>, <span>boolean <var>$alwaysArray</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#734-771" title="Go to source code">getRandom</a>( <span>integer <var>$num</var> = <span class="php-num">1</span></span>, <span>boolean <var>$alwaysArray</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get one or more random elements from this WireArray.</p>
+<p>Get a random item from this WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get one or more random elements from this WireArray.</p>
+<p>Get a random item from this WireArray.</p>
 
-<p>If one item is requested, the item is returned (unless $alwaysArray is true).
-If multiple items are requested, a new WireArray of those items is returned.</p>
+<ul>
+	<li>If one item is requested (default), the item is returned (unless
+	<code>$alwaysArray</code> argument is true).</li>
+
+	<li>If multiple items are requested, a new <code>WireArray</code> of those items
+	is returned.</li>
+
+	<li>We recommend using this method when you just need 1 random item, and using
+	the <code>WireArray::findRandom()</code> method when you need multiple random
+	items.</li>
+</ul>
+
+<p>~~~~~ // Get a single random item $randomItem = $items-&gt;getRandom();</p>
+
+<p>// Get 3 random items $randomItems = $items-&gt;getRandom(3); ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1808,8 +1935,8 @@ If multiple items are requested, a new WireArray of those items is returned.</p>
 					<dt><var>$num</var></dt>
 					<dd><code>integer</code><br>$num Number of items to return. Optional and defaults to 1.</dd>
 					<dt><var>$alwaysArray</var></dt>
-					<dd><code>boolean</code><br>$alwaysArray If true, then method will always return a container of items, even
-if it only contains 1.</dd>
+					<dd><code>boolean</code><br>$alwaysArray If true, then method will always return an array of items, even if
+it only contains 1 item.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1818,6 +1945,10 @@ if it only contains 1.</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_findRandom">ProcessWire\WireArray::findRandom()</a></code></code>, <code><code><a href="class-ProcessWire.WireArray.html#_findRandomTimed">ProcessWire\WireArray::findRandomTimed()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1834,19 +1965,25 @@ if it only contains 1.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findRandom">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#643-654" title="Go to source code">findRandom</a>( <span>integer <var>$num</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#773-792" title="Go to source code">findRandom</a>( <span>integer <var>$num</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get a quantity of random elements from this WireArray.</p>
+<p>Find a specified quantity of random elements from this WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a quantity of random elements from this WireArray.</p>
+<p>Find a specified quantity of random elements from this WireArray.</p>
 
-<p>Unlike getRandom() this one always returns a WireArray (or derived type).</p>
+<p>Unlike <code>WireArray::getRandom()</code> this method always returns a
+WireArray (or derived type).</p>
+
+<p>~~~~~ // Get 3 random items $randomItems = $items-&gt;findRandom(3);
+~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1862,6 +1999,10 @@ if it only contains 1.</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_getRandom">ProcessWire\WireArray::getRandom()</a></code></code>, <code><code><a href="class-ProcessWire.WireArray.html#_findRandomTimed">ProcessWire\WireArray::findRandomTimed()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1878,34 +2019,46 @@ if it only contains 1.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findRandomTimed">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#656-684" title="Go to source code">findRandomTimed</a>( <span>integer <var>$num</var></span>, <span>integer|string <var>$seed</var> = <span class="php-quote">'Ymd'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#794-836" title="Go to source code">findRandomTimed</a>( <span>integer <var>$num</var></span>, <span>integer|string <var>$seed</var> = <span class="php-quote">'Ymd'</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get a quantity of random elements from this WireArray based on a timed
+<p>Find a quantity of random elements from this WireArray based on a timed
 interval (or user provided seed).</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a quantity of random elements from this WireArray based on a timed
+<p>Find a quantity of random elements from this WireArray based on a timed
 interval (or user provided seed).</p>
 
-<p>If no $seed is provided, today's date is used to seed the random number
-generator, so you can use this function to rotate items on a daily basis.</p>
+<p>If no <code>$seed</code> is provided, today's date (day) is used to seed the
+random number generator, so you can use this function to rotate items on a daily
+basis.</p>
 
-<p>Idea and implementation provided by @mindplay.dk</p>
+<p>_Idea and implementation provided by [mindplay.dk](<a
+href="https://twitter.com/mindplaydk">https://twitter.com/mindplaydk</a>)_</p>
+
+<p>~~~~~ // Get same 3 random items per day $randomItems =
+$items-&gt;findRandomTimed(3);</p>
+
+<p>// Get same 3 random items per hour $randomItems =
+$items-&gt;findRandomTimed('YmdH'); ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$num</var></dt>
-					<dd><code>integer</code><br>$num the amount of items to extract from the given list</dd>
+					<dd><code>integer</code><br>$num The amount of items to extract from the given list</dd>
 					<dt><var>$seed</var></dt>
-					<dd><code>integer|string</code><br>$seed a number used to see the random number generator; or a string compatible
-with date()</dd>
+					<dd><code>integer|string</code><br>$seed Optionally provide one of the following: - A PHP [date()](<a
+href="http://php.net/manual/en/function.date.php">http://php.net/manual/en/function.date.php</a>)
+format string. - A number used to see the random number generator. - The default
+is the PHP date format "Ymd" which makes it randomize once daily.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1914,6 +2067,10 @@ with date()</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_findRandom">ProcessWire\WireArray::findRandom()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1930,7 +2087,7 @@ with date()</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_slice">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#686-704" title="Go to source code">slice</a>( <span>integer <var>$start</var></span>, <span>integer <var>$limit</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#838-863" title="Go to source code">slice</a>( <span>integer <var>$start</var></span>, <span>integer <var>$limit</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1943,8 +2100,12 @@ with date()</dd>
 <p>Get a slice of the WireArray.</p>
 
 <p>Given a starting point and a number of items, returns a new WireArray of
-those items. If $limit is omitted, then it includes everything beyond the
-starting point.</p>
+those items. If <code>$limit</code> is omitted, then it includes everything
+beyond the starting point.</p>
+
+<p>~~~~~ // Get first 3 items $myItems = $items-&gt;slice(0, 3); ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1978,17 +2139,21 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prepend">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#706-736" title="Go to source code">prepend</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#865-903" title="Go to source code">prepend</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Prepend an element to the beginning of the WireArray.</p>
+<p>Prepend an item to the beginning of the WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Prepend an element to the beginning of the WireArray.</p>
+<p>Prepend an item to the beginning of the WireArray.</p>
+
+<p>~~~~~ // Add item to beginning $items-&gt;prepend($item); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2008,6 +2173,10 @@ starting point.</p>
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_append">ProcessWire\WireArray::append()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -2024,17 +2193,25 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_append">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#738-748" title="Go to source code">append</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#905-926" title="Go to source code">append</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Append an item to the end of the WireArray.</p>
+<p>Append an item to the end of the WireArray</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Append an item to the end of the WireArray.</p>
+<p>Append an item to the end of the WireArray</p>
+
+<p>This is a functionally identical alias of the <code>WireArray::add()</code>
+method here for naming consistency with the <code>WireArray::prepend()</code>
+method.</p>
+
+<p>~~~~~ // Add item to end $items-&gt;append($item); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2050,6 +2227,10 @@ starting point.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_prepend">ProcessWire\WireArray::prepend()</a></code></code>, <code><code><a href="class-ProcessWire.WireArray.html#_add">ProcessWire\WireArray::add()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -2066,19 +2247,22 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unshift">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#750-761" title="Go to source code">unshift</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#928-942" title="Go to source code">unshift</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Unshift an element to the beginning of the WireArray.</p>
+<p>Unshift an element to the beginning of the WireArray (alias for prepend)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Unshift an element to the beginning of the WireArray.</p>
+<p>Unshift an element to the beginning of the WireArray (alias for prepend)</p>
 
-<p>Alias for prepend()</p>
+<p>This is for consistency with PHP's naming convention of the
+<code>array_unshift()</code> method.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2094,6 +2278,10 @@ starting point.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_shift">ProcessWire\WireArray::shift()</a></code></code>, <code><code><a href="class-ProcessWire.WireArray.html#_prepend">ProcessWire\WireArray::prepend()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -2110,17 +2298,21 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_shift">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#763-775" title="Go to source code">shift</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#944-962" title="Go to source code">shift</a>( )</code>
 
 		<div class="description short">
 			
-<p>Shift an element off the beginning of the WireArray.</p>
+<p>Shift an element off the beginning of the WireArray and return it</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Shift an element off the beginning of the WireArray.</p>
+<p>Shift an element off the beginning of the WireArray and return it</p>
+
+<p>Consistent with behavior of PHP's <code>array_shift()</code> method.</p>
+
+<p>#pw-group-manipulation #pw-group-retrieval</p>
 
 
 
@@ -2131,6 +2323,10 @@ starting point.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_unshift">ProcessWire\WireArray::unshift()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -2147,19 +2343,22 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_push">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#777-789" title="Go to source code">push</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#964-979" title="Go to source code">push</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Push an item at the end of the WireArray.</p>
+<p>Push an item to the end of the WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Push an item at the end of the WireArray.</p>
+<p>Push an item to the end of the WireArray.</p>
 
-<p>Same as add() and append(), but here for syntax convenience.</p>
+<p>Same as <code>WireArray::add()</code> and <code>WireArray::append()</code>,
+but here for syntax convenience.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2175,6 +2374,10 @@ starting point.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_pop">ProcessWire\WireArray::pop()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -2191,17 +2394,19 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pop">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#791-803" title="Go to source code">pop</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#981-996" title="Go to source code">pop</a>( )</code>
 
 		<div class="description short">
 			
-<p>Pop an element off the end of the WireArray.</p>
+<p>Pop an element off the end of the WireArray and return it</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Pop an element off the end of the WireArray.</p>
+<p>Pop an element off the end of the WireArray and return it</p>
+
+<p>#pw-group-retrieval #pw-group-manipulation</p>
 
 
 
@@ -2228,17 +2433,19 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_shuffle">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#805-828" title="Go to source code">shuffle</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#998-1023" title="Go to source code">shuffle</a>( )</code>
 
 		<div class="description short">
 			
-<p>Shuffle/randomize the WireArray.</p>
+<p>Shuffle/randomize this WireArray</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Shuffle/randomize the WireArray.</p>
+<p>Shuffle/randomize this WireArray</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2265,28 +2472,30 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_index">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#830-842" title="Go to source code">index</a>( <span>integer <var>$num</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1025-1040" title="Go to source code">index</a>( <span>integer <var>$num</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Returns a WireArray of the item at the given index.</p>
+<p>Returns a new WireArray of the item at the given index.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns a WireArray of the item at the given index.</p>
+<p>Returns a new WireArray of the item at the given index.</p>
 
-<p>Unlike get() this returns a new WireArray with a single item, or a blank
-WireArray if item doesn't exist. Applicable to numerically indexed ProcesArray's
-only.</p>
+<p>Unlike <code>WireArray::get()</code> this returns a new WireArray with a
+single item, or a blank WireArray if item doesn't exist. Applicable to
+numerically indexed WireArray only.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$num</var></dt>
-					<dd><code>integer</code><br>$num</dd>
+					<dd><code>integer</code><br>$num Index number</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2295,6 +2504,10 @@ only.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_eq">ProcessWire\WireArray::eq()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -2311,7 +2524,7 @@ only.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_eq">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#844-858" title="Go to source code">eq</a>( <span>integer <var>$num</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1042-1059" title="Go to source code">eq</a>( <span>integer <var>$num</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2325,15 +2538,17 @@ exist.</p>
 <p>Returns the item at the given index starting from 0, or NULL if it doesn't
 exist.</p>
 
-<p>Unlike the index() method, this returns an actual item and not another
-WireArray.</p>
+<p>Unlike the <code>WireArray::index()</code> method, this returns an actual
+item and not another WireArray.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$num</var></dt>
-					<dd><code>integer</code><br>$num Return the nth item in this WireArray. Specify a negative number to count
+					<dd><code>integer</code><br>$num Return the n'th item in this WireArray. Specify a negative number to count
 from the end rather than the start.</dd>
 				</dl></div>
 
@@ -2343,6 +2558,10 @@ from the end rather than the start.</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_index">ProcessWire\WireArray::index()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -2359,20 +2578,24 @@ from the end rather than the start.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_first">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#860-870" title="Go to source code">first</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1061-1078" title="Go to source code">first</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns the first item in the WireArray or boolean FALSE if empty.</p>
+<p>Returns the first item in the WireArray or boolean false if empty.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the first item in the WireArray or boolean FALSE if empty.</p>
+<p>Returns the first item in the WireArray or boolean false if empty.</p>
 
 <p>Note that this resets the internal WireArray pointer, which would affect
 other active iterations.</p>
+
+<p>~~~~~ $item = $items-&gt;first(); ~~~~~</p>
+
+<p>#pw-group-traversal #pw-group-retrieval</p>
 
 
 
@@ -2399,20 +2622,24 @@ other active iterations.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_last">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#872-882" title="Go to source code">last</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1080-1097" title="Go to source code">last</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns the last item in the WireArray or boolean FALSE if empty.</p>
+<p>Returns the last item in the WireArray or boolean false if empty.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the last item in the WireArray or boolean FALSE if empty.</p>
+<p>Returns the last item in the WireArray or boolean false if empty.</p>
 
 <p>Note that this resets the internal WireArray pointer, which would affect
 other active iterations.</p>
+
+<p>~~~~~ $item = $items-&gt;last(); ~~~~~</p>
+
+<p>#pw-group-traversal #pw-group-retrieval</p>
 
 
 
@@ -2439,24 +2666,26 @@ other active iterations.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#885-907" title="Go to source code">remove</a>( <span>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1099-1123" title="Go to source code">remove</a>( <span>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Removes the item at the given index from the WireArray (if it exists).</p>
+<p>Removes the given item or index from the WireArray (if it exists).</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Removes the item at the given index from the WireArray (if it exists).</p>
+<p>Removes the given item or index from the WireArray (if it exists).</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$key Index of item or object instance.</dd>
+					<dd><code>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$key Item to remove (object), or index of that item.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2481,17 +2710,19 @@ other active iterations.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeItems">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#909-920" title="Go to source code">removeItems</a>( <span>array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1125-1138" title="Go to source code">removeItems</a>( <span>array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Removes multiple items at once</p>
+<p>Removes multiple identified items at once</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Removes multiple items at once</p>
+<p>Removes multiple identified items at once</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2523,17 +2754,19 @@ other active iterations.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeAll">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#922-933" title="Go to source code">removeAll</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1140-1153" title="Go to source code">removeAll</a>( )</code>
 
 		<div class="description short">
 			
-<p>Removes all items from the WireArray</p>
+<p>Removes all items from the WireArray, leaving it blank</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Removes all items from the WireArray</p>
+<p>Removes all items from the WireArray, leaving it blank</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2560,7 +2793,7 @@ other active iterations.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeQuietly">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#935-946" title="Go to source code">removeQuietly</a>( <span>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1155-1168" title="Go to source code">removeQuietly</a>( <span>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2572,12 +2805,14 @@ other active iterations.</p>
 			
 <p>Remove an item without any record of the event or telling anything else.</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$key Index of item or object instance.</dd>
+					<dd><code>integer|string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$key Index of item or object instance of item.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2602,7 +2837,7 @@ other active iterations.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sort">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#948-960" title="Go to source code">sort</a>( <span>string|array <var>$properties</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1170-1196" title="Go to source code">sort</a>( <span>string|array <var>$properties</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2614,18 +2849,31 @@ other active iterations.</p>
 			
 <p>Sort this WireArray by the given properties.</p>
 
-<p>$properties can be given as a sortByField string, i.e. "name, datestamp" OR
-as an array of strings, i.e. array("name", "datestamp") You may also specify the
-properties as "property.subproperty", where property resolves to a Wire derived
-object, and subproperty resolves to a property within that object.</p>
+<ul>
+	<li>Sort properties can be given as a string in the format <code>name,
+	datestamp</code> or as an array of strings, i.e. <code>["name",
+	"datestamp"]</code>.</li>
+
+	<li>You may also specify the properties as <code>property.subproperty</code>,
+	where property resolves to a Wire derived object in each item, and subproperty
+	resolves to a property within that object.</li>
+
+	<li>Prepend or append a minus "-" to reverse the sort (per field).</li>
+</ul>
+
+<p>~~~~~ // Sort newest to oldest $items-&gt;sort("-created");</p>
+
+<p>// Sort by last_name then first_name $items-&gt;sort("last_name,
+first_name"); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$properties</var></dt>
-					<dd><code>string|array</code><br>$properties Field names to sort by (comma separated string or an array). Prepend
-or append a minus "-" to reverse the sort (per field).</dd>
+					<dd><code>string|array</code><br>$properties Field names to sort by (CSV string or array).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2650,7 +2898,7 @@ or append a minus "-" to reverse the sort (per field).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__sort">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#962-991" title="Go to source code">_sort</a>( <span>string|array <var>$properties</var></span>, <span>integer <var>$numNeeded</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1198-1227" title="Go to source code">_sort</a>( <span>string|array <var>$properties</var></span>, <span>integer <var>$numNeeded</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2703,7 +2951,7 @@ used by filterData)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_stableSort">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#993-1083" title="Go to source code">stableSort</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>&amp; $data</var></span>, <span>array <var>$properties</var></span>, <span>integer <var>$numNeeded</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1229-1319" title="Go to source code">stableSort</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>&amp; $data</var></span>, <span>array <var>$properties</var></span>, <span>integer <var>$numNeeded</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2753,7 +3001,7 @@ used by filterData)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemPropertyValue">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1085-1100" title="Go to source code">getItemPropertyValue</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span>, <span>string <var>$property</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1321-1336" title="Go to source code">getItemPropertyValue</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span>, <span>string <var>$property</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2801,7 +3049,7 @@ prepare the Wire for any states needed for sorting.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filterData">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1102-1175" title="Go to source code">filterData</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span>, <span>boolean <var>$not</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1338-1411" title="Go to source code">filterData</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span>, <span>boolean <var>$not</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2848,7 +3096,7 @@ contains additions and modifications by @niklaka.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filterDataSelectors">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1177-1185" title="Go to source code">filterDataSelectors</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1413-1421" title="Go to source code">filterDataSelectors</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2888,19 +3136,24 @@ contains additions and modifications by @niklaka.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filter">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1187-1199" title="Go to source code">filter</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1423-1441" title="Go to source code">filter</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Filter out Wires that don't match the selector (destructive)</p>
+<p>Filter this WireArray to only include items that match the given selector
+(destructive)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Filter out Wires that don't match the selector (destructive)</p>
+<p>Filter this WireArray to only include items that match the given selector
+(destructive)</p>
 
-<p>Same as filterData, but for public interface without the $not option.</p>
+<p>~~~~~ // Filter $items to contain only those with "featured" property having
+value 1 $items-&gt;filter("featured=1"); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2936,21 +3189,24 @@ contains additions and modifications by @niklaka.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_not">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1202-1215" title="Go to source code">not</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1443-1461" title="Go to source code">not</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Filter out Wires that don't match the selector (destructive)</p>
+<p>Filter this WireArray to only include items that DO NOT match the selector
+(destructive)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Filter out Wires that don't match the selector (destructive)</p>
+<p>Filter this WireArray to only include items that DO NOT match the selector
+(destructive)</p>
 
-<p>Same as filterData, but for public interface with the $not option
-specifically set to "true". Example: $pages-&gt;not("nonav"); // returns all
-pages that don't have a nonav variable set to a positive value.</p>
+<p>~~~~~ // returns all pages that don't have a 'nonav' variable set to a
+positive value. $pages-&gt;not("nonav"); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -2986,21 +3242,26 @@ pages that don't have a nonav variable set to a positive value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_find">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1218-1232" title="Go to source code">find</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1463-1489" title="Go to source code">find</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Find all Wires in this WireArray that match the given selector
-(non-destructive)</p>
+<p>Find all items in this WireArray that match the given selector.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Find all Wires in this WireArray that match the given selector
-(non-destructive)</p>
+<p>Find all items in this WireArray that match the given selector.</p>
 
 <p>This is non destructive and returns a brand new WireArray.</p>
+
+<p>~~~~~ // Find all items with a title property containing the word "foo"
+$matches = $items-&gt;find("title%=foo"); if($matches-&gt;count()) { echo "Found
+$matches-&gt;count items"; } else { echo "Sorry, no items were found"; }
+~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -3032,19 +3293,26 @@ pages that don't have a nonav variable set to a positive value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findOne">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1234-1243" title="Go to source code">findOne</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1491-1516" title="Go to source code">findOne</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Same as find, but returns a single Page rather than WireArray or FALSE if
-empty.</p>
+<p>Find a single item by selector</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Same as find, but returns a single Page rather than WireArray or FALSE if
-empty.</p>
+<p>Find a single item by selector</p>
+
+<p>This is the same as <code>WireArray::find()</code> except that it returns a
+single item rather than a new WireArray of items.</p>
+
+<p>~~~~~ // Get an item with name "foo-bar" $item =
+$items-&gt;findOne("name=foo-bar"); if($item) { // item was found } else { //
+item was not found } ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -3056,10 +3324,14 @@ empty.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|boolean</code><br>
+					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|boolean</code><br>Returns item from WireArray or false if the result is empty.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_find">ProcessWire\WireArray::find()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -3076,7 +3348,7 @@ empty.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_iterable">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1245-1259" title="Go to source code">iterable</a>( <span>mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1518-1534" title="Go to source code">iterable</a>( <span>mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3088,8 +3360,14 @@ empty.</p>
 			
 <p>Determines if the given item iterable as an array.</p>
 
-<p>Returns true for arrays and WireArrays. Can be called statically like this
-WireArray::iterable($a).</p>
+<ul>
+	<li>Returns true for arrays and WireArray derived objects.</li>
+
+	<li>Can be called statically like this
+	<code>WireArray::iterable($a)</code>.</li>
+</ul>
+
+<p>#pw-group-info</p>
 
 
 
@@ -3114,14 +3392,14 @@ WireArray::iterable($a).</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a>[]</code>|<code><a href="class-ArrayObject.html">ArrayObject</a></code>
+			<code><a href="class-ArrayObject.html">ArrayObject</a></code>|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a>[]</code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIterator">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1261-1272" title="Go to source code">getIterator</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1536-1556" title="Go to source code">getIterator</a>( )</code>
 
 		<div class="description short">
 			
@@ -3133,21 +3411,28 @@ WireArray::iterable($a).</p>
 			
 <p>Allows iteration of the WireArray.</p>
 
-<p>Fulfills \IteratorAggregate interface.</p>
+<ul>
+	<li>Fulfills PHP's IteratorAggregate interface so that you can traverse the
+	WireArray.</li>
+
+	<li>No need to call this method directly, just use PHP's <code>foreach()</code>
+	method on the WireArray.</li>
+</ul>
+
+<p>~~~~~ // Traversing a WireArray with foreach: foreach($items as $item) { //
+... } ~~~~~</p>
+
+<p>#pw-group-traversal</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a>[]</code>|<code><a href="class-ArrayObject.html">ArrayObject</a></code></code><br>
+					<code><code><a href="class-ArrayObject.html">ArrayObject</a></code>|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a>[]</code></code><br>
 				</div>
 
 
-				<h4>Todo</h4>
-				<div class="list">
-						can we return $this rather than ArrayObject?<br>
-				</div>
 
 
 				<h4>Implementation of</h4>
@@ -3166,7 +3451,7 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_count">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1274-1284" title="Go to source code">count</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1558-1576" title="Go to source code">count</a>( )</code>
 
 		<div class="description short">
 			
@@ -3178,7 +3463,13 @@ WireArray::iterable($a).</p>
 			
 <p>Returns the number of items in this WireArray.</p>
 
-<p>Fulfills \Countable interface.</p>
+<p>Fulfills PHP's Countable interface, meaning it also enables this WireArray to
+be used with PHP's <code>count()</code> function.</p>
+
+<p>~~~~~ // These two are the same $qty = $items-&gt;count(); $qty =
+count($items); ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -3207,7 +3498,7 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetSet">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1286-1297" title="Go to source code">offsetSet</a>( <span>integer|string <var>$key</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1578-1591" title="Go to source code">offsetSet</a>( <span>integer|string <var>$key</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3220,6 +3511,8 @@ WireArray::iterable($a).</p>
 <p>Sets an index in the WireArray.</p>
 
 <p>For the \ArrayAccess interface.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -3251,7 +3544,7 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetGet">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1299-1312" title="Go to source code">offsetGet</a>( <span>integer|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1593-1608" title="Go to source code">offsetGet</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3262,6 +3555,8 @@ WireArray::iterable($a).</p>
 		<div class="description detailed hidden">
 			
 <p>Returns the value of the item at the given index, or false if not set.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -3295,7 +3590,7 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetUnset">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1314-1330" title="Go to source code">offsetUnset</a>( <span>integer|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1610-1628" title="Go to source code">offsetUnset</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3308,6 +3603,8 @@ WireArray::iterable($a).</p>
 <p>Unsets the value at the given index.</p>
 
 <p>For the \ArrayAccess interface.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -3341,7 +3638,7 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetExists">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1332-1343" title="Go to source code">offsetExists</a>( <span>integer|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1630-1643" title="Go to source code">offsetExists</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3354,6 +3651,8 @@ WireArray::iterable($a).</p>
 <p>Determines if the given index exists in this WireArray.</p>
 
 <p>For the \ArrayAccess interface.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -3387,7 +3686,7 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1345-1358" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1645-1659" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -3426,17 +3725,19 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_reverse">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1360-1370" title="Go to source code">reverse</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1661-1673" title="Go to source code">reverse</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return a reversed version of this WireArray (non-destructive)</p>
+<p>Return a new reversed version of this WireArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return a reversed version of this WireArray (non-destructive)</p>
+<p>Return a new reversed version of this WireArray.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -3463,7 +3764,7 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unique">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1372-1383" title="Go to source code">unique</a>( <span>integer <var>$sortFlags</var> = SORT_STRING</span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1675-1690" title="Go to source code">unique</a>( <span>integer <var>$sortFlags</var> = SORT_STRING</span> )</code>
 
 		<div class="description short">
 			
@@ -3475,12 +3776,19 @@ WireArray::iterable($a).</p>
 			
 <p>Return a new array that is unique (no two of the same elements)</p>
 
+<p>This is the equivalent to PHP's [array_unique()](<a
+href="http://php.net/manual/en/function.array-unique.php">http://php.net/manual/en/function.array-unique.php</a>)
+function.</p>
+
+<p>#pw-group-retrieval</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$sortFlags</var></dt>
-					<dd><code>integer</code><br>$sortFlags Sort flags per PHP's array_unique function (default=SORT_STRING)</dd>
+					<dd><code>integer</code><br>$sortFlags Sort flags per PHP's <code>array_unique()</code> function
+(default=<code>SORT_STRING</code>)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -3505,7 +3813,7 @@ WireArray::iterable($a).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetTrackChanges">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1386-1397" title="Go to source code">resetTrackChanges</a>( <span>boolean <var>$trackChanges</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1693-1706" title="Go to source code">resetTrackChanges</a>( <span>boolean <var>$trackChanges</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3516,6 +3824,8 @@ WireArray::iterable($a).</p>
 		<div class="description detailed hidden">
 			
 <p>Clears out any tracked changes and turns change tracking ON or OFF</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -3550,7 +3860,7 @@ true is assumed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trackAdd">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1399-1407" title="Go to source code">trackAdd</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1708-1716" title="Go to source code">trackAdd</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3588,7 +3898,7 @@ true is assumed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trackRemove">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1409-1417" title="Go to source code">trackRemove</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1718-1726" title="Go to source code">trackRemove</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3626,17 +3936,21 @@ true is assumed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemsAdded">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1419-1427" title="Go to source code">getItemsAdded</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1728-1738" title="Go to source code">getItemsAdded</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return array of all keys added while trackChanges was on</p>
+<p>Return array of all items added to this WireArray (while change tracking is
+enabled)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return array of all keys added while trackChanges was on</p>
+<p>Return array of all items added to this WireArray (while change tracking is
+enabled)</p>
+
+<p>#pw-group-changes</p>
 
 
 
@@ -3663,17 +3977,21 @@ true is assumed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemsRemoved">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1429-1437" title="Go to source code">getItemsRemoved</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1740-1750" title="Go to source code">getItemsRemoved</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return array of all keys removed while trackChanges was on</p>
+<p>Return array of all items removed from this WireArray (when change tracking
+is enabled)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return array of all keys removed while trackChanges was on</p>
+<p>Return array of all items removed from this WireArray (when change tracking
+is enabled)</p>
+
+<p>#pw-group-changes</p>
 
 
 
@@ -3700,17 +4018,19 @@ true is assumed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNext">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1439-1467" title="Go to source code">getNext</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span>, <span>boolean <var>$strict</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1752-1782" title="Go to source code">getNext</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span>, <span>boolean <var>$strict</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Given the current item, get the next in the array</p>
+<p>Given an item, get the item that comes after it in the WireArray</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given the current item, get the next in the array</p>
+<p>Given an item, get the item that comes after it in the WireArray</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -3725,7 +4045,7 @@ comparison.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null</code><br>Returns next item if found, or null if not<br>
 				</div>
 
 
@@ -3745,17 +4065,19 @@ comparison.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrev">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1469-1497" title="Go to source code">getPrev</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span>, <span>boolean <var>$strict</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1784-1814" title="Go to source code">getPrev</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span>, <span>boolean <var>$strict</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Given the current item, get the previous item in the array</p>
+<p>Given an item, get the item before it in the WireArray</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given the current item, get the previous item in the array</p>
+<p>Given an item, get the item before it in the WireArray</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -3770,7 +4092,7 @@ comparison.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null</code><br>Returns item that comes before given item, or null if not found<br>
 				</div>
 
 
@@ -3790,7 +4112,7 @@ comparison.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_usesNumericKeys">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1499-1519" title="Go to source code">usesNumericKeys</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1816-1838" title="Go to source code">usesNumericKeys</a>( )</code>
 
 		<div class="description short">
 			
@@ -3804,6 +4126,8 @@ comparison.</dd>
 
 <p>We determine this by creating a blank item and seeing what the type is of
 it's key.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -3830,21 +4154,25 @@ it's key.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_implode">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1521-1582" title="Go to source code">implode</a>( <span>string <var>$delimiter</var></span>, <span>string|callable <var>$property</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1840-1905" title="Go to source code">implode</a>( <span>string <var>$delimiter</var></span>, <span>string|callable <var>$property</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Implode all elements to a delimiter-separated string containing the given
+<p>Combine all elements into a delimiter-separated string containing the given
 property from each item</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Implode all elements to a delimiter-separated string containing the given
+<p>Combine all elements into a delimiter-separated string containing the given
 property from each item</p>
 
-<p>Similar to PHP's implode() function.</p>
+<p>Similar to PHP's <code>implode()</code> function.</p>
+
+<p>#pw-link [Introduction of implode method](<a
+href="https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev/">https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev/</a>)
+#pw-group-retrieval #pw-group-fun-tools #pw-group-output-rendering</p>
 
 
 
@@ -3860,11 +4188,12 @@ the value to store. If a function/closure is provided it is given the $item
 (argument 1) and the $key (argument 2), and it should return the value (string)
 to use. If delimiter is omitted, this becomes the first argument.</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Optional options to modify the behavior: skipEmpty: Whether empty items
-should be skipped (default=true) prepend: String to prepend to result. Ignored
-if result is blank. append: String to prepend to result. Ignored if result is
-blank. Please note that if delimiter is omitted, $options becomes the second
-argument.</dd>
+					<dd><code>array</code><br>$options Optional options to modify the behavior: - <code>skipEmpty</code>
+(bool): Whether empty items should be skipped (default=true) -
+<code>prepend</code> (string): String to prepend to result. Ignored if result is
+blank. - <code>append</code> (string): String to append to result. Ignored if
+result is blank. - Please note that if delimiter is omitted, $options becomes
+the second argument.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -3889,7 +4218,7 @@ argument.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_explode">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1584-1623" title="Go to source code">explode</a>( <span>string|callable|array <var>$property</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1907-1950" title="Go to source code">explode</a>( <span>string|callable|array <var>$property</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3905,22 +4234,27 @@ argument.</dd>
 will return an array of associative arrays with all requested properties for
 each item.</p>
 
-<p>You may also provide a function as the property. That function receives the
+<p>You may also provide a function as the $property. That function receives the
 $item as the first argument and $key as the second. It should return the value
 that will be stored.</p>
 
 <p>The keys of the returned array remain consistent with the original
 WireArray.</p>
 
+<p>#pw-link [Introduction of explode method](<a
+href="https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev/">https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev/</a>)
+#pw-group-retrieval #pw-group-fun-tools</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$property</var></dt>
-					<dd><code>string|callable|array</code><br>$property</dd>
+					<dd><code>string|callable|array</code><br>$property Property or properties to retrieve, or callable function that shuld
+receive items.</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options - getMethod: Method to call on each item to retrieve $property (default
-= "get")</dd>
+					<dd><code>array</code><br>$options Options to modify default behavior: - <code>getMethod</code> (string):
+Method to call on each item to retrieve $property (default = "get")</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -3945,7 +4279,7 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____and">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1625-1643" title="Go to source code">___and</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1952-1975" title="Go to source code">___and</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3957,24 +4291,26 @@ WireArray.</p>
 			
 <p>Return a new copy of this WireArray with the given item(s) appended</p>
 
-<p>Primarily for syntax convenience, i.e.
-if($page-&gt;parents-&gt;and($page)-&gt;has($featured)) { ... }</p>
+<p>Primarily for syntax convenience in fluent interfaces.</p>
 
-<p>Note: PHP doesn't allow a function named 'and' so making this hookable is
-what enables us to make it a usable API function. When calling this function,
-you may use just 'and' rather than '___and'.</p>
+<p>~~~~~ if($page-&gt;parents-&gt;and($page)-&gt;has($featured)) { // either
+$page or its parents has the $featured page } ~~~~~</p>
+
+<p>#pw-group-traversal #pw-group-fun-tools #pw-link [Introduction of and
+method](<a
+href="https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev/">https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev/</a>)</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>$item</dd>
+					<dd><code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>$item Item(s) to append</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>New WireArray containing this one and the given item(s).<br>
 				</div>
 
 
@@ -3994,7 +4330,7 @@ you may use just 'and' rather than '___and'.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_data">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1645-1668" title="Go to source code">data</a>( <span>string|null <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#1977-2011" title="Go to source code">data</a>( <span>string|null <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -4006,34 +4342,41 @@ you may use just 'and' rather than '___and'.</p>
 			
 <p>Store or retrieve an extra data value in this WireArray</p>
 
-<p>The data() function is exactly the same thing that it is in jQuery: <a
-href="http://api.jquery.com/data/">http://api.jquery.com/data/</a></p>
+<p>The data() function is exactly the same thing that it is in jQuery: &lt;<a
+href="http://api.jquery.com/data/">http://api.jquery.com/data/</a>&gt;.</p>
 
-<p>Usage: $a-&gt;data('key', 'value'); // set a data value $value =
-$a-&gt;date('key'); // retrieve a data value $data = $a-&gt;data(); // no
-arguments = return all data as array</p>
+<p>~~~~~~ // set a data value named 'foo' to value 'bar' $a-&gt;data('foo',
+'bar');</p>
+
+<p>// retrieve the previously set data value $bar = $a-&gt;data('foo');</p>
+
+<p>// get all previously set data $all = $a-&gt;data(); ~~~~~~</p>
+
+<p>#pw-group-other-data-storage #pw-link [Introduction of data method](<a
+href="https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev/">https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev/</a>)</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|null</code><br>$key</dd>
+					<dd><code>string|null</code><br>$key Name of data property you want to get or set. Omit to get all data
+properties.</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed|null</code><br>$value</dd>
+					<dd><code>mixed|null</code><br>$value Value of data property you want to set. Omit when getting properties.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>$this|mixed|null<br>
+					<code>mixed</code><br>$this|mixed|null Returns one of the following, depending on specified arguments:
+- <code>mixed</code> when getting a single property: whatever you set is what
+you will get back. - <code>null</code> if the property you are trying to get
+does not exist in the data. - <code>$this</code> reference to this WireArray if
+you were setting a value. - <code>array</code> of all data if you specified no
+arguments.<br>
 				</div>
 
 
-				<h4>Todo</h4>
-				<div class="list">
-						Consider whether the utility of this may go beyond WireArray and perhaps into
-Wire.<br>
-				</div>
 
 
 		</div>
@@ -4050,24 +4393,26 @@ Wire.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeData">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1670-1680" title="Go to source code">removeData</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2013-2025" title="Go to source code">removeData</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Remove an attribute</p>
+<p>Remove a property/value previously set with the WireArray::data() method.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Remove an attribute</p>
+<p>Remove a property/value previously set with the WireArray::data() method.</p>
+
+<p>#pw-group-other-data-storage</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property you want to remove</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -4092,7 +4437,7 @@ Wire.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1682-1701" title="Go to source code">__invoke</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2027-2046" title="Go to source code">__invoke</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4134,17 +4479,51 @@ Wire.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____callUnknown">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1703-1730" title="Go to source code">___callUnknown</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2048-2105" title="Go to source code">___callUnknown</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Handler for when an unknown/unhooked function call is executed</p>
+<p>Handler for when an unknown/unhooked method call is executed</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Handler for when an unknown/unhooked function call is executed</p>
+<p>Handler for when an unknown/unhooked method call is executed</p>
+
+<p>If interested in hooking this, please see the
+<code>Wire::callUnknown()</code> method for more details on the purpose and
+potential hooking implementation of this method.</p>
+
+<p>The implementation built-in to WireArray provides a couple of handy
+capabilities to all WireArray derived classes (assuming that <code>$items</code>
+is an instance of any WireArray):</p>
+
+<ul>
+	<li>It enables you to call <code>$items-&gt;foobar()</code> and receive a
+	regular PHP array containing the value of the "foobar" property from each item
+	in this WireArray. It is equivalent to calling
+	<code>$items-&gt;explode('foobar')</code>. Of course, substitute "foobar" with
+	the name of any property present on items in the WireArray.</li>
+
+	<li>It enables you to call <code>$items-&gt;foobar(", ")</code> and receive a
+	string containing the value of the "foobar" property from each item, delimited
+	by the string you provided as an argument (a comma and space ", " in this case).
+	This is equivalent to calling <code>$items-&gt;implode(", ",
+	"foobar")</code>.</li>
+
+	<li>Also note that if you call <code>$items-&gt;foobar(", ", $options)</code>
+	where $options is an array, it is equivalent to <code>$items-&gt;implode(", ",
+	"foobar", $options)</code>.</li>
+</ul>
+
+<p>~~~~~ // Get array of all "title" values from each item $titlesArray =
+$items-&gt;title();</p>
+
+<p>// Get a newline separated string of all "title" values from each item
+$titlesString = $items-&gt;title("\n"); ~~~~~</p>
+
+<p>#pw-hooker #pw-group-fun-tools</p>
 
 
 
@@ -4153,7 +4532,7 @@ Wire.<br>
 					<dt><var>$method</var></dt>
 					<dd><code>string</code><br>$method Requested method name</dd>
 					<dt><var>$arguments</var></dt>
-					<dd><code>array</code><br>$arguments Arguments provided</dd>
+					<dd><code>array</code><br>$arguments Arguments provided to the method</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -4184,19 +4563,33 @@ Wire.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_each">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1732-1787" title="Go to source code">each</a>( <span>callable|string|array|null <var>$func</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2107-2187" title="Go to source code">each</a>( <span>callable|string|array|null <var>$func</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Execute a function for each item, or build a string or array from each
-item</p>
+<p>Perform an action upon each item in the WireArray</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Execute a function for each item, or build a string or array from each
-item</p>
+<p>Perform an action upon each item in the WireArray</p>
+
+<p>This is typically used to execute a function for each item, or to build a
+string or array from each item.</p>
+~~~~~ // Generate navigation list of page children: echo
+$page-&gt;children()-&gt;each(function($child) { return "<a
+href="$child-&gt;url">$child-&gt;title</a>"; });// Same as above using different
+method (template string): echo $page-&gt;children()-&gt;each("<a
+href="{url}">{title}</a>");
+<p>// Get an array of all "title" properties $titles =
+$page-&gt;children()-&gt;each("title");</p>
+
+<p>// Get array of "title" and "url" properties. Returns an array // containing
+an associative array for each item with "title" and "url" $properties =
+$page-&gt;children()-&gt;each(["title", "url"]); ~~~~~</p>
+
+<p>#pw-group-traversal #pw-group-output-rendering #pw-group-fun-tools</p>
 
 
 
@@ -4216,13 +4609,17 @@ of associative arrays indexed by property name.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array|null|string|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>Returns one of the following (related to numbers above). 1a. $this WireArray of
-given a function that has no return values. 1b. Returns a string containing the
-concatenated results of all function calls, if your function returns strings. 2.
-Returns the processed and concatenated result (string) of all items in your
-template string. 3. Returns regular PHP array of the property values for each
-item you requested. 4. Returns an array of associative arrays containing the
-property values for each item you requested.<br>
+					<code>array|null|string|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>Returns one of the following (related to numbers above): - <code>$this</code>
+(1a): WireArray if given a function that has no return values (if using option
+#1 in arguments). - <code>string</code> (1b): Containing the concatenated
+results of all function calls, if your function returns strings (if using option
+#1 in arguments). - <code>string</code> (2): Returns the processed and
+concatenated result (string) of all items in your template string (if using
+option #2 in arguments). - <code>array</code> (3): Returns regular PHP array of
+the property values for each item you requested (if using option #3 in
+arguments). - <code>array</code> (4): Returns an array of associative arrays
+containing the property values for each item you requested (if using option #4
+in arguments).<br>
 				</div>
 
 
@@ -4242,7 +4639,7 @@ property values for each item you requested.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#1789-1820" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2189-2220" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -4289,6 +4686,7 @@ property values for each item you requested.<br>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -4348,7 +4746,7 @@ property values for each item you requested.<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireArray.html#26-32" title="Go to source code"><var>$data</var></a>
+				<a href="source-class-ProcessWire.WireArray.html#37-43" title="Go to source code"><var>$data</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -4375,7 +4773,7 @@ property values for each item you requested.<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireArray.html#34-40" title="Go to source code"><var>$extraData</var></a>
+				<a href="source-class-ProcessWire.WireArray.html#45-51" title="Go to source code"><var>$extraData</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -4404,7 +4802,7 @@ property values for each item you requested.<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireArray.html#42-48" title="Go to source code"><var>$itemsRemoved</var></a>
+				<a href="source-class-ProcessWire.WireArray.html#53-59" title="Go to source code"><var>$itemsRemoved</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -4437,7 +4835,7 @@ trackChanges is on</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireArray.html#50-56" title="Go to source code"><var>$itemsAdded</var></a>
+				<a href="source-class-ProcessWire.WireArray.html#61-67" title="Go to source code"><var>$itemsAdded</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

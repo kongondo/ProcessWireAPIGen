@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeSelector | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -610,6 +610,8 @@ are loaded and ready for API usage</p>
 <p>Per Module interface, this template method is called when all system classes
 are loaded and ready for API usage</p>
 
+<p>#pw-internal</p>
+
 
 
 
@@ -637,34 +639,26 @@ are loaded and ready for API usage</p>
 
 		<div class="description short">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
-<p>Abstract Template Method: child classes should override this. Code snippet is
-for example purposes only.</p>
-
-<p>Page and Field are provided as params in case the Fieldtype needs them for
-any custom population with the Inputfield. However, most Fieldtypes won't need
-them since Inputfield objects don't have any Page dependencies (!) The Field
-class handles setting all standard Inputfield attributes rather than this method
-to reduce code duplication in Inputfield modules.</p>
-
-<p>(!) See FieldtypeFile for an example that uses both Page and Field
-params.</p>
+<p>#pw-group-other</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfield will be for</dd>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that the Inputfield will be for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -695,22 +689,25 @@ params.</p>
 
 		<div class="description short">
 			
-<p>Get an array of Fieldtypes that are compatible with this one (i.e. ones the
-user may change the type to)</p>
+<p>Get an array of Fieldtypes that are compatible with this one</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get an array of Fieldtypes that are compatible with this one (i.e. ones the
-user may change the type to)</p>
+<p>Get an array of Fieldtypes that are compatible with this one</p>
+
+<p>This represents the list of Fieldtype modules that the user is allowed to
+change to from this one.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Just in case it's needed</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -741,17 +738,26 @@ user may change the type to)</p>
 
 		<div class="description short">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
-<p>This method should remove anything that's invalid from the given value. If it
-can't be sanitized, it should be blanked. This method filters every value set to
-a Page instance.</p>
+<ul>
+	<li>Implementation is required by Fieldtype modules, as this method is
+	abstract.</li>
+
+	<li>This method should remove anything that's invalid from the given value. If
+	it can't be sanitized, it should be made blank.</li>
+
+	<li>This method filters every value set to a Page instance, so it should do it's
+	thing as quickly as possible.</li>
+</ul>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -802,14 +808,16 @@ value</p>
 value</p>
 
 <p>Page instances call upon this method to do any necessary formatting of a
-value in preparation for output, but only if $page-&gt;outputFormatting is true.
-The most common use of this method is for text-only fields that need to have
-some text formatting applied to them, like Markdown, SmartyPants, Textile, etc.
-As a result, Fieldtype modules don't need to implement this unless it's
-applicable.</p>
+value in preparation for output, but only if output formatting
+<code>$page-&gt;of()</code> is enabled. The most common use of this method is
+for text-only fields that need to have some text formatting applied to them,
+like Markdown, SmartyPants, Textile, etc. As a result, Fieldtype modules don't
+need to implement this unless it's applicable.</p>
 
-<p>Fieldtype modules that implement this do not need to call this parent
-method.</p>
+<p>Fieldtype modules that implement this do not need to call this parent method,
+as it doesn't do anything.</p>
+
+<p>#pw-group-formatting</p>
 
 
 
@@ -840,31 +848,35 @@ method.</p>
 
 		<td class="attributes"><code>
 			 public 
-			string|integer|array
+			string|integer|float|array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____sleepValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeSelector.html#54-60" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeSelector.html#54-60" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|float|array|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Given an 'awake' value, as set by wakeupValue, convert the value back to a
-basic type for storage in DB.</p>
+<p>Given an 'awake' value, as set by wakeupValue(), convert the value back to a
+basic type for storage in database.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given an 'awake' value, as set by wakeupValue, convert the value back to a
-basic type for storage in DB.</p>
+<p>Given an 'awake' value, as set by wakeupValue(), convert the value back to a
+basic type for storage in database.</p>
 
 <p>In many cases, this may mean no change to the value, which is why the default
 here just returns the value. But for values that are stored with pages as
 objects (for instance) this method would take that object and convert it to an
 array, int or string (serialized or otherwise).</p>
+
+<p>Returned value must be either an array, number, or string.</p>
+
+<p>#pw-group-saving</p>
 
 
 
@@ -875,12 +887,12 @@ array, int or string (serialized or otherwise).</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer|array|object</code><br>$value</dd>
+					<dd><code>string|integer|float|array|object</code><br>$value</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|array</code><br>
+					<code>string|integer|float|array</code><br>
 				</div>
 
 
@@ -906,21 +918,25 @@ array, int or string (serialized or otherwise).</p>
 
 		<div class="description short">
 			
-<p>Given a raw value (value as stored in DB), return the value as it would
-appear in a Page object</p>
+<p>Given a raw value (value as stored in database), return the value as it would
+appear in a Page object.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given a raw value (value as stored in DB), return the value as it would
-appear in a Page object</p>
+<p>Given a raw value (value as stored in database), return the value as it would
+appear in a Page object.</p>
 
 <p>In many cases, no change to the value may be necessary, but if a Page expects
 this value as an object (for instance) then this would be the method that
-converts that value to an object and returns it. This method is called by the
-Page class, which takes the value provided by loadPageField and sends it to
-wakeValue before making it a part of the Page.</p>
+converts that value to an object and returns it.</p>
+
+<p>This method is called by the Page class, which takes the value provided by
+<code>Fieldtype::loadPageField()</code> and sends it to this method before
+making it a part of the Page.</p>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -940,6 +956,10 @@ wakeValue before making it a part of the Page.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Fieldtype::sleepValue()<br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.Fieldtype.html#____wakeupValue">ProcessWire\Fieldtype::___wakeupValue()</a></code></div>
@@ -975,7 +995,7 @@ wakeValue before making it a part of the Page.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but usually should not.</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but typically isn't.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1063,21 +1083,24 @@ specified another)</dd>
 
 		<div class="description short">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
-<p>This is in addition any configuration fields supplied by the Inputfield.</p>
+<p>This is in addition to any configuration fields supplied by the
+Inputfield.</p>
 
 <p>Classes implementing this method should call upon this parent method to
 obtain the InputfieldWrapper, and then append their own Inputfields to that.</p>
 
 <p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
 are assumed to be for runtime use and are NOT stored in the database.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -1187,6 +1210,7 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

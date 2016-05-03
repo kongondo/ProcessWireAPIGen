@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PaginatedArray | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -491,6 +491,14 @@
 <p>Like WireArray, but with the additional methods and properties needed for
 WirePaginatable interface.</p>
 
+<p>#pw-summary PaginatedArray is a type of WireArray that supports pagination of
+items within it. #pw-body = Here you will see methods specific to the pagination
+aspects of this class only. For full details on available methods outside of
+pagination, please see the <code>WireArray</code> class. The most common type of
+PaginatedArray is a <code>PageArray</code>. #pw-body #pw-summary-manipulation In
+most cases you will not need these manipulation methods as core API calls
+already take care of this.</p>
+
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
@@ -556,7 +564,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PaginatedArray.html#4-188" title="Go to source code">core/PaginatedArray.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PaginatedArray.html#4-236" title="Go to source code">core/PaginatedArray.php</a><br>
 	</div>
 
 
@@ -574,7 +582,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTotal">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#44-54" title="Go to source code">setTotal</a>( <span>integer <var>$total</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#52-64" title="Go to source code">setTotal</a>( <span>integer <var>$total</var></span> )</code>
 
 		<div class="description short">
 			
@@ -585,6 +593,8 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<div class="description detailed hidden">
 			
 <p>Set the total number of items, if more than are in the WireArray.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -618,27 +628,34 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTotal">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#56-66" title="Go to source code">getTotal</a>( )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#66-81" title="Go to source code">getTotal</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get the total number of items in all paginations of the WireArray.</p>
+<p>Get the total number of items in the WireArray, including all
+paginations.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the total number of items in all paginations of the WireArray.</p>
+<p>Get the total number of items in the WireArray, including all
+paginations.</p>
 
-<p>If no limit used, this returns total number of items currently in the
-WireArray.</p>
+<p>If no limit is used, this returns total number of items currently in the
+WireArray, which would be the same as the <code>WireArray::count()</code> value.
+But when a limit is used, this number will typically be larger than the count,
+as it includes all items across all paginations, whether currently present or
+not.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>
+					<code>integer</code><br>Total number of items across all paginations.<br>
 				</div>
 
 
@@ -660,7 +677,7 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLimit">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#68-78" title="Go to source code">setLimit</a>( <span>integer <var>$numLimit</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#83-95" title="Go to source code">setLimit</a>( <span>integer <var>$numLimit</var></span> )</code>
 
 		<div class="description short">
 			
@@ -671,6 +688,8 @@ WireArray.</p>
 		<div class="description detailed hidden">
 			
 <p>Set the limit that was used in pagination.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -704,7 +723,7 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLimit">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#80-90" title="Go to source code">getLimit</a>( )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#97-109" title="Go to source code">getLimit</a>( )</code>
 
 		<div class="description short">
 			
@@ -716,7 +735,10 @@ WireArray.</p>
 			
 <p>Get the limit that was used in pagination.</p>
 
-<p>If no limit set, then return number of items currently in this WireArray.</p>
+<p>If no limit was set, then it returns the number of items currently in this
+WireArray.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -745,24 +767,29 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setStart">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#92-102" title="Go to source code">setStart</a>( <span>integer <var>$numStart</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#111-125" title="Go to source code">setStart</a>( <span>integer <var>$numStart</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the starting offset that was used for pagination.</p>
+<p>Set the starting offset number to use for pagination.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the starting offset that was used for pagination.</p>
+<p>Set the starting offset number to use for pagination.</p>
+
+<p>This is typically the current page number (minus 1) multiplied by limit
+setting.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$numStart</var></dt>
-					<dd><code>integer</code><br>$numStart;</dd>
+					<dd><code>integer</code><br>$numStart</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -789,17 +816,19 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getStart">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#104-112" title="Go to source code">getStart</a>( )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#127-137" title="Go to source code">getStart</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get the starting offset that was used for pagination.</p>
+<p>Get the starting offset number that was used for pagination.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the starting offset that was used for pagination.</p>
+<p>Get the starting offset number that was used for pagination.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -828,7 +857,7 @@ WireArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getProperty">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#114-135" title="Go to source code">getProperty</a>( <span>string <var>$property</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#139-171" title="Go to source code">getProperty</a>( <span>string <var>$property</var></span> )</code>
 
 		<div class="description short">
 			
@@ -840,21 +869,32 @@ WireArray.</p>
 			
 <p>Get a property of the PageArray</p>
 
-<p>These map to functions form the array and are here for convenience.
+<p>These map to functions from the array and are here for convenience.
 Properties include count, total, start, limit, last, first, keys, values, These
-can also be accessed by direct reference.</p>
+can also be accessed by direct reference, i.e.
+<code>$items-&gt;limit</code>.</p>
+
+<p>Please see the <code>WireArray::getProperty()</code> method for full details
+on non-pagination related properties that can be retrieved through this.</p>
+
+<p>#pw-group-other</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$property</var></dt>
-					<dd><code>string</code><br>$property</dd>
+					<dd><code>string</code><br>$property Name of property you want to retrieve, can be any of the following: -
+<code>count</code> (int): Count of items currently present. - <code>total</code>
+(int): Total quantity of items across all paginations. - <code>start</code>
+(int): Current start index for pagination. - <code>limit</code> (int): Current
+limit used for pagination. - <code>last</code> (mixed): Last item in the
+WireArray. - <code>first</code> (mixed): First item in the WireArray.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>
+					<code>mixed</code><br>Value of requested property.<br>
 				</div>
 
 
@@ -876,34 +916,44 @@ can also be accessed by direct reference.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPaginationString">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#137-171" title="Go to source code">getPaginationString</a>( <span>string <var>$label</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$usePageNum</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#173-219" title="Go to source code">getPaginationString</a>( <span>string <var>$label</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$usePageNum</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Return a string of "1 to 10 of 30" (items) or "1 of 10" (pages) for
-example</p>
+<p>Get a "1 to 10 of 50" type of string useful for pagination headlines.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return a string of "1 to 10 of 30" (items) or "1 of 10" (pages) for
-example</p>
+<p>Get a "1 to 10 of 50" type of string useful for pagination headlines.</p>
+
+<p>This returns a string of <code>1 to 10 of 30</code> (items) or <code>1 of
+10</code> (pages) for example.</p>
+
+<p>~~~~~ // Get string like "Items 1 to 25 of 500" echo
+$items-&gt;getPaginationString('Items');</p>
+
+<p>// Get string like "Page 1 of 10" echo $items-&gt;getPaginationString('Page',
+true); ~~~~~</p>
+
+<p>#pw-group-other</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$label</var></dt>
-					<dd><code>string</code><br>$label Label to identify item type (i.e. "Items" or "Page", etc.)</dd>
+					<dd><code>string</code><br>$label Label to identify item type, i.e. "Items" or "Page", etc.
+(default=empty).</dd>
 					<dt><var>$usePageNum</var></dt>
-					<dd><code>boolean</code><br>usePageNum Specify true to show page numbers rather than item numbers. Omit to
-use the default item numbers.</dd>
+					<dd><code>boolean</code><br>$usePageNum Specify true to show page numbers rather than item numbers
+(default=false). Omit to use the default item numbers.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code>string</code><br>Formatted string<br>
 				</div>
 
 
@@ -923,7 +973,7 @@ use the default item numbers.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#174-187" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#222-235" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -1058,6 +1108,7 @@ use the default item numbers.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -1117,7 +1168,7 @@ use the default item numbers.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PaginatedArray.html#15-21" title="Go to source code"><var>$numTotal</var></a>
+				<a href="source-class-ProcessWire.PaginatedArray.html#23-29" title="Go to source code"><var>$numTotal</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -1146,7 +1197,7 @@ be here in pagination.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PaginatedArray.html#23-34" title="Go to source code"><var>$numLimit</var></a>
+				<a href="source-class-ProcessWire.PaginatedArray.html#31-42" title="Go to source code"><var>$numLimit</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -1182,7 +1233,7 @@ items to this WireArray.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PaginatedArray.html#36-42" title="Go to source code"><var>$numStart</var></a>
+				<a href="source-class-ProcessWire.PaginatedArray.html#44-50" title="Go to source code"><var>$numStart</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>

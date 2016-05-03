@@ -7,7 +7,7 @@
 	<title>Class Fieldtype | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -416,7 +416,19 @@
 
 <p>Abstract base class from which all Fieldtype modules are descended from.</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>#pw-summary Fieldtype is a module type used to represent a type of field. All
+Fieldtype modules descend from this. #pw-order-groups
+loading,saving,finding,formatting,configuration,creating,deleting,other #pw-body
+= Almost all methods in a Fieldtype are primarily of concern to module
+developers, as Fieldtype modules do not have a public API (most of the time).
+Instead, they provide methods used by <code>Page</code> and <code>Field</code>
+objects (and related) to work with the field data. Most Fieldtype modules only
+need to implement a few methods like <code>Fieldtype::sanitizeValue()</code>
+(which is required) and <code>Fieldtype::getDatabaseSchema()</code>, as the
+default implementation of most other methods provided in this Fieldtype class
+accounts for most situations already. #pw-body</p>
+
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <h1>Hookable methods</h1>
@@ -578,6 +590,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

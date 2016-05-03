@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldPageListSelectMultiple | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -604,15 +604,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<div class="description short">
 			
-<p>Per the Module interface, init() is called when the system is ready for API
-usage</p>
+<p>Per the Module interface, init() is called after any configuration data has
+been populated to the Inputfield, but before render.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Per the Module interface, init() is called when the system is ready for API
-usage</p>
+<p>Per the Module interface, init() is called after any configuration data has
+been populated to the Inputfield, but before render.</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -670,22 +672,20 @@ usage</p>
 
 		<div class="description short">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render the HTML input element(s) markup, ready for insertion in an HTML
+form.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render the HTML input element(s) markup, ready for insertion in an HTML
+form.</p>
 
-<p>The method as it appears here does not actually output an Inputfield.
-However, subclasses should render the output for an Inputfield and then call
-upon this parent render method to output any children (if applicable).</p>
+<p>This is an abstract method that descending Inputfield module classes are
+required to implement.</p>
 
-<p>This includes the output of any child Inputfields (if applicable). Children
-are presented as list items in an unordered list.</p>
+<p>#pw-group-output</p>
 
 
 
@@ -731,7 +731,8 @@ this fieldtype</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$input</var></dt>
-					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input</dd>
+					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input User input where value should be pulled from (typically
+<code>$input-&gt;post</code>)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -839,6 +840,7 @@ this fieldtype</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 

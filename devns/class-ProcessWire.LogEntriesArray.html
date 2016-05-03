@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\LogEntriesArray | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -491,6 +491,14 @@
 <p>Like WireArray, but with the additional methods and properties needed for
 WirePaginatable interface.</p>
 
+<p>#pw-summary PaginatedArray is a type of WireArray that supports pagination of
+items within it. #pw-body = Here you will see methods specific to the pagination
+aspects of this class only. For full details on available methods outside of
+pagination, please see the <code>WireArray</code> class. The most common type of
+PaginatedArray is a <code>PageArray</code>. #pw-body #pw-summary-manipulation In
+most cases you will not need these manipulation methods as core API calls
+already take care of this.</p>
+
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
@@ -574,22 +582,25 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<div class="description short">
 			
-<p>Template mehod that descendant classes may use to validate items added to
-this WireArray</p>
+<p>Is the given item valid for storange in this array?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Template mehod that descendant classes may use to validate items added to
+<p>Is the given item valid for storange in this array?</p>
+
+<p>Template method that descending classes may use to validate items added to
 this WireArray</p>
+
+<p>#pw-group-info</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>mixed</code><br>$item Item to add</dd>
+					<dd><code>mixed</code><br>$item Item to test for validity</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -620,13 +631,15 @@ this WireArray</p>
 
 		<div class="description short">
 			
-<p>Get a blank copy of an item of the type that this WireArray holds</p>
+<p>Get a new/blank item of the type that this WireArray holds</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a blank copy of an item of the type that this WireArray holds</p>
+<p>Get a new/blank item of the type that this WireArray holds</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -638,7 +651,7 @@ this WireArray</p>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If class doesn't implement this method.<br>
 				</div>
 
 
@@ -663,29 +676,34 @@ this WireArray</p>
 
 		<div class="description short">
 			
-<p>Template method that descendant classes may use to find a key from the item
-itself, or null if disabled.</p>
+<p>Get the array key for the given item</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Template method that descendant classes may use to find a key from the item
-itself, or null if disabled.</p>
+<p>Get the array key for the given item</p>
 
-<p>Used by add() and prepend()</p>
+<ul>
+	<li>This is a template method that descendant classes may use to find a key from
+	the item itself, or null if disabled.</li>
+
+	<li>This method is used internally by the add() and prepend() methods.</li>
+</ul>
+
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item</dd>
+					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item Item to get key for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|null</code><br>
+					<code>string|integer|null</code><br>Found key, or null if not found.<br>
 				</div>
 
 
@@ -816,6 +834,7 @@ itself, or null if disabled.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

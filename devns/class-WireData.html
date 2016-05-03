@@ -7,7 +7,7 @@
 	<title>Class WireData | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -418,8 +418,22 @@
 provides get and set access to properties internally stored in a $data array.
 Otherwise it is identical to the Wire class.</p>
 
-<p>This file is licensed under the MIT license <a
-href="https://processwire.com/about/license/mit/">https://processwire.com/about/license/mit/</a></p>
+<p>#pw-summary WireData is the base data-storage class used by many ProcessWire
+object types and most modules. #pw-body = WireData is very much like its parent
+<code>Wire</code> class with the fundamental difference being that it is
+designed for runtime data storage. It provides this primarily through the
+built-in <code>get()</code> and <code>set()</code> methods for getting and
+setting named properties to WireData objects. The most common example of a
+WireData object is <code>Page</code>, the type used for all pages in
+ProcessWire.</p>
+
+<p>Properties set to a WireData object can also be set or accessed directly,
+like <code>$item-&gt;property</code> or using array access like
+<code>$item[$property]</code>. If you <code>foreach()</code> a WireData object,
+the default behavior is to iterate all of the properties/values present within
+it. #pw-body</p>
+
+<p>May also be accessed as array.</p>
 
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
@@ -526,6 +540,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

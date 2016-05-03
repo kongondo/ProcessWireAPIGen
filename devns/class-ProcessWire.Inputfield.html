@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Inputfield | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -486,8 +486,9 @@
 
 	<div class="description">
 	
-<p>An Inputfield an actual form input field widget, and this is provided as the
-base class for different kinds of form input widgets provided as modules.</p>
+<p>An Inputfield for an actual form input field widget, and this is provided as
+the base class for different kinds of form input widgets provided as
+modules.</p>
 
 <p>The class supports a parent/child hierarchy so that a given Inputfield can
 contain Inputfields below it. An example would be the relationship between
@@ -499,13 +500,35 @@ fieldsets and fields in a form.</p>
 
 <p>Inputfield::id A unique string identifier for this Inputfield</p>
 
-<p>Inputfield::class Class name(s) to be rendered with the Inputfield XHTML
+<p>Inputfield::class Class name(s) to be rendered with the Inputfield HTML
 output</p>
 
-<p>Inputfield::name Corresponds to XHTML "name" attribute</p>
+<p>Inputfield::name Corresponds to HTML "name" attribute</p>
 
 <p>Inputfield::value The current value of the field. May correspond go the XHTML
 "value" attribute on some inputs.</p>
+
+<p>#pw-order-groups
+attribute-methods,attribute-properties,settings,traversal,labels,appearance,behavior,other,output,input,states
+#pw-use-constants #pw-summary Inputfield is the base class for modules that
+collect user input for fields. #pw-summary-attribute-properties These properties
+are retrieved or manipulated via the attribute methods above.
+#pw-summary-textFormat-constants Constants for formats allowed in description,
+notes, label. #pw-summary-collapsed-constants Constants allowed for the
+<code>Inputfield::collapsed</code> property. #pw-summary-skipLabel-constants
+Constants allowed for the <code>Inputfield::skipLabel</code> property.
+#pw-summary-renderValue-constants Options for
+<code>Inputfield::renderValueFlags</code> property, applicable
+<code>Inputfield::renderValue()</code> method call. #pw-summary-module Methods
+primarily of interest during module development.</p>
+
+<p>#pw-body = ~~~~~ // Create an Inputfield $inputfield =
+$modules-&gt;get('InputfieldText'); $inputfield-&gt;label = 'Your Name';
+$inputfield-&gt;attr('name', 'your_name'); $inputfield-&gt;attr('value',
+'Roderigo'); // Add to a $form (InputfieldForm or InputfieldWrapper)
+$form-&gt;add($inputfield); ~~~~~ #pw-body</p>
+
+<h1>ATTRIBUTES</h1>
 
 	</div>
 
@@ -605,7 +628,7 @@ output</p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Inputfield.html#20-1140" title="Go to source code">core/Inputfield.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Inputfield.html#20-1646" title="Go to source code">core/Inputfield.php</a><br>
 	</div>
 
 
@@ -623,7 +646,7 @@ output</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#179-213" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#320-354" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -658,19 +681,21 @@ output</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#227-232" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#356-362" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
-<p>Per the Module interface, init() is called when the system is ready for API
-usage</p>
+<p>Per the Module interface, init() is called after any configuration data has
+been populated to the Inputfield, but before render.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Per the Module interface, init() is called when the system is ready for API
-usage</p>
+<p>Per the Module interface, init() is called after any configuration data has
+been populated to the Inputfield, but before render.</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -693,19 +718,21 @@ usage</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#234-238" title="Go to source code">___install</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#364-370" title="Go to source code">___install</a>( )</code>
 
 		<div class="description short">
 			
-<p>Per the Module interface, install() is called when this Inputfield is
-instally installed</p>
+<p>Per the Module interface, this method is called when this Inputfield is
+installed</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Per the Module interface, install() is called when this Inputfield is
-instally installed</p>
+<p>Per the Module interface, this method is called when this Inputfield is
+installed</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -728,7 +755,7 @@ instally installed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstall">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#240-244" title="Go to source code">___uninstall</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#372-378" title="Go to source code">___uninstall</a>( )</code>
 
 		<div class="description short">
 			
@@ -741,6 +768,8 @@ uninstalled</p>
 			
 <p>Per the Module interface, uninstall() is called when this Inputfield is
 uninstalled</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -763,7 +792,7 @@ uninstalled</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSingular">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#246-252" title="Go to source code">isSingular</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#380-388" title="Go to source code">isSingular</a>( )</code>
 
 		<div class="description short">
 			
@@ -774,6 +803,8 @@ uninstalled</p>
 		<div class="description detailed hidden">
 			
 <p>Multiple instances of a given Inputfield may be needed</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -796,7 +827,7 @@ uninstalled</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isAutoload">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#254-260" title="Go to source code">isAutoload</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#390-398" title="Go to source code">isAutoload</a>( )</code>
 
 		<div class="description short">
 			
@@ -807,6 +838,8 @@ uninstalled</p>
 		<div class="description detailed hidden">
 			
 <p>Inputfields are not loaded until requested</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -829,28 +862,42 @@ uninstalled</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#262-279" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#400-428" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the Inputfield's parent, set a new/existing attribute, or set a custom
-data value</p>
+<p>Set a property or attribute to the Inputfield</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the Inputfield's parent, set a new/existing attribute, or set a custom
-data value</p>
+<p>Set a property or attribute to the Inputfield</p>
+
+<ul>
+	<li>Use this for setting properties like parent, collapsed, required,
+	columnWidth, etc.</li>
+
+	<li>You can also set properties directly via <code>$inputfield-&gt;property =
+	$value</code>.</li>
+
+	<li>If setting an attribute (like name, id, etc.) this will work, but it is
+	preferable to use the <code>Inputfield::attr()</code> method.</li>
+
+	<li>If setting any kind of "class" it is preferable to use the
+	<code>Inputfield::addClass()</code> method.</li>
+</ul>
+
+<p>#pw-group-settings</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property to set</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
+					<dd><code>mixed</code><br>$value Value of property</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -870,41 +917,51 @@ data value</p>
 
 		<td class="attributes"><code>
 			 public 
-			mixed
+			mixed|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#281-303" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#430-457" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get a field attribute, label, description, parent, fuel or setting</p>
+<p>Get a property or attribute from the Inputfield</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a field attribute, label, description, parent, fuel or setting</p>
+<p>Get a property or attribute from the Inputfield</p>
 
-<p>In cases where there are potential name conflicts, you may prefer to use a
-more specific method like getSetting() or getAttribute().</p>
+<ul>
+	<li>This can also be accessed directly, i.e. <code>$value =
+	$inputfield-&gt;property;</code>.</li>
 
-<p>This method is also tied into __get() like all WireData classes.</p>
+	<li>For getting attribute values, this will work but it is preferable to use the
+	<code>Inputfield::attr()</code> method.</li>
+
+	<li>For getting non-attribute values that have potential name conflicts with
+	attributes (or just as a reliable alternative), use the
+	<code>Inputfield::getSetting()</code> method instead, which excludes the
+	possibility of overlap with attributes.</li>
+</ul>
+
+<p>#pw-group-settings</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property or attribute to retrieve.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>
+					<code>mixed|null</code><br>Value of property or attribute, or NULL if not found.<br>
 				</div>
 
 
@@ -919,34 +976,44 @@ more specific method like getSetting() or getAttribute().</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSetting">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#305-314" title="Go to source code">getSetting</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#459-473" title="Go to source code">getSetting</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Gets a setting or fuel from the Inputfield, while ignoring attributes and
-anything else</p>
+<p>Gets a setting (or API variable) from the Inputfield, while ignoring
+attributes.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Gets a setting or fuel from the Inputfield, while ignoring attributes and
-anything else</p>
+<p>Gets a setting (or API variable) from the Inputfield, while ignoring
+attributes.</p>
 
-<p>To be used in cases where there is a potential name conflict, like the
-'collapsed' field when in the Fields editor. Otherwise don't bother using this
-method.</p>
+<p>This is good to use in cases where there are potential name conflicts, like
+when there is a field literally named "collapsed" or "required".</p>
+
+<p>#pw-group-settings</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key Name of setting or API variable to retrieve.</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>Value of setting or API variable, or NULL if not found.<br>
+				</div>
 
 
 
@@ -965,17 +1032,19 @@ method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setParent">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#316-326" title="Go to source code">setParent</a>( <span><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code> <var>$parent</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#475-488" title="Go to source code">setParent</a>( <span><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code> <var>$parent</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the parent of this Inputfield</p>
+<p>Set the parent (InputfieldWrapper) of this Inputfield.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the parent of this Inputfield</p>
+<p>Set the parent (InputfieldWrapper) of this Inputfield.</p>
+
+<p>#pw-group-traversal</p>
 
 
 
@@ -991,6 +1060,10 @@ method.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_getParent">ProcessWire\Inputfield::getParent()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1007,17 +1080,21 @@ method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParent">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#328-336" title="Go to source code">getParent</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#490-501" title="Go to source code">getParent</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get this Inputfield's parent Inputfield, or NULL if it doesn't have one</p>
+<p>Get this Inputfield’s parent InputfieldWrapper, or NULL if it doesn’t
+have one.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get this Inputfield's parent Inputfield, or NULL if it doesn't have one</p>
+<p>Get this Inputfield’s parent InputfieldWrapper, or NULL if it doesn’t
+have one.</p>
+
+<p>#pw-group-traversal</p>
 
 
 
@@ -1028,6 +1105,10 @@ method.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_setParent">ProcessWire\Inputfield::setParent()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1044,27 +1125,33 @@ method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParents">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#338-350" title="Go to source code">getParents</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#503-518" title="Go to source code">getParents</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get array of all parents</p>
+<p>Get array of all parents of this Inputfield.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get array of all parents</p>
+<p>Get array of all parents of this Inputfield.</p>
+
+<p>#pw-group-traversal</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>
+					<code>array</code><br>of InputfieldWrapper elements.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_getParent">ProcessWire\Inputfield::getParent()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_setParent">ProcessWire\Inputfield::setParent()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1081,34 +1168,148 @@ method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAttribute">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#352-400" title="Go to source code">setAttribute</a>( <span>string|array <var>$key</var></span>, <span>string|integer <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#520-587" title="Go to source code">setAttribute</a>( <span>string|array <var>$key</var></span>, <span>string|integer|array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set a Formfield attribute to accompany this Inputfield's output</p>
+<p>Set an attribute</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set a Formfield attribute to accompany this Inputfield's output</p>
+<p>Set an attribute</p>
 
-<p>The key may contain multiple keys by being specified as an array, or by being
-a string with multiple keys separated by "+" signs i.e. setAttribute("id+name",
-"template");</p>
+<ul>
+	<li>For most public API use, you might consider using the the shorter
+	<code>Inputfield::attr()</code> method instead.</li>
 
-<p>If the value param is an array, then it will instruct the attribute to hold
-multiple values. Future calls to setAttribute() will enforce the array type for
-that attribute.</p>
+	<li>When setting the <code>class</code> attribute is is preferable to use the
+	<code>Inputfield::addClass()</code> method.</li>
+
+	<li>The <code>$key</code> argument may contain multiple keys by being specified
+	as an array, or by being a string with multiple keys separated by "+" or "|",
+	for example: <code>$inputfield-&gt;setAttribute("id+name",
+	"template")</code>.</li>
+
+	<li>If the <code>$value</code> argument is an array, it will instruct the
+	attribute to hold multiple values. Future calls to setAttribute() will enforce
+	the array type for that attribute.</li>
+</ul>
+
+<p>~~~~~ // Set the name attribute $inputfield-&gt;setAttribute('name',
+'my_field_name');</p>
+
+<p>// Set the name and id attributes at the same time
+$inputfield-&gt;setAttribute('name+id', 'my_field_name'); ~~~~~</p>
+
+<p>#pw-internal Giving public API preference to the attr() method instead</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|array</code><br>$key</dd>
+					<dd><code>string|array</code><br>$key Specify one of the following: - Name of attribute (string) - Names of
+attributes (array) - String with names of attributes split by "+" or "|"</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer</code><br>$value</dd>
+					<dd><code>string|integer|array</code><br>$value Value of attribute to set.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_attr">ProcessWire\Inputfield::attr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_removeAttr">ProcessWire\Inputfield::removeAttr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_addClass">ProcessWire\Inputfield::addClass()</a></code></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="removeAttr" id="_removeAttr">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_removeAttr">#</a>
+		<code><a href="source-class-ProcessWire.Inputfield.html#589-602" title="Go to source code">removeAttr</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove an attribute</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove an attribute</p>
+
+<p>#pw-group-attribute-methods</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key Name of attribute to remove.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_attr">ProcessWire\Inputfield::attr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_removeClass">ProcessWire\Inputfield::removeClass()</a></code></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="removeAttribute" id="_removeAttribute">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_removeAttribute">#</a>
+		<code><a href="source-class-ProcessWire.Inputfield.html#604-615" title="Go to source code">removeAttribute</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove an attribute (alias)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove an attribute (alias)</p>
+
+<p>#pw-internal</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1122,120 +1323,43 @@ that attribute.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="removeAttr" id="_removeAttr">
-
-		<td class="attributes"><code>
-			 public 
-			this
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_removeAttr">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#402-412" title="Go to source code">removeAttr</a>( <span>string <var>$key</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Remove an attribute</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Remove an attribute</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>this</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="removeAttribute" id="_removeAttribute">
-
-		<td class="attributes"><code>
-			 public 
-			this
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_removeAttribute">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#414-423" title="Go to source code">removeAttribute</a>( <span>string <var>$key</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Remove an attribute (alias of removeAttr for syntax consistency with
-setAttribute)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Remove an attribute (alias of removeAttr for syntax consistency with
-setAttribute)</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>this</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="setAttributes" id="_setAttributes">
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAttributes">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#425-432" title="Go to source code">setAttributes</a>( <span>array <var>$attributes</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#617-629" title="Go to source code">setAttributes</a>( <span>array <var>$attributes</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Just like setAttribute except that it accepts an associatve array of values
-to set</p>
+<p>Set multiple attributes at once with an associative array.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Just like setAttribute except that it accepts an associatve array of values
-to set</p>
+<p>Set multiple attributes at once with an associative array.</p>
+
+<p>#pw-internal</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes Associative array of attributes to set.</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
 
 
 
@@ -1247,49 +1371,79 @@ to set</p>
 
 		<td class="attributes"><code>
 			 public 
-			mixed
+			mixed|<code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_attr">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#434-452" title="Go to source code">attr</a>( <span>string|array <var>$key</var></span>, <span>string|integer|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#631-684" title="Go to source code">attr</a>( <span>string|array|boolean <var>$key</var></span>, <span>string|integer|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Set or get a Formfield attribute (multipurpose combination of setAttribute
-and getAttribute)</p>
+<p>Get or set an attribute (or multiple attributes)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set or get a Formfield attribute (multipurpose combination of setAttribute
-and getAttribute)</p>
+<p>Get or set an attribute (or multiple attributes)</p>
 
-<p>If setting, this functions exactly the same as setAttribute(), and is just a
-shorter front end for it. Alternatively, you may specify an an associative array
-of values to set for the $key param. If getting an attribute, then don't specify
-the second $value param.</p>
+<ul>
+	<li>To get an attribute call this method with just the attribute name.</li>
+
+	<li>To set an attribute call this method with the attribute name and value to
+	set.</li>
+
+	<li>You can also set multiple attributes at once, see examples below.</li>
+
+	<li>To get all attributes, just specify boolean true as first argument (since
+	3.0.16).</li>
+</ul>
+
+<p>~~~~~ // Get the "value" attribute $value =
+$inputfield-&gt;attr('value');</p>
+
+<p>// Set the "value" attribute $inputfield-&gt;attr('value', 'Foo and
+Bar');</p>
+
+<p>// Set multiple attributes $inputfield-&gt;attr([ 'name' =&gt; 'foobar',
+'value' =&gt; 'Foo and Bar', 'class' =&gt; 'foo-bar', ]);</p>
+
+<p>// Set name and id attribute to "foobar" $inputfield-&gt;attr("name+id",
+"foobar");</p>
+
+<p>// Get all attributes in associative array (since 3.0.16) $attrs =
+$inputfield-&gt;attr(true); ~~~~~</p>
+
+<p>#pw-group-attribute-methods</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|array</code><br>$key If an array, then all keyed values in the array will be set.</dd>
+					<dd><code>string|array|boolean</code><br>$key Specify one of the following: - Name of attribute to get (if getting an
+attribute). - Name of attribute to set (if setting an attribute, and also
+specifying a value). - Aassociative array to set multiple attributes. - String
+with attributes split by "+" or "|" to set them all to have the same value. -
+Specify boolean true to get all attributes in an associative array.</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer|null</code><br>$value Optional - Omit if setting an array in the key, or if getting a value.</dd>
+					<dd><code>string|integer|null</code><br>$value Value to set (if setting), omit otherwise.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>$this|string|int If setting an attribute, it returns this instance. If getting
-an attribute, the attribute is returned.<br>
+					<code>mixed|<code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code></code><br>$this If setting an attribute, it returns this instance. If getting an
+attribute, the attribute is returned.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_removeAttr">ProcessWire\Inputfield::removeAttr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_addClass">ProcessWire\Inputfield::addClass()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_removeClass">ProcessWire\Inputfield::removeClass()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1299,14 +1453,14 @@ an attribute, the attribute is returned.<br>
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttributes">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#454-464" title="Go to source code">getAttributes</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#686-700" title="Go to source code">getAttributes</a>( )</code>
 
 		<div class="description short">
 			
@@ -1318,9 +1472,15 @@ an attribute, the attribute is returned.<br>
 			
 <p>Get all attributes specified for this Inputfield</p>
 
+<p>#pw-internal</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
 
 
 
@@ -1332,14 +1492,14 @@ an attribute, the attribute is returned.<br>
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttribute">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#466-472" title="Go to source code">getAttribute</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#702-713" title="Go to source code">getAttribute</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1351,9 +1511,21 @@ an attribute, the attribute is returned.<br>
 			
 <p>Get a specified attribute for this Inputfield</p>
 
+<p>#pw-internal Public API should use the attr() method instead, but this is
+here for consistency with setAttribute()</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|null</code><br>
+				</div>
 
 
 
@@ -1372,36 +1544,48 @@ an attribute, the attribute is returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_wrapAttr">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#474-496" title="Go to source code">wrapAttr</a>( <span>string|null <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>string|null|boolean <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#715-749" title="Go to source code">wrapAttr</a>( <span>string|null|boolean <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>string|null|boolean <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get or set attribute for wrapping element</p>
+<p>Get or set attribute for the element wrapping this Inputfield</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get or set attribute for wrapping element</p>
+<p>Get or set attribute for the element wrapping this Inputfield</p>
+
+<p>Use this method when you need to assign some attribute to the outer wrapper
+of the Inputfield.</p>
+
+<p>#pw-group-attribute-methods</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|null</code><br>$key Omit to get all wrap attributes as associative array.</dd>
+					<dd><code>string|null|boolean</code><br>$key Specify one of the following for $key: - Specify string containing name of
+attribute to set. - Omit (or null or true) to get all wrap attributes as
+associative array.</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|null|boolean</code><br>$value Omit if getting rather than setting. Set to boolean false to remove
-attribute.</dd>
+					<dd><code>string|null|boolean</code><br>$value Specify one of the following for $value: - Omit if getting an attribute.
+- Value to set for $key of setting. - Boolean false to remove the attribute
+specified for $key.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|array|<code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code></code><br>$this If getting, returns attribute value of NULL if not present. If setting,
-returns $this.<br>
+					<code>string|array|<code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code></code><br>$this Returns one of the following: - If getting, returns attribute value of
+NULL if not present. - If setting, returns $this.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_attr">ProcessWire\Inputfield::attr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_addClass">ProcessWire\Inputfield::addClass()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1418,26 +1602,48 @@ returns $this.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addClass">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#498-526" title="Go to source code">addClass</a>( <span>string <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#751-830" title="Go to source code">addClass</a>( <span>string|array <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Add the given classname to this inputfield</p>
+<p>Add a class or classes to this Inputfield (or a wrapping element)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Add the given classname to this inputfield</p>
+<p>Add a class or classes to this Inputfield (or a wrapping element)</p>
+
+<p>If given a class name that's already present, it won't be added again.</p>
+
+<p>~~~~~ // Add class "foobar" to input element
+$inputfield-&gt;addClass('foobar');</p>
+
+<p>// Add three classes to input element $inputfield-&gt;addClass('foo bar
+baz');</p>
+
+<p>// Add class "foobar" to .Inputfield wrapping element
+$inputfield-&gt;addClass('foobar', 'wrapClass'); ~~~~~</p>
+
+<p>#pw-group-attribute-methods</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$class</var></dt>
-					<dd><code>string</code><br>$class</dd>
+					<dd><code>string|array</code><br>$class Specify one of the following: - Class name you want to add. - Multiple
+space-separated class names you want to add. - Array of class names you want to
+add (since 3.0.16).</dd>
 					<dt><var>$property</var></dt>
-					<dd><code>string</code><br>$property Optionally specify property you want to add class to (default=class)</dd>
+					<dd><code>string</code><br>$property Optionally specify the type of class you want to add: - Omit for the
+default (which is "class"). - <code>class</code> (string): Add class to the
+input element (or whatever the Inputfield default is). - <code>wrapClass</code>
+(string): Add class to ".Inputfield" wrapping element, the most outer level
+element used for this Inputfield. - <code>headerClass</code> (string): Add class
+to ".InputfieldHeader" label element. - <code>contentClass</code> (string): Add
+class to ".InputfieldContent" wrapping element. - Or some other named class
+attribute designated by a descending Inputfield.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1445,7 +1651,15 @@ returns $this.<br>
 					<code>mixed</code><br>$this<br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>when given invalid arguments<br>
+				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_hasClass">ProcessWire\Inputfield::hasClass()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_removeClass">ProcessWire\Inputfield::removeClass()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1462,27 +1676,48 @@ returns $this.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasClass">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#528-543" title="Go to source code">hasClass</a>( <span>mixed <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#832-891" title="Go to source code">hasClass</a>( <span>string|array <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Does this inputfield have the given class?</p>
+<p>Does this Inputfield have the given class name (or names)?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Does this inputfield have the given class?</p>
+<p>Does this Inputfield have the given class name (or names)?</p>
+
+<p>~~~~~ if($inputfield-&gt;hasClass('foo')) { // This Inputfield has a class
+attribute with "foo" }</p>
+
+<p>if($inputfield-&gt;hasClass('bar', 'wrapClass')) { // This .Inputfield
+wrapper has a class attribute with "bar" }</p>
+
+<p>if($inputfield-&gt;hasClass('foo bar')) { // This Inputfield has both "foo"
+and "bar" classes (Since 3.0.16) } ~~~~~</p>
+
+<p>#pw-group-attribute-methods</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$class</var></dt>
-					<dd><code>mixed</code><br>$class</dd>
+					<dd><code>string|array</code><br>$class Specify class name or one of the following: - String containing name of
+class you want to check (string). - String containing Space separated string
+class names you want to check, all must be present for this method to return
+true. (Since 3.0.16) - Array of class names you want to check, all must be
+present for this method to return true. (Since 3.0.16)</dd>
 					<dt><var>$property</var></dt>
-					<dd><code>string</code><br>$property Optionally specify property you want to pull class from
-(default=class)</dd>
+					<dd><code>string</code><br>$property Optionally specify property you want to pull class from: -
+<code>class</code> (string): Default setting. Class for the input element (or
+whatever the Inputfield default is). - <code>wrapClass</code> (string): Class
+for the ".Inputfield" wrapping element, the most outer level element used for
+this Inputfield. - <code>headerClass</code> (string): Class for the
+".InputfieldHeader" label element. - <code>contentClass</code> (string): Class
+for the ".InputfieldContent" wrapping element. - Or some other class property
+defined by a descending Inputfield class.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1491,6 +1726,10 @@ returns $this.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_addClass">ProcessWire\Inputfield::addClass()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_removeClass">ProcessWire\Inputfield::removeClass()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1507,26 +1746,45 @@ returns $this.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeClass">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#545-567" title="Go to source code">removeClass</a>( <span>string <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#893-946" title="Go to source code">removeClass</a>( <span>string <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Remove the given classname from this inputfield</p>
+<p>Remove the given class (or classes) from this Inputfield</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Remove the given classname from this inputfield</p>
+<p>Remove the given class (or classes) from this Inputfield</p>
+
+<p>~~~~~ // Remove the "foo" class $inputfield-&gt;removeClass('foo');</p>
+
+<p>// Remove both the "foo" and "bar" classes (since 3.0.16)
+$inputfield-&gt;removeClass('foo bar');</p>
+
+<p>// Remove the "bar" class from the wrapping .Inputfield element
+$inputfield-&gt;removeClass('bar', 'wrapClass'); ~~~~~</p>
+
+<p>#pw-group-attribute-methods</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$class</var></dt>
-					<dd><code>string</code><br>$class</dd>
+					<dd><code>string</code><br>$class Class name you want to remove or specify one of the following: - Single
+class name to remove. - Space-separated class names you want to remove (Since
+3.0.16). - Array of class names you want to remove (Since 3.0.16).</dd>
 					<dt><var>$property</var></dt>
-					<dd><code>string</code><br>$property</dd>
+					<dd><code>string</code><br>$property Optionally specify the property you want to remove class from: -
+<code>class</code> (string): Default setting. Class for the input element (or
+whatever the Inputfield default is). - <code>wrapClass</code> (string): Class
+for the ".Inputfield" wrapping element, the most outer level element used for
+this Inputfield. - <code>headerClass</code> (string): Class for the
+".InputfieldHeader" label element. - <code>contentClass</code> (string): Class
+for the ".InputfieldContent" wrapping element. - Or some other class property
+defined by a descending Inputfield class.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1535,6 +1793,10 @@ returns $this.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_addClass">ProcessWire\Inputfield::addClass()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_hasClass">ProcessWire\Inputfield::hasClass()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1551,25 +1813,34 @@ returns $this.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttributesString">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#569-603" title="Go to source code">getAttributesString</a>( <span>array <var>$attributes</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#948-996" title="Go to source code">getAttributesString</a>( <span>array <var>$attributes</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get an XHTML ready string of all this Inputfield's attributes</p>
+<p>Get an HTML-ready string of all this Inputfield’s attributes</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get an XHTML ready string of all this Inputfield's attributes</p>
+<p>Get an HTML-ready string of all this Inputfield’s attributes</p>
+
+<p>~~~~~ // Outputs: name="foo" value="bar" class="baz" echo
+$inputfield-&gt;getAttributesString([ 'name' =&gt; 'foo', 'value' =&gt; 'bar',
+'class' =&gt; 'baz' ]);</p>
+
+<p>// Outputs actual attributes specified with this Inputfield echo
+$inputfield-&gt;getAttributesString(); ~~~~~</p>
+
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$attributes</var></dt>
-					<dd><code>array</code><br>$attributes Optional array of attributes to build the strong from. If not
-specified, this Inputfield's attributes will be used.</dd>
+					<dd><code>array</code><br>$attributes Associative array of attributes to build the string from, or omit to
+use this Inputfield's attributes.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1594,26 +1865,24 @@ specified, this Inputfield's attributes will be used.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____render">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#605-616" title="Go to source code">___render</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#998-1008" title="Go to source code">___render</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render the HTML input element(s) markup, ready for insertion in an HTML
+form.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render the HTML input element(s) markup, ready for insertion in an HTML
+form.</p>
 
-<p>The method as it appears here does not actually output an Inputfield.
-However, subclasses should render the output for an Inputfield and then call
-upon this parent render method to output any children (if applicable).</p>
+<p>This is an abstract method that descending Inputfield module classes are
+required to implement.</p>
 
-<p>This includes the output of any child Inputfields (if applicable). Children
-are presented as list items in an unordered list.</p>
+<p>#pw-group-output</p>
 
 
 
@@ -1640,30 +1909,28 @@ are presented as list items in an unordered list.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____renderValue">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#618-638" title="Go to source code">___renderValue</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1010-1031" title="Go to source code">___renderValue</a>( )</code>
 
 		<div class="description short">
 			
 <p>Render just the value (not input) in text/markup for presentation
-purposes</p>
+purposes.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Render just the value (not input) in text/markup for presentation
-purposes</p>
+purposes.</p>
 
-<p>This is within the context of an InputfieldForm, where the rendered markup
-can have external CSS or JS dependencies (in Inputfield[Name].css or
-Inputfield[Name].js)</p>
+<p>#pw-group-output</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>of text or markup where applicable<br>
+					<code>string</code><br>Text or markup where applicable<br>
 				</div>
 
 
@@ -1683,39 +1950,52 @@ Inputfield[Name].js)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderReady">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#640-655" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1033-1058" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Called before render() or renderValue() method by InputfieldWrapper, before
-Inputfield-specific CSS/JS files added</p>
+<p>Method called right before Inputfield markup is rendered, so that any
+dependencies can be loaded as well.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Called before render() or renderValue() method by InputfieldWrapper, before
-Inputfield-specific CSS/JS files added</p>
+<p>Method called right before Inputfield markup is rendered, so that any
+dependencies can be loaded as well.</p>
 
-<p>In this case used to populate any required CSS/JS files. The return value is
-true if assets were just added, and false if assets have already been added in a
-previous call. This distinction probably doesn't matter in most usages, but here
-just in case a descending class needs to know when/if to add additional assets
-(i.e. when this function returns true).</p>
+<p>Called before <code>Inputfield::render()</code> or
+<code>Inputfield::renderValue()</code> method by the parent
+<code>InputfieldWrapper</code> instance. If you are calling either of those
+methods yourself for some reason, make sure that you call this
+<code>renderReady()</code> method first.</p>
+
+<p>The default behavior of this method is to populate Inputfield-specific CSS
+and JS file assets into <code>$config-&gt;styles</code> and
+<code>$config-&gt;scripts</code>.</p>
+
+<p>The return value is true if assets were just added, and false if assets have
+already been added in a previous call. This distinction probably doesn't matter
+in most usages, but here just in case a descending class needs to know when/if
+to add additional assets (i.e. when this method returns true).</p>
+
+<p>#pw-group-output</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$parent</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent Inputfield/wrapper that is rendering it or null if no parent.</dd>
+					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent InputfieldWrapper that is rendering it, or null if no parent.</dd>
 					<dt><var>$renderValueMode</var></dt>
-					<dd><code>boolean</code><br>$renderValueMode Whether renderValueMode will be used.</dd>
+					<dd><code>boolean</code><br>$renderValueMode Specify true only if this is for
+<code>Inputfield::renderValue()</code> rather than
+<code>Inputfield::render()</code>.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if assets were just added, false if already added.<br>
 				</div>
 
 
@@ -1735,26 +2015,39 @@ just in case a descending class needs to know when/if to add additional assets
 
 		<td class="name"><div>
 		<a class="anchor" href="#____processInput">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#666-732" title="Go to source code">___processInput</a>( <span><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code> <var>$input</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1071-1149" title="Go to source code">___processInput</a>( <span><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code> <var>$input</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Process the input from the given WireInputData (usually $input-&gt;get or
-$input-&gt;post), load and clean the value for use in this Inputfield.</p>
+<p>Process input for this Inputfield directly from the POST (or GET)
+variables</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Process the input from the given WireInputData (usually $input-&gt;get or
-$input-&gt;post), load and clean the value for use in this Inputfield.</p>
+<p>Process input for this Inputfield directly from the POST (or GET)
+variables</p>
+
+<p>This method should pull the value from the given <code>$input</code>
+ragument, sanitize/validate it, and populate it to the <code>value</code>
+attribute of this Inputfield.</p>
+
+<p>Inputfield modules should implement this method if the built-in one here
+doesn't solve their need. If this one does solve their need, then they should
+add any additional sanitization or validation to the
+<code>Inputfield::setAttribute('value', $value)</code> method to occur when
+given the <code>value</code> attribute.</p>
+
+<p>#pw-group-input</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$input</var></dt>
-					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input</dd>
+					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input User input where value should be pulled from (typically
+<code>$input-&gt;post</code>)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1779,22 +2072,25 @@ $input-&gt;post), load and clean the value for use in this Inputfield.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isEmpty">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#734-749" title="Go to source code">isEmpty</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1151-1170" title="Go to source code">isEmpty</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return true if this field is empty (contains no/blank value), or false if
-it's not</p>
+<p>Is this Inputfield empty? (Value attribute reflects an empty state)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return true if this field is empty (contains no/blank value), or false if
-it's not</p>
+<p>Is this Inputfield empty? (Value attribute reflects an empty state)</p>
+
+<p>Return true if this field is empty (no value or blank value), or false if
+it’s not empty.</p>
 
 <p>Used by the 'required' check to see if the field is populated, and descending
 Inputfields may override this according to their own definition of 'empty'.</p>
+
+<p>#pw-group-attribute-methods</p>
 
 
 
@@ -1821,7 +2117,7 @@ Inputfields may override this according to their own definition of 'empty'.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#752-852" title="Go to source code">___getConfigInputfields</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1172-1304" title="Go to source code">___getConfigInputfields</a>( )</code>
 
 		<div class="description short">
 			
@@ -1833,21 +2129,48 @@ Inputfields may override this according to their own definition of 'empty'.</p>
 			
 <p>Get any custom configuration fields for this Inputfield</p>
 
-<p>Intended to be extended by each Inputfield as needed to add more config
-options.</p>
+<ul>
+	<li>Intended to be extended by each Inputfield as needed to add more config
+	options.</li>
 
-<p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
-are assumed to be for runtime use and are NOT stored in the database.</p>
+	<li>The returned InputfieldWrapper ultimately ends up as the "Input" tab in the
+	fields editor (admin).</li>
+
+	<li>Descending Inputfield classes should first call this method from the parent
+	class to get the default configuration fields and the InputfieldWrapper they can
+	add to.</li>
+
+	<li>Returned Inputfield instances with a name attribute that starts with an
+	underscore, i.e. "_myname" are assumed to be for runtime use and are NOT stored
+	in the database.</li>
+
+	<li>If you prefer, you may instead implement the
+	<code>Inputfield::getConfigArray()</code> method as an alternative.</li>
+</ul>
+
+<p>~~~~ // Example getConfigInputfields() implementation public function
+___getConfigInputfields() { // Get the defaults and $inputfields wrapper we can
+add to $inputfields = parent::___getConfigInputfields(); // Add a new Inputfield
+to it $f = $this-&gt;wire('modules')-&gt;get('InputfieldText');
+$f-&gt;attr('name', 'first_name'); $f-&gt;attr('value',
+$this-&gt;get('first_name')); $f-&gt;label = 'Your First Name';
+$inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
+
+<p>#pw-group-module</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>Populated with Inputfield instances<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Inputfield::getConfigArray()<br>
+				</div>
 
 
 		</div>
@@ -1864,23 +2187,35 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigArray">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#854-874" title="Go to source code">___getConfigArray</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1306-1336" title="Go to source code">___getConfigArray</a>( )</code>
 
 		<div class="description short">
 			
-<p>Same as getConfigInputfields but allows for array definition instead</p>
+<p>Alternative method for configuration that allows for array definition</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Same as getConfigInputfields but allows for array definition instead</p>
+<p>Alternative method for configuration that allows for array definition</p>
 
-<p>If both getConfigInputfields and getConfigArray are implemented, both will be
-used.</p>
+<ul>
+	<li>This method is typically used instead of the
+	<code>Inputfield::getConfigInputfields</code> method for module authors that
+	prefer to use the array definition.</li>
 
-<p>See comments for InputfieldWrapper::importArray for example of array
-definition.</p>
+	<li>If both <code>getConfigInputfields()</code> and
+	<code>getConfigArray()</code> are implemented, both will be used.</li>
+
+	<li>See comments for <code>InputfieldWrapper::importArray()</code> for example
+	of array definition.</li>
+</ul>
+
+<p>~~~~~ // Example implementation public function ___getConfigArray() { return
+[ 'test' =&gt; [ 'type' =&gt; 'text', 'label' =&gt; 'This is a test', 'value'
+=&gt; 'Test' ] ]; ); ~~~~~</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -1907,19 +2242,33 @@ definition.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigAllowContext">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#876-892" title="Go to source code">___getConfigAllowContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1338-1368" title="Go to source code">___getConfigAllowContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return a list of Inputfield names from getConfigInputfields() that are
-allowed in fieldgroup/template context</p>
+<p>Return a list of config property names allowed for fieldgroup/template
+context</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return a list of Inputfield names from getConfigInputfields() that are
-allowed in fieldgroup/template context</p>
+<p>Return a list of config property names allowed for fieldgroup/template
+context</p>
+
+<p>These should be the names of Inputfields returned by
+<code>Inputfield::getConfigInputfields()</code> or
+<code>Inputfield::getConfigArray()</code> that are allowed in
+fieldgroup/template context.</p>
+
+<p>The config property names specified here are allowed to be configured within
+the context of a given <code>Fieldgroup</code>, enabling the user to configure
+them independently per template in the admin.</p>
+
+<p>This is the equivalent to the <code>Fieldtype::getConfigAllowContext()</code>
+method, but for the "Input" tab rather than the "Details" tab.</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -1935,6 +2284,10 @@ allowed in fieldgroup/template context</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Fieldtype::getConfigAllowContext()<br>
+				</div>
 
 
 		</div>
@@ -1951,7 +2304,7 @@ allowed in fieldgroup/template context</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____exportConfigData">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#894-915" title="Go to source code">___exportConfigData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1370-1393" title="Go to source code">___exportConfigData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1967,6 +2320,8 @@ allowed in fieldgroup/template context</p>
 internal IDs should be converted to GUIDs where possible.</p>
 
 <p>Most Inputfields do not need to implement this.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1998,7 +2353,7 @@ internal IDs should be converted to GUIDs where possible.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____importConfigData">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#917-929" title="Go to source code">___importConfigData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1395-1409" title="Go to source code">___importConfigData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2013,6 +2368,8 @@ internally (opposite of exportConfigData)</p>
 internally (opposite of exportConfigData)</p>
 
 <p>Most Inputfields do not need to implement this.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2046,7 +2403,7 @@ during import of config data.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getErrorSessionKey">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#931-940" title="Go to source code">getErrorSessionKey</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1411-1422" title="Go to source code">getErrorSessionKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -2057,6 +2414,8 @@ during import of config data.<br>
 		<div class="description detailed hidden">
 			
 <p>Returns a unique key variable used to store errors in the session</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2079,28 +2438,31 @@ during import of config data.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_error">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#942-960" title="Go to source code">error</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1424-1448" title="Go to source code">error</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Override Wire's error method and place errors in the context of their
-inputfield</p>
+<p>Record an error for this Inputfield</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Override Wire's error method and place errors in the context of their
-inputfield</p>
+<p>Record an error for this Inputfield</p>
+
+<p>The error message will be placed in the context of this Inputfield. See the
+<code>Wire::error()</code> method for full details on arguments and options.</p>
+
+<p>#pw-group-states</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$text</var></dt>
-					<dd><code>string</code><br>$text</dd>
+					<dd><code>string</code><br>$text Text of error message</dd>
 					<dt><var>$flags</var></dt>
-					<dd><code>integer</code><br>$flags</dd>
+					<dd><code>integer</code><br>$flags Optional flags</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2127,29 +2489,31 @@ inputfield</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getErrors">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#962-981" title="Go to source code">getErrors</a>( <span>boolean <var>$clear</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1450-1471" title="Go to source code">getErrors</a>( <span>boolean <var>$clear</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Return array of strings containing errors that occurred during
-processInput</p>
+<p>Return array of strings containing errors that occurred during input
+processing</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return array of strings containing errors that occurred during
-processInput</p>
+<p>Return array of strings containing errors that occurred during input
+processing</p>
 
-<p>Note that this is different from Wire::errors() in that it retrieves errors
-from the session rather than just the current run.</p>
+<p>Note that this is different from <code>Wire::errors()</code> in that it
+retrieves errors from the session rather than just the current run.</p>
+
+<p>#pw-group-states</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$clear</var></dt>
-					<dd><code>boolean</code><br>$clear Optionally clear the errors after getting them. Default=false.</dd>
+					<dd><code>boolean</code><br>$clear Optionally clear the errors after getting them (Default=false).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2174,7 +2538,7 @@ from the session rather than just the current run.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#983-994" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1473-1487" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2186,17 +2550,19 @@ from the session rather than just the current run.</p>
 			
 <p>Does this Inputfield have the requested property or attribute?</p>
 
+<p>#pw-group-attribute-methods #pw-group-settings</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Requested property or attribute.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if it has it, false if it doesn't<br>
 				</div>
 
 
@@ -2218,7 +2584,7 @@ from the session rather than just the current run.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trackChange">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#996-1010" title="Go to source code">trackChange</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1489-1505" title="Go to source code">trackChange</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2231,6 +2597,8 @@ from the session rather than just the current run.</p>
 <p>Track the change, but only if it was to the 'value' attribute.</p>
 
 <p>We don't track changes to any other properties of Inputfields.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -2268,34 +2636,46 @@ from the session rather than just the current run.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_entityEncode">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1012-1052" title="Go to source code">entityEncode</a>( <span>string <var>$str</var></span>, <span>boolean|integer <var>$markdown</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1507-1555" title="Go to source code">entityEncode</a>( <span>string <var>$str</var></span>, <span>boolean|integer <var>$markdown</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Entity encode a string (de-encoding if necessary and then re-encoding)</p>
+<p>Entity encode a string with optional Markdown support.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Entity encode a string (de-encoding if necessary and then re-encoding)</p>
+<p>Entity encode a string with optional Markdown support.</p>
 
-<p>Also option for markdown support when 2nd argument is true.</p>
+<ul>
+	<li>Markdown support provided with second argument.</li>
+
+	<li>If string is already entity-encoded it will first be decoded.</li>
+</ul>
+
+<p>#pw-group-output</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$str</var></dt>
-					<dd><code>string</code><br>$str</dd>
+					<dd><code>string</code><br>$str String to encode</dd>
 					<dt><var>$markdown</var></dt>
-					<dd><code>boolean|integer</code><br>$markdown Whether to allow any kind of formatting (according to $textFormat), or
-specify a textFormat constant.</dd>
+					<dd><code>boolean|integer</code><br>$markdown Optionally specify one of the following: - <code>true</code>
+(boolean): To allow Markdown using default "textFormat" setting (which is basic
+Markdown by default). - <code>false</code> (boolean): To disallow Markdown
+support (this is the default when $markdown argument omitted). -
+<code>Inputfield::textFormatNone</code> (constant): Disallow Markdown support
+(default). - <code>Inputfield::textFormatBasic</code> (constant): To support
+basic/inline Markdown. - <code>Inputfield::textFormatMarkdown</code> (constant):
+To support full Markdown and HTML.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code>string</code><br>Entity encoded string or HTML string<br>
 				</div>
 
 
@@ -2315,32 +2695,36 @@ specify a textFormat constant.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editable">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1054-1066" title="Go to source code">editable</a>( <span>boolean|null <var>$setEditable</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1557-1572" title="Go to source code">editable</a>( <span>boolean|null <var>$setEditable</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get or set editable state</p>
+<p>Get or set editable state for this Inputfield</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get or set editable state</p>
+<p>Get or set editable state for this Inputfield</p>
 
-<p>When set to false, this Inputfield's processInput() method won't be called by
-InputfieldWrapper.</p>
+<p>When set to false, the <code>Inputfield::processInput()</code> method won't
+be called by parent InputfieldWrapper, effectively skipping over input
+processing entirely for this Inputfield.</p>
+
+<p>#pw-group-states</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$setEditable</var></dt>
-					<dd><code>boolean|null</code><br>$setEditable Specify bool to set the editable state</dd>
+					<dd><code>boolean|null</code><br>$setEditable Specify true or false to set the editable state, or omit just to
+get the editable state.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>Returns the current editable state<br>
+					<code>boolean</code><br>Returns the current editable state.<br>
 				</div>
 
 
@@ -2396,6 +2780,7 @@ InputfieldWrapper.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 
@@ -2438,7 +2823,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#83-87" title="Go to source code"><b>collapsedNo</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#117-122" title="Go to source code"><b>collapsedNo</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -2446,13 +2831,13 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
-<p>Constants for the standard Inputfield 'collapsed' setting</p>
+<p>Not collapsed (display as "open", default) #pw-group-collapsed-constants</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Constants for the standard Inputfield 'collapsed' setting</p>
+<p>Not collapsed (display as "open", default) #pw-group-collapsed-constants</p>
 
 
 			</div>
@@ -2462,7 +2847,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#88" title="Go to source code"><b>collapsedYes</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#124-129" title="Go to source code"><b>collapsedYes</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">1</span></code></td>
 		<td class="description"><div>
@@ -2470,10 +2855,14 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Collapsed unless opened #pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Collapsed unless opened #pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2482,7 +2871,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#89" title="Go to source code"><b>collapsedBlank</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#131-136" title="Go to source code"><b>collapsedBlank</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -2490,10 +2879,14 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Collapsed only when blank #pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Collapsed only when blank #pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2502,7 +2895,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#90" title="Go to source code"><b>collapsedHidden</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#138-143" title="Go to source code"><b>collapsedHidden</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -2510,10 +2903,14 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Hidden, not rendered in the form at all #pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Hidden, not rendered in the form at all #pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2522,7 +2919,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#91" title="Go to source code"><b>collapsedPopulated</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#145-150" title="Go to source code"><b>collapsedPopulated</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">5</span></code></td>
 		<td class="description"><div>
@@ -2530,10 +2927,14 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Collapsed only when populated #pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Collapsed only when populated #pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2542,7 +2943,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#92" title="Go to source code"><b>collapsedNoLocked</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#152-157" title="Go to source code"><b>collapsedNoLocked</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">7</span></code></td>
 		<td class="description"><div>
@@ -2550,10 +2951,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Not collapsed, value visible but not editable
+#pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Not collapsed, value visible but not editable
+#pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2562,7 +2969,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#93" title="Go to source code"><b>collapsedYesLocked</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#159-164" title="Go to source code"><b>collapsedYesLocked</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -2570,10 +2977,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Collapsed unless opened (value becomes visible but not editable)
+#pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Collapsed unless opened (value becomes visible but not editable)
+#pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2582,7 +2995,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#94" title="Go to source code"><b>collapsedLocked</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#166-171" title="Go to source code"><b>collapsedLocked</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -2590,10 +3003,14 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Same as collapsedYesLocked, for backwards compatibility #pw-internal</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Same as collapsedYesLocked, for backwards compatibility #pw-internal</p>
+
 
 			</div>
 		</div></td>
@@ -2602,7 +3019,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#95" title="Go to source code"><b>collapsedNever</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#173-178" title="Go to source code"><b>collapsedNever</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">9</span></code></td>
 		<td class="description"><div>
@@ -2610,10 +3027,14 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Never collapsed, and not collapsible #pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Never collapsed, and not collapsible #pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2622,7 +3043,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#96" title="Go to source code"><b>collapsedYesAjax</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#180-185" title="Go to source code"><b>collapsedYesAjax</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">10</span></code></td>
 		<td class="description"><div>
@@ -2630,10 +3051,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Collapsed and dynamically loaded by AJAX when opened
+#pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Collapsed and dynamically loaded by AJAX when opened
+#pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2642,7 +3069,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#97" title="Go to source code"><b>collapsedBlankAjax</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#187-192" title="Go to source code"><b>collapsedBlankAjax</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">11</span></code></td>
 		<td class="description"><div>
@@ -2650,10 +3077,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Collapsed only when blank, and dynamically loaded by AJAX when opened
+#pw-group-collapsed-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Collapsed only when blank, and dynamically loaded by AJAX when opened
+#pw-group-collapsed-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2662,7 +3095,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>boolean</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#99-103" title="Go to source code"><b>skipLabelNo</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#194-199" title="Go to source code"><b>skipLabelNo</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -2670,13 +3103,13 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
-<p>Constants for skipLabel setting</p>
+<p>Don't skip the label (default) #pw-group-skipLabel-constants</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Constants for skipLabel setting</p>
+<p>Don't skip the label (default) #pw-group-skipLabel-constants</p>
 
 
 			</div>
@@ -2686,7 +3119,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>boolean</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#104" title="Go to source code"><b>skipLabelFor</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#201-206" title="Go to source code"><b>skipLabelFor</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-keyword1">true</span></code></td>
 		<td class="description"><div>
@@ -2694,10 +3127,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Don't use a "for" attribute with the &lt;label&gt;
+#pw-group-skipLabel-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Don't use a "for" attribute with the &lt;label&gt;
+#pw-group-skipLabel-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2706,7 +3145,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#105" title="Go to source code"><b>skipLabelHeader</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#208-213" title="Go to source code"><b>skipLabelHeader</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -2714,10 +3153,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Don't use a label header element at all (basically, skip the label)
+#pw-group-skipLabel-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Don't use a label header element at all (basically, skip the label)
+#pw-group-skipLabel-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2726,7 +3171,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#106" title="Go to source code"><b>skipLabelBlank</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#215-220" title="Go to source code"><b>skipLabelBlank</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -2734,10 +3179,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Skip rendering of the label when it is blank
+#pw-group-skipLabel-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Skip rendering of the label when it is blank
+#pw-group-skipLabel-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2746,7 +3197,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#108-112" title="Go to source code"><b>textFormatNone</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#222-227" title="Go to source code"><b>textFormatNone</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -2754,13 +3205,15 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
-<p>Formats allowed in description, notes, label</p>
+<p>Plain text: no type of markdown or HTML allowed
+#pw-group-textFormat-constants</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Formats allowed in description, notes, label</p>
+<p>Plain text: no type of markdown or HTML allowed
+#pw-group-textFormat-constants</p>
 
 
 			</div>
@@ -2770,7 +3223,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#113" title="Go to source code"><b>textFormatBasic</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#229-234" title="Go to source code"><b>textFormatBasic</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -2778,10 +3231,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Only allow basic/inline markdown, and no HTML (default)
+#pw-group-textFormat-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Only allow basic/inline markdown, and no HTML (default)
+#pw-group-textFormat-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2790,7 +3249,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#114" title="Go to source code"><b>textFormatMarkdown</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#236-241" title="Go to source code"><b>textFormatMarkdown</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -2798,10 +3257,16 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
+<p>Full markdown support with HTML also allowed
+#pw-group-textFormat-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Full markdown support with HTML also allowed
+#pw-group-textFormat-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2810,7 +3275,7 @@ InputfieldWrapper.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#116-120" title="Go to source code"><b>renderValueMinimal</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#243-248" title="Go to source code"><b>renderValueMinimal</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -2818,15 +3283,15 @@ InputfieldWrapper.</p>
 
 			<div class="description short">
 				
-<p>Options for renderValueFlags, applicable to renderValueMode only,
-$this-&gt;renderValue() method call</p>
+<p>Render only the minimum output when in "renderValue" mode.
+#pw-group-renderValue-constants</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Options for renderValueFlags, applicable to renderValueMode only,
-$this-&gt;renderValue() method call</p>
+<p>Render only the minimum output when in "renderValue" mode.
+#pw-group-renderValue-constants</p>
 
 
 			</div>
@@ -2836,7 +3301,7 @@ $this-&gt;renderValue() method call</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#121" title="Go to source code"><b>renderValueNoWrap</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#250-255" title="Go to source code"><b>renderValueNoWrap</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -2844,10 +3309,16 @@ $this-&gt;renderValue() method call</p>
 
 			<div class="description short">
 				
+<p>Indicates a parent InputfieldWrapper is not required when rendering value.
+#pw-group-renderValue-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Indicates a parent InputfieldWrapper is not required when rendering value.
+#pw-group-renderValue-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2856,7 +3327,7 @@ $this-&gt;renderValue() method call</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#122" title="Go to source code"><b>renderValueFirst</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#257-262" title="Go to source code"><b>renderValueFirst</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -2864,10 +3335,16 @@ $this-&gt;renderValue() method call</p>
 
 			<div class="description short">
 				
+<p>If there are multiple items, only render the first (where supported by the
+Inputfield). #pw-group-renderValue-constants</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>If there are multiple items, only render the first (where supported by the
+Inputfield). #pw-group-renderValue-constants</p>
+
 
 			</div>
 		</div></td>
@@ -2895,7 +3372,7 @@ $this-&gt;renderValue() method call</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#125-129" title="Go to source code"><var>$numInstances</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#264-270" title="Go to source code"><var>$numInstances</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -2913,6 +3390,8 @@ $this-&gt;renderValue() method call</p>
 <p>The total number of Inputfield instances, kept as a way of generating unique
 'id' attributes</p>
 
+<p>#pw-internal</p>
+
 
 			</div>
 		</div></td>
@@ -2924,7 +3403,7 @@ $this-&gt;renderValue() method call</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#143-147" title="Go to source code"><var>$attributes</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#284-288" title="Go to source code"><var>$attributes</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2951,7 +3430,7 @@ $this-&gt;renderValue() method call</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#149-155" title="Go to source code"><var>$wrapAttributes</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#290-296" title="Go to source code"><var>$wrapAttributes</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2978,7 +3457,7 @@ $this-&gt;renderValue() method call</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#157-161" title="Go to source code"><var>$parent</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#298-302" title="Go to source code"><var>$parent</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -3005,7 +3484,7 @@ $this-&gt;renderValue() method call</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#163-167" title="Go to source code"><var>$defaultID</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#304-308" title="Go to source code"><var>$defaultID</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">''</span></code></td>
 		<td class="description"><div>
@@ -3032,7 +3511,7 @@ $this-&gt;renderValue() method call</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#169-177" title="Go to source code"><var>$editable</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#310-318" title="Go to source code"><var>$editable</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">true</span></code></td>
 		<td class="description"><div>

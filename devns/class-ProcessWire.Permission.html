@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Permission | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -488,10 +488,12 @@
 	
 <p>ProcessWire Permission Page</p>
 
-<p>A type of Page used for storing an individual User</p>
-
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
-href="https://processwire.com">https://processwire.com</a></p>
+<p>#pw-summary Permission is a Page type used for storing an individual
+permission. #pw-body = One or more Permission objects are attached to
+<code>Role</code> objects, which are then attached to <code>User</code> objects
+and <code>Template</code> objects, forming ProcessWire's role-based access
+control system. Outside of roles, Permission objects are managed with the
+<code>$permissions</code> API variable. #pw-body</p>
 
 	</div>
 
@@ -551,10 +553,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-				<b>Todo:</b>
-				PW3 move permissions to use Page hierarchy or Page reference for parent/child
-relationships between permissions<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Permission.html#4-114" title="Go to source code">core/Permission.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Permission.html#4-134" title="Go to source code">core/Permission.php</a><br>
 	</div>
 
 
@@ -572,7 +571,7 @@ relationships between permissions<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Permission.html#40-50" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$tpl</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Permission.html#47-57" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$tpl</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -612,23 +611,25 @@ relationships between permissions<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParentPermission">#</a>
-		<code><a href="source-class-ProcessWire.Permission.html#52-86" title="Go to source code">getParentPermission</a>( )</code>
+		<code><a href="source-class-ProcessWire.Permission.html#59-95" title="Go to source code">getParentPermission</a>( )</code>
 
 		<div class="description short">
 			
 <p>Return the immediate parent permission of this permission or NullPage if no
-parent permission</p>
+parent permission.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Return the immediate parent permission of this permission or NullPage if no
-parent permission</p>
+parent permission.</p>
 
 <p>For permissions, parents relations are typically by name. For instance,
 page-edit is the parent of page-edit-created. But all page-* permissions are
 assumed to have page-edit as parent, except for page-view.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -648,25 +649,39 @@ assumed to have page-edit as parent, except for page-view.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRootParentPermission">#</a>
-		<code><a href="source-class-ProcessWire.Permission.html#88-103" title="Go to source code">getRootParentPermission</a>( )</code>
+		<code><a href="source-class-ProcessWire.Permission.html#97-121" title="Go to source code">getRootParentPermission</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the root parent permission</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the root parent permission</p>
+
+<p>#pw-internal</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -684,7 +699,7 @@ assumed to have page-edit as parent, except for page-view.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPagesManager">#</a>
-		<code><a href="source-class-ProcessWire.Permission.html#105-113" title="Go to source code">getPagesManager</a>( )</code>
+		<code><a href="source-class-ProcessWire.Permission.html#123-133" title="Go to source code">getPagesManager</a>( )</code>
 
 		<div class="description short">
 			
@@ -695,6 +710,8 @@ assumed to have page-edit as parent, except for page-view.</p>
 		<div class="description detailed hidden">
 			
 <p>Return the API variable used for managing pages of this type</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -855,6 +872,7 @@ assumed to have page-edit as parent, except for page-view.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -934,7 +952,7 @@ assumed to have page-edit as parent, except for page-view.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Permission.html#17-38" title="Go to source code"><var>$parentPermissions</var></a>
+				<a href="source-class-ProcessWire.Permission.html#24-45" title="Go to source code"><var>$parentPermissions</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'page-view'</span> =&gt; <span class="php-quote">'none'</span>,

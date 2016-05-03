@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireMailTools | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -491,6 +491,8 @@
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
+<p>#pw-summary Provides an API interface to email and WireMail.</p>
+
 	</div>
 
 	<dl class="tree">
@@ -527,7 +529,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireMailTools.html#4-146" title="Go to source code">core/WireMailTools.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireMailTools.html#4-141" title="Go to source code">core/WireMailTools.php</a><br>
 	</div>
 
 
@@ -545,23 +547,22 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____new">#</a>
-		<code><a href="source-class-ProcessWire.WireMailTools.html#14-48" title="Go to source code">___new</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#16-49" title="Go to source code">___new</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get a new WireMail instance</p>
+<p>Get a new WireMail instance for sending email</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a new WireMail instance</p>
+<p>Get a new WireMail instance for sending email</p>
 
-<p>Example usage:<br />
-$mailer = $mail-&gt;new();
+<p>~~~~~ $mailer = $mail-&gt;new();
 $mailer-&gt;to('user@domain.com')-&gt;from('you@company.com');
 $mailer-&gt;subject('Mail Subject')-&gt;body('Mail Body
-Text')-&gt;bodyHTML('Body HTML'); $numSent = $mailer-&gt;send();</p>
+Text')-&gt;bodyHTML('Body HTML'); $numSent = $mailer-&gt;send(); ~~~~~</p>
 
 
 
@@ -588,41 +589,43 @@ Text')-&gt;bodyHTML('Body HTML'); $numSent = $mailer-&gt;send();</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_send">#</a>
-		<code><a href="source-class-ProcessWire.WireMailTools.html#50-144" title="Go to source code">send</a>( <span>string|array <var>$to</var> = <span class="php-quote">''</span></span>, <span>string <var>$from</var> = <span class="php-quote">''</span></span>, <span>string <var>$subject</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$body</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#51-139" title="Go to source code">send</a>( <span>string|array <var>$to</var> = <span class="php-quote">''</span></span>, <span>string <var>$from</var> = <span class="php-quote">''</span></span>, <span>string <var>$subject</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$body</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Send an email or retrieve the mailer object</p>
+<p>Send an email</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Send an email or retrieve the mailer object</p>
+<p>Send an email</p>
 
-<p>Note 1: The order of arguments is different from PHP's mail() function. Note
-2: If no arguments are specified it simply returns a WireMail object (see #4
-below).</p>
+<ul>
+	<li>Note that the order of arguments is slightly different from PHP's
+	<code>mail()</code> function.</li>
 
-<p>This function will attempt to use an installed module that extends WireMail.
-If no module is installed, WireMail (which uses PHP mail) will be used
-instead.</p>
+	<li>If no arguments are specified it simply returns a <code>WireMail</code>
+	object (see #5 in examples).</li>
 
-<p>This function can be called in these ways:</p>
+	<li>This function will attempt to use an installed module that extends
+	<code>WireMail</code>. If no module is installed, <code>WireMail</code> (which
+	uses PHP mail) will be used instead.</li>
+</ul>
 
-<p>1. Default usage:<br />
-$mail-&gt;send($to, $from, $subject, $body, $options);</p>
+<p>~~~~~ // 1. Default usage: $mail-&gt;send($to, $from, $subject, $body);</p>
 
-<p>2. Specify body and/or bodyHTML in $options array (perhaps with other
-options):<br />
-$mail-&gt;send($to, $from, $subject, $options);</p>
+<p>// 2. Default usage with options array: $mail-&gt;send($to, $from, $subject,
+$body, $options);</p>
 
-<p>3. Specify both $body and $bodyHTML as arguments, but no $options:<br />
+<p>// 3. Specify body and/or bodyHTML in $options array (perhaps with other
+options): $mail-&gt;send($to, $from, $subject, $options);</p>
+
+<p>// 4. Specify both $body and $bodyHTML as arguments, but no $options:
 $mail-&gt;send($to, $from, $subject, $body, $bodyHTML);</p>
 
-<p>4. Specify a blank call to wireMail() to get the WireMail sending object.
-This can be either WireMail() or a class descending from it. If a WireMail
-descending module is installed, it will be returned rather than WireMail().</p>
+<p>// 5. Specify a blank call to wireMail() to get the WireMail sending module:
+$wireMail = $mail-&gt;send(); ~~~~~</p>
 
 
 
@@ -632,17 +635,18 @@ descending module is installed, it will be returned rather than WireMail().</p>
 					<dd><code>string|array</code><br>$to Email address TO. For multiple, specify CSV string or array.</dd>
 					<dt><var>$from</var></dt>
 					<dd><code>string</code><br>$from Email address FROM. This may be an email address, or a combined name and
-email address. Example of combined name and email: Karen Cramer &lt;<a
-href="mailto:karen&#64;processwire.com">karen&#64;<!-- -->processwire.com</a>&gt;</dd>
+email address. Example of combined name and email: <code>Karen Cramer
+&lt;karen@processwire.com&gt;</code></dd>
 					<dt><var>$subject</var></dt>
 					<dd><code>string</code><br>$subject Email subject</dd>
 					<dt><var>$body</var></dt>
 					<dd><code>string|array</code><br>$body Email body or omit to move straight to $options</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array|string</code><br>$options Array of options OR the $bodyHTML string. Array $options are: body:
-string bodyHTML: string headers: associative array of header name =&gt; header
-value Any additional options will be sent along to the WireMail module or class,
-in tact.</dd>
+					<dd><code>array|string</code><br>$options Array of options OR the $bodyHTML string. Array $options are: -
+<code>body</code> (string): Email body (text) - <code>bodyHTML</code> (string):
+Email body (HTML) - <code>headers</code> (array): Associative array of header
+name =&gt; header value - Any additional options will be sent along to the
+WireMail module or class, in tact.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -679,6 +683,7 @@ in tact.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

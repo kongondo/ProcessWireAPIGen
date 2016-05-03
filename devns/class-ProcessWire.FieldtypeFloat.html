@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeFloat | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -603,22 +603,25 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<div class="description short">
 			
-<p>Get an array of Fieldtypes that are compatible with this one (i.e. ones the
-user may change the type to)</p>
+<p>Get an array of Fieldtypes that are compatible with this one</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get an array of Fieldtypes that are compatible with this one (i.e. ones the
-user may change the type to)</p>
+<p>Get an array of Fieldtypes that are compatible with this one</p>
+
+<p>This represents the list of Fieldtype modules that the user is allowed to
+change to from this one.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Just in case it's needed</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -659,6 +662,10 @@ zero value, blank object or array</p>
 <p>Return the blank value for this fieldtype, whether that is a blank string,
 zero value, blank object or array</p>
 
+<p>Default/non-implemented behavior is to return a blanks string.</p>
+
+<p>#pw-group-loading</p>
+
 
 
 				<h4>Parameters</h4>
@@ -697,20 +704,22 @@ zero value, blank object or array</p>
 
 		<div class="description short">
 			
-<p>Return whether the given value is considered empty or not</p>
+<p>Return whether the given value is considered empty or not.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return whether the given value is considered empty or not</p>
+<p>Return whether the given value is considered empty or not.</p>
 
-<p>This an be anything that might be present in a selector value and thus is
+<p>This can be anything that might be present in a selector value and thus is
 typically a string. However, it may be used outside of that purpose so you
 shouldn't count on it being a string.</p>
 
 <p>Example: an integer or text Fieldtype might not consider a "0" to be empty,
 whereas a Page reference would.</p>
+
+<p>#pw-group-finding</p>
 
 
 
@@ -750,17 +759,26 @@ whereas a Page reference would.</p>
 
 		<div class="description short">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
-<p>This method should remove anything that's invalid from the given value. If it
-can't be sanitized, it should be blanked. This method filters every value set to
-a Page instance.</p>
+<ul>
+	<li>Implementation is required by Fieldtype modules, as this method is
+	abstract.</li>
+
+	<li>This method should remove anything that's invalid from the given value. If
+	it can't be sanitized, it should be made blank.</li>
+
+	<li>This method filters every value set to a Page instance, so it should do it's
+	thing as quickly as possible.</li>
+</ul>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -800,34 +818,26 @@ a Page instance.</p>
 
 		<div class="description short">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
-<p>Abstract Template Method: child classes should override this. Code snippet is
-for example purposes only.</p>
-
-<p>Page and Field are provided as params in case the Fieldtype needs them for
-any custom population with the Inputfield. However, most Fieldtypes won't need
-them since Inputfield objects don't have any Page dependencies (!) The Field
-class handles setting all standard Inputfield attributes rather than this method
-to reduce code duplication in Inputfield modules.</p>
-
-<p>(!) See FieldtypeFile for an example that uses both Page and Field
-params.</p>
+<p>#pw-group-other</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfield will be for</dd>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that the Inputfield will be for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -847,31 +857,35 @@ params.</p>
 
 		<td class="attributes"><code>
 			 public 
-			string|integer|array
+			string|integer|float|array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____sleepValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeFloat.html#79-104" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeFloat.html#79-104" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|float|array|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Given an 'awake' value, as set by wakeupValue, convert the value back to a
-basic type for storage in DB.</p>
+<p>Given an 'awake' value, as set by wakeupValue(), convert the value back to a
+basic type for storage in database.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given an 'awake' value, as set by wakeupValue, convert the value back to a
-basic type for storage in DB.</p>
+<p>Given an 'awake' value, as set by wakeupValue(), convert the value back to a
+basic type for storage in database.</p>
 
 <p>In many cases, this may mean no change to the value, which is why the default
 here just returns the value. But for values that are stored with pages as
 objects (for instance) this method would take that object and convert it to an
 array, int or string (serialized or otherwise).</p>
+
+<p>Returned value must be either an array, number, or string.</p>
+
+<p>#pw-group-saving</p>
 
 
 
@@ -882,12 +896,12 @@ array, int or string (serialized or otherwise).</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer|array|object</code><br>$value</dd>
+					<dd><code>string|integer|float|array|object</code><br>$value</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|array</code><br>
+					<code>string|integer|float|array</code><br>
 				</div>
 
 
@@ -950,31 +964,38 @@ array, int or string (serialized or otherwise).</p>
 			
 <p>Get the database schema for this field</p>
 
-<p>Should return an array like the following, indexed by field name with type
-details as the value (as it would be in an SQL statement) Indexes are passed
-through with a 'keys' array. Note that 'pages_id' as a field and primary key may
-be retrieved by starting with the parent schema return from this root
-getDatabaseSchema method.</p>
+<ul>
+	<li>Should return an array like in the example below, indexed by field name with
+	type details as the value (as it would be in an SQL statement).</li>
 
-<p>array( 'data' =&gt; 'mediumtext NOT NULL', 'keys' =&gt; array( 'FULLTEXT KEY
-data (data)', ), 'xtra' =&gt; array( // optional extras, MySQL defaults will be
-used if ommitted 'append' =&gt; 'ENGINE=MyISAM DEFAULT CHARSET=latin1'<br />
+	<li>Indexes are passed through with a <code>keys</code> array. Note that
+	<code>pages_id</code> as a field and primary key may be retrieved by starting
+	with the parent schema return from the built-in getDatabaseSchema() method.</li>
+
+	<li>At minimum, each Fieldtype must add a <code>data</code> field as well as an
+	index for it.</li>
+
+	<li>If you want a PHP <code>NULL</code> value to become a NULL in the database,
+	your column definition must specify: <code>DEFAULT NULL</code>.</li>
+</ul>
+
+<p>~~~~~~ array( 'data' =&gt; 'mediumtext NOT NULL', 'keys' =&gt; array(
+'primary' =&gt; 'PRIMARY KEY (<code>pages_id</code>)', 'FULLTEXT KEY data
+(data)', ), 'xtra' =&gt; array( // optional extras, MySQL defaults will be used
+if omitted 'append' =&gt; 'ENGINE={$this-&gt;config-&gt;dbEngine} ' . 'DEFAULT
+CHARSET={$this-&gt;config-&gt;dbCharset}'<br />
 // true (default) if this schema provides all storage for this fieldtype. //
-false if other storage is involved with this fieldtype, beyond this schema (like
-repeaters, PageTable, etc.) 'all' =&gt; true, ) );</p>
+false if other storage is involved with this fieldtype, beyond this schema //
+(like repeaters, PageTable, etc.) 'all' =&gt; true, ) ); ~~~~~~</p>
 
-<p>At minimum, each Fieldtype must add a 'data' field as well as an index for
-it.</p>
-
-<p>If you want a PHP NULL value to become a NULL in the database, your column
-definition must specify: DEFAULT NULL</p>
+<p>#pw-group-creating</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but usually should not.</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but typically isn't.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1005,21 +1026,24 @@ definition must specify: DEFAULT NULL</p>
 
 		<div class="description short">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
-<p>This is in addition any configuration fields supplied by the Inputfield.</p>
+<p>This is in addition to any configuration fields supplied by the
+Inputfield.</p>
 
 <p>Classes implementing this method should call upon this parent method to
 obtain the InputfieldWrapper, and then append their own Inputfields to that.</p>
 
 <p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
 are assumed to be for runtime use and are NOT stored in the database.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -1131,6 +1155,7 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

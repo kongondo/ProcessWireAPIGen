@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeOptions | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -1419,15 +1419,24 @@ during import of config data.<br>
 			
 <p>Install this Fieldtype, consistent with optional Module interface</p>
 
-<p>Called once at time of installation by Modules::install(). If custom
-Fieldtype classes need to perform any setup beyond that performed in
-___createTable(), this method is where they should do it. This is not required,
-and probably not applicable to most.</p>
+<ul>
+	<li>Called once at time of installation by Modules::install().</li>
+
+	<li>If custom Fieldtype classes need to perform any setup beyond that performed
+	in ___createTable(), this method is where they should do it. This is not
+	required, and probably not applicable to most.</li>
+</ul>
+
+<p>#pw-group-other</p>
 
 
 
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>Should throw an Exception on failure to install<br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -1459,16 +1468,28 @@ and probably not applicable to most.</p>
 			
 <p>Uninstall this Fieldtype, consistent with optional Module interface</p>
 
-<p>Checks to make sure it's safe to uninstall this Fieldtype. If not, throw an
-Exception indicating such. It's safe to uninstall a Fieldtype only if it's not
-being used by any Fields. If a Fieldtype overrides this to perform additional
-uninstall functions, it would be good to call this first to make sure uninstall
-is okay.</p>
+<ul>
+	<li>Checks to make sure it's safe to uninstall this Fieldtype. If not, throw an
+	Exception indicating such.</li>
+
+	<li>It's safe to uninstall a Fieldtype only if it's not being used by any
+	Fields.</li>
+
+	<li>If a Fieldtype overrides this to perform additional uninstall functions, it
+	would be good to call this parent uninstall method first to make sure uninstall
+	is okay.</li>
+</ul>
+
+<p>#pw-group-other</p>
 
 
 
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>Should throw an Exception if uninstsall can't be completed.<br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -1753,6 +1774,7 @@ is okay.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

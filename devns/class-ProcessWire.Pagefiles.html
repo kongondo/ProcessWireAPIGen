@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Pagefiles | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -930,7 +930,7 @@ cloned</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>mixed</code><br>$item Item to add</dd>
+					<dd><code>mixed</code><br>$item Item to test for validity</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -974,12 +974,12 @@ cloned</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item</dd>
+					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item Item to get key for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|null</code><br>
+					<code>string|integer|null</code><br>Found key, or null if not found.<br>
 				</div>
 
 
@@ -1023,7 +1023,7 @@ cloned</p>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If class doesn't implement this method.<br>
 				</div>
 
 
@@ -1171,7 +1171,7 @@ automatically.</dd>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given an item that can't be stored by this WireArray.<br>
 				</div>
 
 
@@ -1601,8 +1601,10 @@ filename.</dd>
 			
 <p>Track a change to a property in this object</p>
 
-<p>The change will only be recorded if $this-&gt;trackChanges is a positive
-value.</p>
+<p>The change will only be recorded if change tracking is enabled for this
+object instance.</p>
+
+<p>#pw-group-changes</p>
 
 
 
@@ -1825,6 +1827,8 @@ if temporary AND deletable.</p>
 			
 <p>Clears out any tracked changes and turns change tracking ON or OFF</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
@@ -1943,6 +1947,7 @@ true is assumed.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

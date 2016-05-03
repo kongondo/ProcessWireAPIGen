@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldTextarea | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -608,15 +608,17 @@
 
 		<div class="description short">
 			
-<p>Per the Module interface, init() is called when the system is ready for API
-usage</p>
+<p>Per the Module interface, init() is called after any configuration data has
+been populated to the Inputfield, but before render.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Per the Module interface, init() is called when the system is ready for API
-usage</p>
+<p>Per the Module interface, init() is called after any configuration data has
+been populated to the Inputfield, but before render.</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -645,22 +647,20 @@ usage</p>
 
 		<div class="description short">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render the HTML input element(s) markup, ready for insertion in an HTML
+form.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render the HTML input element(s) markup, ready for insertion in an HTML
+form.</p>
 
-<p>The method as it appears here does not actually output an Inputfield.
-However, subclasses should render the output for an Inputfield and then call
-upon this parent render method to output any children (if applicable).</p>
+<p>This is an abstract method that descending Inputfield module classes are
+required to implement.</p>
 
-<p>This includes the output of any child Inputfields (if applicable). Children
-are presented as list items in an unordered list.</p>
+<p>#pw-group-output</p>
 
 
 
@@ -773,21 +773,48 @@ purposes</p>
 			
 <p>Get any custom configuration fields for this Inputfield</p>
 
-<p>Intended to be extended by each Inputfield as needed to add more config
-options.</p>
+<ul>
+	<li>Intended to be extended by each Inputfield as needed to add more config
+	options.</li>
 
-<p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
-are assumed to be for runtime use and are NOT stored in the database.</p>
+	<li>The returned InputfieldWrapper ultimately ends up as the "Input" tab in the
+	fields editor (admin).</li>
+
+	<li>Descending Inputfield classes should first call this method from the parent
+	class to get the default configuration fields and the InputfieldWrapper they can
+	add to.</li>
+
+	<li>Returned Inputfield instances with a name attribute that starts with an
+	underscore, i.e. "_myname" are assumed to be for runtime use and are NOT stored
+	in the database.</li>
+
+	<li>If you prefer, you may instead implement the
+	<code>Inputfield::getConfigArray()</code> method as an alternative.</li>
+</ul>
+
+<p>~~~~ // Example getConfigInputfields() implementation public function
+___getConfigInputfields() { // Get the defaults and $inputfields wrapper we can
+add to $inputfields = parent::___getConfigInputfields(); // Add a new Inputfield
+to it $f = $this-&gt;wire('modules')-&gt;get('InputfieldText');
+$f-&gt;attr('name', 'first_name'); $f-&gt;attr('value',
+$this-&gt;get('first_name')); $f-&gt;label = 'Your First Name';
+$inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
+
+<p>#pw-group-module</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>Populated with Inputfield instances<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Inputfield::getConfigArray()<br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.InputfieldText.html#____getConfigInputfields">ProcessWire\InputfieldText::___getConfigInputfields()</a></code></div>
@@ -810,15 +837,29 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 
 		<div class="description short">
 			
-<p>Return a list of Inputfield names from getConfigInputfields() that are
-allowed in fieldgroup/template context</p>
+<p>Return a list of config property names allowed for fieldgroup/template
+context</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return a list of Inputfield names from getConfigInputfields() that are
-allowed in fieldgroup/template context</p>
+<p>Return a list of config property names allowed for fieldgroup/template
+context</p>
+
+<p>These should be the names of Inputfields returned by
+<code>Inputfield::getConfigInputfields()</code> or
+<code>Inputfield::getConfigArray()</code> that are allowed in
+fieldgroup/template context.</p>
+
+<p>The config property names specified here are allowed to be configured within
+the context of a given <code>Fieldgroup</code>, enabling the user to configure
+them independently per template in the admin.</p>
+
+<p>This is the equivalent to the <code>Fieldtype::getConfigAllowContext()</code>
+method, but for the "Input" tab rather than the "Details" tab.</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -834,6 +875,10 @@ allowed in fieldgroup/template context</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Fieldtype::getConfigAllowContext()<br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.InputfieldText.html#____getConfigAllowContext">ProcessWire\InputfieldText::___getConfigAllowContext()</a></code></div>
@@ -938,6 +983,7 @@ allowed in fieldgroup/template context</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 

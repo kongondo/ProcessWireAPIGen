@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\User | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -493,6 +493,9 @@
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
+<p>#pw-summary The $user API variable is a type of page representing the current
+user, and the User class is Page type used for all users.</p>
+
 	</div>
 
 	<dl class="tree">
@@ -557,7 +560,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<b>Link:</b>
 				<a href="http://processwire.com/api/variables/user/">Offical $user API variable Documentation</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.User.html#4-411" title="Go to source code">core/User.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.User.html#4-462" title="Go to source code">core/User.php</a><br>
 	</div>
 
 
@@ -575,7 +578,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.User.html#23-35" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$tpl</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#29-41" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$tpl</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -615,24 +618,27 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasRole">#</a>
-		<code><a href="source-class-ProcessWire.User.html#37-74" title="Go to source code">hasRole</a>( <span>string|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer <var>$role</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#43-86" title="Go to source code">hasRole</a>( <span>string|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer <var>$role</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Does this user have the given role? (object, name or id)</p>
+<p>Does this user have the given Role?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Does this user have the given role? (object, name or id)</p>
+<p>Does this user have the given Role?</p>
+
+<p>~~~~~ if($user-&gt;hasRole('editor')) { // user has the editor role }
+~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$role</var></dt>
-					<dd><code>string|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer</code></dd>
+					<dd><code>string|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer</code><br>May be Role name, object or ID.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -657,32 +663,35 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addRole">#</a>
-		<code><a href="source-class-ProcessWire.User.html#76-92" title="Go to source code">addRole</a>( <span>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code> <var>$role</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#88-110" title="Go to source code">addRole</a>( <span>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code> <var>$role</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Add the given role string, id or object</p>
+<p>Add Role to this user</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Add the given role string, id or object</p>
+<p>Add Role to this user</p>
 
-<p>This is the same as $user-&gt;roles-&gt;add($role) except this one will
-accept ID or name.</p>
+<p>This is the same as <code>$user-&gt;roles-&gt;add($role)</code> except this
+one will also accept ID or name.</p>
+
+<p>~~~~~ // Add the "editor" role to the $user $user-&gt;addRole('editor');
+$user-&gt;save(); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$role</var></dt>
-					<dd><code>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code></code></dd>
+					<dd><code>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code></code><br>Maybe Role name, object, or ID.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>false if role not recognized, true otherwise<br>
+					<code>boolean</code><br>Returns false if role not recognized, true otherwise<br>
 				</div>
 
 
@@ -702,27 +711,30 @@ accept ID or name.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeRole">#</a>
-		<code><a href="source-class-ProcessWire.User.html#94-110" title="Go to source code">removeRole</a>( <span>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code> <var>$role</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#112-134" title="Go to source code">removeRole</a>( <span>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code> <var>$role</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Remove the given role string, id or object</p>
+<p>Remove Role from this user</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Remove the given role string, id or object</p>
+<p>Remove Role from this user</p>
 
-<p>This is the same as $user-&gt;roles-&gt;remove($role) except this one will
-accept ID or name.</p>
+<p>This is the same as <code>$user-&gt;roles-&gt;remove($role)</code> except
+this one will accept ID or name.</p>
+
+<p>~~~~~ // Remove the "editor" role from the $user
+$user-&gt;removeRole('editor'); $user-&gt;save(); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$role</var></dt>
-					<dd><code>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code></code></dd>
+					<dd><code>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code></code><br>May be Role name, object or ID.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -747,29 +759,36 @@ accept ID or name.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasPermission">#</a>
-		<code><a href="source-class-ProcessWire.User.html#112-131" title="Go to source code">hasPermission</a>( <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#136-165" title="Go to source code">hasPermission</a>( <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Does the user have the given permission, OR the given permission in the given
-context?</p>
+<p>Does the user have the given permission?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Does the user have the given permission, OR the given permission in the given
-context?</p>
+<p>Does the user have the given permission?</p>
 
-<p>Context may be a Page or a Template. This method serves as the public
-interface to the hasPagePermission and hasTemplatePermission methods.</p>
+<ul>
+	<li>Optionally accepts a <code>Page</code> or <code>Template</code> context for
+	the permission.</li>
+
+	<li>This method accounts for the user's permissions across all their roles.</li>
+</ul>
+
+<p>~~~~~ if($user-&gt;hasPermission('page-publish')) { // user has the
+page-publish permission in one of their roles }
+if($user-&gt;hasPermission('page-publish', $page)) { // user has page-publish
+permission for $page } ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code></code><br>$name Permission name</dd>
+					<dd><code>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code></code><br>$name Permission name, object or id.</dd>
 					<dt><var>$context</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code></code><br>$context Page or Template</dd>
 				</dl></div>
@@ -796,22 +815,24 @@ interface to the hasPagePermission and hasTemplatePermission methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____hasPagePermission">#</a>
-		<code><a href="source-class-ProcessWire.User.html#133-219" title="Go to source code">___hasPagePermission</a>( <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#167-255" title="Go to source code">___hasPagePermission</a>( <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Does this user have the given permission name?</p>
+<p>Does this user have named permission for the given Page?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Does this user have the given permission name?</p>
+<p>Does this user have named permission for the given Page?</p>
 
 <p>This is a basic permission check and it is recommended that you use those
 from the PagePermissions module instead. You use the PagePermissions module by
 calling the editable(), addable(), etc., functions on a page object. The
 PagePermissions does use this function for some of it's checking.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -845,7 +866,7 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____hasTemplatePermission">#</a>
-		<code><a href="source-class-ProcessWire.User.html#222-286" title="Go to source code">___hasTemplatePermission</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|integer|string <var>$template</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#258-324" title="Go to source code">___hasTemplatePermission</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|integer|string <var>$template</var></span> )</code>
 
 		<div class="description short">
 			
@@ -856,6 +877,8 @@ PagePermissions does use this function for some of it's checking.</p>
 		<div class="description detailed hidden">
 			
 <p>Does this user have the given permission on the given template?</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -886,26 +909,30 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="attributes"><code>
 			 public 
-			boolean
+			<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPermissions">#</a>
-		<code><a href="source-class-ProcessWire.User.html#288-314" title="Go to source code">getPermissions</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#326-359" title="Go to source code">getPermissions</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get this user's permissions, optionally within the context of a Page</p>
+<p>Get this user’s permissions, optionally within the context of a Page.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get this user's permissions, optionally within the context of a Page</p>
+<p>Get this user’s permissions, optionally within the context of a Page.</p>
 
-<p>Does not currently include page-add or page-create permissions.</p>
+<p>~~~~~ // Get all permissions the user has across their roles $permissions =
+$user-&gt;getPermissions();</p>
+
+<p>// Get all permissions the user has for $page $permissions =
+$user-&gt;getPermissions($page); ~~~~~</p>
 
 
 
@@ -917,7 +944,7 @@ PagePermissions does use this function for some of it's checking.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>of Permission objects<br>
 				</div>
 
 
@@ -937,7 +964,7 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSuperuser">#</a>
-		<code><a href="source-class-ProcessWire.User.html#316-337" title="Go to source code">isSuperuser</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#361-382" title="Go to source code">isSuperuser</a>( )</code>
 
 		<div class="description short">
 			
@@ -949,7 +976,8 @@ PagePermissions does use this function for some of it's checking.</p>
 			
 <p>Does this user have the superuser role?</p>
 
-<p>Same as $user-&gt;roles-&gt;has('name=superuser');</p>
+<p>Same as calling <code>$user-&gt;roles-&gt;has('name=superuser');</code> but
+potentially faster.</p>
 
 
 
@@ -976,7 +1004,7 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isGuest">#</a>
-		<code><a href="source-class-ProcessWire.User.html#339-347" title="Go to source code">isGuest</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#384-392" title="Go to source code">isGuest</a>( )</code>
 
 		<div class="description short">
 			
@@ -1013,7 +1041,7 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isLoggedin">#</a>
-		<code><a href="source-class-ProcessWire.User.html#349-357" title="Go to source code">isLoggedin</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#394-402" title="Go to source code">isLoggedin</a>( )</code>
 
 		<div class="description short">
 			
@@ -1050,7 +1078,7 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFieldValue">#</a>
-		<code><a href="source-class-ProcessWire.User.html#359-373" title="Go to source code">getFieldValue</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#404-418" title="Go to source code">getFieldValue</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1094,20 +1122,22 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editUrl">#</a>
-		<code><a href="source-class-ProcessWire.User.html#375-386" title="Go to source code">editUrl</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#420-433" title="Go to source code">editUrl</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns the URL where this page can be edited</p>
+<p>Returns the URL where this user can be edited</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the URL where this page can be edited</p>
+<p>Returns the URL where this user can be edited</p>
 
 <p>In this case we adjust the default page editor URL to ensure users are edited
 only from the Access section.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1136,7 +1166,7 @@ only from the Access section.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____setEditor">#</a>
-		<code><a href="source-class-ProcessWire.User.html#388-399" title="Go to source code">___setEditor</a>( <span><code><a href="class-ProcessWire.WirePageEditor.html">ProcessWire\WirePageEditor</a></code> <var>$editor</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#435-448" title="Go to source code">___setEditor</a>( <span><code><a href="class-ProcessWire.WirePageEditor.html">ProcessWire\WirePageEditor</a></code> <var>$editor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1150,6 +1180,8 @@ only from the Access section.</p>
 
 <p>We use this to detect when the User is being edited somewhere outside of
 /access/users/</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1179,7 +1211,7 @@ only from the Access section.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPagesManager">#</a>
-		<code><a href="source-class-ProcessWire.User.html#401-409" title="Go to source code">getPagesManager</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#450-460" title="Go to source code">getPagesManager</a>( )</code>
 
 		<div class="description short">
 			
@@ -1190,6 +1222,8 @@ only from the Access section.</p>
 		<div class="description detailed hidden">
 			
 <p>Return the API variable used for managing pages of this type</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1347,6 +1381,7 @@ only from the Access section.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

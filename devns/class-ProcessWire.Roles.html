@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Roles | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -488,6 +488,8 @@
 	
 <p>The Roles class serves as the $roles API variable.</p>
 
+<p>#pw-summary Provides management of all Role pages for access control.</p>
+
 	</div>
 
 	<dl class="tree">
@@ -535,7 +537,7 @@
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Roles.html#4-33" title="Go to source code">core/Roles.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Roles.html#4-106" title="Go to source code">core/Roles.php</a><br>
 	</div>
 
 
@@ -546,27 +548,237 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getGuestRole">#</a>
-		<code><a href="source-class-ProcessWire.Roles.html#18-22" title="Go to source code">getGuestRole</a>( )</code>
+		<code><a href="source-class-ProcessWire.Roles.html#24-39" title="Go to source code">getGuestRole</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the 'guest' role</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the 'guest' role</p>
+
+<p>This is a performance optimized version of
+<code>$roles-&gt;get('guest')</code>.</p>
+
+<p>#pw-internal</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code></code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-ProcessWire.Roles.html#41-51" title="Go to source code">get</a>( <span>string <var>$selectorString</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a Role by name, numeric ID or selector</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a Role by name, numeric ID or selector</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$selectorString</var></dt>
+					<dd><code>string</code><br>$selectorString Role name or selector</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>|null</code><br>
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.PagesType.html#_get">ProcessWire\PagesType::get()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___save" id="____save">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____save">#</a>
+		<code><a href="source-class-ProcessWire.Roles.html#53-65" title="Go to source code">___save</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Save a Role</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save a Role</p>
+
+<p>#pw-group-manipulation</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True on success, false on failure<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.PagesType.html#____save">ProcessWire\PagesType::___save()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___delete" id="____delete">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____delete">#</a>
+		<code><a href="source-class-ProcessWire.Roles.html#67-80" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Permanently delete a Role</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Permanently delete a Role</p>
+
+<p>#pw-group-manipulation</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Permission to delete</dd>
+					<dt><var>$recursive</var></dt>
+					<dd><code>boolean</code><br>$recursive If set to true, then this will attempt to delete any pages below the
+Permission too.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True on success, false on failure<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.PagesType.html#____delete">ProcessWire\PagesType::___delete()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___add" id="____add">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____add">#</a>
+		<code><a href="source-class-ProcessWire.Roles.html#82-93" title="Go to source code">___add</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a new Role with the given name and return it</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a new Role with the given name and return it</p>
+
+<p>#pw-group-manipulation</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name Name of permission you want to add, i.e. "hello-world"</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>Returns a Permission page on success, or a NullPage on error<br>
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.PagesType.html#____add">ProcessWire\PagesType::___add()</a></code></div>
 
 		</div>
 		</div></td>
@@ -582,7 +794,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loaded">#</a>
-		<code><a href="source-class-ProcessWire.Roles.html#24-32" title="Go to source code">loaded</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Roles.html#95-105" title="Go to source code">loaded</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -593,6 +805,8 @@
 		<div class="description detailed hidden">
 			
 <p>Ensure that every role has at least 'page-view' permission</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -612,12 +826,9 @@
 	<caption>Methods inherited from <a href="class-ProcessWire.PagesType.html#methods">ProcessWire\PagesType</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-ProcessWire.PagesType.html#____add">___add()</a>, 
 			<a href="class-ProcessWire.PagesType.html#____added">___added()</a>, 
-			<a href="class-ProcessWire.PagesType.html#____delete">___delete()</a>, 
 			<a href="class-ProcessWire.PagesType.html#____deleteReady">___deleteReady()</a>, 
 			<a href="class-ProcessWire.PagesType.html#____deleted">___deleted()</a>, 
-			<a href="class-ProcessWire.PagesType.html#____save">___save()</a>, 
 			<a href="class-ProcessWire.PagesType.html#____saveReady">___saveReady()</a>, 
 			<a href="class-ProcessWire.PagesType.html#____saved">___saved()</a>, 
 			<a href="class-ProcessWire.PagesType.html#___construct">__construct()</a>, 
@@ -625,7 +836,6 @@
 			<a href="class-ProcessWire.PagesType.html#_addTemplates">addTemplates()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_count">count()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_find">find()</a>, 
-			<a href="class-ProcessWire.PagesType.html#_get">get()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_getIterator">getIterator()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_getJoinFieldNames">getJoinFieldNames()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_getLoadOptions">getLoadOptions()</a>, 
@@ -662,6 +872,7 @@
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -722,7 +933,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Roles.html#16" title="Go to source code"><var>$guestRole</var></a>
+				<a href="source-class-ProcessWire.Roles.html#22" title="Go to source code"><var>$guestRole</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>

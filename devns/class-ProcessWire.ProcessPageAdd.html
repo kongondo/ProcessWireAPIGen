@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ProcessPageAdd | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -648,6 +648,8 @@ JS files</p>
 <p>Per the Module interface, Initialize the Process, loading any related CSS or
 JS files</p>
 
+<p>#pw-internal</p>
+
 
 
 
@@ -675,22 +677,30 @@ JS files</p>
 
 		<div class="description short">
 			
-<p>Set a value</p>
+<p>Set a value to this object’s data</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set a value</p>
+<p>Set a value to this object’s data</p>
+
+<p>~~~~~ // Set a value for a property $item-&gt;set('foo', 'bar');</p>
+
+<p>// Set a property value directly $item-&gt;foo = 'bar';</p>
+
+<p>// Set a property using array access $item['foo'] = 'bar'; ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property you want to set</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
+					<dd><code>mixed</code><br>$value Value of property</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -699,6 +709,10 @@ JS files</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireData.html#_setQuietly">ProcessWire\WireData::setQuietly()</a></code></code>, <code><code><a href="class-ProcessWire.WireData.html#_get">ProcessWire\WireData::get()</a></code></code><br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.WireData.html#_set">ProcessWire\WireData::set()</a></code></div>
@@ -859,13 +873,24 @@ array.</p>
 
 		<div class="description short">
 			
-<p>Execute this Process and return the output</p>
+<p>Execute this Process and return the output. You may have any number of
+execute[name] methods, triggered by URL segments.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Execute this Process and return the output</p>
+<p>Execute this Process and return the output. You may have any number of
+execute[name] methods, triggered by URL segments.</p>
+
+<p>When any execute() method returns a string, it us used as the actual output.
+When the method returns an associative array, it is considered an array of
+variables to send to the output view layer.</p>
+
+<p>This execute() method is called when no URL segments are present. You may
+have any number of execute() methods, i.e. <code>executeFoo()</code> would be
+called for the URL <code>./foo/</code> and <code>executeBarBaz()</code> would be
+called for the URL <code>./bar-baz/</code>.</p>
 
 
 
@@ -1640,6 +1665,7 @@ array.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

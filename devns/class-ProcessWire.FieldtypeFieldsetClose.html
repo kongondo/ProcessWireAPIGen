@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeFieldsetClose | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -604,34 +604,26 @@
 
 		<div class="description short">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
-<p>Abstract Template Method: child classes should override this. Code snippet is
-for example purposes only.</p>
-
-<p>Page and Field are provided as params in case the Fieldtype needs them for
-any custom population with the Inputfield. However, most Fieldtypes won't need
-them since Inputfield objects don't have any Page dependencies (!) The Field
-class handles setting all standard Inputfield attributes rather than this method
-to reduce code duplication in Inputfield modules.</p>
-
-<p>(!) See FieldtypeFile for an example that uses both Page and Field
-params.</p>
+<p>#pw-group-other</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfield will be for</dd>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that the Inputfield will be for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -662,21 +654,24 @@ params.</p>
 
 		<div class="description short">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
-<p>This is in addition any configuration fields supplied by the Inputfield.</p>
+<p>This is in addition to any configuration fields supplied by the
+Inputfield.</p>
 
 <p>Classes implementing this method should call upon this parent method to
 obtain the InputfieldWrapper, and then append their own Inputfields to that.</p>
 
 <p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
 are assumed to be for runtime use and are NOT stored in the database.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -721,6 +716,8 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 		<div class="description detailed hidden">
 			
 <p>Should this Fieldtype only be allowed for new fields in advanced mode?</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -842,6 +839,7 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

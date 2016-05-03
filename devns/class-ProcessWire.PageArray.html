@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PageArray | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -491,6 +491,18 @@
 <p>PageArray provides an array-like means for storing PageReferences and is
 utilized throughout ProcessWire.</p>
 
+<p>#pw-summary PageArray is a paginated type of WireArray that holds multiple
+Page objects. #pw-body = <strong>Please see the <code>WireArray</code> and
+<code>PaginatedArray</code> types for available methods</strong>, as they are
+not repeated here, except where PageArray has modified or extended those types
+in some manner. The PageArray type is functionally identical to WireArray and
+PaginatedArray except that it is focused specifically on managing Page
+objects.</p>
+
+<p>PageArray is returned by all API methods in ProcessWire that can return more
+than one page at once. <code>$pages-&gt;find()</code> and
+<code>$page-&gt;children()</code> are common examples. #pw-body</p>
+
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
@@ -559,7 +571,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PageArray.html#4-500" title="Go to source code">core/PageArray.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PageArray.html#4-578" title="Go to source code">core/PageArray.php</a><br>
 	</div>
 
 
@@ -577,7 +589,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidItem">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#27-36" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#38-49" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -590,6 +602,8 @@ this WireArray</p>
 			
 <p>Template mehod that descendant classes may use to validate items added to
 this WireArray</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -623,7 +637,7 @@ this WireArray</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidKey">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#38-49" title="Go to source code">isValidKey</a>( <span>string|integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#51-64" title="Go to source code">isValidKey</a>( <span>string|integer <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -637,6 +651,8 @@ this WireArray</p>
 
 <p>PageArrays are keyed by an incremental number that does NOT relate to the
 Page ID.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -670,7 +686,7 @@ Page ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_usesNumericKeys">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#51-61" title="Go to source code">usesNumericKeys</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#66-76" title="Go to source code">usesNumericKeys</a>( )</code>
 
 		<div class="description short">
 			
@@ -711,7 +727,7 @@ Page ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeBlankItem">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#63-71" title="Go to source code">makeBlankItem</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#78-88" title="Go to source code">makeBlankItem</a>( )</code>
 
 		<div class="description short">
 			
@@ -723,6 +739,8 @@ Page ID.</p>
 			
 <p>Per WireArray interface, return a blank Page</p>
 
+<p>#pw-internal</p>
+
 
 
 
@@ -733,7 +751,7 @@ Page ID.</p>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If class doesn't implement this method.<br>
 				</div>
 
 
@@ -754,7 +772,7 @@ Page ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_import">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#73-88" title="Go to source code">import</a>( <span>array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$pages</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#90-107" title="Go to source code">import</a>( <span>array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$pages</var></span> )</code>
 
 		<div class="description short">
 			
@@ -765,6 +783,8 @@ Page ID.</p>
 		<div class="description detailed hidden">
 			
 <p>Import the provided pages into this PageArray.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -781,7 +801,7 @@ Page ID.</p>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given items not compatible with the WireArray<br>
 				</div>
 
 
@@ -802,7 +822,7 @@ Page ID.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#98-118" title="Go to source code">has</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#117-139" title="Go to source code">has</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|integer <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -813,6 +833,8 @@ Page ID.</p>
 		<div class="description detailed hidden">
 			
 <p>Does this PageArray contain the given index or Page?</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -839,43 +861,54 @@ Page ID.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_add">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#121-147" title="Go to source code">add</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|integer <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#142-181" title="Go to source code">add</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|integer <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Add a Page to this PageArray.</p>
+<p>Add one or more Page objects to this PageArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Add a Page to this PageArray.</p>
+<p>Add one or more Page objects to this PageArray.</p>
+
+<p>Please see the <code>WireArray::add()</code> method for more details.</p>
+
+<p>~~~~~ // Add one page $pageArray-&gt;add($page);</p>
+
+<p>// Add multiple pages
+$pageArray-&gt;add($pages-&gt;find("template=basic-page"));</p>
+
+<p>// Add page by ID $pageArray-&gt;add(1005); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|integer</code><br>$page Page object, PageArray object, or Page ID. If Page, the Page will be
-added. If PageArray, it will do the same thing as the import() function: import
-all the pages. If Page ID, it will be loaded and added.</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|integer</code><br>$page Page object, PageArray object, or Page ID. - If given a <code>Page</code>,
+the Page will be added. - If given a <code>PageArray</code>, it will do the same
+thing as the <code>WireArray::import()</code> method and append all the pages. -
+If Page <code>ID</code>, the Page identified by that ID will be loaded and added
+to the PageArray.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>reference to current instance.<br>
+					<code>mixed</code><br>$this<br>
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given an item that can't be stored by this WireArray.<br>
 				</div>
 
 
@@ -896,7 +929,7 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#150-163" title="Go to source code">set</a>( <span>integer <var>$key</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#184-199" title="Go to source code">set</a>( <span>integer <var>$key</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -907,6 +940,8 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 		<div class="description detailed hidden">
 			
 <p>Sets an index in the PageArray.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -925,7 +960,7 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given an item not compatible with this WireArray.<br>
 				</div>
 
 
@@ -946,7 +981,7 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prepend">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#165-178" title="Go to source code">prepend</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#201-216" title="Go to source code">prepend</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -957,6 +992,8 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 		<div class="description detailed hidden">
 			
 <p>Prepend a Page to the beginning of the PageArray.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -994,7 +1031,7 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#181-206" title="Go to source code">remove</a>( <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#219-246" title="Go to source code">remove</a>( <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1005,6 +1042,8 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 		<div class="description detailed hidden">
 			
 <p>Remove the given Page or key from the PageArray.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1038,7 +1077,7 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_shift">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#208-217" title="Go to source code">shift</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#248-259" title="Go to source code">shift</a>( )</code>
 
 		<div class="description short">
 			
@@ -1049,6 +1088,8 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 		<div class="description detailed hidden">
 			
 <p>Shift the first Page off of the PageArray and return it.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1077,7 +1118,7 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pop">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#219-228" title="Go to source code">pop</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#261-272" title="Go to source code">pop</a>( )</code>
 
 		<div class="description short">
 			
@@ -1088,6 +1129,8 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 		<div class="description detailed hidden">
 			
 <p>Pop the last page off of the PageArray and return it.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1116,7 +1159,7 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRandom">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#230-242" title="Go to source code">getRandom</a>( <span>integer <var>$num</var> = <span class="php-num">1</span></span>, <span>boolean <var>$alwaysArray</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#274-288" title="Go to source code">getRandom</a>( <span>integer <var>$num</var> = <span class="php-num">1</span></span>, <span>boolean <var>$alwaysArray</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1130,6 +1173,8 @@ all the pages. If Page ID, it will be loaded and added.</dd>
 
 <p>If one item is requested, the item is returned (unless $alwaysArray is true).
 If multiple items are requested, a new WireArray of those items is returned.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1166,7 +1211,7 @@ if it only contains 1.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findRandom">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#244-255" title="Go to source code">findRandom</a>( <span>integer <var>$num</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#290-303" title="Go to source code">findRandom</a>( <span>integer <var>$num</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1179,6 +1224,8 @@ if it only contains 1.</dd>
 <p>Get a quantity of random pages from this PageArray.</p>
 
 <p>Unlike getRandom() this one always returns a PageArray (or derived type).</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1212,7 +1259,7 @@ if it only contains 1.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_slice">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#257-270" title="Go to source code">slice</a>( <span>integer <var>$start</var></span>, <span>integer <var>$limit</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#305-320" title="Go to source code">slice</a>( <span>integer <var>$start</var></span>, <span>integer <var>$limit</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1227,6 +1274,8 @@ if it only contains 1.</dd>
 <p>Given a starting point and a number of items, returns a new PageArray of
 those items. If $limit is omitted, then it includes everything beyond the
 starting point.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1262,7 +1311,7 @@ starting point.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_eq">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#272-283" title="Go to source code">eq</a>( <span>integer <var>$num</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#322-335" title="Go to source code">eq</a>( <span>integer <var>$num</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1278,6 +1327,8 @@ exist.</p>
 
 <p>Unlike the index() method, this returns an actual item and not another
 PageArray.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1312,7 +1363,7 @@ from the end rather than the start.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_first">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#285-293" title="Go to source code">first</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#337-347" title="Go to source code">first</a>( )</code>
 
 		<div class="description short">
 			
@@ -1323,6 +1374,8 @@ from the end rather than the start.</dd>
 		<div class="description detailed hidden">
 			
 <p>Returns the first item in the PageArray or boolean FALSE if empty.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1351,7 +1404,7 @@ from the end rather than the start.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_last">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#295-303" title="Go to source code">last</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#349-359" title="Go to source code">last</a>( )</code>
 
 		<div class="description short">
 			
@@ -1362,6 +1415,8 @@ from the end rather than the start.</dd>
 		<div class="description detailed hidden">
 			
 <p>Returns the last item in the PageArray or boolean FALSE if empty.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1390,7 +1445,7 @@ from the end rather than the start.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSelectors">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#305-315" title="Go to source code">setSelectors</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#361-373" title="Go to source code">setSelectors</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1401,6 +1456,8 @@ from the end rather than the start.</dd>
 		<div class="description detailed hidden">
 			
 <p>Set the Selectors that led to this PageArray, if applicable</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1432,26 +1489,34 @@ from the end rather than the start.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSelectors">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#317-325" title="Go to source code">getSelectors</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#375-391" title="Go to source code">getSelectors</a>( )</code>
 
 		<div class="description short">
 			
 <p>Return the Selectors that led to this PageArray, or null if not
-set/applicable</p>
+set/applicable.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Return the Selectors that led to this PageArray, or null if not
-set/applicable</p>
+set/applicable.</p>
+
+<p>Use this to retrieve the Selectors that were used to find this group of
+pages, if dealing with a PageArray that originated from a database
+operation.</p>
+
+<p>~~~~~ $products = $pages-&gt;find("template=product, featured=1,
+sort=-modified, limit=10"); echo $products-&gt;getSelectors(); // outputs the
+selector above ~~~~~</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|null</code><br>Returns Selectors object if available, or null if not.<br>
 				</div>
 
 
@@ -1471,7 +1536,7 @@ set/applicable</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filterData">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#327-340" title="Go to source code">filterData</a>( <span>string|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|array <var>$selectors</var></span>, <span>boolean <var>$not</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#393-406" title="Go to source code">filterData</a>( <span>string|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|array <var>$selectors</var></span>, <span>boolean <var>$not</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1519,7 +1584,7 @@ set/applicable</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filter">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#342-351" title="Go to source code">filter</a>( <span>string <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#408-419" title="Go to source code">filter</a>( <span>string <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1530,6 +1595,8 @@ set/applicable</p>
 		<div class="description detailed hidden">
 			
 <p>Filter out pages that don't match the selector (destructive)</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1563,7 +1630,7 @@ set/applicable</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_not">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#353-362" title="Go to source code">not</a>( <span>string <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#421-432" title="Go to source code">not</a>( <span>string <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1574,6 +1641,8 @@ set/applicable</p>
 		<div class="description detailed hidden">
 			
 <p>Filter out pages that don't match the selector (destructive)</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1607,7 +1676,7 @@ set/applicable</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_find">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#364-375" title="Go to source code">find</a>( <span>string <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#434-447" title="Go to source code">find</a>( <span>string <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1622,6 +1691,8 @@ set/applicable</p>
 (non-destructive)</p>
 
 <p>This is non destructive and returns a brand new PageArray.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1655,7 +1726,7 @@ set/applicable</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findOne">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#377-386" title="Go to source code">findOne</a>( <span>string <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#449-460" title="Go to source code">findOne</a>( <span>string <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1668,6 +1739,8 @@ empty.</p>
 			
 <p>Same as find, but returns a single Page rather than PageArray or FALSE if
 empty.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1701,7 +1774,7 @@ empty.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filterDataSelectors">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#388-399" title="Go to source code">filterDataSelectors</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#462-473" title="Go to source code">filterDataSelectors</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1743,7 +1816,7 @@ empty.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemPropertyValue">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#401-433" title="Go to source code">getItemPropertyValue</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span>, <span>string <var>$property</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#475-507" title="Go to source code">getItemPropertyValue</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span>, <span>string <var>$property</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1793,7 +1866,7 @@ without output formatting.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIterator">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#435-443" title="Go to source code">getIterator</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#509-519" title="Go to source code">getIterator</a>( )</code>
 
 		<div class="description short">
 			
@@ -1804,6 +1877,8 @@ without output formatting.</p>
 		<div class="description detailed hidden">
 			
 <p>Allows iteration of the PageArray.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1832,7 +1907,7 @@ without output formatting.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#445-456" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#521-532" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -1875,19 +1950,21 @@ characters</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getMarkup">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#458-484" title="Go to source code">___getMarkup</a>( <span>string|callable <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#534-562" title="Go to source code">___getMarkup</a>( <span>string|callable <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Render a simple/default markup value for each item</p>
+<p>Render a simple/default markup value for each item in this PageArray.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Render a simple/default markup value for each item</p>
+<p>Render a simple/default markup value for each item in this PageArray.</p>
 
-<p>Primarily for testing/debugging purposes.</p>
+<p>For testing/debugging purposes.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1919,7 +1996,7 @@ characters</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.PageArray.html#487-498" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageArray.html#565-576" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -2042,6 +2119,7 @@ characters</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -2101,7 +2179,7 @@ characters</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PageArray.html#19-25" title="Go to source code"><var>$selectors</var></a>
+				<a href="source-class-ProcessWire.PageArray.html#30-36" title="Go to source code"><var>$selectors</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>

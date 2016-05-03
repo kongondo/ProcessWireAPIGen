@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Fieldgroup | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -490,6 +490,10 @@
 
 <p>A group of fields that is ultimately attached to a Template.</p>
 
+<p>#pw-summary Fieldgroup is a type of WireArray that holds a group of Field
+objects for template(s). #pw-body For full details on all methods available in a
+Fieldgroup, be sure to also see the <code>WireArray</code> class.</p>
+
 <p>The existance of Fieldgroups is hidden at the ProcessWire web admin level as
 it appears that fields are attached directly to Templates. However, they are
 separated in the API in case want want to have fieldgroups used by multiple
@@ -557,7 +561,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Fieldgroup.html#3-596" title="Go to source code">core/Fieldgroup.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Fieldgroup.html#3-693" title="Go to source code">core/Fieldgroup.php</a><br>
 	</div>
 
 
@@ -575,7 +579,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidItem">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#51-57" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#54-65" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -587,17 +591,19 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Per WireArray interface, items added must be instances of Field</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>mixed</code><br>$item Item to add</dd>
+					<dd><code>mixed</code><br>$item</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>True if item is valid and may be added, false if not<br>
+					<code>boolean</code><br>
 				</div>
 
 
@@ -619,7 +625,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidKey">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#59-65" title="Go to source code">isValidKey</a>( <span>string|integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#67-78" title="Go to source code">isValidKey</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -631,17 +637,19 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Per WireArray interface, keys must be numeric</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|integer</code><br>$key</dd>
+					<dd><code>integer|string</code><br>$key</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>True if key is valid and may be used, false if not<br>
+					<code>boolean</code><br>
 				</div>
 
 
@@ -656,14 +664,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			string|integer|null
+			integer|string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemKey">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#67-73" title="Go to source code">getItemKey</a>( <span>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#80-91" title="Go to source code">getItemKey</a>( <span>mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -675,17 +683,19 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Per WireArray interface, the item key is it's ID</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item</dd>
+					<dd><code>mixed</code><br>$item</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|null</code><br>
+					<code>integer|string</code><br>
 				</div>
 
 
@@ -700,14 +710,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null
+			<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeBlankItem">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#75-81" title="Go to source code">makeBlankItem</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#93-103" title="Go to source code">makeBlankItem</a>( )</code>
 
 		<div class="description short">
 			
@@ -719,17 +729,19 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Per WireArray interface, return a blank item</p>
 
+<p>#pw-internal</p>
+
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If class doesn't implement this method.<br>
 				</div>
 
 
@@ -750,7 +762,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_add">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#83-102" title="Go to source code">add</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#105-131" title="Go to source code">add</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -762,17 +774,22 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Add a field to this Fieldgroup</p>
 
+<p>~~~~~ $field = $fields-&gt;get('body'); $fieldgroup-&gt;add($field);
+~~~~~</p>
+
+<p>#pw-group-manipulation</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string</code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string</code><br>$field Field object, field name or id.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>$this|WireArray<br>
+					<code>mixed</code><br>$this<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -798,7 +815,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#104-133" title="Go to source code">remove</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#133-165" title="Go to source code">remove</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -810,20 +827,23 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Remove a field from this fieldgroup</p>
 
-<p>Performs a deletion by finding all templates using this fieldgroup, then
-finding all pages using the template, then calling upon the Fieldtype to delete
-them one at a time. This is a potentially expensive/time consuming method, and
-may need further consideration.</p>
+<p>Note that this must be followed up with a <code>$field-&gt;save()</code>
+before it does anything destructive. This method does nothing more than queue
+the removal.</p>
 
-<p>Note that this must be followed up with a save() before it does anything
-destructive. This method does nothing more than queue the removal.</p>
+<p>_Technical Details_ Performs a deletion by finding all templates using this
+fieldgroup, then finding all pages using the template, then calling upon the
+Fieldtype to delete them one at a time. This is a potentially expensive/time
+consuming method, and may need further consideration.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string</code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string</code><br>$field Field object or field name, or id.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -850,29 +870,31 @@ destructive. This method does nothing more than queue the removal.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_softRemove">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#154-170" title="Go to source code">softRemove</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#188-208" title="Go to source code">softRemove</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string|integer <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Removes a field from the fieldgroup without deleting any associated field
-data when $fieldgroup-&gt;save() is called.</p>
+<p>Remove a field without queueing it to be removed from database</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Removes a field from the fieldgroup without deleting any associated field
-data when $fieldgroup-&gt;save() is called.</p>
+<p>Remove a field without queueing it to be removed from database</p>
 
-<p>This is useful in the API when you want to move a field around within a
-fieldgroup, like when moving a field to a Fieldset within the Fieldgroup.</p>
+<p>Removes a field from the fieldgroup without deleting any associated field
+data when fieldgroup is saved to the database. This is useful in the API when
+you want to move a field around within a fieldgroup, like when moving a field to
+a Fieldset within the Fieldgroup.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string|integer</code><br>$field Field object, name or id.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -897,7 +919,7 @@ fieldgroup, like when moving a field to a Fieldset within the Fieldgroup.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetRemovedFields">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#172-178" title="Go to source code">resetRemovedFields</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#210-218" title="Go to source code">resetRemovedFields</a>( )</code>
 
 		<div class="description short">
 			
@@ -908,6 +930,8 @@ fieldgroup, like when moving a field to a Fieldset within the Fieldgroup.</p>
 		<div class="description detailed hidden">
 			
 <p>Clear all removed fields, for use by Fieldgroups::save</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -930,7 +954,7 @@ fieldgroup, like when moving a field to a Fieldset within the Fieldgroup.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#180-227" title="Go to source code">getField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span>, <span>boolean|string <var>$useFieldgroupContext</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#220-271" title="Go to source code">getField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span>, <span>boolean|string <var>$useFieldgroupContext</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -942,24 +966,28 @@ fieldgroup, like when moving a field to a Fieldset within the Fieldgroup.</p>
 			
 <p>Get a field that is part of this fieldgroup</p>
 
-<p>Same as get() except that it only checks fields, not other properties of a
-fieldgroup</p>
+<p>Same as <code>Fieldgroup::get()</code> except that it only checks fields, not
+other properties of a fieldgroup. Meaning, this is the preferred way to retrieve
+a Field from a Fieldgroup.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$key</dd>
+					<dd><code>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$key Field object, name or id.</dd>
 					<dt><var>$useFieldgroupContext</var></dt>
-					<dd><code>boolean|string</code><br>$useFieldgroupContext If set to true, the field will be a clone of the original
-with context data set. (default is false) Or specify a namespace to retrieve
-context within that namespace.</dd>
+					<dd><code>boolean|string</code><br>$useFieldgroupContext Optionally specify one of the following (default=false): -
+<code>true</code> (boolean) Returned Field will be a clone of the original with
+context data set. - Specify a namespace (string) to retrieve context within that
+namespace.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null</code><br>Field object when present in this Fieldgroup, or null if not.<br>
 				</div>
 
 
@@ -979,31 +1007,38 @@ context within that namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasFieldContext">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#229-248" title="Go to source code">hasFieldContext</a>( <span>integer|string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#273-298" title="Go to source code">hasFieldContext</a>( <span>integer|string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Does the given field have context available in this fieldgroup?</p>
+<p>Does the given Field have context data available in this fieldgroup?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Does the given field have context available in this fieldgroup?</p>
+<p>Does the given Field have context data available in this fieldgroup?</p>
+
+<p>A Field with context data is one that overrides one or more settings present
+with the Field when it is outside the context of this Fieldgroup. For example,
+perhaps a Field has a columnWidth setting of 100% in its global settings, but
+only 50% when used in this Fieldgroup.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code>integer|string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code>integer|string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field object, name or id</dd>
 					<dt><var>$namespace</var></dt>
-					<dd><code>string</code><br>$namespace Optional namespace for context</dd>
+					<dd><code>string</code><br>$namespace Optional namespace string for context</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if additional context information is available, false if not.<br>
 				</div>
 
 
@@ -1023,28 +1058,33 @@ context within that namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFieldContext">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#250-260" title="Go to source code">getFieldContext</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#300-315" title="Go to source code">getFieldContext</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get a field that is part of this fieldgroup, in the context of this
-fieldgroup.</p>
+<p>Get a Field that is part of this Fieldgroup, in the context of this
+Fieldgroup.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a field that is part of this fieldgroup, in the context of this
-fieldgroup.</p>
+<p>Get a Field that is part of this Fieldgroup, in the context of this
+Fieldgroup.</p>
+
+<p>Returned Field will be a clone of the original with additional context data
+already populated to it.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$key</dd>
+					<dd><code>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$key Field object, name or id.</dd>
 					<dt><var>$namespace</var></dt>
-					<dd><code>string</code><br>$namespace Optional namespace for context</dd>
+					<dd><code>string</code><br>$namespace Optional namespace string for context</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1069,7 +1109,7 @@ fieldgroup.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#262-271" title="Go to source code">hasField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#317-328" title="Go to source code">hasField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1081,17 +1121,19 @@ fieldgroup.</p>
 			
 <p>Does this fieldgroup having the given field?</p>
 
+<p>#pw-group-retrieval</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$key</dd>
+					<dd><code>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$key Field object, name or id.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if this Fieldgroup has the field, false if not.<br>
 				</div>
 
 
@@ -1111,27 +1153,30 @@ fieldgroup.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#273-293" title="Go to source code">get</a>( <span>string|integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#330-354" title="Go to source code">get</a>( <span>string|integer <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get a Fieldgroup property or a field.</p>
+<p>Get a Fieldgroup property or a Field.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a Fieldgroup property or a field.</p>
+<p>Get a Fieldgroup property or a Field.</p>
 
-<p>It is preferable to use getField() to retrieve fields from the fieldgroup
-because this checks other properties of the Fieldgroup.</p>
+<p>It is preferable to use <code>Fieldgroup::getField()</code> to retrieve
+fields from the Fieldgroup because the scope of this <code>get()</code> method
+means it can return more than just Field object.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|integer</code><br>$key</dd>
+					<dd><code>string|integer</code><br>$key Property name to retrieve, or Field name</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1155,14 +1200,14 @@ because this checks other properties of the Fieldgroup.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addLookupItem">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#295-306" title="Go to source code">addLookupItem</a>( <span>integer <var>$item</var></span>, <span>array <var>&amp; $row</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#356-373" title="Go to source code">addLookupItem</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code>|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$item</var></span>, <span>array <var>&amp; $row</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1174,17 +1219,22 @@ because this checks other properties of the Fieldgroup.</p>
 			
 <p>Per HasLookupItems interface, add a Field to this Fieldgroup</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>integer</code><br>$item The ID of the item to add</dd>
+					<dd><code><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code>|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$item</dd>
 					<dt><var>$row</var></dt>
-					<dd><code>array</code><br>$row The row from which it was retrieved (in case you want to retrieve or modify
-other details)</dd>
+					<dd><code>array</code><br>$row</dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
 
 
 
@@ -1205,26 +1255,28 @@ other details)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#309-339" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>string|integer|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#376-407" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>string|integer|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Overridden ProcessArray set</p>
+<p>Set a fieldgroup property</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Overridden ProcessArray set</p>
+<p>Set a fieldgroup property</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property to set</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer|object</code><br>$value</dd>
+					<dd><code>string|integer|object</code><br>$value Value of property</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1248,14 +1300,14 @@ other details)</dd>
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#342-350" title="Go to source code">save</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#410-423" title="Go to source code">save</a>( )</code>
 
 		<div class="description short">
 			
@@ -1267,11 +1319,17 @@ other details)</dd>
 			
 <p>Save this Fieldgroup to the database</p>
 
-<p>To hook into ___save, use Fieldgroups::save instead</p>
+<p>To hook into this, hook to <code>Fieldgroups::save()</code> instead.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
 
 
 
@@ -1292,7 +1350,7 @@ other details)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#352-358" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#425-431" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -1331,7 +1389,7 @@ other details)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTableData">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#360-366" title="Go to source code">getTableData</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#433-443" title="Go to source code">getTableData</a>( )</code>
 
 		<div class="description short">
 			
@@ -1344,6 +1402,8 @@ table</p>
 			
 <p>Per Saveable interface, get an array of data associated with the database
 table</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1372,7 +1432,7 @@ table</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getExportData">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#368-374" title="Go to source code">getExportData</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#445-453" title="Go to source code">getExportData</a>( )</code>
 
 		<div class="description short">
 			
@@ -1383,6 +1443,8 @@ table</p>
 		<div class="description detailed hidden">
 			
 <p>Per Saveable interface: return data for external storage</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1411,7 +1473,7 @@ table</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setImportData">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#376-393" title="Go to source code">setImportData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#455-474" title="Go to source code">setImportData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1426,6 +1488,8 @@ happened</p>
 happened</p>
 
 <p>Changes are not committed until the item is saved</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1465,7 +1529,7 @@ value, always a string 'new' =&gt; 'new value', // new value, always a string
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLookupItems">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#395-401" title="Go to source code">getLookupItems</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#476-484" title="Go to source code">getLookupItems</a>( )</code>
 
 		<div class="description short">
 			
@@ -1478,6 +1542,8 @@ with this Fieldgroup</p>
 			
 <p>Per HasLookupItems interface, get a WireArray of Field instances associated
 with this Fieldgroup</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1502,41 +1568,43 @@ with this Fieldgroup</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageInputfields">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#403-512" title="Go to source code">getPageInputfields</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$contextStr</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$fieldName</var> = <span class="php-quote">''</span></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#486-597" title="Go to source code">getPageInputfields</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$contextStr</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$fieldName</var> = <span class="php-quote">''</span></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get all of the Inputfields associated with the provided Page and populate
-them</p>
+<p>Get all of the Inputfields for this Fieldgroup associated with the provided
+Page and populate them.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get all of the Inputfields associated with the provided Page and populate
-them</p>
+<p>Get all of the Inputfields for this Fieldgroup associated with the provided
+Page and populate them.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfields will be for.</dd>
 					<dt><var>$contextStr</var></dt>
-					<dd><code>string</code><br>$contextStr Optional context string to append to all the Inputfield's names
-(helper for things like repeaters)</dd>
+					<dd><code>string</code><br>$contextStr Optional context string to append to all the Inputfield names
+(optional, helpful for things like repeaters).</dd>
 					<dt><var>$fieldName</var></dt>
-					<dd><code>string|array</code><br>$fieldName Limit to a particular fieldName(s) or field IDs. If specifying a
-single field (name or ID) and it refers to a fieldset, then all fields in that
-fieldset will be included. If specifying an array of field names/IDs the
-returned InputfieldWrapper will maintain the requested order.</dd>
+					<dd><code>string|array</code><br>$fieldName Limit to a particular fieldName(s) or field IDs (optional). - If
+specifying a single field (name or ID) and it refers to a fieldset, then all
+fields in that fieldset will be included. - If specifying an array of field
+names/IDs the returned InputfieldWrapper will maintain the requested order.</dd>
 					<dt><var>$namespace</var></dt>
-					<dd><code>string</code><br>$namespace Additional namespace for the Inputfield context</dd>
+					<dd><code>string</code><br>$namespace Additional namespace for the Inputfield context (optional).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>acting as a container for multiple Inputfields<br>
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>Returns an InputfieldWrapper that acts as a container for multiple Inputfields.<br>
 				</div>
 
 
@@ -1556,17 +1624,19 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTemplates">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#514-522" title="Go to source code">getTemplates</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#599-609" title="Go to source code">getTemplates</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get a TemplatesArray of all templates using this Fieldgroup</p>
+<p>Get a list of all templates using this Fieldgroup</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a TemplatesArray of all templates using this Fieldgroup</p>
+<p>Get a list of all templates using this Fieldgroup</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1593,17 +1663,19 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNumTemplates">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#524-532" title="Go to source code">getNumTemplates</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#611-621" title="Go to source code">getNumTemplates</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get the number of templates using the given fieldgroup.</p>
+<p>Get the number of templates using this Fieldgroup</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the number of templates using the given fieldgroup.</p>
+<p>Get the number of templates using this Fieldgroup</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1630,7 +1702,7 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numTemplates">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#534-542" title="Go to source code">numTemplates</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#623-633" title="Go to source code">numTemplates</a>( )</code>
 
 		<div class="description short">
 			
@@ -1641,6 +1713,8 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 		<div class="description detailed hidden">
 			
 <p>Alias of getNumTemplates()</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1667,7 +1741,7 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFieldContextArray">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#544-566" title="Go to source code">getFieldContextArray</a>( <span>integer|null <var>$field_id</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#635-659" title="Go to source code">getFieldContextArray</a>( <span>integer|null <var>$field_id</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1678,6 +1752,8 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 		<div class="description detailed hidden">
 			
 <p>Return an array of context data for the given field ID</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1711,7 +1787,7 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFieldContextArray">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#568-584" title="Go to source code">setFieldContextArray</a>( <span>integer <var>$field_id</var></span>, <span>string <var>$data</var></span>, <span>array <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#661-679" title="Go to source code">setFieldContextArray</a>( <span>integer <var>$field_id</var></span>, <span>string <var>$data</var></span>, <span>array <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1722,6 +1798,8 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 		<div class="description detailed hidden">
 			
 <p>Set an array of context data for the given field ID</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1753,7 +1831,7 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveContext">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#586-594" title="Go to source code">saveContext</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#681-691" title="Go to source code">saveContext</a>( )</code>
 
 		<div class="description short">
 			
@@ -1764,6 +1842,8 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 		<div class="description detailed hidden">
 			
 <p>Save field contexts for this fieldgroup</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -1879,6 +1959,7 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -1922,7 +2003,7 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Fieldgroup.html#22-26" title="Go to source code"><b>contextNamespacePrefix</b></a>
+				<a href="source-class-ProcessWire.Fieldgroup.html#25-29" title="Go to source code"><b>contextNamespacePrefix</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">'NS_'</span></code></td>
 		<td class="description"><div>
@@ -1965,7 +2046,7 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Fieldgroup.html#28-35" title="Go to source code"><var>$settings</var></a>
+				<a href="source-class-ProcessWire.Fieldgroup.html#31-38" title="Go to source code"><var>$settings</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'id'</span> =&gt; <span class="php-num">0</span>, 
@@ -1995,7 +2076,7 @@ returned InputfieldWrapper will maintain the requested order.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Fieldgroup.html#37-41" title="Go to source code"><var>$removedFields</var></a>
+				<a href="source-class-ProcessWire.Fieldgroup.html#40-44" title="Go to source code"><var>$removedFields</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -2024,7 +2105,7 @@ Fieldgroups::save() can delete unused data</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Fieldgroup.html#43-49" title="Go to source code"><var>$fieldContexts</var></a>
+				<a href="source-class-ProcessWire.Fieldgroup.html#46-52" title="Go to source code"><var>$fieldContexts</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

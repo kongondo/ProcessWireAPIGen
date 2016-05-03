@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeDatetime | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -660,9 +660,9 @@ href="https://processwire.com">https://processwire.com</a></p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfield will be for</dd>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that the Inputfield will be for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -837,9 +837,11 @@ float or array</p>
 <p>If an array is returned, it should only contain: strings, ints, floats or
 more arrays of those types. This is intended for web service exports.</p>
 
-<p>If not overridden, this takes on the same behavior as sleepValue(). However,
-if overridden, it is intended to be more verbose than wakeupValue, where
-applicable.</p>
+<p>If not overridden, this takes on the same behavior as
+<code>Fieldtype::sleepValue()</code>. However, if overridden, it is intended to
+be more verbose than wakeupValue, where applicable.</p>
+
+<p>#pw-group-formatting</p>
 
 
 
@@ -953,7 +955,7 @@ specified another)</dd>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but usually should not.</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but typically isn't.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -973,14 +975,14 @@ specified another)</dd>
 
 		<td class="attributes"><code>
 			 public 
-			string|integer|array
+			string|integer|float|array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____sleepValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeDatetime.html#190-197" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeDatetime.html#190-197" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|float|array|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1001,12 +1003,12 @@ specified another)</dd>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer|array|object</code><br>$value</dd>
+					<dd><code>string|integer|float|array|object</code><br>$value</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|array</code><br>
+					<code>string|integer|float|array</code><br>
 				</div>
 
 
@@ -1204,6 +1206,7 @@ specified another)</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

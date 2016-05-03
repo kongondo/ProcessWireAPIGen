@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireInput | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -489,6 +489,9 @@
 <p>Manages the group of GET, POST, COOKIE and whitelist vars, each of which is a
 WireInputData object.</p>
 
+<p>#pw-summary Provides a means to get user input from URLs, GET, POST, and
+COOKIE variables and more.</p>
+
 	</div>
 
 	<dl class="tree">
@@ -527,7 +530,7 @@ WireInputData object.</p>
 
 				<b>Link:</b>
 				<a href="http://processwire.com/api/variables/input/">Offical $input API variable Documentation</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.WireInput.html#188-584" title="Go to source code">core/WireInput.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireInput.html#14-572" title="Go to source code">core/WireInput.php</a><br>
 	</div>
 
 
@@ -545,7 +548,7 @@ WireInputData object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#222-225" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#48-51" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -576,31 +579,46 @@ WireInputData object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#227-242" title="Go to source code">get</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#53-82" title="Go to source code">get</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Retrieve a GET value or all GET values</p>
+<p>Retrieve a named GET variable value, or all GET variables (from URL query
+string)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Retrieve a GET value or all GET values</p>
+<p>Retrieve a named GET variable value, or all GET variables (from URL query
+string)</p>
+
+<p>Always sanitize (and validate where appropriate) any values from user
+input.</p>
+
+<p>~~~~~ // Retrieve a "q" GET variable, sanitize and output // Example request
+URL: domain.com/path/to/page/?q=TEST $q = $input-&gt;get('q'); // retrieve value
+$q = $sanitizer-&gt;text($q); // sanitize input as 1-line text echo
+$sanitizer-&gt;entities($q); // sanitize for output, outputs "TEST"</p>
+
+<p>// You can also combine $input and one $sanitizer call, replacing // the
+"text" method call with any $sanitizer method: $q =
+$input-&gt;get-&gt;text('q'); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key If populated, returns the value corresponding to the key or NULL if it
-doesn't exist. If blank, returns reference to the WireDataInput containing all
-GET vars.</dd>
+					<dd><code>string</code><br>$key Name of GET variable you want to retrieve. - If populated, returns the
+value corresponding to the key or NULL if it doesn't exist. - If blank, returns
+reference to the WireDataInput containing all GET vars.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>null|mixed|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>
+					<code>null|mixed|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>Returns unsanitized value or NULL if not present. If no $key given, returns
+WireInputData with all GET vars.<br>
 				</div>
 
 
@@ -620,31 +638,44 @@ GET vars.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_post">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#244-256" title="Go to source code">post</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#84-109" title="Go to source code">post</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Retrieve a POST value or all POST values</p>
+<p>Retrieve a named POST variable value, or all POST variables</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Retrieve a POST value or all POST values</p>
+<p>Retrieve a named POST variable value, or all POST variables</p>
+
+<p>Always sanitize (and validate where appropriate) any values from user
+input.</p>
+
+<p>~~~~~ // Retrieve a "comments" POST variable, sanitize and output it
+$comments = $input-&gt;post('comments'); $comments =
+$sanitizer-&gt;text($comments); // sanitize input as 1-line text echo
+$sanitizer-&gt;entities($comments); // sanitize for output</p>
+
+<p>// You can also combine $input and one $sanitizer call like this, //
+replacing "text" with name of any $sanitizer method: $comments =
+$input-&gt;post-&gt;text('comments'); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key If populated, returns the value corresponding to the key or NULL if it
-doesn't exist. If blank, returns reference to the WireDataInput containing all
-POST vars.</dd>
+					<dd><code>string</code><br>$key Name of POST variable you want to retrieve. - If populated, returns the
+value corresponding to the key or NULL if it doesn't exist. - If blank, returns
+reference to the WireDataInput containing all POST vars.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>null|mixed|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>
+					<code>null|mixed|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>Returns unsanitized value or NULL if not present. If no $key given, returns
+WireInputData with all POST vars.<br>
 				</div>
 
 
@@ -664,31 +695,35 @@ POST vars.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cookie">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#258-270" title="Go to source code">cookie</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#111-125" title="Go to source code">cookie</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Retrieve a COOKIE value or all COOKIE values</p>
+<p>Retrieve a named COOKIE variable value or all COOKIE variables</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Retrieve a COOKIE value or all COOKIE values</p>
+<p>Retrieve a named COOKIE variable value or all COOKIE variables</p>
+
+<p>Always sanitize (and validate where appropriate) any values from user
+input.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key If populated, returns the value corresponding to the key or NULL if it
-doesn't exist. If blank, returns reference to the WireDataInput containing all
-COOKIE vars.</dd>
+					<dd><code>string</code><br>$key Name of the COOKIE variable you want to retrieve. - If populated, returns
+the value corresponding to the key or NULL if it doesn't exist. - If blank,
+returns reference to the WireDataInput containing all COOKIE vars.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>null|mixed|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>
+					<code>null|mixed|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>Returns unsanitized value or NULL if not present. If no $key given, returns
+WireInputData with all COOKIE vars.<br>
 				</div>
 
 
@@ -708,42 +743,53 @@ COOKIE vars.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_whitelist">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#272-299" title="Go to source code">whitelist</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#127-165" title="Go to source code">whitelist</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get or set a whitelist var</p>
+<p>Get or set a whitelist variable</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get or set a whitelist var</p>
+<p>Get or set a whitelist variable</p>
 
-<p>Whitelist vars are used by modules and templates and assumed to be clean.</p>
+<p>Whitelist variables are used by modules and templates and assumed to be
+sanitized. Only place variables in the whitelist that you have already
+sanitized.</p>
 
 <p>The whitelist is a list of variables specifically set by the application as
-clean for use elsewhere in the application. Only the version returned from this
-method should be considered clean. This whitelist is not specifically used by
-ProcessWire unless you populate it from your templates or the API.</p>
+sanitized for use elsewhere in the application. This whitelist is not
+specifically used by ProcessWire unless you populate it from your templates or
+the API. When populated, it is used by the MarkupPagerNav module (for instance)
+to ensure that sanitizedd query string (GET) variables are maintained across
+paginations.</p>
+
+<p>~~~~~ // Retrieve a GET variable, sanitize/validate it, and populate to
+whitelist $limit = (int) $input-&gt;get('limit'); if($limit &lt; 10 || $limit
+&gt; 100) $limit = 25; // validate $input-&gt;whitelist('limit', $limit); ~~~~~
+~~~~~ // Retrieve a variable from the whitelist $limit =
+$input-&gt;whitelist('limit'); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key If $key is blank, it assumes you are asking to return the entire whitelist.
-If $key and $value are populated, it adds the value to the whitelist. If $key is
-an array, it adds all the values present in the array to the whitelist. If
-$value is ommited, it assumes you are asking for a value with $key, in which
-case it returns it.</dd>
+					<dd><code>string</code><br>$key Whitelist variable name that you want to get or set. - If $key is blank, it
+assumes you are asking to return the entire whitelist. - If $key and $value are
+populated, it adds the value to the whitelist. - If $key is an array, it adds
+all the values present in the array to the whitelist. - If $value is omitted, it
+assumes you are asking for a value with $key, in which case it returns it.</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value See explanation for the $key param</dd>
+					<dd><code>mixed</code><br>$value Value you want to set (if setting a value). See explanation for the $key
+param.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>null|mixed|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>See explanation for the $key param<br>
+					<code>null|mixed|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>Returns whitelist variable value if getting a value (null if it doesn't exist).<br>
 				</div>
 
 
@@ -763,32 +809,110 @@ case it returns it.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_urlSegment">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#301-314" title="Go to source code">urlSegment</a>( <span>integer <var>$num</var> = <span class="php-num">1</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#167-202" title="Go to source code">urlSegment</a>( <span>integer <var>$num</var> = <span class="php-num">1</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Retrieve the URL segment with index $num</p>
+<p>Retrieve the URL segment with the given index (starting from 1)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Retrieve the URL segment with index $num</p>
+<p>Retrieve the URL segment with the given index (starting from 1)</p>
 
-<p>Note that the index is 1 based (not 0 based). The maximum segments allowed
-can be adjusted in your /site/config.php.</p>
+<ul>
+	<li>URL segments must be enabled in the template settings (for template used by
+	the page).</li>
+
+	<li>The index is 1 based (not 0 based).</li>
+
+	<li>If no index is provided, 1 is assumed.</li>
+
+	<li>The maximum segments allowed can be adjusted in your
+	<code>$config-&gt;maxUrlSegments</code> setting.</li>
+
+	<li>URL segments are populated by ProcessWire automatically on each
+	request.</li>
+
+	<li>URL segments are already sanitized as page names.</li>
+</ul>
+
+<p>~~~~~ // Produce different output in template depending on URL segment
+$action = $input-&gt;urlSegment(1); if($action == 'photos') { // display photos
+} else if($action == 'map') { // display map } else if(strlen($action)) { //
+unknown action, throw a 404 throw new Wire404Exception(); } else { // default or
+display main page } ~~~~~</p>
+
+<p>#pw-group-URL-segments</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$num</var></dt>
-					<dd><code>integer</code><br>$num Retrieve the $n'th URL segment (integer).</dd>
+					<dd><code>integer</code><br>$num Retrieve the n'th URL segment (default=1).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>Returns a blank string if the specified index is not found<br>
+					<code>string</code><br>Returns URL segment value or a blank string if the specified index is not found.<br>
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireInput.html#_urlSegmentStr">ProcessWire\WireInput::urlSegmentStr()</a></code></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="urlSegments" id="_urlSegments">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_urlSegments">#</a>
+		<code><a href="source-class-ProcessWire.WireInput.html#204-219" title="Go to source code">urlSegments</a>( )</code>
+
+		<div class="description short">
+			
+<p>Retrieve array of all URL segments</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve array of all URL segments</p>
+
+<ul>
+	<li>URL segments must be enabled in the template settings (for template used by
+	the page).</li>
+
+	<li>The maximum segments allowed can be adjusted in your
+	<code>$config-&gt;maxUrlSegments</code> setting.</li>
+
+	<li>URL segments are populated by ProcessWire automatically on each
+	request.</li>
+
+	<li>URL segments are already sanitized as page names.</li>
+</ul>
+
+<p>#pw-group-URL-segments</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Returns an array of strings, or an empty array if no URL segments available.<br>
 				</div>
 
 
@@ -808,7 +932,7 @@ can be adjusted in your /site/config.php.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setUrlSegment">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#316-344" title="Go to source code">setUrlSegment</a>( <span>integer <var>$num</var></span>, <span>string|null <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#221-252" title="Go to source code">setUrlSegment</a>( <span>integer <var>$num</var></span>, <span>string|null <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -820,7 +944,13 @@ can be adjusted in your /site/config.php.</p>
 			
 <p>Set a URL segment value</p>
 
-<p>To unset, specify NULL as the value.</p>
+<ul>
+	<li>This is typically only used by the core.</li>
+
+	<li>To unset, specify NULL as the value.</li>
+</ul>
+
+<p>#pw-group-URL-segments</p>
 
 
 
@@ -829,11 +959,80 @@ can be adjusted in your /site/config.php.</p>
 					<dt><var>$num</var></dt>
 					<dd><code>integer</code><br>$num Number of this URL segment (1 based)</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|null</code><br>$value</dd>
+					<dd><code>string|null</code><br>$value Value to set, or NULL to unset.</dd>
 				</dl></div>
 
 
 
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="urlSegmentStr" id="_urlSegmentStr">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_urlSegmentStr">#</a>
+		<code><a href="source-class-ProcessWire.WireInput.html#254-291" title="Go to source code">urlSegmentStr</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the string of URL segments separated by slashes</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the string of URL segments separated by slashes</p>
+
+<ul>
+	<li>Note that return value lacks leading or trailing slashes.</li>
+
+	<li>URL segments must be enabled in the template settings (for template used by
+	the page).</li>
+
+	<li>The maximum segments allowed can be adjusted in your
+	<code>$config-&gt;maxUrlSegments</code> setting.</li>
+
+	<li>URL segments are populated by ProcessWire automatically on each
+	request.</li>
+
+	<li>URL segments are already sanitized as page names.</li>
+
+	<li>The URL segment string can also be accessed by property:
+	<code>$input-&gt;urlSegmentStr</code>.</li>
+</ul>
+
+<p>~~~~~ // Adjust output according to urlSegmentStr // In this case our
+urlSegmentStr is 2 URL segments $s = $input-&gt;urlSegmentStr(); if($s ==
+'photos/large') { // show large photos } else if($s == 'photos/small') { // show
+small photos } else if($s == 'map') { // show map } else if(strlen($s)) { //
+something we don't recognize throw new Wire404Exception(); } else { // no URL
+segments present, do some default behavior echo $page-&gt;body; } ~~~~~</p>
+
+<p>#pw-group-URL-segments</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>URL segment string, i.e. <code>segment1/segment2/segment3</code> or blank if
+none<br>
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireInput.html#_urlSegment">ProcessWire\WireInput::urlSegment()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -850,26 +1049,39 @@ can be adjusted in your /site/config.php.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pageNum">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#346-356" title="Go to source code">pageNum</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#294-317" title="Go to source code">pageNum</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return the current page number.</p>
+<p>Return the current pagination/page number (starting from 1)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the current page number.</p>
+<p>Return the current pagination/page number (starting from 1)</p>
 
-<p>First page number is 1 (not 0).</p>
+<ul>
+	<li>Page numbers must be enabled in the template settings (for template used by
+	the page).</li>
+
+	<li>The current page number affects all paginated page finding operations.</li>
+
+	<li>First page number is 1 (not 0).</li>
+</ul>
+
+<p>~~~~~ // Adjust output according to page number if($input-&gt;pageNum == 1) {
+echo $page-&gt;body; } else { echo "<a href="$page-&gt;url">Return to first
+page</a>"; } ~~~~~</p>
+
+<p>#pw-group-URL-segments</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>
+					<code>integer</code><br>Current pagination number<br>
 				</div>
 
 
@@ -889,7 +1101,7 @@ can be adjusted in your /site/config.php.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPageNum">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#358-368" title="Go to source code">setPageNum</a>( <span>integer <var>$num</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#319-332" title="Go to source code">setPageNum</a>( <span>integer <var>$num</var></span> )</code>
 
 		<div class="description short">
 			
@@ -901,7 +1113,13 @@ can be adjusted in your /site/config.php.</p>
 			
 <p>Set the current page number.</p>
 
-<p>Note that the first page should be 1 (not 0).</p>
+<ul>
+	<li>This is typically used only by the core.</li>
+
+	<li>Note that the first page should be 1 (not 0).</li>
+</ul>
+
+<p>#pw-group-URL-segments</p>
 
 
 
@@ -929,7 +1147,7 @@ can be adjusted in your /site/config.php.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#370-416" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#334-380" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -968,45 +1186,6 @@ $input-&gt;pageNum.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="urlSegmentStr" id="_urlSegmentStr">
-
-		<td class="attributes"><code>
-			 public 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_urlSegmentStr">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#418-428" title="Go to source code">urlSegmentStr</a>( )</code>
-
-		<div class="description short">
-			
-<p>Get the string of URL segments separated by slashes</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get the string of URL segments separated by slashes</p>
-
-<p>Note that return value lacks leading or trailing slashes</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="__isset" id="___isset">
 
 		<td class="attributes"><code>
@@ -1018,7 +1197,7 @@ $input-&gt;pageNum.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___isset">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#430-432" title="Go to source code">__isset</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#382-384" title="Go to source code">__isset</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1047,20 +1226,36 @@ $input-&gt;pageNum.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#434-500" title="Go to source code">url</a>( <span>boolean <var>$withQueryString</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#386-465" title="Go to source code">url</a>( <span>boolean <var>$withQueryString</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>URL that initiated the current request, including URL segments</p>
+<p>Get the URL that initiated the current request, including URL segments and
+page numbers</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>URL that initiated the current request, including URL segments</p>
+<p>Get the URL that initiated the current request, including URL segments and
+page numbers</p>
 
-<p>Note that this does not include query string unless specified to. WARNING: if
-query string requested, it can contain undefined/unsanitized user input.</p>
+<ul>
+	<li>This should be the same as <code>$page-&gt;url</code> except that it
+	includes URL segments and page numbers, when present.</li>
+
+	<li>Note that this does not include query string unless requested (see
+	arguments).</li>
+
+	<li>WARNING: if query string requested, it can contain undefined/unsanitized
+	user input. If you use it for output make sure that you entity encode first (by
+	running through <code>$sanitizer-&gt;entities()</code> for instance).</li>
+</ul>
+
+<p>~~~~~~ $url = $input-&gt;url(); $url = $sanitizer-&gt;entities($url); //
+entity encode for output echo "You accessed this page at: $url"; ~~~~~~</p>
+
+<p>#pw-group-URLs</p>
 
 
 
@@ -1076,6 +1271,10 @@ query string requested, it can contain undefined/unsanitized user input.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireInput.html#_httpUrl">ProcessWire\WireInput::httpUrl()</a></code></code>, <code><code><a href="class-ProcessWire.Page.html#_url">ProcessWire\Page::url()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1092,20 +1291,36 @@ query string requested, it can contain undefined/unsanitized user input.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_httpUrl">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#502-513" title="Go to source code">httpUrl</a>( <span>boolean <var>$withQueryString</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#467-492" title="Go to source code">httpUrl</a>( <span>boolean <var>$withQueryString</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>URL including scheme</p>
+<p>Get the http URL that initiated the current request, including scheme, URL
+segments and page numbers</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>URL including scheme</p>
+<p>Get the http URL that initiated the current request, including scheme, URL
+segments and page numbers</p>
 
-<p>WARNING: if query string included, it can contain undefined/unsanitized user
-input.</p>
+<ul>
+	<li>This should be the same as <code>$page-&gt;httpUrl</code> except that it
+	includes URL segments and page numbers, when present.</li>
+
+	<li>Note that this does not include query string unless requested (see
+	arguments).</li>
+
+	<li>WARNING: if query string requested, it can contain undefined/unsanitized
+	user input. If you use it for output make sure that you entity encode first (by
+	running through <code>$sanitizer-&gt;entities()</code> for instance).</li>
+</ul>
+
+<p>~~~~~~ $url = $input-&gt;httpUrl(); $url = $sanitizer-&gt;entities($url); //
+entity encode for output echo "You accessed this page at: $url"; ~~~~~~</p>
+
+<p>#pw-group-URLs</p>
 
 
 
@@ -1121,6 +1336,10 @@ input.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireInput.html#_url">ProcessWire\WireInput::url()</a></code></code>, <code><code><a href="class-ProcessWire.Page.html#_httpUrl">ProcessWire\Page::httpUrl()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1137,7 +1356,7 @@ input.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fragment">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#515-528" title="Go to source code">fragment</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#494-509" title="Go to source code">fragment</a>( )</code>
 
 		<div class="description short">
 			
@@ -1151,6 +1370,8 @@ input.</p>
 
 <p>Note that this is not sanitized. Fragments generally can't be seen by the
 server, so this function may be useless.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1177,26 +1398,32 @@ server, so this function may be useless.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_queryString">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#530-540" title="Go to source code">queryString</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#511-524" title="Go to source code">queryString</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return the query string that was part of this request or blank if none</p>
+<p>Return the unsanitized query string that was part of this request, or blank
+if none</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the query string that was part of this request or blank if none</p>
+<p>Return the unsanitized query string that was part of this request, or blank
+if none</p>
 
-<p>Note that this is not sanitized.</p>
+<p>Note that the returned query string is not sanitized, so if you use it in any
+output be sure to run it through <code>$sanitizer-&gt;entities()</code>
+first.</p>
+
+<p>#pw-group-URLs</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code>string</code><br>Returns the unsanitized query string<br>
 				</div>
 
 
@@ -1216,7 +1443,7 @@ server, so this function may be useless.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_scheme">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#542-552" title="Go to source code">scheme</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#526-538" title="Go to source code">scheme</a>( )</code>
 
 		<div class="description short">
 			
@@ -1231,12 +1458,14 @@ server, so this function may be useless.</p>
 <p>Note that this is only useful for http/https, as we don't detect other
 schemes.</p>
 
+<p>#pw-group-URLs</p>
+
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>either "https" or "http"<br>
+					<code>string</code><br>Return value is either "https" or "http"<br>
 				</div>
 
 
@@ -1256,7 +1485,7 @@ schemes.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unregisterGLOBALS">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#554-583" title="Go to source code">unregisterGLOBALS</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#540-571" title="Go to source code">unregisterGLOBALS</a>( )</code>
 
 		<div class="description short">
 			
@@ -1269,6 +1498,8 @@ schemes.</p>
 <p>Emulate register globals OFF</p>
 
 <p>Should be called after session_start()</p>
+
+<p>#pw-internal</p>
 
 <p>This function is from the PHP documentation at: <a
 href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals</a></p>
@@ -1304,6 +1535,7 @@ href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http:/
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -1364,7 +1596,7 @@ href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http:/
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireInput.html#215" title="Go to source code"><var>$getVars</var></a>
+				<a href="source-class-ProcessWire.WireInput.html#41" title="Go to source code"><var>$getVars</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1387,7 +1619,7 @@ href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http:/
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireInput.html#216" title="Go to source code"><var>$postVars</var></a>
+				<a href="source-class-ProcessWire.WireInput.html#42" title="Go to source code"><var>$postVars</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1410,7 +1642,7 @@ href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http:/
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireInput.html#217" title="Go to source code"><var>$cookieVars</var></a>
+				<a href="source-class-ProcessWire.WireInput.html#43" title="Go to source code"><var>$cookieVars</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1433,7 +1665,7 @@ href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http:/
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireInput.html#218" title="Go to source code"><var>$whitelist</var></a>
+				<a href="source-class-ProcessWire.WireInput.html#44" title="Go to source code"><var>$whitelist</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1456,7 +1688,7 @@ href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http:/
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireInput.html#219" title="Go to source code"><var>$urlSegments</var></a>
+				<a href="source-class-ProcessWire.WireInput.html#45" title="Go to source code"><var>$urlSegments</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -1479,7 +1711,7 @@ href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http:/
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireInput.html#220" title="Go to source code"><var>$pageNum</var></a>
+				<a href="source-class-ProcessWire.WireInput.html#46" title="Go to source code"><var>$pageNum</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">1</span></code></td>
 		<td class="description"><div>

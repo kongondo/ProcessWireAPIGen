@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireData | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -492,8 +492,22 @@
 provides get and set access to properties internally stored in a $data array.
 Otherwise it is identical to the Wire class.</p>
 
-<p>This file is licensed under the MIT license <a
-href="https://processwire.com/about/license/mit/">https://processwire.com/about/license/mit/</a></p>
+<p>#pw-summary WireData is the base data-storage class used by many ProcessWire
+object types and most modules. #pw-body = WireData is very much like its parent
+<code>Wire</code> class with the fundamental difference being that it is
+designed for runtime data storage. It provides this primarily through the
+built-in <code>get()</code> and <code>set()</code> methods for getting and
+setting named properties to WireData objects. The most common example of a
+WireData object is <code>Page</code>, the type used for all pages in
+ProcessWire.</p>
+
+<p>Properties set to a WireData object can also be set or accessed directly,
+like <code>$item-&gt;property</code> or using array access like
+<code>$item[$property]</code>. If you <code>foreach()</code> a WireData object,
+the default behavior is to iterate all of the properties/values present within
+it. #pw-body</p>
+
+<p>May also be accessed as array.</p>
 
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
@@ -768,7 +782,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireData.html#4-420" title="Go to source code">core/WireData.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireData.html#4-535" title="Go to source code">core/WireData.php</a><br>
 	</div>
 
 
@@ -786,26 +800,34 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#26-43" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#37-68" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set a value</p>
+<p>Set a value to this object’s data</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set a value</p>
+<p>Set a value to this object’s data</p>
+
+<p>~~~~~ // Set a value for a property $item-&gt;set('foo', 'bar');</p>
+
+<p>// Set a property value directly $item-&gt;foo = 'bar';</p>
+
+<p>// Set a property using array access $item['foo'] = 'bar'; ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property you want to set</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
+					<dd><code>mixed</code><br>$value Value of property</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -814,6 +836,10 @@ href="https://processwire.com">https://processwire.com</a></p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireData.html#_setQuietly">ProcessWire\WireData::setQuietly()</a></code></code>, <code><code><a href="class-ProcessWire.WireData.html#_get">ProcessWire\WireData::get()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -830,30 +856,36 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setQuietly">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#45-62" title="Go to source code">setQuietly</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#70-90" title="Go to source code">setQuietly</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Same as set() but triggers no change tracking or hooks</p>
+<p>Same as set() but without change tracking</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Same as set() but triggers no change tracking or hooks</p>
+<p>Same as set() but without change tracking</p>
 
-<p>If trackChanges is false, then this is no different than set(). If
-trackChanges is true, then the value will be set but not recorded in the changes
-list.</p>
+<ul>
+	<li>If <code>$this-&gt;trackChanges()</code> is false, then this is no different
+	than set(), since changes aren't being tracked.</li>
+
+	<li>If <code>$this-&gt;trackChanges()</code> is true, then the value will be set
+	quietly (i.e. not recorded in the changes list).</li>
+</ul>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property you want to set</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
+					<dd><code>mixed</code><br>$value Value of property</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -862,6 +894,10 @@ list.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Wire.html#_trackChanges">ProcessWire\Wire::trackChanges()</a></code></code>, <code><code><a href="class-ProcessWire.WireData.html#_set">ProcessWire\WireData::set()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -878,7 +914,7 @@ list.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isEqual">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#64-79" title="Go to source code">isEqual</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value1</var></span>, <span>mixed <var>$value2</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#92-110" title="Go to source code">isEqual</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value1</var></span>, <span>mixed <var>$value2</var></span> )</code>
 
 		<div class="description short">
 			
@@ -893,21 +929,24 @@ list.</p>
 <p>This template method provided so that descending classes can optionally
 determine whether a change should be tracked.</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key Name of the key that triggered the check (see WireData::set)</dd>
+					<dd><code>string</code><br>$key Name of the property/key that triggered the check (see
+<code>WireData::set()</code>)</dd>
 					<dt><var>$value1</var></dt>
-					<dd><code>mixed</code><br>$value1</dd>
+					<dd><code>mixed</code><br>$value1 Comparison value</dd>
 					<dt><var>$value2</var></dt>
-					<dd><code>mixed</code><br>$value2</dd>
+					<dd><code>mixed</code><br>$value2 A second comparison value</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if values are equal, false if not<br>
 				</div>
 
 
@@ -927,7 +966,7 @@ determine whether a change should be tracked.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setArray">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#81-92" title="Go to source code">setArray</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#112-128" title="Go to source code">setArray</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -939,12 +978,18 @@ determine whether a change should be tracked.</p>
 			
 <p>Set an array of key=value pairs</p>
 
+<p>This is the same as the <code>WireData::set()</code> method except that it
+can set an array of properties at once.</p>
+
+<p>#pw-group-manipulation</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
+					<dd><code>array</code><br>$data Associative array of where the keys are property names, and values are…
+values.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -973,7 +1018,7 @@ determine whether a change should be tracked.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#94-104" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#130-140" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1013,36 +1058,59 @@ determine whether a change should be tracked.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#106-127" title="Go to source code">get</a>( <span>string|object <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#142-178" title="Go to source code">get</a>( <span>string|object <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Provides direct reference access to retrieve values in the $data array</p>
+<p>Retrieve the value for a previously set property, or retrieve an API
+variable</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Provides direct reference access to retrieve values in the $data array</p>
+<p>Retrieve the value for a previously set property, or retrieve an API
+variable</p>
 
-<p>If the given $key is an object, it will cast it to a string. If the given key
-is a string with "|" pipe characters in it, it will try all till it finds a
-value.</p>
+<ul>
+	<li>If the given $key is an object, it will cast it to a string.</li>
+
+	<li>If the given $key is a string with "|" pipe characters in it, it will try
+	all till it finds a non-empty value.</li>
+
+	<li>If given an API variable name, it will return that API variable unless the
+	class has direct access API variables disabled.</li>
+</ul>
+
+<p>~~~~~ // Retrieve the value of a property $value =
+$item-&gt;get("some_property");</p>
+
+<p>// Retrieve the value of the first non-empty property: $value =
+$item-&gt;get("property1|property2|property2");</p>
+
+<p>// Retrieve a value using array access $value = $item["some_property"];
+~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|object</code><br>$key</dd>
+					<dd><code>string|object</code><br>$key Name of property you want to retrieve.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed|null</code><br>Returns null if the key was not found.<br>
+					<code>mixed|null</code><br>Returns value of requested property, or null if the property was not found.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireData.html#_set">ProcessWire\WireData::set()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1059,44 +1127,56 @@ value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_data">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#129-156" title="Go to source code">data</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#180-218" title="Go to source code">data</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Like get() or set() but will only get/set from $this-&gt;data</p>
+<p>Get or set a low-level data value</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Like get() or set() but will only get/set from $this-&gt;data</p>
+<p>Get or set a low-level data value</p>
 
-<p>To use as a get() simply specify no $value. To use as a set(), specify a
-value. If you omit a $key and $value, this method will return the entire data
-array.</p>
+<p>Like get() or set() but will only get/set from the WireData's protected $data
+array. This is used to bypass any extra logic a class may have added to its
+get() or set() methods. The benefit of this method over get() is that it
+excludes API vars and potentially other things (defined by descending classes)
+that you may not want.</p>
 
-<p>The benefit of this method over get() is that it excludes API vars and
-potentially other things (defined by descending classes) that you may not
-want.</p>
+<ul>
+	<li>To get a value, simply omit the $value argument.</li>
 
-<p>The benefit of this method over set() is that you dictate you only want it to
-set the value in the $this-&gt;data container, and not potentially elsewhere, if
-it matters in the descending class.</p>
+	<li>To set a value, specify both the $key and $value arguments.</li>
+
+	<li>If you omit a $key and $value, this method will return the entire data
+	array.</li>
+</ul>
+
+<p>#pw-group-manipulation #pw-group-retrieval</p>
+
+<p>~~~~~ // Set a property $item-&gt;data('some_property', 'some value');</p>
+
+<p>// Get the value of a previously set property $value =
+$item-&gt;data('some_property'); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key Property you want to get or set</dd>
+					<dd><code>string</code><br>$key Property you want to get or set.</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value Optionally specify a value if you want to set rather than get</dd>
+					<dd><code>mixed</code><br>$value Optionally specify a value if you want to set rather than get.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed|null|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code></code><br>$this Returns value if geting a value or null if not found. If you intead
-specify a value to set, it always returns $this.<br>
+					<code>mixed|null|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code></code><br>$this Returns one of the following: - <code>mixed</code> - Actual value if
+getting a previously set value. - <code>null</code> - If you are attempting to
+get a value that has not been set. - <code>$this</code> - If you are setting a
+value.<br>
 				</div>
 
 
@@ -1116,27 +1196,29 @@ specify a value to set, it always returns $this.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getArray">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#158-169" title="Go to source code">getArray</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#220-233" title="Go to source code">getArray</a>( )</code>
 
 		<div class="description short">
 			
-<p>Returns the full $data array</p>
+<p>Returns the full array of properties set to this object</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the full $data array</p>
+<p>Returns the full array of properties set to this object</p>
 
 <p>If descending classes also store data in other containers, they may want to
 override this method to include that data as well.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>
+					<code>array</code><br>Returned array is associative and indexed by property name.<br>
 				</div>
 
 
@@ -1156,7 +1238,7 @@ override this method to include that data as well.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__getDot">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#171-221" title="Go to source code">_getDot</a>( <span>string <var>$key</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$from</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#235-287" title="Go to source code">_getDot</a>( <span>string <var>$key</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$from</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1170,6 +1252,8 @@ override this method to include that data as well.</p>
 
 <p>Static version for internal core use. Use the non-static getDot()
 instead.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1203,7 +1287,7 @@ instead.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDot">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#223-235" title="Go to source code">getDot</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#289-307" title="Go to source code">getDot</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1215,15 +1299,19 @@ instead.</p>
 			
 <p>Get a property via dot syntax: field.subfield.subfield</p>
 
-<p>Some classes of WireData may choose to add a call to this as part of their
-get() method as a syntax convenience.</p>
+<p>Some classes descending WireData may choose to add a call to this as part of
+their get() method as a syntax convenience.</p>
+
+<p>~~~~~ $value = $item-&gt;get("parent.title"); ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property you want to retrieve in "a.b" or "a.b.c" format</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1248,7 +1336,7 @@ get() method as a syntax convenience.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#237-248" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#309-320" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1294,7 +1382,7 @@ get() method as a syntax convenience.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#250-259" title="Go to source code">__invoke</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#322-331" title="Go to source code">__invoke</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1336,24 +1424,28 @@ get() method as a syntax convenience.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#261-273" title="Go to source code">remove</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#333-351" title="Go to source code">remove</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Remove a given $key from the $data array</p>
+<p>Remove a previously set property</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Remove a given $key from the $data array</p>
+<p>Remove a previously set property</p>
+
+<p>~~~~~ $item-&gt;remove('some_property'); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property you want to remove</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1378,19 +1470,21 @@ get() method as a syntax convenience.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIterator">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#275-283" title="Go to source code">getIterator</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#353-369" title="Go to source code">getIterator</a>( )</code>
 
 		<div class="description short">
 			
-<p>Make the $data array iterable through this object, per the \IteratorAggregate
-interface</p>
+<p>Enables the object data properties to be iterable as an array</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Make the $data array iterable through this object, per the \IteratorAggregate
-interface</p>
+<p>Enables the object data properties to be iterable as an array</p>
+
+<p>~~~~~ foreach($item as $key =&gt; $value) { // ... } ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -1419,29 +1513,34 @@ interface</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#285-294" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#371-388" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Does this WireData have the given property in it's $data?</p>
+<p>Does this object have the given property?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Does this WireData have the given property in it's $data?</p>
+<p>Does this object have the given property?</p>
+
+<p>~~~~~ if($item-&gt;has('some_property')) { // the item has some_property }
+~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property you want to check.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if it has the property, false if not.<br>
 				</div>
 
 
@@ -1461,40 +1560,44 @@ interface</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____and">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#296-328" title="Go to source code">___and</a>( <span><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|string <var>$items</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#390-431" title="Go to source code">___and</a>( <span><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|string <var>$items</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Take the current item and append the given items, returning a new
+<p>Take the current item and append the given item(s), returning a new
 WireArray</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Take the current item and append the given items, returning a new
+<p>Take the current item and append the given item(s), returning a new
 WireArray</p>
 
-<p>This is for syntactic convenience, i.e.
-if($page-&gt;and($page-&gt;parents)-&gt;has("featured=1")) { ... }</p>
+<p>This is for syntactic convenience in fluent interfaces. ~~~~~
+if($page-&gt;and($page-&gt;parents)-&gt;has("featured=1")) { // page or one of
+its parents has a featured property with value of 1 } ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$items</var></dt>
-					<dd><code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|string</code><br>$items May be a WireData, WireArray or gettable property from this object that
-returns a WireData|WireArray.</dd>
+					<dd><code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|string</code><br>$items May be any of the following: - <code>WireData</code> object (or
+derivative) - <code>WireArray</code> object (or derivative) - Name of any
+property from this object that returns one of the above.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>Returns a WireArray of this object <em>and</em> the one(s) given.<br>
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If invalid argument supplied<br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If invalid argument supplied.<br>
 				</div>
 
 
@@ -1513,7 +1616,7 @@ returns a WireData|WireArray.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___isset">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#330-339" title="Go to source code">__isset</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#433-444" title="Go to source code">__isset</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1524,6 +1627,8 @@ returns a WireData|WireArray.</dd>
 		<div class="description detailed hidden">
 			
 <p>Ensures that isset() and empty() work for this classes properties.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1555,7 +1660,7 @@ returns a WireData|WireArray.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___unset">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#341-349" title="Go to source code">__unset</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#446-456" title="Go to source code">__unset</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1566,6 +1671,8 @@ returns a WireData|WireArray.</dd>
 		<div class="description detailed hidden">
 			
 <p>Ensures that unset() works for this classes data.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1593,7 +1700,7 @@ returns a WireData|WireArray.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetSet">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#351-362" title="Go to source code">offsetSet</a>( <span>integer|string <var>$key</var></span>, <span>integer|string|array|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#458-471" title="Go to source code">offsetSet</a>( <span>integer|string <var>$key</var></span>, <span>integer|string|array|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1606,6 +1713,8 @@ returns a WireData|WireArray.</dd>
 <p>Sets an index in the WireArray.</p>
 
 <p>For the ArrayAccess interface.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1637,7 +1746,7 @@ returns a WireData|WireArray.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetGet">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#364-374" title="Go to source code">offsetGet</a>( <span>integer|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#473-485" title="Go to source code">offsetGet</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1648,6 +1757,8 @@ returns a WireData|WireArray.</dd>
 		<div class="description detailed hidden">
 			
 <p>Returns the value of the item at the given index, or false if not set.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1681,7 +1792,7 @@ returns a WireData|WireArray.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetUnset">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#376-392" title="Go to source code">offsetUnset</a>( <span>integer|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#487-505" title="Go to source code">offsetUnset</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1694,6 +1805,8 @@ returns a WireData|WireArray.</dd>
 <p>Unsets the value at the given index.</p>
 
 <p>For the ArrayAccess interface.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1727,7 +1840,7 @@ returns a WireData|WireArray.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetExists">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#395-406" title="Go to source code">offsetExists</a>( <span>integer|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#508-521" title="Go to source code">offsetExists</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1740,6 +1853,8 @@ returns a WireData|WireArray.</dd>
 <p>Determines if the given index exists in this WireData.</p>
 
 <p>For the ArrayAccess interface.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1773,7 +1888,7 @@ returns a WireData|WireArray.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.WireData.html#408-418" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireData.html#523-533" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -1822,6 +1937,7 @@ returns a WireData|WireArray.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -1882,7 +1998,7 @@ returns a WireData|WireArray.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireData.html#20-24" title="Go to source code"><var>$data</var></a>
+				<a href="source-class-ProcessWire.WireData.html#31-35" title="Go to source code"><var>$data</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

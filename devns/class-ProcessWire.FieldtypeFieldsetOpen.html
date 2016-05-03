@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeFieldsetOpen | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -490,7 +490,19 @@
 
 <p>Abstract base class from which all Fieldtype modules are descended from.</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>#pw-summary Fieldtype is a module type used to represent a type of field. All
+Fieldtype modules descend from this. #pw-order-groups
+loading,saving,finding,formatting,configuration,creating,deleting,other #pw-body
+= Almost all methods in a Fieldtype are primarily of concern to module
+developers, as Fieldtype modules do not have a public API (most of the time).
+Instead, they provide methods used by <code>Page</code> and <code>Field</code>
+objects (and related) to work with the field data. Most Fieldtype modules only
+need to implement a few methods like <code>Fieldtype::sanitizeValue()</code>
+(which is required) and <code>Fieldtype::getDatabaseSchema()</code>, as the
+default implementation of most other methods provided in this Fieldtype class
+accounts for most situations already. #pw-body</p>
+
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <h1>Hookable methods</h1>
@@ -645,17 +657,26 @@ multiple Fieldsets</p>
 
 		<div class="description short">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
-<p>This method should remove anything that's invalid from the given value. If it
-can't be sanitized, it should be blanked. This method filters every value set to
-a Page instance.</p>
+<ul>
+	<li>Implementation is required by Fieldtype modules, as this method is
+	abstract.</li>
+
+	<li>This method should remove anything that's invalid from the given value. If
+	it can't be sanitized, it should be made blank.</li>
+
+	<li>This method filters every value set to a Page instance, so it should do it's
+	thing as quickly as possible.</li>
+</ul>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -695,34 +716,26 @@ a Page instance.</p>
 
 		<div class="description short">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
-<p>Abstract Template Method: child classes should override this. Code snippet is
-for example purposes only.</p>
-
-<p>Page and Field are provided as params in case the Fieldtype needs them for
-any custom population with the Inputfield. However, most Fieldtypes won't need
-them since Inputfield objects don't have any Page dependencies (!) The Field
-class handles setting all standard Inputfield attributes rather than this method
-to reduce code duplication in Inputfield modules.</p>
-
-<p>(!) See FieldtypeFile for an example that uses both Page and Field
-params.</p>
+<p>#pw-group-other</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfield will be for</dd>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that the Inputfield will be for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -782,21 +795,24 @@ params.</p>
 
 		<div class="description short">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
-<p>This is in addition any configuration fields supplied by the Inputfield.</p>
+<p>This is in addition to any configuration fields supplied by the
+Inputfield.</p>
 
 <p>Classes implementing this method should call upon this parent method to
 obtain the InputfieldWrapper, and then append their own Inputfields to that.</p>
 
 <p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
 are assumed to be for runtime use and are NOT stored in the database.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -834,19 +850,24 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 
 		<div class="description short">
 			
-<p>Get inputfields for advanced settings of the Field and Fieldtype</p>
+<p>Get Inputfields for advanced settings of the Field and Fieldtype</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get inputfields for advanced settings of the Field and Fieldtype</p>
+<p>Get Inputfields for advanced settings of the Field and Fieldtype</p>
 
-<p>In most cases, you will want to override getConfigInputfields rather than
-this method</p>
+<p>Inputfields returned from this appear under the "Advanced" tab rather than
+the "Details" tab, in the Field editor.</p>
+
+<p>In most cases, you will want to implement the getConfigInputfields() or
+getConfigArray() rather than this method.</p>
 
 <p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
 are assumed to be for runtime use and are NOT stored in the database.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -862,11 +883,6 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 				</div>
 
 
-				<h4>TODO</h4>
-				<div class="list">
-						should this be moved back into modules/Process/ProcessField.module? (that's
-where it is saved)<br>
-				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.Fieldtype.html#____getConfigAdvancedInputfields">ProcessWire\Fieldtype::___getConfigAdvancedInputfields()</a></code></div>
@@ -889,22 +905,25 @@ where it is saved)<br>
 
 		<div class="description short">
 			
-<p>Get an array of Fieldtypes that are compatible with this one (i.e. ones the
-user may change the type to)</p>
+<p>Get an array of Fieldtypes that are compatible with this one</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get an array of Fieldtypes that are compatible with this one (i.e. ones the
-user may change the type to)</p>
+<p>Get an array of Fieldtypes that are compatible with this one</p>
+
+<p>This represents the list of Fieldtype modules that the user is allowed to
+change to from this one.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Just in case it's needed</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -964,13 +983,15 @@ user may change the type to)</p>
 
 		<div class="description short">
 			
-<p>Return the query used for loading all parts of the data from this field</p>
+<p>Return the query used for loading all parts of the data from this field.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the query used for loading all parts of the data from this field</p>
+<p>Return the query used for loading all parts of the data from this field.</p>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -1252,6 +1273,7 @@ on</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

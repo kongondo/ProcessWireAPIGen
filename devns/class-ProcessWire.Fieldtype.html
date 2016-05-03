@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Fieldtype | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -490,7 +490,19 @@
 
 <p>Abstract base class from which all Fieldtype modules are descended from.</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>#pw-summary Fieldtype is a module type used to represent a type of field. All
+Fieldtype modules descend from this. #pw-order-groups
+loading,saving,finding,formatting,configuration,creating,deleting,other #pw-body
+= Almost all methods in a Fieldtype are primarily of concern to module
+developers, as Fieldtype modules do not have a public API (most of the time).
+Instead, they provide methods used by <code>Page</code> and <code>Field</code>
+objects (and related) to work with the field data. Most Fieldtype modules only
+need to implement a few methods like <code>Fieldtype::sanitizeValue()</code>
+(which is required) and <code>Fieldtype::getDatabaseSchema()</code>, as the
+default implementation of most other methods provided in this Fieldtype class
+accounts for most situations already. #pw-body</p>
+
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <h1>Hookable methods</h1>
@@ -582,7 +594,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Fieldtype.html#3-1010" title="Go to source code">core/Fieldtype.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Fieldtype.html#3-1140" title="Go to source code">core/Fieldtype.php</a><br>
 	</div>
 
 
@@ -600,7 +612,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#44-55" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#57-68" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -638,7 +650,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#57-61" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#70-76" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -651,6 +663,8 @@ are loaded and ready for API usage</p>
 			
 <p>Per Module interface, this template method is called when all system classes
 are loaded and ready for API usage</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -673,7 +687,7 @@ are loaded and ready for API usage</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSingular">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#64-70" title="Go to source code">isSingular</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#79-87" title="Go to source code">isSingular</a>( )</code>
 
 		<div class="description short">
 			
@@ -686,6 +700,8 @@ request</p>
 			
 <p>Fieldtype modules are singular, in that only one instance is needed per
 request</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -708,7 +724,7 @@ request</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isAutoload">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#72-78" title="Go to source code">isAutoload</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#89-97" title="Go to source code">isAutoload</a>( )</code>
 
 		<div class="description short">
 			
@@ -721,6 +737,8 @@ requested</p>
 			
 <p>Fieldtype modules are not automatically loaded, they are only loaded when
 requested</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -743,7 +761,7 @@ requested</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isAdvanced">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#80-86" title="Go to source code">isAdvanced</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#99-107" title="Go to source code">isAdvanced</a>( )</code>
 
 		<div class="description short">
 			
@@ -754,6 +772,8 @@ requested</p>
 		<div class="description detailed hidden">
 			
 <p>Should this Fieldtype only be allowed for new fields in advanced mode?</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -776,38 +796,30 @@ requested</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInputfield">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#88-109" title="Go to source code">getInputfield</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#109-133" title="Go to source code">getInputfield</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return new instance of the Inputfield associated with this Fieldtype</p>
+<p>Return new instance of the Inputfield module associated with this
+Fieldtype.</p>
 
-<p>Abstract Template Method: child classes should override this. Code snippet is
-for example purposes only.</p>
-
-<p>Page and Field are provided as params in case the Fieldtype needs them for
-any custom population with the Inputfield. However, most Fieldtypes won't need
-them since Inputfield objects don't have any Page dependencies (!) The Field
-class handles setting all standard Inputfield attributes rather than this method
-to reduce code duplication in Inputfield modules.</p>
-
-<p>(!) See FieldtypeFile for an example that uses both Page and Field
-params.</p>
+<p>#pw-group-other</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that the Inputfield will be for</dd>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that the Inputfield will be for</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -832,25 +844,28 @@ params.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#111-140" title="Go to source code">___getConfigInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#135-167" title="Go to source code">___getConfigInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get any inputfields used for configuration of this Fieldtype.</p>
+<p>Get any Inputfields used for configuration of this Fieldtype.</p>
 
-<p>This is in addition any configuration fields supplied by the Inputfield.</p>
+<p>This is in addition to any configuration fields supplied by the
+Inputfield.</p>
 
 <p>Classes implementing this method should call upon this parent method to
 obtain the InputfieldWrapper, and then append their own Inputfields to that.</p>
 
 <p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
 are assumed to be for runtime use and are NOT stored in the database.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -882,7 +897,7 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigArray">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#142-154" title="Go to source code">___getConfigArray</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#169-184" title="Go to source code">___getConfigArray</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -895,7 +910,10 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 <p>Same as getConfigInputfields but with definition as an array instead</p>
 
 <p>If both getConfigInputfields and getConfigInputfieldsArray are implemented
-then definitions from both will be used.</p>
+then definitions from both will be used. It's probably simplest just to
+implement one or the other.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -927,19 +945,27 @@ then definitions from both will be used.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigAllowContext">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#156-165" title="Go to source code">___getConfigAllowContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#186-203" title="Go to source code">___getConfigAllowContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return a list of Inputfield names from getConfig[Inputfields|Array] that are
-allowed in fieldgroup/template context</p>
+<p>Return an array of configuration field names from that are allowed in
+fieldgroup/template context</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return a list of Inputfield names from getConfig[Inputfields|Array] that are
-allowed in fieldgroup/template context</p>
+<p>Return an array of configuration field names from that are allowed in
+fieldgroup/template context</p>
+
+<p>These field names are those that would be used for Inputfields like those
+returned from getConfigInputfields() or getConfigArray().</p>
+
+<p>Inputfield field names returned from here are allowed to have unique values
+per Fieldgroup assignment, rather than sharing the same setting globally.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -971,23 +997,28 @@ allowed in fieldgroup/template context</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigAdvancedInputfields">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#167-230" title="Go to source code">___getConfigAdvancedInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#205-272" title="Go to source code">___getConfigAdvancedInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get inputfields for advanced settings of the Field and Fieldtype</p>
+<p>Get Inputfields for advanced settings of the Field and Fieldtype</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get inputfields for advanced settings of the Field and Fieldtype</p>
+<p>Get Inputfields for advanced settings of the Field and Fieldtype</p>
 
-<p>In most cases, you will want to override getConfigInputfields rather than
-this method</p>
+<p>Inputfields returned from this appear under the "Advanced" tab rather than
+the "Details" tab, in the Field editor.</p>
+
+<p>In most cases, you will want to implement the getConfigInputfields() or
+getConfigArray() rather than this method.</p>
 
 <p>NOTE: Inputfields with a name that starts with an underscore, i.e. "_myname"
 are assumed to be for runtime use and are NOT stored in the database.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -1003,11 +1034,6 @@ are assumed to be for runtime use and are NOT stored in the database.</p>
 				</div>
 
 
-				<h4>TODO</h4>
-				<div class="list">
-						should this be moved back into modules/Process/ProcessField.module? (that's
-where it is saved)<br>
-				</div>
 
 
 		</div>
@@ -1024,7 +1050,7 @@ where it is saved)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____exportConfigData">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#232-267" title="Go to source code">___exportConfigData</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#274-312" title="Go to source code">___exportConfigData</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1037,7 +1063,10 @@ where it is saved)<br>
 <p>Export configuration values for external consumption</p>
 
 <p>Use this method to externalize any config values when necessary. For example,
-internal IDs should be converted to GUIDs where possible.</p>
+internal IDs should be converted to GUIDs where possible. Most Fieldtype modules
+can use the default implementation already provided here.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -1071,19 +1100,24 @@ internal IDs should be converted to GUIDs where possible.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____importConfigData">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#269-282" title="Go to source code">___importConfigData</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#314-332" title="Go to source code">___importConfigData</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
 <p>Convert an array of exported data to a format that will be understood
-internally (opposite of exportConfigData)</p>
+internally</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Convert an array of exported data to a format that will be understood
-internally (opposite of exportConfigData)</p>
+internally</p>
+
+<p>This is the opposite of the exportConfigData() method. Most modules can use
+the default implementation provided here.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
@@ -1119,26 +1153,29 @@ during import of config data.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getCompatibleFieldtypes">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#284-297" title="Go to source code">___getCompatibleFieldtypes</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#334-351" title="Go to source code">___getCompatibleFieldtypes</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get an array of Fieldtypes that are compatible with this one (i.e. ones the
-user may change the type to)</p>
+<p>Get an array of Fieldtypes that are compatible with this one</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get an array of Fieldtypes that are compatible with this one (i.e. ones the
-user may change the type to)</p>
+<p>Get an array of Fieldtypes that are compatible with this one</p>
+
+<p>This represents the list of Fieldtype modules that the user is allowed to
+change to from this one.</p>
+
+<p>#pw-group-configuration</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Just in case it's needed</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1163,21 +1200,30 @@ user may change the type to)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sanitizeValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#299-311" title="Go to source code">sanitizeValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#353-368" title="Go to source code">sanitizeValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Sanitize the value for runtime storage.</p>
+<p>Sanitize the value for runtime storage and return it.</p>
 
-<p>This method should remove anything that's invalid from the given value. If it
-can't be sanitized, it should be blanked. This method filters every value set to
-a Page instance.</p>
+<ul>
+	<li>Implementation is required by Fieldtype modules, as this method is
+	abstract.</li>
+
+	<li>This method should remove anything that's invalid from the given value. If
+	it can't be sanitized, it should be made blank.</li>
+
+	<li>This method filters every value set to a Page instance, so it should do it's
+	thing as quickly as possible.</li>
+</ul>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -1213,7 +1259,7 @@ a Page instance.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____formatValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#314-332" title="Go to source code">___formatValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#370-390" title="Go to source code">___formatValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1228,14 +1274,16 @@ value</p>
 value</p>
 
 <p>Page instances call upon this method to do any necessary formatting of a
-value in preparation for output, but only if $page-&gt;outputFormatting is true.
-The most common use of this method is for text-only fields that need to have
-some text formatting applied to them, like Markdown, SmartyPants, Textile, etc.
-As a result, Fieldtype modules don't need to implement this unless it's
-applicable.</p>
+value in preparation for output, but only if output formatting
+<code>$page-&gt;of()</code> is enabled. The most common use of this method is
+for text-only fields that need to have some text formatting applied to them,
+like Markdown, SmartyPants, Textile, etc. As a result, Fieldtype modules don't
+need to implement this unless it's applicable.</p>
 
-<p>Fieldtype modules that implement this do not need to call this parent
-method.</p>
+<p>Fieldtype modules that implement this do not need to call this parent method,
+as it doesn't do anything.</p>
+
+<p>#pw-group-formatting</p>
 
 
 
@@ -1271,32 +1319,34 @@ method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____markupValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#334-363" title="Go to source code">___markupValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$property</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#392-424" title="Go to source code">___markupValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$property</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Render a markup string of the value</p>
+<p>Render a markup string of the value.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Render a markup string of the value</p>
+<p>Render a markup string of the value.</p>
 
 <p>Non-markup components should also be entity encoded where appropriate.</p>
 
 <p>Most Fieldtypes don't need to implement this since the default covers most
 scenarios.</p>
 
-<p>This is different from formatValue() in that it always returns a string (or
-object that can be typecast to a string) that is output ready with markup.
-Further, this method may be used to render specific properties in compound
-fieldtypes. The intention here is primarily for admin output purposes, but can
-be used front-end where applicable.</p>
+<p>This is different from <code>Fieldtype::formatValue()</code> in that it
+always returns a string (or object that can be typecast to a string) that is
+output ready with markup. Further, this method may be used to render specific
+properties in compound Fieldtypes. The intention here is primarily for admin
+output purposes, but can be used front-end where applicable.</p>
 
-<p>This is different from Inputfield::renderValue() in that the context may be
-outside that of an Inputfield, as Inputfields can have external CSS or JS
-dependencies.</p>
+<p>This is different from <code>Inputfield::renderValue()</code> in that the
+context may be outside that of an Inputfield, as Inputfields can have external
+CSS or JS dependencies.</p>
+
+<p>#pw-group-formatting</p>
 
 
 
@@ -1307,7 +1357,8 @@ dependencies.</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field that $value comes from</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value Optionally specify the $page-&gt;getFormatted(value), value must be a
+					<dd><code>mixed</code><br>$value Optionally specify the value returned by
+<code>$page-&gt;getFormatted('field')</code>. When specified, value must be a
 formatted value. If null or not specified (recommended), it will be retrieved
 automatically.</dd>
 					<dt><var>$property</var></dt>
@@ -1339,7 +1390,7 @@ specify additional config options before typecasting it to a string.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getBlankValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#365-375" title="Go to source code">getBlankValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#426-440" title="Go to source code">getBlankValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1352,6 +1403,10 @@ zero value, blank object or array</p>
 			
 <p>Return the blank value for this fieldtype, whether that is a blank string,
 zero value, blank object or array</p>
+
+<p>Default/non-implemented behavior is to return a blanks string.</p>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -1385,24 +1440,26 @@ zero value, blank object or array</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isEmptyValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#377-394" title="Go to source code">isEmptyValue</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#442-461" title="Go to source code">isEmptyValue</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return whether the given value is considered empty or not</p>
+<p>Return whether the given value is considered empty or not.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return whether the given value is considered empty or not</p>
+<p>Return whether the given value is considered empty or not.</p>
 
-<p>This an be anything that might be present in a selector value and thus is
+<p>This can be anything that might be present in a selector value and thus is
 typically a string. However, it may be used outside of that purpose so you
 shouldn't count on it being a string.</p>
 
 <p>Example: an integer or text Fieldtype might not consider a "0" to be empty,
 whereas a Page reference would.</p>
+
+<p>#pw-group-finding</p>
 
 
 
@@ -1436,25 +1493,29 @@ whereas a Page reference would.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____wakeupValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#396-412" title="Go to source code">___wakeupValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#463-483" title="Go to source code">___wakeupValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Given a raw value (value as stored in DB), return the value as it would
-appear in a Page object</p>
+<p>Given a raw value (value as stored in database), return the value as it would
+appear in a Page object.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given a raw value (value as stored in DB), return the value as it would
-appear in a Page object</p>
+<p>Given a raw value (value as stored in database), return the value as it would
+appear in a Page object.</p>
 
 <p>In many cases, no change to the value may be necessary, but if a Page expects
 this value as an object (for instance) then this would be the method that
-converts that value to an object and returns it. This method is called by the
-Page class, which takes the value provided by loadPageField and sends it to
-wakeValue before making it a part of the Page.</p>
+converts that value to an object and returns it.</p>
+
+<p>This method is called by the Page class, which takes the value provided by
+<code>Fieldtype::loadPageField()</code> and sends it to this method before
+making it a part of the Page.</p>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -1474,6 +1535,10 @@ wakeValue before making it a part of the Page.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Fieldtype::sleepValue()<br>
+				</div>
 
 
 		</div>
@@ -1483,31 +1548,35 @@ wakeValue before making it a part of the Page.</p>
 
 		<td class="attributes"><code>
 			 public 
-			string|integer|array
+			string|integer|float|array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____sleepValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#414-429" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#485-504" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|float|array|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Given an 'awake' value, as set by wakeupValue, convert the value back to a
-basic type for storage in DB.</p>
+<p>Given an 'awake' value, as set by wakeupValue(), convert the value back to a
+basic type for storage in database.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given an 'awake' value, as set by wakeupValue, convert the value back to a
-basic type for storage in DB.</p>
+<p>Given an 'awake' value, as set by wakeupValue(), convert the value back to a
+basic type for storage in database.</p>
 
 <p>In many cases, this may mean no change to the value, which is why the default
 here just returns the value. But for values that are stored with pages as
 objects (for instance) this method would take that object and convert it to an
 array, int or string (serialized or otherwise).</p>
+
+<p>Returned value must be either an array, number, or string.</p>
+
+<p>#pw-group-saving</p>
 
 
 
@@ -1518,12 +1587,12 @@ array, int or string (serialized or otherwise).</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer|array|object</code><br>$value</dd>
+					<dd><code>string|integer|float|array|object</code><br>$value</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|array</code><br>
+					<code>string|integer|float|array</code><br>
 				</div>
 
 
@@ -1543,7 +1612,7 @@ array, int or string (serialized or otherwise).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____exportValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#447-466" title="Go to source code">___exportValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#522-543" title="Go to source code">___exportValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1560,9 +1629,11 @@ float or array</p>
 <p>If an array is returned, it should only contain: strings, ints, floats or
 more arrays of those types. This is intended for web service exports.</p>
 
-<p>If not overridden, this takes on the same behavior as sleepValue(). However,
-if overridden, it is intended to be more verbose than wakeupValue, where
-applicable.</p>
+<p>If not overridden, this takes on the same behavior as
+<code>Fieldtype::sleepValue()</code>. However, if overridden, it is intended to
+be more verbose than wakeupValue, where applicable.</p>
+
+<p>#pw-group-formatting</p>
 
 
 
@@ -1600,22 +1671,24 @@ applicable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDefaultValue">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#468-484" title="Go to source code">getDefaultValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#545-563" title="Go to source code">getDefaultValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return the default value for this fieldtype (may be the same as blank
+<p>Return the default value for this Fieldtype (typically the same as blank
 value)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the default value for this fieldtype (may be the same as blank
+<p>Return the default value for this Fieldtype (typically the same as blank
 value)</p>
 
 <p>Under no circumstances should this return NULL, because that is used by Page
 to determine if a field has been loaded.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1649,20 +1722,24 @@ to determine if a field has been loaded.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getMatchQuery">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#486-513" title="Go to source code">getMatchQuery</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>string <var>$table</var></span>, <span>string <var>$subfield</var></span>, <span>string <var>$operator</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#565-594" title="Go to source code">getMatchQuery</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>string <var>$table</var></span>, <span>string <var>$subfield</var></span>, <span>string <var>$operator</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get the query that matches a Fieldtype table's data with a given value</p>
+<p>Get the database query that matches a Fieldtype table’s data with a given
+value.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the query that matches a Fieldtype table's data with a given value</p>
+<p>Get the database query that matches a Fieldtype table’s data with a given
+value.</p>
 
-<p>Possible template method: If overridden, children should NOT call this parent
+<p>Possible template method: If overridden, children should not call this parent
 method.</p>
+
+<p>#pw-group-finding</p>
 
 
 
@@ -1707,7 +1784,7 @@ specified another)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____createField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#515-558" title="Go to source code">___createField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#596-642" title="Go to source code">___createField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1720,7 +1797,10 @@ specified another)</dd>
 <p>Create a new field table in the database.</p>
 
 <p>This method should execute the SQL query necessary to create $field-&gt;table
-It should throw an Exception if failure occurs</p>
+It should throw a WireException if failure occurs. Most Fieldtype modules use
+this built-in implementation.</p>
+
+<p>#pw-group-creating</p>
 
 
 
@@ -1756,7 +1836,7 @@ It should throw an Exception if failure occurs</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDatabaseSchema">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#560-611" title="Go to source code">getDatabaseSchema</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#644-706" title="Go to source code">getDatabaseSchema</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1768,31 +1848,38 @@ It should throw an Exception if failure occurs</p>
 			
 <p>Get the database schema for this field</p>
 
-<p>Should return an array like the following, indexed by field name with type
-details as the value (as it would be in an SQL statement) Indexes are passed
-through with a 'keys' array. Note that 'pages_id' as a field and primary key may
-be retrieved by starting with the parent schema return from this root
-getDatabaseSchema method.</p>
+<ul>
+	<li>Should return an array like in the example below, indexed by field name with
+	type details as the value (as it would be in an SQL statement).</li>
 
-<p>array( 'data' =&gt; 'mediumtext NOT NULL', 'keys' =&gt; array( 'FULLTEXT KEY
-data (data)', ), 'xtra' =&gt; array( // optional extras, MySQL defaults will be
-used if ommitted 'append' =&gt; 'ENGINE=MyISAM DEFAULT CHARSET=latin1'<br />
+	<li>Indexes are passed through with a <code>keys</code> array. Note that
+	<code>pages_id</code> as a field and primary key may be retrieved by starting
+	with the parent schema return from the built-in getDatabaseSchema() method.</li>
+
+	<li>At minimum, each Fieldtype must add a <code>data</code> field as well as an
+	index for it.</li>
+
+	<li>If you want a PHP <code>NULL</code> value to become a NULL in the database,
+	your column definition must specify: <code>DEFAULT NULL</code>.</li>
+</ul>
+
+<p>~~~~~~ array( 'data' =&gt; 'mediumtext NOT NULL', 'keys' =&gt; array(
+'primary' =&gt; 'PRIMARY KEY (<code>pages_id</code>)', 'FULLTEXT KEY data
+(data)', ), 'xtra' =&gt; array( // optional extras, MySQL defaults will be used
+if omitted 'append' =&gt; 'ENGINE={$this-&gt;config-&gt;dbEngine} ' . 'DEFAULT
+CHARSET={$this-&gt;config-&gt;dbCharset}'<br />
 // true (default) if this schema provides all storage for this fieldtype. //
-false if other storage is involved with this fieldtype, beyond this schema (like
-repeaters, PageTable, etc.) 'all' =&gt; true, ) );</p>
+false if other storage is involved with this fieldtype, beyond this schema //
+(like repeaters, PageTable, etc.) 'all' =&gt; true, ) ); ~~~~~~</p>
 
-<p>At minimum, each Fieldtype must add a 'data' field as well as an index for
-it.</p>
-
-<p>If you want a PHP NULL value to become a NULL in the database, your column
-definition must specify: DEFAULT NULL</p>
+<p>#pw-group-creating</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but usually should not.</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field In case it's needed for the schema, but typically isn't.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1817,7 +1904,7 @@ definition must specify: DEFAULT NULL</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trimDatabaseSchema">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#613-623" title="Go to source code">trimDatabaseSchema</a>( <span>array <var>$schema</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#708-720" title="Go to source code">trimDatabaseSchema</a>( <span>array <var>$schema</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1830,6 +1917,8 @@ loading</p>
 			
 <p>Return trimmed database schema array of any parts that aren't needed for data
 loading</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1861,19 +1950,21 @@ loading</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getSelectorInfo">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#625-636" title="Go to source code">___getSelectorInfo</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#722-735" title="Go to source code">___getSelectorInfo</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
 <p>Return array with information about what properties and operators can be used
-with this field</p>
+with this field.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Return array with information about what properties and operators can be used
-with this field</p>
+with this field.</p>
+
+<p>#pw-group-finding</p>
 
 
 
@@ -1887,7 +1978,7 @@ with this field</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>See FieldSelectorInfo.php for details<br>
+					<code>array</code><br>See <code>FieldSelectorInfo</code> class for details.<br>
 				</div>
 
 
@@ -1907,7 +1998,7 @@ with this field</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____loadPageField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#638-697" title="Go to source code">___loadPageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#737-798" title="Go to source code">___loadPageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1919,12 +2010,23 @@ with this field</p>
 			
 <p>Load the given page field from the database table and return the value.</p>
 
-<p>Return NULL if the value is not available. Return the value as it exists in
-the database, without further processing.</p>
+<ul>
+	<li>Return NULL if the value is not available.</li>
 
-<p>This is intended only to be called by Page objects on an as-needed basis.
-Typically this is only called for fields that don't have 'autojoin' turned
-on.</p>
+	<li>Return the value as it exists in the database, without further
+	processing.</li>
+
+	<li>This is intended only to be called by Page objects on an as-needed
+	basis.</li>
+
+	<li>Typically this is only called for fields that don't have 'autojoin' turned
+	on.</li>
+
+	<li>Any actual conversion of the value should be handled by the
+	<code>Fieldtype::wakeupValue()</code> method.</li>
+</ul>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -1958,17 +2060,19 @@ on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLoadQuery">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#699-720" title="Go to source code">getLoadQuery</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#800-823" title="Go to source code">getLoadQuery</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return the query used for loading all parts of the data from this field</p>
+<p>Return the query used for loading all parts of the data from this field.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the query used for loading all parts of the data from this field</p>
+<p>Return the query used for loading all parts of the data from this field.</p>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -2002,7 +2106,7 @@ on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLoadQueryAutojoin">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#722-732" title="Go to source code">getLoadQueryAutojoin</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#825-837" title="Go to source code">getLoadQueryAutojoin</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2015,6 +2119,8 @@ getLoadQuery) or NULL if autojoin not allowed.</p>
 			
 <p>Return the query used for Autojoining this field (if different from
 getLoadQuery) or NULL if autojoin not allowed.</p>
+
+<p>#pw-group-loading</p>
 
 
 
@@ -2048,20 +2154,22 @@ getLoadQuery) or NULL if autojoin not allowed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____savePageField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#734-808" title="Go to source code">___savePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#839-915" title="Go to source code">___savePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Save the given field from page</p>
+<p>Save the given field from given page to the database.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Save the given field from page</p>
+<p>Save the given field from given page to the database.</p>
 
-<p>Possible template method: If overridden, children should NOT call this parent
-method.</p>
+<p>Possible template method: If overridden, it is likely not necessary to call
+this parent method.</p>
+
+<p>#pw-group-saving</p>
 
 
 
@@ -2099,20 +2207,23 @@ method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleteField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#811-831" title="Go to source code">___deleteField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#918-941" title="Go to source code">___deleteField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Delete the given field, which implies: drop the table $field-&gt;table</p>
+<p>Delete the given field, which implies: drop the table used by the field.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Delete the given field, which implies: drop the table $field-&gt;table</p>
+<p>Delete the given field, which implies: drop the table used by the field.</p>
 
-<p>This should only be called by the Fields class since fieldgroups_fields
-lookup entries must be deleted before this method is called.</p>
+<p>This should only be called by the <code>Fields</code> class since
+<code>fieldgroups_fields</code> lookup entries must be deleted before this
+method is called.</p>
+
+<p>#pw-group-deleting</p>
 
 
 
@@ -2144,20 +2255,21 @@ lookup entries must be deleted before this method is called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deletePageField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#833-865" title="Go to source code">___deletePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#943-975" title="Go to source code">___deletePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Delete the given Field from the given Page</p>
+<p>Delete the given Field from the given Page.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Delete the given Field from the given Page</p>
+<p>Delete the given Field from the given Page.</p>
 
-<p>Should delete entries from $field-&gt;table that belong to $page-&gt;id.
-Possible template method.</p>
+<p>Must delete entries from field's database table that belong to the Page.</p>
+
+<p>#pw-group-deleting</p>
 
 
 
@@ -2195,23 +2307,25 @@ Possible template method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____emptyPageField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#867-885" title="Go to source code">___emptyPageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#977-997" title="Go to source code">___emptyPageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
 <p>Empty out the DB table data for page field, but leave everything else in
-tact</p>
+tact.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Empty out the DB table data for page field, but leave everything else in
-tact</p>
+tact.</p>
 
-<p>In most cases this may be nearly identical to deletePageField, but would be
-different for things like page references where we wouldn't want relational data
-deleted.</p>
+<p>In most cases this may be nearly identical to
+<code>Fieldtype::deletePageField()</code>, but would be different for things
+like page references where we wouldn't want relational data deleted.</p>
+
+<p>#pw-group-deleting</p>
 
 
 
@@ -2249,17 +2363,19 @@ deleted.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____replacePageField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#888-908" title="Go to source code">___replacePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$src</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$dst</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#1000-1022" title="Go to source code">___replacePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$src</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$dst</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Move this field's data from one page to another</p>
+<p>Move this field’s data from one page to another.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Move this field's data from one page to another</p>
+<p>Move this field’s data from one page to another.</p>
+
+<p>#pw-group-saving</p>
 
 
 
@@ -2295,19 +2411,19 @@ deleted.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleteTemplateField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#911-928" title="Go to source code">___deleteTemplateField</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#1025-1044" title="Go to source code">___deleteTemplateField</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
 <p>Delete the given Field from all pages using the given template, without
-loading those pages</p>
+loading those pages.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Delete the given Field from all pages using the given template, without
-loading those pages</p>
+loading those pages.</p>
 
 <p>ProcessWire will use this method rather than deletePageField in cases where
 the quantity of items to delete is high (above 200 at time this was written).
@@ -2316,6 +2432,8 @@ However, if your individual Fieldtype defines it's own ___deletePageField method
 
 <p>This was added so that mass deletions can happen without loading every page,
 which may not be feasible when dealing with thousands of pages.</p>
+
+<p>#pw-group-deleting</p>
 
 
 
@@ -2349,7 +2467,7 @@ which may not be feasible when dealing with thousands of pages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____cloneField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#930-939" title="Go to source code">___cloneField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#1046-1057" title="Go to source code">___cloneField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2360,6 +2478,8 @@ which may not be feasible when dealing with thousands of pages.</p>
 		<div class="description detailed hidden">
 			
 <p>Return a cloned copy of $field</p>
+
+<p>#pw-group-other</p>
 
 
 
@@ -2391,17 +2511,19 @@ which may not be feasible when dealing with thousands of pages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#941-952" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#1059-1072" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get a property from this Fieldtype's data</p>
+<p>Get a property from this Fieldtype’s data</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get a property from this Fieldtype's data</p>
+<p>Get a property from this Fieldtype’s data</p>
+
+<p>#pw-group-other</p>
 
 
 
@@ -2435,7 +2557,7 @@ which may not be feasible when dealing with thousands of pages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#954-964" title="Go to source code">___install</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#1074-1088" title="Go to source code">___install</a>( )</code>
 
 		<div class="description short">
 			
@@ -2447,15 +2569,24 @@ which may not be feasible when dealing with thousands of pages.</p>
 			
 <p>Install this Fieldtype, consistent with optional Module interface</p>
 
-<p>Called once at time of installation by Modules::install(). If custom
-Fieldtype classes need to perform any setup beyond that performed in
-___createTable(), this method is where they should do it. This is not required,
-and probably not applicable to most.</p>
+<ul>
+	<li>Called once at time of installation by Modules::install().</li>
+
+	<li>If custom Fieldtype classes need to perform any setup beyond that performed
+	in ___createTable(), this method is where they should do it. This is not
+	required, and probably not applicable to most.</li>
+</ul>
+
+<p>#pw-group-other</p>
 
 
 
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>Should throw an Exception on failure to install<br>
+				</div>
 
 
 
@@ -2473,7 +2604,7 @@ and probably not applicable to most.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstall">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#966-987" title="Go to source code">___uninstall</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#1090-1115" title="Go to source code">___uninstall</a>( )</code>
 
 		<div class="description short">
 			
@@ -2485,16 +2616,28 @@ and probably not applicable to most.</p>
 			
 <p>Uninstall this Fieldtype, consistent with optional Module interface</p>
 
-<p>Checks to make sure it's safe to uninstall this Fieldtype. If not, throw an
-Exception indicating such. It's safe to uninstall a Fieldtype only if it's not
-being used by any Fields. If a Fieldtype overrides this to perform additional
-uninstall functions, it would be good to call this first to make sure uninstall
-is okay.</p>
+<ul>
+	<li>Checks to make sure it's safe to uninstall this Fieldtype. If not, throw an
+	Exception indicating such.</li>
+
+	<li>It's safe to uninstall a Fieldtype only if it's not being used by any
+	Fields.</li>
+
+	<li>If a Fieldtype overrides this to perform additional uninstall functions, it
+	would be good to call this parent uninstall method first to make sure uninstall
+	is okay.</li>
+</ul>
+
+<p>#pw-group-other</p>
 
 
 
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>Should throw an Exception if uninstsall can't be completed.<br>
+				</div>
 
 
 
@@ -2512,7 +2655,7 @@ is okay.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____upgrade">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#989-999" title="Go to source code">___upgrade</a>( <span>mixed <var>$fromVersion</var></span>, <span>mixed <var>$toVersion</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#1117-1129" title="Go to source code">___upgrade</a>( <span>mixed <var>$fromVersion</var></span>, <span>mixed <var>$toVersion</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2523,6 +2666,8 @@ is okay.</p>
 		<div class="description detailed hidden">
 			
 <p>Called when module version changes</p>
+
+<p>#pw-group-other</p>
 
 
 
@@ -2549,14 +2694,14 @@ is okay.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.Fieldtype.html#1001-1007" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldtype.html#1131-1137" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -2571,6 +2716,10 @@ is okay.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
 
@@ -2628,6 +2777,7 @@ is okay.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

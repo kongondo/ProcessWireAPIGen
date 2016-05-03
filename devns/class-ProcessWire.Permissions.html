@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Permissions | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -488,6 +488,9 @@
 	
 <p>The Permissions class serves as the $permissions API variable.</p>
 
+<p>#pw-summary Provides management of all Permission pages independent of users,
+for access control.</p>
+
 	</div>
 
 	<dl class="tree">
@@ -535,7 +538,7 @@
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Permissions.html#3-141" title="Go to source code">core/Permissions.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Permissions.html#3-240" title="Go to source code">core/Permissions.php</a><br>
 	</div>
 
 
@@ -553,21 +556,21 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-ProcessWire.Permissions.html#41-71" title="Go to source code">has</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Permissions.html#48-83" title="Go to source code">has</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Returns true/false as to whether the system has a permission with given $name
-installed</p>
+<p>Does the system have a permission with the given name?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns true/false as to whether the system has a permission with given $name
-installed</p>
+<p>Does the system have a permission with the given name?</p>
 
-<p>Useful in quickly checking for presence of optional permissions.</p>
+<p>~~~~~ // Check if page-publish permission is available
+if($permissions-&gt;has('page-publish')) { // system has the page-publish
+permission installed } ~~~~~</p>
 
 
 
@@ -579,11 +582,160 @@ installed</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True if system has a permission with this name, or false if not.<br>
 				</div>
 
 
 
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___save" id="____save">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____save">#</a>
+		<code><a href="source-class-ProcessWire.Permissions.html#86-98" title="Go to source code">___save</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Save a Permission</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save a Permission</p>
+
+<p>#pw-group-manipulation</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True on success, false on failure<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.PagesType.html#____save">ProcessWire\PagesType::___save()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___delete" id="____delete">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____delete">#</a>
+		<code><a href="source-class-ProcessWire.Permissions.html#100-113" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Permanently delete a Permission</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Permanently delete a Permission</p>
+
+<p>#pw-group-manipulation</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Permission to delete</dd>
+					<dt><var>$recursive</var></dt>
+					<dd><code>boolean</code><br>$recursive If set to true, then this will attempt to delete any pages below the
+Permission too.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True on success, false on failure<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.PagesType.html#____delete">ProcessWire\PagesType::___delete()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___add" id="____add">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____add">#</a>
+		<code><a href="source-class-ProcessWire.Permissions.html#115-126" title="Go to source code">___add</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a new Permission with the given name and return it</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a new Permission with the given name and return it</p>
+
+<p>#pw-group-manipulation</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name Name of permission you want to add, i.e. "hello-world"</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>Returns a Permission page on success, or a NullPage on error<br>
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.PagesType.html#____add">ProcessWire\PagesType::___add()</a></code></div>
 
 		</div>
 		</div></td>
@@ -599,17 +751,22 @@ installed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getOptionalPermissions">#</a>
-		<code><a href="source-class-ProcessWire.Permissions.html#74-120" title="Go to source code">___getOptionalPermissions</a>( <span>boolean <var>$omitInstalled</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Permissions.html#129-179" title="Go to source code">___getOptionalPermissions</a>( <span>boolean <var>$omitInstalled</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get an array of all optional permissions in format: name =&gt; label</p>
+<p>Get an associative array of all optional permissions</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get an array of all optional permissions in format: name =&gt; label</p>
+<p>Get an associative array of all optional permissions</p>
+
+<p>Returned permissions are an associative array in the format <code>['name'
+=&gt; 'label']</code>.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -642,7 +799,7 @@ already installed or not.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDelegatedPermissions">#</a>
-		<code><a href="source-class-ProcessWire.Permissions.html#122-130" title="Go to source code">getDelegatedPermissions</a>( )</code>
+		<code><a href="source-class-ProcessWire.Permissions.html#181-191" title="Go to source code">getDelegatedPermissions</a>( )</code>
 
 		<div class="description short">
 			
@@ -655,6 +812,8 @@ installed</p>
 			
 <p>Return array of permission names that are delegated to another when not
 installed</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -670,6 +829,48 @@ installed</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getIterator" id="_getIterator">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ArrayObject.html">ArrayObject</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIterator">#</a>
+		<code><a href="source-class-ProcessWire.Permissions.html#193-208" title="Go to source code">getIterator</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns all installed Permission pages and enables foreach() iteration of
+$permissions</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns all installed Permission pages and enables foreach() iteration of
+$permissions</p>
+~~~~~ // Example of listing all permissions foreach($permissions as $permission)
+{ echo "$permission-&gt;name"; } ~~~~~
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ArrayObject.html">ArrayObject</a></code></code><br>
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.PagesType.html#_getIterator">ProcessWire\PagesType::getIterator()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="___saved" id="____saved">
 
 		<td class="attributes"><code>
@@ -681,36 +882,37 @@ installed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saved">#</a>
-		<code><a href="source-class-ProcessWire.Permissions.html#132-135" title="Go to source code">___saved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$changes</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Permissions.html#211-225" title="Go to source code">___saved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$changes</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Hook called after a page is successfully saved</p>
+<p>Hook called when a permission is saved</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Hook called after a page is successfully saved</p>
+<p>Hook called when a permission is saved</p>
 
-<p>This is the same as Pages::save, except that it occurs before other
-save-related hooks (below), Whereas Pages::save occurs after. In most cases, the
-distinction does not matter.</p>
+<p>#pw-hooker</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page The page that was saved</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that was saved</dd>
 					<dt><var>$changes</var></dt>
-					<dd><code>array</code><br>$changes Array of field names that changed</dd>
+					<dd><code>array</code><br>$changes Array of changed field names</dd>
 					<dt><var>$values</var></dt>
-					<dd><code>array</code><br>$values Array of values that changed, if values were being recorded, see
-Wire::getChanges(true) for details.</dd>
+					<dd><code>array</code><br>$values Array of changed field values indexed by name (when enabled)</dd>
 				</dl></div>
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -730,27 +932,33 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleted">#</a>
-		<code><a href="source-class-ProcessWire.Permissions.html#137-140" title="Go to source code">___deleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Permissions.html#227-239" title="Go to source code">___deleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Hook called when a page and it's data have been deleted</p>
+<p>Hook called when a permission is deleted</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Hook called when a page and it's data have been deleted</p>
+<p>Hook called when a permission is deleted</p>
+
+<p>#pw-hooker</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page that was deleted</dd>
 				</dl></div>
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -765,11 +973,8 @@ Wire::getChanges(true) for details.</dd>
 	<caption>Methods inherited from <a href="class-ProcessWire.PagesType.html#methods">ProcessWire\PagesType</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-ProcessWire.PagesType.html#____add">___add()</a>, 
 			<a href="class-ProcessWire.PagesType.html#____added">___added()</a>, 
-			<a href="class-ProcessWire.PagesType.html#____delete">___delete()</a>, 
 			<a href="class-ProcessWire.PagesType.html#____deleteReady">___deleteReady()</a>, 
-			<a href="class-ProcessWire.PagesType.html#____save">___save()</a>, 
 			<a href="class-ProcessWire.PagesType.html#____saveReady">___saveReady()</a>, 
 			<a href="class-ProcessWire.PagesType.html#___construct">__construct()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_addParents">addParents()</a>, 
@@ -777,7 +982,6 @@ Wire::getChanges(true) for details.</dd>
 			<a href="class-ProcessWire.PagesType.html#_count">count()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_find">find()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_get">get()</a>, 
-			<a href="class-ProcessWire.PagesType.html#_getIterator">getIterator()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_getJoinFieldNames">getJoinFieldNames()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_getLoadOptions">getLoadOptions()</a>, 
 			<a href="class-ProcessWire.PagesType.html#_getPageClass">getPageClass()</a>, 
@@ -814,6 +1018,7 @@ Wire::getChanges(true) for details.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
@@ -858,7 +1063,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Permissions.html#13" title="Go to source code"><b>cacheName</b></a>
+				<a href="source-class-ProcessWire.Permissions.html#20" title="Go to source code"><b>cacheName</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">'Permissions.names'</span></code></td>
 		<td class="description"><div>
@@ -897,7 +1102,7 @@ Wire::getChanges(true) for details.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Permissions.html#15-21" title="Go to source code"><var>$permissionNames</var></a>
+				<a href="source-class-ProcessWire.Permissions.html#22-28" title="Go to source code"><var>$permissionNames</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -924,7 +1129,7 @@ Wire::getChanges(true) for details.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Permissions.html#23-39" title="Go to source code"><var>$delegatedPermissions</var></a>
+				<a href="source-class-ProcessWire.Permissions.html#30-46" title="Go to source code"><var>$delegatedPermissions</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'page-publish'</span> =&gt; <span class="php-quote">'page-edit'</span>,

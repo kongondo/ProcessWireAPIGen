@@ -7,7 +7,7 @@
 	<title>Class Inputfield | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -412,8 +412,9 @@
 
 	<div class="description">
 	
-<p>An Inputfield an actual form input field widget, and this is provided as the
-base class for different kinds of form input widgets provided as modules.</p>
+<p>An Inputfield for an actual form input field widget, and this is provided as
+the base class for different kinds of form input widgets provided as
+modules.</p>
 
 <p>The class supports a parent/child hierarchy so that a given Inputfield can
 contain Inputfields below it. An example would be the relationship between
@@ -425,13 +426,35 @@ fieldsets and fields in a form.</p>
 
 <p>Inputfield::id A unique string identifier for this Inputfield</p>
 
-<p>Inputfield::class Class name(s) to be rendered with the Inputfield XHTML
+<p>Inputfield::class Class name(s) to be rendered with the Inputfield HTML
 output</p>
 
-<p>Inputfield::name Corresponds to XHTML "name" attribute</p>
+<p>Inputfield::name Corresponds to HTML "name" attribute</p>
 
 <p>Inputfield::value The current value of the field. May correspond go the XHTML
 "value" attribute on some inputs.</p>
+
+<p>#pw-order-groups
+attribute-methods,attribute-properties,settings,traversal,labels,appearance,behavior,other,output,input,states
+#pw-use-constants #pw-summary Inputfield is the base class for modules that
+collect user input for fields. #pw-summary-attribute-properties These properties
+are retrieved or manipulated via the attribute methods above.
+#pw-summary-textFormat-constants Constants for formats allowed in description,
+notes, label. #pw-summary-collapsed-constants Constants allowed for the
+<code>Inputfield::collapsed</code> property. #pw-summary-skipLabel-constants
+Constants allowed for the <code>Inputfield::skipLabel</code> property.
+#pw-summary-renderValue-constants Options for
+<code>Inputfield::renderValueFlags</code> property, applicable
+<code>Inputfield::renderValue()</code> method call. #pw-summary-module Methods
+primarily of interest during module development.</p>
+
+<p>#pw-body = ~~~~~ // Create an Inputfield $inputfield =
+$modules-&gt;get('InputfieldText'); $inputfield-&gt;label = 'Your Name';
+$inputfield-&gt;attr('name', 'your_name'); $inputfield-&gt;attr('value',
+'Roderigo'); // Add to a $form (InputfieldForm or InputfieldWrapper)
+$form-&gt;add($inputfield); ~~~~~ #pw-body</p>
+
+<h1>ATTRIBUTES</h1>
 
 	</div>
 
@@ -588,6 +611,7 @@ output</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 

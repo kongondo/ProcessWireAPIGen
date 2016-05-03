@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Breadcrumbs | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -565,22 +565,25 @@
 
 		<div class="description short">
 			
-<p>Template mehod that descendant classes may use to validate items added to
-this WireArray</p>
+<p>Is the given item valid for storange in this array?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Template mehod that descendant classes may use to validate items added to
+<p>Is the given item valid for storange in this array?</p>
+
+<p>Template method that descending classes may use to validate items added to
 this WireArray</p>
+
+<p>#pw-group-info</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>mixed</code><br>$item Item to add</dd>
+					<dd><code>mixed</code><br>$item Item to test for validity</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -600,7 +603,7 @@ this WireArray</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>
+			mixed
 			
 			</code>
 		</td>
@@ -619,6 +622,10 @@ this WireArray</p>
 			
 <p>Add an item to the end of the WireArray.</p>
 
+<p>~~~~~ $items-&gt;add($item); ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
+
 
 
 				<h4>Parameters</h4>
@@ -629,14 +636,18 @@ this WireArray</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code></code><br>This instance.<br>
+					<code>mixed</code><br>$this<br>
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given an item that can't be stored by this WireArray.<br>
 				</div>
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireArray.html#_prepend">ProcessWire\WireArray::prepend()</a></code></code>, <code><code><a href="class-ProcessWire.WireArray.html#_append">ProcessWire\WireArray::append()</a></code></code><br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.WireArray.html#_add">ProcessWire\WireArray::add()</a></code></div>
@@ -751,6 +762,7 @@ this WireArray</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

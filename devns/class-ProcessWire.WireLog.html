@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireLog | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -491,6 +491,9 @@
 <p>WireLog represents the ProcessWire $log API variable. It is an API-friendly
 interface to the FileLog class.</p>
 
+<p>#pw-summary Enables creation of logs, logging of events, and management of
+logs.</p>
+
 <p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
@@ -530,7 +533,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireLog.html#4-381" title="Go to source code">core/WireLog.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireLog.html#4-435" title="Go to source code">core/WireLog.php</a><br>
 	</div>
 
 
@@ -548,7 +551,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_message">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#18-29" title="Go to source code">message</a>( <span>string <var>$text</var></span>, <span>boolean|integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#20-36" title="Go to source code">message</a>( <span>string <var>$text</var></span>, <span>boolean|integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -561,6 +564,9 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Record an informational or 'success' message in the message log
 (messages.txt)</p>
+
+<p>~~~~~ // Log message to messages.txt log $log-&gt;message("User updated
+profile"); ~~~~~</p>
 
 
 
@@ -597,7 +603,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_error">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#31-44" title="Go to source code">error</a>( <span>string <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#38-56" title="Go to source code">error</a>( <span>string <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -609,14 +615,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Record an error message in the error log (errors.txt)</p>
 
-<p>Note: Fatal errors should instead throw a WireException.</p>
+<p>Note: Fatal errors should instead always throw a WireException.</p>
+
+<p>~~~~~ // Log an error message to errors.txt log $log-&gt;error("Login attempt
+failed"); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$text</var></dt>
-					<dd><code>string</code><br>$text</dd>
+					<dd><code>string</code><br>$text Text to save in the log</dd>
 					<dt><var>$flags</var></dt>
 					<dd><code>integer|boolean</code><br>$flags Specify boolean true to also display the error interactively (admin
 only).</dd>
@@ -646,7 +655,7 @@ only).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_warning">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#46-57" title="Go to source code">warning</a>( <span>string <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#58-74" title="Go to source code">warning</a>( <span>string <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -658,12 +667,15 @@ only).</dd>
 			
 <p>Record a warning message in the warnings log (warnings.txt)</p>
 
+<p>~~~~~ // Log an warning message to warnings.txt log $log-&gt;warning("This is
+a warning"); ~~~~~</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$text</var></dt>
-					<dd><code>string</code><br>$text</dd>
+					<dd><code>string</code><br>$text Text to save in the log</dd>
 					<dt><var>$flags</var></dt>
 					<dd><code>integer|boolean</code><br>$flags Specify boolean true to also display the warning interactively (admin
 only).</dd>
@@ -693,38 +705,50 @@ only).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____save">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#59-118" title="Go to source code">___save</a>( <span>string <var>$name</var></span>, <span>string <var>$text</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#76-144" title="Go to source code">___save</a>( <span>string <var>$name</var></span>, <span>string <var>$text</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Save text to a caller-defined log</p>
+<p>Save text to a named log</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Save text to a caller-defined log</p>
+<p>Save text to a named log</p>
 
-<p>If the log doesn't currently exist, it will be created.</p>
+<ul>
+	<li>If the log doesn't currently exist, it will be created.</li>
 
-<p>The log filename is /site/assets/logs/[name].txt</p>
+	<li>The log filename is <code>/site/assets/logs/[name].txt</code></li>
+
+	<li>Logs can be viewed in the admin at Setup &gt; Logs</li>
+</ul>
+
+<p>~~~~~ // Save text searches to custom log file (search.txt):
+$log-&gt;save("search", "User searched for: $phrase"); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name Name of log to save to (word consisting of [-._a-z0-9] and no extension)</dd>
+					<dd><code>string</code><br>$name Name of log to save to (word consisting of only <code>[-._a-z0-9]</code>
+and no extension)</dd>
 					<dt><var>$text</var></dt>
 					<dd><code>string</code><br>$text Text to save to the log</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Options to modify behavior (defaults: showUser=true, showURL=true,
-url='url', delimiter=\t)</dd>
+					<dd><code>array</code><br>$options Options to modify default behavior: - <code>showUser</code> (bool):
+Include the username in the log entry? (default=true) - <code>showURL</code>
+(bool): Include the current URL in the log entry? (default=true) -
+<code>url</code> (bool): URL to record with the log entry (default=auto
+determine) - <code>delimiter</code> (string): Log entry delimiter (default="\t"
+aka tab)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>Whether it was written (usually assumed to be true)<br>
+					<code>boolean</code><br>Whether it was written or not (generally always going to be true)<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -748,7 +772,7 @@ url='url', delimiter=\t)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deprecatedCall">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#120-140" title="Go to source code">deprecatedCall</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#146-168" title="Go to source code">deprecatedCall</a>( )</code>
 
 		<div class="description short">
 			
@@ -761,6 +785,8 @@ url='url', delimiter=\t)</dd>
 <p>Log a deprecated method call to deprecated.txt log</p>
 
 <p>This should be called directly from a deprecated method or function.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -783,22 +809,24 @@ url='url', delimiter=\t)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLogs">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#142-174" title="Go to source code">getLogs</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#170-204" title="Go to source code">getLogs</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return array of all logs</p>
+<p>Return array of all logs, sorted by name</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return array of all logs</p>
+<p>Return array of all logs, sorted by name</p>
 
-<p>Each log entry is an array that includes the following: - name (string): Name
-of log file, excluding extension. - file (string): Full path and filename of log
-file. - size (int): Size in bytes - modified (int): Last modified date (unix
-timestamp)</p>
+<p>Each log entry is an array that includes the following: - <code>name</code>
+(string): Name of log file, excluding extension. - <code>file</code> (string):
+Full path and filename of log file. - <code>size</code> (int): Size in bytes -
+<code>modified</code> (int): Last modified date (unix timestamp)</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -825,7 +853,7 @@ timestamp)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFilename">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#176-189" title="Go to source code">getFilename</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#206-221" title="Go to source code">getFilename</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -837,22 +865,24 @@ timestamp)</p>
 			
 <p>Get the full filename (including path) for the given log name</p>
 
+<p>#pw-group-retrieval</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name</dd>
+					<dd><code>string</code><br>$name Name of log (not including extension)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code>string</code><br>Filename to log file<br>
 				</div>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given invalid log name<br>
 				</div>
 
 
@@ -871,7 +901,7 @@ timestamp)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLines">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#191-213" title="Go to source code">getLines</a>( <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#223-248" title="Go to source code">getLines</a>( <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -885,6 +915,8 @@ timestamp)</p>
 
 <p>This method is pagination aware.</p>
 
+<p>#pw-group-retrieval</p>
+
 
 
 				<h4>Parameters</h4>
@@ -892,11 +924,12 @@ timestamp)</p>
 					<dt><var>$name</var></dt>
 					<dd><code>string</code><br>$name Name of log</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Specify any of the following: - limit (integer): Specify number of
-lines. - text (string): Text to find. - dateFrom (int|string): Oldest date to
-match entries. - dateTo (int|string): Newest date to match entries. - reverse
-(bool): Reverse order (default=true) - pageNum (int): Pagination number 1 or
-above (default=0 which means auto-detect)</dd>
+					<dd><code>array</code><br>$options Specify any of the following: - <code>limit</code> (integer): Specify
+number of lines (default=100) - <code>text</code> (string): Text to find. -
+<code>dateFrom</code> (int|string): Oldest date to match entries. -
+<code>dateTo</code> (int|string): Newest date to match entries. -
+<code>reverse</code> (bool): Reverse order (default=true) - <code>pageNum</code>
+(int): Pagination number 1 or above (default=0 which means auto-detect)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -905,6 +938,10 @@ above (default=0 which means auto-detect)</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireLog.html#_getEntries">ProcessWire\WireLog::getEntries()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -914,26 +951,32 @@ above (default=0 which means auto-detect)</dd>
 
 		<td class="attributes"><code>
 			 public 
-			array(array(
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getEntries">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#215-248" title="Go to source code">getEntries</a>( <span>mixed <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#250-288" title="Go to source code">getEntries</a>( <span>mixed <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Same as getLines() but returns each log line as an associative array of each
-part of the line split up</p>
+<p>Return given number of entries from end of log file, with each entry as an
+associative array of components</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Same as getLines() but returns each log line as an associative array of each
-part of the line split up</p>
+<p>Return given number of entries from end of log file, with each entry as an
+associative array of components</p>
+
+<p>This is effectively the same as the <code>getLines()</code> method except
+that each entry is an associative array rather than a single line (string). This
+method is pagination aware.</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
@@ -942,21 +985,27 @@ part of the line split up</p>
 					<dt><var>$name</var></dt>
 					<dd><code>mixed</code><br>$name Name of log file (excluding extension)</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options - limit (integer): Specify number of lines. - text (string): Text to
-find. - dateFrom (int|string): Oldest date to match entries. - dateTo
-(int|string): Newest date to match entries. - reverse (bool): Reverse order
-(default=true) - pageNum (int): Pagination number 1 or above (default=0 which
-means auto-detect)</dd>
+					<dd><code>array</code><br>$options Optional options to modify default behavior: - <code>limit</code>
+(integer): Specify number of lines (default=100) - <code>text</code> (string):
+Text to find. - <code>dateFrom</code> (int|string): Oldest date to match
+entries. - <code>dateTo</code> (int|string): Newest date to match entries. -
+<code>reverse</code> (bool): Reverse order (default=true) - <code>pageNum</code>
+(int): Pagination number 1 or above (default=0 which means auto-detect)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array(array(</code><br>'date' =&gt; "ISO-8601 date string", 'user' =&gt; "user name or boolean false if
-unknown", 'url' =&gt; "full URL or boolean false if unknown", 'text' =&gt; "text
-of the log entry" ));<br>
+					<code>array</code><br>Returns an array of associative arrays, each with the following components: -
+<code>date</code> (string): ISO-8601 date string - <code>user</code> (string):
+user name or boolean false if unknown - <code>url</code> (string): full URL or
+boolean false if unknown - <code>text</code> (string) text of the log entry<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireLog.html#_getLines">ProcessWire\WireLog::getLines()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -973,7 +1022,7 @@ of the log entry" ));<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lineToEntry">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#250-291" title="Go to source code">lineToEntry</a>( <span>mixed <var>$line</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#290-333" title="Go to source code">lineToEntry</a>( <span>mixed <var>$line</var></span> )</code>
 
 		<div class="description short">
 			
@@ -984,6 +1033,8 @@ of the log entry" ));<br>
 		<div class="description detailed hidden">
 			
 <p>Convert a log line to an entry array</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1015,7 +1066,7 @@ of the log entry" ));<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTotalEntries">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#293-303" title="Go to source code">getTotalEntries</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#335-347" title="Go to source code">getTotalEntries</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1027,17 +1078,19 @@ of the log entry" ));<br>
 			
 <p>Get the total number of entries present in the given log</p>
 
+<p>#pw-group-retrieval</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>mixed</code><br>$name</dd>
+					<dd><code>string</code><br>$name Name of log, not including path or extension</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>
+					<code>integer</code><br>Total number of entries<br>
 				</div>
 
 
@@ -1057,29 +1110,31 @@ of the log entry" ));<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#338-348" title="Go to source code">delete</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#386-398" title="Go to source code">delete</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Delete the log file identified by $name</p>
+<p>Delete a log file</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Delete the log file identified by $name</p>
+<p>Delete a log file</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>mixed</code><br>$name</dd>
+					<dd><code>string</code><br>$name Name of log, excluding path and extension.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>
+					<code>boolean</code><br>True on success, false on failure.<br>
 				</div>
 
 
@@ -1099,31 +1154,33 @@ of the log entry" ));<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prune">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#350-364" title="Go to source code">prune</a>( <span>string <var>$name</var></span>, <span>integer <var>$days</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#400-416" title="Go to source code">prune</a>( <span>string <var>$name</var></span>, <span>integer <var>$days</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Prune log file to contain only entries from last n days</p>
+<p>Prune log file to contain only entries from last [n] days</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Prune log file to contain only entries from last n days</p>
+<p>Prune log file to contain only entries from last [n] days</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name</dd>
+					<dd><code>string</code><br>$name Name of log file, excluding path and extension.</dd>
 					<dt><var>$days</var></dt>
-					<dd><code>integer</code><br>$days</dd>
+					<dd><code>integer</code><br>$days Number of days</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>Number of items in new log file or booean false on failure<br>
+					<code>integer</code><br>Number of items in new log file or boolean false on failure<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -1147,7 +1204,7 @@ of the log entry" ));<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFileLog">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#366-379" title="Go to source code">getFileLog</a>( <span>mixed <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#418-433" title="Go to source code">getFileLog</a>( <span>mixed <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1158,6 +1215,8 @@ of the log entry" ));<br>
 		<div class="description detailed hidden">
 			
 <p>Returns instance of FileLog for given log name</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1203,6 +1262,7 @@ of the log entry" ));<br>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 
@@ -1260,7 +1320,7 @@ of the log entry" ));<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireLog.html#16" title="Go to source code"><var>$logExtension</var></a>
+				<a href="source-class-ProcessWire.WireLog.html#18" title="Go to source code"><var>$logExtension</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'txt'</span></code></td>
 		<td class="description"><div>

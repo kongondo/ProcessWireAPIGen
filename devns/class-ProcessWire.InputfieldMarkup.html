@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldMarkup | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -607,15 +607,17 @@ Inputfields</p>
 
 		<div class="description short">
 			
-<p>Per the Module interface, init() is called when the system is ready for API
-usage</p>
+<p>Per the Module interface, init() is called after any configuration data has
+been populated to the Inputfield, but before render.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Per the Module interface, init() is called when the system is ready for API
-usage</p>
+<p>Per the Module interface, init() is called after any configuration data has
+been populated to the Inputfield, but before render.</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -644,18 +646,15 @@ usage</p>
 
 		<div class="description short">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render this Inputfield and the output of its children.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the completed output of this Inputfield, ready for insertion in an
-XHTML form</p>
+<p>Render this Inputfield and the output of its children.</p>
 
-<p>This includes the output of any child Inputfields (if applicable). Children
-are presented as list items in an unordered list.</p>
+<p>#pw-group-output</p>
 
 
 
@@ -693,26 +692,24 @@ split it up a lot<br>
 
 		<div class="description short">
 			
-<p>Render just the value (not input) in text/markup for presentation
-purposes</p>
+<p>Render the output of this Inputfield and its children, showing values only
+(no inputs)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Render just the value (not input) in text/markup for presentation
-purposes</p>
+<p>Render the output of this Inputfield and its children, showing values only
+(no inputs)</p>
 
-<p>This is within the context of an InputfieldForm, where the rendered markup
-can have external CSS or JS dependencies (in Inputfield[Name].css or
-Inputfield[Name].js)</p>
+<p>#pw-group-output</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>of text or markup where applicable<br>
+					<code>string</code><br>
 				</div>
 
 
@@ -738,13 +735,15 @@ Inputfield[Name].js)</p>
 
 		<div class="description short">
 			
-<p>Get any configuration Inputfields common to all InputfieldWrappers</p>
+<p>Get configuration Inputfields for this InputfieldWrapper</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get any configuration Inputfields common to all InputfieldWrappers</p>
+<p>Get configuration Inputfields for this InputfieldWrapper</p>
+
+<p>#pw-group-module</p>
 
 
 
@@ -884,6 +883,7 @@ Inputfield[Name].js)</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 

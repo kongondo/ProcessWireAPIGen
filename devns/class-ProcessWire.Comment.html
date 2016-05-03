@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Comment | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -597,32 +597,55 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<div class="description short">
 			
-<p>Provides direct reference access to retrieve values in the $data array</p>
+<p>Retrieve the value for a previously set property, or retrieve an API
+variable</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Provides direct reference access to retrieve values in the $data array</p>
+<p>Retrieve the value for a previously set property, or retrieve an API
+variable</p>
 
-<p>If the given $key is an object, it will cast it to a string. If the given key
-is a string with "|" pipe characters in it, it will try all till it finds a
-value.</p>
+<ul>
+	<li>If the given $key is an object, it will cast it to a string.</li>
+
+	<li>If the given $key is a string with "|" pipe characters in it, it will try
+	all till it finds a non-empty value.</li>
+
+	<li>If given an API variable name, it will return that API variable unless the
+	class has direct access API variables disabled.</li>
+</ul>
+
+<p>~~~~~ // Retrieve the value of a property $value =
+$item-&gt;get("some_property");</p>
+
+<p>// Retrieve the value of the first non-empty property: $value =
+$item-&gt;get("property1|property2|property2");</p>
+
+<p>// Retrieve a value using array access $value = $item["some_property"];
+~~~~~</p>
+
+<p>#pw-group-retrieval</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|object</code><br>$key</dd>
+					<dd><code>string|object</code><br>$key Name of property you want to retrieve.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed|null</code><br>Returns null if the key was not found.<br>
+					<code>mixed|null</code><br>Returns value of requested property, or null if the property was not found.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireData.html#_set">ProcessWire\WireData::set()</a></code></code><br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.WireData.html#_get">ProcessWire\WireData::get()</a></code></div>
@@ -690,22 +713,30 @@ active in order for backwards compatibility with older installations.</p>
 
 		<div class="description short">
 			
-<p>Set a value</p>
+<p>Set a value to this object’s data</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set a value</p>
+<p>Set a value to this object’s data</p>
+
+<p>~~~~~ // Set a value for a property $item-&gt;set('foo', 'bar');</p>
+
+<p>// Set a property value directly $item-&gt;foo = 'bar';</p>
+
+<p>// Set a property using array access $item['foo'] = 'bar'; ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key</dd>
+					<dd><code>string</code><br>$key Name of property you want to set</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
+					<dd><code>mixed</code><br>$value Value of property</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -714,6 +745,10 @@ active in order for backwards compatibility with older installations.</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireData.html#_setQuietly">ProcessWire\WireData::setQuietly()</a></code></code>, <code><code><a href="class-ProcessWire.WireData.html#_get">ProcessWire\WireData::get()</a></code></code><br>
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.WireData.html#_set">ProcessWire\WireData::set()</a></code></div>
@@ -758,7 +793,7 @@ active in order for backwards compatibility with older installations.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
@@ -780,6 +815,10 @@ active in order for backwards compatibility with older installations.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
 
@@ -1228,6 +1267,7 @@ wavatar | retro | blank ], default is mm.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

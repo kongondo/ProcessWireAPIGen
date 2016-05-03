@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Textformatter | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -490,7 +490,11 @@
 
 <p>Provides the base class for Textformatting Modules</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>#pw-summary A simple module type that provides formatting of text fields.
+#pw-body Please see the base <code>Module</code> interface for all potential
+methods that a Textformatter module can have.</p>
+
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <p>This file is licensed under the MIT license <a
@@ -556,7 +560,7 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Textformatter.html#4-96" title="Go to source code">core/Textformatter.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Textformatter.html#4-108" title="Go to source code">core/Textformatter.php</a><br>
 	</div>
 
 
@@ -574,24 +578,24 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 
 		<td class="name"><div>
 		<a class="anchor" href="#_format">#</a>
-		<code><a href="source-class-ProcessWire.Textformatter.html#38-45" title="Go to source code">format</a>( <span>string <var>&amp; $str</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Textformatter.html#41-47" title="Go to source code">format</a>( <span>string <var>&amp; $str</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Format the given text string</p>
+<p>Format the given text string, outside of specific Page or Field context.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Format the given text string</p>
+<p>Format the given text string, outside of specific Page or Field context.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$str</var></dt>
-					<dd><code>string</code><br>$str</dd>
+					<dd><code>string</code><br>$str String is provided as a reference, so is modified directly (not returned).</dd>
 				</dl></div>
 
 
@@ -612,7 +616,7 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 
 		<td class="name"><div>
 		<a class="anchor" href="#_formatValue">#</a>
-		<code><a href="source-class-ProcessWire.Textformatter.html#47-59" title="Go to source code">formatValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>mixed <var>&amp; $value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Textformatter.html#49-61" title="Go to source code">formatValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|mixed <var>&amp; $value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -624,8 +628,8 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 			
 <p>Format the given text string with Page and Field provided.</p>
 
-<p>Override this function completely when providing your own text formatter. No
-need to call the parent.</p>
+<p>Module developers may override this function completely when providing your
+own text formatter. No need to call the parent.</p>
 
 
 
@@ -636,7 +640,7 @@ need to call the parent.</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
+					<dd><code>string|mixed</code><br>$value Value is provided as a reference, so is modified directly (not returned).</dd>
 				</dl></div>
 
 
@@ -657,7 +661,7 @@ need to call the parent.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Textformatter.html#61-67" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Textformatter.html#63-71" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -670,6 +674,8 @@ need to call the parent.</p>
 <p>Optional method to initialize the module.</p>
 
 <p>This is called after ProcessWire's API is fully ready for use and hooks</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -692,7 +698,7 @@ need to call the parent.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Textformatter.html#69-73" title="Go to source code">___install</a>( )</code>
+		<code><a href="source-class-ProcessWire.Textformatter.html#73-79" title="Go to source code">___install</a>( )</code>
 
 		<div class="description short">
 			
@@ -703,6 +709,8 @@ need to call the parent.</p>
 		<div class="description detailed hidden">
 			
 <p>Perform any installation procedures specific to this module, if needed.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -725,7 +733,7 @@ need to call the parent.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstall">#</a>
-		<code><a href="source-class-ProcessWire.Textformatter.html#75-79" title="Go to source code">___uninstall</a>( )</code>
+		<code><a href="source-class-ProcessWire.Textformatter.html#81-87" title="Go to source code">___uninstall</a>( )</code>
 
 		<div class="description short">
 			
@@ -736,6 +744,8 @@ need to call the parent.</p>
 		<div class="description detailed hidden">
 			
 <p>Perform any uninstall procedures specific to this module, if needed.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -758,7 +768,7 @@ need to call the parent.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSingular">#</a>
-		<code><a href="source-class-ProcessWire.Textformatter.html#81-87" title="Go to source code">isSingular</a>( )</code>
+		<code><a href="source-class-ProcessWire.Textformatter.html#89-97" title="Go to source code">isSingular</a>( )</code>
 
 		<div class="description short">
 			
@@ -769,6 +779,8 @@ need to call the parent.</p>
 		<div class="description detailed hidden">
 			
 <p>Only one instatance of a textformatter is loaded at runtime</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -791,7 +803,7 @@ need to call the parent.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isAutoload">#</a>
-		<code><a href="source-class-ProcessWire.Textformatter.html#89-95" title="Go to source code">isAutoload</a>( )</code>
+		<code><a href="source-class-ProcessWire.Textformatter.html#99-107" title="Go to source code">isAutoload</a>( )</code>
 
 		<div class="description short">
 			
@@ -804,6 +816,8 @@ the api.</p>
 			
 <p>Textformatters are not autoload, in that they don't load until requested by
 the api.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -866,6 +880,7 @@ the api.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 

@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ProcessLanguage | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?4199076008"></script>
+	<script type="text/javascript" src="elementlist.js?1291682057"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.15 devns</span>
+			<span>Overview version 3.0.16 devns</span>
 		</a>
 
 
@@ -888,13 +888,24 @@ translation file.</p>
 
 		<div class="description short">
 			
-<p>Execute this Process and return the output</p>
+<p>Execute this Process and return the output. You may have any number of
+execute[name] methods, triggered by URL segments.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Execute this Process and return the output</p>
+<p>Execute this Process and return the output. You may have any number of
+execute[name] methods, triggered by URL segments.</p>
+
+<p>When any execute() method returns a string, it us used as the actual output.
+When the method returns an associative array, it is considered an array of
+variables to send to the output view layer.</p>
+
+<p>This execute() method is called when no URL segments are present. You may
+have any number of execute() methods, i.e. <code>executeFoo()</code> would be
+called for the URL <code>./foo/</code> and <code>executeBarBaz()</code> would be
+called for the URL <code>./bar-baz/</code>.</p>
 
 
 
@@ -1047,6 +1058,7 @@ translation file.</p>
 			<a href="class-ProcessWire.Wire.html#_addHook">addHook()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookAfter">addHookAfter()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookBefore">addHookBefore()</a>, 
+			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
