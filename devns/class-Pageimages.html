@@ -7,7 +7,7 @@
 	<title>Class Pageimages | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1291682057"></script>
+	<script type="text/javascript" src="elementlist.js?2430293642"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.16 devns</span>
+			<span>Overview version 3.0.17 devns</span>
 		</a>
 
 
@@ -414,13 +414,25 @@
 	
 <p>ProcessWire Pageimages</p>
 
-<p>Pageimages are a collection of Pageimage objects.</p>
+<p>#pw-summary Pageimages are a type of WireArray containing Pageimage objects.
+They represent the value of multi-image field in ProcessWire.</p>
+
+<p>#pw-body = Most of the methods you are likely to use are inherited from
+<code>Pagefiles</code> and <code>WireArray</code> so be sure to take a look at
+those as well. Pageimages is dedicated to containing <code>Pageimage</code>
+objects.</p>
+
+<p>~~~~~ // Example of outputting a thumbnail gallery of Pageimage objects
+foreach($page-&gt;images as $image) { // $page-&gt;images is a Pageimages object
+// $image and $thumb are both Pageimage objects $thumb = $image-&gt;size(200,
+200); echo "<a href="$image-&gt;url">"; echo "&lt;img src='$thumb-&gt;url'
+alt='$image-&gt;description' /&gt;"; echo "</a>"; } ~~~~~ #pw-body</p>
 
 <p>Typically a Pageimages object will be associated with a specific field
 attached to a Page. There may be multiple instances of Pageimages attached to a
 given Page (depending on what fields are in it's fieldgroup).</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>

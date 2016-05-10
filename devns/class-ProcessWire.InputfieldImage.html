@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldImage | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1291682057"></script>
+	<script type="text/javascript" src="elementlist.js?2430293642"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.16 devns</span>
+			<span>Overview version 3.0.17 devns</span>
 		</a>
 
 
@@ -490,6 +490,8 @@
 
 <p>Inputfield for FieldtypeImage fields</p>
 
+<p>Accessible Properties</p>
+
 	</div>
 
 	<dl class="tree">
@@ -557,7 +559,7 @@
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.InputfieldImage.html#4-489" title="Go to source code">modules/Inputfield/InputfieldImage/InputfieldImage.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.InputfieldImage.html#4-902" title="Go to source code">modules/Inputfield/InputfieldImage/InputfieldImage.module</a><br>
 	</div>
 
 
@@ -575,7 +577,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModuleInfo">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#33-40" title="Go to source code">getModuleInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#43-50" title="Go to source code">getModuleInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -606,7 +608,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#58-89" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#74-119" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -641,52 +643,31 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderReady">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#91-109" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#122-159" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Method called right before Inputfield markup is rendered, so that any
-dependencies can be loaded as well.</p>
+<p>Called right before Inputfield render</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Method called right before Inputfield markup is rendered, so that any
-dependencies can be loaded as well.</p>
-
-<p>Called before <code>Inputfield::render()</code> or
-<code>Inputfield::renderValue()</code> method by the parent
-<code>InputfieldWrapper</code> instance. If you are calling either of those
-methods yourself for some reason, make sure that you call this
-<code>renderReady()</code> method first.</p>
-
-<p>The default behavior of this method is to populate Inputfield-specific CSS
-and JS file assets into <code>$config-&gt;styles</code> and
-<code>$config-&gt;scripts</code>.</p>
-
-<p>The return value is true if assets were just added, and false if assets have
-already been added in a previous call. This distinction probably doesn't matter
-in most usages, but here just in case a descending class needs to know when/if
-to add additional assets (i.e. when this method returns true).</p>
-
-<p>#pw-group-output</p>
+<p>Called right before Inputfield render</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$parent</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent InputfieldWrapper that is rendering it, or null if no parent.</dd>
+					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code></code><br>$parent Parent Inputfield</dd>
 					<dt><var>$renderValueMode</var></dt>
-					<dd><code>boolean</code><br>$renderValueMode Specify true only if this is for
-<code>Inputfield::renderValue()</code> rather than
-<code>Inputfield::render()</code>.</dd>
+					<dd><code>boolean</code><br>$renderValueMode Whether or not we are in renderValue mode</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>True if assets were just added, false if already added.<br>
+					<code>boolean</code><br>
 				</div>
 
 
@@ -708,24 +689,17 @@ to add additional assets (i.e. when this method returns true).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____render">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#111-116" title="Go to source code">___render</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#161-171" title="Go to source code">___render</a>( )</code>
 
 		<div class="description short">
 			
-<p>Render the HTML input element(s) markup, ready for insertion in an HTML
-form.</p>
+<p>Render Inputfield</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Render the HTML input element(s) markup, ready for insertion in an HTML
-form.</p>
-
-<p>This is an abstract method that descending Inputfield module classes are
-required to implement.</p>
-
-<p>#pw-group-output</p>
+<p>Render Inputfield</p>
 
 
 
@@ -743,6 +717,116 @@ required to implement.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="___renderList" id="____renderList">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____renderList">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#173-229" title="Go to source code">___renderList</a>( <span><code><a href="class-ProcessWire.Pageimages.html">ProcessWire\Pageimages</a></code>|array <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Render list of images</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render list of images</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pageimages.html">ProcessWire\Pageimages</a></code>|array</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldFile.html#____renderList">ProcessWire\InputfieldFile::___renderList()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderItemWrap" id="_renderItemWrap">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderItemWrap">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#231-235" title="Go to source code">renderItemWrap</a>( <span>mixed <var>$out</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldFile.html#_renderItemWrap">ProcessWire\InputfieldFile::renderItemWrap()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___renderUpload" id="____renderUpload">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____renderUpload">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#237-293" title="Go to source code">___renderUpload</a>( <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldFile.html#____renderUpload">ProcessWire\InputfieldFile::___renderUpload()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="___fileAdded" id="____fileAdded">
 
 		<td class="attributes"><code>
@@ -754,7 +838,7 @@ required to implement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____fileAdded">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#118-157" title="Go to source code">___fileAdded</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#296-345" title="Go to source code">___fileAdded</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -768,6 +852,48 @@ larger than max</p>
 <p>Resize images to max width/height if specified in field config and image is
 larger than max</p>
 
+<p>#pw-hooker</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code></code><br>$pagefile</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldFile.html#____fileAdded">ProcessWire\InputfieldFile::___fileAdded()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fileAddedGetMarkup" id="_fileAddedGetMarkup">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fileAddedGetMarkup">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#347-353" title="Go to source code">fileAddedGetMarkup</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span>, <span>mixed <var>$n</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
 
 
 
@@ -775,7 +901,7 @@ larger than max</p>
 
 
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-ProcessWire.InputfieldFile.html#____fileAdded">ProcessWire\InputfieldFile::___fileAdded()</a></code></div>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldFile.html#_fileAddedGetMarkup">ProcessWire\InputfieldFile::fileAddedGetMarkup()</a></code></div>
 
 		</div>
 		</div></td>
@@ -791,7 +917,7 @@ larger than max</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAdminThumb">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#159-242" title="Go to source code">getAdminThumb</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$img</var></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#355-458" title="Go to source code">getAdminThumb</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$img</var></span>, <span>boolean <var>$remove</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -809,6 +935,8 @@ larger than max</p>
 				<div class="list"><dl>
 					<dt><var>$img</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$img</dd>
+					<dt><var>$remove</var></dt>
+					<dd><code>boolean</code><br>$remove</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -816,52 +944,6 @@ larger than max</p>
 					<code>array</code><br>of( 'thumb' =&gt; Pageimage object, 'attr' =&gt; associative array of image
 attributes 'markup' =&gt; string of markup for &lt;img&gt;, 'error' =&gt; error
 message if applicable );<br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="renderItemMinimal" id="_renderItemMinimal">
-
-		<td class="attributes"><code>
-			 protected 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_renderItemMinimal">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#244-260" title="Go to source code">renderItemMinimal</a>( <span>mixed <var>$pagefile</var></span>, <span>mixed <var>$id</var></span>, <span>mixed <var>$n</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Render an image in minimal mode (renderValueMode only)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Render an image in minimal mode (renderValueMode only)</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$pagefile</var></dt>
-					<dd><code>mixed</code><br>$pagefile</dd>
-					<dt><var>$id</var></dt>
-					<dd><code>mixed</code><br>$id</dd>
-					<dt><var>$n</var></dt>
-					<dd><code>mixed</code><br>$n</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>
 				</div>
 
 
@@ -881,7 +963,7 @@ message if applicable );<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____renderItem">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#262-376" title="Go to source code">___renderItem</a>( <span>mixed <var>$pagefile</var></span>, <span>mixed <var>$id</var></span>, <span>mixed <var>$n</var></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#460-523" title="Go to source code">___renderItem</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$pagefile</var></span>, <span>string <var>$id</var></span>, <span>integer <var>$n</var></span> )</code>
 
 		<div class="description short">
 			
@@ -898,11 +980,11 @@ message if applicable );<br>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$pagefile</var></dt>
-					<dd><code>mixed</code><br>$pagefile</dd>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
 					<dt><var>$id</var></dt>
-					<dd><code>mixed</code><br>$id</dd>
+					<dd><code>string</code><br>$id</dd>
 					<dt><var>$n</var></dt>
-					<dd><code>mixed</code><br>$n</dd>
+					<dd><code>integer</code><br>$n</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -918,6 +1000,144 @@ message if applicable );<br>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="___renderSingleItem" id="____renderSingleItem">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____renderSingleItem">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#525-585" title="Go to source code">___renderSingleItem</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$pagefile</var></span>, <span>string <var>$id</var></span>, <span>integer <var>$n</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Render a Pageimage item</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render a Pageimage item</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$n</var></dt>
+					<dd><code>integer</code><br>$n</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___renderButtons" id="____renderButtons">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____renderButtons">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#587-627" title="Go to source code">___renderButtons</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$pagefile</var></span>, <span>string <var>$id</var></span>, <span>integer <var>$n</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Render buttons for image edit mode</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render buttons for image edit mode</p>
+
+<p>#pw-hooker</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$n</var></dt>
+					<dd><code>integer</code><br>$n</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___renderAdditionalFields" id="____renderAdditionalFields">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____renderAdditionalFields">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#629-639" title="Go to source code">___renderAdditionalFields</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code>|<code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span>, <span>string <var>$id</var></span>, <span>integer <var>$n</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Render any additional fields (for hooks)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render any additional fields (for hooks)</p>
+
+<p>#pw-hooker</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code>|<code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code></code><br>$pagefile</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$n</var></dt>
+					<dd><code>integer</code><br>$n</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="allowCollapsedItems" id="_allowCollapsedItems">
 
 		<td class="attributes"><code>
@@ -929,7 +1149,7 @@ message if applicable );<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_allowCollapsedItems">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#378-386" title="Go to source code">allowCollapsedItems</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#641-649" title="Go to source code">allowCollapsedItems</a>( )</code>
 
 		<div class="description short">
 			
@@ -970,7 +1190,7 @@ InputfieldFile</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#388-476" title="Go to source code">___getConfigInputfields</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#651-725" title="Go to source code">___getConfigInputfields</a>( )</code>
 
 		<div class="description short">
 			
@@ -998,35 +1218,121 @@ InputfieldFile</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="___getConfigAllowContext" id="____getConfigAllowContext">
+	<tr data-order="isEditableInRendering" id="_isEditableInRendering">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
+			boolean|integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isEditableInRendering">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#727-748" title="Go to source code">isEditableInRendering</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$pagefile</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Is the given image editable during rendering?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is the given image editable during rendering?</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean|integer</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getVariationUrl" id="_getVariationUrl">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getVariationUrl">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#750-764" title="Go to source code">getVariationUrl</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$pagefile</var></span>, <span>string <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get URL for viewing image variations</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get URL for viewing image variations</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPagefileVariations" id="_getPagefileVariations">
+
+		<td class="attributes"><code>
+			 protected 
 			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#____getConfigAllowContext">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldImage.html#478-488" title="Go to source code">___getConfigAllowContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<a class="anchor" href="#_getPagefileVariations">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#766-775" title="Go to source code">getPagefileVariations</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Specify which config inputfields can be used with template/field contexts</p>
+<p>Get variations for the given Pagefile</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Specify which config inputfields can be used with template/field contexts</p>
+<p>Get variations for the given Pagefile</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1036,8 +1342,322 @@ InputfieldFile</p>
 
 
 
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEditUrl" id="_getEditUrl">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEditUrl">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#777-791" title="Go to source code">getEditUrl</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span>, <span>integer <var>$pageID</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the image editor URL</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the image editor URL</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
+					<dt><var>$pageID</var></dt>
+					<dd><code>integer</code><br>$pageID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderItemDescriptionField" id="_renderItemDescriptionField">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderItemDescriptionField">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#793-804" title="Go to source code">renderItemDescriptionField</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span>, <span>string <var>$id</var></span>, <span>integer <var>$n</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Render the description field input</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render the description field input</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$n</var></dt>
+					<dd><code>integer</code><br>$n</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-ProcessWire.Inputfield.html#____getConfigAllowContext">ProcessWire\Inputfield::___getConfigAllowContext()</a></code></div>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldFile.html#_renderItemDescriptionField">ProcessWire\InputfieldFile::renderItemDescriptionField()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTooltip" id="_getTooltip">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTooltip">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#806-825" title="Go to source code">getTooltip</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$pagefile</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the hover tooltip that appears above thumbnails</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the hover tooltip that appears above thumbnails</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___buildTooltipData" id="____buildTooltipData">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____buildTooltipData">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#828-869" title="Go to source code">___buildTooltipData</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$pagefile</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Build data for the tooltip that appears above the thumbnails</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Build data for the tooltip that appears above the thumbnails</p>
+
+<p>#pw-hooker</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pagefile</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code></code><br>$pagefile</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="formatExtensions" id="_formatExtensions">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_formatExtensions">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#871-880" title="Go to source code">formatExtensions</a>( <span>string <var>$extensions</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Format list of file extensions for output with upload field</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Format list of file extensions for output with upload field</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$extensions</var></dt>
+					<dd><code>string</code><br>$extensions</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAdminThumbScale" id="_getAdminThumbScale">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAdminThumbScale">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#882-890" title="Go to source code">getAdminThumbScale</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return whether or not admin thumbs should be scaled</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return whether or not admin thumbs should be scaled</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___processInput" id="____processInput">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____processInput">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldImage.html#892-900" title="Go to source code">___processInput</a>( <span><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code> <var>$input</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Process input for this Inputfield directly from the POST (or GET)
+variables</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Process input for this Inputfield directly from the POST (or GET)
+variables</p>
+
+<p>This method should pull the value from the given <code>$input</code>
+ragument, sanitize/validate it, and populate it to the <code>value</code>
+attribute of this Inputfield.</p>
+
+<p>Inputfield modules should implement this method if the built-in one here
+doesn't solve their need. If this one does solve their need, then they should
+add any additional sanitization or validation to the
+<code>Inputfield::setAttribute('value', $value)</code> method to occur when
+given the <code>value</code> attribute.</p>
+
+<p>#pw-group-input</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$input</var></dt>
+					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input User input where value should be pulled from (typically
+<code>$input-&gt;post</code>)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldFile.html#____processInput">ProcessWire\InputfieldFile::___processInput()</a></code></div>
 
 		</div>
 		</div></td>
@@ -1048,12 +1668,9 @@ InputfieldFile</p>
 	<caption>Methods inherited from <a href="class-ProcessWire.InputfieldFile.html#methods">ProcessWire\InputfieldFile</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-ProcessWire.InputfieldFile.html#____processInput">___processInput()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#____processInputAddFile">___processInputAddFile()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#____processInputDeleteFile">___processInputDeleteFile()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#____processInputFile">___processInputFile()</a>, 
-			<a href="class-ProcessWire.InputfieldFile.html#____renderList">___renderList()</a>, 
-			<a href="class-ProcessWire.InputfieldFile.html#____renderUpload">___renderUpload()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#____renderValue">___renderValue()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#_ajaxResponse">ajaxResponse()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#_checkFormEnctype">checkFormEnctype()</a>, 
@@ -1062,8 +1679,7 @@ InputfieldFile</p>
 			<a href="class-ProcessWire.InputfieldFile.html#_getWireUpload">getWireUpload()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#_isEmpty">isEmpty()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#_pagefileId">pagefileId()</a>, 
-			<a href="class-ProcessWire.InputfieldFile.html#_renderItemDescriptionField">renderItemDescriptionField()</a>, 
-			<a href="class-ProcessWire.InputfieldFile.html#_renderItemWrap">renderItemWrap()</a>, 
+			<a href="class-ProcessWire.InputfieldFile.html#_renderListReady">renderListReady()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#_setAttribute">setAttribute()</a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#_setParent">setParent()</a>
 		</code></td>
@@ -1074,6 +1690,7 @@ InputfieldFile</p>
 	<tr>
 		<td><code>
 			<a href="class-ProcessWire.Inputfield.html#____exportConfigData">___exportConfigData()</a>, 
+			<a href="class-ProcessWire.Inputfield.html#____getConfigAllowContext">___getConfigAllowContext()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#____getConfigArray">___getConfigArray()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#____importConfigData">___importConfigData()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#____install">___install()</a>, 
@@ -1188,6 +1805,33 @@ InputfieldFile</p>
 
 
 
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="defaultGridSize" id="defaultGridSize">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-ProcessWire.InputfieldImage.html#52-56" title="Go to source code"><b>defaultGridSize</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">130</span></code></td>
+		<td class="description"><div>
+			<a href="#defaultGridSize" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Default square grid item size</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Default square grid item size</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 	<table class="summary inherited">
 	<caption>Constants inherited from <a href="class-ProcessWire.Inputfield.html#constants">ProcessWire\Inputfield</a></caption>
@@ -1238,7 +1882,7 @@ InputfieldFile</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.InputfieldImage.html#42-48" title="Go to source code"><var>$variations</var></a>
+				<a href="source-class-ProcessWire.InputfieldImage.html#58-64" title="Go to source code"><var>$variations</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -1265,7 +1909,7 @@ InputfieldFile</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.InputfieldImage.html#50-56" title="Go to source code"><var>$modalClass</var></a>
+				<a href="source-class-ProcessWire.InputfieldImage.html#66-72" title="Go to source code"><var>$modalClass</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'pw-modal-large'</span></code></td>
 		<td class="description"><div>
@@ -1294,6 +1938,7 @@ InputfieldFile</p>
 			<a href="class-ProcessWire.InputfieldFile.html#$ajaxResponses"><var>$ajaxResponses</var></a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#$currentItem"><var>$currentItem</var></a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#$isAjax"><var>$isAjax</var></a>, 
+			<a href="class-ProcessWire.InputfieldFile.html#$labels"><var>$labels</var></a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#$renderValueMode"><var>$renderValueMode</var></a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#$singleFileReplacement"><var>$singleFileReplacement</var></a>, 
 			<a href="class-ProcessWire.InputfieldFile.html#$uploadOnlyMode"><var>$uploadOnlyMode</var></a>, 

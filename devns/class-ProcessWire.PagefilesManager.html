@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PagefilesManager | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1291682057"></script>
+	<script type="text/javascript" src="elementlist.js?2430293642"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.16 devns</span>
+			<span>Overview version 3.0.17 devns</span>
 		</a>
 
 
@@ -488,10 +488,46 @@
 	
 <p>ProcessWire PagefilesManager</p>
 
-<p>Manages Pagefiles, ensuring proper storage in published/draft dirs and
-migration of files between them</p>
+<p>#pw-summary Manages files and file directories for a page independent of a
+particular field. #pw-summary-static These methods are not connected with a
+particular instance and may only be called statically. #pw-body = Files in
+ProcessWire are always connected with a particular <code>Field</code> on a
+<code>Page</code>. This is typically a <code>FieldtypeFile</code> field or a
+<code>FieldtypeImage</code> field, which exist as <code>Pagefiles</code> or
+<code>Pageimages</code> values on the Page. Sometimes it is necessary to manage
+all files connected with a page as a group, and this files manager class
+provides that. Likewise, something needs to manage the paths and URLs where
+these files live, and that is where this files manager comes into play as
+well.</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p><strong>Summary of what PagefilesManager does</strong></p>
+
+<ul>
+	<li>Provides methods for movement of all files connected with a page as a
+	group.</li>
+
+	<li>Ensures that file directories for a page are created (and removed) when
+	applicable.</li>
+
+	<li>Manages secured vs. normal page file paths (see
+	<code>$config-&gt;pagefileSecure</code>).</li>
+
+	<li>Manages extended vs. normal page file paths (see
+	<code>$config-&gt;pagefileExtendedPaths</code>).</li>
+</ul>
+
+<p><strong>How to access the Page files manager</strong></p>
+
+<p>The Page files manager can be accessed from any page’s
+<code>Page::filesManager()</code> method or property.</p>
+
+<p>~~~~~ // Example of getting a Page’s dedicated file path and URL $filesPath
+= $page-&gt;filesManager-&gt;path(); $filesURL =
+$page-&gt;filesManager-&gt;url(); ~~~~~</p>
+
+<p>#pw-body</p>
+
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -530,7 +566,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PagefilesManager.html#4-479" title="Go to source code">core/PagefilesManager.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PagefilesManager.html#4-586" title="Go to source code">core/PagefilesManager.php</a><br>
 	</div>
 
 
@@ -548,7 +584,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#47-55" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#83-91" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -588,7 +624,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#57-67" title="Go to source code">init</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#93-107" title="Go to source code">init</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -602,8 +638,15 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 <p>Same as construct, but separated for when cloning a page</p>
 
+<p>#pw-internal</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+				</dl></div>
 
 
 
@@ -623,7 +666,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPage">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#69-75" title="Go to source code">setPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#109-119" title="Go to source code">setPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -635,8 +678,15 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Set the page</p>
 
+<p>#pw-internal</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+				</dl></div>
 
 
 
@@ -656,24 +706,24 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFiles">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#77-91" title="Go to source code">getFiles</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#121-135" title="Go to source code">getFiles</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get an array of all published filenames (using basename as value)</p>
+<p>Get an array of all published filenames on the current Page.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get an array of all published filenames (using basename as value)</p>
+<p>Get an array of all published filenames on the current Page.</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>Array of basenames<br>
+					<code>array</code><br>Array of file basenames<br>
 				</div>
 
 
@@ -686,37 +736,37 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|null
+			<code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code>|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFile">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#93-124" title="Go to source code">getFile</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#137-170" title="Go to source code">getFile</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get the Pagefile/Pageimage object containing the given filename</p>
+<p>Get the Pagefile object containing the given filename.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the Pagefile/Pageimage object containing the given filename</p>
+<p>Get the Pagefile object containing the given filename.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name If given a URL/path, this will traverse to other pages. If given a
-basename, it will stay with current page.</dd>
+					<dd><code>string</code><br>$name Name of file to get: - If given a URL or path, this will traverse to other
+pages. - If given a basename, it will stay with current page.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|null</code><br>Returns Pagefile object if found, null if not<br>
+					<code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code>|null</code><br>Returns Pagefile or Pageimage object if found, or null if not.<br>
 				</div>
 
 
@@ -736,7 +786,7 @@ basename, it will stay with current page.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__copyFiles">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#127-172" title="Go to source code">_copyFiles</a>( <span>string <var>$fromPath</var></span>, <span>string <var>$toPath</var></span>, <span>boolean <var>$rename</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#173-218" title="Go to source code">_copyFiles</a>( <span>string <var>$fromPath</var></span>, <span>string <var>$toPath</var></span>, <span>boolean <var>$rename</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -783,26 +833,28 @@ than copy)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_copyFiles">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#174-183" title="Go to source code">copyFiles</a>( <span>mixed <var>$toPath</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#220-231" title="Go to source code">copyFiles</a>( <span>mixed <var>$toPath</var></span> )</code>
 
 		<div class="description short">
 			
 <p>Recursively copy all files managed by this PagefilesManager into a new
-path</p>
+path.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Recursively copy all files managed by this PagefilesManager into a new
-path</p>
+path.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$toPath</var></dt>
-					<dd><code>mixed</code><br>$toPath string Path of directory to copy files into.</dd>
+					<dd><code>mixed</code><br>$toPath string Path to copy files into.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -827,26 +879,28 @@ path</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_moveFiles">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#185-195" title="Go to source code">moveFiles</a>( <span>mixed <var>$toPath</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#233-245" title="Go to source code">moveFiles</a>( <span>mixed <var>$toPath</var></span> )</code>
 
 		<div class="description short">
 			
 <p>Recursively move all files managed by this PagefilesManager into a new
-path</p>
+path.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Recursively move all files managed by this PagefilesManager into a new
-path</p>
+path.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$toPath</var></dt>
-					<dd><code>mixed</code><br>$toPath string Path of directory to move files into.</dd>
+					<dd><code>mixed</code><br>$toPath string Path to move files into.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -871,7 +925,7 @@ path</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__createPath">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#197-207" title="Go to source code">_createPath</a>( <span>string <var>$path</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#247-257" title="Go to source code">_createPath</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -913,17 +967,19 @@ path</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createPath">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#209-217" title="Go to source code">createPath</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#259-269" title="Go to source code">createPath</a>( )</code>
 
 		<div class="description short">
 			
-<p>Create the directory path where published files will be restored</p>
+<p>Create the directory path where published files will be stored.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Create the directory path where published files will be restored</p>
+<p>Create the directory path where published files will be stored.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -943,14 +999,14 @@ path</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_emptyPath">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#219-240" title="Go to source code">emptyPath</a>( <span>mixed <var>$rmdir</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$recursive</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#271-300" title="Go to source code">emptyPath</a>( <span>boolean <var>$rmdir</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -962,9 +1018,23 @@ path</p>
 			
 <p>Empty out the published files (delete all of them)</p>
 
+<p>#pw-group-manipulation</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$rmdir</var></dt>
+					<dd><code>boolean</code><br>$rmdir Remove the directory too? (default=false)</dd>
+					<dt><var>$recursive</var></dt>
+					<dd><code>boolean</code><br>$recursive Recursively do the same for subdirectories? (default=true)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True on success, false on error (since 3.0.17, previous versions had no return
+value).<br>
+				</div>
 
 
 
@@ -976,14 +1046,14 @@ path</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_emptyAllPaths">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#242-248" title="Go to source code">emptyAllPaths</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#302-315" title="Go to source code">emptyAllPaths</a>( )</code>
 
 		<div class="description short">
 			
@@ -995,9 +1065,20 @@ path</p>
 			
 <p>Empties all file paths related to the Page, and removes the directories</p>
 
+<p>This is the same as calling the <code>PagefilesManager:emptyPath()</code>
+method with the <code>$rmdir</code> and <code>$recursive</code> options as both
+true.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True on success, false on error (since 3.0.17, previous versions had no return
+value).<br>
+				</div>
 
 
 
@@ -1009,29 +1090,39 @@ path</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_path">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#251-257" title="Go to source code">path</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#318-329" title="Go to source code">path</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get the published path</p>
+<p>Get the published path for files</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the published path</p>
+<p>Get the published path for files</p>
+
+<p>#pw-hooks</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if attempting to access this on a Page that doesn't yet exist in the database<br>
+				</div>
 
 
 
@@ -1042,14 +1133,14 @@ path</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____path">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#259-269" title="Go to source code">___path</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#331-346" title="Go to source code">___path</a>( )</code>
 
 		<div class="description short">
 			
@@ -1061,10 +1152,20 @@ path</p>
 			
 <p>Get the published path (for use with hooks)</p>
 
+<p>#pw-internal</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if attempting to access this on a Page that doesn't yet exist in the database<br>
+				</div>
 
 
 
@@ -1075,29 +1176,39 @@ path</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#271-277" title="Go to source code">url</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#348-359" title="Go to source code">url</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return the auto-determined URL</p>
+<p>Get the published URL for files</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the auto-determined URL</p>
+<p>Get the published URL for files</p>
+
+<p>#pw-hooks</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if attempting to access this on a Page that doesn't yet exist in the database<br>
+				</div>
 
 
 
@@ -1108,14 +1219,14 @@ path</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____url">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#279-293" title="Go to source code">___url</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#361-380" title="Go to source code">___url</a>( )</code>
 
 		<div class="description short">
 			
@@ -1127,12 +1238,22 @@ path</p>
 			
 <p>Return the auto-determined URL, hookable version</p>
 
+<p>#pw-internal</p>
+
 <p>Note: your hook can get the $page from $event-&gt;object-&gt;page;</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if attempting to access this on a Page that doesn't yet exist in the database<br>
+				</div>
 
 
 
@@ -1150,20 +1271,25 @@ path</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____save">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#295-301" title="Go to source code">___save</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#382-393" title="Go to source code">___save</a>( )</code>
 
 		<div class="description short">
 			
-<p>For hooks to listen to on page save action</p>
+<p>For hooks to listen to on page save action, for file-specific operations</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>For hooks to listen to on page save action</p>
+<p>For hooks to listen to on page save action, for file-specific operations</p>
 
 <p>Executed before a page draft/published assets are moved around, when changes
-to files may be best to execute</p>
+to files may be best to execute.</p>
+
+<p>There are no arguments or return values here. Hooks may retrieve the Page
+object being saved from <code>$event-&gt;object-&gt;page</code>.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -1186,7 +1312,7 @@ to files may be best to execute</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_uncache">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#303-311" title="Go to source code">uncache</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#395-405" title="Go to source code">uncache</a>( )</code>
 
 		<div class="description short">
 			
@@ -1197,6 +1323,8 @@ to files may be best to execute</p>
 		<div class="description detailed hidden">
 			
 <p>Uncache/unload any data that should be unloaded with the page</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1212,14 +1340,14 @@ to files may be best to execute</p>
 
 		<td class="attributes"><code>
 			 public 
-			mixed|null
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#313-322" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#407-419" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1236,12 +1364,12 @@ to files may be best to execute</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$name</dd>
+					<dd><code>string</code><br>$key</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed|null</code><br>
+					<code>mixed</code><br>
 				</div>
 
 
@@ -1263,21 +1391,23 @@ to files may be best to execute</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasPath">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#324-336" title="Go to source code">hasPath</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#421-435" title="Go to source code">hasPath</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Returns true if Page has a files path that exists</p>
+<p>Returns true if Page has a files path that exists.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns true if Page has a files path that exists</p>
+<p>Returns true if Page has a files path that exists.</p>
 
-<p>This is a way to for $pages API functions (or others) to check if they should
-attempt to use a $page's filesManager, thus ensuring directories aren't created
-for pages that don't need them.</p>
+<p>This is a way to for <code>$pages</code> API functions (or others) to check
+if they should attempt to use a $page's filesManager, thus ensuring directories
+aren't created for pages that don't need them.</p>
+
+<p>#pw-group-static</p>
 
 
 
@@ -1309,17 +1439,19 @@ for pages that don't need them.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasFiles">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#338-352" title="Go to source code">hasFiles</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#437-453" title="Go to source code">hasFiles</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Returns true if Page has a path and files</p>
+<p>Returns true if Page has a path and files, false if not.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns true if Page has a path and files</p>
+<p>Returns true if Page has a path and files, false if not.</p>
+
+<p>#pw-group-static</p>
 
 
 
@@ -1351,17 +1483,19 @@ for pages that don't need them.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__path">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#354-409" title="Go to source code">_path</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$extended</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#455-512" title="Go to source code">_path</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$extended</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Get the files path for a given page (whether it exists or not) - static</p>
+<p>Get the files path for a given page (whether it exists or not).</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the files path for a given page (whether it exists or not) - static</p>
+<p>Get the files path for a given page (whether it exists or not).</p>
+
+<p>#pw-group-static</p>
 
 
 
@@ -1371,7 +1505,7 @@ for pages that don't need them.</p>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$extended</var></dt>
 					<dd><code>boolean</code><br>$extended Whether to force use of extended paths, primarily for recursive use by
-this function only</dd>
+this function only.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1396,7 +1530,7 @@ this function only</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__dirExtended">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#411-438" title="Go to source code">_dirExtended</a>( <span>integer <var>$id</var></span>, <span>string <var>$securePrefix</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#514-543" title="Go to source code">_dirExtended</a>( <span>integer <var>$id</var></span>, <span>string <var>$securePrefix</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1407,6 +1541,8 @@ this function only</dd>
 		<div class="description detailed hidden">
 			
 <p>Generate the directory name (after /site/assets/files/)</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1440,26 +1576,28 @@ this function only</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_dirToPageID">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#440-465" title="Go to source code">dirToPageID</a>( <span>string <var>$dir</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#545-572" title="Go to source code">dirToPageID</a>( <span>string <var>$dir</var></span> )</code>
 
 		<div class="description short">
 			
 <p>Given a dir (URL or path) to a files directory, return the page ID associated
-with it</p>
+with it.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Given a dir (URL or path) to a files directory, return the page ID associated
-with it</p>
+with it.</p>
+
+<p>#pw-group-static</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$dir</var></dt>
-					<dd><code>string</code><br>$dir Maybe extended or regular, path or URL</dd>
+					<dd><code>string</code><br>$dir May be extended or regular directory, path or URL.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1484,17 +1622,17 @@ with it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTempPath">#</a>
-		<code><a href="source-class-ProcessWire.PagefilesManager.html#467-477" title="Go to source code">getTempPath</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagefilesManager.html#574-584" title="Go to source code">getTempPath</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return a path name where temporary files can be stored</p>
+<p>Return a path where temporary files can be stored.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return a path name where temporary files can be stored</p>
+<p>Return a path where temporary files can be stored.</p>
 
 
 
@@ -1576,7 +1714,7 @@ with it</p>
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.PagefilesManager.html#17-21" title="Go to source code"><b>defaultSecurePathPrefix</b></a>
+				<a href="source-class-ProcessWire.PagefilesManager.html#47-51" title="Go to source code"><b>defaultSecurePathPrefix</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">'.'</span></code></td>
 		<td class="description"><div>
@@ -1600,7 +1738,7 @@ with it</p>
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.PagefilesManager.html#23-27" title="Go to source code"><b>extendedDirName</b></a>
+				<a href="source-class-ProcessWire.PagefilesManager.html#53-57" title="Go to source code"><b>extendedDirName</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">'0/'</span></code></td>
 		<td class="description"><div>
@@ -1639,11 +1777,11 @@ with it</p>
 	<tr data-order="page" id="$page">
 		<td class="attributes"><code>
 			protected  
-			mixed
+			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PagefilesManager.html#29-33" title="Go to source code"><var>$page</var></a>
+				<a href="source-class-ProcessWire.PagefilesManager.html#59-65" title="Go to source code"><var>$page</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -1666,11 +1804,11 @@ with it</p>
 	<tr data-order="path" id="$path">
 		<td class="attributes"><code>
 			protected  
-			mixed
+			string|null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PagefilesManager.html#35-39" title="Go to source code"><var>$path</var></a>
+				<a href="source-class-ProcessWire.PagefilesManager.html#67-73" title="Go to source code"><var>$path</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1693,11 +1831,11 @@ with it</p>
 	<tr data-order="url" id="$url">
 		<td class="attributes"><code>
 			protected  
-			mixed
+			string|null
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PagefilesManager.html#41-45" title="Go to source code"><var>$url</var></a>
+				<a href="source-class-ProcessWire.PagefilesManager.html#75-81" title="Go to source code"><var>$url</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>

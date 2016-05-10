@@ -8,7 +8,7 @@
 	<title>File core/ImageSizerEngineGD.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1291682057"></script>
+	<script type="text/javascript" src="elementlist.js?2430293642"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.16 devns</span>
+			<span>Overview version 3.0.17 devns</span>
 		</a>
 
 
@@ -564,7 +564,7 @@
 </span><span id="80" class="l"><a class="l" href="#80"> 80: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_processResize" href="#_processResize">processResize</a>(<span class="php-var">$srcFilename</span>, <span class="php-var">$dstFilename</span>, <span class="php-var">$fullWidth</span>, <span class="php-var">$fullHeight</span>, <span class="php-var">$finalWidth</span>, <span class="php-var">$finalHeight</span>) {
 </span><span id="81" class="l"><a class="l" href="#81"> 81: </a>        
 </span><span id="82" class="l"><a class="l" href="#82"> 82: </a>        <span class="php-var">$this</span>-&gt;modified = <span class="php-keyword1">false</span>;
-</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>        <span class="php-var">$this</span>-&gt;imageDepth = <span class="php-var">$this</span>-&gt;info[<span class="php-quote">'bits'</span>];
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;info[<span class="php-quote">'bits'</span>])) <span class="php-var">$this</span>-&gt;imageDepth = <span class="php-var">$this</span>-&gt;info[<span class="php-quote">'bits'</span>];
 </span><span id="84" class="l"><a class="l" href="#84"> 84: </a>        <span class="php-var">$this</span>-&gt;imageFormat = <span class="php-keyword2">strtoupper</span>(<span class="php-keyword2">str_replace</span>(<span class="php-quote">'image/'</span>, <span class="php-quote">''</span>, <span class="php-var">$this</span>-&gt;info[<span class="php-quote">'mime'</span>]));
 </span><span id="85" class="l"><a class="l" href="#85"> 85: </a>
 </span><span id="86" class="l"><a class="l" href="#86"> 86: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">in_array</span>(<span class="php-var">$this</span>-&gt;imageFormat, <span class="php-var">$this</span>-&gt;validSourceImageFormats())) {

@@ -7,7 +7,7 @@
 	<title>Class Pageimage | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1291682057"></script>
+	<script type="text/javascript" src="elementlist.js?2430293642"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.16 devns</span>
+			<span>Overview version 3.0.17 devns</span>
 		</a>
 
 
@@ -414,10 +414,22 @@
 	
 <p>ProcessWire Pageimage</p>
 
-<p>Represents a single image item attached to a page, typically via a
-FieldtypeImage field.</p>
+<p>#pw-summary Represents an image item attached to a page, typically via an
+Image Fieldtype. #pw-summary-variations A variation refers to an image that is
+based upon another (like a resized or cropped version for example).
+#pw-order-groups common,resize-and-crop,variations,other #pw-body = Pageimage
+objects are usually contained by a <code>Pageimages</code> object, which is a
+type of <code>Pagefiles</code> and <code>WireArray</code>. In addition to the
+methods and properties below, you'll also want to look at <code>Pagefile</code>
+which this class inherits several important methods and properties from.</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>~~~~~ // Example of outputting a thumbnail gallery of Pageimage objects
+foreach($page-&gt;images as $image) { // $image and $thumb are both Pageimage
+objects $thumb = $image-&gt;size(200, 200); echo "<a href="$image-&gt;url">";
+echo "&lt;img src='$thumb-&gt;url' alt='$image-&gt;description' /&gt;"; echo
+"</a>"; } ~~~~~ #pw-body</p>
+
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -531,6 +543,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 			<a href="class-ProcessWire.Pagefile.html#____httpUrl">___httpUrl()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#____url">___url()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#___toString">__toString()</a>, 
+			<a href="class-ProcessWire.Pagefile.html#_addTag">addTag()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#_description">description()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#_ext">ext()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#_filesize">filesize()</a>, 
@@ -541,6 +554,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 			<a href="class-ProcessWire.Pagefile.html#_hasTag">hasTag()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#_hash">hash()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#_isTemp">isTemp()</a>, 
+			<a href="class-ProcessWire.Pagefile.html#_removeTag">removeTag()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#_rename">rename()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#_set">set()</a>, 
 			<a href="class-ProcessWire.Pagefile.html#_setDescription">setDescription()</a>, 

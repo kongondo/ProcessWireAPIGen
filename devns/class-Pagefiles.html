@@ -7,7 +7,7 @@
 	<title>Class Pagefiles | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1291682057"></script>
+	<script type="text/javascript" src="elementlist.js?2430293642"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.16 devns</span>
+			<span>Overview version 3.0.17 devns</span>
 		</a>
 
 
@@ -414,13 +414,34 @@
 	
 <p>ProcessWire Pagefiles</p>
 
-<p>Pagefiles are a collection of Pagefile objects.</p>
+<p>#pw-summary Pagefiles is a type of WireArray that contains Pagefile objects.
+It also acts as the value for multi-file fields in ProcessWire. #pw-body = The
+items in a Pagefiles array are <code>Pagefile</code> objects, indexed by file
+basename, i.e. <code>myfile.pdf</code>. Information on most traversal, filtering
+and manipulation methods can be found in the <code>WireArray</code> class that
+Pagefiles extends. In the examples below, <code>$page-&gt;files</code> is an
+instance of Pagefiles: ~~~~~ // Determining if any files are present
+if($page-&gt;files-&gt;count()) { // There are files here }</p>
+// Traversing and outputting links to all files foreach($page-&gt;files as $name
+=&gt; $pagefile) { echo "<a href="$pagefile-&gt;url">$name:
+$pagefile-&gt;description</a>"; }
+<p>// Adding new file(s) $page-&gt;files-&gt;add('/path/to/file.pdf');
+$page-&gt;files-&gt;add('http://domain.com/photo.png');
+$page-&gt;save('files');</p>
+
+<p>// Getting file by name $pagefile = $page-&gt;files-&gt;getFile('file.pdf');
+$pagefile = $page-&gt;files['file.pdf']; // alternate</p>
+
+<p>// Getting first and last file $pagefile = $page-&gt;files-&gt;first();
+$pagefile = $page-&gt;files-&gt;last(); ~~~~~</p>
+
+<p>#pw-body</p>
 
 <p>Typically a Pagefiles object will be associated with a specific field
 attached to a Page. There may be multiple instances of Pagefiles attached to a
 given Page (depending on what fields are in it's fieldgroup).</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>

@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Pagefiles | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1291682057"></script>
+	<script type="text/javascript" src="elementlist.js?2430293642"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.16 devns</span>
+			<span>Overview version 3.0.17 devns</span>
 		</a>
 
 
@@ -488,13 +488,34 @@
 	
 <p>ProcessWire Pagefiles</p>
 
-<p>Pagefiles are a collection of Pagefile objects.</p>
+<p>#pw-summary Pagefiles is a type of WireArray that contains Pagefile objects.
+It also acts as the value for multi-file fields in ProcessWire. #pw-body = The
+items in a Pagefiles array are <code>Pagefile</code> objects, indexed by file
+basename, i.e. <code>myfile.pdf</code>. Information on most traversal, filtering
+and manipulation methods can be found in the <code>WireArray</code> class that
+Pagefiles extends. In the examples below, <code>$page-&gt;files</code> is an
+instance of Pagefiles: ~~~~~ // Determining if any files are present
+if($page-&gt;files-&gt;count()) { // There are files here }</p>
+// Traversing and outputting links to all files foreach($page-&gt;files as $name
+=&gt; $pagefile) { echo "<a href="$pagefile-&gt;url">$name:
+$pagefile-&gt;description</a>"; }
+<p>// Adding new file(s) $page-&gt;files-&gt;add('/path/to/file.pdf');
+$page-&gt;files-&gt;add('http://domain.com/photo.png');
+$page-&gt;save('files');</p>
+
+<p>// Getting file by name $pagefile = $page-&gt;files-&gt;getFile('file.pdf');
+$pagefile = $page-&gt;files['file.pdf']; // alternate</p>
+
+<p>// Getting first and last file $pagefile = $page-&gt;files-&gt;first();
+$pagefile = $page-&gt;files-&gt;last(); ~~~~~</p>
+
+<p>#pw-body</p>
 
 <p>Typically a Pagefiles object will be associated with a specific field
 attached to a Page. There may be multiple instances of Pagefiles attached to a
 given Page (depending on what fields are in it's fieldgroup).</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -555,7 +576,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Pagefiles.html#4-519" title="Go to source code">core/Pagefiles.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Pagefiles.html#4-700" title="Go to source code">core/Pagefiles.php</a><br>
 	</div>
 
 
@@ -573,17 +594,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#48-56" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#87-95" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Construct an instantance of Pagefiles</p>
+<p>Construct a Pagefiles object</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Construct an instantance of Pagefiles</p>
+<p>Construct a Pagefiles object</p>
 
 
 
@@ -613,14 +634,18 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___destruct">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#58-60" title="Go to source code">__destruct</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#97-103" title="Go to source code">__destruct</a>( )</code>
 
 		<div class="description short">
 			
+<p>Destruct and ensure that hooks are removed</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Destruct and ensure that hooks are removed</p>
+
 
 
 
@@ -642,14 +667,18 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeHooks">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#62-66" title="Go to source code">removeHooks</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#105-113" title="Go to source code">removeHooks</a>( )</code>
 
 		<div class="description short">
 			
+<p>Remove hooks to the PagefilesManager instance</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Remove hooks to the PagefilesManager instance</p>
+
 
 
 
@@ -671,16 +700,25 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPage">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#68-72" title="Go to source code">setPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#115-125" title="Go to source code">setPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set the Page these files are assigned to</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set the Page these files are assigned to</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+				</dl></div>
 
 
 
@@ -700,16 +738,25 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setField">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#74-76" title="Go to source code">setField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#127-135" title="Go to source code">setField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set the field these files are assigned to</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set the field these files are assigned to</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+				</dl></div>
 
 
 
@@ -722,24 +769,32 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPage">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#78-80" title="Go to source code">getPage</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#137-145" title="Go to source code">getPage</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the page these files are assigned to</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the page these files are assigned to</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>
+				</div>
 
 
 
@@ -751,24 +806,32 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getField">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#82-84" title="Go to source code">getField</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#147-155" title="Go to source code">getField</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the field these files are assigned to</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the field these files are assigned to</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null</code><br>Returns Field, or null if Field has not yet been assigned.<br>
+				</div>
 
 
 
@@ -787,7 +850,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeNew">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#86-99" title="Go to source code">makeNew</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#157-172" title="Go to source code">makeNew</a>( )</code>
 
 		<div class="description short">
 			
@@ -803,6 +866,8 @@ WireArray interface.</p>
 
 <p>Adapted here so that $this-&gt;page can be passed to the constructor of a
 newly created Pagefiles.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -831,7 +896,7 @@ newly created Pagefiles.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeCopy">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#101-118" title="Go to source code">makeCopy</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#174-193" title="Go to source code">makeCopy</a>( )</code>
 
 		<div class="description short">
 			
@@ -848,6 +913,8 @@ WireArray::makeCopy</p>
 <p>This is necessary because our __clone() makes new copies of each Pagefile
 (deep clone) and we don't want that to occur for the regular find() and filter()
 operations that make use of makeCopy().</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -876,7 +943,7 @@ operations that make use of makeCopy().</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___clone">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#120-131" title="Go to source code">__clone</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#195-208" title="Go to source code">__clone</a>( )</code>
 
 		<div class="description short">
 			
@@ -889,6 +956,8 @@ cloned</p>
 			
 <p>When Pagefiles is cloned, ensure that the individual Pagefile items are also
 cloned</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -913,7 +982,7 @@ cloned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidItem">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#133-139" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#210-221" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -925,17 +994,19 @@ cloned</p>
 			
 <p>Per the WireArray interface, items must be of type Pagefile</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>mixed</code><br>$item Item to test for validity</dd>
+					<dd><code>mixed</code><br>$item</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>True if item is valid and may be added, false if not<br>
+					<code>boolean</code><br>
 				</div>
 
 
@@ -950,14 +1021,14 @@ cloned</p>
 
 		<td class="attributes"><code>
 			 public 
-			string|integer|null
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemKey">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#141-147" title="Go to source code">getItemKey</a>( <span>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#223-234" title="Go to source code">getItemKey</a>( <span>mixed <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -969,17 +1040,19 @@ cloned</p>
 			
 <p>Per the WireArray interface, items are indexed by Pagefile::basename</p>
 
+<p>#pw-internal</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item Item to get key for</dd>
+					<dd><code>mixed</code><br>$item</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|null</code><br>Found key, or null if not found.<br>
+					<code>string</code><br>
 				</div>
 
 
@@ -994,14 +1067,14 @@ cloned</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null
+			<code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeBlankItem">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#149-155" title="Go to source code">makeBlankItem</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#236-246" title="Go to source code">makeBlankItem</a>( )</code>
 
 		<div class="description short">
 			
@@ -1013,12 +1086,14 @@ cloned</p>
 			
 <p>Per the WireArray interface, return a blank Pagefile</p>
 
+<p>#pw-internal</p>
+
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code></code><br>
 				</div>
 
 				<h4>Throws</h4>
@@ -1044,7 +1119,7 @@ cloned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#157-172" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#248-265" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1058,6 +1133,8 @@ cloned</p>
 
 <p>You may also specify a file's 'tag' and it will return the first Pagefile
 matching the tag.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1088,40 +1165,36 @@ matching the tag.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|mixed|boolean
+			boolean|mixed|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#174-177" title="Go to source code">__get</a>( <span>integer|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#267-277" title="Go to source code">__get</a>( <span>integer|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Enables derefencing of WireArray elements in object notation.</p>
+<p>Get for direct access to properties</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Enables derefencing of WireArray elements in object notation.</p>
-
-<p>Example: $myArray-&gt;myElement Not applicable to numerically indexed arrays.
-Fuel properties and hooked properties have precedence with this type of
-call.</p>
+<p>Get for direct access to properties</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>integer|string</code><br>$property</dd>
+					<dd><code>integer|string</code><br>$key</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|mixed|boolean</code><br>Value of item requested, or false if it doesn't exist.<br>
+					<code>boolean|mixed|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code></code><br>
 				</div>
 
 
@@ -1143,25 +1216,30 @@ call.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_add">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#199-213" title="Go to source code">add</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|string <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#299-317" title="Go to source code">add</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|string <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Add a new Pagefile item, or create one from it's filename and add it.</p>
+<p>Add a new Pagefile item or filename</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Add a new Pagefile item, or create one from it's filename and add it.</p>
+<p>Add a new Pagefile item or filename</p>
+
+<p>If give a filename (string) it will create the new <code>Pagefile</code> item
+from it and add it.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|string</code><br>$item If item is a string (filename) then the Pagefile instance will be created
-automatically.</dd>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|string</code><br>$item If item is a string (filename) it will create the new
+<code>Pagefile</code> item from it and add it.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1192,7 +1270,7 @@ automatically.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookPageSave">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#215-227" title="Go to source code">hookPageSave</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#319-333" title="Go to source code">hookPageSave</a>( )</code>
 
 		<div class="description short">
 			
@@ -1203,6 +1281,8 @@ automatically.</dd>
 		<div class="description detailed hidden">
 			
 <p>Make any removals take effect on disk</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1225,24 +1305,30 @@ automatically.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____delete">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#229-238" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#335-349" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|string <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Delete a pagefile item, hookable alias of remove()</p>
+<p>Delete a pagefile item</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Delete a pagefile item, hookable alias of remove()</p>
+<p>Delete a pagefile item</p>
+
+<p>Deletes the filename associated with the Pagefile and removes it from this
+Pagefiles array. The actual deletion of the file does not take effect until
+<code>$page-&gt;save()</code>.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code></code><br>$item</dd>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|string</code><br>$item Pagefile or basename</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1267,7 +1353,7 @@ automatically.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#240-259" title="Go to source code">remove</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#351-373" title="Go to source code">remove</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1280,14 +1366,17 @@ automatically.</dd>
 <p>Delete/remove a Pagefile item</p>
 
 <p>Deletes the filename associated with the Pagefile and removes it from this
-Pagefiles instance.</p>
+Pagefiles array. The actual deletion of the file does not take effect until
+<code>$page-&gt;save()</code>.</p>
+
+<p>#pw-internal Please use the hookable delete() method for public API</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code></code><br>$item</dd>
+					<dd><code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code></code><br>$item Item to delete/remove.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1318,7 +1407,7 @@ Pagefiles instance.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteAll">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#261-273" title="Go to source code">deleteAll</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#375-391" title="Go to source code">deleteAll</a>( )</code>
 
 		<div class="description short">
 			
@@ -1331,6 +1420,11 @@ Pagefiles instance.</p>
 			
 <p>Delete all files associated with this Pagefiles instance, leaving a blank
 Pagefiles instance.</p>
+
+<p>The actual deletion of the files does not take effect until
+<code>$page-&gt;save()</code>.</p>
+
+<p>#pw-group-manipulation</p>
 
 
 
@@ -1350,14 +1444,14 @@ Pagefiles instance.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_path">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#275-281" title="Go to source code">path</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#393-401" title="Go to source code">path</a>( )</code>
 
 		<div class="description short">
 			
@@ -1372,6 +1466,10 @@ Pagefiles instance.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
 
@@ -1383,14 +1481,14 @@ Pagefiles instance.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#283-289" title="Go to source code">url</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#403-411" title="Go to source code">url</a>( )</code>
 
 		<div class="description short">
 			
@@ -1405,6 +1503,10 @@ Pagefiles instance.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
 
@@ -1423,7 +1525,7 @@ Pagefiles instance.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cleanBasename">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#291-333" title="Go to source code">cleanBasename</a>( <span>string <var>$basename</var></span>, <span>boolean <var>$originalize</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$allowDots</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$translate</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#413-457" title="Go to source code">cleanBasename</a>( <span>string <var>$basename</var></span>, <span>boolean <var>$originalize</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$allowDots</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$translate</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1436,6 +1538,8 @@ characters</p>
 			
 <p>Given a basename, this method returns a clean version containing valid
 characters</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1465,35 +1569,6 @@ filename.</dd>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="uncache" id="_uncache">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_uncache">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#335-337" title="Go to source code">uncache</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="findTag" id="_findTag">
 
 		<td class="attributes"><code>
@@ -1505,32 +1580,55 @@ filename.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findTag">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#339-352" title="Go to source code">findTag</a>( <span>string <var>$tag</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#459-483" title="Go to source code">findTag</a>( <span>string|array <var>$tag</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return all Pagefiles that have the given tag</p>
+<p>Return all Pagefile objects that have the given tag(s).</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return all Pagefiles that have the given tag</p>
+<p>Return all Pagefile objects that have the given tag(s).</p>
+
+<p>Given tag may be any of the following:</p>
+
+<ul>
+	<li><code>foo</code> (single tag): Will return all Pagefile objects having the
+	specified tag.</li>
+
+	<li><code>foo|bar|baz</code> (multiple OR tags): Will return Pagefile objects
+	having at least one of the tags listed.</li>
+
+	<li><code>foo,bar,baz</code> (multiple AND tags): Will return Pagefile objects
+	having ALL of the tags listed (since 3.0.17).</li>
+
+	<li><code>['foo','bar','baz']</code> (multiple AND tags array): Same as above
+	but can be specified as an array (since 3.0.17).</li>
+</ul>
+
+<p>#pw-group-tags #pw-changelog 3.0.17 Added support for multiple AND tags and
+allow tag specified as an array.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$tag</var></dt>
-					<dd><code>string</code><br>$tag</dd>
+					<dd><code>string|array</code><br>$tag</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Pagefiles.html">ProcessWire\Pagefiles</a></code></code><br>
+					<code><code><a href="class-ProcessWire.Pagefiles.html">ProcessWire\Pagefiles</a></code></code><br>New Pagefiles array with items that matched the given tag(s).<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Pagefiles.html#_getTag">ProcessWire\Pagefiles::getTag()</a></code></code>, <code><code><a href="class-ProcessWire.Pagefile.html#_hasTag">ProcessWire\Pagefile::hasTag()</a></code></code>, <code><code><a href="class-ProcessWire.Pagefile.html#_tags">ProcessWire\Pagefile::tags()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1547,7 +1645,7 @@ filename.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTag">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#354-369" title="Go to source code">getTag</a>( <span>string <var>$tag</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#485-511" title="Go to source code">getTag</a>( <span>string <var>$tag</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1558,6 +1656,25 @@ filename.</dd>
 		<div class="description detailed hidden">
 			
 <p>Return the first Pagefile that matches the given tag or NULL if no match</p>
+
+<p>Given tag may be any of the following:</p>
+
+<ul>
+	<li><code>foo</code> (single tag): Will return the first Pagefile object having
+	the specified tag.</li>
+
+	<li><code>foo|bar|baz</code> (multiple OR tags): Will return first Pagefile
+	object having at least one of the tags listed.</li>
+
+	<li><code>foo,bar,baz</code> (multiple AND tags): Will return first Pagefile
+	object having ALL of the tags listed (since 3.0.17).</li>
+
+	<li><code>['foo','bar','baz']</code> (multiple AND tags array): Same as above
+	but can be specified as an array (since 3.0.17).</li>
+</ul>
+
+<p>#pw-group-tags #pw-changelog 3.0.17 Added support for multiple AND tags and
+allow tag specified as an array.</p>
 
 
 
@@ -1573,6 +1690,10 @@ filename.</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Pagefiles.html#_findTag">ProcessWire\Pagefiles::findTag()</a></code></code>, <code><code><a href="class-ProcessWire.Pagefile.html#_hasTag">ProcessWire\Pagefile::hasTag()</a></code></code>, <code><code><a href="class-ProcessWire.Pagefile.html#_tags">ProcessWire\Pagefile::tags()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -1589,33 +1710,30 @@ filename.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trackChange">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#371-374" title="Go to source code">trackChange</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#514-528" title="Go to source code">trackChange</a>( <span>string <var>$what</var></span>, <span>null <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>null <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Track a change to a property in this object</p>
+<p>Track a change</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Track a change to a property in this object</p>
+<p>Track a change</p>
 
-<p>The change will only be recorded if change tracking is enabled for this
-object instance.</p>
-
-<p>#pw-group-changes</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$what</var></dt>
-					<dd><code>string</code><br>$what Name of property that changed</dd>
+					<dd><code>string</code><br>$what</dd>
 					<dt><var>$old</var></dt>
-					<dd><code>mixed</code><br>$old Previous value before change</dd>
+					<dd><code>null</code><br>$old</dd>
 					<dt><var>$new</var></dt>
-					<dd><code>mixed</code><br>$new New value</dd>
+					<dd><code>null</code><br>$new</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1642,17 +1760,17 @@ object instance.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFile">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#376-393" title="Go to source code">getFile</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#530-547" title="Go to source code">getFile</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Get the given file</p>
+<p>Get the Pagefile having the given basename, or null if not found.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the given file</p>
+<p>Get the Pagefile having the given basename, or null if not found.</p>
 
 
 
@@ -1684,7 +1802,7 @@ object instance.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isTemp">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#395-475" title="Go to source code">isTemp</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span>, <span>boolean|string <var>$set</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#549-631" title="Go to source code">isTemp</a>( <span><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code> <var>$pagefile</var></span>, <span>boolean|string <var>$set</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1698,6 +1816,8 @@ object instance.</p>
 
 <p>You may also provide a 2nd argument boolean to set the temp status or check
 if temporary AND deletable.</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1732,7 +1852,7 @@ if temporary AND deletable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteAllTemp">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#477-495" title="Go to source code">deleteAllTemp</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#633-653" title="Go to source code">deleteAllTemp</a>( )</code>
 
 		<div class="description short">
 			
@@ -1743,6 +1863,8 @@ if temporary AND deletable.</p>
 		<div class="description detailed hidden">
 			
 <p>Remove all deletable temporary pagefiles immediately</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1769,7 +1891,7 @@ if temporary AND deletable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isIdentical">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#497-508" title="Go to source code">isIdentical</a>( <span><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span>, <span>boolean|integer <var>$strict</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#655-668" title="Go to source code">isIdentical</a>( <span><code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code> <var>$items</var></span>, <span>boolean|integer <var>$strict</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1780,6 +1902,8 @@ if temporary AND deletable.</p>
 		<div class="description detailed hidden">
 			
 <p>Is the given Pagefiles identical to this one?</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -1815,17 +1939,17 @@ if temporary AND deletable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetTrackChanges">#</a>
-		<code><a href="source-class-ProcessWire.Pagefiles.html#510-516" title="Go to source code">resetTrackChanges</a>( <span>boolean <var>$trackChanges</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#671-686" title="Go to source code">resetTrackChanges</a>( <span>boolean <var>$trackChanges</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Clears out any tracked changes and turns change tracking ON or OFF</p>
+<p>Reset track changes</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Clears out any tracked changes and turns change tracking ON or OFF</p>
+<p>Reset track changes</p>
 
 <p>#pw-internal</p>
 
@@ -1834,8 +1958,7 @@ if temporary AND deletable.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$trackChanges</var></dt>
-					<dd><code>boolean</code><br>$trackChanges True to turn change tracking ON, or false to turn OFF. Default of
-true is assumed.</dd>
+					<dd><code>boolean</code><br>$trackChanges</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1847,6 +1970,41 @@ true is assumed.</dd>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.WireArray.html#_resetTrackChanges">ProcessWire\WireArray::resetTrackChanges()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="uncache" id="_uncache">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_uncache">#</a>
+		<code><a href="source-class-ProcessWire.Pagefiles.html#688-696" title="Go to source code">uncache</a>( )</code>
+
+		<div class="description short">
+			
+<p>Uncache</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Uncache</p>
+
+<p>#pw-internal</p>
+
+
+
+
+
+
+
 
 		</div>
 		</div></td>
@@ -2002,11 +2160,11 @@ true is assumed.</dd>
 	<tr data-order="page" id="$page">
 		<td class="attributes"><code>
 			protected  
-			mixed
+			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pagefiles.html#24-28" title="Go to source code"><var>$page</var></a>
+				<a href="source-class-ProcessWire.Pagefiles.html#55-61" title="Go to source code"><var>$page</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2029,11 +2187,11 @@ true is assumed.</dd>
 	<tr data-order="field" id="$field">
 		<td class="attributes"><code>
 			protected  
-			mixed
+			<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pagefiles.html#30-34" title="Go to source code"><var>$field</var></a>
+				<a href="source-class-ProcessWire.Pagefiles.html#63-69" title="Go to source code"><var>$field</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2060,7 +2218,7 @@ true is assumed.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pagefiles.html#36-40" title="Go to source code"><var>$unlinkQueue</var></a>
+				<a href="source-class-ProcessWire.Pagefiles.html#71-77" title="Go to source code"><var>$unlinkQueue</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2087,7 +2245,7 @@ true is assumed.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pagefiles.html#42-46" title="Go to source code"><var>$hookIDs</var></a>
+				<a href="source-class-ProcessWire.Pagefiles.html#79-85" title="Go to source code"><var>$hookIDs</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
