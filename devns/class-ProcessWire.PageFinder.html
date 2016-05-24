@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PageFinder | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?161203632"></script>
+	<script type="text/javascript" src="elementlist.js?314270815"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -199,6 +199,7 @@
 				<li><a href="class-ProcessWire.PageAccess.html">PageAccess</a></li>
 				<li><a href="class-ProcessWire.PageAction.html">PageAction</a></li>
 				<li><a href="class-ProcessWire.PageArray.html">PageArray</a></li>
+				<li><a href="class-ProcessWire.PageArrayIterator.html">PageArrayIterator</a></li>
 				<li><a href="class-ProcessWire.PageBookmarks.html">PageBookmarks</a></li>
 				<li><a href="class-ProcessWire.PageComparison.html">PageComparison</a></li>
 				<li><a href="class-ProcessWire.PageExport.html">PageExport</a></li>
@@ -531,7 +532,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PageFinder.html#7-1729" title="Go to source code">core/PageFinder.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PageFinder.html#7-1763" title="Go to source code">core/PageFinder.php</a><br>
 	</div>
 
 
@@ -589,7 +590,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____find">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#253-350" title="Go to source code">___find</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#253-364" title="Go to source code">___find</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -608,7 +609,30 @@ href="https://processwire.com">https://processwire.com</a></p>
 					<dt><var>$selectors</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code></code><br>$selectors</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options</dd>
+					<dd><code>array</code><br>$options - <code>findOne</code> (bool): Specify that you only want to find 1
+page and don't need info for pagination (default=false). -
+<code>findHidden</code> (bool): Specify that it's okay for hidden pages to be
+included in the results (default=false). - <code>findUnpublished</code> (bool):
+Specify that it's okay for hidden AND unpublished pages to be included in the
+results (default=false). - <code>findTrash</code> (bool): Specify that it's okay
+for hidden AND unpublished AND trashed pages to be included in the results
+(default=false). - <code>findAll</code> (bool): Specify that no page should be
+excluded - results can include unpublished, trash, system, no-access pages, etc.
+(default=false) - <code>getTotal</code> (bool|null): Whether the total quantity
+of matches should be determined and accessible from getTotal() method call. -
+null: determine automatically (default is disabled when limit=1, enabled in all
+other cases). - true: always calculate total. - false: never calculate total. -
+<code>getTotalType</code> (string): Method to use to get total, specify 'count'
+or 'calc' (default='calc'). - <code>returnQuery</code> (bool): When true, only
+the DatabaseQuery object is returned by find(), for internal use.
+(default=false) - <code>loadPages</code> (bool): This is an optimization used by
+the Pages::find() method, but we observe it here as we may be able to apply some
+additional optimizations in certain cases. For instance, if loadPages=false,
+then we can skip retrieval of IDs and omit sort fields. (default=true) -
+<code>returnVerbose</code> (bool): When true, this function returns array of
+arrays containing page ID, parent ID, template ID and score. When false, returns
+only an array of page IDs. True is required by most usage from Pages class.
+False is only for specific cases.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -637,7 +661,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findIDs">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#352-363" title="Go to source code">findIDs</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#366-377" title="Go to source code">findIDs</a>( <span><code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selectors</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -683,7 +707,7 @@ info</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preProcessSelector">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#365-400" title="Go to source code">preProcessSelector</a>( <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#379-414" title="Go to source code">preProcessSelector</a>( <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -728,7 +752,7 @@ id=[this=that, foo=bar]" and OR-groups, i.e. "(bar=foo), (foo=bar)"</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preProcessSubSelector">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#437-523" title="Go to source code">preProcessSubSelector</a>( <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#451-537" title="Go to source code">preProcessSubSelector</a>( <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -768,7 +792,7 @@ value</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getQuery">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#525-769" title="Go to source code">___getQuery</a>( <span>array <var>$selectors</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#539-783" title="Go to source code">___getQuery</a>( <span>array <var>$selectors</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -820,7 +844,7 @@ value</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_postProcessQuery">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#771-842" title="Go to source code">postProcessQuery</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$parentQuery</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#785-856" title="Go to source code">postProcessQuery</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$parentQuery</var></span> )</code>
 
 		<div class="description short">
 			
@@ -862,7 +886,7 @@ value</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_whereEmptyValuePossible">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#844-946" title="Go to source code">whereEmptyValuePossible</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span>, <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>string <var>$value</var></span>, <span>string <var>&amp; $where</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#858-960" title="Go to source code">whereEmptyValuePossible</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span>, <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>string <var>$value</var></span>, <span>string <var>&amp; $where</var></span> )</code>
 
 		<div class="description short">
 			
@@ -921,7 +945,7 @@ greater/less-than searches that can potentially match blank or 0.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getQueryAllowedTemplates">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#948-1081" title="Go to source code">getQueryAllowedTemplates</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#962-1096" title="Go to source code">getQueryAllowedTemplates</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -961,7 +985,7 @@ greater/less-than searches that can potentially match blank or 0.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getQueryAllowedTemplatesWhere">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1083-1095" title="Go to source code">___getQueryAllowedTemplatesWhere</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>string <var>$where</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1098-1111" title="Go to source code">___getQueryAllowedTemplatesWhere</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>string <var>$where</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1010,7 +1034,7 @@ BEFORE hook or the $event-&gt;return in an AFTER hook.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getQuerySortSelector">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1097-1248" title="Go to source code">getQuerySortSelector</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1113-1264" title="Go to source code">getQuerySortSelector</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1039,7 +1063,7 @@ BEFORE hook or the $event-&gt;return in an AFTER hook.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getQueryStartLimit">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1250-1282" title="Go to source code">getQueryStartLimit</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>mixed <var>$selectors</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1266-1298" title="Go to source code">getQueryStartLimit</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>mixed <var>$selectors</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1068,7 +1092,7 @@ BEFORE hook or the $event-&gt;return in an AFTER hook.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getQueryJoinPath">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1285-1356" title="Go to source code">___getQueryJoinPath</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1301-1372" title="Go to source code">___getQueryJoinPath</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1112,7 +1136,7 @@ BEFORE hook or the $event-&gt;return in an AFTER hook.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getQueryNativeField">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1358-1513" title="Go to source code">getQueryNativeField</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span>, <span>array <var>$fields</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1374-1529" title="Go to source code">getQueryNativeField</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span>, <span>array <var>$fields</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1161,7 +1185,7 @@ filtering</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getQueryHasParent">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1515-1598" title="Go to source code">getQueryHasParent</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1531-1614" title="Go to source code">getQueryHasParent</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1196,14 +1220,14 @@ grandchildren, great grandchildren, etc.)</p>
 
 		<td class="attributes"><code>
 			 protected 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getQueryNumChildren">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1600-1662" title="Go to source code">getQueryNumChildren</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>mixed <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1616-1683" title="Go to source code">getQueryNumChildren</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code> <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1217,8 +1241,23 @@ grandchildren, great grandchildren, etc.)</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code></code><br>$query</dd>
+					<dt><var>$selector</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Selector.html">ProcessWire\Selector</a></code></code><br>$selector</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -1229,14 +1268,14 @@ grandchildren, great grandchildren, etc.)</p>
 
 		<td class="attributes"><code>
 			 protected 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_arrangeFields">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1664-1676" title="Go to source code">arrangeFields</a>( <span>array <var>$fields</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1685-1700" title="Go to source code">arrangeFields</a>( <span>array <var>$fields</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1250,7 +1289,16 @@ grandchildren, great grandchildren, etc.)</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fields</var></dt>
+					<dd><code>array</code><br>$fields</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
 
 
 
@@ -1269,7 +1317,7 @@ grandchildren, great grandchildren, etc.)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTotal">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1678-1688" title="Go to source code">getTotal</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1702-1712" title="Go to source code">getTotal</a>( )</code>
 
 		<div class="description short">
 			
@@ -1304,14 +1352,14 @@ limit</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLimit">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1690-1696" title="Go to source code">getLimit</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1714-1722" title="Go to source code">getLimit</a>( )</code>
 
 		<div class="description short">
 			
@@ -1328,6 +1376,10 @@ specified</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
 
 
 
@@ -1339,14 +1391,14 @@ specified</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getStart">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1698-1704" title="Go to source code">getStart</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1724-1732" title="Go to source code">getStart</a>( )</code>
 
 		<div class="description short">
 			
@@ -1361,6 +1413,10 @@ specified</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
 
 
 
@@ -1372,14 +1428,14 @@ specified</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParentID">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1706-1712" title="Go to source code">getParentID</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1734-1742" title="Go to source code">getParentID</a>( )</code>
 
 		<div class="description short">
 			
@@ -1394,6 +1450,10 @@ specified</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
 
 
 
@@ -1405,14 +1465,14 @@ specified</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTemplatesID">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1714-1720" title="Go to source code">getTemplatesID</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1744-1752" title="Go to source code">getTemplatesID</a>( )</code>
 
 		<div class="description short">
 			
@@ -1427,6 +1487,10 @@ specified</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
 
 
 
@@ -1438,14 +1502,14 @@ specified</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOptions">#</a>
-		<code><a href="source-class-ProcessWire.PageFinder.html#1722-1728" title="Go to source code">getOptions</a>( )</code>
+		<code><a href="source-class-ProcessWire.PageFinder.html#1754-1762" title="Go to source code">getOptions</a>( )</code>
 
 		<div class="description short">
 			
@@ -1462,6 +1526,10 @@ determined at runtime</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
 
 
 
