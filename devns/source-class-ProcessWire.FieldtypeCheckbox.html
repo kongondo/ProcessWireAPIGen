@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeCheckbox.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?314270815"></script>
+	<script type="text/javascript" src="elementlist.js?37947267"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.18 devns</span>
+			<span>Overview version 3.0.20 devns</span>
 		</a>
 
 
@@ -540,23 +540,36 @@
 </span><span id="55" class="l"><a class="l" href="#55">55: </a>        <span class="php-keyword1">return</span> <span class="php-var">$schema</span>;
 </span><span id="56" class="l"><a class="l" href="#56">56: </a>    }
 </span><span id="57" class="l"><a class="l" href="#57">57: </a>
-</span><span id="58" class="l"><a class="l" href="#58">58: </a>    <span class="php-comment">/**
-</span></span><span id="59" class="l"><a class="l" href="#59">59: </a><span class="php-comment">     * Return array with information about what properties and operators can be used with this field
-</span></span><span id="60" class="l"><a class="l" href="#60">60: </a><span class="php-comment">     * 
-</span></span><span id="61" class="l"><a class="l" href="#61">61: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="62" class="l"><a class="l" href="#62">62: </a><span class="php-comment">     * @param array $data
-</span></span><span id="63" class="l"><a class="l" href="#63">63: </a><span class="php-comment">     * @return array
-</span></span><span id="64" class="l"><a class="l" href="#64">64: </a><span class="php-comment">     *
-</span></span><span id="65" class="l"><a class="l" href="#65">65: </a><span class="php-comment">     */</span>
-</span><span id="66" class="l"><a class="l" href="#66">66: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getSelectorInfo" href="#____getSelectorInfo">___getSelectorInfo</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span> = <span class="php-keyword1">array</span>()) {
-</span><span id="67" class="l"><a class="l" href="#67">67: </a>        <span class="php-var">$info</span> = parent::___getSelectorInfo(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
-</span><span id="68" class="l"><a class="l" href="#68">68: </a>        <span class="php-var">$info</span>[<span class="php-quote">'input'</span>] = <span class="php-quote">'checkbox'</span>;
-</span><span id="69" class="l"><a class="l" href="#69">69: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>; 
-</span><span id="70" class="l"><a class="l" href="#70">70: </a>    }
-</span><span id="71" class="l"><a class="l" href="#71">71: </a>
-</span><span id="72" class="l"><a class="l" href="#72">72: </a>}
-</span><span id="73" class="l"><a class="l" href="#73">73: </a>
-</span><span id="74" class="l"><a class="l" href="#74">74: </a></span></code></pre>
+</span><span id="58" class="l"><a class="l" href="#58">58: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getMatchQuery" href="#_getMatchQuery">getMatchQuery</a>(<span class="php-var">$query</span>, <span class="php-var">$table</span>, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>) {
+</span><span id="59" class="l"><a class="l" href="#59">59: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>) &amp;&amp; (<span class="php-var">$operator</span> == <span class="php-quote">'!='</span> || <span class="php-var">$operator</span> == <span class="php-quote">'&lt;&gt;'</span>)) {
+</span><span id="60" class="l"><a class="l" href="#60">60: </a>            <span class="php-comment">// allow for matching test_checkbox!=1 since non-checked rows don't appear in database</span>
+</span><span id="61" class="l"><a class="l" href="#61">61: </a>            <span class="php-keyword1">static</span> <span class="php-var"><a id="$n" href="#$n">$n</a></span> = <span class="php-num">0</span>;
+</span><span id="62" class="l"><a class="l" href="#62">62: </a>            <span class="php-var">$_table</span> = <span class="php-var">$table</span> . <span class="php-quote">'_ckbx'</span> . (++<span class="php-var">$n</span>);
+</span><span id="63" class="l"><a class="l" href="#63">63: </a>            <span class="php-var">$query</span>-&gt;leftjoin(<span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote"> AS </span><span class="php-var">$_table</span><span class="php-quote"> ON </span><span class="php-var">$_table</span><span class="php-quote">.pages_id=pages.id&quot;</span>);
+</span><span id="64" class="l"><a class="l" href="#64">64: </a>            <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;</span><span class="php-var">$_table</span><span class="php-quote">.pages_id IS NULL&quot;</span>); 
+</span><span id="65" class="l"><a class="l" href="#65">65: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="66" class="l"><a class="l" href="#66">66: </a>            <span class="php-var">$query</span> = parent::getMatchQuery(<span class="php-var">$query</span>, <span class="php-var">$table</span>, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>);
+</span><span id="67" class="l"><a class="l" href="#67">67: </a>        }
+</span><span id="68" class="l"><a class="l" href="#68">68: </a>        <span class="php-keyword1">return</span> <span class="php-var">$query</span>;
+</span><span id="69" class="l"><a class="l" href="#69">69: </a>    }
+</span><span id="70" class="l"><a class="l" href="#70">70: </a>
+</span><span id="71" class="l"><a class="l" href="#71">71: </a>    <span class="php-comment">/**
+</span></span><span id="72" class="l"><a class="l" href="#72">72: </a><span class="php-comment">     * Return array with information about what properties and operators can be used with this field
+</span></span><span id="73" class="l"><a class="l" href="#73">73: </a><span class="php-comment">     * 
+</span></span><span id="74" class="l"><a class="l" href="#74">74: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="75" class="l"><a class="l" href="#75">75: </a><span class="php-comment">     * @param array $data
+</span></span><span id="76" class="l"><a class="l" href="#76">76: </a><span class="php-comment">     * @return array
+</span></span><span id="77" class="l"><a class="l" href="#77">77: </a><span class="php-comment">     *
+</span></span><span id="78" class="l"><a class="l" href="#78">78: </a><span class="php-comment">     */</span>
+</span><span id="79" class="l"><a class="l" href="#79">79: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getSelectorInfo" href="#____getSelectorInfo">___getSelectorInfo</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="80" class="l"><a class="l" href="#80">80: </a>        <span class="php-var">$info</span> = parent::___getSelectorInfo(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
+</span><span id="81" class="l"><a class="l" href="#81">81: </a>        <span class="php-var">$info</span>[<span class="php-quote">'input'</span>] = <span class="php-quote">'checkbox'</span>;
+</span><span id="82" class="l"><a class="l" href="#82">82: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>; 
+</span><span id="83" class="l"><a class="l" href="#83">83: </a>    }
+</span><span id="84" class="l"><a class="l" href="#84">84: </a>
+</span><span id="85" class="l"><a class="l" href="#85">85: </a>}
+</span><span id="86" class="l"><a class="l" href="#86">86: </a>
+</span><span id="87" class="l"><a class="l" href="#87">87: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

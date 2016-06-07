@@ -8,7 +8,7 @@
 	<title>File modules/AdminTheme/AdminThemeDefault/AdminThemeDefaultHelpers.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?314270815"></script>
+	<script type="text/javascript" src="elementlist.js?37947267"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.18 devns</span>
+			<span>Overview version 3.0.20 devns</span>
 		</a>
 
 
@@ -556,11 +556,11 @@
 </span><span id="71" class="l"><a class="l" href="#71"> 71: </a>    
 </span><span id="72" class="l"><a class="l" href="#72"> 72: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$touch</span> &amp;&amp; <span class="php-var">$loggedin</span> &amp;&amp; <span class="php-var">$this</span>-&gt;className() == <span class="php-quote">'AdminThemeDefaultHelpers'</span>) {
 </span><span id="73" class="l"><a class="l" href="#73"> 73: </a>            
-</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;debug) {
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;debug &amp;&amp; <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'user'</span>)-&gt;isSuperuser()) {
 </span><span id="75" class="l"><a class="l" href="#75"> 75: </a>                <span class="php-var">$label</span> = __(<span class="php-quote">'Debug Mode Tools'</span>, <span class="php-quote">'/wire/templates-admin/debug.inc'</span>);
 </span><span id="76" class="l"><a class="l" href="#76"> 76: </a>                <span class="php-var">$out</span> .=
 </span><span id="77" class="l"><a class="l" href="#77"> 77: </a>                    <span class="php-quote">&quot;&lt;li&gt;&lt;a href='#' title='</span><span class="php-var">$label</span><span class="php-quote">' onclick=\&quot;</span><span class="php-var">$</span><span class="php-quote">('#debug_toggle').click();return false;\&quot;&gt;&quot;</span> .
-</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>                    <span class="php-quote">&quot;&lt;i class='fa fa-cog'&gt;&lt;/i&gt;&lt;/a&gt;</span><span class="php-var">$separator</span><span class="php-quote">&lt;/li&gt;&quot;</span>;
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>                    <span class="php-quote">&quot;&lt;i class='fa fa-bug'&gt;&lt;/i&gt;&lt;/a&gt;</span><span class="php-var">$separator</span><span class="php-quote">&lt;/li&gt;&quot;</span>;
 </span><span id="79" class="l"><a class="l" href="#79"> 79: </a>            }
 </span><span id="80" class="l"><a class="l" href="#80"> 80: </a>
 </span><span id="81" class="l"><a class="l" href="#81"> 81: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'process'</span>) != <span class="php-quote">'ProcessPageList'</span>) {
