@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Sanitizer | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?37947267"></script>
+	<script type="text/javascript" src="elementlist.js?2653761427"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.20 devns</span>
+			<span>Overview version 3.0.21 devns</span>
 		</a>
 
 
@@ -540,7 +540,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<b>Link:</b>
 				<a href="http://processwire.com/api/variables/sanitizer/">Offical $sanitizer API variable Documentation</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Sanitizer.html#4-2336" title="Go to source code">core/Sanitizer.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Sanitizer.html#4-2353" title="Go to source code">core/Sanitizer.php</a><br>
 	</div>
 
 
@@ -2087,7 +2087,7 @@ PHP variables</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_selectorValue">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1358-1444" title="Go to source code">selectorValue</a>( <span>string <var>$value</var></span>, <span>integer <var>$maxLength</var> = <span class="php-num">100</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1358-1461" title="Go to source code">selectorValue</a>( <span>string <var>$value</var></span>, <span>array|integer <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2116,8 +2116,12 @@ $pages-&gt;find("title|body%=" . $sanitizer-&gt;selectorValue($q)); ~~~~~</p>
 				<div class="list"><dl>
 					<dt><var>$value</var></dt>
 					<dd><code>string</code><br>$value String value to sanitize (assumed to be UTF-8).</dd>
-					<dt><var>$maxLength</var></dt>
-					<dd><code>integer</code><br>$maxLength Maximum number of allowed characters (default=100).</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array|integer</code><br>$options Options to modify behavior: - <code>maxLength</code> (int): Maximum
+number of allowed characters (default=100). This may also be specified instead
+of $options array. - <code>useQuotes</code> (bool): Allow selectorValue()
+function to add quotes if it deems them necessary? (default=true) - If an
+integer is specified for $options, it is assumed to be the maxLength value.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2142,7 +2146,7 @@ $pages-&gt;find("title|body%=" . $sanitizer-&gt;selectorValue($q)); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_entities">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1446-1474" title="Go to source code">entities</a>( <span>string <var>$str</var></span>, <span>integer|boolean <var>$flags</var> = ENT_QUOTES</span>, <span>string <var>$encoding</var> = <span class="php-quote">'UTF-8'</span></span>, <span>boolean <var>$doubleEncode</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1463-1491" title="Go to source code">entities</a>( <span>string <var>$str</var></span>, <span>integer|boolean <var>$flags</var> = ENT_QUOTES</span>, <span>string <var>$encoding</var> = <span class="php-quote">'UTF-8'</span></span>, <span>boolean <var>$doubleEncode</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2208,7 +2212,7 @@ brokenness"; echo $sanitizer-&gt;entities($test); // result: ain&amp;apos;t
 
 		<td class="name"><div>
 		<a class="anchor" href="#_entities1">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1476-1492" title="Go to source code">entities1</a>( <span>string <var>$str</var></span>, <span>integer|boolean <var>$flags</var> = ENT_QUOTES</span>, <span>string <var>$encoding</var> = <span class="php-quote">'UTF-8'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1493-1509" title="Go to source code">entities1</a>( <span>string <var>$str</var></span>, <span>integer|boolean <var>$flags</var> = ENT_QUOTES</span>, <span>string <var>$encoding</var> = <span class="php-quote">'UTF-8'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2260,7 +2264,7 @@ brokenness"; echo $sanitizer-&gt;entities($test); // result: ain&amp;apos;t
 
 		<td class="name"><div>
 		<a class="anchor" href="#_entitiesMarkdown">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1494-1622" title="Go to source code">entitiesMarkdown</a>( <span>string <var>$str</var></span>, <span>array|boolean|integer <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1511-1639" title="Go to source code">entitiesMarkdown</a>( <span>string <var>$str</var></span>, <span>array|boolean|integer <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2337,7 +2341,7 @@ href="{url}" rel="nofollow" target="_blank"&gt;{text}&lt;/a&gt;</code>. -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unentities">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1624-1643" title="Go to source code">unentities</a>( <span>string <var>$str</var></span>, <span>integer|boolean <var>$flags</var> = ENT_QUOTES</span>, <span>string <var>$encoding</var> = <span class="php-quote">'UTF-8'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1641-1660" title="Go to source code">unentities</a>( <span>string <var>$str</var></span>, <span>integer|boolean <var>$flags</var> = ENT_QUOTES</span>, <span>string <var>$encoding</var> = <span class="php-quote">'UTF-8'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2393,7 +2397,7 @@ function.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_purify">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1661-1683" title="Go to source code">purify</a>( <span>string <var>$str</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1678-1700" title="Go to source code">purify</a>( <span>string <var>$str</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2447,7 +2451,7 @@ href="http://htmlpurifier.org/live/configdoc/plain.html">http://htmlpurifier.org
 
 		<td class="name"><div>
 		<a class="anchor" href="#_purifier">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1685-1700" title="Go to source code">purifier</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1702-1717" title="Go to source code">purifier</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2495,7 +2499,7 @@ href="http://htmlpurifier.org/live/configdoc/plain.html">http://htmlpurifier.org
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeNewlines">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1702-1714" title="Go to source code">removeNewlines</a>( <span>string <var>$str</var></span>, <span>string <var>$replacement</var> = <span class="php-quote">' '</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1719-1731" title="Go to source code">removeNewlines</a>( <span>string <var>$str</var></span>, <span>string <var>$replacement</var> = <span class="php-quote">' '</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2541,7 +2545,7 @@ href="http://htmlpurifier.org/live/configdoc/plain.html">http://htmlpurifier.org
 
 		<td class="name"><div>
 		<a class="anchor" href="#_string">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1716-1748" title="Go to source code">string</a>( <span>string|integer|array|object|boolean|float <var>$value</var></span>, <span>string|null <var>$sanitizer</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1733-1765" title="Go to source code">string</a>( <span>string|integer|array|object|boolean|float <var>$value</var></span>, <span>string|null <var>$sanitizer</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2591,7 +2595,7 @@ returning</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_date">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1750-1801" title="Go to source code">date</a>( <span>string|integer <var>$value</var></span>, <span>string|null <var>$format</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1767-1818" title="Go to source code">date</a>( <span>string|integer <var>$value</var></span>, <span>string|null <var>$format</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2658,7 +2662,7 @@ format. Null is returned when date is more than this. - <code>default</code>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_match">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1803-1818" title="Go to source code">match</a>( <span>string <var>$value</var></span>, <span>string <var>$regex</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1820-1835" title="Go to source code">match</a>( <span>string <var>$value</var></span>, <span>string <var>$regex</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2707,7 +2711,7 @@ format. Null is returned when date is more than this. - <code>default</code>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_int">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1825-1854" title="Go to source code">int</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1842-1871" title="Go to source code">int</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2760,7 +2764,7 @@ an integer)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_intUnsigned">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1856-1874" title="Go to source code">intUnsigned</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1873-1891" title="Go to source code">intUnsigned</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2814,7 +2818,7 @@ an integer)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_intSigned">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1876-1892" title="Go to source code">intSigned</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1893-1909" title="Go to source code">intSigned</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2864,7 +2868,7 @@ use when provided value is null or blank string (default=0)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_float">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1894-1983" title="Go to source code">float</a>( <span>float|string|integer <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1911-2000" title="Go to source code">float</a>( <span>float|string|integer <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2917,7 +2921,7 @@ allowed value, excluding blankValue (default=null)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____array">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1990-2061" title="Go to source code">___array</a>( <span>array|string|mixed <var>$value</var></span>, <span>string <var>$sanitizer</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2007-2078" title="Go to source code">___array</a>( <span>array|string|mixed <var>$value</var></span>, <span>string <var>$sanitizer</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2981,7 +2985,7 @@ delimiter will be used, default=array("|", ",") - <code>enclosure</code>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_intArray">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2063-2087" title="Go to source code">intArray</a>( <span>array|string|mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2080-2104" title="Go to source code">intArray</a>( <span>array|string|mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3036,7 +3040,7 @@ value in array.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minArray">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2089-2143" title="Go to source code">minArray</a>( <span>array <var>$data</var></span>, <span>boolean|array <var>$allowEmpty</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$convert</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2106-2160" title="Go to source code">minArray</a>( <span>array <var>$data</var></span>, <span>boolean|array <var>$allowEmpty</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$convert</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3091,7 +3095,7 @@ string to integer (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_option">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2145-2159" title="Go to source code">option</a>( <span>string|integer <var>$value</var></span>, <span>array <var>$allowedValues</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2162-2176" title="Go to source code">option</a>( <span>string|integer <var>$value</var></span>, <span>array <var>$allowedValues</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3137,7 +3141,7 @@ string to integer (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_options">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2161-2178" title="Go to source code">options</a>( <span>array <var>$values</var></span>, <span>array <var>$allowedValues</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2178-2195" title="Go to source code">options</a>( <span>array <var>$values</var></span>, <span>array <var>$allowedValues</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3183,7 +3187,7 @@ string to integer (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bool">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2185-2216" title="Go to source code">bool</a>( <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2202-2233" title="Go to source code">bool</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3239,7 +3243,7 @@ string to integer (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_testAll">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2218-2268" title="Go to source code">testAll</a>( <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2235-2285" title="Go to source code">testAll</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3287,7 +3291,7 @@ resulting value</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_validateFile">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2275-2329" title="Go to source code">validateFile</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2292-2346" title="Go to source code">validateFile</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3343,7 +3347,7 @@ file type.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2332-2334" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2349-2351" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
