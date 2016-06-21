@@ -8,7 +8,7 @@
 	<title>File modules/LanguageSupport/LanguageSupport.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2653761427"></script>
+	<script type="text/javascript" src="elementlist.js?1842774327"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.21 devns</span>
+			<span>Overview version 3.0.22 devns</span>
 		</a>
 
 
@@ -311,6 +311,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate12.html">SystemUpdate12</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -766,7 +767,7 @@
 </span><span id="281" class="l"><a class="l" href="#281">281: </a>        
 </span><span id="282" class="l"><a class="l" href="#282">282: </a>        <span class="php-var">$user</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'user'</span>);
 </span><span id="283" class="l"><a class="l" href="#283">283: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$user</span>-&gt;isSuperuser()) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>; 
-</span><span id="284" class="l"><a class="l" href="#284">284: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$inputfield</span>-&gt;useLanguages) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>; 
+</span><span id="284" class="l"><a class="l" href="#284">284: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$inputfield</span>-&gt;getSetting(<span class="php-quote">'useLanguages'</span>)) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>; 
 </span><span id="285" class="l"><a class="l" href="#285">285: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;LanguageSupportFields) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>; 
 </span><span id="286" class="l"><a class="l" href="#286">286: </a>        <span class="php-var">$permissions</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)-&gt;getPageEditPermissions();
 </span><span id="287" class="l"><a class="l" href="#287">287: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$permissions</span>[<span class="php-quote">'none'</span>])) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
@@ -820,7 +821,7 @@
 </span><span id="335" class="l"><a class="l" href="#335">335: </a>
 </span><span id="336" class="l"><a class="l" href="#336">336: </a>        <span class="php-comment">/** @var Inputfield $inputfield */</span>
 </span><span id="337" class="l"><a class="l" href="#337">337: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">0</span>);
-</span><span id="338" class="l"><a class="l" href="#338">338: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$inputfield</span>-&gt;useLanguages) <span class="php-keyword1">return</span>;
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$inputfield</span>-&gt;getSetting(<span class="php-quote">'useLanguages'</span>)) <span class="php-keyword1">return</span>;
 </span><span id="339" class="l"><a class="l" href="#339">339: </a>        <span class="php-var">$renderValueMode</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">1</span>);
 </span><span id="340" class="l"><a class="l" href="#340">340: </a>
 </span><span id="341" class="l"><a class="l" href="#341">341: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;editableInputfield(<span class="php-var">$inputfield</span>) &amp;&amp; !<span class="php-var">$renderValueMode</span>) {
@@ -897,7 +898,7 @@
 </span><span id="412" class="l"><a class="l" href="#412">412: </a>            }
 </span><span id="413" class="l"><a class="l" href="#413">413: </a>        }
 </span><span id="414" class="l"><a class="l" href="#414">414: </a>
-</span><span id="415" class="l"><a class="l" href="#415">415: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$inputfield</span>-&gt;useLanguages || <span class="php-var">$numLanguages</span> &lt; <span class="php-num">2</span>) <span class="php-keyword1">return</span>;
+</span><span id="415" class="l"><a class="l" href="#415">415: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$inputfield</span>-&gt;getSetting(<span class="php-quote">'useLanguages'</span>) || <span class="php-var">$numLanguages</span> &lt; <span class="php-num">2</span>) <span class="php-keyword1">return</span>;
 </span><span id="416" class="l"><a class="l" href="#416">416: </a>
 </span><span id="417" class="l"><a class="l" href="#417">417: </a>        <span class="php-comment">// keep originals to restore later (including $name, which we already got above)</span>
 </span><span id="418" class="l"><a class="l" href="#418">418: </a>        <span class="php-var">$id</span> = <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'id'</span>);
@@ -956,7 +957,7 @@
 </span><span id="471" class="l"><a class="l" href="#471">471: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$event</span>-&gt;object;
 </span><span id="472" class="l"><a class="l" href="#472">472: </a>        <span class="php-var">$replace</span> = <span class="php-keyword1">false</span>; 
 </span><span id="473" class="l"><a class="l" href="#473">473: </a>        
-</span><span id="474" class="l"><a class="l" href="#474">474: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$inputfield</span>-&gt;useLanguages) {
+</span><span id="474" class="l"><a class="l" href="#474">474: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$inputfield</span>-&gt;getSetting(<span class="php-quote">'useLanguages'</span>)) {
 </span><span id="475" class="l"><a class="l" href="#475">475: </a>            <span class="php-comment">// native multi-language field</span>
 </span><span id="476" class="l"><a class="l" href="#476">476: </a>            <span class="php-var">$this</span>-&gt;hookInputfieldBeforeRender(<span class="php-var">$event</span>); <span class="php-comment">// ensures default language values are populated</span>
 </span><span id="477" class="l"><a class="l" href="#477">477: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)-&gt;editable(<span class="php-var">$this</span>-&gt;defaultLanguagePage)) <span class="php-var">$replace</span> = <span class="php-keyword1">true</span>; 
@@ -988,7 +989,7 @@
 </span><span id="503" class="l"><a class="l" href="#503">503: </a>
 </span><span id="504" class="l"><a class="l" href="#504">504: </a>        <span class="php-comment">/** @var Inputfield $inputfield */</span>
 </span><span id="505" class="l"><a class="l" href="#505">505: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$event</span>-&gt;object;
-</span><span id="506" class="l"><a class="l" href="#506">506: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$inputfield</span>-&gt;useLanguages) <span class="php-keyword1">return</span>;
+</span><span id="506" class="l"><a class="l" href="#506">506: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$inputfield</span>-&gt;getSetting(<span class="php-quote">'useLanguages'</span>)) <span class="php-keyword1">return</span>;
 </span><span id="507" class="l"><a class="l" href="#507">507: </a>        <span class="php-var">$post</span> = <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>];
 </span><span id="508" class="l"><a class="l" href="#508">508: </a>        <span class="php-var">$languages</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>);  
 </span><span id="509" class="l"><a class="l" href="#509">509: </a>        

@@ -8,7 +8,7 @@
 	<title>File modules/Session/SessionHandlerDB/SessionHandlerDB.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2653761427"></script>
+	<script type="text/javascript" src="elementlist.js?1842774327"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.21 devns</span>
+			<span>Overview version 3.0.22 devns</span>
 		</a>
 
 
@@ -311,6 +311,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate12.html">SystemUpdate12</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -500,7 +501,7 @@
 </span><span id="15" class="l"><a class="l" href="#15"> 15: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getModuleInfo" href="#_getModuleInfo">getModuleInfo</a>() {
 </span><span id="16" class="l"><a class="l" href="#16"> 16: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>(
 </span><span id="17" class="l"><a class="l" href="#17"> 17: </a>            <span class="php-quote">'title'</span> =&gt; <span class="php-quote">'Session Handler Database'</span>, 
-</span><span id="18" class="l"><a class="l" href="#18"> 18: </a>            <span class="php-quote">'version'</span> =&gt; <span class="php-num">3</span>, 
+</span><span id="18" class="l"><a class="l" href="#18"> 18: </a>            <span class="php-quote">'version'</span> =&gt; <span class="php-num">4</span>, 
 </span><span id="19" class="l"><a class="l" href="#19"> 19: </a>            <span class="php-quote">'summary'</span> =&gt; <span class="php-quote">&quot;Installing this module makes ProcessWire store sessions in the database rather than the file system. Note that this module will log you out after install or uninstall.&quot;</span>,
 </span><span id="20" class="l"><a class="l" href="#20"> 20: </a>            <span class="php-quote">'installs'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'ProcessSessionDB'</span>)
 </span><span id="21" class="l"><a class="l" href="#21"> 21: </a>            );
@@ -600,7 +601,7 @@
 </span><span id="115" class="l"><a class="l" href="#115">115: </a>        }
 </span><span id="116" class="l"><a class="l" href="#116">116: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$ua</span>) {
 </span><span id="117" class="l"><a class="l" href="#117">117: </a>            <span class="php-var">$s</span> .= <span class="php-quote">&quot;, ua=:ua&quot;</span>;
-</span><span id="118" class="l"><a class="l" href="#118">118: </a>            <span class="php-var">$bonds</span>[<span class="php-quote">':ua'</span>] = <span class="php-var">$ua</span>;
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>            <span class="php-var">$binds</span>[<span class="php-quote">':ua'</span>] = <span class="php-var">$ua</span>;
 </span><span id="119" class="l"><a class="l" href="#119">119: </a>        }
 </span><span id="120" class="l"><a class="l" href="#120">120: </a>        
 </span><span id="121" class="l"><a class="l" href="#121">121: </a>        <span class="php-var">$sql</span> = <span class="php-quote">&quot;INSERT INTO </span><span class="php-var">$table</span><span class="php-quote"> SET id=:id, </span><span class="php-var">$s</span><span class="php-quote"> ON DUPLICATE KEY UPDATE </span><span class="php-var">$s</span><span class="php-quote">, ts=NOW()&quot;</span>;

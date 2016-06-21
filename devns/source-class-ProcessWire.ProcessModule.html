@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessModule/ProcessModule.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2653761427"></script>
+	<script type="text/javascript" src="elementlist.js?1842774327"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.21 devns</span>
+			<span>Overview version 3.0.22 devns</span>
 		</a>
 
 
@@ -311,6 +311,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate12.html">SystemUpdate12</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -1703,7 +1704,7 @@
 </span><span id="1218" class="l"><a class="l" href="#1218">1218: </a>            <span class="php-comment">// we populate the language values from module config data so module doesn't have to do this</span>
 </span><span id="1219" class="l"><a class="l" href="#1219">1219: </a>            <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;modules-&gt;getModuleConfigData(<span class="php-var">$moduleName</span>);
 </span><span id="1220" class="l"><a class="l" href="#1220">1220: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$fields</span>-&gt;getAll() <span class="php-keyword1">as</span> <span class="php-var">$field</span>) {
-</span><span id="1221" class="l"><a class="l" href="#1221">1221: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;useLanguages) <span class="php-keyword1">continue</span>;
+</span><span id="1221" class="l"><a class="l" href="#1221">1221: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;getSetting(<span class="php-quote">'useLanguages'</span>)) <span class="php-keyword1">continue</span>;
 </span><span id="1222" class="l"><a class="l" href="#1222">1222: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$languages</span> <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
 </span><span id="1223" class="l"><a class="l" href="#1223">1223: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$language</span>-&gt;isDefault()) <span class="php-keyword1">continue</span>;
 </span><span id="1224" class="l"><a class="l" href="#1224">1224: </a>                    <span class="php-var">$name</span> = <span class="php-var">$field</span>-&gt;name . <span class="php-quote">'__'</span> . <span class="php-var">$language</span>-&gt;id;
@@ -1729,7 +1730,7 @@
 </span><span id="1244" class="l"><a class="l" href="#1244">1244: </a>                    <span class="php-var">$data</span>[<span class="php-var">$name</span>] = <span class="php-var">$value</span>;
 </span><span id="1245" class="l"><a class="l" href="#1245">1245: </a>                    <span class="php-comment">// multi-language, if Inputfield specifies useLanguages==true</span>
 </span><span id="1246" class="l"><a class="l" href="#1246">1246: </a>                    <span class="php-comment">// convert value1234 inputfield values to module config data in name__1234 format</span>
-</span><span id="1247" class="l"><a class="l" href="#1247">1247: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$languages</span> &amp;&amp; <span class="php-var">$field</span>-&gt;useLanguages) {
+</span><span id="1247" class="l"><a class="l" href="#1247">1247: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$languages</span> &amp;&amp; <span class="php-var">$field</span>-&gt;getSetting(<span class="php-quote">'useLanguages'</span>)) {
 </span><span id="1248" class="l"><a class="l" href="#1248">1248: </a>                        <span class="php-var">$_name</span> = <span class="php-var">$name</span>;
 </span><span id="1249" class="l"><a class="l" href="#1249">1249: </a>                        <span class="php-keyword1">foreach</span>(<span class="php-var">$languages</span> <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
 </span><span id="1250" class="l"><a class="l" href="#1250">1250: </a>                            <span class="php-keyword1">if</span>(<span class="php-var">$language</span>-&gt;isDefault()) <span class="php-keyword1">continue</span>;
