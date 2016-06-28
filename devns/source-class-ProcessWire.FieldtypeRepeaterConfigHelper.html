@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeRepeater/config.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1842774327"></script>
+	<script type="text/javascript" src="elementlist.js?3698419678"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.22 devns</span>
+			<span>Overview version 3.0.23 devns</span>
 		</a>
 
 
@@ -661,137 +661,153 @@
 </span><span id="175" class="l"><a class="l" href="#175">175: </a>            <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = FieldtypeRepeater::loadingAll;
 </span><span id="176" class="l"><a class="l" href="#176">176: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$value</span>);
 </span><span id="177" class="l"><a class="l" href="#177">177: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="178" class="l"><a class="l" href="#178">178: </a>
-</span><span id="179" class="l"><a class="l" href="#179">179: </a>        <span class="php-var">$numOldReady</span> = <span class="php-var">$this</span>-&gt;field-&gt;type-&gt;countOldReadyPages(<span class="php-var">$field</span>);
-</span><span id="180" class="l"><a class="l" href="#180">180: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numOldReady</span>) {
-</span><span id="181" class="l"><a class="l" href="#181">181: </a>            <span class="php-comment">// @todo: should we just do this automatically?</span>
-</span><span id="182" class="l"><a class="l" href="#182">182: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldCheckbox'</span>);
-</span><span id="183" class="l"><a class="l" href="#183">183: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_deleteOldReady'</span>);
-</span><span id="184" class="l"><a class="l" href="#184">184: </a>            <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Delete old/unused repeater items?'</span>);
-</span><span id="185" class="l"><a class="l" href="#185">185: </a>            <span class="php-var">$f</span>-&gt;description = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'There are **%d** old/unused repeater item(s), check this box to delete them.'</span>), <span class="php-var">$numOldReady</span>);
-</span><span id="186" class="l"><a class="l" href="#186">186: </a>            <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'A repeater item is considered old if it is at least 3 days and and not yet been populated or published.'</span>);
-</span><span id="187" class="l"><a class="l" href="#187">187: </a>            <span class="php-var">$f</span>-&gt;icon = <span class="php-quote">'warning'</span>;
-</span><span id="188" class="l"><a class="l" href="#188">188: </a>            <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="189" class="l"><a class="l" href="#189">189: </a>        }
-</span><span id="190" class="l"><a class="l" href="#190">190: </a>
-</span><span id="191" class="l"><a class="l" href="#191">191: </a>        <span class="php-comment">// -------------------------------------------------</span>
-</span><span id="192" class="l"><a class="l" href="#192">192: </a>
-</span><span id="193" class="l"><a class="l" href="#193">193: </a>        <span class="php-comment">/*
-</span></span><span id="194" class="l"><a class="l" href="#194">194: </a><span class="php-comment">        $f = $this-&gt;wire('modules')-&gt;get('InputfieldCheckbox');
-</span></span><span id="195" class="l"><a class="l" href="#195">195: </a><span class="php-comment">        $f-&gt;attr('name', 'noAjaxAdd');
-</span></span><span id="196" class="l"><a class="l" href="#196">196: </a><span class="php-comment">        $f-&gt;label = $this-&gt;_('Disable AJAX for adding items in editor');
-</span></span><span id="197" class="l"><a class="l" href="#197">197: </a><span class="php-comment">        $f-&gt;description = $this-&gt;_('By default, clicking the &quot;Add Item&quot; link will load the new repeater item via AJAX, which provides a more seamless experience. But some fields may not be compatible with this. Check this box to disable AJAX for adding items.'); // Description for noAjaxAdd option
-</span></span><span id="198" class="l"><a class="l" href="#198">198: </a><span class="php-comment">        $f-&gt;icon = 'frown-o';
-</span></span><span id="199" class="l"><a class="l" href="#199">199: </a><span class="php-comment">        $f-&gt;columnWidth = 50;
-</span></span><span id="200" class="l"><a class="l" href="#200">200: </a><span class="php-comment">        if($field-&gt;get('noAjaxAdd')) {
-</span></span><span id="201" class="l"><a class="l" href="#201">201: </a><span class="php-comment">            $f-&gt;attr('checked', 'checked');
-</span></span><span id="202" class="l"><a class="l" href="#202">202: </a><span class="php-comment">        } else {
-</span></span><span id="203" class="l"><a class="l" href="#203">203: </a><span class="php-comment">            $f-&gt;collapsed = Inputfield::collapsedYes;
-</span></span><span id="204" class="l"><a class="l" href="#204">204: </a><span class="php-comment">        }
-</span></span><span id="205" class="l"><a class="l" href="#205">205: </a><span class="php-comment">        $inputfields-&gt;add($f);
-</span></span><span id="206" class="l"><a class="l" href="#206">206: </a><span class="php-comment">        */</span>
-</span><span id="207" class="l"><a class="l" href="#207">207: </a>
-</span><span id="208" class="l"><a class="l" href="#208">208: </a>        <span class="php-comment">// -------------------------------------------------</span>
-</span><span id="209" class="l"><a class="l" href="#209">209: </a>
-</span><span id="210" class="l"><a class="l" href="#210">210: </a>        <span class="php-comment">/*
-</span></span><span id="211" class="l"><a class="l" href="#211">211: </a><span class="php-comment">        if(is_null($field-&gt;repeaterReadyItems)) $field-&gt;repeaterReadyItems = self::defaultRepeaterReadyItems;
-</span></span><span id="212" class="l"><a class="l" href="#212">212: </a><span class="php-comment">        if($field-&gt;noAjaxAdd) $field-&gt;repeaterReadyItems = 0;
-</span></span><span id="213" class="l"><a class="l" href="#213">213: </a><span class="php-comment">        $input = $this-&gt;wire('modules')-&gt;get('InputfieldInteger');
-</span></span><span id="214" class="l"><a class="l" href="#214">214: </a><span class="php-comment">        $input-&gt;attr('id+name', 'repeaterReadyItems');
-</span></span><span id="215" class="l"><a class="l" href="#215">215: </a><span class="php-comment">        $input-&gt;attr('value', (int) abs($field-&gt;repeaterReadyItems));
-</span></span><span id="216" class="l"><a class="l" href="#216">216: </a><span class="php-comment">        $input-&gt;label = $this-&gt;_('Ready-To-Edit New Repeater Items') . &quot; ({$field-&gt;repeaterReadyItems})&quot;;
-</span></span><span id="217" class="l"><a class="l" href="#217">217: </a><span class="php-comment">        $input-&gt;description = $this-&gt;_('The number of ready-to-edit (unpublished) items per page to keep rendered for use as new items.');
-</span></span><span id="218" class="l"><a class="l" href="#218">218: </a><span class="php-comment">        $input-&gt;notes =
-</span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">            $this-&gt;_('If set to 0, new items will only be created as needed. This is the most efficient setting.') . &quot; \n&quot; .
-</span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">            $this-&gt;_('If set to 1 or above, that many new items will be ready to edit as soon as you click &quot;add item&quot;. This makes for faster additions.');
-</span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">        $input-&gt;collapsed = Inputfield::collapsedYes;
-</span></span><span id="222" class="l"><a class="l" href="#222">222: </a><span class="php-comment">        $input-&gt;showIf = 'noAjaxAdd=1';
-</span></span><span id="223" class="l"><a class="l" href="#223">223: </a><span class="php-comment">        $inputfields-&gt;add($input);
-</span></span><span id="224" class="l"><a class="l" href="#224">224: </a><span class="php-comment">        */</span>
+</span><span id="178" class="l"><a class="l" href="#178">178: </a>        
+</span><span id="179" class="l"><a class="l" href="#179">179: </a>        <span class="php-comment">// -------------------------------------------------</span>
+</span><span id="180" class="l"><a class="l" href="#180">180: </a>        
+</span><span id="181" class="l"><a class="l" href="#181">181: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldCheckbox'</span>);
+</span><span id="182" class="l"><a class="l" href="#182">182: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'rememberOpen'</span>);
+</span><span id="183" class="l"><a class="l" href="#183">183: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Remember which repeater items are open?'</span>);
+</span><span id="184" class="l"><a class="l" href="#184">184: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'When checked, opened repeater items remain open after saving or reloading from the page editor (unless the user closes them).'</span>);
+</span><span id="185" class="l"><a class="l" href="#185">185: </a>        <span class="php-var">$f</span>-&gt;icon = <span class="php-quote">'lightbulb-o'</span>;
+</span><span id="186" class="l"><a class="l" href="#186">186: </a>        <span class="php-keyword1">if</span>((int) <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'rememberOpen'</span>)) {
+</span><span id="187" class="l"><a class="l" href="#187">187: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'checked'</span>, <span class="php-quote">'checked'</span>);
+</span><span id="188" class="l"><a class="l" href="#188">188: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="189" class="l"><a class="l" href="#189">189: </a>            <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedYes;   
+</span><span id="190" class="l"><a class="l" href="#190">190: </a>        }
+</span><span id="191" class="l"><a class="l" href="#191">191: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="192" class="l"><a class="l" href="#192">192: </a>        
+</span><span id="193" class="l"><a class="l" href="#193">193: </a>        <span class="php-comment">// -------------------------------------------------</span>
+</span><span id="194" class="l"><a class="l" href="#194">194: </a>
+</span><span id="195" class="l"><a class="l" href="#195">195: </a>        <span class="php-var">$numOldReady</span> = <span class="php-var">$this</span>-&gt;field-&gt;type-&gt;countOldReadyPages(<span class="php-var">$field</span>);
+</span><span id="196" class="l"><a class="l" href="#196">196: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numOldReady</span>) {
+</span><span id="197" class="l"><a class="l" href="#197">197: </a>            <span class="php-comment">// @todo: should we just do this automatically?</span>
+</span><span id="198" class="l"><a class="l" href="#198">198: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldCheckbox'</span>);
+</span><span id="199" class="l"><a class="l" href="#199">199: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_deleteOldReady'</span>);
+</span><span id="200" class="l"><a class="l" href="#200">200: </a>            <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Delete old/unused repeater items?'</span>);
+</span><span id="201" class="l"><a class="l" href="#201">201: </a>            <span class="php-var">$f</span>-&gt;description = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'There are **%d** old/unused repeater item(s), check this box to delete them.'</span>), <span class="php-var">$numOldReady</span>);
+</span><span id="202" class="l"><a class="l" href="#202">202: </a>            <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'A repeater item is considered old if it is at least 3 days and and not yet been populated or published.'</span>);
+</span><span id="203" class="l"><a class="l" href="#203">203: </a>            <span class="php-var">$f</span>-&gt;icon = <span class="php-quote">'warning'</span>;
+</span><span id="204" class="l"><a class="l" href="#204">204: </a>            <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="205" class="l"><a class="l" href="#205">205: </a>        }
+</span><span id="206" class="l"><a class="l" href="#206">206: </a>
+</span><span id="207" class="l"><a class="l" href="#207">207: </a>        <span class="php-comment">// -------------------------------------------------</span>
+</span><span id="208" class="l"><a class="l" href="#208">208: </a>
+</span><span id="209" class="l"><a class="l" href="#209">209: </a>        <span class="php-comment">/*
+</span></span><span id="210" class="l"><a class="l" href="#210">210: </a><span class="php-comment">        $f = $this-&gt;wire('modules')-&gt;get('InputfieldCheckbox');
+</span></span><span id="211" class="l"><a class="l" href="#211">211: </a><span class="php-comment">        $f-&gt;attr('name', 'noAjaxAdd');
+</span></span><span id="212" class="l"><a class="l" href="#212">212: </a><span class="php-comment">        $f-&gt;label = $this-&gt;_('Disable AJAX for adding items in editor');
+</span></span><span id="213" class="l"><a class="l" href="#213">213: </a><span class="php-comment">        $f-&gt;description = $this-&gt;_('By default, clicking the &quot;Add Item&quot; link will load the new repeater item via AJAX, which provides a more seamless experience. But some fields may not be compatible with this. Check this box to disable AJAX for adding items.'); // Description for noAjaxAdd option
+</span></span><span id="214" class="l"><a class="l" href="#214">214: </a><span class="php-comment">        $f-&gt;icon = 'frown-o';
+</span></span><span id="215" class="l"><a class="l" href="#215">215: </a><span class="php-comment">        $f-&gt;columnWidth = 50;
+</span></span><span id="216" class="l"><a class="l" href="#216">216: </a><span class="php-comment">        if($field-&gt;get('noAjaxAdd')) {
+</span></span><span id="217" class="l"><a class="l" href="#217">217: </a><span class="php-comment">            $f-&gt;attr('checked', 'checked');
+</span></span><span id="218" class="l"><a class="l" href="#218">218: </a><span class="php-comment">        } else {
+</span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">            $f-&gt;collapsed = Inputfield::collapsedYes;
+</span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">        }
+</span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">        $inputfields-&gt;add($f);
+</span></span><span id="222" class="l"><a class="l" href="#222">222: </a><span class="php-comment">        */</span>
+</span><span id="223" class="l"><a class="l" href="#223">223: </a>
+</span><span id="224" class="l"><a class="l" href="#224">224: </a>        <span class="php-comment">// -------------------------------------------------</span>
 </span><span id="225" class="l"><a class="l" href="#225">225: </a>
-</span><span id="226" class="l"><a class="l" href="#226">226: </a>        <span class="php-comment">// -------------------------------------------------</span>
-</span><span id="227" class="l"><a class="l" href="#227">227: </a>
-</span><span id="228" class="l"><a class="l" href="#228">228: </a>
-</span><span id="229" class="l"><a class="l" href="#229">229: </a>        <span class="php-comment">/** TBA
-</span></span><span id="230" class="l"><a class="l" href="#230">230: </a><span class="php-comment">        if(is_null($field-&gt;repeaterMaxItems)) $field-&gt;repeaterMaxItems = self::defaultRepeaterMaxItems; 
-</span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">        $input = wire('modules')-&gt;get('InputfieldInteger'); 
-</span></span><span id="232" class="l"><a class="l" href="#232">232: </a><span class="php-comment">        $input-&gt;attr('id+name', 'repeaterMaxItems'); 
-</span></span><span id="233" class="l"><a class="l" href="#233">233: </a><span class="php-comment">        $input-&gt;attr('value', (int) abs($field-&gt;repeaterMaxItems)); 
-</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">        $input-&gt;label = $this-&gt;_('Max Repeater Items') . &quot; ({$field-&gt;repeaterMaxItems})&quot;;
-</span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">        $input-&gt;description = $this-&gt;_('The maximum number of repeater items allowed.');
-</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">        $input-&gt;notes = 
-</span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">        $this-&gt;_('If set to 0, there will be no maximum limit.') . &quot; \n&quot; . 
-</span></span><span id="238" class="l"><a class="l" href="#238">238: </a><span class="php-comment">        $this-&gt;_('If set to 1, this field will act as a single item [Page] rather than multiple items [PageArray].') . &quot; \n&quot; . 
-</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">        $this-&gt;_('Note that when outputFormatting is off, it will always behave as a PageArray regardless of the setting here.');
-</span></span><span id="240" class="l"><a class="l" href="#240">240: </a><span class="php-comment">        $input-&gt;collapsed = Inputfield::collapsedYes;
-</span></span><span id="241" class="l"><a class="l" href="#241">241: </a><span class="php-comment">        $inputfields-&gt;add($input); 
-</span></span><span id="242" class="l"><a class="l" href="#242">242: </a><span class="php-comment">         */</span>
+</span><span id="226" class="l"><a class="l" href="#226">226: </a>        <span class="php-comment">/*
+</span></span><span id="227" class="l"><a class="l" href="#227">227: </a><span class="php-comment">        if(is_null($field-&gt;repeaterReadyItems)) $field-&gt;repeaterReadyItems = self::defaultRepeaterReadyItems;
+</span></span><span id="228" class="l"><a class="l" href="#228">228: </a><span class="php-comment">        if($field-&gt;noAjaxAdd) $field-&gt;repeaterReadyItems = 0;
+</span></span><span id="229" class="l"><a class="l" href="#229">229: </a><span class="php-comment">        $input = $this-&gt;wire('modules')-&gt;get('InputfieldInteger');
+</span></span><span id="230" class="l"><a class="l" href="#230">230: </a><span class="php-comment">        $input-&gt;attr('id+name', 'repeaterReadyItems');
+</span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">        $input-&gt;attr('value', (int) abs($field-&gt;repeaterReadyItems));
+</span></span><span id="232" class="l"><a class="l" href="#232">232: </a><span class="php-comment">        $input-&gt;label = $this-&gt;_('Ready-To-Edit New Repeater Items') . &quot; ({$field-&gt;repeaterReadyItems})&quot;;
+</span></span><span id="233" class="l"><a class="l" href="#233">233: </a><span class="php-comment">        $input-&gt;description = $this-&gt;_('The number of ready-to-edit (unpublished) items per page to keep rendered for use as new items.');
+</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">        $input-&gt;notes =
+</span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">            $this-&gt;_('If set to 0, new items will only be created as needed. This is the most efficient setting.') . &quot; \n&quot; .
+</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">            $this-&gt;_('If set to 1 or above, that many new items will be ready to edit as soon as you click &quot;add item&quot;. This makes for faster additions.');
+</span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">        $input-&gt;collapsed = Inputfield::collapsedYes;
+</span></span><span id="238" class="l"><a class="l" href="#238">238: </a><span class="php-comment">        $input-&gt;showIf = 'noAjaxAdd=1';
+</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">        $inputfields-&gt;add($input);
+</span></span><span id="240" class="l"><a class="l" href="#240">240: </a><span class="php-comment">        */</span>
+</span><span id="241" class="l"><a class="l" href="#241">241: </a>
+</span><span id="242" class="l"><a class="l" href="#242">242: </a>        <span class="php-comment">// -------------------------------------------------</span>
 </span><span id="243" class="l"><a class="l" href="#243">243: </a>
-</span><span id="244" class="l"><a class="l" href="#244">244: </a>        <span class="php-comment">// -------------------------------------------------</span>
-</span><span id="245" class="l"><a class="l" href="#245">245: </a>
-</span><span id="246" class="l"><a class="l" href="#246">246: </a>        <span class="php-comment">/* TBA
-</span></span><span id="247" class="l"><a class="l" href="#247">247: </a><span class="php-comment">        $input = wire('modules')-&gt;get('InputfieldRadios'); 
-</span></span><span id="248" class="l"><a class="l" href="#248">248: </a><span class="php-comment">        $input-&gt;attr('id+name', 'repeaterDetached'); 
-</span></span><span id="249" class="l"><a class="l" href="#249">249: </a><span class="php-comment">        $input-&gt;addOption(0, 'Attached (recommended)'); 
-</span></span><span id="250" class="l"><a class="l" href="#250">250: </a><span class="php-comment">        $input-&gt;addOption(1, 'Detached'); 
-</span></span><span id="251" class="l"><a class="l" href="#251">251: </a><span class="php-comment">        $input-&gt;attr('value', $parent-&gt;is(Page::statusSystem) ? 0 : 1); 
-</span></span><span id="252" class="l"><a class="l" href="#252">252: </a><span class="php-comment">        $input-&gt;label = $this-&gt;_('Repeater Type'); 
-</span></span><span id="253" class="l"><a class="l" href="#253">253: </a><span class="php-comment">        $input-&gt;description = 
-</span></span><span id="254" class="l"><a class="l" href="#254">254: </a><span class="php-comment">            $this-&gt;_(&quot;When 'attached' the repeater will manage it's own template and parent page without you having to see or think about it.&quot;) . &quot; &quot; . 
-</span></span><span id="255" class="l"><a class="l" href="#255">255: </a><span class="php-comment">            $this-&gt;_(&quot;When 'detached' you may move and modify the repeater parent page and template as you see fit.&quot;); 
-</span></span><span id="256" class="l"><a class="l" href="#256">256: </a><span class="php-comment">        $input-&gt;notes = $this-&gt;_(&quot;Note that once detached, ProcessWire will not delete the parent or template when/if the field is deleted.&quot;); 
-</span></span><span id="257" class="l"><a class="l" href="#257">257: </a><span class="php-comment">        */</span>
-</span><span id="258" class="l"><a class="l" href="#258">258: </a>
-</span><span id="259" class="l"><a class="l" href="#259">259: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="260" class="l"><a class="l" href="#260">260: </a>    }
+</span><span id="244" class="l"><a class="l" href="#244">244: </a>
+</span><span id="245" class="l"><a class="l" href="#245">245: </a>        <span class="php-comment">/** TBA
+</span></span><span id="246" class="l"><a class="l" href="#246">246: </a><span class="php-comment">        if(is_null($field-&gt;repeaterMaxItems)) $field-&gt;repeaterMaxItems = self::defaultRepeaterMaxItems; 
+</span></span><span id="247" class="l"><a class="l" href="#247">247: </a><span class="php-comment">        $input = wire('modules')-&gt;get('InputfieldInteger'); 
+</span></span><span id="248" class="l"><a class="l" href="#248">248: </a><span class="php-comment">        $input-&gt;attr('id+name', 'repeaterMaxItems'); 
+</span></span><span id="249" class="l"><a class="l" href="#249">249: </a><span class="php-comment">        $input-&gt;attr('value', (int) abs($field-&gt;repeaterMaxItems)); 
+</span></span><span id="250" class="l"><a class="l" href="#250">250: </a><span class="php-comment">        $input-&gt;label = $this-&gt;_('Max Repeater Items') . &quot; ({$field-&gt;repeaterMaxItems})&quot;;
+</span></span><span id="251" class="l"><a class="l" href="#251">251: </a><span class="php-comment">        $input-&gt;description = $this-&gt;_('The maximum number of repeater items allowed.');
+</span></span><span id="252" class="l"><a class="l" href="#252">252: </a><span class="php-comment">        $input-&gt;notes = 
+</span></span><span id="253" class="l"><a class="l" href="#253">253: </a><span class="php-comment">        $this-&gt;_('If set to 0, there will be no maximum limit.') . &quot; \n&quot; . 
+</span></span><span id="254" class="l"><a class="l" href="#254">254: </a><span class="php-comment">        $this-&gt;_('If set to 1, this field will act as a single item [Page] rather than multiple items [PageArray].') . &quot; \n&quot; . 
+</span></span><span id="255" class="l"><a class="l" href="#255">255: </a><span class="php-comment">        $this-&gt;_('Note that when outputFormatting is off, it will always behave as a PageArray regardless of the setting here.');
+</span></span><span id="256" class="l"><a class="l" href="#256">256: </a><span class="php-comment">        $input-&gt;collapsed = Inputfield::collapsedYes;
+</span></span><span id="257" class="l"><a class="l" href="#257">257: </a><span class="php-comment">        $inputfields-&gt;add($input); 
+</span></span><span id="258" class="l"><a class="l" href="#258">258: </a><span class="php-comment">         */</span>
+</span><span id="259" class="l"><a class="l" href="#259">259: </a>
+</span><span id="260" class="l"><a class="l" href="#260">260: </a>        <span class="php-comment">// -------------------------------------------------</span>
 </span><span id="261" class="l"><a class="l" href="#261">261: </a>
-</span><span id="262" class="l"><a class="l" href="#262">262: </a>    <span class="php-comment">/**
-</span></span><span id="263" class="l"><a class="l" href="#263">263: </a><span class="php-comment">     * Helper to getConfigInputfields, handles adding and removing of repeater fields
-</span></span><span id="264" class="l"><a class="l" href="#264">264: </a><span class="php-comment">     *
-</span></span><span id="265" class="l"><a class="l" href="#265">265: </a><span class="php-comment">     * @param Template $template
-</span></span><span id="266" class="l"><a class="l" href="#266">266: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="267" class="l"><a class="l" href="#267">267: </a><span class="php-comment">     *
-</span></span><span id="268" class="l"><a class="l" href="#268">268: </a><span class="php-comment">     */</span>
-</span><span id="269" class="l"><a class="l" href="#269">269: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_saveConfigInputfields" href="#_saveConfigInputfields">saveConfigInputfields</a>(Template <span class="php-var">$template</span>) {
-</span><span id="270" class="l"><a class="l" href="#270">270: </a>
-</span><span id="271" class="l"><a class="l" href="#271">271: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;field;
-</span><span id="272" class="l"><a class="l" href="#272">272: </a>        <span class="php-var">$fieldgroup</span> = <span class="php-var">$template</span>-&gt;fieldgroup;
-</span><span id="273" class="l"><a class="l" href="#273">273: </a>        <span class="php-var">$ids</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;post-&gt;repeaterFields;
+</span><span id="262" class="l"><a class="l" href="#262">262: </a>        <span class="php-comment">/* TBA
+</span></span><span id="263" class="l"><a class="l" href="#263">263: </a><span class="php-comment">        $input = wire('modules')-&gt;get('InputfieldRadios'); 
+</span></span><span id="264" class="l"><a class="l" href="#264">264: </a><span class="php-comment">        $input-&gt;attr('id+name', 'repeaterDetached'); 
+</span></span><span id="265" class="l"><a class="l" href="#265">265: </a><span class="php-comment">        $input-&gt;addOption(0, 'Attached (recommended)'); 
+</span></span><span id="266" class="l"><a class="l" href="#266">266: </a><span class="php-comment">        $input-&gt;addOption(1, 'Detached'); 
+</span></span><span id="267" class="l"><a class="l" href="#267">267: </a><span class="php-comment">        $input-&gt;attr('value', $parent-&gt;is(Page::statusSystem) ? 0 : 1); 
+</span></span><span id="268" class="l"><a class="l" href="#268">268: </a><span class="php-comment">        $input-&gt;label = $this-&gt;_('Repeater Type'); 
+</span></span><span id="269" class="l"><a class="l" href="#269">269: </a><span class="php-comment">        $input-&gt;description = 
+</span></span><span id="270" class="l"><a class="l" href="#270">270: </a><span class="php-comment">            $this-&gt;_(&quot;When 'attached' the repeater will manage it's own template and parent page without you having to see or think about it.&quot;) . &quot; &quot; . 
+</span></span><span id="271" class="l"><a class="l" href="#271">271: </a><span class="php-comment">            $this-&gt;_(&quot;When 'detached' you may move and modify the repeater parent page and template as you see fit.&quot;); 
+</span></span><span id="272" class="l"><a class="l" href="#272">272: </a><span class="php-comment">        $input-&gt;notes = $this-&gt;_(&quot;Note that once detached, ProcessWire will not delete the parent or template when/if the field is deleted.&quot;); 
+</span></span><span id="273" class="l"><a class="l" href="#273">273: </a><span class="php-comment">        */</span>
 </span><span id="274" class="l"><a class="l" href="#274">274: </a>
-</span><span id="275" class="l"><a class="l" href="#275">275: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$ids</span> <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
-</span><span id="276" class="l"><a class="l" href="#276">276: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get((int) <span class="php-var">$id</span>)) <span class="php-keyword1">continue</span>;
-</span><span id="277" class="l"><a class="l" href="#277">277: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$fieldgroup</span>-&gt;has(<span class="php-var">$f</span>)) <span class="php-var">$this</span>-&gt;message(<span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Added Field &quot;%1$s&quot; to Repeater &quot;%2$s&quot;'</span>), <span class="php-var">$f</span>, <span class="php-var">$field</span>));
-</span><span id="278" class="l"><a class="l" href="#278">278: </a>            <span class="php-var">$fieldgroup</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="279" class="l"><a class="l" href="#279">279: </a>        }
-</span><span id="280" class="l"><a class="l" href="#280">280: </a>
-</span><span id="281" class="l"><a class="l" href="#281">281: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$fieldgroup</span> <span class="php-keyword1">as</span> <span class="php-var">$f</span>) {
-</span><span id="282" class="l"><a class="l" href="#282">282: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$f</span>-&gt;id, <span class="php-var">$ids</span>)) <span class="php-keyword1">continue</span>;
-</span><span id="283" class="l"><a class="l" href="#283">283: </a>            <span class="php-var">$fieldgroup</span>-&gt;remove(<span class="php-var">$f</span>);
-</span><span id="284" class="l"><a class="l" href="#284">284: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Removed Field &quot;%1$s&quot; from Repeater &quot;%2$s&quot;'</span>), <span class="php-var">$f</span>, <span class="php-var">$field</span>));
-</span><span id="285" class="l"><a class="l" href="#285">285: </a>        }
+</span><span id="275" class="l"><a class="l" href="#275">275: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="276" class="l"><a class="l" href="#276">276: </a>    }
+</span><span id="277" class="l"><a class="l" href="#277">277: </a>
+</span><span id="278" class="l"><a class="l" href="#278">278: </a>    <span class="php-comment">/**
+</span></span><span id="279" class="l"><a class="l" href="#279">279: </a><span class="php-comment">     * Helper to getConfigInputfields, handles adding and removing of repeater fields
+</span></span><span id="280" class="l"><a class="l" href="#280">280: </a><span class="php-comment">     *
+</span></span><span id="281" class="l"><a class="l" href="#281">281: </a><span class="php-comment">     * @param Template $template
+</span></span><span id="282" class="l"><a class="l" href="#282">282: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="283" class="l"><a class="l" href="#283">283: </a><span class="php-comment">     *
+</span></span><span id="284" class="l"><a class="l" href="#284">284: </a><span class="php-comment">     */</span>
+</span><span id="285" class="l"><a class="l" href="#285">285: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_saveConfigInputfields" href="#_saveConfigInputfields">saveConfigInputfields</a>(Template <span class="php-var">$template</span>) {
 </span><span id="286" class="l"><a class="l" href="#286">286: </a>
-</span><span id="287" class="l"><a class="l" href="#287">287: </a>        <span class="php-var">$fieldgroup</span>-&gt;save();
-</span><span id="288" class="l"><a class="l" href="#288">288: </a>
-</span><span id="289" class="l"><a class="l" href="#289">289: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;post(<span class="php-quote">'_deleteOldReady'</span>)) {
-</span><span id="290" class="l"><a class="l" href="#290">290: </a>            <span class="php-var">$cnt</span> = <span class="php-var">$this</span>-&gt;field-&gt;type-&gt;countOldReadyPages(<span class="php-var">$field</span>, <span class="php-keyword1">true</span>);
-</span><span id="291" class="l"><a class="l" href="#291">291: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Deleted %d old/unused repeater item(s)'</span>), <span class="php-var">$cnt</span>));
-</span><span id="292" class="l"><a class="l" href="#292">292: </a>        }
-</span><span id="293" class="l"><a class="l" href="#293">293: </a>
-</span><span id="294" class="l"><a class="l" href="#294">294: </a>        <span class="php-comment">/* TBA
-</span></span><span id="295" class="l"><a class="l" href="#295">295: </a><span class="php-comment">        $detached = (int) $input-&gt;post-&gt;repeaterDetached;
-</span></span><span id="296" class="l"><a class="l" href="#296">296: </a><span class="php-comment">        if($parent-&gt;is(Page::statusSystem) &amp;&amp; $detached) {
-</span></span><span id="297" class="l"><a class="l" href="#297">297: </a><span class="php-comment">            $parent-&gt;addStatus(Page::statusSystemOverride); 
-</span></span><span id="298" class="l"><a class="l" href="#298">298: </a><span class="php-comment">            $parent-&gt;removeStatus(Page::statusSystem);
-</span></span><span id="299" class="l"><a class="l" href="#299">299: </a><span class="php-comment">            $parent-&gt;removeStatus(Page::statusSystemOverride);
-</span></span><span id="300" class="l"><a class="l" href="#300">300: </a><span class="php-comment">            $parent-&gt;save();
-</span></span><span id="301" class="l"><a class="l" href="#301">301: </a><span class="php-comment">            $this-&gt;message(sprintf($this-&gt;_('Parent page %s is now detached and may be moved or modified.'), $parent-&gt;path)); 
-</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">            $template-&gt;flags = $template-&gt;flags | Template::flagSystemOverride; 
-</span></span><span id="303" class="l"><a class="l" href="#303">303: </a><span class="php-comment">        }   
-</span></span><span id="304" class="l"><a class="l" href="#304">304: </a><span class="php-comment">        */</span>
-</span><span id="305" class="l"><a class="l" href="#305">305: </a>    }
-</span><span id="306" class="l"><a class="l" href="#306">306: </a>
-</span><span id="307" class="l"><a class="l" href="#307">307: </a>
-</span><span id="308" class="l"><a class="l" href="#308">308: </a></span>}</code></pre>
+</span><span id="287" class="l"><a class="l" href="#287">287: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;field;
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>        <span class="php-var">$fieldgroup</span> = <span class="php-var">$template</span>-&gt;fieldgroup;
+</span><span id="289" class="l"><a class="l" href="#289">289: </a>        <span class="php-var">$ids</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;post-&gt;repeaterFields;
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$ids</span> <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
+</span><span id="292" class="l"><a class="l" href="#292">292: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get((int) <span class="php-var">$id</span>)) <span class="php-keyword1">continue</span>;
+</span><span id="293" class="l"><a class="l" href="#293">293: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$fieldgroup</span>-&gt;has(<span class="php-var">$f</span>)) <span class="php-var">$this</span>-&gt;message(<span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Added Field &quot;%1$s&quot; to Repeater &quot;%2$s&quot;'</span>), <span class="php-var">$f</span>, <span class="php-var">$field</span>));
+</span><span id="294" class="l"><a class="l" href="#294">294: </a>            <span class="php-var">$fieldgroup</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="295" class="l"><a class="l" href="#295">295: </a>        }
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>
+</span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$fieldgroup</span> <span class="php-keyword1">as</span> <span class="php-var">$f</span>) {
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$f</span>-&gt;id, <span class="php-var">$ids</span>)) <span class="php-keyword1">continue</span>;
+</span><span id="299" class="l"><a class="l" href="#299">299: </a>            <span class="php-var">$fieldgroup</span>-&gt;remove(<span class="php-var">$f</span>);
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Removed Field &quot;%1$s&quot; from Repeater &quot;%2$s&quot;'</span>), <span class="php-var">$f</span>, <span class="php-var">$field</span>));
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>        }
+</span><span id="302" class="l"><a class="l" href="#302">302: </a>
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>        <span class="php-var">$fieldgroup</span>-&gt;save();
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>
+</span><span id="305" class="l"><a class="l" href="#305">305: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;post(<span class="php-quote">'_deleteOldReady'</span>)) {
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>            <span class="php-var">$cnt</span> = <span class="php-var">$this</span>-&gt;field-&gt;type-&gt;countOldReadyPages(<span class="php-var">$field</span>, <span class="php-keyword1">true</span>);
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Deleted %d old/unused repeater item(s)'</span>), <span class="php-var">$cnt</span>));
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>        }
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>        <span class="php-comment">/* TBA
+</span></span><span id="311" class="l"><a class="l" href="#311">311: </a><span class="php-comment">        $detached = (int) $input-&gt;post-&gt;repeaterDetached;
+</span></span><span id="312" class="l"><a class="l" href="#312">312: </a><span class="php-comment">        if($parent-&gt;is(Page::statusSystem) &amp;&amp; $detached) {
+</span></span><span id="313" class="l"><a class="l" href="#313">313: </a><span class="php-comment">            $parent-&gt;addStatus(Page::statusSystemOverride); 
+</span></span><span id="314" class="l"><a class="l" href="#314">314: </a><span class="php-comment">            $parent-&gt;removeStatus(Page::statusSystem);
+</span></span><span id="315" class="l"><a class="l" href="#315">315: </a><span class="php-comment">            $parent-&gt;removeStatus(Page::statusSystemOverride);
+</span></span><span id="316" class="l"><a class="l" href="#316">316: </a><span class="php-comment">            $parent-&gt;save();
+</span></span><span id="317" class="l"><a class="l" href="#317">317: </a><span class="php-comment">            $this-&gt;message(sprintf($this-&gt;_('Parent page %s is now detached and may be moved or modified.'), $parent-&gt;path)); 
+</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-comment">            $template-&gt;flags = $template-&gt;flags | Template::flagSystemOverride; 
+</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">        }   
+</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">        */</span>
+</span><span id="321" class="l"><a class="l" href="#321">321: </a>    }
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>
+</span><span id="324" class="l"><a class="l" href="#324">324: </a></span>}</code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
