@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeFieldsetOpen.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?708171061"></script>
+	<script type="text/javascript" src="elementlist.js?1509548147"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.25 devns</span>
+			<span>Overview version 3.0.27 devns</span>
 		</a>
 
 
@@ -652,10 +652,38 @@
 </span><span id="166" class="l"><a class="l" href="#166">166: </a>        <span class="php-var">$template</span>-&gt;fieldgroup-&gt;remove(<span class="php-var">$closer</span>); 
 </span><span id="167" class="l"><a class="l" href="#167">167: </a>        <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Also removed '</span><span class="php-var">$closer</span><span class="php-quote">', which accompanies '</span><span class="php-var">$field</span><span class="php-quote">'&quot;</span>); 
 </span><span id="168" class="l"><a class="l" href="#168">168: </a>    }
-</span><span id="169" class="l"><a class="l" href="#169">169: </a>}
-</span><span id="170" class="l"><a class="l" href="#170">170: </a>
-</span><span id="171" class="l"><a class="l" href="#171">171: </a>
-</span><span id="172" class="l"><a class="l" href="#172">172: </a></span></code></pre>
+</span><span id="169" class="l"><a class="l" href="#169">169: </a>
+</span><span id="170" class="l"><a class="l" href="#170">170: </a>    <span class="php-comment">/**
+</span></span><span id="171" class="l"><a class="l" href="#171">171: </a><span class="php-comment">     * Hook called by Fields::save() after a field using this type has been renamed
+</span></span><span id="172" class="l"><a class="l" href="#172">172: </a><span class="php-comment">     *
+</span></span><span id="173" class="l"><a class="l" href="#173">173: </a><span class="php-comment">     * Note that PW already takes care of renaming the field_[name] table.
+</span></span><span id="174" class="l"><a class="l" href="#174">174: </a><span class="php-comment">     * Most Fieldtypes don't need to do anything here, but this exists just in case.
+</span></span><span id="175" class="l"><a class="l" href="#175">175: </a><span class="php-comment">     *
+</span></span><span id="176" class="l"><a class="l" href="#176">176: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="177" class="l"><a class="l" href="#177">177: </a><span class="php-comment">     *
+</span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="179" class="l"><a class="l" href="#179">179: </a><span class="php-comment">     * @param string $prevName Previous name (current name can be found in $field-&gt;name)
+</span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     *
+</span></span><span id="181" class="l"><a class="l" href="#181">181: </a><span class="php-comment">     */</span>
+</span><span id="182" class="l"><a class="l" href="#182">182: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____renamedField" href="#____renamedField">___renamedField</a>(Field <span class="php-var">$field</span>, <span class="php-var">$prevName</span>) {
+</span><span id="183" class="l"><a class="l" href="#183">183: </a>        <span class="php-comment">// avoid ending up in infinite loop, since FieldtypeFieldsetClose extends this</span>
+</span><span id="184" class="l"><a class="l" href="#184">184: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span> <span class="php-keyword1">instanceof</span> FieldtypeFieldsetClose) <span class="php-keyword1">return</span>;
+</span><span id="185" class="l"><a class="l" href="#185">185: </a>        <span class="php-comment">// rename the _END field to match this one</span>
+</span><span id="186" class="l"><a class="l" href="#186">186: </a>        <span class="php-var">$fields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>);
+</span><span id="187" class="l"><a class="l" href="#187">187: </a>        <span class="php-var">$endField</span> = <span class="php-var">$fields</span>-&gt;get(<span class="php-var">$field</span>-&gt;name . self::fieldsetCloseIdentifier);
+</span><span id="188" class="l"><a class="l" href="#188">188: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$endField</span>) {
+</span><span id="189" class="l"><a class="l" href="#189">189: </a>            <span class="php-var">$endField</span> = <span class="php-var">$fields</span>-&gt;get(<span class="php-var">$prevName</span> . self::fieldsetCloseIdentifier);
+</span><span id="190" class="l"><a class="l" href="#190">190: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$endField</span>) {
+</span><span id="191" class="l"><a class="l" href="#191">191: </a>                <span class="php-var">$endField</span>-&gt;name = <span class="php-var">$field</span>-&gt;name . self::fieldsetCloseIdentifier;
+</span><span id="192" class="l"><a class="l" href="#192">192: </a>                <span class="php-var">$fields</span>-&gt;save(<span class="php-var">$endField</span>);
+</span><span id="193" class="l"><a class="l" href="#193">193: </a>            }
+</span><span id="194" class="l"><a class="l" href="#194">194: </a>        }
+</span><span id="195" class="l"><a class="l" href="#195">195: </a>        parent::___renamedField(<span class="php-var">$field</span>, <span class="php-var">$prevName</span>); 
+</span><span id="196" class="l"><a class="l" href="#196">196: </a>    }
+</span><span id="197" class="l"><a class="l" href="#197">197: </a>}
+</span><span id="198" class="l"><a class="l" href="#198">198: </a>
+</span><span id="199" class="l"><a class="l" href="#199">199: </a>
+</span><span id="200" class="l"><a class="l" href="#200">200: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

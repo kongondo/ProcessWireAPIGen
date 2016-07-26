@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeComments/FieldtypeComments.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?708171061"></script>
+	<script type="text/javascript" src="elementlist.js?1509548147"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.25 devns</span>
+			<span>Overview version 3.0.27 devns</span>
 		</a>
 
 
@@ -1932,9 +1932,38 @@
 </span><span id="1446" class="l"><a class="l" href="#1446">1446: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
 </span><span id="1447" class="l"><a class="l" href="#1447">1447: </a>    }
 </span><span id="1448" class="l"><a class="l" href="#1448">1448: </a>
-</span><span id="1449" class="l"><a class="l" href="#1449">1449: </a>}
-</span><span id="1450" class="l"><a class="l" href="#1450">1450: </a>
-</span><span id="1451" class="l"><a class="l" href="#1451">1451: </a></span></code></pre>
+</span><span id="1449" class="l"><a class="l" href="#1449">1449: </a>    <span class="php-comment">/**
+</span></span><span id="1450" class="l"><a class="l" href="#1450">1450: </a><span class="php-comment">     * Hook called by Fields::save() after a field using this type has been renamed
+</span></span><span id="1451" class="l"><a class="l" href="#1451">1451: </a><span class="php-comment">     *
+</span></span><span id="1452" class="l"><a class="l" href="#1452">1452: </a><span class="php-comment">     * Note that PW already takes care of renaming the field_[name] table.
+</span></span><span id="1453" class="l"><a class="l" href="#1453">1453: </a><span class="php-comment">     * Most Fieldtypes don't need to do anything here, but this exists just in case.
+</span></span><span id="1454" class="l"><a class="l" href="#1454">1454: </a><span class="php-comment">     *
+</span></span><span id="1455" class="l"><a class="l" href="#1455">1455: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="1456" class="l"><a class="l" href="#1456">1456: </a><span class="php-comment">     *
+</span></span><span id="1457" class="l"><a class="l" href="#1457">1457: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1458" class="l"><a class="l" href="#1458">1458: </a><span class="php-comment">     * @param string $prevName Previous name (current name can be found in $field-&gt;name)
+</span></span><span id="1459" class="l"><a class="l" href="#1459">1459: </a><span class="php-comment">     *
+</span></span><span id="1460" class="l"><a class="l" href="#1460">1460: </a><span class="php-comment">     */</span>
+</span><span id="1461" class="l"><a class="l" href="#1461">1461: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____renamedField" href="#____renamedField">___renamedField</a>(Field <span class="php-var">$field</span>, <span class="php-var">$prevName</span>) {
+</span><span id="1462" class="l"><a class="l" href="#1462">1462: </a>    
+</span><span id="1463" class="l"><a class="l" href="#1463">1463: </a>        <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
+</span><span id="1464" class="l"><a class="l" href="#1464">1464: </a>        <span class="php-var">$table</span> = <span class="php-var">$database</span>-&gt;escapeTable(Field::tablePrefix . <span class="php-var">$field</span>-&gt;name . <span class="php-quote">'_votes'</span>);
+</span><span id="1465" class="l"><a class="l" href="#1465">1465: </a>        <span class="php-var">$prevTable</span> = <span class="php-var">$database</span>-&gt;escapeTable(Field::tablePrefix . <span class="php-var">$prevName</span> . <span class="php-quote">'_votes'</span>);
+</span><span id="1466" class="l"><a class="l" href="#1466">1466: </a>        
+</span><span id="1467" class="l"><a class="l" href="#1467">1467: </a>        <span class="php-keyword1">try</span> {
+</span><span id="1468" class="l"><a class="l" href="#1468">1468: </a>            <span class="php-comment">// double rename ensures MySQL doesn't skip case changes</span>
+</span><span id="1469" class="l"><a class="l" href="#1469">1469: </a>            <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;RENAME TABLE `</span><span class="php-var">$prevTable</span><span class="php-quote">` TO `tmp_</span><span class="php-var">$table</span><span class="php-quote">`&quot;</span>); <span class="php-comment">// QA</span>
+</span><span id="1470" class="l"><a class="l" href="#1470">1470: </a>            <span class="php-var">$database</span>-&gt;<span class="php-keyword2">exec</span>(<span class="php-quote">&quot;RENAME TABLE `tmp_</span><span class="php-var">$table</span><span class="php-quote">` TO `</span><span class="php-var">$table</span><span class="php-quote">`&quot;</span>); <span class="php-comment">// QA</span>
+</span><span id="1471" class="l"><a class="l" href="#1471">1471: </a>        } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
+</span><span id="1472" class="l"><a class="l" href="#1472">1472: </a>            <span class="php-comment">// ok to ignore, as table may not exist</span>
+</span><span id="1473" class="l"><a class="l" href="#1473">1473: </a>        }
+</span><span id="1474" class="l"><a class="l" href="#1474">1474: </a>        
+</span><span id="1475" class="l"><a class="l" href="#1475">1475: </a>        parent::___renamedField(<span class="php-var">$field</span>, <span class="php-var">$prevName</span>);
+</span><span id="1476" class="l"><a class="l" href="#1476">1476: </a>    }
+</span><span id="1477" class="l"><a class="l" href="#1477">1477: </a>
+</span><span id="1478" class="l"><a class="l" href="#1478">1478: </a>}
+</span><span id="1479" class="l"><a class="l" href="#1479">1479: </a>
+</span><span id="1480" class="l"><a class="l" href="#1480">1480: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

@@ -8,7 +8,7 @@
 	<title>File modules/PagePermissions.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?708171061"></script>
+	<script type="text/javascript" src="elementlist.js?1509548147"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.25 devns</span>
+			<span>Overview version 3.0.27 devns</span>
 		</a>
 
 
@@ -1144,261 +1144,263 @@
 </span><span id="658" class="l"><a class="l" href="#658">658: </a>        }
 </span><span id="659" class="l"><a class="l" href="#659">659: </a>
 </span><span id="660" class="l"><a class="l" href="#660">660: </a>        <span class="php-comment">// check if a $page is provided as the first argument for additional access checking</span>
-</span><span id="661" class="l"><a class="l" href="#661">661: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$addable</span> &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>]) &amp;&amp; <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>] <span class="php-keyword1">instanceof</span> Page) {
-</span><span id="662" class="l"><a class="l" href="#662">662: </a>            <span class="php-var">$addPage</span> = <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>]; 
-</span><span id="663" class="l"><a class="l" href="#663">663: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$page</span>-&gt;template-&gt;childTemplates) &amp;&amp; !<span class="php-keyword2">in_array</span>(<span class="php-var">$addPage</span>-&gt;template-&gt;id, <span class="php-var">$page</span>-&gt;template-&gt;childTemplates)) {
-</span><span id="664" class="l"><a class="l" href="#664">664: </a>                <span class="php-var">$addable</span> = <span class="php-keyword1">false</span>;
-</span><span id="665" class="l"><a class="l" href="#665">665: </a>            }   
-</span><span id="666" class="l"><a class="l" href="#666">666: </a>        }
-</span><span id="667" class="l"><a class="l" href="#667">667: </a>    
-</span><span id="668" class="l"><a class="l" href="#668">668: </a>        <span class="php-comment">// check additional permissions if in multi-language environment</span>
-</span><span id="669" class="l"><a class="l" href="#669">669: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$addable</span> &amp;&amp; !<span class="php-var">$_ADDABLE</span> &amp;&amp; <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)) {
-</span><span id="670" class="l"><a class="l" href="#670">670: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;hasPageEditLangDefault(<span class="php-var">$user</span>, <span class="php-var">$page</span>) || !<span class="php-var">$this</span>-&gt;hasPageEditLangNone(<span class="php-var">$user</span>, <span class="php-var">$page</span>)) {
-</span><span id="671" class="l"><a class="l" href="#671">671: </a>                <span class="php-comment">// if user can't edit default language, or can't edit non-multi-language fields, then deny add access</span>
-</span><span id="672" class="l"><a class="l" href="#672">672: </a>                <span class="php-var">$addable</span> = <span class="php-keyword1">false</span>;
-</span><span id="673" class="l"><a class="l" href="#673">673: </a>            }
-</span><span id="674" class="l"><a class="l" href="#674">674: </a>        }
-</span><span id="675" class="l"><a class="l" href="#675">675: </a>
-</span><span id="676" class="l"><a class="l" href="#676">676: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-var">$addable</span>;
-</span><span id="677" class="l"><a class="l" href="#677">677: </a>    }
-</span><span id="678" class="l"><a class="l" href="#678">678: </a>
-</span><span id="679" class="l"><a class="l" href="#679">679: </a>    <span class="php-comment">/**
-</span></span><span id="680" class="l"><a class="l" href="#680">680: </a><span class="php-comment">     * Checks that a parent is addable within the context of it's template (i.e. has page-create for the template)
-</span></span><span id="681" class="l"><a class="l" href="#681">681: </a><span class="php-comment">     *
-</span></span><span id="682" class="l"><a class="l" href="#682">682: </a><span class="php-comment">     * When this function is called, it has already been determined that the user has page-add permission.
-</span></span><span id="683" class="l"><a class="l" href="#683">683: </a><span class="php-comment">     * So this is just narrowing down to make sure they have access on a template. 
-</span></span><span id="684" class="l"><a class="l" href="#684">684: </a><span class="php-comment">     * 
-</span></span><span id="685" class="l"><a class="l" href="#685">685: </a><span class="php-comment">     * @param Page $page
-</span></span><span id="686" class="l"><a class="l" href="#686">686: </a><span class="php-comment">     * @param User $user
-</span></span><span id="687" class="l"><a class="l" href="#687">687: </a><span class="php-comment">     * @return bool
-</span></span><span id="688" class="l"><a class="l" href="#688">688: </a><span class="php-comment">     *
-</span></span><span id="689" class="l"><a class="l" href="#689">689: </a><span class="php-comment">     */</span>
-</span><span id="690" class="l"><a class="l" href="#690">690: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_addableTemplate" href="#_addableTemplate">addableTemplate</a>(Page <span class="php-var">$page</span>, User <span class="php-var">$user</span>) {
-</span><span id="691" class="l"><a class="l" href="#691">691: </a>
-</span><span id="692" class="l"><a class="l" href="#692">692: </a>        <span class="php-var">$has</span> = <span class="php-keyword1">false</span>; 
+</span><span id="661" class="l"><a class="l" href="#661">661: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$addable</span>) {
+</span><span id="662" class="l"><a class="l" href="#662">662: </a>            <span class="php-var">$addPage</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">0</span>);
+</span><span id="663" class="l"><a class="l" href="#663">663: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$addPage</span> &amp;&amp; <span class="php-var">$addPage</span> <span class="php-keyword1">instanceof</span> Page &amp;&amp; <span class="php-var">$addPage</span>-&gt;id) {
+</span><span id="664" class="l"><a class="l" href="#664">664: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$page</span>-&gt;template-&gt;childTemplates) &amp;&amp; !<span class="php-keyword2">in_array</span>(<span class="php-var">$addPage</span>-&gt;template-&gt;id, <span class="php-var">$page</span>-&gt;template-&gt;childTemplates)) {
+</span><span id="665" class="l"><a class="l" href="#665">665: </a>                    <span class="php-var">$addable</span> = <span class="php-keyword1">false</span>;
+</span><span id="666" class="l"><a class="l" href="#666">666: </a>                }
+</span><span id="667" class="l"><a class="l" href="#667">667: </a>            }
+</span><span id="668" class="l"><a class="l" href="#668">668: </a>        }
+</span><span id="669" class="l"><a class="l" href="#669">669: </a>    
+</span><span id="670" class="l"><a class="l" href="#670">670: </a>        <span class="php-comment">// check additional permissions if in multi-language environment</span>
+</span><span id="671" class="l"><a class="l" href="#671">671: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$addable</span> &amp;&amp; !<span class="php-var">$_ADDABLE</span> &amp;&amp; <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)) {
+</span><span id="672" class="l"><a class="l" href="#672">672: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;hasPageEditLangDefault(<span class="php-var">$user</span>, <span class="php-var">$page</span>) || !<span class="php-var">$this</span>-&gt;hasPageEditLangNone(<span class="php-var">$user</span>, <span class="php-var">$page</span>)) {
+</span><span id="673" class="l"><a class="l" href="#673">673: </a>                <span class="php-comment">// if user can't edit default language, or can't edit non-multi-language fields, then deny add access</span>
+</span><span id="674" class="l"><a class="l" href="#674">674: </a>                <span class="php-var">$addable</span> = <span class="php-keyword1">false</span>;
+</span><span id="675" class="l"><a class="l" href="#675">675: </a>            }
+</span><span id="676" class="l"><a class="l" href="#676">676: </a>        }
+</span><span id="677" class="l"><a class="l" href="#677">677: </a>
+</span><span id="678" class="l"><a class="l" href="#678">678: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-var">$addable</span>;
+</span><span id="679" class="l"><a class="l" href="#679">679: </a>    }
+</span><span id="680" class="l"><a class="l" href="#680">680: </a>
+</span><span id="681" class="l"><a class="l" href="#681">681: </a>    <span class="php-comment">/**
+</span></span><span id="682" class="l"><a class="l" href="#682">682: </a><span class="php-comment">     * Checks that a parent is addable within the context of it's template (i.e. has page-create for the template)
+</span></span><span id="683" class="l"><a class="l" href="#683">683: </a><span class="php-comment">     *
+</span></span><span id="684" class="l"><a class="l" href="#684">684: </a><span class="php-comment">     * When this function is called, it has already been determined that the user has page-add permission.
+</span></span><span id="685" class="l"><a class="l" href="#685">685: </a><span class="php-comment">     * So this is just narrowing down to make sure they have access on a template. 
+</span></span><span id="686" class="l"><a class="l" href="#686">686: </a><span class="php-comment">     * 
+</span></span><span id="687" class="l"><a class="l" href="#687">687: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="688" class="l"><a class="l" href="#688">688: </a><span class="php-comment">     * @param User $user
+</span></span><span id="689" class="l"><a class="l" href="#689">689: </a><span class="php-comment">     * @return bool
+</span></span><span id="690" class="l"><a class="l" href="#690">690: </a><span class="php-comment">     *
+</span></span><span id="691" class="l"><a class="l" href="#691">691: </a><span class="php-comment">     */</span>
+</span><span id="692" class="l"><a class="l" href="#692">692: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_addableTemplate" href="#_addableTemplate">addableTemplate</a>(Page <span class="php-var">$page</span>, User <span class="php-var">$user</span>) {
 </span><span id="693" class="l"><a class="l" href="#693">693: </a>
-</span><span id="694" class="l"><a class="l" href="#694">694: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$page</span>-&gt;template-&gt;childTemplates)) {
+</span><span id="694" class="l"><a class="l" href="#694">694: </a>        <span class="php-var">$has</span> = <span class="php-keyword1">false</span>; 
 </span><span id="695" class="l"><a class="l" href="#695">695: </a>
-</span><span id="696" class="l"><a class="l" href="#696">696: </a>            <span class="php-comment">// page's template defines specific templates for children</span>
-</span><span id="697" class="l"><a class="l" href="#697">697: </a>            <span class="php-comment">// see if the user has access to one of them </span>
-</span><span id="698" class="l"><a class="l" href="#698">698: </a>
-</span><span id="699" class="l"><a class="l" href="#699">699: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;template-&gt;childTemplates <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
-</span><span id="700" class="l"><a class="l" href="#700">700: </a>                <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get(<span class="php-var">$id</span>);
-</span><span id="701" class="l"><a class="l" href="#701">701: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$template</span>-&gt;useRoles) <span class="php-var">$template</span> = <span class="php-var">$page</span>-&gt;getAccessTemplate(<span class="php-quote">'edit'</span>);
-</span><span id="702" class="l"><a class="l" href="#702">702: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$template</span> &amp;&amp; <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-create'</span>, <span class="php-var">$template</span>)) <span class="php-var">$has</span> = <span class="php-keyword1">true</span>;           
-</span><span id="703" class="l"><a class="l" href="#703">703: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$has</span>) <span class="php-keyword1">break</span>;
-</span><span id="704" class="l"><a class="l" href="#704">704: </a>            }
-</span><span id="705" class="l"><a class="l" href="#705">705: </a>            
-</span><span id="706" class="l"><a class="l" href="#706">706: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$page</span>-&gt;id, <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;usersPageIDs) &amp;&amp; <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'user-admin'</span>)) {
-</span><span id="707" class="l"><a class="l" href="#707">707: </a>            <span class="php-comment">// user-admin permission implies create access to the 'user' template</span>
-</span><span id="708" class="l"><a class="l" href="#708">708: </a>            <span class="php-var">$has</span> = <span class="php-keyword1">true</span>; 
-</span><span id="709" class="l"><a class="l" href="#709">709: </a>
-</span><span id="710" class="l"><a class="l" href="#710">710: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="711" class="l"><a class="l" href="#711">711: </a>            <span class="php-comment">// page's template does not specify templates for children</span>
-</span><span id="712" class="l"><a class="l" href="#712">712: </a>            <span class="php-comment">// so check to see if they have edit access to ANY template that can be used</span>
-</span><span id="713" class="l"><a class="l" href="#713">713: </a>
-</span><span id="714" class="l"><a class="l" href="#714">714: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>) <span class="php-keyword1">as</span> <span class="php-var">$template</span>) { 
-</span><span id="715" class="l"><a class="l" href="#715">715: </a>                <span class="php-comment">// if($template-&gt;noParents) continue; </span>
-</span><span id="716" class="l"><a class="l" href="#716">716: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$template</span>-&gt;parentTemplates &amp;&amp; !<span class="php-keyword2">in_array</span>(<span class="php-var">$page</span>-&gt;template-&gt;id, <span class="php-var">$template</span>-&gt;parentTemplates)) <span class="php-keyword1">continue</span>; 
-</span><span id="717" class="l"><a class="l" href="#717">717: </a>                <span class="php-comment">// if($template-&gt;flags &amp; Template::flagSystem) continue;</span>
-</span><span id="718" class="l"><a class="l" href="#718">718: </a>                <span class="php-comment">//$has = $user-&gt;hasPermission('page-edit', $template); </span>
-</span><span id="719" class="l"><a class="l" href="#719">719: </a>                <span class="php-var">$has</span> = <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-create'</span>, <span class="php-var">$template</span>); 
-</span><span id="720" class="l"><a class="l" href="#720">720: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$has</span>) <span class="php-keyword1">break</span>;
-</span><span id="721" class="l"><a class="l" href="#721">721: </a>            }
-</span><span id="722" class="l"><a class="l" href="#722">722: </a>        }
-</span><span id="723" class="l"><a class="l" href="#723">723: </a>
-</span><span id="724" class="l"><a class="l" href="#724">724: </a>        <span class="php-keyword1">return</span> <span class="php-var">$has</span>; 
-</span><span id="725" class="l"><a class="l" href="#725">725: </a>    }
-</span><span id="726" class="l"><a class="l" href="#726">726: </a>
-</span><span id="727" class="l"><a class="l" href="#727">727: </a>    <span class="php-comment">/**
-</span></span><span id="728" class="l"><a class="l" href="#728">728: </a><span class="php-comment">     * Is the given page moveable (i.e. change parent)?
-</span></span><span id="729" class="l"><a class="l" href="#729">729: </a><span class="php-comment">     *
-</span></span><span id="730" class="l"><a class="l" href="#730">730: </a><span class="php-comment">     * Without arguments, it just checks that the user is allowed to move the page (not where they are allowed to)
-</span></span><span id="731" class="l"><a class="l" href="#731">731: </a><span class="php-comment">     * Optionally specify a $parent page as the first argument to check if they are allowed to move to that parent.
-</span></span><span id="732" class="l"><a class="l" href="#732">732: </a><span class="php-comment">     * 
-</span></span><span id="733" class="l"><a class="l" href="#733">733: </a><span class="php-comment">     * @param HookEvent $event
-</span></span><span id="734" class="l"><a class="l" href="#734">734: </a><span class="php-comment">     *
-</span></span><span id="735" class="l"><a class="l" href="#735">735: </a><span class="php-comment">     */</span>
-</span><span id="736" class="l"><a class="l" href="#736">736: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_moveable" href="#_moveable">moveable</a>(<span class="php-var">$event</span>) {
-</span><span id="737" class="l"><a class="l" href="#737">737: </a>        <span class="php-var">$page</span> = <span class="php-var">$event</span>-&gt;object; 
-</span><span id="738" class="l"><a class="l" href="#738">738: </a>        <span class="php-var">$moveable</span> = <span class="php-var">$page</span>-&gt;editable(<span class="php-quote">'parent'</span>);
-</span><span id="739" class="l"><a class="l" href="#739">739: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$moveable</span> &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$event</span>-&gt;arguments) &amp;&amp; <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>] <span class="php-keyword1">instanceof</span> Page) {
-</span><span id="740" class="l"><a class="l" href="#740">740: </a>            <span class="php-comment">/** @var Page $parent */</span>
-</span><span id="741" class="l"><a class="l" href="#741">741: </a>            <span class="php-var">$parent</span> = <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>];
-</span><span id="742" class="l"><a class="l" href="#742">742: </a>            <span class="php-var">$moveable</span> = <span class="php-var">$parent</span>-&gt;addable(<span class="php-var">$page</span>);
-</span><span id="743" class="l"><a class="l" href="#743">743: </a>        }
-</span><span id="744" class="l"><a class="l" href="#744">744: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id == <span class="php-num">1</span>) <span class="php-var">$moveable</span> = <span class="php-keyword1">false</span>; 
-</span><span id="745" class="l"><a class="l" href="#745">745: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-var">$moveable</span>;
-</span><span id="746" class="l"><a class="l" href="#746">746: </a>    }
-</span><span id="747" class="l"><a class="l" href="#747">747: </a>
-</span><span id="748" class="l"><a class="l" href="#748">748: </a>    <span class="php-comment">/**
-</span></span><span id="749" class="l"><a class="l" href="#749">749: </a><span class="php-comment">     * Is the given page sortable by the current user?
-</span></span><span id="750" class="l"><a class="l" href="#750">750: </a><span class="php-comment">     * 
-</span></span><span id="751" class="l"><a class="l" href="#751">751: </a><span class="php-comment">     * @param HookEvent $event
-</span></span><span id="752" class="l"><a class="l" href="#752">752: </a><span class="php-comment">     *
-</span></span><span id="753" class="l"><a class="l" href="#753">753: </a><span class="php-comment">     */</span>
-</span><span id="754" class="l"><a class="l" href="#754">754: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sortable" href="#_sortable">sortable</a>(<span class="php-var">$event</span>) {
-</span><span id="755" class="l"><a class="l" href="#755">755: </a>        <span class="php-var">$page</span> = <span class="php-var">$event</span>-&gt;object; 
-</span><span id="756" class="l"><a class="l" href="#756">756: </a>        <span class="php-var">$sortable</span> = <span class="php-keyword1">false</span>; 
-</span><span id="757" class="l"><a class="l" href="#757">757: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id &gt; <span class="php-num">1</span> &amp;&amp; <span class="php-var">$page</span>-&gt;editable() &amp;&amp; <span class="php-var">$this</span>-&gt;user-&gt;hasPermission(<span class="php-quote">'page-sort'</span>, <span class="php-var">$page</span>-&gt;parent)) <span class="php-var">$sortable</span> = <span class="php-keyword1">true</span>; 
-</span><span id="758" class="l"><a class="l" href="#758">758: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-var">$sortable</span>;
-</span><span id="759" class="l"><a class="l" href="#759">759: </a>    }
-</span><span id="760" class="l"><a class="l" href="#760">760: </a>
-</span><span id="761" class="l"><a class="l" href="#761">761: </a>    <span class="php-comment">/**
-</span></span><span id="762" class="l"><a class="l" href="#762">762: </a><span class="php-comment">     * Is the page publishable by the current user?
-</span></span><span id="763" class="l"><a class="l" href="#763">763: </a><span class="php-comment">     *
-</span></span><span id="764" class="l"><a class="l" href="#764">764: </a><span class="php-comment">     * A field name may optionally be specified as the first argument, in which case the field on that page will also be checked for access. 
-</span></span><span id="765" class="l"><a class="l" href="#765">765: </a><span class="php-comment">     * 
-</span></span><span id="766" class="l"><a class="l" href="#766">766: </a><span class="php-comment">     * @param HookEvent $event
-</span></span><span id="767" class="l"><a class="l" href="#767">767: </a><span class="php-comment">     *
-</span></span><span id="768" class="l"><a class="l" href="#768">768: </a><span class="php-comment">     */</span>
-</span><span id="769" class="l"><a class="l" href="#769">769: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_publishable" href="#_publishable">publishable</a>(<span class="php-var">$event</span>) {
-</span><span id="770" class="l"><a class="l" href="#770">770: </a>
-</span><span id="771" class="l"><a class="l" href="#771">771: </a>        <span class="php-var">$user</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'user'</span>);
-</span><span id="772" class="l"><a class="l" href="#772">772: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-keyword1">true</span>;
-</span><span id="773" class="l"><a class="l" href="#773">773: </a>
-</span><span id="774" class="l"><a class="l" href="#774">774: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$user</span>-&gt;isSuperuser()) <span class="php-keyword1">return</span>;
+</span><span id="696" class="l"><a class="l" href="#696">696: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$page</span>-&gt;template-&gt;childTemplates)) {
+</span><span id="697" class="l"><a class="l" href="#697">697: </a>
+</span><span id="698" class="l"><a class="l" href="#698">698: </a>            <span class="php-comment">// page's template defines specific templates for children</span>
+</span><span id="699" class="l"><a class="l" href="#699">699: </a>            <span class="php-comment">// see if the user has access to one of them </span>
+</span><span id="700" class="l"><a class="l" href="#700">700: </a>
+</span><span id="701" class="l"><a class="l" href="#701">701: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;template-&gt;childTemplates <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
+</span><span id="702" class="l"><a class="l" href="#702">702: </a>                <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get(<span class="php-var">$id</span>);
+</span><span id="703" class="l"><a class="l" href="#703">703: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$template</span>-&gt;useRoles) <span class="php-var">$template</span> = <span class="php-var">$page</span>-&gt;getAccessTemplate(<span class="php-quote">'edit'</span>);
+</span><span id="704" class="l"><a class="l" href="#704">704: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$template</span> &amp;&amp; <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-create'</span>, <span class="php-var">$template</span>)) <span class="php-var">$has</span> = <span class="php-keyword1">true</span>;           
+</span><span id="705" class="l"><a class="l" href="#705">705: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$has</span>) <span class="php-keyword1">break</span>;
+</span><span id="706" class="l"><a class="l" href="#706">706: </a>            }
+</span><span id="707" class="l"><a class="l" href="#707">707: </a>            
+</span><span id="708" class="l"><a class="l" href="#708">708: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$page</span>-&gt;id, <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;usersPageIDs) &amp;&amp; <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'user-admin'</span>)) {
+</span><span id="709" class="l"><a class="l" href="#709">709: </a>            <span class="php-comment">// user-admin permission implies create access to the 'user' template</span>
+</span><span id="710" class="l"><a class="l" href="#710">710: </a>            <span class="php-var">$has</span> = <span class="php-keyword1">true</span>; 
+</span><span id="711" class="l"><a class="l" href="#711">711: </a>
+</span><span id="712" class="l"><a class="l" href="#712">712: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="713" class="l"><a class="l" href="#713">713: </a>            <span class="php-comment">// page's template does not specify templates for children</span>
+</span><span id="714" class="l"><a class="l" href="#714">714: </a>            <span class="php-comment">// so check to see if they have edit access to ANY template that can be used</span>
+</span><span id="715" class="l"><a class="l" href="#715">715: </a>
+</span><span id="716" class="l"><a class="l" href="#716">716: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>) <span class="php-keyword1">as</span> <span class="php-var">$template</span>) { 
+</span><span id="717" class="l"><a class="l" href="#717">717: </a>                <span class="php-comment">// if($template-&gt;noParents) continue; </span>
+</span><span id="718" class="l"><a class="l" href="#718">718: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$template</span>-&gt;parentTemplates &amp;&amp; !<span class="php-keyword2">in_array</span>(<span class="php-var">$page</span>-&gt;template-&gt;id, <span class="php-var">$template</span>-&gt;parentTemplates)) <span class="php-keyword1">continue</span>; 
+</span><span id="719" class="l"><a class="l" href="#719">719: </a>                <span class="php-comment">// if($template-&gt;flags &amp; Template::flagSystem) continue;</span>
+</span><span id="720" class="l"><a class="l" href="#720">720: </a>                <span class="php-comment">//$has = $user-&gt;hasPermission('page-edit', $template); </span>
+</span><span id="721" class="l"><a class="l" href="#721">721: </a>                <span class="php-var">$has</span> = <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-create'</span>, <span class="php-var">$template</span>); 
+</span><span id="722" class="l"><a class="l" href="#722">722: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$has</span>) <span class="php-keyword1">break</span>;
+</span><span id="723" class="l"><a class="l" href="#723">723: </a>            }
+</span><span id="724" class="l"><a class="l" href="#724">724: </a>        }
+</span><span id="725" class="l"><a class="l" href="#725">725: </a>
+</span><span id="726" class="l"><a class="l" href="#726">726: </a>        <span class="php-keyword1">return</span> <span class="php-var">$has</span>; 
+</span><span id="727" class="l"><a class="l" href="#727">727: </a>    }
+</span><span id="728" class="l"><a class="l" href="#728">728: </a>
+</span><span id="729" class="l"><a class="l" href="#729">729: </a>    <span class="php-comment">/**
+</span></span><span id="730" class="l"><a class="l" href="#730">730: </a><span class="php-comment">     * Is the given page moveable (i.e. change parent)?
+</span></span><span id="731" class="l"><a class="l" href="#731">731: </a><span class="php-comment">     *
+</span></span><span id="732" class="l"><a class="l" href="#732">732: </a><span class="php-comment">     * Without arguments, it just checks that the user is allowed to move the page (not where they are allowed to)
+</span></span><span id="733" class="l"><a class="l" href="#733">733: </a><span class="php-comment">     * Optionally specify a $parent page as the first argument to check if they are allowed to move to that parent.
+</span></span><span id="734" class="l"><a class="l" href="#734">734: </a><span class="php-comment">     * 
+</span></span><span id="735" class="l"><a class="l" href="#735">735: </a><span class="php-comment">     * @param HookEvent $event
+</span></span><span id="736" class="l"><a class="l" href="#736">736: </a><span class="php-comment">     *
+</span></span><span id="737" class="l"><a class="l" href="#737">737: </a><span class="php-comment">     */</span>
+</span><span id="738" class="l"><a class="l" href="#738">738: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_moveable" href="#_moveable">moveable</a>(<span class="php-var">$event</span>) {
+</span><span id="739" class="l"><a class="l" href="#739">739: </a>        <span class="php-var">$page</span> = <span class="php-var">$event</span>-&gt;object; 
+</span><span id="740" class="l"><a class="l" href="#740">740: </a>        <span class="php-var">$moveable</span> = <span class="php-var">$page</span>-&gt;editable(<span class="php-quote">'parent'</span>);
+</span><span id="741" class="l"><a class="l" href="#741">741: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$moveable</span> &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$event</span>-&gt;arguments) &amp;&amp; <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>] <span class="php-keyword1">instanceof</span> Page) {
+</span><span id="742" class="l"><a class="l" href="#742">742: </a>            <span class="php-comment">/** @var Page $parent */</span>
+</span><span id="743" class="l"><a class="l" href="#743">743: </a>            <span class="php-var">$parent</span> = <span class="php-var">$event</span>-&gt;arguments[<span class="php-num">0</span>];
+</span><span id="744" class="l"><a class="l" href="#744">744: </a>            <span class="php-var">$moveable</span> = <span class="php-var">$parent</span>-&gt;addable(<span class="php-var">$page</span>);
+</span><span id="745" class="l"><a class="l" href="#745">745: </a>        }
+</span><span id="746" class="l"><a class="l" href="#746">746: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id == <span class="php-num">1</span>) <span class="php-var">$moveable</span> = <span class="php-keyword1">false</span>; 
+</span><span id="747" class="l"><a class="l" href="#747">747: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-var">$moveable</span>;
+</span><span id="748" class="l"><a class="l" href="#748">748: </a>    }
+</span><span id="749" class="l"><a class="l" href="#749">749: </a>
+</span><span id="750" class="l"><a class="l" href="#750">750: </a>    <span class="php-comment">/**
+</span></span><span id="751" class="l"><a class="l" href="#751">751: </a><span class="php-comment">     * Is the given page sortable by the current user?
+</span></span><span id="752" class="l"><a class="l" href="#752">752: </a><span class="php-comment">     * 
+</span></span><span id="753" class="l"><a class="l" href="#753">753: </a><span class="php-comment">     * @param HookEvent $event
+</span></span><span id="754" class="l"><a class="l" href="#754">754: </a><span class="php-comment">     *
+</span></span><span id="755" class="l"><a class="l" href="#755">755: </a><span class="php-comment">     */</span>
+</span><span id="756" class="l"><a class="l" href="#756">756: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sortable" href="#_sortable">sortable</a>(<span class="php-var">$event</span>) {
+</span><span id="757" class="l"><a class="l" href="#757">757: </a>        <span class="php-var">$page</span> = <span class="php-var">$event</span>-&gt;object; 
+</span><span id="758" class="l"><a class="l" href="#758">758: </a>        <span class="php-var">$sortable</span> = <span class="php-keyword1">false</span>; 
+</span><span id="759" class="l"><a class="l" href="#759">759: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id &gt; <span class="php-num">1</span> &amp;&amp; <span class="php-var">$page</span>-&gt;editable() &amp;&amp; <span class="php-var">$this</span>-&gt;user-&gt;hasPermission(<span class="php-quote">'page-sort'</span>, <span class="php-var">$page</span>-&gt;parent)) <span class="php-var">$sortable</span> = <span class="php-keyword1">true</span>; 
+</span><span id="760" class="l"><a class="l" href="#760">760: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-var">$sortable</span>;
+</span><span id="761" class="l"><a class="l" href="#761">761: </a>    }
+</span><span id="762" class="l"><a class="l" href="#762">762: </a>
+</span><span id="763" class="l"><a class="l" href="#763">763: </a>    <span class="php-comment">/**
+</span></span><span id="764" class="l"><a class="l" href="#764">764: </a><span class="php-comment">     * Is the page publishable by the current user?
+</span></span><span id="765" class="l"><a class="l" href="#765">765: </a><span class="php-comment">     *
+</span></span><span id="766" class="l"><a class="l" href="#766">766: </a><span class="php-comment">     * A field name may optionally be specified as the first argument, in which case the field on that page will also be checked for access. 
+</span></span><span id="767" class="l"><a class="l" href="#767">767: </a><span class="php-comment">     * 
+</span></span><span id="768" class="l"><a class="l" href="#768">768: </a><span class="php-comment">     * @param HookEvent $event
+</span></span><span id="769" class="l"><a class="l" href="#769">769: </a><span class="php-comment">     *
+</span></span><span id="770" class="l"><a class="l" href="#770">770: </a><span class="php-comment">     */</span>
+</span><span id="771" class="l"><a class="l" href="#771">771: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_publishable" href="#_publishable">publishable</a>(<span class="php-var">$event</span>) {
+</span><span id="772" class="l"><a class="l" href="#772">772: </a>
+</span><span id="773" class="l"><a class="l" href="#773">773: </a>        <span class="php-var">$user</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'user'</span>);
+</span><span id="774" class="l"><a class="l" href="#774">774: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-keyword1">true</span>;
 </span><span id="775" class="l"><a class="l" href="#775">775: </a>
-</span><span id="776" class="l"><a class="l" href="#776">776: </a>        <span class="php-var">$page</span> = <span class="php-var">$event</span>-&gt;object; 
+</span><span id="776" class="l"><a class="l" href="#776">776: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$user</span>-&gt;isSuperuser()) <span class="php-keyword1">return</span>;
 </span><span id="777" class="l"><a class="l" href="#777">777: </a>
-</span><span id="778" class="l"><a class="l" href="#778">778: </a>        <span class="php-comment">// if page isn't editable, it certainly can't be publishable</span>
-</span><span id="779" class="l"><a class="l" href="#779">779: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;editable()) {
-</span><span id="780" class="l"><a class="l" href="#780">780: </a>            <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-keyword1">false</span>;
-</span><span id="781" class="l"><a class="l" href="#781">781: </a>            <span class="php-keyword1">return</span>;
-</span><span id="782" class="l"><a class="l" href="#782">782: </a>        }
-</span><span id="783" class="l"><a class="l" href="#783">783: </a>
-</span><span id="784" class="l"><a class="l" href="#784">784: </a>        <span class="php-comment">// if there is no page-publish permission, then it's publishable</span>
-</span><span id="785" class="l"><a class="l" href="#785">785: </a>        <span class="php-var">$hasPublish</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'permissions'</span>)-&gt;has(<span class="php-quote">'page-publish'</span>); 
-</span><span id="786" class="l"><a class="l" href="#786">786: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$hasPublish</span>) <span class="php-keyword1">return</span>;
-</span><span id="787" class="l"><a class="l" href="#787">787: </a>    
-</span><span id="788" class="l"><a class="l" href="#788">788: </a>        <span class="php-comment">// if Page is a user, and user has user-admin permission, they can also publish the user</span>
-</span><span id="789" class="l"><a class="l" href="#789">789: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span> <span class="php-keyword1">instanceof</span> User &amp;&amp; <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'user-admin'</span>)) <span class="php-keyword1">return</span>;
-</span><span id="790" class="l"><a class="l" href="#790">790: </a>
-</span><span id="791" class="l"><a class="l" href="#791">791: </a>        <span class="php-comment">// check if user has the permission assigned</span>
-</span><span id="792" class="l"><a class="l" href="#792">792: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-publish'</span>, <span class="php-var">$page</span>)) <span class="php-keyword1">return</span>;
-</span><span id="793" class="l"><a class="l" href="#793">793: </a>
-</span><span id="794" class="l"><a class="l" href="#794">794: </a>        <span class="php-comment">// if we made it here, then page is not publishable</span>
-</span><span id="795" class="l"><a class="l" href="#795">795: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-keyword1">false</span>; 
-</span><span id="796" class="l"><a class="l" href="#796">796: </a>    }
-</span><span id="797" class="l"><a class="l" href="#797">797: </a>    
-</span><span id="798" class="l"><a class="l" href="#798">798: </a>    <span class="php-comment">/**
-</span></span><span id="799" class="l"><a class="l" href="#799">799: </a><span class="php-comment">     * Returns true if given user has the optional language permission, or false if not
-</span></span><span id="800" class="l"><a class="l" href="#800">800: </a><span class="php-comment">     *
-</span></span><span id="801" class="l"><a class="l" href="#801">801: </a><span class="php-comment">     * In a non-multi-language system, this method will always return true.
-</span></span><span id="802" class="l"><a class="l" href="#802">802: </a><span class="php-comment">     * In a multi-language system that doesn't have the permission installed, this always returns true.
-</span></span><span id="803" class="l"><a class="l" href="#803">803: </a><span class="php-comment">     * In a multi-language system that DOES have it installed, methods returns true when user has it via one of their roles.
-</span></span><span id="804" class="l"><a class="l" href="#804">804: </a><span class="php-comment">     * This method assumes the user is already known to have any pre-requisite permissions.
-</span></span><span id="805" class="l"><a class="l" href="#805">805: </a><span class="php-comment">     *
-</span></span><span id="806" class="l"><a class="l" href="#806">806: </a><span class="php-comment">     * @param string $name Permission name i.e. page-edit-lang-none, page-edit-lang-default, etc.
-</span></span><span id="807" class="l"><a class="l" href="#807">807: </a><span class="php-comment">     * @param User $user
-</span></span><span id="808" class="l"><a class="l" href="#808">808: </a><span class="php-comment">     * @param Page|Template $context Optional Page or Template context
-</span></span><span id="809" class="l"><a class="l" href="#809">809: </a><span class="php-comment">     * @return bool
-</span></span><span id="810" class="l"><a class="l" href="#810">810: </a><span class="php-comment">     *
-</span></span><span id="811" class="l"><a class="l" href="#811">811: </a><span class="php-comment">     */</span>
-</span><span id="812" class="l"><a class="l" href="#812">812: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_hasLangPermission" href="#_hasLangPermission">hasLangPermission</a>(<span class="php-var">$name</span>, User <span class="php-var">$user</span>, <span class="php-var">$context</span> = <span class="php-keyword1">null</span>) {
-</span><span id="813" class="l"><a class="l" href="#813">813: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$user</span>-&gt;isSuperuser()) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="814" class="l"><a class="l" href="#814">814: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">array_key_exists</span>(<span class="php-var">$name</span>, <span class="php-var">$this</span>-&gt;hasOptionalPermissions)) {
-</span><span id="815" class="l"><a class="l" href="#815">815: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)) {
-</span><span id="816" class="l"><a class="l" href="#816">816: </a>                <span class="php-var">$this</span>-&gt;hasOptionalPermissions[<span class="php-var">$name</span>] = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'permissions'</span>)-&gt;get(<span class="php-var">$name</span>)-&gt;id &gt; <span class="php-num">0</span>;
-</span><span id="817" class="l"><a class="l" href="#817">817: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="818" class="l"><a class="l" href="#818">818: </a>                <span class="php-comment">// not applicable since multi-language not installed</span>
-</span><span id="819" class="l"><a class="l" href="#819">819: </a>                <span class="php-var">$this</span>-&gt;hasOptionalPermissions[<span class="php-var">$name</span>] = <span class="php-keyword1">false</span>;
-</span><span id="820" class="l"><a class="l" href="#820">820: </a>            }
-</span><span id="821" class="l"><a class="l" href="#821">821: </a>        }
-</span><span id="822" class="l"><a class="l" href="#822">822: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;hasOptionalPermissions[<span class="php-var">$name</span>]) {
-</span><span id="823" class="l"><a class="l" href="#823">823: </a>            <span class="php-comment">// now check if the user has this permission</span>
-</span><span id="824" class="l"><a class="l" href="#824">824: </a>            <span class="php-keyword1">return</span> <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-var">$name</span>, <span class="php-var">$context</span>);
-</span><span id="825" class="l"><a class="l" href="#825">825: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="826" class="l"><a class="l" href="#826">826: </a>            <span class="php-comment">// system doesn't need to consider this permission</span>
-</span><span id="827" class="l"><a class="l" href="#827">827: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="828" class="l"><a class="l" href="#828">828: </a>        }
-</span><span id="829" class="l"><a class="l" href="#829">829: </a>    }
-</span><span id="830" class="l"><a class="l" href="#830">830: </a>
-</span><span id="831" class="l"><a class="l" href="#831">831: </a>    <span class="php-comment">/**
-</span></span><span id="832" class="l"><a class="l" href="#832">832: </a><span class="php-comment">     * Returns true if given user is allowed to edit values in default language
-</span></span><span id="833" class="l"><a class="l" href="#833">833: </a><span class="php-comment">     * 
-</span></span><span id="834" class="l"><a class="l" href="#834">834: </a><span class="php-comment">     * @param User $user
-</span></span><span id="835" class="l"><a class="l" href="#835">835: </a><span class="php-comment">     * @param Page|Template $context
-</span></span><span id="836" class="l"><a class="l" href="#836">836: </a><span class="php-comment">     * @return bool
-</span></span><span id="837" class="l"><a class="l" href="#837">837: </a><span class="php-comment">     * 
-</span></span><span id="838" class="l"><a class="l" href="#838">838: </a><span class="php-comment">     */</span>
-</span><span id="839" class="l"><a class="l" href="#839">839: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_hasPageEditLangDefault" href="#_hasPageEditLangDefault">hasPageEditLangDefault</a>(User <span class="php-var">$user</span>, <span class="php-var">$context</span> = <span class="php-keyword1">null</span>) {
-</span><span id="840" class="l"><a class="l" href="#840">840: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;hasLangPermission(<span class="php-quote">'page-edit-lang-default'</span>, <span class="php-var">$user</span>, <span class="php-var">$context</span>); 
-</span><span id="841" class="l"><a class="l" href="#841">841: </a>    }
-</span><span id="842" class="l"><a class="l" href="#842">842: </a>    
-</span><span id="843" class="l"><a class="l" href="#843">843: </a>    <span class="php-comment">/**
-</span></span><span id="844" class="l"><a class="l" href="#844">844: </a><span class="php-comment">     * Returns true if given user is allowed to edit non-multi-language values
-</span></span><span id="845" class="l"><a class="l" href="#845">845: </a><span class="php-comment">     *
-</span></span><span id="846" class="l"><a class="l" href="#846">846: </a><span class="php-comment">     * @param User $user
-</span></span><span id="847" class="l"><a class="l" href="#847">847: </a><span class="php-comment">     * @param Page|Template $context
-</span></span><span id="848" class="l"><a class="l" href="#848">848: </a><span class="php-comment">     * @return bool
-</span></span><span id="849" class="l"><a class="l" href="#849">849: </a><span class="php-comment">     *
-</span></span><span id="850" class="l"><a class="l" href="#850">850: </a><span class="php-comment">     */</span>
-</span><span id="851" class="l"><a class="l" href="#851">851: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_hasPageEditLangNone" href="#_hasPageEditLangNone">hasPageEditLangNone</a>(User <span class="php-var">$user</span>, <span class="php-var">$context</span> = <span class="php-keyword1">null</span>) {
-</span><span id="852" class="l"><a class="l" href="#852">852: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;hasLangPermission(<span class="php-quote">'page-edit-lang-none'</span>, <span class="php-var">$user</span>, <span class="php-var">$context</span>);
-</span><span id="853" class="l"><a class="l" href="#853">853: </a>    }
-</span><span id="854" class="l"><a class="l" href="#854">854: </a>    
-</span><span id="855" class="l"><a class="l" href="#855">855: </a>
-</span><span id="856" class="l"><a class="l" href="#856">856: </a>    <span class="php-comment">/**
-</span></span><span id="857" class="l"><a class="l" href="#857">857: </a><span class="php-comment">     * Can the user create pages from this template?
-</span></span><span id="858" class="l"><a class="l" href="#858">858: </a><span class="php-comment">     *
-</span></span><span id="859" class="l"><a class="l" href="#859">859: </a><span class="php-comment">     * Optional argument 1 may be a parent page for context, i.e. can we create a page with this parent. 
+</span><span id="778" class="l"><a class="l" href="#778">778: </a>        <span class="php-var">$page</span> = <span class="php-var">$event</span>-&gt;object; 
+</span><span id="779" class="l"><a class="l" href="#779">779: </a>
+</span><span id="780" class="l"><a class="l" href="#780">780: </a>        <span class="php-comment">// if page isn't editable, it certainly can't be publishable</span>
+</span><span id="781" class="l"><a class="l" href="#781">781: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;editable()) {
+</span><span id="782" class="l"><a class="l" href="#782">782: </a>            <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-keyword1">false</span>;
+</span><span id="783" class="l"><a class="l" href="#783">783: </a>            <span class="php-keyword1">return</span>;
+</span><span id="784" class="l"><a class="l" href="#784">784: </a>        }
+</span><span id="785" class="l"><a class="l" href="#785">785: </a>
+</span><span id="786" class="l"><a class="l" href="#786">786: </a>        <span class="php-comment">// if there is no page-publish permission, then it's publishable</span>
+</span><span id="787" class="l"><a class="l" href="#787">787: </a>        <span class="php-var">$hasPublish</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'permissions'</span>)-&gt;has(<span class="php-quote">'page-publish'</span>); 
+</span><span id="788" class="l"><a class="l" href="#788">788: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$hasPublish</span>) <span class="php-keyword1">return</span>;
+</span><span id="789" class="l"><a class="l" href="#789">789: </a>    
+</span><span id="790" class="l"><a class="l" href="#790">790: </a>        <span class="php-comment">// if Page is a user, and user has user-admin permission, they can also publish the user</span>
+</span><span id="791" class="l"><a class="l" href="#791">791: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span> <span class="php-keyword1">instanceof</span> User &amp;&amp; <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'user-admin'</span>)) <span class="php-keyword1">return</span>;
+</span><span id="792" class="l"><a class="l" href="#792">792: </a>
+</span><span id="793" class="l"><a class="l" href="#793">793: </a>        <span class="php-comment">// check if user has the permission assigned</span>
+</span><span id="794" class="l"><a class="l" href="#794">794: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-publish'</span>, <span class="php-var">$page</span>)) <span class="php-keyword1">return</span>;
+</span><span id="795" class="l"><a class="l" href="#795">795: </a>
+</span><span id="796" class="l"><a class="l" href="#796">796: </a>        <span class="php-comment">// if we made it here, then page is not publishable</span>
+</span><span id="797" class="l"><a class="l" href="#797">797: </a>        <span class="php-var">$event</span>-&gt;<span class="php-keyword1">return</span> = <span class="php-keyword1">false</span>; 
+</span><span id="798" class="l"><a class="l" href="#798">798: </a>    }
+</span><span id="799" class="l"><a class="l" href="#799">799: </a>    
+</span><span id="800" class="l"><a class="l" href="#800">800: </a>    <span class="php-comment">/**
+</span></span><span id="801" class="l"><a class="l" href="#801">801: </a><span class="php-comment">     * Returns true if given user has the optional language permission, or false if not
+</span></span><span id="802" class="l"><a class="l" href="#802">802: </a><span class="php-comment">     *
+</span></span><span id="803" class="l"><a class="l" href="#803">803: </a><span class="php-comment">     * In a non-multi-language system, this method will always return true.
+</span></span><span id="804" class="l"><a class="l" href="#804">804: </a><span class="php-comment">     * In a multi-language system that doesn't have the permission installed, this always returns true.
+</span></span><span id="805" class="l"><a class="l" href="#805">805: </a><span class="php-comment">     * In a multi-language system that DOES have it installed, methods returns true when user has it via one of their roles.
+</span></span><span id="806" class="l"><a class="l" href="#806">806: </a><span class="php-comment">     * This method assumes the user is already known to have any pre-requisite permissions.
+</span></span><span id="807" class="l"><a class="l" href="#807">807: </a><span class="php-comment">     *
+</span></span><span id="808" class="l"><a class="l" href="#808">808: </a><span class="php-comment">     * @param string $name Permission name i.e. page-edit-lang-none, page-edit-lang-default, etc.
+</span></span><span id="809" class="l"><a class="l" href="#809">809: </a><span class="php-comment">     * @param User $user
+</span></span><span id="810" class="l"><a class="l" href="#810">810: </a><span class="php-comment">     * @param Page|Template $context Optional Page or Template context
+</span></span><span id="811" class="l"><a class="l" href="#811">811: </a><span class="php-comment">     * @return bool
+</span></span><span id="812" class="l"><a class="l" href="#812">812: </a><span class="php-comment">     *
+</span></span><span id="813" class="l"><a class="l" href="#813">813: </a><span class="php-comment">     */</span>
+</span><span id="814" class="l"><a class="l" href="#814">814: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_hasLangPermission" href="#_hasLangPermission">hasLangPermission</a>(<span class="php-var">$name</span>, User <span class="php-var">$user</span>, <span class="php-var">$context</span> = <span class="php-keyword1">null</span>) {
+</span><span id="815" class="l"><a class="l" href="#815">815: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$user</span>-&gt;isSuperuser()) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="816" class="l"><a class="l" href="#816">816: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">array_key_exists</span>(<span class="php-var">$name</span>, <span class="php-var">$this</span>-&gt;hasOptionalPermissions)) {
+</span><span id="817" class="l"><a class="l" href="#817">817: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)) {
+</span><span id="818" class="l"><a class="l" href="#818">818: </a>                <span class="php-var">$this</span>-&gt;hasOptionalPermissions[<span class="php-var">$name</span>] = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'permissions'</span>)-&gt;get(<span class="php-var">$name</span>)-&gt;id &gt; <span class="php-num">0</span>;
+</span><span id="819" class="l"><a class="l" href="#819">819: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="820" class="l"><a class="l" href="#820">820: </a>                <span class="php-comment">// not applicable since multi-language not installed</span>
+</span><span id="821" class="l"><a class="l" href="#821">821: </a>                <span class="php-var">$this</span>-&gt;hasOptionalPermissions[<span class="php-var">$name</span>] = <span class="php-keyword1">false</span>;
+</span><span id="822" class="l"><a class="l" href="#822">822: </a>            }
+</span><span id="823" class="l"><a class="l" href="#823">823: </a>        }
+</span><span id="824" class="l"><a class="l" href="#824">824: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;hasOptionalPermissions[<span class="php-var">$name</span>]) {
+</span><span id="825" class="l"><a class="l" href="#825">825: </a>            <span class="php-comment">// now check if the user has this permission</span>
+</span><span id="826" class="l"><a class="l" href="#826">826: </a>            <span class="php-keyword1">return</span> <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-var">$name</span>, <span class="php-var">$context</span>);
+</span><span id="827" class="l"><a class="l" href="#827">827: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="828" class="l"><a class="l" href="#828">828: </a>            <span class="php-comment">// system doesn't need to consider this permission</span>
+</span><span id="829" class="l"><a class="l" href="#829">829: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="830" class="l"><a class="l" href="#830">830: </a>        }
+</span><span id="831" class="l"><a class="l" href="#831">831: </a>    }
+</span><span id="832" class="l"><a class="l" href="#832">832: </a>
+</span><span id="833" class="l"><a class="l" href="#833">833: </a>    <span class="php-comment">/**
+</span></span><span id="834" class="l"><a class="l" href="#834">834: </a><span class="php-comment">     * Returns true if given user is allowed to edit values in default language
+</span></span><span id="835" class="l"><a class="l" href="#835">835: </a><span class="php-comment">     * 
+</span></span><span id="836" class="l"><a class="l" href="#836">836: </a><span class="php-comment">     * @param User $user
+</span></span><span id="837" class="l"><a class="l" href="#837">837: </a><span class="php-comment">     * @param Page|Template $context
+</span></span><span id="838" class="l"><a class="l" href="#838">838: </a><span class="php-comment">     * @return bool
+</span></span><span id="839" class="l"><a class="l" href="#839">839: </a><span class="php-comment">     * 
+</span></span><span id="840" class="l"><a class="l" href="#840">840: </a><span class="php-comment">     */</span>
+</span><span id="841" class="l"><a class="l" href="#841">841: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_hasPageEditLangDefault" href="#_hasPageEditLangDefault">hasPageEditLangDefault</a>(User <span class="php-var">$user</span>, <span class="php-var">$context</span> = <span class="php-keyword1">null</span>) {
+</span><span id="842" class="l"><a class="l" href="#842">842: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;hasLangPermission(<span class="php-quote">'page-edit-lang-default'</span>, <span class="php-var">$user</span>, <span class="php-var">$context</span>); 
+</span><span id="843" class="l"><a class="l" href="#843">843: </a>    }
+</span><span id="844" class="l"><a class="l" href="#844">844: </a>    
+</span><span id="845" class="l"><a class="l" href="#845">845: </a>    <span class="php-comment">/**
+</span></span><span id="846" class="l"><a class="l" href="#846">846: </a><span class="php-comment">     * Returns true if given user is allowed to edit non-multi-language values
+</span></span><span id="847" class="l"><a class="l" href="#847">847: </a><span class="php-comment">     *
+</span></span><span id="848" class="l"><a class="l" href="#848">848: </a><span class="php-comment">     * @param User $user
+</span></span><span id="849" class="l"><a class="l" href="#849">849: </a><span class="php-comment">     * @param Page|Template $context
+</span></span><span id="850" class="l"><a class="l" href="#850">850: </a><span class="php-comment">     * @return bool
+</span></span><span id="851" class="l"><a class="l" href="#851">851: </a><span class="php-comment">     *
+</span></span><span id="852" class="l"><a class="l" href="#852">852: </a><span class="php-comment">     */</span>
+</span><span id="853" class="l"><a class="l" href="#853">853: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_hasPageEditLangNone" href="#_hasPageEditLangNone">hasPageEditLangNone</a>(User <span class="php-var">$user</span>, <span class="php-var">$context</span> = <span class="php-keyword1">null</span>) {
+</span><span id="854" class="l"><a class="l" href="#854">854: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;hasLangPermission(<span class="php-quote">'page-edit-lang-none'</span>, <span class="php-var">$user</span>, <span class="php-var">$context</span>);
+</span><span id="855" class="l"><a class="l" href="#855">855: </a>    }
+</span><span id="856" class="l"><a class="l" href="#856">856: </a>    
+</span><span id="857" class="l"><a class="l" href="#857">857: </a>
+</span><span id="858" class="l"><a class="l" href="#858">858: </a>    <span class="php-comment">/**
+</span></span><span id="859" class="l"><a class="l" href="#859">859: </a><span class="php-comment">     * Can the user create pages from this template?
 </span></span><span id="860" class="l"><a class="l" href="#860">860: </a><span class="php-comment">     *
-</span></span><span id="861" class="l"><a class="l" href="#861">861: </a><span class="php-comment">    public function createable($event) {
-</span></span><span id="862" class="l"><a class="l" href="#862">862: </a><span class="php-comment">
-</span></span><span id="863" class="l"><a class="l" href="#863">863: </a><span class="php-comment">        $template = $event-&gt;object; 
-</span></span><span id="864" class="l"><a class="l" href="#864">864: </a><span class="php-comment">        $user = $this-&gt;fuel('user'); 
-</span></span><span id="865" class="l"><a class="l" href="#865">865: </a><span class="php-comment">        $createable = false; 
-</span></span><span id="866" class="l"><a class="l" href="#866">866: </a><span class="php-comment">
-</span></span><span id="867" class="l"><a class="l" href="#867">867: </a><span class="php-comment">        if($template-&gt;noParents) {
-</span></span><span id="868" class="l"><a class="l" href="#868">868: </a><span class="php-comment">            $createable = false; 
-</span></span><span id="869" class="l"><a class="l" href="#869">869: </a><span class="php-comment">
-</span></span><span id="870" class="l"><a class="l" href="#870">870: </a><span class="php-comment">        } else if($user-&gt;isSuperuser()) {
-</span></span><span id="871" class="l"><a class="l" href="#871">871: </a><span class="php-comment">            $createable = true; 
-</span></span><span id="872" class="l"><a class="l" href="#872">872: </a><span class="php-comment">
-</span></span><span id="873" class="l"><a class="l" href="#873">873: </a><span class="php-comment">        } else if($user-&gt;hasPermission('page-create', $template)) {
-</span></span><span id="874" class="l"><a class="l" href="#874">874: </a><span class="php-comment">            $createable = true; 
-</span></span><span id="875" class="l"><a class="l" href="#875">875: </a><span class="php-comment">        }
-</span></span><span id="876" class="l"><a class="l" href="#876">876: </a><span class="php-comment">
-</span></span><span id="877" class="l"><a class="l" href="#877">877: </a><span class="php-comment">        // check if a parent $page is provided as the first argument for additional access checking
-</span></span><span id="878" class="l"><a class="l" href="#878">878: </a><span class="php-comment">        if($createable &amp;&amp; isset($event-&gt;arguments[0]) &amp;&amp; $event-&gt;arguments[0] instanceof Page) {
-</span></span><span id="879" class="l"><a class="l" href="#879">879: </a><span class="php-comment">            $parent = $event-&gt;arguments[0]; 
-</span></span><span id="880" class="l"><a class="l" href="#880">880: </a><span class="php-comment">            if($parent-&gt;template-&gt;noChildren || (count($parent-&gt;template-&gt;childTemplates) &amp;&amp; !in_array($template-&gt;id, $parent-&gt;template-&gt;childTemplates))) $createable = false; 
-</span></span><span id="881" class="l"><a class="l" href="#881">881: </a><span class="php-comment">            if($createable) $createable = $parent-&gt;addable(); 
-</span></span><span id="882" class="l"><a class="l" href="#882">882: </a><span class="php-comment">        }
-</span></span><span id="883" class="l"><a class="l" href="#883">883: </a><span class="php-comment">
-</span></span><span id="884" class="l"><a class="l" href="#884">884: </a><span class="php-comment">        $event-&gt;return = $createable;
-</span></span><span id="885" class="l"><a class="l" href="#885">885: </a><span class="php-comment">    }
-</span></span><span id="886" class="l"><a class="l" href="#886">886: </a><span class="php-comment">     */</span>
-</span><span id="887" class="l"><a class="l" href="#887">887: </a>
-</span><span id="888" class="l"><a class="l" href="#888">888: </a>    <span class="php-comment">/**
-</span></span><span id="889" class="l"><a class="l" href="#889">889: </a><span class="php-comment">     * Hook for Page::fieldViewable($field) method
-</span></span><span id="890" class="l"><a class="l" href="#890">890: </a><span class="php-comment">     *
-</span></span><span id="891" class="l"><a class="l" href="#891">891: </a><span class="php-comment">     * @param HookEvent $event
-</span></span><span id="892" class="l"><a class="l" href="#892">892: </a><span class="php-comment">     * @return bool|null
-</span></span><span id="893" class="l"><a class="l" href="#893">893: </a><span class="php-comment">     *
-</span></span><span id="894" class="l"><a class="l" href="#894">894: </a><span class="php-comment">    public function hookFieldViewable(HookEvent $event) {
-</span></span><span id="895" class="l"><a class="l" href="#895">895: </a><span class="php-comment">    $field = $event-&gt;arguments(0);
-</span></span><span id="896" class="l"><a class="l" href="#896">896: </a><span class="php-comment">    $page = $event-&gt;object; 
-</span></span><span id="897" class="l"><a class="l" href="#897">897: </a><span class="php-comment">    $event-&gt;return = $this-&gt;fieldViewable($page, $field);
-</span></span><span id="898" class="l"><a class="l" href="#898">898: </a><span class="php-comment">    }
-</span></span><span id="899" class="l"><a class="l" href="#899">899: </a><span class="php-comment">     */</span>
-</span><span id="900" class="l"><a class="l" href="#900">900: </a>
-</span><span id="901" class="l"><a class="l" href="#901">901: </a>    <span class="php-comment">/**
-</span></span><span id="902" class="l"><a class="l" href="#902">902: </a><span class="php-comment">     * Hook for Page::fieldEditable($field) method
-</span></span><span id="903" class="l"><a class="l" href="#903">903: </a><span class="php-comment">     *
-</span></span><span id="904" class="l"><a class="l" href="#904">904: </a><span class="php-comment">     * @param HookEvent $event
+</span></span><span id="861" class="l"><a class="l" href="#861">861: </a><span class="php-comment">     * Optional argument 1 may be a parent page for context, i.e. can we create a page with this parent. 
+</span></span><span id="862" class="l"><a class="l" href="#862">862: </a><span class="php-comment">     *
+</span></span><span id="863" class="l"><a class="l" href="#863">863: </a><span class="php-comment">    public function createable($event) {
+</span></span><span id="864" class="l"><a class="l" href="#864">864: </a><span class="php-comment">
+</span></span><span id="865" class="l"><a class="l" href="#865">865: </a><span class="php-comment">        $template = $event-&gt;object; 
+</span></span><span id="866" class="l"><a class="l" href="#866">866: </a><span class="php-comment">        $user = $this-&gt;fuel('user'); 
+</span></span><span id="867" class="l"><a class="l" href="#867">867: </a><span class="php-comment">        $createable = false; 
+</span></span><span id="868" class="l"><a class="l" href="#868">868: </a><span class="php-comment">
+</span></span><span id="869" class="l"><a class="l" href="#869">869: </a><span class="php-comment">        if($template-&gt;noParents) {
+</span></span><span id="870" class="l"><a class="l" href="#870">870: </a><span class="php-comment">            $createable = false; 
+</span></span><span id="871" class="l"><a class="l" href="#871">871: </a><span class="php-comment">
+</span></span><span id="872" class="l"><a class="l" href="#872">872: </a><span class="php-comment">        } else if($user-&gt;isSuperuser()) {
+</span></span><span id="873" class="l"><a class="l" href="#873">873: </a><span class="php-comment">            $createable = true; 
+</span></span><span id="874" class="l"><a class="l" href="#874">874: </a><span class="php-comment">
+</span></span><span id="875" class="l"><a class="l" href="#875">875: </a><span class="php-comment">        } else if($user-&gt;hasPermission('page-create', $template)) {
+</span></span><span id="876" class="l"><a class="l" href="#876">876: </a><span class="php-comment">            $createable = true; 
+</span></span><span id="877" class="l"><a class="l" href="#877">877: </a><span class="php-comment">        }
+</span></span><span id="878" class="l"><a class="l" href="#878">878: </a><span class="php-comment">
+</span></span><span id="879" class="l"><a class="l" href="#879">879: </a><span class="php-comment">        // check if a parent $page is provided as the first argument for additional access checking
+</span></span><span id="880" class="l"><a class="l" href="#880">880: </a><span class="php-comment">        if($createable &amp;&amp; isset($event-&gt;arguments[0]) &amp;&amp; $event-&gt;arguments[0] instanceof Page) {
+</span></span><span id="881" class="l"><a class="l" href="#881">881: </a><span class="php-comment">            $parent = $event-&gt;arguments[0]; 
+</span></span><span id="882" class="l"><a class="l" href="#882">882: </a><span class="php-comment">            if($parent-&gt;template-&gt;noChildren || (count($parent-&gt;template-&gt;childTemplates) &amp;&amp; !in_array($template-&gt;id, $parent-&gt;template-&gt;childTemplates))) $createable = false; 
+</span></span><span id="883" class="l"><a class="l" href="#883">883: </a><span class="php-comment">            if($createable) $createable = $parent-&gt;addable(); 
+</span></span><span id="884" class="l"><a class="l" href="#884">884: </a><span class="php-comment">        }
+</span></span><span id="885" class="l"><a class="l" href="#885">885: </a><span class="php-comment">
+</span></span><span id="886" class="l"><a class="l" href="#886">886: </a><span class="php-comment">        $event-&gt;return = $createable;
+</span></span><span id="887" class="l"><a class="l" href="#887">887: </a><span class="php-comment">    }
+</span></span><span id="888" class="l"><a class="l" href="#888">888: </a><span class="php-comment">     */</span>
+</span><span id="889" class="l"><a class="l" href="#889">889: </a>
+</span><span id="890" class="l"><a class="l" href="#890">890: </a>    <span class="php-comment">/**
+</span></span><span id="891" class="l"><a class="l" href="#891">891: </a><span class="php-comment">     * Hook for Page::fieldViewable($field) method
+</span></span><span id="892" class="l"><a class="l" href="#892">892: </a><span class="php-comment">     *
+</span></span><span id="893" class="l"><a class="l" href="#893">893: </a><span class="php-comment">     * @param HookEvent $event
+</span></span><span id="894" class="l"><a class="l" href="#894">894: </a><span class="php-comment">     * @return bool|null
+</span></span><span id="895" class="l"><a class="l" href="#895">895: </a><span class="php-comment">     *
+</span></span><span id="896" class="l"><a class="l" href="#896">896: </a><span class="php-comment">    public function hookFieldViewable(HookEvent $event) {
+</span></span><span id="897" class="l"><a class="l" href="#897">897: </a><span class="php-comment">    $field = $event-&gt;arguments(0);
+</span></span><span id="898" class="l"><a class="l" href="#898">898: </a><span class="php-comment">    $page = $event-&gt;object; 
+</span></span><span id="899" class="l"><a class="l" href="#899">899: </a><span class="php-comment">    $event-&gt;return = $this-&gt;fieldViewable($page, $field);
+</span></span><span id="900" class="l"><a class="l" href="#900">900: </a><span class="php-comment">    }
+</span></span><span id="901" class="l"><a class="l" href="#901">901: </a><span class="php-comment">     */</span>
+</span><span id="902" class="l"><a class="l" href="#902">902: </a>
+</span><span id="903" class="l"><a class="l" href="#903">903: </a>    <span class="php-comment">/**
+</span></span><span id="904" class="l"><a class="l" href="#904">904: </a><span class="php-comment">     * Hook for Page::fieldEditable($field) method
 </span></span><span id="905" class="l"><a class="l" href="#905">905: </a><span class="php-comment">     *
-</span></span><span id="906" class="l"><a class="l" href="#906">906: </a><span class="php-comment">    public function hookFieldEditable(HookEvent $event) {
-</span></span><span id="907" class="l"><a class="l" href="#907">907: </a><span class="php-comment">    $field = $event-&gt;arguments(0);
-</span></span><span id="908" class="l"><a class="l" href="#908">908: </a><span class="php-comment">    $page = $event-&gt;object;
-</span></span><span id="909" class="l"><a class="l" href="#909">909: </a><span class="php-comment">    $event-&gt;return = $this-&gt;fieldEditable($page, $field);
-</span></span><span id="910" class="l"><a class="l" href="#910">910: </a><span class="php-comment">    }
-</span></span><span id="911" class="l"><a class="l" href="#911">911: </a><span class="php-comment">     */</span>
-</span><span id="912" class="l"><a class="l" href="#912">912: </a>
-</span><span id="913" class="l"><a class="l" href="#913">913: </a>
-</span><span id="914" class="l"><a class="l" href="#914">914: </a>}
-</span><span id="915" class="l"><a class="l" href="#915">915: </a></span></code></pre>
+</span></span><span id="906" class="l"><a class="l" href="#906">906: </a><span class="php-comment">     * @param HookEvent $event
+</span></span><span id="907" class="l"><a class="l" href="#907">907: </a><span class="php-comment">     *
+</span></span><span id="908" class="l"><a class="l" href="#908">908: </a><span class="php-comment">    public function hookFieldEditable(HookEvent $event) {
+</span></span><span id="909" class="l"><a class="l" href="#909">909: </a><span class="php-comment">    $field = $event-&gt;arguments(0);
+</span></span><span id="910" class="l"><a class="l" href="#910">910: </a><span class="php-comment">    $page = $event-&gt;object;
+</span></span><span id="911" class="l"><a class="l" href="#911">911: </a><span class="php-comment">    $event-&gt;return = $this-&gt;fieldEditable($page, $field);
+</span></span><span id="912" class="l"><a class="l" href="#912">912: </a><span class="php-comment">    }
+</span></span><span id="913" class="l"><a class="l" href="#913">913: </a><span class="php-comment">     */</span>
+</span><span id="914" class="l"><a class="l" href="#914">914: </a>
+</span><span id="915" class="l"><a class="l" href="#915">915: </a>
+</span><span id="916" class="l"><a class="l" href="#916">916: </a>}
+</span><span id="917" class="l"><a class="l" href="#917">917: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
