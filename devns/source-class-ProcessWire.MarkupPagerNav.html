@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.27 devns</span>
+			<span>Overview version 3.0.28 devns</span>
 		</a>
 
 
@@ -528,7 +528,7 @@
 </span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment"> * 
 </span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment"> * @property int $numPageLinks 10 number of links that the pagination navigation should have (typically 10)
 </span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment"> * @property array $getVars get vars that should appear in the pagination, or leave empty and populate $input-&gt;whitelist (preferred)
-</span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment"> * @property string $baseUrl the baseUrl from which the navigiation item links will start (default='')
+</span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment"> * @property string $baseUrl the baseUrl from which the navigation item links will start (default='')
 </span></span><span id="46" class="l"><a class="l" href="#46"> 46: </a><span class="php-comment"> * @property null|Page $page the current Page, or leave NULL to autodetect
 </span></span><span id="47" class="l"><a class="l" href="#47"> 47: </a><span class="php-comment"> * @property string $listMarkup List container markup. Place {out} where you want the individual items rendered (default=&quot;&lt;ul class='MarkupPagerNav'&gt;{out}&lt;/ul&gt;&quot;)
 </span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment"> * @property string $itemMarkup List item markup. Place {class} for item class (required), and {out} for item content. (default=&quot;&lt;li class='{class}'&gt;{out}&lt;/li&gt;&quot;)
@@ -536,7 +536,7 @@
 </span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment"> * @property string $currentLinkMarkup Link markup for current page. Place {url} for href attribute and {out} for label content. (default=&quot;&lt;a href='{url}'&gt;&lt;span&gt;{out}&lt;/span&gt;&lt;/a&gt;&quot;)
 </span></span><span id="51" class="l"><a class="l" href="#51"> 51: </a><span class="php-comment"> * @property string $nextItemLabel label used for the 'Next' button (default='Next')
 </span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment"> * @property string $previousItemLabel label used for the 'Previous' button (default='Prev')
-</span></span><span id="53" class="l"><a class="l" href="#53"> 53: </a><span class="php-comment"> * @property string $separatorItemLabel label used in the seperator item (default='&amp;hellip;')
+</span></span><span id="53" class="l"><a class="l" href="#53"> 53: </a><span class="php-comment"> * @property string $separatorItemLabel label used in the separator item (default='&amp;hellip;')
 </span></span><span id="54" class="l"><a class="l" href="#54"> 54: </a><span class="php-comment"> * @property string $separatorItemClass Class for separator item (default='MarkupPagerNavSeparator')
 </span></span><span id="55" class="l"><a class="l" href="#55"> 55: </a><span class="php-comment"> * @property string $firstItemClass Class for first item (default='MarkupPagerNavFirst')
 </span></span><span id="56" class="l"><a class="l" href="#56"> 56: </a><span class="php-comment"> * @property string $firstNumberItemClass Class for first numbered item (default='MarkupPagerNavFirstNum')
@@ -606,7 +606,7 @@
 </span><span id="120" class="l"><a class="l" href="#120">120: </a>        <span class="php-comment">// label used for the 'Previous' button</span>
 </span><span id="121" class="l"><a class="l" href="#121">121: </a>        <span class="php-quote">'previousItemLabel'</span> =&gt; <span class="php-quote">'Prev'</span>, 
 </span><span id="122" class="l"><a class="l" href="#122">122: </a>
-</span><span id="123" class="l"><a class="l" href="#123">123: </a>        <span class="php-comment">// label used in the seperator item</span>
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>        <span class="php-comment">// label used in the separator item</span>
 </span><span id="124" class="l"><a class="l" href="#124">124: </a>        <span class="php-quote">'separatorItemLabel'</span> =&gt; <span class="php-quote">'&amp;hellip;'</span>, 
 </span><span id="125" class="l"><a class="l" href="#125">125: </a>
 </span><span id="126" class="l"><a class="l" href="#126">126: </a>        <span class="php-comment">// default classes used for list items, according to the type. </span>
@@ -655,7 +655,7 @@
 </span></span><span id="169" class="l"><a class="l" href="#169">169: </a><span class="php-comment">     * Render the output for the pagination
 </span></span><span id="170" class="l"><a class="l" href="#170">170: </a><span class="php-comment">     *
 </span></span><span id="171" class="l"><a class="l" href="#171">171: </a><span class="php-comment">     * @param WirePaginatable $items Pages used in the pagination that have had a &quot;limit=n&quot; selector applied when they were loaded. 
-</span></span><span id="172" class="l"><a class="l" href="#172">172: </a><span class="php-comment">     * @param array $options Any options to override the defnults. For the defaults see MarkupPagerNav::$options
+</span></span><span id="172" class="l"><a class="l" href="#172">172: </a><span class="php-comment">     * @param array $options Any options to override the defaults. For the defaults see MarkupPagerNav::$options
 </span></span><span id="173" class="l"><a class="l" href="#173">173: </a><span class="php-comment">     * @return string
 </span></span><span id="174" class="l"><a class="l" href="#174">174: </a><span class="php-comment">     *
 </span></span><span id="175" class="l"><a class="l" href="#175">175: </a><span class="php-comment">     */</span>
