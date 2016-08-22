@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ImageSizer | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1509548147"></script>
+	<script type="text/javascript" src="elementlist.js?2986313237"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.28 devns</span>
+			<span>Overview version 3.0.30 devns</span>
 		</a>
 
 
@@ -109,6 +109,7 @@
 				<li><a href="class-ProcessWire.FileValidatorModule.html">FileValidatorModule</a></li>
 				<li><a href="class-ProcessWire.Fuel.html">Fuel</a></li>
 				<li><a href="class-ProcessWire.HookEvent.html">HookEvent</a></li>
+				<li><a href="class-ProcessWire.ImageInspector.html">ImageInspector</a></li>
 				<li class="active"><a href="class-ProcessWire.ImageSizer.html">ImageSizer</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngine.html">ImageSizerEngine</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngineGD.html">ImageSizerEngineGD</a></li>
@@ -272,6 +273,13 @@
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
 				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
+				<li><a href="class-ProcessWire.PWGIF.html">PWGIF</a></li>
+				<li><a href="class-ProcessWire.PWGIFCOLORTABLE.html">PWGIFCOLORTABLE</a></li>
+				<li><a href="class-ProcessWire.PWGIFFILEHEADER.html">PWGIFFILEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGE.html">PWGIFIMAGE</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGEHEADER.html">PWGIFIMAGEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFLZW.html">PWGIFLZW</a></li>
+				<li><a href="class-ProcessWire.PWPNG.html">PWPNG</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -538,7 +546,7 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.ImageSizer.html#3-461" title="Go to source code">core/ImageSizer.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.ImageSizer.html#3-520" title="Go to source code">core/ImageSizer.php</a><br>
 	</div>
 
 
@@ -556,7 +564,7 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#74-95" title="Go to source code">__construct</a>( <span>string <var>$filename</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#80-103" title="Go to source code">__construct</a>( <span>string <var>$filename</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -603,7 +611,7 @@ getEngines() call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getEngines">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#97-131" title="Go to source code">getEngines</a>( <span>boolean <var>$forceReload</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#105-139" title="Go to source code">getEngines</a>( <span>boolean <var>$forceReload</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -649,7 +657,7 @@ result from previous call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newImageSizerEngine">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#133-166" title="Go to source code">newImageSizerEngine</a>( <span>string <var>$filename</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#141-182" title="Go to source code">newImageSizerEngine</a>( <span>string <var>$filename</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>null|array <var>$inspectionResult</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -669,6 +677,8 @@ result from previous call.</dd>
 					<dd><code>string</code><br>$filename</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options</dd>
+					<dt><var>$inspectionResult</var></dt>
+					<dd><code>null|array</code><br>$inspectionResult</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -697,7 +707,7 @@ result from previous call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newDefaultImageSizerEngine">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#168-194" title="Go to source code">newDefaultImageSizerEngine</a>( <span>string <var>$filename</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#184-212" title="Go to source code">newDefaultImageSizerEngine</a>( <span>string <var>$filename</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>null|array <var>$inspectionResult</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -717,6 +727,8 @@ result from previous call.</dd>
 					<dd><code>string</code><br>$filename</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options</dd>
+					<dt><var>$inspectionResult</var></dt>
+					<dd><code>null|array</code><br>$inspectionResult</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -745,7 +757,7 @@ result from previous call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____resize">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#196-227" title="Go to source code">___resize</a>( <span>integer <var>$targetWidth</var></span>, <span>integer <var>$targetHeight</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#214-245" title="Go to source code">___resize</a>( <span>integer <var>$targetWidth</var></span>, <span>integer <var>$targetHeight</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -794,7 +806,7 @@ Optional-if not specified, 0 is assumed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resizeFallback">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#229-246" title="Go to source code">resizeFallback</a>( <span>mixed <var>$targetWidth</var></span>, <span>mixed <var>$targetHeight</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#247-264" title="Go to source code">resizeFallback</a>( <span>mixed <var>$targetWidth</var></span>, <span>mixed <var>$targetHeight</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -843,7 +855,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFilename">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#248-258" title="Go to source code">setFilename</a>( <span>mixed <var>$filename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#266-276" title="Go to source code">setFilename</a>( <span>mixed <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -885,7 +897,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setForceEngine">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#260-270" title="Go to source code">setForceEngine</a>( <span>mixed <var>$engineName</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#278-288" title="Go to source code">setForceEngine</a>( <span>mixed <var>$engineName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -927,7 +939,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOptions">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#272-283" title="Go to source code">setOptions</a>( <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#290-301" title="Go to source code">setOptions</a>( <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -969,7 +981,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setModified">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#285-295" title="Go to source code">setModified</a>( <span>mixed <var>$modified</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#303-313" title="Go to source code">setModified</a>( <span>mixed <var>$modified</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1011,7 +1023,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAutoRotation">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#298" title="Go to source code">setAutoRotation</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#316" title="Go to source code">setAutoRotation</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1040,7 +1052,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCropExtra">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#299" title="Go to source code">setCropExtra</a>( <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#317" title="Go to source code">setCropExtra</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1069,7 +1081,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCropping">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#300" title="Go to source code">setCropping</a>( <span>mixed <var>$cropping</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#318" title="Go to source code">setCropping</a>( <span>mixed <var>$cropping</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1098,7 +1110,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDefaultGamma">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#301" title="Go to source code">setDefaultGamma</a>( <span>mixed <var>$value</var> = <span class="php-num">2.2</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#319" title="Go to source code">setDefaultGamma</a>( <span>mixed <var>$value</var> = <span class="php-num">2.2</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1127,7 +1139,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFlip">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#302" title="Go to source code">setFlip</a>( <span>mixed <var>$flip</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#320" title="Go to source code">setFlip</a>( <span>mixed <var>$flip</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1156,7 +1168,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setHidpi">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#303" title="Go to source code">setHidpi</a>( <span>mixed <var>$hidpi</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#321" title="Go to source code">setHidpi</a>( <span>mixed <var>$hidpi</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1185,7 +1197,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setQuality">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#304" title="Go to source code">setQuality</a>( <span>mixed <var>$n</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#322" title="Go to source code">setQuality</a>( <span>mixed <var>$n</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1214,7 +1226,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRotate">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#305" title="Go to source code">setRotate</a>( <span>mixed <var>$degrees</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#323" title="Go to source code">setRotate</a>( <span>mixed <var>$degrees</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1243,7 +1255,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setScale">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#306" title="Go to source code">setScale</a>( <span>mixed <var>$scale</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#324" title="Go to source code">setScale</a>( <span>mixed <var>$scale</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1272,7 +1284,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSharpening">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#307" title="Go to source code">setSharpening</a>( <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#325" title="Go to source code">setSharpening</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1301,7 +1313,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTimeLimit">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#308" title="Go to source code">setTimeLimit</a>( <span>mixed <var>$value</var> = <span class="php-num">30</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#326" title="Go to source code">setTimeLimit</a>( <span>mixed <var>$value</var> = <span class="php-num">30</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1330,7 +1342,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setUpscaling">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#309" title="Go to source code">setUpscaling</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#327" title="Go to source code">setUpscaling</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1359,7 +1371,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setUseUSM">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#310" title="Go to source code">setUseUSM</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#328" title="Go to source code">setUseUSM</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1388,7 +1400,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getWidth">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#313" title="Go to source code">getWidth</a>( )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#331" title="Go to source code">getWidth</a>( )</code>
 
 		<div class="description short">
 			
@@ -1417,7 +1429,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getHeight">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#314" title="Go to source code">getHeight</a>( )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#332" title="Go to source code">getHeight</a>( )</code>
 
 		<div class="description short">
 			
@@ -1446,7 +1458,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFilename">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#315" title="Go to source code">getFilename</a>( )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#333" title="Go to source code">getFilename</a>( )</code>
 
 		<div class="description short">
 			
@@ -1475,7 +1487,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getExtension">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#316" title="Go to source code">getExtension</a>( )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#334" title="Go to source code">getExtension</a>( )</code>
 
 		<div class="description short">
 			
@@ -1504,7 +1516,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getImageType">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#317" title="Go to source code">getImageType</a>( )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#335" title="Go to source code">getImageType</a>( )</code>
 
 		<div class="description short">
 			
@@ -1533,7 +1545,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isModified">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#318" title="Go to source code">isModified</a>( )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#336" title="Go to source code">isModified</a>( )</code>
 
 		<div class="description short">
 			
@@ -1562,7 +1574,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOptions">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#319" title="Go to source code">getOptions</a>( )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#337" title="Go to source code">getOptions</a>( )</code>
 
 		<div class="description short">
 			
@@ -1591,7 +1603,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getEngine">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#320" title="Go to source code">getEngine</a>( )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#338" title="Go to source code">getEngine</a>( )</code>
 
 		<div class="description short">
 			
@@ -1620,7 +1632,7 @@ the image manipulation.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#321" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#339" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1659,6 +1671,48 @@ one when they can't find something.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getImageInfo" id="_getImageInfo">
+
+		<td class="attributes"><code>
+			 public 
+			string|array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getImageInfo">#</a>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#341-380" title="Go to source code">getImageInfo</a>( <span>boolean <var>$rawData</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>ImageInformation from Image Inspector in short form or full RawInfoData</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>ImageInformation from Image Inspector in short form or full RawInfoData</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$rawData</var></dt>
+					<dd><code>boolean</code><br>$rawData</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|array</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="croppingValue" id="_croppingValue">
 
 		<td class="attributes"><code>
@@ -1670,7 +1724,7 @@ one when they can't find something.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_croppingValue">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#323-335" title="Go to source code">croppingValue</a>( <span>string|boolean|array <var>$cropping</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#382-394" title="Go to source code">croppingValue</a>( <span>string|boolean|array <var>$cropping</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1716,7 +1770,7 @@ of it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_croppingValueStr">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#337-350" title="Go to source code">croppingValueStr</a>( <span>string|boolean|array <var>$cropping</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#396-409" title="Go to source code">croppingValueStr</a>( <span>string|boolean|array <var>$cropping</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1760,7 +1814,7 @@ of it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sharpeningValueStr">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#352-366" title="Go to source code">sharpeningValueStr</a>( <span>string|boolean <var>$value</var></span>, <span>boolean <var>$short</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#411-425" title="Go to source code">sharpeningValueStr</a>( <span>string|boolean <var>$value</var></span>, <span>boolean <var>$short</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1807,7 +1861,7 @@ compatibility.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_imageIsRotated">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#368-405" title="Go to source code">imageIsRotated</a>( <span>mixed <var>$image</var></span>, <span>mixed <var>&amp; $correctionArray</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#427-464" title="Go to source code">imageIsRotated</a>( <span>mixed <var>$image</var></span>, <span>mixed <var>&amp; $correctionArray</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1851,7 +1905,7 @@ compatibility.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_imageIsAnimatedGif">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#407-438" title="Go to source code">imageIsAnimatedGif</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#466-497" title="Go to source code">imageIsAnimatedGif</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1893,7 +1947,7 @@ compatibility.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_imageResetIPTC">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizer.html#440-459" title="Go to source code">imageResetIPTC</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizer.html#499-518" title="Go to source code">imageResetIPTC</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2181,6 +2235,29 @@ value.</p>
 				
 <p>Whether or not ImageSizer has an engine ready to use</p>
 
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="inspectionResult" id="$inspectionResult">
+		<td class="attributes"><code>
+			protected  
+			null|false|array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.ImageSizer.html#74-78" title="Go to source code"><var>$inspectionResult</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$inspectionResult" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
 
 			</div>
 		</div></td>

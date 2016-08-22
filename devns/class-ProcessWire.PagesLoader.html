@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PagesLoader | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1509548147"></script>
+	<script type="text/javascript" src="elementlist.js?2986313237"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.28 devns</span>
+			<span>Overview version 3.0.30 devns</span>
 		</a>
 
 
@@ -109,6 +109,7 @@
 				<li><a href="class-ProcessWire.FileValidatorModule.html">FileValidatorModule</a></li>
 				<li><a href="class-ProcessWire.Fuel.html">Fuel</a></li>
 				<li><a href="class-ProcessWire.HookEvent.html">HookEvent</a></li>
+				<li><a href="class-ProcessWire.ImageInspector.html">ImageInspector</a></li>
 				<li><a href="class-ProcessWire.ImageSizer.html">ImageSizer</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngine.html">ImageSizerEngine</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngineGD.html">ImageSizerEngineGD</a></li>
@@ -272,6 +273,13 @@
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
 				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
+				<li><a href="class-ProcessWire.PWGIF.html">PWGIF</a></li>
+				<li><a href="class-ProcessWire.PWGIFCOLORTABLE.html">PWGIFCOLORTABLE</a></li>
+				<li><a href="class-ProcessWire.PWGIFFILEHEADER.html">PWGIFFILEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGE.html">PWGIFIMAGE</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGEHEADER.html">PWGIFIMAGEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFLZW.html">PWGIFLZW</a></li>
+				<li><a href="class-ProcessWire.PWPNG.html">PWPNG</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -531,7 +539,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PagesLoader.html#4-1067" title="Go to source code">core/PagesLoader.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PagesLoader.html#4-1069" title="Go to source code">core/PagesLoader.php</a><br>
 	</div>
 
 
@@ -1127,7 +1135,7 @@ pulling paths from PagePaths module, if installed? (default=true)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getByPath">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#806-958" title="Go to source code">getByPath</a>( <span>mixed <var>$path</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#806-960" title="Go to source code">getByPath</a>( <span>mixed <var>$path</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1151,6 +1159,10 @@ more options</p>
 	to be true, if you want a result for a $path that is (or might be) a
 	multi-language path. Otherwise, multi-language paths will make this method
 	return a NullPage (or 0 if getID option is true).</li>
+
+	<li>Partial paths may also match, so long as the partial path is completely
+	unique in the site. If you don't want that behavior, double check the path of
+	the returned page.</li>
 </ol>
 
 
@@ -1189,7 +1201,7 @@ PagePathHistory module is installed (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_count">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#960-990" title="Go to source code">count</a>( <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#962-992" title="Go to source code">count</a>( <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1233,7 +1245,7 @@ PagePathHistory module is installed (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filterListable">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#992-1020" title="Go to source code">filterListable</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>string <var>$includeMode</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#994-1022" title="Go to source code">filterListable</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>string <var>$includeMode</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1281,7 +1293,7 @@ status' - 'unpublished': Allow pages with 'unpublished' or 'hidden' status -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNativeColumns">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1022-1040" title="Go to source code">getNativeColumns</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1024-1042" title="Go to source code">getNativeColumns</a>( )</code>
 
 		<div class="description short">
 			
@@ -1318,7 +1330,7 @@ status' - 'unpublished': Allow pages with 'unpublished' or 'hidden' status -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isNativeColumn">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1042-1052" title="Go to source code">isNativeColumn</a>( <span>mixed <var>$columnName</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1044-1054" title="Go to source code">isNativeColumn</a>( <span>mixed <var>$columnName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1360,7 +1372,7 @@ status' - 'unpublished': Allow pages with 'unpublished' or 'hidden' status -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_debug">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1054-1065" title="Go to source code">debug</a>( <span>boolean|null <var>$debug</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1056-1067" title="Go to source code">debug</a>( <span>boolean|null <var>$debug</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			

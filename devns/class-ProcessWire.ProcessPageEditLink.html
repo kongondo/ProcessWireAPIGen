@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ProcessPageEditLink | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1509548147"></script>
+	<script type="text/javascript" src="elementlist.js?2986313237"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.28 devns</span>
+			<span>Overview version 3.0.30 devns</span>
 		</a>
 
 
@@ -109,6 +109,7 @@
 				<li><a href="class-ProcessWire.FileValidatorModule.html">FileValidatorModule</a></li>
 				<li><a href="class-ProcessWire.Fuel.html">Fuel</a></li>
 				<li><a href="class-ProcessWire.HookEvent.html">HookEvent</a></li>
+				<li><a href="class-ProcessWire.ImageInspector.html">ImageInspector</a></li>
 				<li><a href="class-ProcessWire.ImageSizer.html">ImageSizer</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngine.html">ImageSizerEngine</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngineGD.html">ImageSizerEngineGD</a></li>
@@ -272,6 +273,13 @@
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
 				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
+				<li><a href="class-ProcessWire.PWGIF.html">PWGIF</a></li>
+				<li><a href="class-ProcessWire.PWGIFCOLORTABLE.html">PWGIFCOLORTABLE</a></li>
+				<li><a href="class-ProcessWire.PWGIFFILEHEADER.html">PWGIFFILEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGE.html">PWGIFIMAGE</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGEHEADER.html">PWGIFIMAGEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFLZW.html">PWGIFLZW</a></li>
+				<li><a href="class-ProcessWire.PWPNG.html">PWPNG</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -558,7 +566,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.ProcessPageEditLink.html#4-406" title="Go to source code">modules/Process/ProcessPageEditLink/ProcessPageEditLink.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.ProcessPageEditLink.html#4-441" title="Go to source code">modules/Process/ProcessPageEditLink/ProcessPageEditLink.module</a><br>
 	</div>
 
 
@@ -805,24 +813,78 @@ called for the URL <code>./bar-baz/</code>.</p>
 
 		<td class="attributes"><code>
 			 protected 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFiles">#</a>
-		<code><a href="source-class-ProcessWire.ProcessPageEditLink.html#296-306" title="Go to source code">getFiles</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessPageEditLink.html#296-316" title="Go to source code">getFiles</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get array of info about files attached to given Page</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get array of info about files attached to given Page</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Associative array of "/url/to/file.pdf" =&gt; "Field label: basename"<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFilesPage" id="_getFilesPage">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFilesPage">#</a>
+		<code><a href="source-class-ProcessWire.ProcessPageEditLink.html#318-341" title="Go to source code">getFilesPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>mixed <var>$prefix</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get array of info about files attached to given Page, including any repeater
+items</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get array of info about files attached to given Page, including any repeater
+items</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dt><var>$prefix</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Associative array of "/url/to/file.pdf" =&gt; "Field label: basename"<br>
+				</div>
 
 
 
@@ -841,7 +903,7 @@ called for the URL <code>./bar-baz/</code>.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFilesField">#</a>
-		<code><a href="source-class-ProcessWire.ProcessPageEditLink.html#308-323" title="Go to source code">getFilesField</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessPageEditLink.html#343-358" title="Go to source code">getFilesField</a>( )</code>
 
 		<div class="description short">
 			
@@ -870,7 +932,7 @@ called for the URL <code>./bar-baz/</code>.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModuleConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.ProcessPageEditLink.html#325-403" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessPageEditLink.html#360-438" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			

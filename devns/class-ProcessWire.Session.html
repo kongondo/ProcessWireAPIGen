@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Session | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1509548147"></script>
+	<script type="text/javascript" src="elementlist.js?2986313237"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.28 devns</span>
+			<span>Overview version 3.0.30 devns</span>
 		</a>
 
 
@@ -109,6 +109,7 @@
 				<li><a href="class-ProcessWire.FileValidatorModule.html">FileValidatorModule</a></li>
 				<li><a href="class-ProcessWire.Fuel.html">Fuel</a></li>
 				<li><a href="class-ProcessWire.HookEvent.html">HookEvent</a></li>
+				<li><a href="class-ProcessWire.ImageInspector.html">ImageInspector</a></li>
 				<li><a href="class-ProcessWire.ImageSizer.html">ImageSizer</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngine.html">ImageSizerEngine</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngineGD.html">ImageSizerEngineGD</a></li>
@@ -272,6 +273,13 @@
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
 				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
+				<li><a href="class-ProcessWire.PWGIF.html">PWGIF</a></li>
+				<li><a href="class-ProcessWire.PWGIFCOLORTABLE.html">PWGIFCOLORTABLE</a></li>
+				<li><a href="class-ProcessWire.PWGIFFILEHEADER.html">PWGIFFILEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGE.html">PWGIFIMAGE</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGEHEADER.html">PWGIFIMAGEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFLZW.html">PWGIFLZW</a></li>
+				<li><a href="class-ProcessWire.PWPNG.html">PWPNG</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -545,18 +553,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<b>See:</b>
 				<a
-href="http://processwire.com/api/cheatsheet/#session">http://processwire.com/api/cheatsheet/#session</a>
-Cheatsheet<br>
-				<b>See:</b>
-				<a
-href="http://processwire.com/api/variables/session/">http://processwire.com/api/variables/session/</a>
-Offical $session API variable Documentation<br>
+href="https://processwire.com/api/ref/session/">https://processwire.com/api/ref/session/</a>
+Session documentation<br>
 				<b>Todo:</b>
 				enable login/forceLogin to recognize non-HTTP use of login, when no session
 needs to be maintained<br>
 				<b>Todo:</b>
 				add a default $config-&gt;apiUser to be used when non-HTTP/bootstrap usage<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Session.html#4-969" title="Go to source code">core/Session.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Session.html#4-1129" title="Go to source code">core/Session.php</a><br>
 	</div>
 
 
@@ -574,7 +578,7 @@ needs to be maintained<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#83-122" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#127-189" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
 
 		<div class="description short">
 			
@@ -598,6 +602,10 @@ session_name() calls</p>
 				</dl></div>
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -606,10 +614,53 @@ session_name() calls</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="hasCookie" id="_hasCookie">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasCookie">#</a>
+		<code><a href="source-class-ProcessWire.Session.html#191-207" title="Go to source code">hasCookie</a>( <span>boolean <var>$checkLogin</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Are session cookie(s) present?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Are session cookie(s) present?</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$checkLogin</var></dt>
+					<dd><code>boolean</code><br>$checkLogin Specify true to check instead for challenge cookie (which indicates
+login may be active).</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>Returns true if session cookie present, false if not.<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="___init" id="____init">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 			
 			
 			</code>
@@ -617,7 +668,7 @@ session_name() calls</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____init">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#124-162" title="Go to source code">___init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#209-266" title="Go to source code">___init</a>( )</code>
 
 		<div class="description short">
 			
@@ -631,6 +682,8 @@ session_name() calls</p>
 
 <p>Provided here in any case anything wants to hook in before session_start() is
 called to provide an alternate save handler.</p>
+
+<p>#pw-hooker</p>
 
 
 
@@ -653,7 +706,7 @@ called to provide an alternate save handler.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____isValidSession">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#164-219" title="Go to source code">___isValidSession</a>( <span>integer <var>$userID</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#268-323" title="Go to source code">___isValidSession</a>( <span>integer <var>$userID</var></span> )</code>
 
 		<div class="description short">
 			
@@ -702,7 +755,7 @@ always returns true</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidFingerprint">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#221-232" title="Go to source code">isValidFingerprint</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#325-336" title="Go to source code">isValidFingerprint</a>( )</code>
 
 		<div class="description short">
 			
@@ -739,7 +792,7 @@ always returns true</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFingerprint">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#234-259" title="Go to source code">getFingerprint</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#338-363" title="Go to source code">getFingerprint</a>( )</code>
 
 		<div class="description short">
 			
@@ -776,7 +829,7 @@ always returns true</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#261-308" title="Go to source code">get</a>( <span>string|object <var>$key</var></span>, <span>string <var>$_key</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#365-417" title="Go to source code">get</a>( <span>string|object <var>$key</var></span>, <span>string <var>$_key</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -843,7 +896,7 @@ otherwise.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAll">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#310-320" title="Go to source code">getAll</a>( <span>object|string <var>$ns</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#419-433" title="Go to source code">getAll</a>( <span>object|string <var>$ns</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -885,7 +938,7 @@ otherwise.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#322-358" title="Go to source code">set</a>( <span>string|object <var>$key</var></span>, <span>string|mixed <var>$value</var></span>, <span>mixed <var>$_value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#435-474" title="Go to source code">set</a>( <span>string|object <var>$key</var></span>, <span>string|mixed <var>$value</var></span>, <span>mixed <var>$_value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -950,7 +1003,7 @@ $session-&gt;firstName; ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFor">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#360-379" title="Go to source code">getFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#476-495" title="Go to source code">getFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -998,7 +1051,7 @@ in the namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFor">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#381-404" title="Go to source code">setFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#497-520" title="Go to source code">setFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1049,7 +1102,7 @@ in the namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#406-436" title="Go to source code">remove</a>( <span>string|object <var>$key</var></span>, <span>string|boolean|null <var>$_key</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#522-562" title="Go to source code">remove</a>( <span>string|object <var>$key</var></span>, <span>string|boolean|null <var>$_key</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1104,7 +1157,7 @@ to remove all properties from the namespace, provide boolean TRUE.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeFor">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#438-448" title="Go to source code">removeFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#564-574" title="Go to source code">removeFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1149,7 +1202,7 @@ namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNamespace">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#450-468" title="Go to source code">getNamespace</a>( <span>object|string <var>$ns</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#576-594" title="Go to source code">getNamespace</a>( <span>object|string <var>$ns</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1195,7 +1248,7 @@ namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#470-479" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#596-605" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1239,7 +1292,7 @@ namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#481-491" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#607-617" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1283,7 +1336,7 @@ namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIterator">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#493-507" title="Go to source code">getIterator</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#619-634" title="Go to source code">getIterator</a>( )</code>
 
 		<div class="description short">
 			
@@ -1322,7 +1375,7 @@ namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIP">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#509-547" title="Go to source code">getIP</a>( <span>boolean <var>$int</var> = <span class="php-keyword1">false</span></span>, <span>boolean|integer <var>$useClient</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#636-674" title="Go to source code">getIP</a>( <span>boolean <var>$int</var> = <span class="php-keyword1">false</span></span>, <span>boolean|integer <var>$useClient</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1371,7 +1424,7 @@ multiple CSV separated IPs (when provided by client).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____login">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#549-633" title="Go to source code">___login</a>( <span>string|<code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$name</var></span>, <span>string <var>$pass</var></span>, <span>boolean <var>$force</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#676-761" title="Go to source code">___login</a>( <span>string|<code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$name</var></span>, <span>string <var>$pass</var></span>, <span>boolean <var>$force</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1410,6 +1463,10 @@ password.</dd>
 					<code><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code>|null</code><br>Return the $user if the login was successful or null if not.<br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -1427,7 +1484,7 @@ password.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_forceLogin">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#635-651" title="Go to source code">forceLogin</a>( <span>string|<code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#763-779" title="Go to source code">forceLogin</a>( <span>string|<code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1474,7 +1531,7 @@ $session-&gt;forceLogin('bob'); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____loginSuccess">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#653-663" title="Go to source code">___loginSuccess</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#781-791" title="Go to source code">___loginSuccess</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1514,7 +1571,7 @@ $session-&gt;forceLogin('bob'); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____loginFailure">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#665-676" title="Go to source code">___loginFailure</a>( <span>string <var>$name</var></span>, <span>string <var>$reason</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#793-804" title="Go to source code">___loginFailure</a>( <span>string <var>$name</var></span>, <span>string <var>$reason</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1556,7 +1613,7 @@ $session-&gt;forceLogin('bob'); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____allowLogin">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#678-689" title="Go to source code">___allowLogin</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#806-818" title="Go to source code">___allowLogin</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1600,7 +1657,7 @@ $session-&gt;forceLogin('bob'); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____authenticate">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#691-703" title="Go to source code">___authenticate</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span>string <var>$pass</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#820-832" title="Go to source code">___authenticate</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span>string <var>$pass</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1648,7 +1705,7 @@ password</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____logout">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#705-741" title="Go to source code">___logout</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#834-878" title="Go to source code">___logout</a>( <span>boolean <var>$startNew</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1668,11 +1725,53 @@ somewhere else after a login or logout $session-&gt;redirect('/'); } ~~~~~</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$startNew</var></dt>
+					<dd><code>boolean</code><br>$startNew Start a new session after logout? (default=true)</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
 					<code>mixed</code><br>$this<br>
 				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if session is disabled<br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="removeCookies" id="_removeCookies">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_removeCookies">#</a>
+		<code><a href="source-class-ProcessWire.Session.html#880-894" title="Go to source code">removeCookies</a>( )</code>
+
+		<div class="description short">
+			
+<p>Remove all cookies used by the session</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove all cookies used by the session</p>
+
+
+
+
 
 
 
@@ -1691,7 +1790,7 @@ somewhere else after a login or logout $session-&gt;redirect('/'); } ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____logoutSuccess">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#743-753" title="Go to source code">___logoutSuccess</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#896-906" title="Go to source code">___logoutSuccess</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1731,7 +1830,7 @@ somewhere else after a login or logout $session-&gt;redirect('/'); } ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____redirect">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#755-795" title="Go to source code">___redirect</a>( <span>string <var>$url</var></span>, <span>boolean <var>$http301</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#908-954" title="Go to source code">___redirect</a>( <span>string <var>$url</var></span>, <span>boolean <var>$http301</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1776,7 +1875,7 @@ is a 302 temporary redirect.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_close">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#797-805" title="Go to source code">close</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#956-964" title="Go to source code">close</a>( )</code>
 
 		<div class="description short">
 			
@@ -1811,7 +1910,7 @@ is a 302 temporary redirect.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_queueNotice">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#807-823" title="Go to source code">queueNotice</a>( <span>string <var>$text</var></span>, <span>string <var>$type</var></span>, <span>integer <var>$flags</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#966-983" title="Go to source code">queueNotice</a>( <span>string <var>$text</var></span>, <span>string <var>$type</var></span>, <span>integer <var>$flags</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1857,7 +1956,7 @@ is instantiated</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_message">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#826-839" title="Go to source code">message</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#986-999" title="Go to source code">message</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1905,7 +2004,7 @@ is instantiated</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_error">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#841-854" title="Go to source code">error</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#1001-1014" title="Go to source code">error</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1953,7 +2052,7 @@ is instantiated</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_warning">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#856-869" title="Go to source code">warning</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Session.html#1016-1029" title="Go to source code">warning</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2001,7 +2100,7 @@ is instantiated</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maintenance">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#871-918" title="Go to source code">maintenance</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#1031-1078" title="Go to source code">maintenance</a>( )</code>
 
 		<div class="description short">
 			
@@ -2046,7 +2145,7 @@ be retrieved with the $session-&gt;getHistory() method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getHistory">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#920-952" title="Go to source code">getHistory</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#1080-1112" title="Go to source code">getHistory</a>( )</code>
 
 		<div class="description short">
 			
@@ -2090,7 +2189,7 @@ following: array( 0 =&gt; array( 'url' =&gt; 'http://domain.com/path/to/page/',
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeNotices">#</a>
-		<code><a href="source-class-ProcessWire.Session.html#954-967" title="Go to source code">removeNotices</a>( )</code>
+		<code><a href="source-class-ProcessWire.Session.html#1114-1127" title="Go to source code">removeNotices</a>( )</code>
 
 		<div class="description short">
 			
@@ -2180,7 +2279,7 @@ prevents them from re-appearing on the next request.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Session.html#42-46" title="Go to source code"><b>fingerprintRemoteAddr</b></a>
+				<a href="source-class-ProcessWire.Session.html#47-51" title="Go to source code"><b>fingerprintRemoteAddr</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -2204,7 +2303,7 @@ prevents them from re-appearing on the next request.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Session.html#48-52" title="Go to source code"><b>fingerprintClientAddr</b></a>
+				<a href="source-class-ProcessWire.Session.html#53-57" title="Go to source code"><b>fingerprintClientAddr</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -2228,7 +2327,7 @@ prevents them from re-appearing on the next request.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Session.html#54-58" title="Go to source code"><b>fingerprintUseragent</b></a>
+				<a href="source-class-ProcessWire.Session.html#59-63" title="Go to source code"><b>fingerprintUseragent</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -2271,7 +2370,7 @@ prevents them from re-appearing on the next request.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Session.html#61-67" title="Go to source code"><var>$config</var></a>
+				<a href="source-class-ProcessWire.Session.html#66-72" title="Go to source code"><var>$config</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2301,7 +2400,7 @@ Wire derived classes.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Session.html#69-73" title="Go to source code"><var>$CSRF</var></a>
+				<a href="source-class-ProcessWire.Session.html#74-78" title="Go to source code"><var>$CSRF</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -2330,7 +2429,7 @@ from $session-&gt;CSRF.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Session.html#75-81" title="Go to source code"><var>$skipMaintenance</var></a>
+				<a href="source-class-ProcessWire.Session.html#80-86" title="Go to source code"><var>$skipMaintenance</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -2345,6 +2444,141 @@ from $session-&gt;CSRF.</p>
 			<div class="description detailed hidden">
 				
 <p>Set to true when maintenance should be skipped</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="sessionInit" id="$sessionInit">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.Session.html#88-94" title="Go to source code"><var>$sessionInit</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$sessionInit" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Has the Session::init() method been called?</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Has the Session::init() method been called?</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="sessionKey" id="$sessionKey">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.Session.html#96-102" title="Go to source code"><var>$sessionKey</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">''</span></code></td>
+		<td class="description"><div>
+			<a href="#$sessionKey" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Name of key/index within $_SESSION where PW keeps its session data</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Name of key/index within $_SESSION where PW keeps its session data</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="data" id="$data">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.Session.html#104-110" title="Go to source code"><var>$data</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$data" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Data storage when no session initialized</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Data storage when no session initialized</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="isExternal" id="$isExternal">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.Session.html#112-118" title="Go to source code"><var>$isExternal</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$isExternal" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>True if there is an external session provider</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>True if there is an external session provider</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="isSecondary" id="$isSecondary">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.Session.html#120-125" title="Go to source code"><var>$isSecondary</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$isSecondary" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>True if this is a secondary instance of ProcessWire</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>True if this is a secondary instance of ProcessWire</p>
 
 
 			</div>

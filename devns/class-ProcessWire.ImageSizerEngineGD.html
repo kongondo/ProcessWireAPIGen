@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ImageSizerEngineGD | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1509548147"></script>
+	<script type="text/javascript" src="elementlist.js?2986313237"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.28 devns</span>
+			<span>Overview version 3.0.30 devns</span>
 		</a>
 
 
@@ -109,6 +109,7 @@
 				<li><a href="class-ProcessWire.FileValidatorModule.html">FileValidatorModule</a></li>
 				<li><a href="class-ProcessWire.Fuel.html">Fuel</a></li>
 				<li><a href="class-ProcessWire.HookEvent.html">HookEvent</a></li>
+				<li><a href="class-ProcessWire.ImageInspector.html">ImageInspector</a></li>
 				<li><a href="class-ProcessWire.ImageSizer.html">ImageSizer</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngine.html">ImageSizerEngine</a></li>
 				<li class="active"><a href="class-ProcessWire.ImageSizerEngineGD.html">ImageSizerEngineGD</a></li>
@@ -272,6 +273,13 @@
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
 				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
+				<li><a href="class-ProcessWire.PWGIF.html">PWGIF</a></li>
+				<li><a href="class-ProcessWire.PWGIFCOLORTABLE.html">PWGIFCOLORTABLE</a></li>
+				<li><a href="class-ProcessWire.PWGIFFILEHEADER.html">PWGIFFILEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGE.html">PWGIFIMAGE</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGEHEADER.html">PWGIFIMAGEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFLZW.html">PWGIFLZW</a></li>
+				<li><a href="class-ProcessWire.PWPNG.html">PWPNG</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -559,7 +567,7 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.ImageSizerEngineGD.html#3-769" title="Go to source code">core/ImageSizerEngineGD.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.ImageSizerEngineGD.html#3-791" title="Go to source code">core/ImageSizerEngineGD.php</a><br>
 	</div>
 
 
@@ -614,17 +622,19 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_supported">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#47-65" title="Go to source code">supported</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#47-87" title="Go to source code">supported</a>( <span>string <var>$action</var> = <span class="php-quote">'imageformat'</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Return whether or not GD can proceed</p>
+<p>Return whether or not GD can proceed - Is the current image(sub)format
+supported?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return whether or not GD can proceed</p>
+<p>Return whether or not GD can proceed - Is the current image(sub)format
+supported?</p>
 
 
 
@@ -656,7 +666,7 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_processResize">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#67-279" title="Go to source code">processResize</a>( <span>string <var>$srcFilename</var></span>, <span>string <var>$dstFilename</var></span>, <span>integer <var>$fullWidth</var></span>, <span>integer <var>$fullHeight</var></span>, <span>integer <var>$finalWidth</var></span>, <span>integer <var>$finalHeight</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#89-301" title="Go to source code">processResize</a>( <span>string <var>$srcFilename</var></span>, <span>string <var>$dstFilename</var></span>, <span>integer <var>$fullWidth</var></span>, <span>integer <var>$fullHeight</var></span>, <span>integer <var>$finalWidth</var></span>, <span>integer <var>$finalHeight</var></span> )</code>
 
 		<div class="description short">
 			
@@ -712,7 +722,7 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_imRotate">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#281-295" title="Go to source code">imRotate</a>( <span>resource <var>$im</var></span>, <span>integer <var>$degree</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#303-317" title="Go to source code">imRotate</a>( <span>resource <var>$im</var></span>, <span>integer <var>$degree</var></span> )</code>
 
 		<div class="description short">
 			
@@ -756,7 +766,7 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_imFlip">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#297-316" title="Go to source code">imFlip</a>( <span>resource <var>$im</var></span>, <span>boolean <var>$vertical</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#319-338" title="Go to source code">imFlip</a>( <span>resource <var>$im</var></span>, <span>boolean <var>$vertical</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -800,7 +810,7 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_imSharpen">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#318-423" title="Go to source code">imSharpen</a>( <span>resource <var>$im</var></span>, <span>string <var>$mode</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#340-445" title="Go to source code">imSharpen</a>( <span>resource <var>$im</var></span>, <span>string <var>$mode</var></span> )</code>
 
 		<div class="description short">
 			
@@ -844,7 +854,7 @@ href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_gammaCorrection">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#426-446" title="Go to source code">gammaCorrection</a>( <span>GD <var>&amp; $image</var></span>, <span>boolean <var>$mode</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#448-468" title="Go to source code">gammaCorrection</a>( <span>GD <var>&amp; $image</var></span>, <span>boolean <var>$mode</var></span> )</code>
 
 		<div class="description short">
 			
@@ -887,7 +897,7 @@ to the originating gamma value</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unsharpMask">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#448-592" title="Go to source code">unsharpMask</a>( <span>resource <var>$img</var></span>, <span>integer <var>$amount</var></span>, <span>integer <var>$radius</var></span>, <span>integer <var>$threshold</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#470-614" title="Go to source code">unsharpMask</a>( <span>resource <var>$img</var></span>, <span>integer <var>$amount</var></span>, <span>integer <var>$radius</var></span>, <span>integer <var>$threshold</var></span> )</code>
 
 		<div class="description short">
 			
@@ -941,7 +951,7 @@ href="http://vikjavev.no/computing/ump.php">http://vikjavev.no/computing/ump.php
 
 		<td class="name"><div>
 		<a class="anchor" href="#_calculateUSMfactor">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#595-659" title="Go to source code">calculateUSMfactor</a>( <span>mixed <var>$targetWidth</var></span>, <span>mixed <var>$targetHeight</var></span>, <span>mixed <var>$origWidth</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$origHeight</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#617-681" title="Go to source code">calculateUSMfactor</a>( <span>mixed <var>$targetWidth</var></span>, <span>mixed <var>$targetHeight</var></span>, <span>mixed <var>$origWidth</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$origHeight</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -992,7 +1002,7 @@ according to resizing scalevalue and absolute target dimensions</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prepareImageLayer">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#662-693" title="Go to source code">prepareImageLayer</a>( <span>GD <var>&amp; $im</var></span>, <span>GD <var>&amp; $image</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#684-715" title="Go to source code">prepareImageLayer</a>( <span>GD <var>&amp; $im</var></span>, <span>GD <var>&amp; $image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1034,7 +1044,7 @@ according to resizing scalevalue and absolute target dimensions</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_checkMemoryForImage">#</a>
-		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#696-767" title="Go to source code">checkMemoryForImage</a>( <span>array <var>$sourceDimensions</var></span>, <span>array|boolean <var>$targetDimensions</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ImageSizerEngineGD.html#718-789" title="Go to source code">checkMemoryForImage</a>( <span>array <var>$sourceDimensions</var></span>, <span>array|boolean <var>$targetDimensions</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1081,7 +1091,6 @@ be done<br>
 			<a href="class-ProcessWire.ImageSizerEngine.html#_checkOrientation">checkOrientation()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_croppingValue">croppingValue()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_croppingValueStr">croppingValueStr()</a>, 
-			<a href="class-ProcessWire.ImageSizerEngine.html#_freadint">freadint()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_get">get()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_getBooleanValue">getBooleanValue()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_getConfigData">getConfigData()</a>, 
@@ -1089,6 +1098,7 @@ be done<br>
 			<a href="class-ProcessWire.ImageSizerEngine.html#_getExtension">getExtension()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_getFilename">getFilename()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_getHeight">getHeight()</a>, 
+			<a href="class-ProcessWire.ImageSizerEngine.html#_getImageInfo">getImageInfo()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_getImageType">getImageType()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_getModuleConfigInputfields">getModuleConfigInputfields()</a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#_getOptions">getOptions()</a>, 
@@ -1324,6 +1334,7 @@ be done<br>
 			<a href="class-ProcessWire.ImageSizerEngine.html#$image"><var>$image</var></a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#$imageType"><var>$imageType</var></a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#$info"><var>$info</var></a>, 
+			<a href="class-ProcessWire.ImageSizerEngine.html#$inspectionResult"><var>$inspectionResult</var></a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#$iptcRaw"><var>$iptcRaw</var></a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#$modified"><var>$modified</var></a>, 
 			<a href="class-ProcessWire.ImageSizerEngine.html#$moduleConfigData"><var>$moduleConfigData</var></a>, 

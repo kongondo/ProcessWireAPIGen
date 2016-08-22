@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessPageEditLink/ProcessPageEditLink.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?1509548147"></script>
+	<script type="text/javascript" src="elementlist.js?2986313237"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.28 devns</span>
+			<span>Overview version 3.0.30 devns</span>
 		</a>
 
 
@@ -110,6 +110,7 @@
 				<li><a href="class-ProcessWire.FileValidatorModule.html">FileValidatorModule</a></li>
 				<li><a href="class-ProcessWire.Fuel.html">Fuel</a></li>
 				<li><a href="class-ProcessWire.HookEvent.html">HookEvent</a></li>
+				<li><a href="class-ProcessWire.ImageInspector.html">ImageInspector</a></li>
 				<li><a href="class-ProcessWire.ImageSizer.html">ImageSizer</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngine.html">ImageSizerEngine</a></li>
 				<li><a href="class-ProcessWire.ImageSizerEngineGD.html">ImageSizerEngineGD</a></li>
@@ -273,6 +274,13 @@
 				<li><a href="class-ProcessWire.ProcessUserConfig.html">ProcessUserConfig</a></li>
 				<li><a href="class-ProcessWire.ProcessWire.html">ProcessWire</a></li>
 				<li><a href="class-ProcessWire.Punycode.html">Punycode</a></li>
+				<li><a href="class-ProcessWire.PWGIF.html">PWGIF</a></li>
+				<li><a href="class-ProcessWire.PWGIFCOLORTABLE.html">PWGIFCOLORTABLE</a></li>
+				<li><a href="class-ProcessWire.PWGIFFILEHEADER.html">PWGIFFILEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGE.html">PWGIFIMAGE</a></li>
+				<li><a href="class-ProcessWire.PWGIFIMAGEHEADER.html">PWGIFIMAGEHEADER</a></li>
+				<li><a href="class-ProcessWire.PWGIFLZW.html">PWGIFLZW</a></li>
+				<li><a href="class-ProcessWire.PWPNG.html">PWPNG</a></li>
 				<li><a href="class-ProcessWire.RepeaterPage.html">RepeaterPage</a></li>
 				<li><a href="class-ProcessWire.RepeaterPageArray.html">RepeaterPageArray</a></li>
 				<li><a href="class-ProcessWire.Role.html">Role</a></li>
@@ -779,119 +787,154 @@
 </span><span id="293" class="l"><a class="l" href="#293">293: </a>        <span class="php-keyword1">return</span> wireEncodeJSON(<span class="php-var">$files</span>);
 </span><span id="294" class="l"><a class="l" href="#294">294: </a>    }
 </span><span id="295" class="l"><a class="l" href="#295">295: </a>
-</span><span id="296" class="l"><a class="l" href="#296">296: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getFiles" href="#_getFiles">getFiles</a>() {
-</span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-var">$files</span> = <span class="php-keyword1">array</span>();
-</span><span id="298" class="l"><a class="l" href="#298">298: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;page-&gt;id) <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;page-&gt;fields <span class="php-keyword1">as</span> <span class="php-var">$f</span>) {
-</span><span id="299" class="l"><a class="l" href="#299">299: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$f</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeFile) <span class="php-keyword1">continue</span>;
-</span><span id="300" class="l"><a class="l" href="#300">300: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;page-&gt;get(<span class="php-var">$f</span>-&gt;name) <span class="php-keyword1">as</span> <span class="php-var">$file</span>) {
-</span><span id="301" class="l"><a class="l" href="#301">301: </a>                <span class="php-var">$files</span>[<span class="php-var">$file</span>-&gt;url] = <span class="php-var">$f</span>-&gt;getLabel() . <span class="php-quote">': '</span> . <span class="php-var">$file</span>-&gt;<span class="php-keyword2">basename</span>; 
-</span><span id="302" class="l"><a class="l" href="#302">302: </a>            }
-</span><span id="303" class="l"><a class="l" href="#303">303: </a>        }
-</span><span id="304" class="l"><a class="l" href="#304">304: </a>        <span class="php-keyword2">asort</span>(<span class="php-var">$files</span>); 
-</span><span id="305" class="l"><a class="l" href="#305">305: </a>        <span class="php-keyword1">return</span> <span class="php-var">$files</span>;
-</span><span id="306" class="l"><a class="l" href="#306">306: </a>    }
-</span><span id="307" class="l"><a class="l" href="#307">307: </a>
-</span><span id="308" class="l"><a class="l" href="#308">308: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getFilesField" href="#_getFilesField">getFilesField</a>() {
-</span><span id="309" class="l"><a class="l" href="#309">309: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldSelect&quot;</span>); 
-</span><span id="310" class="l"><a class="l" href="#310">310: </a>        <span class="php-var">$field</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Select File&quot;</span>);
-</span><span id="311" class="l"><a class="l" href="#311">311: </a>        <span class="php-var">$field</span>-&gt;attr(<span class="php-quote">'id+name'</span>, <span class="php-quote">'link_page_file'</span>); 
-</span><span id="312" class="l"><a class="l" href="#312">312: </a>        <span class="php-var">$files</span> = <span class="php-var">$this</span>-&gt;getFiles();
-</span><span id="313" class="l"><a class="l" href="#313">313: </a>        <span class="php-var">$field</span>-&gt;addOption(<span class="php-quote">''</span>);
-</span><span id="314" class="l"><a class="l" href="#314">314: </a>        <span class="php-var">$field</span>-&gt;addOptions(<span class="php-var">$files</span>); 
-</span><span id="315" class="l"><a class="l" href="#315">315: </a>        <span class="php-var">$field</span>-&gt;collapsed = Inputfield::collapsedYes; 
-</span><span id="316" class="l"><a class="l" href="#316">316: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;page-&gt;id) <span class="php-var">$field</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Showing files on page:'</span>) .  <span class="php-quote">' **'</span> . <span class="php-var">$this</span>-&gt;page-&gt;url . <span class="php-quote">'**'</span>;
-</span><span id="317" class="l"><a class="l" href="#317">317: </a>        <span class="php-var">$field</span>-&gt;description = 
-</span><span id="318" class="l"><a class="l" href="#318">318: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select the file from this page that you want to link to.'</span>) . <span class="php-quote">' '</span> . 
-</span><span id="319" class="l"><a class="l" href="#319">319: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;To select a file from another page, click 'Select Page' above and choose the page you want to select a file from.&quot;</span>); <span class="php-comment">// Instruction on how to select a file from another page</span>
-</span><span id="320" class="l"><a class="l" href="#320">320: </a>        <span class="php-var">$field</span>-&gt;icon = <span class="php-quote">'file-text-o'</span>;
-</span><span id="321" class="l"><a class="l" href="#321">321: </a>        <span class="php-keyword1">return</span> <span class="php-var">$field</span>;
-</span><span id="322" class="l"><a class="l" href="#322">322: </a>
-</span><span id="323" class="l"><a class="l" href="#323">323: </a>    }
-</span><span id="324" class="l"><a class="l" href="#324">324: </a>    
-</span><span id="325" class="l"><a class="l" href="#325">325: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="326" class="l"><a class="l" href="#326">326: </a>    
-</span><span id="327" class="l"><a class="l" href="#327">327: </a>        <span class="php-var">$data</span> = <span class="php-keyword2">array_merge</span>(self::getDefaultSettings(), <span class="php-var">$data</span>); 
-</span><span id="328" class="l"><a class="l" href="#328">328: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
-</span><span id="329" class="l"><a class="l" href="#329">329: </a>        
-</span><span id="330" class="l"><a class="l" href="#330">330: </a>        <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>); 
-</span><span id="331" class="l"><a class="l" href="#331">331: </a>        <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Attribute options'</span>);
-</span><span id="332" class="l"><a class="l" href="#332">332: </a>        <span class="php-var">$fieldset</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Enter one attribute value per line. The user will be able to select these as options when adding links. To make an option selected by default (for new links), precede it with a plus &quot;+&quot;.'</span>);
-</span><span id="333" class="l"><a class="l" href="#333">333: </a>        <span class="php-var">$fieldset</span>-&gt;icon = <span class="php-quote">'sliders'</span>;
-</span><span id="334" class="l"><a class="l" href="#334">334: </a>
-</span><span id="335" class="l"><a class="l" href="#335">335: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
-</span><span id="336" class="l"><a class="l" href="#336">336: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'classOptions'</span>);
-</span><span id="337" class="l"><a class="l" href="#337">337: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'class'</span>;
-</span><span id="338" class="l"><a class="l" href="#338">338: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'classOptions'</span>]);
-</span><span id="339" class="l"><a class="l" href="#339">339: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">34</span>; 
-</span><span id="340" class="l"><a class="l" href="#340">340: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="341" class="l"><a class="l" href="#341">341: </a>
-</span><span id="342" class="l"><a class="l" href="#342">342: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
-</span><span id="343" class="l"><a class="l" href="#343">343: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'relOptions'</span>);
-</span><span id="344" class="l"><a class="l" href="#344">344: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'rel'</span>;
-</span><span id="345" class="l"><a class="l" href="#345">345: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'relOptions'</span>]);
-</span><span id="346" class="l"><a class="l" href="#346">346: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
-</span><span id="347" class="l"><a class="l" href="#347">347: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="348" class="l"><a class="l" href="#348">348: </a>
-</span><span id="349" class="l"><a class="l" href="#349">349: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
-</span><span id="350" class="l"><a class="l" href="#350">350: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'targetOptions'</span>);
-</span><span id="351" class="l"><a class="l" href="#351">351: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'target'</span>;
-</span><span id="352" class="l"><a class="l" href="#352">352: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'targetOptions'</span>]);
-</span><span id="353" class="l"><a class="l" href="#353">353: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
-</span><span id="354" class="l"><a class="l" href="#354">354: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="355" class="l"><a class="l" href="#355">355: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$fieldset</span>); 
-</span><span id="356" class="l"><a class="l" href="#356">356: </a>        
-</span><span id="357" class="l"><a class="l" href="#357">357: </a>        <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>);
-</span><span id="358" class="l"><a class="l" href="#358">358: </a>        <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'External link attributes'</span>); 
-</span><span id="359" class="l"><a class="l" href="#359">359: </a>        <span class="php-var">$fieldset</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Specify the default selected attributed that will be automatically populated when an external link is detected.'</span>);
-</span><span id="360" class="l"><a class="l" href="#360">360: </a>        <span class="php-var">$fieldset</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If used, the value must be one you have predefined above.'</span>); 
-</span><span id="361" class="l"><a class="l" href="#361">361: </a>        <span class="php-var">$fieldset</span>-&gt;icon = <span class="php-quote">'external-link'</span>;
-</span><span id="362" class="l"><a class="l" href="#362">362: </a>        <span class="php-var">$fieldset</span>-&gt;collapsed = Inputfield::collapsedBlank;
-</span><span id="363" class="l"><a class="l" href="#363">363: </a>
-</span><span id="364" class="l"><a class="l" href="#364">364: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldName'</span>);
-</span><span id="365" class="l"><a class="l" href="#365">365: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extLinkClass'</span>);
-</span><span id="366" class="l"><a class="l" href="#366">366: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'class'</span>;
-</span><span id="367" class="l"><a class="l" href="#367">367: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'extLinkClass'</span>]);
-</span><span id="368" class="l"><a class="l" href="#368">368: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">false</span>;
-</span><span id="369" class="l"><a class="l" href="#369">369: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">34</span>;
-</span><span id="370" class="l"><a class="l" href="#370">370: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="371" class="l"><a class="l" href="#371">371: </a>
-</span><span id="372" class="l"><a class="l" href="#372">372: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldName'</span>);
-</span><span id="373" class="l"><a class="l" href="#373">373: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extLinkRel'</span>);
-</span><span id="374" class="l"><a class="l" href="#374">374: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Example: Specifying **nofollow** would make external links default to be not followed by search engines.'</span>);
-</span><span id="375" class="l"><a class="l" href="#375">375: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'rel'</span>;
-</span><span id="376" class="l"><a class="l" href="#376">376: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">false</span>; 
-</span><span id="377" class="l"><a class="l" href="#377">377: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'extLinkRel'</span>]);
-</span><span id="378" class="l"><a class="l" href="#378">378: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
-</span><span id="379" class="l"><a class="l" href="#379">379: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="380" class="l"><a class="l" href="#380">380: </a>
-</span><span id="381" class="l"><a class="l" href="#381">381: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldName'</span>);
-</span><span id="382" class="l"><a class="l" href="#382">382: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extLinkTarget'</span>);
-</span><span id="383" class="l"><a class="l" href="#383">383: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'target'</span>;
-</span><span id="384" class="l"><a class="l" href="#384">384: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Example: Specifying **_blank** would make external links default to open in a new window.'</span>); 
-</span><span id="385" class="l"><a class="l" href="#385">385: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'extLinkTarget'</span>]);
-</span><span id="386" class="l"><a class="l" href="#386">386: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">false</span>; 
-</span><span id="387" class="l"><a class="l" href="#387">387: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
-</span><span id="388" class="l"><a class="l" href="#388">388: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="389" class="l"><a class="l" href="#389">389: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$fieldset</span>); 
-</span><span id="390" class="l"><a class="l" href="#390">390: </a>        
-</span><span id="391" class="l"><a class="l" href="#391">391: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>); 
-</span><span id="392" class="l"><a class="l" href="#392">392: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'urlType'</span>); 
-</span><span id="393" class="l"><a class="l" href="#393">393: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'URL type for page links'</span>); 
-</span><span id="394" class="l"><a class="l" href="#394">394: </a>        <span class="php-var">$f</span>-&gt;addOption(self::urlTypeAbsolute, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Absolute (default)'</span>)); 
-</span><span id="395" class="l"><a class="l" href="#395">395: </a>        <span class="php-var">$f</span>-&gt;addOption(self::urlTypeRelativeBranch, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Relative URLs in the same branches only'</span>) . <span class="php-quote">'*'</span>); 
-</span><span id="396" class="l"><a class="l" href="#396">396: </a>        <span class="php-var">$f</span>-&gt;addOption(self::urlTypeRelativeAll, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Relative URLs always'</span>) . <span class="php-quote">'*'</span>); 
-</span><span id="397" class="l"><a class="l" href="#397">397: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'urlType'</span>]) ? <span class="php-var">$data</span>[<span class="php-quote">'urlType'</span>] : self::urlTypeAbsolute); 
-</span><span id="398" class="l"><a class="l" href="#398">398: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'*Currently experimental'</span>); 
-</span><span id="399" class="l"><a class="l" href="#399">399: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedYes;
-</span><span id="400" class="l"><a class="l" href="#400">400: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="401" class="l"><a class="l" href="#401">401: </a>        
-</span><span id="402" class="l"><a class="l" href="#402">402: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
-</span><span id="403" class="l"><a class="l" href="#403">403: </a>    }
-</span><span id="404" class="l"><a class="l" href="#404">404: </a>    
-</span><span id="405" class="l"><a class="l" href="#405">405: </a>
-</span><span id="406" class="l"><a class="l" href="#406">406: </a>}
-</span><span id="407" class="l"><a class="l" href="#407">407: </a>
-</span><span id="408" class="l"><a class="l" href="#408">408: </a></span></code></pre>
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>    <span class="php-comment">/**
+</span></span><span id="297" class="l"><a class="l" href="#297">297: </a><span class="php-comment">     * Get array of info about files attached to given Page
+</span></span><span id="298" class="l"><a class="l" href="#298">298: </a><span class="php-comment">     *
+</span></span><span id="299" class="l"><a class="l" href="#299">299: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="300" class="l"><a class="l" href="#300">300: </a><span class="php-comment">     * @return array Associative array of &quot;/url/to/file.pdf&quot; =&gt; &quot;Field label: basename&quot;
+</span></span><span id="301" class="l"><a class="l" href="#301">301: </a><span class="php-comment">     *
+</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">     */</span>
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getFiles" href="#_getFiles">getFiles</a>() {
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>        <span class="php-var">$files</span> = <span class="php-keyword1">array</span>();
+</span><span id="305" class="l"><a class="l" href="#305">305: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;page;
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>        <span class="php-comment">// As the link generator might be called in a repeater, we need to find the containing page     </span>
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>        <span class="php-var">$n</span> = <span class="php-num">0</span>;
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>        <span class="php-keyword1">while</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$page</span>-&gt;className(), <span class="php-quote">'Repeater'</span>) !== <span class="php-keyword1">false</span> &amp;&amp; ++<span class="php-var">$n</span> &lt; <span class="php-num">10</span>) {
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>            <span class="php-var">$page</span> = <span class="php-var">$page</span>-&gt;getForPage();
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>        }
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id) {
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>            <span class="php-var">$files</span> = <span class="php-var">$this</span>-&gt;getFilesPage(<span class="php-var">$page</span>);
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>        }
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>        <span class="php-keyword2">asort</span>(<span class="php-var">$files</span>); 
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>        <span class="php-keyword1">return</span> <span class="php-var">$files</span>;
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>    }
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>    <span class="php-comment">/**
+</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">     * Get array of info about files attached to given Page, including any repeater items
+</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">     * 
+</span></span><span id="321" class="l"><a class="l" href="#321">321: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="322" class="l"><a class="l" href="#322">322: </a><span class="php-comment">     * @return array Associative array of &quot;/url/to/file.pdf&quot; =&gt; &quot;Field label: basename&quot;
+</span></span><span id="323" class="l"><a class="l" href="#323">323: </a><span class="php-comment">     * 
+</span></span><span id="324" class="l"><a class="l" href="#324">324: </a><span class="php-comment">     */</span>
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getFilesPage" href="#_getFilesPage">getFilesPage</a>(Page <span class="php-var">$page</span>, <span class="php-var">$prefix</span> = <span class="php-quote">''</span>) {
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>        <span class="php-var">$files</span> = <span class="php-keyword1">array</span>();
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;template-&gt;fieldgroup <span class="php-keyword1">as</span> <span class="php-var">$field</span>) {
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>            <span class="php-comment">/** @var Fieldtype $type */</span>
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>            <span class="php-var">$type</span> = <span class="php-var">$field</span>-&gt;type;
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$type</span> <span class="php-keyword1">instanceof</span> FieldtypeFile) {
+</span><span id="331" class="l"><a class="l" href="#331">331: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name) <span class="php-keyword1">as</span> <span class="php-var">$file</span>) {
+</span><span id="332" class="l"><a class="l" href="#332">332: </a>                    <span class="php-var">$files</span>[<span class="php-var">$file</span>-&gt;url] = <span class="php-var">$prefix</span> . <span class="php-var">$field</span>-&gt;getLabel() . <span class="php-quote">': '</span> . <span class="php-var">$file</span>-&gt;<span class="php-keyword2">basename</span>;
+</span><span id="333" class="l"><a class="l" href="#333">333: </a>                }
+</span><span id="334" class="l"><a class="l" href="#334">334: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$type</span>-&gt;className(), <span class="php-quote">'FieldtypeRepeater'</span>) !== <span class="php-keyword1">false</span>) {
+</span><span id="335" class="l"><a class="l" href="#335">335: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name) <span class="php-keyword1">as</span> <span class="php-var">$repeaterPage</span>){
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>                    <span class="php-var">$files</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$this</span>-&gt;getFilesPage(<span class="php-var">$repeaterPage</span>, <span class="php-var">$field</span>-&gt;getLabel() . <span class="php-quote">': '</span>), <span class="php-var">$files</span>);
+</span><span id="337" class="l"><a class="l" href="#337">337: </a>                }
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>            } 
+</span><span id="339" class="l"><a class="l" href="#339">339: </a>        }
+</span><span id="340" class="l"><a class="l" href="#340">340: </a>        <span class="php-keyword1">return</span> <span class="php-var">$files</span>;
+</span><span id="341" class="l"><a class="l" href="#341">341: </a>    }
+</span><span id="342" class="l"><a class="l" href="#342">342: </a>
+</span><span id="343" class="l"><a class="l" href="#343">343: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getFilesField" href="#_getFilesField">getFilesField</a>() {
+</span><span id="344" class="l"><a class="l" href="#344">344: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldSelect&quot;</span>); 
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>        <span class="php-var">$field</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Select File&quot;</span>);
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>        <span class="php-var">$field</span>-&gt;attr(<span class="php-quote">'id+name'</span>, <span class="php-quote">'link_page_file'</span>); 
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>        <span class="php-var">$files</span> = <span class="php-var">$this</span>-&gt;getFiles();
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>        <span class="php-var">$field</span>-&gt;addOption(<span class="php-quote">''</span>);
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>        <span class="php-var">$field</span>-&gt;addOptions(<span class="php-var">$files</span>); 
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>        <span class="php-var">$field</span>-&gt;collapsed = Inputfield::collapsedYes; 
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;page-&gt;id) <span class="php-var">$field</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Showing files on page:'</span>) .  <span class="php-quote">' **'</span> . <span class="php-var">$this</span>-&gt;page-&gt;url . <span class="php-quote">'**'</span>;
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>        <span class="php-var">$field</span>-&gt;description = 
+</span><span id="353" class="l"><a class="l" href="#353">353: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select the file from this page that you want to link to.'</span>) . <span class="php-quote">' '</span> . 
+</span><span id="354" class="l"><a class="l" href="#354">354: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;To select a file from another page, click 'Select Page' above and choose the page you want to select a file from.&quot;</span>); <span class="php-comment">// Instruction on how to select a file from another page</span>
+</span><span id="355" class="l"><a class="l" href="#355">355: </a>        <span class="php-var">$field</span>-&gt;icon = <span class="php-quote">'file-text-o'</span>;
+</span><span id="356" class="l"><a class="l" href="#356">356: </a>        <span class="php-keyword1">return</span> <span class="php-var">$field</span>;
+</span><span id="357" class="l"><a class="l" href="#357">357: </a>
+</span><span id="358" class="l"><a class="l" href="#358">358: </a>    }
+</span><span id="359" class="l"><a class="l" href="#359">359: </a>    
+</span><span id="360" class="l"><a class="l" href="#360">360: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="361" class="l"><a class="l" href="#361">361: </a>    
+</span><span id="362" class="l"><a class="l" href="#362">362: </a>        <span class="php-var">$data</span> = <span class="php-keyword2">array_merge</span>(self::getDefaultSettings(), <span class="php-var">$data</span>); 
+</span><span id="363" class="l"><a class="l" href="#363">363: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>        
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>        <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>); 
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>        <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Attribute options'</span>);
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>        <span class="php-var">$fieldset</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Enter one attribute value per line. The user will be able to select these as options when adding links. To make an option selected by default (for new links), precede it with a plus &quot;+&quot;.'</span>);
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>        <span class="php-var">$fieldset</span>-&gt;icon = <span class="php-quote">'sliders'</span>;
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
+</span><span id="371" class="l"><a class="l" href="#371">371: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'classOptions'</span>);
+</span><span id="372" class="l"><a class="l" href="#372">372: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'class'</span>;
+</span><span id="373" class="l"><a class="l" href="#373">373: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'classOptions'</span>]);
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">34</span>; 
+</span><span id="375" class="l"><a class="l" href="#375">375: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="376" class="l"><a class="l" href="#376">376: </a>
+</span><span id="377" class="l"><a class="l" href="#377">377: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
+</span><span id="378" class="l"><a class="l" href="#378">378: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'relOptions'</span>);
+</span><span id="379" class="l"><a class="l" href="#379">379: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'rel'</span>;
+</span><span id="380" class="l"><a class="l" href="#380">380: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'relOptions'</span>]);
+</span><span id="381" class="l"><a class="l" href="#381">381: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
+</span><span id="382" class="l"><a class="l" href="#382">382: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="383" class="l"><a class="l" href="#383">383: </a>
+</span><span id="384" class="l"><a class="l" href="#384">384: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
+</span><span id="385" class="l"><a class="l" href="#385">385: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'targetOptions'</span>);
+</span><span id="386" class="l"><a class="l" href="#386">386: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'target'</span>;
+</span><span id="387" class="l"><a class="l" href="#387">387: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'targetOptions'</span>]);
+</span><span id="388" class="l"><a class="l" href="#388">388: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
+</span><span id="389" class="l"><a class="l" href="#389">389: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="390" class="l"><a class="l" href="#390">390: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$fieldset</span>); 
+</span><span id="391" class="l"><a class="l" href="#391">391: </a>        
+</span><span id="392" class="l"><a class="l" href="#392">392: </a>        <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>);
+</span><span id="393" class="l"><a class="l" href="#393">393: </a>        <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'External link attributes'</span>); 
+</span><span id="394" class="l"><a class="l" href="#394">394: </a>        <span class="php-var">$fieldset</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Specify the default selected attributed that will be automatically populated when an external link is detected.'</span>);
+</span><span id="395" class="l"><a class="l" href="#395">395: </a>        <span class="php-var">$fieldset</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If used, the value must be one you have predefined above.'</span>); 
+</span><span id="396" class="l"><a class="l" href="#396">396: </a>        <span class="php-var">$fieldset</span>-&gt;icon = <span class="php-quote">'external-link'</span>;
+</span><span id="397" class="l"><a class="l" href="#397">397: </a>        <span class="php-var">$fieldset</span>-&gt;collapsed = Inputfield::collapsedBlank;
+</span><span id="398" class="l"><a class="l" href="#398">398: </a>
+</span><span id="399" class="l"><a class="l" href="#399">399: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldName'</span>);
+</span><span id="400" class="l"><a class="l" href="#400">400: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extLinkClass'</span>);
+</span><span id="401" class="l"><a class="l" href="#401">401: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'class'</span>;
+</span><span id="402" class="l"><a class="l" href="#402">402: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'extLinkClass'</span>]);
+</span><span id="403" class="l"><a class="l" href="#403">403: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">false</span>;
+</span><span id="404" class="l"><a class="l" href="#404">404: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">34</span>;
+</span><span id="405" class="l"><a class="l" href="#405">405: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="406" class="l"><a class="l" href="#406">406: </a>
+</span><span id="407" class="l"><a class="l" href="#407">407: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldName'</span>);
+</span><span id="408" class="l"><a class="l" href="#408">408: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extLinkRel'</span>);
+</span><span id="409" class="l"><a class="l" href="#409">409: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Example: Specifying **nofollow** would make external links default to be not followed by search engines.'</span>);
+</span><span id="410" class="l"><a class="l" href="#410">410: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'rel'</span>;
+</span><span id="411" class="l"><a class="l" href="#411">411: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">false</span>; 
+</span><span id="412" class="l"><a class="l" href="#412">412: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'extLinkRel'</span>]);
+</span><span id="413" class="l"><a class="l" href="#413">413: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
+</span><span id="414" class="l"><a class="l" href="#414">414: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="415" class="l"><a class="l" href="#415">415: </a>
+</span><span id="416" class="l"><a class="l" href="#416">416: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldName'</span>);
+</span><span id="417" class="l"><a class="l" href="#417">417: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extLinkTarget'</span>);
+</span><span id="418" class="l"><a class="l" href="#418">418: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-quote">'target'</span>;
+</span><span id="419" class="l"><a class="l" href="#419">419: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Example: Specifying **_blank** would make external links default to open in a new window.'</span>); 
+</span><span id="420" class="l"><a class="l" href="#420">420: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'extLinkTarget'</span>]);
+</span><span id="421" class="l"><a class="l" href="#421">421: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">false</span>; 
+</span><span id="422" class="l"><a class="l" href="#422">422: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
+</span><span id="423" class="l"><a class="l" href="#423">423: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="424" class="l"><a class="l" href="#424">424: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$fieldset</span>); 
+</span><span id="425" class="l"><a class="l" href="#425">425: </a>        
+</span><span id="426" class="l"><a class="l" href="#426">426: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>); 
+</span><span id="427" class="l"><a class="l" href="#427">427: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'urlType'</span>); 
+</span><span id="428" class="l"><a class="l" href="#428">428: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'URL type for page links'</span>); 
+</span><span id="429" class="l"><a class="l" href="#429">429: </a>        <span class="php-var">$f</span>-&gt;addOption(self::urlTypeAbsolute, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Absolute (default)'</span>)); 
+</span><span id="430" class="l"><a class="l" href="#430">430: </a>        <span class="php-var">$f</span>-&gt;addOption(self::urlTypeRelativeBranch, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Relative URLs in the same branches only'</span>) . <span class="php-quote">'*'</span>); 
+</span><span id="431" class="l"><a class="l" href="#431">431: </a>        <span class="php-var">$f</span>-&gt;addOption(self::urlTypeRelativeAll, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Relative URLs always'</span>) . <span class="php-quote">'*'</span>); 
+</span><span id="432" class="l"><a class="l" href="#432">432: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'urlType'</span>]) ? <span class="php-var">$data</span>[<span class="php-quote">'urlType'</span>] : self::urlTypeAbsolute); 
+</span><span id="433" class="l"><a class="l" href="#433">433: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'*Currently experimental'</span>); 
+</span><span id="434" class="l"><a class="l" href="#434">434: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedYes;
+</span><span id="435" class="l"><a class="l" href="#435">435: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="436" class="l"><a class="l" href="#436">436: </a>        
+</span><span id="437" class="l"><a class="l" href="#437">437: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
+</span><span id="438" class="l"><a class="l" href="#438">438: </a>    }
+</span><span id="439" class="l"><a class="l" href="#439">439: </a>    
+</span><span id="440" class="l"><a class="l" href="#440">440: </a>
+</span><span id="441" class="l"><a class="l" href="#441">441: </a>}
+</span><span id="442" class="l"><a class="l" href="#442">442: </a>
+</span><span id="443" class="l"><a class="l" href="#443">443: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
