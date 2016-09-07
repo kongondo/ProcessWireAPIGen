@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldsArray | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -367,6 +367,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -500,7 +501,7 @@
 
 <p>WireArray of Field instances, as used by Fields class</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -552,7 +553,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.FieldsArray.html#4-46" title="Go to source code">core/FieldsArray.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.FieldsArray.html#4-57" title="Go to source code">core/FieldsArray.php</a><br>
 	</div>
 
 
@@ -570,7 +571,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidItem">#</a>
-		<code><a href="source-class-ProcessWire.FieldsArray.html#15-21" title="Go to source code">isValidItem</a>( <span>mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldsArray.html#15-24" title="Go to source code">isValidItem</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -587,12 +588,12 @@ href="https://processwire.com">https://processwire.com</a></p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>mixed</code><br>$item Item to test for validity</dd>
+					<dd><code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>True if item is valid and may be added, false if not<br>
+					<code>boolean</code><br>
 				</div>
 
 
@@ -607,14 +608,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			boolean
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValidKey">#</a>
-		<code><a href="source-class-ProcessWire.FieldsArray.html#23-29" title="Go to source code">isValidKey</a>( <span>string|integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldsArray.html#26-35" title="Go to source code">isValidKey</a>( <span>integer <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -631,12 +632,12 @@ href="https://processwire.com">https://processwire.com</a></p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|integer</code><br>$key Key to test</dd>
+					<dd><code>integer</code><br>$key</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>True if key is valid and may be used, false if not<br>
+					<code>integer</code><br>
 				</div>
 
 
@@ -651,14 +652,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			string|integer|null
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getItemKey">#</a>
-		<code><a href="source-class-ProcessWire.FieldsArray.html#31-37" title="Go to source code">getItemKey</a>( <span>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldsArray.html#37-46" title="Go to source code">getItemKey</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -675,12 +676,12 @@ href="https://processwire.com">https://processwire.com</a></p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$item</var></dt>
-					<dd><code>object|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code></code><br>$item Item to get key for</dd>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$item</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|integer|null</code><br>Found key, or null if not found.<br>
+					<code>integer</code><br>
 				</div>
 
 
@@ -695,14 +696,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null
+			<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeBlankItem">#</a>
-		<code><a href="source-class-ProcessWire.FieldsArray.html#39-45" title="Go to source code">makeBlankItem</a>( )</code>
+		<code><a href="source-class-ProcessWire.FieldsArray.html#48-56" title="Go to source code">makeBlankItem</a>( )</code>
 
 		<div class="description short">
 			
@@ -719,7 +720,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>
 				</div>
 
 				<h4>Throws</h4>

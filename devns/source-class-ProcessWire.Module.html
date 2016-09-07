@@ -8,7 +8,7 @@
 	<title>File core/Module.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -368,6 +368,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -499,7 +500,7 @@
 </span></span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-comment"> *
 </span></span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-comment"> * Provides the base interfaces required by modules.
 </span></span><span id="7" class="l"><a class="l" href="#7">  7: </a><span class="php-comment"> * 
-</span></span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-comment"> * ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer
+</span></span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-comment"> * ProcessWire 3.x, Copyright 2016 by Ryan Cramer
 </span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment"> * https://processwire.com
 </span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment"> * 
 </span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment"> * #pw-summary Module is the primary PHP interface for module types in ProcessWire. 
@@ -941,7 +942,48 @@
 </span></span><span id="447" class="l"><a class="l" href="#447">447: </a><span class="php-comment">     */</span> 
 </span><span id="448" class="l"><a class="l" href="#448">448: </a>}
 </span><span id="449" class="l"><a class="l" href="#449">449: </a>
-</span><span id="450" class="l"><a class="l" href="#450">450: </a></span></code></pre>
+</span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-comment">/**
+</span></span><span id="451" class="l"><a class="l" href="#451">451: </a><span class="php-comment"> * Standard module interface with all methods. 
+</span></span><span id="452" class="l"><a class="l" href="#452">452: </a><span class="php-comment"> * 
+</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment"> * This interface is not intended to be used for anything other than for code hinting purposes. 
+</span></span><span id="454" class="l"><a class="l" href="#454">454: </a><span class="php-comment"> *
+</span></span><span id="455" class="l"><a class="l" href="#455">455: </a><span class="php-comment"> */</span>
+</span><span id="456" class="l"><a class="l" href="#456">456: </a><span class="php-keyword1">interface</span> <a id="_Module" href="#_Module">_Module</a> {
+</span><span id="457" class="l"><a class="l" href="#457">457: </a>    
+</span><span id="458" class="l"><a class="l" href="#458">458: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_install" href="#_install">install</a>();
+</span><span id="459" class="l"><a class="l" href="#459">459: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_uninstall" href="#_uninstall">uninstall</a>();
+</span><span id="460" class="l"><a class="l" href="#460">460: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_upgrade" href="#_upgrade">upgrade</a>(<span class="php-var">$fromVersion</span>, <span class="php-var">$toVersion</span>);
+</span><span id="461" class="l"><a class="l" href="#461">461: </a>    
+</span><span id="462" class="l"><a class="l" href="#462">462: </a>    <span class="php-comment">/** @return array */</span>
+</span><span id="463" class="l"><a class="l" href="#463">463: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getModuleInfo" href="#_getModuleInfo">getModuleInfo</a>();
+</span><span id="464" class="l"><a class="l" href="#464">464: </a>    
+</span><span id="465" class="l"><a class="l" href="#465">465: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_init" href="#_init">init</a>();
+</span><span id="466" class="l"><a class="l" href="#466">466: </a>    
+</span><span id="467" class="l"><a class="l" href="#467">467: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_ready" href="#_ready">ready</a>();
+</span><span id="468" class="l"><a class="l" href="#468">468: </a>    
+</span><span id="469" class="l"><a class="l" href="#469">469: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setConfigData" href="#_setConfigData">setConfigData</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>);
+</span><span id="470" class="l"><a class="l" href="#470">470: </a>    
+</span><span id="471" class="l"><a class="l" href="#471">471: </a>    <span class="php-comment">/** @return bool */</span>
+</span><span id="472" class="l"><a class="l" href="#472">472: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isSingular" href="#_isSingular">isSingular</a>();
+</span><span id="473" class="l"><a class="l" href="#473">473: </a>    
+</span><span id="474" class="l"><a class="l" href="#474">474: </a>    <span class="php-comment">/** @return bool */</span>
+</span><span id="475" class="l"><a class="l" href="#475">475: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isAutoload" href="#_isAutoload">isAutoload</a>();
+</span><span id="476" class="l"><a class="l" href="#476">476: </a>
+</span><span id="477" class="l"><a class="l" href="#477">477: </a>    <span class="php-comment">/**
+</span></span><span id="478" class="l"><a class="l" href="#478">478: </a><span class="php-comment">     * @param InputfieldWrapper|array|null $data
+</span></span><span id="479" class="l"><a class="l" href="#479">479: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="480" class="l"><a class="l" href="#480">480: </a><span class="php-comment">     * 
+</span></span><span id="481" class="l"><a class="l" href="#481">481: </a><span class="php-comment">     */</span>
+</span><span id="482" class="l"><a class="l" href="#482">482: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-var">$data</span> = <span class="php-keyword1">null</span>);
+</span><span id="483" class="l"><a class="l" href="#483">483: </a>
+</span><span id="484" class="l"><a class="l" href="#484">484: </a>    <span class="php-comment">/**
+</span></span><span id="485" class="l"><a class="l" href="#485">485: </a><span class="php-comment">     * @return array
+</span></span><span id="486" class="l"><a class="l" href="#486">486: </a><span class="php-comment">     * 
+</span></span><span id="487" class="l"><a class="l" href="#487">487: </a><span class="php-comment">     */</span>
+</span><span id="488" class="l"><a class="l" href="#488">488: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigArray" href="#_getModuleConfigArray">getModuleConfigArray</a>();
+</span><span id="489" class="l"><a class="l" href="#489">489: </a>}
+</span><span id="490" class="l"><a class="l" href="#490">490: </a>
+</span><span id="491" class="l"><a class="l" href="#491">491: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

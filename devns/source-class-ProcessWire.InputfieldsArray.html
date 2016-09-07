@@ -8,7 +8,7 @@
 	<title>File core/InputfieldsArray.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -368,6 +368,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -499,41 +500,51 @@
 </span></span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-comment"> *
 </span></span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment"> * The default numeric indexing of a WireArray is not overridden.
 </span></span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-comment"> *
-</span></span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-comment"> */</span>
-</span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">class</span> <a id="InputfieldsArray" href="#InputfieldsArray">InputfieldsArray</a> <span class="php-keyword1">extends</span> WireArray {
-</span><span id="10" class="l"><a class="l" href="#10">10: </a>
-</span><span id="11" class="l"><a class="l" href="#11">11: </a>    <span class="php-comment">/**
-</span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment">     * Per WireArray interface, only Inputfield instances are accepted.
-</span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     *
-</span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment">     */</span>
-</span><span id="15" class="l"><a class="l" href="#15">15: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValidItem" href="#_isValidItem">isValidItem</a>(<span class="php-var">$item</span>) {
-</span><span id="16" class="l"><a class="l" href="#16">16: </a>        <span class="php-keyword1">return</span> <span class="php-var">$item</span> <span class="php-keyword1">instanceof</span> Inputfield;
-</span><span id="17" class="l"><a class="l" href="#17">17: </a>    }
-</span><span id="18" class="l"><a class="l" href="#18">18: </a>
-</span><span id="19" class="l"><a class="l" href="#19">19: </a>    <span class="php-comment">/**
-</span></span><span id="20" class="l"><a class="l" href="#20">20: </a><span class="php-comment">     * Extends the find capability of WireArray to descend into the Inputfield children
-</span></span><span id="21" class="l"><a class="l" href="#21">21: </a><span class="php-comment">     *
-</span></span><span id="22" class="l"><a class="l" href="#22">22: </a><span class="php-comment">     */</span>
-</span><span id="23" class="l"><a class="l" href="#23">23: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_find" href="#_find">find</a>(<span class="php-var">$selector</span>) {
-</span><span id="24" class="l"><a class="l" href="#24">24: </a>        <span class="php-var">$a</span> = parent::find(<span class="php-var">$selector</span>);
-</span><span id="25" class="l"><a class="l" href="#25">25: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span> <span class="php-keyword1">as</span> <span class="php-var">$item</span>) {
-</span><span id="26" class="l"><a class="l" href="#26">26: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$item</span> <span class="php-keyword1">instanceof</span> InputfieldWrapper) <span class="php-keyword1">continue</span>;
-</span><span id="27" class="l"><a class="l" href="#27">27: </a>            <span class="php-var">$children</span> = <span class="php-var">$item</span>-&gt;children();
-</span><span id="28" class="l"><a class="l" href="#28">28: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$children</span>)) <span class="php-var">$a</span>-&gt;import(<span class="php-var">$children</span>-&gt;find(<span class="php-var">$selector</span>));
-</span><span id="29" class="l"><a class="l" href="#29">29: </a>        }
-</span><span id="30" class="l"><a class="l" href="#30">30: </a>        <span class="php-keyword1">return</span> <span class="php-var">$a</span>;
-</span><span id="31" class="l"><a class="l" href="#31">31: </a>    }
-</span><span id="32" class="l"><a class="l" href="#32">32: </a>
-</span><span id="33" class="l"><a class="l" href="#33">33: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_makeBlankItem" href="#_makeBlankItem">makeBlankItem</a>() {
-</span><span id="34" class="l"><a class="l" href="#34">34: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>; <span class="php-comment">// Inputfield is abstract, so there is nothing to return here</span>
-</span><span id="35" class="l"><a class="l" href="#35">35: </a>    }
-</span><span id="36" class="l"><a class="l" href="#36">36: </a>
-</span><span id="37" class="l"><a class="l" href="#37">37: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_usesNumericKeys" href="#_usesNumericKeys">usesNumericKeys</a>() {
-</span><span id="38" class="l"><a class="l" href="#38">38: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="39" class="l"><a class="l" href="#39">39: </a>    }
-</span><span id="40" class="l"><a class="l" href="#40">40: </a>
-</span><span id="41" class="l"><a class="l" href="#41">41: </a>}
-</span><span id="42" class="l"><a class="l" href="#42">42: </a></span></code></pre>
+</span></span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-comment"> * ProcessWire 3.x, Copyright 2016 by Ryan Cramer
+</span></span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-comment"> * https://processwire.com
+</span></span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-comment"> *
+</span></span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-comment"> */</span>
+</span><span id="12" class="l"><a class="l" href="#12">12: </a>
+</span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-keyword1">class</span> <a id="InputfieldsArray" href="#InputfieldsArray">InputfieldsArray</a> <span class="php-keyword1">extends</span> WireArray {
+</span><span id="14" class="l"><a class="l" href="#14">14: </a>
+</span><span id="15" class="l"><a class="l" href="#15">15: </a>    <span class="php-comment">/**
+</span></span><span id="16" class="l"><a class="l" href="#16">16: </a><span class="php-comment">     * Per WireArray interface, only Inputfield instances are accepted.
+</span></span><span id="17" class="l"><a class="l" href="#17">17: </a><span class="php-comment">     * 
+</span></span><span id="18" class="l"><a class="l" href="#18">18: </a><span class="php-comment">     * @param Wire $item
+</span></span><span id="19" class="l"><a class="l" href="#19">19: </a><span class="php-comment">     * @return bool
+</span></span><span id="20" class="l"><a class="l" href="#20">20: </a><span class="php-comment">     *
+</span></span><span id="21" class="l"><a class="l" href="#21">21: </a><span class="php-comment">     */</span>
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValidItem" href="#_isValidItem">isValidItem</a>(<span class="php-var">$item</span>) {
+</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-keyword1">return</span> <span class="php-var">$item</span> <span class="php-keyword1">instanceof</span> Inputfield;
+</span><span id="24" class="l"><a class="l" href="#24">24: </a>    }
+</span><span id="25" class="l"><a class="l" href="#25">25: </a>
+</span><span id="26" class="l"><a class="l" href="#26">26: </a>    <span class="php-comment">/**
+</span></span><span id="27" class="l"><a class="l" href="#27">27: </a><span class="php-comment">     * Extends the find capability of WireArray to descend into the Inputfield children
+</span></span><span id="28" class="l"><a class="l" href="#28">28: </a><span class="php-comment">     * 
+</span></span><span id="29" class="l"><a class="l" href="#29">29: </a><span class="php-comment">     * @param string $selector
+</span></span><span id="30" class="l"><a class="l" href="#30">30: </a><span class="php-comment">     * @return WireArray|InputfieldsArray
+</span></span><span id="31" class="l"><a class="l" href="#31">31: </a><span class="php-comment">     *
+</span></span><span id="32" class="l"><a class="l" href="#32">32: </a><span class="php-comment">     */</span>
+</span><span id="33" class="l"><a class="l" href="#33">33: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_find" href="#_find">find</a>(<span class="php-var">$selector</span>) {
+</span><span id="34" class="l"><a class="l" href="#34">34: </a>        <span class="php-var">$a</span> = parent::find(<span class="php-var">$selector</span>);
+</span><span id="35" class="l"><a class="l" href="#35">35: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span> <span class="php-keyword1">as</span> <span class="php-var">$item</span>) {
+</span><span id="36" class="l"><a class="l" href="#36">36: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$item</span> <span class="php-keyword1">instanceof</span> InputfieldWrapper) <span class="php-keyword1">continue</span>;
+</span><span id="37" class="l"><a class="l" href="#37">37: </a>            <span class="php-var">$children</span> = <span class="php-var">$item</span>-&gt;children();
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$children</span>)) <span class="php-var">$a</span>-&gt;import(<span class="php-var">$children</span>-&gt;find(<span class="php-var">$selector</span>));
+</span><span id="39" class="l"><a class="l" href="#39">39: </a>        }
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>        <span class="php-keyword1">return</span> <span class="php-var">$a</span>;
+</span><span id="41" class="l"><a class="l" href="#41">41: </a>    }
+</span><span id="42" class="l"><a class="l" href="#42">42: </a>
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_makeBlankItem" href="#_makeBlankItem">makeBlankItem</a>() {
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>; <span class="php-comment">// Inputfield is abstract, so there is nothing to return here</span>
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>    }
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>
+</span><span id="47" class="l"><a class="l" href="#47">47: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_usesNumericKeys" href="#_usesNumericKeys">usesNumericKeys</a>() {
+</span><span id="48" class="l"><a class="l" href="#48">48: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="49" class="l"><a class="l" href="#49">49: </a>    }
+</span><span id="50" class="l"><a class="l" href="#50">50: </a>
+</span><span id="51" class="l"><a class="l" href="#51">51: </a>}
+</span><span id="52" class="l"><a class="l" href="#52">52: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

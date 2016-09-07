@@ -8,7 +8,7 @@
 	<title>File modules/LanguageSupport/Languages.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -368,6 +368,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -500,7 +501,7 @@
 </span></span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-comment"> * Class for managing Language-type pages.
 </span></span><span id="7" class="l"><a class="l" href="#7">  7: </a><span class="php-comment"> * Acts as the $wire-&gt;languages API variable. 
 </span></span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-comment"> *
-</span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment"> * ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer
+</span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment"> * ProcessWire 3.x, Copyright 2016 by Ryan Cramer
 </span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment"> * https://processwire.com
 </span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment"> * 
 </span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment"> * @property LanguageTabs|null $tabs Current LanguageTabs module instance, if installed
@@ -870,93 +871,92 @@
 </span><span id="376" class="l"><a class="l" href="#376">376: </a>            } <span class="php-keyword1">else</span> {
 </span><span id="377" class="l"><a class="l" href="#377">377: </a>                <span class="php-comment">// if the page-edit-lang-none permission doesn't exist, then it's not applicable</span>
 </span><span id="378" class="l"><a class="l" href="#378">378: </a>                <span class="php-var">$has</span> = <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-edit'</span>);
-</span><span id="379" class="l"><a class="l" href="#379">379: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;none has=&quot;</span> . (int) <span class="php-var">$has</span>);
-</span><span id="380" class="l"><a class="l" href="#380">380: </a>            }
-</span><span id="381" class="l"><a class="l" href="#381">381: </a>            <span class="php-var">$this</span>-&gt;editableCache[<span class="php-var">$cacheKey</span>] = <span class="php-var">$has</span>;
-</span><span id="382" class="l"><a class="l" href="#382">382: </a>            
-</span><span id="383" class="l"><a class="l" href="#383">383: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="384" class="l"><a class="l" href="#384">384: </a>            
-</span><span id="385" class="l"><a class="l" href="#385">385: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$language</span> <span class="php-keyword1">instanceof</span> Language) <span class="php-var">$language</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageNameUTF8(<span class="php-var">$language</span>));
-</span><span id="386" class="l"><a class="l" href="#386">386: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$language</span> || !<span class="php-var">$language</span>-&gt;id) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="387" class="l"><a class="l" href="#387">387: </a>        
-</span><span id="388" class="l"><a class="l" href="#388">388: </a>            <span class="php-var">$cacheKey</span> = <span class="php-quote">&quot;</span><span class="php-var">$user</span><span class="php-quote">-&gt;id.</span><span class="php-var">$language</span><span class="php-quote">-&gt;id&quot;</span>;
-</span><span id="389" class="l"><a class="l" href="#389">389: </a>            
-</span><span id="390" class="l"><a class="l" href="#390">390: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">array_key_exists</span>(<span class="php-var">$cacheKey</span>, <span class="php-var">$this</span>-&gt;editableCache)) {
-</span><span id="391" class="l"><a class="l" href="#391">391: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;editableCache[<span class="php-var">$cacheKey</span>];
-</span><span id="392" class="l"><a class="l" href="#392">392: </a>            }
-</span><span id="393" class="l"><a class="l" href="#393">393: </a>            
-</span><span id="394" class="l"><a class="l" href="#394">394: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-edit'</span>)) {
-</span><span id="395" class="l"><a class="l" href="#395">395: </a>                <span class="php-comment">// page-edit is a pre-requisite permission</span>
-</span><span id="396" class="l"><a class="l" href="#396">396: </a>                <span class="php-var">$has</span> = <span class="php-keyword1">false</span>;
-</span><span id="397" class="l"><a class="l" href="#397">397: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="398" class="l"><a class="l" href="#398">398: </a>                <span class="php-var">$permissionName</span> = <span class="php-var">$this</span>-&gt;getPageEditPermission(<span class="php-var">$language</span>);
-</span><span id="399" class="l"><a class="l" href="#399">399: </a>                <span class="php-comment">// if a language-specific page-edit permission doesn't exist, then fallback to regular page-edit permission</span>
-</span><span id="400" class="l"><a class="l" href="#400">400: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$permissionName</span>) {
-</span><span id="401" class="l"><a class="l" href="#401">401: </a>                    <span class="php-var">$has</span> = <span class="php-keyword1">true</span>;
-</span><span id="402" class="l"><a class="l" href="#402">402: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="403" class="l"><a class="l" href="#403">403: </a>                    <span class="php-var">$has</span> = <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-var">$permissionName</span>);
-</span><span id="404" class="l"><a class="l" href="#404">404: </a>                }
-</span><span id="405" class="l"><a class="l" href="#405">405: </a>            }
-</span><span id="406" class="l"><a class="l" href="#406">406: </a>            
-</span><span id="407" class="l"><a class="l" href="#407">407: </a>            <span class="php-var">$this</span>-&gt;editableCache[<span class="php-var">$cacheKey</span>] = <span class="php-var">$has</span>; 
-</span><span id="408" class="l"><a class="l" href="#408">408: </a>        }
-</span><span id="409" class="l"><a class="l" href="#409">409: </a>        
-</span><span id="410" class="l"><a class="l" href="#410">410: </a>        <span class="php-keyword1">return</span> <span class="php-var">$has</span>; 
-</span><span id="411" class="l"><a class="l" href="#411">411: </a>    }
-</span><span id="412" class="l"><a class="l" href="#412">412: </a>    
-</span><span id="413" class="l"><a class="l" href="#413">413: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___get" href="#___get">__get</a>(<span class="php-var">$key</span>) {
-</span><span id="414" class="l"><a class="l" href="#414">414: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'tabs'</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupport'</span>)-&gt;getLanguageTabs();
-</span><span id="415" class="l"><a class="l" href="#415">415: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'default'</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getDefault();
-</span><span id="416" class="l"><a class="l" href="#416">416: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'support'</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupport'</span>);
-</span><span id="417" class="l"><a class="l" href="#417">417: </a>        <span class="php-keyword1">return</span> parent::__get(<span class="php-var">$key</span>);
-</span><span id="418" class="l"><a class="l" href="#418">418: </a>    }
-</span><span id="419" class="l"><a class="l" href="#419">419: </a>
-</span><span id="420" class="l"><a class="l" href="#420">420: </a>    <span class="php-comment">/**
-</span></span><span id="421" class="l"><a class="l" href="#421">421: </a><span class="php-comment">     * Hook to WireDatabasePDO::unknownColumnError
-</span></span><span id="422" class="l"><a class="l" href="#422">422: </a><span class="php-comment">     *
-</span></span><span id="423" class="l"><a class="l" href="#423">423: </a><span class="php-comment">     * Provides QA to make sure any language-related columns are property setup in case
-</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     * something failed during the initial setup process.
-</span></span><span id="425" class="l"><a class="l" href="#425">425: </a><span class="php-comment">     *
-</span></span><span id="426" class="l"><a class="l" href="#426">426: </a><span class="php-comment">     * This is only here to repair existing installs that were missing a field for one reason or another.
-</span></span><span id="427" class="l"><a class="l" href="#427">427: </a><span class="php-comment">     * This method (and the call to it in Pages) can eventually be removed (?)
-</span></span><span id="428" class="l"><a class="l" href="#428">428: </a><span class="php-comment">     *
-</span></span><span id="429" class="l"><a class="l" href="#429">429: </a><span class="php-comment">     * @param $column
-</span></span><span id="430" class="l"><a class="l" href="#430">430: </a><span class="php-comment">     *
-</span></span><span id="431" class="l"><a class="l" href="#431">431: </a><span class="php-comment">     */</span>
-</span><span id="432" class="l"><a class="l" href="#432">432: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hookUnknownColumnError" href="#_hookUnknownColumnError">hookUnknownColumnError</a>(HookEvent <span class="php-var">$event</span>) {
-</span><span id="433" class="l"><a class="l" href="#433">433: </a>        
-</span><span id="434" class="l"><a class="l" href="#434">434: </a>        <span class="php-var">$column</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">0</span>);
-</span><span id="435" class="l"><a class="l" href="#435">435: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">preg_match</span>(<span class="php-quote">'/^([^.]+)\.([^.\d]+)(\d+)$/'</span>, <span class="php-var">$column</span>, <span class="php-var">$matches</span>)) {
-</span><span id="436" class="l"><a class="l" href="#436">436: </a>            <span class="php-keyword1">return</span>;
-</span><span id="437" class="l"><a class="l" href="#437">437: </a>        }
-</span><span id="438" class="l"><a class="l" href="#438">438: </a>
-</span><span id="439" class="l"><a class="l" href="#439">439: </a>        <span class="php-var">$table</span> = <span class="php-var">$matches</span>[<span class="php-num">1</span>];
-</span><span id="440" class="l"><a class="l" href="#440">440: </a>        <span class="php-var">$col</span> = <span class="php-var">$matches</span>[<span class="php-num">2</span>];
-</span><span id="441" class="l"><a class="l" href="#441">441: </a>        <span class="php-var">$languageID</span> = (int) <span class="php-var">$matches</span>[<span class="php-num">3</span>];
-</span><span id="442" class="l"><a class="l" href="#442">442: </a>
-</span><span id="443" class="l"><a class="l" href="#443">443: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>) <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
-</span><span id="444" class="l"><a class="l" href="#444">444: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$language</span>-&gt;id == <span class="php-var">$languageID</span>) {
-</span><span id="445" class="l"><a class="l" href="#445">445: </a>                <span class="php-var">$this</span>-&gt;warning(<span class="php-quote">&quot;language </span><span class="php-var">$language</span><span class="php-quote">-&gt;name is missing column </span><span class="php-var">$column</span><span class="php-quote">&quot;</span>, Notice::debug);
-</span><span id="446" class="l"><a class="l" href="#446">446: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$table</span> == <span class="php-quote">'pages'</span> &amp;&amp; <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;isInstalled(<span class="php-quote">'LanguageSupportPageNames'</span>)) {
-</span><span id="447" class="l"><a class="l" href="#447">447: </a>                    <span class="php-var">$module</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupportPageNames'</span>);
-</span><span id="448" class="l"><a class="l" href="#448">448: </a>                    <span class="php-var">$module</span>-&gt;languageAdded(<span class="php-var">$language</span>);
-</span><span id="449" class="l"><a class="l" href="#449">449: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$table</span>, <span class="php-quote">'field_'</span>) === <span class="php-num">0</span>) {
-</span><span id="450" class="l"><a class="l" href="#450">450: </a>                    <span class="php-var">$fieldName</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$table</span>, <span class="php-keyword2">strpos</span>(<span class="php-var">$table</span>, <span class="php-quote">'_'</span>)+<span class="php-num">1</span>);
-</span><span id="451" class="l"><a class="l" href="#451">451: </a>                    <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$fieldName</span>);
-</span><span id="452" class="l"><a class="l" href="#452">452: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$field</span> &amp;&amp; <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;isInstalled(<span class="php-quote">'LanguageSupportFields'</span>)) {
-</span><span id="453" class="l"><a class="l" href="#453">453: </a>                        <span class="php-var">$module</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupportFields'</span>);
-</span><span id="454" class="l"><a class="l" href="#454">454: </a>                        <span class="php-var">$module</span>-&gt;fieldLanguageAdded(<span class="php-var">$field</span>, <span class="php-var">$language</span>);
-</span><span id="455" class="l"><a class="l" href="#455">455: </a>                    }
-</span><span id="456" class="l"><a class="l" href="#456">456: </a>                }
-</span><span id="457" class="l"><a class="l" href="#457">457: </a>            }
-</span><span id="458" class="l"><a class="l" href="#458">458: </a>        }
-</span><span id="459" class="l"><a class="l" href="#459">459: </a>    }
+</span><span id="379" class="l"><a class="l" href="#379">379: </a>            }
+</span><span id="380" class="l"><a class="l" href="#380">380: </a>            <span class="php-var">$this</span>-&gt;editableCache[<span class="php-var">$cacheKey</span>] = <span class="php-var">$has</span>;
+</span><span id="381" class="l"><a class="l" href="#381">381: </a>            
+</span><span id="382" class="l"><a class="l" href="#382">382: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="383" class="l"><a class="l" href="#383">383: </a>            
+</span><span id="384" class="l"><a class="l" href="#384">384: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$language</span> <span class="php-keyword1">instanceof</span> Language) <span class="php-var">$language</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageNameUTF8(<span class="php-var">$language</span>));
+</span><span id="385" class="l"><a class="l" href="#385">385: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$language</span> || !<span class="php-var">$language</span>-&gt;id) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="386" class="l"><a class="l" href="#386">386: </a>        
+</span><span id="387" class="l"><a class="l" href="#387">387: </a>            <span class="php-var">$cacheKey</span> = <span class="php-quote">&quot;</span><span class="php-var">$user</span><span class="php-quote">-&gt;id.</span><span class="php-var">$language</span><span class="php-quote">-&gt;id&quot;</span>;
+</span><span id="388" class="l"><a class="l" href="#388">388: </a>            
+</span><span id="389" class="l"><a class="l" href="#389">389: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">array_key_exists</span>(<span class="php-var">$cacheKey</span>, <span class="php-var">$this</span>-&gt;editableCache)) {
+</span><span id="390" class="l"><a class="l" href="#390">390: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;editableCache[<span class="php-var">$cacheKey</span>];
+</span><span id="391" class="l"><a class="l" href="#391">391: </a>            }
+</span><span id="392" class="l"><a class="l" href="#392">392: </a>            
+</span><span id="393" class="l"><a class="l" href="#393">393: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$user</span>-&gt;hasPermission(<span class="php-quote">'page-edit'</span>)) {
+</span><span id="394" class="l"><a class="l" href="#394">394: </a>                <span class="php-comment">// page-edit is a pre-requisite permission</span>
+</span><span id="395" class="l"><a class="l" href="#395">395: </a>                <span class="php-var">$has</span> = <span class="php-keyword1">false</span>;
+</span><span id="396" class="l"><a class="l" href="#396">396: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="397" class="l"><a class="l" href="#397">397: </a>                <span class="php-var">$permissionName</span> = <span class="php-var">$this</span>-&gt;getPageEditPermission(<span class="php-var">$language</span>);
+</span><span id="398" class="l"><a class="l" href="#398">398: </a>                <span class="php-comment">// if a language-specific page-edit permission doesn't exist, then fallback to regular page-edit permission</span>
+</span><span id="399" class="l"><a class="l" href="#399">399: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$permissionName</span>) {
+</span><span id="400" class="l"><a class="l" href="#400">400: </a>                    <span class="php-var">$has</span> = <span class="php-keyword1">true</span>;
+</span><span id="401" class="l"><a class="l" href="#401">401: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="402" class="l"><a class="l" href="#402">402: </a>                    <span class="php-var">$has</span> = <span class="php-var">$user</span>-&gt;hasPermission(<span class="php-var">$permissionName</span>);
+</span><span id="403" class="l"><a class="l" href="#403">403: </a>                }
+</span><span id="404" class="l"><a class="l" href="#404">404: </a>            }
+</span><span id="405" class="l"><a class="l" href="#405">405: </a>            
+</span><span id="406" class="l"><a class="l" href="#406">406: </a>            <span class="php-var">$this</span>-&gt;editableCache[<span class="php-var">$cacheKey</span>] = <span class="php-var">$has</span>; 
+</span><span id="407" class="l"><a class="l" href="#407">407: </a>        }
+</span><span id="408" class="l"><a class="l" href="#408">408: </a>        
+</span><span id="409" class="l"><a class="l" href="#409">409: </a>        <span class="php-keyword1">return</span> <span class="php-var">$has</span>; 
+</span><span id="410" class="l"><a class="l" href="#410">410: </a>    }
+</span><span id="411" class="l"><a class="l" href="#411">411: </a>    
+</span><span id="412" class="l"><a class="l" href="#412">412: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___get" href="#___get">__get</a>(<span class="php-var">$key</span>) {
+</span><span id="413" class="l"><a class="l" href="#413">413: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'tabs'</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupport'</span>)-&gt;getLanguageTabs();
+</span><span id="414" class="l"><a class="l" href="#414">414: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'default'</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getDefault();
+</span><span id="415" class="l"><a class="l" href="#415">415: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> == <span class="php-quote">'support'</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupport'</span>);
+</span><span id="416" class="l"><a class="l" href="#416">416: </a>        <span class="php-keyword1">return</span> parent::__get(<span class="php-var">$key</span>);
+</span><span id="417" class="l"><a class="l" href="#417">417: </a>    }
+</span><span id="418" class="l"><a class="l" href="#418">418: </a>
+</span><span id="419" class="l"><a class="l" href="#419">419: </a>    <span class="php-comment">/**
+</span></span><span id="420" class="l"><a class="l" href="#420">420: </a><span class="php-comment">     * Hook to WireDatabasePDO::unknownColumnError
+</span></span><span id="421" class="l"><a class="l" href="#421">421: </a><span class="php-comment">     *
+</span></span><span id="422" class="l"><a class="l" href="#422">422: </a><span class="php-comment">     * Provides QA to make sure any language-related columns are property setup in case
+</span></span><span id="423" class="l"><a class="l" href="#423">423: </a><span class="php-comment">     * something failed during the initial setup process.
+</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     *
+</span></span><span id="425" class="l"><a class="l" href="#425">425: </a><span class="php-comment">     * This is only here to repair existing installs that were missing a field for one reason or another.
+</span></span><span id="426" class="l"><a class="l" href="#426">426: </a><span class="php-comment">     * This method (and the call to it in Pages) can eventually be removed (?)
+</span></span><span id="427" class="l"><a class="l" href="#427">427: </a><span class="php-comment">     *
+</span></span><span id="428" class="l"><a class="l" href="#428">428: </a><span class="php-comment">     * @param $column
+</span></span><span id="429" class="l"><a class="l" href="#429">429: </a><span class="php-comment">     *
+</span></span><span id="430" class="l"><a class="l" href="#430">430: </a><span class="php-comment">     */</span>
+</span><span id="431" class="l"><a class="l" href="#431">431: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hookUnknownColumnError" href="#_hookUnknownColumnError">hookUnknownColumnError</a>(HookEvent <span class="php-var">$event</span>) {
+</span><span id="432" class="l"><a class="l" href="#432">432: </a>        
+</span><span id="433" class="l"><a class="l" href="#433">433: </a>        <span class="php-var">$column</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">0</span>);
+</span><span id="434" class="l"><a class="l" href="#434">434: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">preg_match</span>(<span class="php-quote">'/^([^.]+)\.([^.\d]+)(\d+)$/'</span>, <span class="php-var">$column</span>, <span class="php-var">$matches</span>)) {
+</span><span id="435" class="l"><a class="l" href="#435">435: </a>            <span class="php-keyword1">return</span>;
+</span><span id="436" class="l"><a class="l" href="#436">436: </a>        }
+</span><span id="437" class="l"><a class="l" href="#437">437: </a>
+</span><span id="438" class="l"><a class="l" href="#438">438: </a>        <span class="php-var">$table</span> = <span class="php-var">$matches</span>[<span class="php-num">1</span>];
+</span><span id="439" class="l"><a class="l" href="#439">439: </a>        <span class="php-var">$col</span> = <span class="php-var">$matches</span>[<span class="php-num">2</span>];
+</span><span id="440" class="l"><a class="l" href="#440">440: </a>        <span class="php-var">$languageID</span> = (int) <span class="php-var">$matches</span>[<span class="php-num">3</span>];
+</span><span id="441" class="l"><a class="l" href="#441">441: </a>
+</span><span id="442" class="l"><a class="l" href="#442">442: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>) <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
+</span><span id="443" class="l"><a class="l" href="#443">443: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$language</span>-&gt;id == <span class="php-var">$languageID</span>) {
+</span><span id="444" class="l"><a class="l" href="#444">444: </a>                <span class="php-var">$this</span>-&gt;warning(<span class="php-quote">&quot;language </span><span class="php-var">$language</span><span class="php-quote">-&gt;name is missing column </span><span class="php-var">$column</span><span class="php-quote">&quot;</span>, Notice::debug);
+</span><span id="445" class="l"><a class="l" href="#445">445: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$table</span> == <span class="php-quote">'pages'</span> &amp;&amp; <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;isInstalled(<span class="php-quote">'LanguageSupportPageNames'</span>)) {
+</span><span id="446" class="l"><a class="l" href="#446">446: </a>                    <span class="php-var">$module</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupportPageNames'</span>);
+</span><span id="447" class="l"><a class="l" href="#447">447: </a>                    <span class="php-var">$module</span>-&gt;languageAdded(<span class="php-var">$language</span>);
+</span><span id="448" class="l"><a class="l" href="#448">448: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$table</span>, <span class="php-quote">'field_'</span>) === <span class="php-num">0</span>) {
+</span><span id="449" class="l"><a class="l" href="#449">449: </a>                    <span class="php-var">$fieldName</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$table</span>, <span class="php-keyword2">strpos</span>(<span class="php-var">$table</span>, <span class="php-quote">'_'</span>)+<span class="php-num">1</span>);
+</span><span id="450" class="l"><a class="l" href="#450">450: </a>                    <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$fieldName</span>);
+</span><span id="451" class="l"><a class="l" href="#451">451: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$field</span> &amp;&amp; <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;isInstalled(<span class="php-quote">'LanguageSupportFields'</span>)) {
+</span><span id="452" class="l"><a class="l" href="#452">452: </a>                        <span class="php-var">$module</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'LanguageSupportFields'</span>);
+</span><span id="453" class="l"><a class="l" href="#453">453: </a>                        <span class="php-var">$module</span>-&gt;fieldLanguageAdded(<span class="php-var">$field</span>, <span class="php-var">$language</span>);
+</span><span id="454" class="l"><a class="l" href="#454">454: </a>                    }
+</span><span id="455" class="l"><a class="l" href="#455">455: </a>                }
+</span><span id="456" class="l"><a class="l" href="#456">456: </a>            }
+</span><span id="457" class="l"><a class="l" href="#457">457: </a>        }
+</span><span id="458" class="l"><a class="l" href="#458">458: </a>    }
+</span><span id="459" class="l"><a class="l" href="#459">459: </a>
 </span><span id="460" class="l"><a class="l" href="#460">460: </a>
 </span><span id="461" class="l"><a class="l" href="#461">461: </a>
-</span><span id="462" class="l"><a class="l" href="#462">462: </a>
-</span><span id="463" class="l"><a class="l" href="#463">463: </a>}
-</span><span id="464" class="l"><a class="l" href="#464">464: </a>
-</span><span id="465" class="l"><a class="l" href="#465">465: </a></span></code></pre>
+</span><span id="462" class="l"><a class="l" href="#462">462: </a>}
+</span><span id="463" class="l"><a class="l" href="#463">463: </a>
+</span><span id="464" class="l"><a class="l" href="#464">464: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

@@ -8,7 +8,7 @@
 	<title>File core/FileValidatorModule.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -368,6 +368,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -660,52 +661,53 @@
 </span><span id="166" class="l"><a class="l" href="#166">166: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getField" href="#_getField">getField</a>() {
 </span><span id="167" class="l"><a class="l" href="#167">167: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;_field ? <span class="php-var">$this</span>-&gt;_field : <span class="php-keyword1">null</span>;
 </span><span id="168" class="l"><a class="l" href="#168">168: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span> &amp;&amp; <span class="php-var">$this</span>-&gt;_pagefile) <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;_pagefile-&gt;field;
-</span><span id="169" class="l"><a class="l" href="#169">169: </a>    }
-</span><span id="170" class="l"><a class="l" href="#170">170: </a>
-</span><span id="171" class="l"><a class="l" href="#171">171: </a>    <span class="php-comment">/**
-</span></span><span id="172" class="l"><a class="l" href="#172">172: </a><span class="php-comment">     * Get the Pagefile or Pageimage object associated with any isValid() calls
-</span></span><span id="173" class="l"><a class="l" href="#173">173: </a><span class="php-comment">     * 
-</span></span><span id="174" class="l"><a class="l" href="#174">174: </a><span class="php-comment">     * If not applicable, it will be null.
-</span></span><span id="175" class="l"><a class="l" href="#175">175: </a><span class="php-comment">     * 
-</span></span><span id="176" class="l"><a class="l" href="#176">176: </a><span class="php-comment">     * @return Pagefile|null
-</span></span><span id="177" class="l"><a class="l" href="#177">177: </a><span class="php-comment">     * 
-</span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     */</span>
-</span><span id="179" class="l"><a class="l" href="#179">179: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getPagefile" href="#_getPagefile">getPagefile</a>() {
-</span><span id="180" class="l"><a class="l" href="#180">180: </a>        <span class="php-var">$pagefile</span> = <span class="php-var">$this</span>-&gt;_pagefile ? <span class="php-var">$this</span>-&gt;_pagefile : <span class="php-keyword1">null</span>;
-</span><span id="181" class="l"><a class="l" href="#181">181: </a>        <span class="php-keyword1">return</span> <span class="php-var">$pagefile</span>;
-</span><span id="182" class="l"><a class="l" href="#182">182: </a>    }
-</span><span id="183" class="l"><a class="l" href="#183">183: </a>    
-</span><span id="184" class="l"><a class="l" href="#184">184: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setPage" href="#_setPage">setPage</a>(Page <span class="php-var">$page</span>) {
-</span><span id="185" class="l"><a class="l" href="#185">185: </a>        <span class="php-var">$this</span>-&gt;_page = <span class="php-var">$page</span>;
-</span><span id="186" class="l"><a class="l" href="#186">186: </a>    }
-</span><span id="187" class="l"><a class="l" href="#187">187: </a>    
-</span><span id="188" class="l"><a class="l" href="#188">188: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setField" href="#_setField">setField</a>(Field <span class="php-var">$field</span>) {
-</span><span id="189" class="l"><a class="l" href="#189">189: </a>        <span class="php-var">$this</span>-&gt;_field = <span class="php-var">$field</span>;
-</span><span id="190" class="l"><a class="l" href="#190">190: </a>    }
-</span><span id="191" class="l"><a class="l" href="#191">191: </a>    
-</span><span id="192" class="l"><a class="l" href="#192">192: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setPagefile" href="#_setPagefile">setPagefile</a>(Pagefile <span class="php-var">$pagefile</span>) {
-</span><span id="193" class="l"><a class="l" href="#193">193: </a>        <span class="php-var">$this</span>-&gt;_pagefile = <span class="php-var">$pagefile</span>;
-</span><span id="194" class="l"><a class="l" href="#194">194: </a>    }
-</span><span id="195" class="l"><a class="l" href="#195">195: </a>
-</span><span id="196" class="l"><a class="l" href="#196">196: </a>    <span class="php-comment">/**
-</span></span><span id="197" class="l"><a class="l" href="#197">197: </a><span class="php-comment">     * Log a message for this class
-</span></span><span id="198" class="l"><a class="l" href="#198">198: </a><span class="php-comment">     *
-</span></span><span id="199" class="l"><a class="l" href="#199">199: </a><span class="php-comment">     * Message is saved to a log file in ProcessWire's logs path to a file with
-</span></span><span id="200" class="l"><a class="l" href="#200">200: </a><span class="php-comment">     * the same name as the class, converted to hyphenated lowercase.
-</span></span><span id="201" class="l"><a class="l" href="#201">201: </a><span class="php-comment">     *
-</span></span><span id="202" class="l"><a class="l" href="#202">202: </a><span class="php-comment">     * @param string $str Text to log, or omit to just return the name of the log
-</span></span><span id="203" class="l"><a class="l" href="#203">203: </a><span class="php-comment">     * @param array $options Optional extras to include:
-</span></span><span id="204" class="l"><a class="l" href="#204">204: </a><span class="php-comment">     *  - url (string): URL to record the with the log entry (default=auto-detect)
-</span></span><span id="205" class="l"><a class="l" href="#205">205: </a><span class="php-comment">     *  - name (string): Name of log to use (default=auto-detect)
-</span></span><span id="206" class="l"><a class="l" href="#206">206: </a><span class="php-comment">     * @return WireLog|null
-</span></span><span id="207" class="l"><a class="l" href="#207">207: </a><span class="php-comment">     *
-</span></span><span id="208" class="l"><a class="l" href="#208">208: </a><span class="php-comment">     */</span>
-</span><span id="209" class="l"><a class="l" href="#209">209: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____log" href="#____log">___log</a>(<span class="php-var">$str</span> = <span class="php-quote">''</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
-</span><span id="210" class="l"><a class="l" href="#210">210: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'name'</span>])) <span class="php-var">$options</span>[<span class="php-quote">'name'</span>] = <span class="php-quote">'file-validator'</span>;
-</span><span id="211" class="l"><a class="l" href="#211">211: </a>        <span class="php-keyword1">return</span> parent::___log(<span class="php-var">$str</span>, <span class="php-var">$options</span>);
-</span><span id="212" class="l"><a class="l" href="#212">212: </a>    }
-</span><span id="213" class="l"><a class="l" href="#213">213: </a>    
-</span><span id="214" class="l"><a class="l" href="#214">214: </a></span>}</code></pre>
+</span><span id="169" class="l"><a class="l" href="#169">169: </a>        <span class="php-keyword1">return</span> <span class="php-var">$field</span>;
+</span><span id="170" class="l"><a class="l" href="#170">170: </a>    }
+</span><span id="171" class="l"><a class="l" href="#171">171: </a>
+</span><span id="172" class="l"><a class="l" href="#172">172: </a>    <span class="php-comment">/**
+</span></span><span id="173" class="l"><a class="l" href="#173">173: </a><span class="php-comment">     * Get the Pagefile or Pageimage object associated with any isValid() calls
+</span></span><span id="174" class="l"><a class="l" href="#174">174: </a><span class="php-comment">     * 
+</span></span><span id="175" class="l"><a class="l" href="#175">175: </a><span class="php-comment">     * If not applicable, it will be null.
+</span></span><span id="176" class="l"><a class="l" href="#176">176: </a><span class="php-comment">     * 
+</span></span><span id="177" class="l"><a class="l" href="#177">177: </a><span class="php-comment">     * @return Pagefile|null
+</span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     * 
+</span></span><span id="179" class="l"><a class="l" href="#179">179: </a><span class="php-comment">     */</span>
+</span><span id="180" class="l"><a class="l" href="#180">180: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getPagefile" href="#_getPagefile">getPagefile</a>() {
+</span><span id="181" class="l"><a class="l" href="#181">181: </a>        <span class="php-var">$pagefile</span> = <span class="php-var">$this</span>-&gt;_pagefile ? <span class="php-var">$this</span>-&gt;_pagefile : <span class="php-keyword1">null</span>;
+</span><span id="182" class="l"><a class="l" href="#182">182: </a>        <span class="php-keyword1">return</span> <span class="php-var">$pagefile</span>;
+</span><span id="183" class="l"><a class="l" href="#183">183: </a>    }
+</span><span id="184" class="l"><a class="l" href="#184">184: </a>    
+</span><span id="185" class="l"><a class="l" href="#185">185: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setPage" href="#_setPage">setPage</a>(Page <span class="php-var">$page</span>) {
+</span><span id="186" class="l"><a class="l" href="#186">186: </a>        <span class="php-var">$this</span>-&gt;_page = <span class="php-var">$page</span>;
+</span><span id="187" class="l"><a class="l" href="#187">187: </a>    }
+</span><span id="188" class="l"><a class="l" href="#188">188: </a>    
+</span><span id="189" class="l"><a class="l" href="#189">189: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setField" href="#_setField">setField</a>(Field <span class="php-var">$field</span>) {
+</span><span id="190" class="l"><a class="l" href="#190">190: </a>        <span class="php-var">$this</span>-&gt;_field = <span class="php-var">$field</span>;
+</span><span id="191" class="l"><a class="l" href="#191">191: </a>    }
+</span><span id="192" class="l"><a class="l" href="#192">192: </a>    
+</span><span id="193" class="l"><a class="l" href="#193">193: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setPagefile" href="#_setPagefile">setPagefile</a>(Pagefile <span class="php-var">$pagefile</span>) {
+</span><span id="194" class="l"><a class="l" href="#194">194: </a>        <span class="php-var">$this</span>-&gt;_pagefile = <span class="php-var">$pagefile</span>;
+</span><span id="195" class="l"><a class="l" href="#195">195: </a>    }
+</span><span id="196" class="l"><a class="l" href="#196">196: </a>
+</span><span id="197" class="l"><a class="l" href="#197">197: </a>    <span class="php-comment">/**
+</span></span><span id="198" class="l"><a class="l" href="#198">198: </a><span class="php-comment">     * Log a message for this class
+</span></span><span id="199" class="l"><a class="l" href="#199">199: </a><span class="php-comment">     *
+</span></span><span id="200" class="l"><a class="l" href="#200">200: </a><span class="php-comment">     * Message is saved to a log file in ProcessWire's logs path to a file with
+</span></span><span id="201" class="l"><a class="l" href="#201">201: </a><span class="php-comment">     * the same name as the class, converted to hyphenated lowercase.
+</span></span><span id="202" class="l"><a class="l" href="#202">202: </a><span class="php-comment">     *
+</span></span><span id="203" class="l"><a class="l" href="#203">203: </a><span class="php-comment">     * @param string $str Text to log, or omit to just return the name of the log
+</span></span><span id="204" class="l"><a class="l" href="#204">204: </a><span class="php-comment">     * @param array $options Optional extras to include:
+</span></span><span id="205" class="l"><a class="l" href="#205">205: </a><span class="php-comment">     *  - url (string): URL to record the with the log entry (default=auto-detect)
+</span></span><span id="206" class="l"><a class="l" href="#206">206: </a><span class="php-comment">     *  - name (string): Name of log to use (default=auto-detect)
+</span></span><span id="207" class="l"><a class="l" href="#207">207: </a><span class="php-comment">     * @return WireLog|null
+</span></span><span id="208" class="l"><a class="l" href="#208">208: </a><span class="php-comment">     *
+</span></span><span id="209" class="l"><a class="l" href="#209">209: </a><span class="php-comment">     */</span>
+</span><span id="210" class="l"><a class="l" href="#210">210: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____log" href="#____log">___log</a>(<span class="php-var">$str</span> = <span class="php-quote">''</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="211" class="l"><a class="l" href="#211">211: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'name'</span>])) <span class="php-var">$options</span>[<span class="php-quote">'name'</span>] = <span class="php-quote">'file-validator'</span>;
+</span><span id="212" class="l"><a class="l" href="#212">212: </a>        <span class="php-keyword1">return</span> parent::___log(<span class="php-var">$str</span>, <span class="php-var">$options</span>);
+</span><span id="213" class="l"><a class="l" href="#213">213: </a>    }
+</span><span id="214" class="l"><a class="l" href="#214">214: </a>    
+</span><span id="215" class="l"><a class="l" href="#215">215: </a></span>}</code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

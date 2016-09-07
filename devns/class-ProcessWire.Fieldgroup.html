@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Fieldgroup | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -367,6 +367,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -509,7 +510,7 @@ it appears that fields are attached directly to Templates. However, they are
 separated in the API in case want want to have fieldgroups used by multiple
 templates in the future (like ProcessWire 1.x).</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -567,7 +568,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Fieldgroup.html#3-729" title="Go to source code">core/Fieldgroup.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Fieldgroup.html#3-728" title="Go to source code">core/Fieldgroup.php</a><br>
 	</div>
 
 
@@ -865,6 +866,61 @@ consuming method, and may need further consideration.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="finishRemove" id="_finishRemove">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_finishRemove">#</a>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#167-185" title="Go to source code">finishRemove</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Intended to be called by Fieldgroups::save() to complete the field
+removal</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Intended to be called by Fieldgroups::save() to complete the field
+removal</p>
+
+<p>This completes the removal process. The remove() method above only queues the
+removal but doesn't execute it. Instead, Fieldgroups::save() calls this method
+to finish the removal. This is necessary because if remove() removes the data
+from memory, then save() won't still have access to determine what related
+assets should be removed.</p>
+
+<p>This method is for use by Fieldgroups::save() and not intended for API
+usage.</p>
+
+<p>#pw-internal</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="softRemove" id="_softRemove">
 
 		<td class="attributes"><code>
@@ -876,7 +932,7 @@ consuming method, and may need further consideration.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_softRemove">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#188-208" title="Go to source code">softRemove</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string|integer <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#187-207" title="Go to source code">softRemove</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string|integer <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -925,7 +981,7 @@ a Fieldset within the Fieldgroup.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetRemovedFields">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#210-218" title="Go to source code">resetRemovedFields</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#209-217" title="Go to source code">resetRemovedFields</a>( )</code>
 
 		<div class="description short">
 			
@@ -960,7 +1016,7 @@ a Fieldset within the Fieldgroup.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#220-271" title="Go to source code">getField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span>, <span>boolean|string <var>$useFieldgroupContext</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#219-270" title="Go to source code">getField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span>, <span>boolean|string <var>$useFieldgroupContext</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1013,7 +1069,7 @@ namespace.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasFieldContext">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#273-298" title="Go to source code">hasFieldContext</a>( <span>integer|string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#272-297" title="Go to source code">hasFieldContext</a>( <span>integer|string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1064,7 +1120,7 @@ only 50% when used in this Fieldgroup.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFieldContext">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#300-315" title="Go to source code">getFieldContext</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#299-314" title="Go to source code">getFieldContext</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1115,7 +1171,7 @@ already populated to it.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasField">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#317-328" title="Go to source code">hasField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#316-327" title="Go to source code">hasField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1159,7 +1215,7 @@ already populated to it.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#330-354" title="Go to source code">get</a>( <span>string|integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#329-353" title="Go to source code">get</a>( <span>string|integer <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1213,7 +1269,7 @@ means it can return more than just Field object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addLookupItem">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#356-373" title="Go to source code">addLookupItem</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code>|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$item</var></span>, <span>array <var>&amp; $row</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#355-372" title="Go to source code">addLookupItem</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code>|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$item</var></span>, <span>array <var>&amp; $row</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1261,7 +1317,7 @@ means it can return more than just Field object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#376-407" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>string|integer|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#375-406" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>string|integer|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1313,7 +1369,7 @@ means it can return more than just Field object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#410-423" title="Go to source code">save</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#409-422" title="Go to source code">save</a>( )</code>
 
 		<div class="description short">
 			
@@ -1356,7 +1412,7 @@ means it can return more than just Field object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#425-431" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#424-430" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -1395,7 +1451,7 @@ means it can return more than just Field object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTableData">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#433-443" title="Go to source code">getTableData</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#432-442" title="Go to source code">getTableData</a>( )</code>
 
 		<div class="description short">
 			
@@ -1438,7 +1494,7 @@ table</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getExportData">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#445-453" title="Go to source code">getExportData</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#444-452" title="Go to source code">getExportData</a>( )</code>
 
 		<div class="description short">
 			
@@ -1479,7 +1535,7 @@ table</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setImportData">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#455-474" title="Go to source code">setImportData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#454-473" title="Go to source code">setImportData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1535,7 +1591,7 @@ value, always a string 'new' =&gt; 'new value', // new value, always a string
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLookupItems">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#476-484" title="Go to source code">getLookupItems</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#475-483" title="Go to source code">getLookupItems</a>( )</code>
 
 		<div class="description short">
 			
@@ -1574,7 +1630,7 @@ with this Fieldgroup</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageInputfields">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#486-633" title="Go to source code">getPageInputfields</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$contextStr</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$fieldName</var> = <span class="php-quote">''</span></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$flat</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#485-632" title="Go to source code">getPageInputfields</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$contextStr</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$fieldName</var> = <span class="php-quote">''</span></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$flat</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1634,7 +1690,7 @@ names/IDs the returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTemplates">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#635-645" title="Go to source code">getTemplates</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#634-644" title="Go to source code">getTemplates</a>( )</code>
 
 		<div class="description short">
 			
@@ -1673,7 +1729,7 @@ names/IDs the returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNumTemplates">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#647-657" title="Go to source code">getNumTemplates</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#646-656" title="Go to source code">getNumTemplates</a>( )</code>
 
 		<div class="description short">
 			
@@ -1712,7 +1768,7 @@ names/IDs the returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numTemplates">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#659-669" title="Go to source code">numTemplates</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#658-668" title="Go to source code">numTemplates</a>( )</code>
 
 		<div class="description short">
 			
@@ -1751,7 +1807,7 @@ names/IDs the returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFieldContextArray">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#671-695" title="Go to source code">getFieldContextArray</a>( <span>integer|null <var>$field_id</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#670-694" title="Go to source code">getFieldContextArray</a>( <span>integer|null <var>$field_id</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1797,7 +1853,7 @@ names/IDs the returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFieldContextArray">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#697-715" title="Go to source code">setFieldContextArray</a>( <span>integer <var>$field_id</var></span>, <span>string <var>$data</var></span>, <span>array <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#696-714" title="Go to source code">setFieldContextArray</a>( <span>integer <var>$field_id</var></span>, <span>string <var>$data</var></span>, <span>array <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1841,7 +1897,7 @@ names/IDs the returned InputfieldWrapper will maintain the requested order.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveContext">#</a>
-		<code><a href="source-class-ProcessWire.Fieldgroup.html#717-727" title="Go to source code">saveContext</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fieldgroup.html#716-726" title="Go to source code">saveContext</a>( )</code>
 
 		<div class="description short">
 			

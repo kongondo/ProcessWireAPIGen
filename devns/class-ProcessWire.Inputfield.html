@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Inputfield | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -367,6 +367,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -496,27 +497,22 @@
 
 	<div class="description">
 	
+<p>ProcessWire Inputfield - base class for Inputfield modules.</p>
+
+<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+href="https://processwire.com">https://processwire.com</a></p>
+
 <p>An Inputfield for an actual form input field widget, and this is provided as
 the base class for different kinds of form input widgets provided as
 modules.</p>
 
 <p>The class supports a parent/child hierarchy so that a given Inputfield can
 contain Inputfields below it. An example would be the relationship between
-fieldsets and fields in a form.</p>
+fieldsets and fields in a form. Parent Inputfields are almost always of type
+InputfieldWrapper.</p>
 
-<p>An Inputfield is typically associated with a Fieldtype module.</p>
-
-<p>All Inputfields have the following properties at minimum:</p>
-
-<p>Inputfield::id A unique string identifier for this Inputfield</p>
-
-<p>Inputfield::class Class name(s) to be rendered with the Inputfield HTML
-output</p>
-
-<p>Inputfield::name Corresponds to HTML "name" attribute</p>
-
-<p>Inputfield::value The current value of the field. May correspond go the XHTML
-"value" attribute on some inputs.</p>
+<p>An Inputfield is typically associated with a Fieldtype module when used for
+ProcessWire fields. Most Inputfields can also be used on their own.</p>
 
 <p>#pw-order-groups
 attribute-methods,attribute-properties,settings,traversal,labels,appearance,behavior,other,output,input,states
@@ -634,7 +630,7 @@ $form-&gt;add($inputfield); ~~~~~ #pw-body</p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Inputfield.html#20-1676" title="Go to source code">core/Inputfield.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Inputfield.html#3-1652" title="Go to source code">core/Inputfield.php</a><br>
 	</div>
 
 
@@ -652,7 +648,7 @@ $form-&gt;add($inputfield); ~~~~~ #pw-body</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#320-354" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#296-330" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -687,7 +683,7 @@ $form-&gt;add($inputfield); ~~~~~ #pw-body</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#356-362" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#332-338" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -724,7 +720,7 @@ been populated to the Inputfield, but before render.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#364-370" title="Go to source code">___install</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#340-346" title="Go to source code">___install</a>( )</code>
 
 		<div class="description short">
 			
@@ -761,7 +757,7 @@ installed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstall">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#372-378" title="Go to source code">___uninstall</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#348-354" title="Go to source code">___uninstall</a>( )</code>
 
 		<div class="description short">
 			
@@ -798,7 +794,7 @@ uninstalled</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSingular">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#380-388" title="Go to source code">isSingular</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#356-364" title="Go to source code">isSingular</a>( )</code>
 
 		<div class="description short">
 			
@@ -833,7 +829,7 @@ uninstalled</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isAutoload">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#390-398" title="Go to source code">isAutoload</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#366-374" title="Go to source code">isAutoload</a>( )</code>
 
 		<div class="description short">
 			
@@ -868,7 +864,7 @@ uninstalled</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#400-428" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#376-404" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -930,7 +926,7 @@ uninstalled</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#430-457" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#406-433" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -989,7 +985,7 @@ uninstalled</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSetting">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#459-473" title="Go to source code">getSetting</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#435-449" title="Go to source code">getSetting</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1038,7 +1034,7 @@ when there is a field literally named "collapsed" or "required".</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setParent">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#475-488" title="Go to source code">setParent</a>( <span><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code> <var>$parent</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#451-464" title="Go to source code">setParent</a>( <span><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code> <var>$parent</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1079,14 +1075,14 @@ when there is a field literally named "collapsed" or "required".</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|null
+			<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParent">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#490-501" title="Go to source code">getParent</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#466-477" title="Go to source code">getParent</a>( )</code>
 
 		<div class="description short">
 			
@@ -1107,7 +1103,7 @@ have one.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|null</code><br>
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>
 				</div>
 
 
@@ -1131,7 +1127,7 @@ have one.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParents">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#503-518" title="Go to source code">getParents</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#479-494" title="Go to source code">getParents</a>( )</code>
 
 		<div class="description short">
 			
@@ -1174,7 +1170,7 @@ have one.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAttribute">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#520-587" title="Go to source code">setAttribute</a>( <span>string|array <var>$key</var></span>, <span>string|integer|array <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#496-563" title="Go to source code">setAttribute</a>( <span>string|array <var>$key</var></span>, <span>string|integer|array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1248,7 +1244,7 @@ attributes (array) - String with names of attributes split by "+" or "|"</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeAttr">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#589-602" title="Go to source code">removeAttr</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#565-578" title="Go to source code">removeAttr</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1296,7 +1292,7 @@ attributes (array) - String with names of attributes split by "+" or "|"</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeAttribute">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#604-615" title="Go to source code">removeAttribute</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#580-591" title="Go to source code">removeAttribute</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1340,7 +1336,7 @@ attributes (array) - String with names of attributes split by "+" or "|"</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAttributes">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#617-629" title="Go to source code">setAttributes</a>( <span>array <var>$attributes</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#593-605" title="Go to source code">setAttributes</a>( <span>array <var>$attributes</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1384,7 +1380,7 @@ attributes (array) - String with names of attributes split by "+" or "|"</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_attr">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#631-684" title="Go to source code">attr</a>( <span>string|array|boolean <var>$key</var></span>, <span>string|integer|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#607-660" title="Go to source code">attr</a>( <span>string|array|boolean <var>$key</var></span>, <span>string|integer|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1466,7 +1462,7 @@ attribute, the attribute is returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttributes">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#686-700" title="Go to source code">getAttributes</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#662-676" title="Go to source code">getAttributes</a>( )</code>
 
 		<div class="description short">
 			
@@ -1505,7 +1501,7 @@ attribute, the attribute is returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttribute">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#702-713" title="Go to source code">getAttribute</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#678-689" title="Go to source code">getAttribute</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1550,7 +1546,7 @@ here for consistency with setAttribute()</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_wrapAttr">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#715-749" title="Go to source code">wrapAttr</a>( <span>string|null|boolean <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>string|null|boolean <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#691-725" title="Go to source code">wrapAttr</a>( <span>string|null|boolean <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>string|null|boolean <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1608,7 +1604,7 @@ NULL if not present. - If setting, returns $this.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addClass">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#751-830" title="Go to source code">addClass</a>( <span>string|array <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#727-806" title="Go to source code">addClass</a>( <span>string|array <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1682,7 +1678,7 @@ attribute designated by a descending Inputfield.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasClass">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#832-891" title="Go to source code">hasClass</a>( <span>string|array <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#808-867" title="Go to source code">hasClass</a>( <span>string|array <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1752,7 +1748,7 @@ defined by a descending Inputfield class.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeClass">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#893-946" title="Go to source code">removeClass</a>( <span>string <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#869-922" title="Go to source code">removeClass</a>( <span>string <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">'class'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1819,7 +1815,7 @@ defined by a descending Inputfield class.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttributesString">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#948-996" title="Go to source code">getAttributesString</a>( <span>array <var>$attributes</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#924-972" title="Go to source code">getAttributesString</a>( <span>array <var>$attributes</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1871,7 +1867,7 @@ use this Inputfield's attributes.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____render">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#998-1008" title="Go to source code">___render</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#974-984" title="Go to source code">___render</a>( )</code>
 
 		<div class="description short">
 			
@@ -1915,7 +1911,7 @@ required to implement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____renderValue">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1010-1031" title="Go to source code">___renderValue</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#986-1007" title="Go to source code">___renderValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -1956,7 +1952,7 @@ purposes.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderReady">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1033-1058" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1009-1034" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2021,7 +2017,7 @@ to add additional assets (i.e. when this method returns true).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____processInput">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1071-1149" title="Go to source code">___processInput</a>( <span><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code> <var>$input</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1047-1125" title="Go to source code">___processInput</a>( <span><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code> <var>$input</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2078,7 +2074,7 @@ given the <code>value</code> attribute.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isEmpty">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1151-1170" title="Go to source code">isEmpty</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1127-1146" title="Go to source code">isEmpty</a>( )</code>
 
 		<div class="description short">
 			
@@ -2123,7 +2119,7 @@ Inputfields may override this according to their own definition of 'empty'.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1172-1304" title="Go to source code">___getConfigInputfields</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1148-1280" title="Go to source code">___getConfigInputfields</a>( )</code>
 
 		<div class="description short">
 			
@@ -2193,7 +2189,7 @@ $inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigArray">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1306-1336" title="Go to source code">___getConfigArray</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1282-1312" title="Go to source code">___getConfigArray</a>( )</code>
 
 		<div class="description short">
 			
@@ -2248,7 +2244,7 @@ $inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigAllowContext">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1338-1368" title="Go to source code">___getConfigAllowContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1314-1344" title="Go to source code">___getConfigAllowContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2310,7 +2306,7 @@ method, but for the "Input" tab rather than the "Details" tab.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____exportConfigData">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1370-1393" title="Go to source code">___exportConfigData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1346-1369" title="Go to source code">___exportConfigData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2359,7 +2355,7 @@ internal IDs should be converted to GUIDs where possible.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____importConfigData">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1395-1409" title="Go to source code">___importConfigData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1371-1385" title="Go to source code">___importConfigData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2409,7 +2405,7 @@ during import of config data.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getErrorSessionKey">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1411-1422" title="Go to source code">getErrorSessionKey</a>( )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1387-1398" title="Go to source code">getErrorSessionKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -2444,7 +2440,7 @@ during import of config data.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_error">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1424-1448" title="Go to source code">error</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1400-1424" title="Go to source code">error</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2495,7 +2491,7 @@ during import of config data.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getErrors">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1450-1471" title="Go to source code">getErrors</a>( <span>boolean <var>$clear</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1426-1447" title="Go to source code">getErrors</a>( <span>boolean <var>$clear</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2544,7 +2540,7 @@ retrieves errors from the session rather than just the current run.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1473-1487" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1449-1463" title="Go to source code">has</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2590,7 +2586,7 @@ retrieves errors from the session rather than just the current run.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasSetting">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1489-1502" title="Go to source code">hasSetting</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1465-1478" title="Go to source code">hasSetting</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2637,7 +2633,7 @@ available.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasAttribute">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1504-1517" title="Go to source code">hasAttribute</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1480-1493" title="Go to source code">hasAttribute</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2684,7 +2680,7 @@ available.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trackChange">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1519-1535" title="Go to source code">trackChange</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1495-1511" title="Go to source code">trackChange</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2736,7 +2732,7 @@ available.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_entityEncode">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1537-1585" title="Go to source code">entityEncode</a>( <span>string <var>$str</var></span>, <span>boolean|integer <var>$markdown</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1513-1561" title="Go to source code">entityEncode</a>( <span>string <var>$str</var></span>, <span>boolean|integer <var>$markdown</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2795,7 +2791,7 @@ To support full Markdown and HTML.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editable">#</a>
-		<code><a href="source-class-ProcessWire.Inputfield.html#1587-1602" title="Go to source code">editable</a>( <span>boolean|null <var>$setEditable</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Inputfield.html#1563-1578" title="Go to source code">editable</a>( <span>boolean|null <var>$setEditable</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2923,7 +2919,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#117-122" title="Go to source code"><b>collapsedNo</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#93-98" title="Go to source code"><b>collapsedNo</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -2947,7 +2943,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#124-129" title="Go to source code"><b>collapsedYes</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#100-105" title="Go to source code"><b>collapsedYes</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">1</span></code></td>
 		<td class="description"><div>
@@ -2971,7 +2967,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#131-136" title="Go to source code"><b>collapsedBlank</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#107-112" title="Go to source code"><b>collapsedBlank</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -2995,7 +2991,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#138-143" title="Go to source code"><b>collapsedHidden</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#114-119" title="Go to source code"><b>collapsedHidden</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -3019,7 +3015,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#145-150" title="Go to source code"><b>collapsedPopulated</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#121-126" title="Go to source code"><b>collapsedPopulated</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">5</span></code></td>
 		<td class="description"><div>
@@ -3043,7 +3039,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#152-157" title="Go to source code"><b>collapsedNoLocked</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#128-133" title="Go to source code"><b>collapsedNoLocked</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">7</span></code></td>
 		<td class="description"><div>
@@ -3069,7 +3065,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#159-164" title="Go to source code"><b>collapsedYesLocked</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#135-140" title="Go to source code"><b>collapsedYesLocked</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -3095,7 +3091,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#166-171" title="Go to source code"><b>collapsedLocked</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#142-147" title="Go to source code"><b>collapsedLocked</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -3119,7 +3115,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#173-178" title="Go to source code"><b>collapsedNever</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#149-154" title="Go to source code"><b>collapsedNever</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">9</span></code></td>
 		<td class="description"><div>
@@ -3143,7 +3139,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#180-185" title="Go to source code"><b>collapsedYesAjax</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#156-161" title="Go to source code"><b>collapsedYesAjax</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">10</span></code></td>
 		<td class="description"><div>
@@ -3169,7 +3165,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#187-192" title="Go to source code"><b>collapsedBlankAjax</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#163-168" title="Go to source code"><b>collapsedBlankAjax</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">11</span></code></td>
 		<td class="description"><div>
@@ -3195,7 +3191,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>boolean</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#194-199" title="Go to source code"><b>skipLabelNo</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#170-175" title="Go to source code"><b>skipLabelNo</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -3219,7 +3215,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>boolean</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#201-206" title="Go to source code"><b>skipLabelFor</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#177-182" title="Go to source code"><b>skipLabelFor</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-keyword1">true</span></code></td>
 		<td class="description"><div>
@@ -3245,7 +3241,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#208-213" title="Go to source code"><b>skipLabelHeader</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#184-189" title="Go to source code"><b>skipLabelHeader</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -3271,7 +3267,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#215-220" title="Go to source code"><b>skipLabelBlank</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#191-196" title="Go to source code"><b>skipLabelBlank</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -3297,7 +3293,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#222-227" title="Go to source code"><b>textFormatNone</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#198-203" title="Go to source code"><b>textFormatNone</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -3323,7 +3319,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#229-234" title="Go to source code"><b>textFormatBasic</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#205-210" title="Go to source code"><b>textFormatBasic</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -3349,7 +3345,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#236-241" title="Go to source code"><b>textFormatMarkdown</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#212-217" title="Go to source code"><b>textFormatMarkdown</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -3375,7 +3371,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#243-248" title="Go to source code"><b>renderValueMinimal</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#219-224" title="Go to source code"><b>renderValueMinimal</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -3401,7 +3397,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#250-255" title="Go to source code"><b>renderValueNoWrap</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#226-231" title="Go to source code"><b>renderValueNoWrap</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -3427,7 +3423,7 @@ get the editable state.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Inputfield.html#257-262" title="Go to source code"><b>renderValueFirst</b></a>
+				<a href="source-class-ProcessWire.Inputfield.html#233-238" title="Go to source code"><b>renderValueFirst</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -3472,7 +3468,7 @@ Inputfield). #pw-group-renderValue-constants</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#264-270" title="Go to source code"><var>$numInstances</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#240-246" title="Go to source code"><var>$numInstances</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -3503,7 +3499,7 @@ Inputfield). #pw-group-renderValue-constants</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#284-288" title="Go to source code"><var>$attributes</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#260-264" title="Go to source code"><var>$attributes</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -3530,7 +3526,7 @@ Inputfield). #pw-group-renderValue-constants</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#290-296" title="Go to source code"><var>$wrapAttributes</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#266-272" title="Go to source code"><var>$wrapAttributes</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -3557,7 +3553,7 @@ Inputfield). #pw-group-renderValue-constants</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#298-302" title="Go to source code"><var>$parent</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#274-278" title="Go to source code"><var>$parent</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -3584,7 +3580,7 @@ Inputfield). #pw-group-renderValue-constants</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#304-308" title="Go to source code"><var>$defaultID</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#280-284" title="Go to source code"><var>$defaultID</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">''</span></code></td>
 		<td class="description"><div>
@@ -3611,7 +3607,7 @@ Inputfield). #pw-group-renderValue-constants</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Inputfield.html#310-318" title="Go to source code"><var>$editable</var></a>
+				<a href="source-class-ProcessWire.Inputfield.html#286-294" title="Go to source code"><var>$editable</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">true</span></code></td>
 		<td class="description"><div>

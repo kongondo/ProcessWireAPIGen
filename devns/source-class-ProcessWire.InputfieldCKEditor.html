@@ -8,7 +8,7 @@
 	<title>File modules/Inputfield/InputfieldCKEditor/InputfieldCKEditor.module | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -368,6 +368,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -502,7 +503,7 @@
 </span></span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-comment"> * CKEditor Copyright (C) 2003-2015, CKSource - Frederico Knabben
 </span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment"> * http://ckeditor.com
 </span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment"> *
-</span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment"> * ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer
+</span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment"> * ProcessWire 3.x, Copyright 2016 by Ryan Cramer
 </span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment"> * https://processwire.com
 </span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment"> * 
 </span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment"> * @property bool|int $inlineMode ($default=0)
@@ -527,7 +528,7 @@
 </span><span id="33" class="l"><a class="l" href="#33"> 33: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getModuleInfo" href="#_getModuleInfo">getModuleInfo</a>() {
 </span><span id="34" class="l"><a class="l" href="#34"> 34: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>(
 </span><span id="35" class="l"><a class="l" href="#35"> 35: </a>            <span class="php-quote">'title'</span> =&gt; <span class="php-quote">'CKEditor'</span>,
-</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>            <span class="php-quote">'version'</span> =&gt; <span class="php-num">156</span>, 
+</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>            <span class="php-quote">'version'</span> =&gt; <span class="php-num">157</span>, 
 </span><span id="37" class="l"><a class="l" href="#37"> 37: </a>            <span class="php-quote">'summary'</span> =&gt; __(<span class="php-quote">'CKEditor textarea rich text editor.'</span>, __FILE__),
 </span><span id="38" class="l"><a class="l" href="#38"> 38: </a>            <span class="php-quote">'installs'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'MarkupHTMLPurifier'</span>), 
 </span><span id="39" class="l"><a class="l" href="#39"> 39: </a>            );
@@ -578,7 +579,7 @@
 </span></span><span id="84" class="l"><a class="l" href="#84"> 84: </a><span class="php-comment">     * Version number for CKEditor directory
 </span></span><span id="85" class="l"><a class="l" href="#85"> 85: </a><span class="php-comment">     *
 </span></span><span id="86" class="l"><a class="l" href="#86"> 86: </a><span class="php-comment">     */</span>
-</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>    <span class="php-keyword1">const</span> <a id="CKEDITOR_VERSION" href="#CKEDITOR_VERSION">CKEDITOR_VERSION</a> = <span class="php-quote">'4.5.5'</span>;
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>    <span class="php-keyword1">const</span> <a id="CKEDITOR_VERSION" href="#CKEDITOR_VERSION">CKEDITOR_VERSION</a> = <span class="php-quote">'4.5.10'</span>;
 </span><span id="88" class="l"><a class="l" href="#88"> 88: </a>
 </span><span id="89" class="l"><a class="l" href="#89"> 89: </a>    <span class="php-comment">/**
 </span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-comment">     * Instance of MarkupHTMLPurifier module
@@ -1156,189 +1157,193 @@
 </span><span id="662" class="l"><a class="l" href="#662">662: </a>            <span class="php-keyword1">else</span> <span class="php-var">$f</span>-&gt;notes .= <span class="php-quote">&quot;\n&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'WARNING: it is not currently installed. You should install it before enabling inline mode.'</span>); 
 </span><span id="663" class="l"><a class="l" href="#663">663: </a>        <span class="php-var">$f</span>-&gt;optionColumns = <span class="php-num">1</span>;
 </span><span id="664" class="l"><a class="l" href="#664">664: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="665" class="l"><a class="l" href="#665">665: </a>
-</span><span id="666" class="l"><a class="l" href="#666">666: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldRadios&quot;</span>); 
-</span><span id="667" class="l"><a class="l" href="#667">667: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Use ACF?'</span>); 
-</span><span id="668" class="l"><a class="l" href="#668">668: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'When yes, the CKEditor Advanced Content Filter (ACF) will be active. This filter automatically strips any unrecognized markup or attributes from your HTML. Recommended.'</span>); 
-</span><span id="669" class="l"><a class="l" href="#669">669: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'useACF'</span>); 
-</span><span id="670" class="l"><a class="l" href="#670">670: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$yes</span>);
-</span><span id="671" class="l"><a class="l" href="#671">671: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$no</span>);
-</span><span id="672" class="l"><a class="l" href="#672">672: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;useACF); 
-</span><span id="673" class="l"><a class="l" href="#673">673: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">50</span>; 
-</span><span id="674" class="l"><a class="l" href="#674">674: </a>        <span class="php-var">$f</span>-&gt;optionColumns = <span class="php-num">1</span>;
-</span><span id="675" class="l"><a class="l" href="#675">675: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="676" class="l"><a class="l" href="#676">676: </a>
-</span><span id="677" class="l"><a class="l" href="#677">677: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldRadios&quot;</span>); 
-</span><span id="678" class="l"><a class="l" href="#678">678: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Use HTML Purifier?'</span>); 
-</span><span id="679" class="l"><a class="l" href="#679">679: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'When yes, submitted content is run through [HTML Purifier](http://htmlpurifier.org/) for sanitization. This is a must have when using CKEditor for either inline mode or non-trusted users. Recommended either way.'</span>); 
-</span><span id="680" class="l"><a class="l" href="#680">680: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'usePurifier'</span>); 
-</span><span id="681" class="l"><a class="l" href="#681">681: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$yes</span>);
-</span><span id="682" class="l"><a class="l" href="#682">682: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$no</span>);
-</span><span id="683" class="l"><a class="l" href="#683">683: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;usePurifier &amp;&amp; <span class="php-var">$purifierInstalled</span> ? <span class="php-num">1</span> : <span class="php-num">0</span>); 
-</span><span id="684" class="l"><a class="l" href="#684">684: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$purifierInstalled</span>) <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'disabled'</span>, <span class="php-quote">'disabled'</span>); 
-</span><span id="685" class="l"><a class="l" href="#685">685: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">50</span>; 
-</span><span id="686" class="l"><a class="l" href="#686">686: </a>        <span class="php-var">$f</span>-&gt;optionColumns = <span class="php-num">1</span>;
-</span><span id="687" class="l"><a class="l" href="#687">687: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="688" class="l"><a class="l" href="#688">688: </a>
-</span><span id="689" class="l"><a class="l" href="#689">689: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldCheckboxes&quot;</span>); 
-</span><span id="690" class="l"><a class="l" href="#690">690: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Beautify Markup Toggles'</span>); 
-</span><span id="691" class="l"><a class="l" href="#691">691: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'toggles'</span>); 
-</span><span id="692" class="l"><a class="l" href="#692">692: </a>        <span class="php-var">$f</span>-&gt;addOption(self::toggleCleanDIV, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Convert div tags to paragraph tags'</span>)); 
-</span><span id="693" class="l"><a class="l" href="#693">693: </a>        <span class="php-var">$f</span>-&gt;addOption(self::toggleCleanP, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Remove empty paragraph tags'</span>)); 
-</span><span id="694" class="l"><a class="l" href="#694">694: </a>        <span class="php-var">$f</span>-&gt;addOption(self::toggleCleanNBSP, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Remove non-breaking spaces (nbsp)'</span>)); 
-</span><span id="695" class="l"><a class="l" href="#695">695: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'These are extra cleaning options (beyond ACF and HTML Purifier) that we have found helpful in many situations. They are applied when the page is saved. Checking all of these is recommended, unless you have a need to let any of these through in the markup.'</span>); 
-</span><span id="696" class="l"><a class="l" href="#696">696: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;toggles); 
-</span><span id="697" class="l"><a class="l" href="#697">697: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="698" class="l"><a class="l" href="#698">698: </a>
-</span><span id="699" class="l"><a class="l" href="#699">699: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
-</span><span id="700" class="l"><a class="l" href="#700">700: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Format Tags'</span>);
-</span><span id="701" class="l"><a class="l" href="#701">701: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Semicolon-separated list of selectable tags shown in the &quot;format&quot; dropdown.'</span>); 
-</span><span id="702" class="l"><a class="l" href="#702">702: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Default format tags are:'</span>) . <span class="php-quote">' '</span> . self::FORMAT_TAGS; 
-</span><span id="703" class="l"><a class="l" href="#703">703: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'formatTags'</span>);
-</span><span id="704" class="l"><a class="l" href="#704">704: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'formatTags'</span>);
-</span><span id="705" class="l"><a class="l" href="#705">705: </a>        <span class="php-var">$f</span>-&gt;collapsed = (<span class="php-var">$value</span> == self::FORMAT_TAGS ? Inputfield::collapsedYes : Inputfield::collapsedNo);
-</span><span id="706" class="l"><a class="l" href="#706">706: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
-</span><span id="707" class="l"><a class="l" href="#707">707: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="708" class="l"><a class="l" href="#708">708: </a>
-</span><span id="709" class="l"><a class="l" href="#709">709: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldTextarea&quot;</span>);
-</span><span id="710" class="l"><a class="l" href="#710">710: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Extra Allowed Content'</span>);
-</span><span id="711" class="l"><a class="l" href="#711">711: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Allowed content rules per CKEditor [extraAllowedContent](http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-extraAllowedContent) option. Applies only if the &quot;Use ACF&quot; checkbox above is checked.'</span>); 
-</span><span id="712" class="l"><a class="l" href="#712">712: </a>        <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'You may enter multiple rules by putting each on its own line.'</span>); 
-</span><span id="713" class="l"><a class="l" href="#713">713: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">&quot;img[alt,!src,width,height]\n&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'The above example would allow alt, src, width and height attributes for img tags, with the src attribute always required.'</span>) . <span class="php-quote">&quot;\n&quot;</span> . 
-</span><span id="714" class="l"><a class="l" href="#714">714: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'See [details](http://docs.ckeditor.com/#!/guide/dev_allowed_content_rules-section-2) in CKEditor documentation.'</span>);
-</span><span id="715" class="l"><a class="l" href="#715">715: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extraAllowedContent'</span>);
-</span><span id="716" class="l"><a class="l" href="#716">716: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'extraAllowedContent'</span>);
-</span><span id="717" class="l"><a class="l" href="#717">717: </a>        <span class="php-var">$f</span>-&gt;collapsed = (<span class="php-var">$value</span> == self::EXTRA_ALLOWED_CONTENT ? Inputfield::collapsedYes : Inputfield::collapsedNo);
-</span><span id="718" class="l"><a class="l" href="#718">718: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;; &quot;</span>, <span class="php-quote">&quot;\n&quot;</span>, <span class="php-var">$value</span>)); <span class="php-comment">// convert to multi-line for ease of input</span>
-</span><span id="719" class="l"><a class="l" href="#719">719: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="720" class="l"><a class="l" href="#720">720: </a>
-</span><span id="721" class="l"><a class="l" href="#721">721: </a>        <span class="php-var">$pathNote</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Paths should be relative to your ProcessWire installation root (i.e. if site is running from a subdirectory, exclude that part).'</span>); 
-</span><span id="722" class="l"><a class="l" href="#722">722: </a>        <span class="php-var">$descriptionCustomCss</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This option enables you to modify the way that text and other elements appear in your editor. This covers how they look in the administrative environment only, and has nothing to do with the front-end of your site.'</span>); <span class="php-comment">// contents.css description</span>
-</span><span id="723" class="l"><a class="l" href="#723">723: </a>        <span class="php-var">$instructionsCustomCss</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Please see our [instructions](https://github.com/ryancramerdesign/ProcessWire/blob/dev/wire/modules/Inputfield/InputfieldCKEditor/README.md#custom-editor-css-file) on how to use this.'</span>); <span class="php-comment">// custom editor css instructions</span>
+</span><span id="665" class="l"><a class="l" href="#665">665: </a>    
+</span><span id="666" class="l"><a class="l" href="#666">666: </a>        <span class="php-comment">// character and word counter option not available for inline editors</span>
+</span><span id="667" class="l"><a class="l" href="#667">667: </a>        <span class="php-var">$f</span> = <span class="php-var">$inputfields</span>-&gt;getChildByName(<span class="php-quote">'showCount'</span>);
+</span><span id="668" class="l"><a class="l" href="#668">668: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$f</span>) <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Counter is supported for regular CKEditor fields, but not inline CKEditor fields.'</span>);
+</span><span id="669" class="l"><a class="l" href="#669">669: </a>
+</span><span id="670" class="l"><a class="l" href="#670">670: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldRadios&quot;</span>); 
+</span><span id="671" class="l"><a class="l" href="#671">671: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Use ACF?'</span>); 
+</span><span id="672" class="l"><a class="l" href="#672">672: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'When yes, the CKEditor Advanced Content Filter (ACF) will be active. This filter automatically strips any unrecognized markup or attributes from your HTML. Recommended.'</span>); 
+</span><span id="673" class="l"><a class="l" href="#673">673: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'useACF'</span>); 
+</span><span id="674" class="l"><a class="l" href="#674">674: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$yes</span>);
+</span><span id="675" class="l"><a class="l" href="#675">675: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$no</span>);
+</span><span id="676" class="l"><a class="l" href="#676">676: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;useACF); 
+</span><span id="677" class="l"><a class="l" href="#677">677: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">50</span>; 
+</span><span id="678" class="l"><a class="l" href="#678">678: </a>        <span class="php-var">$f</span>-&gt;optionColumns = <span class="php-num">1</span>;
+</span><span id="679" class="l"><a class="l" href="#679">679: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="680" class="l"><a class="l" href="#680">680: </a>
+</span><span id="681" class="l"><a class="l" href="#681">681: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldRadios&quot;</span>); 
+</span><span id="682" class="l"><a class="l" href="#682">682: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Use HTML Purifier?'</span>); 
+</span><span id="683" class="l"><a class="l" href="#683">683: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'When yes, submitted content is run through [HTML Purifier](http://htmlpurifier.org/) for sanitization. This is a must have when using CKEditor for either inline mode or non-trusted users. Recommended either way.'</span>); 
+</span><span id="684" class="l"><a class="l" href="#684">684: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'usePurifier'</span>); 
+</span><span id="685" class="l"><a class="l" href="#685">685: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$yes</span>);
+</span><span id="686" class="l"><a class="l" href="#686">686: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$no</span>);
+</span><span id="687" class="l"><a class="l" href="#687">687: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;usePurifier &amp;&amp; <span class="php-var">$purifierInstalled</span> ? <span class="php-num">1</span> : <span class="php-num">0</span>); 
+</span><span id="688" class="l"><a class="l" href="#688">688: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$purifierInstalled</span>) <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'disabled'</span>, <span class="php-quote">'disabled'</span>); 
+</span><span id="689" class="l"><a class="l" href="#689">689: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">50</span>; 
+</span><span id="690" class="l"><a class="l" href="#690">690: </a>        <span class="php-var">$f</span>-&gt;optionColumns = <span class="php-num">1</span>;
+</span><span id="691" class="l"><a class="l" href="#691">691: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="692" class="l"><a class="l" href="#692">692: </a>
+</span><span id="693" class="l"><a class="l" href="#693">693: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldCheckboxes&quot;</span>); 
+</span><span id="694" class="l"><a class="l" href="#694">694: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Beautify Markup Toggles'</span>); 
+</span><span id="695" class="l"><a class="l" href="#695">695: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'toggles'</span>); 
+</span><span id="696" class="l"><a class="l" href="#696">696: </a>        <span class="php-var">$f</span>-&gt;addOption(self::toggleCleanDIV, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Convert div tags to paragraph tags'</span>)); 
+</span><span id="697" class="l"><a class="l" href="#697">697: </a>        <span class="php-var">$f</span>-&gt;addOption(self::toggleCleanP, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Remove empty paragraph tags'</span>)); 
+</span><span id="698" class="l"><a class="l" href="#698">698: </a>        <span class="php-var">$f</span>-&gt;addOption(self::toggleCleanNBSP, <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Remove non-breaking spaces (nbsp)'</span>)); 
+</span><span id="699" class="l"><a class="l" href="#699">699: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'These are extra cleaning options (beyond ACF and HTML Purifier) that we have found helpful in many situations. They are applied when the page is saved. Checking all of these is recommended, unless you have a need to let any of these through in the markup.'</span>); 
+</span><span id="700" class="l"><a class="l" href="#700">700: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;toggles); 
+</span><span id="701" class="l"><a class="l" href="#701">701: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="702" class="l"><a class="l" href="#702">702: </a>
+</span><span id="703" class="l"><a class="l" href="#703">703: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
+</span><span id="704" class="l"><a class="l" href="#704">704: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Format Tags'</span>);
+</span><span id="705" class="l"><a class="l" href="#705">705: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Semicolon-separated list of selectable tags shown in the &quot;format&quot; dropdown.'</span>); 
+</span><span id="706" class="l"><a class="l" href="#706">706: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Default format tags are:'</span>) . <span class="php-quote">' '</span> . self::FORMAT_TAGS; 
+</span><span id="707" class="l"><a class="l" href="#707">707: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'formatTags'</span>);
+</span><span id="708" class="l"><a class="l" href="#708">708: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'formatTags'</span>);
+</span><span id="709" class="l"><a class="l" href="#709">709: </a>        <span class="php-var">$f</span>-&gt;collapsed = (<span class="php-var">$value</span> == self::FORMAT_TAGS ? Inputfield::collapsedYes : Inputfield::collapsedNo);
+</span><span id="710" class="l"><a class="l" href="#710">710: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
+</span><span id="711" class="l"><a class="l" href="#711">711: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="712" class="l"><a class="l" href="#712">712: </a>
+</span><span id="713" class="l"><a class="l" href="#713">713: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldTextarea&quot;</span>);
+</span><span id="714" class="l"><a class="l" href="#714">714: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Extra Allowed Content'</span>);
+</span><span id="715" class="l"><a class="l" href="#715">715: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Allowed content rules per CKEditor [extraAllowedContent](http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-extraAllowedContent) option. Applies only if the &quot;Use ACF&quot; checkbox above is checked.'</span>); 
+</span><span id="716" class="l"><a class="l" href="#716">716: </a>        <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'You may enter multiple rules by putting each on its own line.'</span>); 
+</span><span id="717" class="l"><a class="l" href="#717">717: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">&quot;img[alt,!src,width,height]\n&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'The above example would allow alt, src, width and height attributes for img tags, with the src attribute always required.'</span>) . <span class="php-quote">&quot;\n&quot;</span> . 
+</span><span id="718" class="l"><a class="l" href="#718">718: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'See [details](http://docs.ckeditor.com/#!/guide/dev_allowed_content_rules-section-2) in CKEditor documentation.'</span>);
+</span><span id="719" class="l"><a class="l" href="#719">719: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extraAllowedContent'</span>);
+</span><span id="720" class="l"><a class="l" href="#720">720: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'extraAllowedContent'</span>);
+</span><span id="721" class="l"><a class="l" href="#721">721: </a>        <span class="php-var">$f</span>-&gt;collapsed = (<span class="php-var">$value</span> == self::EXTRA_ALLOWED_CONTENT ? Inputfield::collapsedYes : Inputfield::collapsedNo);
+</span><span id="722" class="l"><a class="l" href="#722">722: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;; &quot;</span>, <span class="php-quote">&quot;\n&quot;</span>, <span class="php-var">$value</span>)); <span class="php-comment">// convert to multi-line for ease of input</span>
+</span><span id="723" class="l"><a class="l" href="#723">723: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
 </span><span id="724" class="l"><a class="l" href="#724">724: </a>
-</span><span id="725" class="l"><a class="l" href="#725">725: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
-</span><span id="726" class="l"><a class="l" href="#726">726: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Editor CSS File (regular mode)'</span>);
-</span><span id="727" class="l"><a class="l" href="#727">727: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$descriptionCustomCss</span>; 
-</span><span id="728" class="l"><a class="l" href="#728">728: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">&quot;/site/modules/InputfieldCKEditor/contents.css\n</span><span class="php-var">$instructionsCustomCss</span><span class="php-quote">  </span><span class="php-var">$pathNote</span><span class="php-quote">&quot;</span>;
-</span><span id="729" class="l"><a class="l" href="#729">729: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'contentsCss'</span>);
-</span><span id="730" class="l"><a class="l" href="#730">730: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'contentsCss'</span>);
-</span><span id="731" class="l"><a class="l" href="#731">731: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
-</span><span id="732" class="l"><a class="l" href="#732">732: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
-</span><span id="733" class="l"><a class="l" href="#733">733: </a>        <span class="php-var">$f</span>-&gt;showIf = <span class="php-quote">&quot;inlineMode&lt;1&quot;</span>;
-</span><span id="734" class="l"><a class="l" href="#734">734: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="735" class="l"><a class="l" href="#735">735: </a>
-</span><span id="736" class="l"><a class="l" href="#736">736: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
-</span><span id="737" class="l"><a class="l" href="#737">737: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Editor CSS File (inline mode)'</span>);
-</span><span id="738" class="l"><a class="l" href="#738">738: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$descriptionCustomCss</span>; 
-</span><span id="739" class="l"><a class="l" href="#739">739: </a>        <span class="php-var">$f</span>-&gt;notes .= <span class="php-var">$example</span> . <span class="php-quote">&quot;/site/modules/InputfieldCKEditor/contents-inline.css\n</span><span class="php-var">$instructionsCustomCss</span><span class="php-quote"> </span><span class="php-var">$pathNote</span><span class="php-quote">&quot;</span>; 
-</span><span id="740" class="l"><a class="l" href="#740">740: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'contentsInlineCss'</span>);
-</span><span id="741" class="l"><a class="l" href="#741">741: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'contentsInlineCss'</span>);
-</span><span id="742" class="l"><a class="l" href="#742">742: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
-</span><span id="743" class="l"><a class="l" href="#743">743: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
-</span><span id="744" class="l"><a class="l" href="#744">744: </a>        <span class="php-var">$f</span>-&gt;showIf = <span class="php-quote">'inlineMode=1'</span>;
-</span><span id="745" class="l"><a class="l" href="#745">745: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="746" class="l"><a class="l" href="#746">746: </a>
-</span><span id="747" class="l"><a class="l" href="#747">747: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
-</span><span id="748" class="l"><a class="l" href="#748">748: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Editor JS Styles Set'</span>);
-</span><span id="749" class="l"><a class="l" href="#749">749: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This option enables you to specify custom styles for selection in your editor. It requires that you have a &quot;Styles&quot; item in your toolbar settings above.'</span>); <span class="php-comment">// styles set description</span>
-</span><span id="750" class="l"><a class="l" href="#750">750: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">&quot;mystyles:/site/modules/InputfieldCKEditor/mystyles.js&quot;</span>; 
-</span><span id="751" class="l"><a class="l" href="#751">751: </a>        <span class="php-var">$f</span>-&gt;notes .= <span class="php-quote">&quot;\n&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Please see our [instructions](https://github.com/ryancramerdesign/ProcessWire/blob/dev/wire/modules/Inputfield/InputfieldCKEditor/README.md#custom-editor-js-styles-set) on how to use this.'</span>) . <span class="php-quote">&quot; </span><span class="php-var">$pathNote</span><span class="php-quote">&quot;</span>; <span class="php-comment">// styles set notes</span>
-</span><span id="752" class="l"><a class="l" href="#752">752: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'stylesSet'</span>);
-</span><span id="753" class="l"><a class="l" href="#753">753: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'stylesSet'</span>);
-</span><span id="754" class="l"><a class="l" href="#754">754: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
-</span><span id="755" class="l"><a class="l" href="#755">755: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
-</span><span id="756" class="l"><a class="l" href="#756">756: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="757" class="l"><a class="l" href="#757">757: </a>        
-</span><span id="758" class="l"><a class="l" href="#758">758: </a>        <span class="php-var">$descriptionJSON</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If used, enter one per line of **property: value**, or use a JSON string.'</span>); 
-</span><span id="759" class="l"><a class="l" href="#759">759: </a>        
-</span><span id="760" class="l"><a class="l" href="#760">760: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
-</span><span id="761" class="l"><a class="l" href="#761">761: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">&quot;customOptions&quot;</span>);
-</span><span id="762" class="l"><a class="l" href="#762">762: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Config Options'</span>);
-</span><span id="763" class="l"><a class="l" href="#763">763: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Use this when you want to specify CKEditor config settings beyond those available on this screen.'</span>) . <span class="php-quote">&quot; </span><span class="php-var">$descriptionJSON</span><span class="php-quote">&quot;</span>;
-</span><span id="764" class="l"><a class="l" href="#764">764: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
-</span><span id="765" class="l"><a class="l" href="#765">765: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">&quot;customOptions&quot;</span>);
-</span><span id="766" class="l"><a class="l" href="#766">766: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span>) {
-</span><span id="767" class="l"><a class="l" href="#767">767: </a>            <span class="php-var">$test</span> = <span class="php-var">$this</span>-&gt;convertPluginSettingsStr(<span class="php-var">$value</span>, <span class="php-quote">''</span>);
-</span><span id="768" class="l"><a class="l" href="#768">768: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$test</span> === <span class="php-keyword1">false</span>) {
-</span><span id="769" class="l"><a class="l" href="#769">769: </a>                <span class="php-var">$f</span>-&gt;error(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Config Options failed JSON validation.'</span>));
-</span><span id="770" class="l"><a class="l" href="#770">770: </a>            }
-</span><span id="771" class="l"><a class="l" href="#771">771: </a>        }
-</span><span id="772" class="l"><a class="l" href="#772">772: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span> ? <span class="php-var">$value</span> : <span class="php-quote">''</span>);
-</span><span id="773" class="l"><a class="l" href="#773">773: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">&quot;uiColor: #438ef0\n&quot;</span> . 
-</span><span id="774" class="l"><a class="l" href="#774">774: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If preferred, these settings can also be set in one of these files:'</span>) .
-</span><span id="775" class="l"><a class="l" href="#775">775: </a>            <span class="php-quote">&quot;\n[/site/modules/InputfieldCKEditor/config.js](https://github.com/ryancramerdesign/ProcessWire/blob/dev/site-default/modules/InputfieldCKEditor/config.js) - &quot;</span> . 
-</span><span id="776" class="l"><a class="l" href="#776">776: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'for all CKEditor fields'</span>) . <span class="php-quote">&quot; &quot;</span> .
-</span><span id="777" class="l"><a class="l" href="#777">777: </a>            <span class="php-quote">&quot;\n[/site/modules/InputfieldCKEditor/config-</span><span class="php-var">$this</span><span class="php-quote">-&gt;name.js](https://github.com/ryancramerdesign/ProcessWire/blob/dev/site-default/modules/InputfieldCKEditor/config-body.js) - &quot;</span> . 
-</span><span id="778" class="l"><a class="l" href="#778">778: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'only for this CKEditor field'</span>);
-</span><span id="779" class="l"><a class="l" href="#779">779: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="780" class="l"><a class="l" href="#780">780: </a>
-</span><span id="781" class="l"><a class="l" href="#781">781: </a>        <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>);
-</span><span id="782" class="l"><a class="l" href="#782">782: </a>        <span class="php-var">$fieldset</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_plugins_fieldset'</span>); 
-</span><span id="783" class="l"><a class="l" href="#783">783: </a>        <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Plugins'</span>); 
-</span><span id="784" class="l"><a class="l" href="#784">784: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$fieldset</span>); 
-</span><span id="785" class="l"><a class="l" href="#785">785: </a>        
-</span><span id="786" class="l"><a class="l" href="#786">786: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldCheckboxes'</span>); 
-</span><span id="787" class="l"><a class="l" href="#787">787: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extraPlugins'</span>);
-</span><span id="788" class="l"><a class="l" href="#788">788: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Extra Plugins'</span>);
-</span><span id="789" class="l"><a class="l" href="#789">789: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'The following plugins were found. Check the box next to each plugin you would like to load.'</span>); 
-</span><span id="790" class="l"><a class="l" href="#790">790: </a>        <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'At least one plugin must be checked.'</span>);
-</span><span id="791" class="l"><a class="l" href="#791">791: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To add more plugins, place them in **/site/modules/InputfieldCKEditor/plugins/[name]/**, replacing **[name]** with the name of the plugin.'</span>); 
-</span><span id="792" class="l"><a class="l" href="#792">792: </a>        <span class="php-var">$plugins</span> = <span class="php-var">$this</span>-&gt;findPlugins(<span class="php-keyword1">true</span>);
-</span><span id="793" class="l"><a class="l" href="#793">793: </a>        <span class="php-keyword2">ksort</span>(<span class="php-var">$plugins</span>); 
-</span><span id="794" class="l"><a class="l" href="#794">794: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$plugins</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$file</span>) {
-</span><span id="795" class="l"><a class="l" href="#795">795: </a>            <span class="php-var">$label</span> = <span class="php-var">$name</span>; 
-</span><span id="796" class="l"><a class="l" href="#796">796: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$name</span> == <span class="php-quote">'pwlink'</span> || <span class="php-var">$name</span> == <span class="php-quote">'pwimage'</span>) <span class="php-var">$label</span> .= <span class="php-quote">&quot; (&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'recommended'</span>) . <span class="php-quote">&quot;)&quot;</span>;
-</span><span id="797" class="l"><a class="l" href="#797">797: </a>            <span class="php-var">$f</span>-&gt;addOption(<span class="php-var">$name</span>, <span class="php-var">$label</span>); 
-</span><span id="798" class="l"><a class="l" href="#798">798: </a>        }
-</span><span id="799" class="l"><a class="l" href="#799">799: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;extraPlugins); 
-</span><span id="800" class="l"><a class="l" href="#800">800: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="801" class="l"><a class="l" href="#801">801: </a>        
-</span><span id="802" class="l"><a class="l" href="#802">802: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$plugins</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$file</span>) {
-</span><span id="803" class="l"><a class="l" href="#803">803: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$name</span> == <span class="php-quote">'pwimage'</span> || <span class="php-var">$name</span> == <span class="php-quote">'pwlink'</span>) <span class="php-keyword1">continue</span>;
-</span><span id="804" class="l"><a class="l" href="#804">804: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
-</span><span id="805" class="l"><a class="l" href="#805">805: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">&quot;plugin_</span><span class="php-var">$name</span><span class="php-quote">&quot;</span>); 
-</span><span id="806" class="l"><a class="l" href="#806">806: </a>            <span class="php-var">$f</span>-&gt;label = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'%s settings'</span>), <span class="php-keyword2">ucfirst</span>(<span class="php-var">$name</span>));
-</span><span id="807" class="l"><a class="l" href="#807">807: </a>            <span class="php-var">$f</span>-&gt;description = <span class="php-var">$descriptionJSON</span>;
-</span><span id="808" class="l"><a class="l" href="#808">808: </a>            <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
-</span><span id="809" class="l"><a class="l" href="#809">809: </a>            <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">&quot;plugin_</span><span class="php-var">$name</span><span class="php-quote">&quot;</span>); 
-</span><span id="810" class="l"><a class="l" href="#810">810: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span>) {
-</span><span id="811" class="l"><a class="l" href="#811">811: </a>                <span class="php-var">$test</span> = <span class="php-var">$this</span>-&gt;convertPluginSettingsStr(<span class="php-var">$value</span>, <span class="php-quote">''</span>); 
-</span><span id="812" class="l"><a class="l" href="#812">812: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$test</span> === <span class="php-keyword1">false</span>) {
-</span><span id="813" class="l"><a class="l" href="#813">813: </a>                    <span class="php-var">$f</span>-&gt;error(<span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Plugin settings for &quot;%s&quot; failed JSON validation.'</span>), <span class="php-var">$name</span>));
-</span><span id="814" class="l"><a class="l" href="#814">814: </a>                }
-</span><span id="815" class="l"><a class="l" href="#815">815: </a>            }
-</span><span id="816" class="l"><a class="l" href="#816">816: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span> ? <span class="php-var">$value</span> : <span class="php-quote">''</span>); 
-</span><span id="817" class="l"><a class="l" href="#817">817: </a>            <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="818" class="l"><a class="l" href="#818">818: </a>        }
-</span><span id="819" class="l"><a class="l" href="#819">819: </a>
-</span><span id="820" class="l"><a class="l" href="#820">820: </a>        <span class="php-comment">/*
-</span></span><span id="821" class="l"><a class="l" href="#821">821: </a><span class="php-comment">        $f = $this-&gt;modules-&gt;get(&quot;InputfieldTextarea&quot;);
-</span></span><span id="822" class="l"><a class="l" href="#822">822: </a><span class="php-comment">        $f-&gt;label = $this-&gt;_('Extra Plugins');
-</span></span><span id="823" class="l"><a class="l" href="#823">823: </a><span class="php-comment">        $f-&gt;description = $this-&gt;_('Comma separated list of extra plugins that CKEditor should load.'); 
-</span></span><span id="824" class="l"><a class="l" href="#824">824: </a><span class="php-comment">        $f-&gt;notes = $this-&gt;_('Example: pwlink,pwimage,myplugin,anotherplugin');
-</span></span><span id="825" class="l"><a class="l" href="#825">825: </a><span class="php-comment">        $f-&gt;attr('name', 'extraPlugins');
-</span></span><span id="826" class="l"><a class="l" href="#826">826: </a><span class="php-comment">        $value = $this-&gt;get('extraPlugins');
-</span></span><span id="827" class="l"><a class="l" href="#827">827: </a><span class="php-comment">        $f-&gt;collapsed = ($value == self::EXTRA_PLUGINS ? Inputfield::collapsedYes : Inputfield::collapsedNo);
-</span></span><span id="828" class="l"><a class="l" href="#828">828: </a><span class="php-comment">        $f-&gt;attr('value', $value);
-</span></span><span id="829" class="l"><a class="l" href="#829">829: </a><span class="php-comment">        $fieldset-&gt;add($f);
-</span></span><span id="830" class="l"><a class="l" href="#830">830: </a><span class="php-comment">        */</span>
-</span><span id="831" class="l"><a class="l" href="#831">831: </a>        
-</span><span id="832" class="l"><a class="l" href="#832">832: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
-</span><span id="833" class="l"><a class="l" href="#833">833: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Remove Plugins'</span>);
-</span><span id="834" class="l"><a class="l" href="#834">834: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Comma separated list of removed plugins that CKEditor should not load.'</span>); 
-</span><span id="835" class="l"><a class="l" href="#835">835: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">'link,image'</span>;
-</span><span id="836" class="l"><a class="l" href="#836">836: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'removePlugins'</span>);
-</span><span id="837" class="l"><a class="l" href="#837">837: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'removePlugins'</span>);
-</span><span id="838" class="l"><a class="l" href="#838">838: </a>        <span class="php-var">$f</span>-&gt;collapsed = (<span class="php-var">$value</span> == self::REMOVE_PLUGINS ? Inputfield::collapsedYes : Inputfield::collapsedNo);
-</span><span id="839" class="l"><a class="l" href="#839">839: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
-</span><span id="840" class="l"><a class="l" href="#840">840: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="841" class="l"><a class="l" href="#841">841: </a>        
-</span><span id="842" class="l"><a class="l" href="#842">842: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$wrapper</span>); 
-</span><span id="843" class="l"><a class="l" href="#843">843: </a>        
-</span><span id="844" class="l"><a class="l" href="#844">844: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
-</span><span id="845" class="l"><a class="l" href="#845">845: </a>    }
-</span><span id="846" class="l"><a class="l" href="#846">846: </a>}
-</span><span id="847" class="l"><a class="l" href="#847">847: </a></span></code></pre>
+</span><span id="725" class="l"><a class="l" href="#725">725: </a>        <span class="php-var">$pathNote</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Paths should be relative to your ProcessWire installation root (i.e. if site is running from a subdirectory, exclude that part).'</span>); 
+</span><span id="726" class="l"><a class="l" href="#726">726: </a>        <span class="php-var">$descriptionCustomCss</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This option enables you to modify the way that text and other elements appear in your editor. This covers how they look in the administrative environment only, and has nothing to do with the front-end of your site.'</span>); <span class="php-comment">// contents.css description</span>
+</span><span id="727" class="l"><a class="l" href="#727">727: </a>        <span class="php-var">$instructionsCustomCss</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Please see our [instructions](https://github.com/ryancramerdesign/ProcessWire/blob/dev/wire/modules/Inputfield/InputfieldCKEditor/README.md#custom-editor-css-file) on how to use this.'</span>); <span class="php-comment">// custom editor css instructions</span>
+</span><span id="728" class="l"><a class="l" href="#728">728: </a>
+</span><span id="729" class="l"><a class="l" href="#729">729: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
+</span><span id="730" class="l"><a class="l" href="#730">730: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Editor CSS File (regular mode)'</span>);
+</span><span id="731" class="l"><a class="l" href="#731">731: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$descriptionCustomCss</span>; 
+</span><span id="732" class="l"><a class="l" href="#732">732: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">&quot;/site/modules/InputfieldCKEditor/contents.css\n</span><span class="php-var">$instructionsCustomCss</span><span class="php-quote">  </span><span class="php-var">$pathNote</span><span class="php-quote">&quot;</span>;
+</span><span id="733" class="l"><a class="l" href="#733">733: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'contentsCss'</span>);
+</span><span id="734" class="l"><a class="l" href="#734">734: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'contentsCss'</span>);
+</span><span id="735" class="l"><a class="l" href="#735">735: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
+</span><span id="736" class="l"><a class="l" href="#736">736: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
+</span><span id="737" class="l"><a class="l" href="#737">737: </a>        <span class="php-var">$f</span>-&gt;showIf = <span class="php-quote">&quot;inlineMode&lt;1&quot;</span>;
+</span><span id="738" class="l"><a class="l" href="#738">738: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="739" class="l"><a class="l" href="#739">739: </a>
+</span><span id="740" class="l"><a class="l" href="#740">740: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
+</span><span id="741" class="l"><a class="l" href="#741">741: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Editor CSS File (inline mode)'</span>);
+</span><span id="742" class="l"><a class="l" href="#742">742: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$descriptionCustomCss</span>; 
+</span><span id="743" class="l"><a class="l" href="#743">743: </a>        <span class="php-var">$f</span>-&gt;notes .= <span class="php-var">$example</span> . <span class="php-quote">&quot;/site/modules/InputfieldCKEditor/contents-inline.css\n</span><span class="php-var">$instructionsCustomCss</span><span class="php-quote"> </span><span class="php-var">$pathNote</span><span class="php-quote">&quot;</span>; 
+</span><span id="744" class="l"><a class="l" href="#744">744: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'contentsInlineCss'</span>);
+</span><span id="745" class="l"><a class="l" href="#745">745: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'contentsInlineCss'</span>);
+</span><span id="746" class="l"><a class="l" href="#746">746: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
+</span><span id="747" class="l"><a class="l" href="#747">747: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
+</span><span id="748" class="l"><a class="l" href="#748">748: </a>        <span class="php-var">$f</span>-&gt;showIf = <span class="php-quote">'inlineMode=1'</span>;
+</span><span id="749" class="l"><a class="l" href="#749">749: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="750" class="l"><a class="l" href="#750">750: </a>
+</span><span id="751" class="l"><a class="l" href="#751">751: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
+</span><span id="752" class="l"><a class="l" href="#752">752: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Editor JS Styles Set'</span>);
+</span><span id="753" class="l"><a class="l" href="#753">753: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This option enables you to specify custom styles for selection in your editor. It requires that you have a &quot;Styles&quot; item in your toolbar settings above.'</span>); <span class="php-comment">// styles set description</span>
+</span><span id="754" class="l"><a class="l" href="#754">754: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">&quot;mystyles:/site/modules/InputfieldCKEditor/mystyles.js&quot;</span>; 
+</span><span id="755" class="l"><a class="l" href="#755">755: </a>        <span class="php-var">$f</span>-&gt;notes .= <span class="php-quote">&quot;\n&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Please see our [instructions](https://github.com/ryancramerdesign/ProcessWire/blob/dev/wire/modules/Inputfield/InputfieldCKEditor/README.md#custom-editor-js-styles-set) on how to use this.'</span>) . <span class="php-quote">&quot; </span><span class="php-var">$pathNote</span><span class="php-quote">&quot;</span>; <span class="php-comment">// styles set notes</span>
+</span><span id="756" class="l"><a class="l" href="#756">756: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'stylesSet'</span>);
+</span><span id="757" class="l"><a class="l" href="#757">757: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'stylesSet'</span>);
+</span><span id="758" class="l"><a class="l" href="#758">758: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
+</span><span id="759" class="l"><a class="l" href="#759">759: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
+</span><span id="760" class="l"><a class="l" href="#760">760: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="761" class="l"><a class="l" href="#761">761: </a>        
+</span><span id="762" class="l"><a class="l" href="#762">762: </a>        <span class="php-var">$descriptionJSON</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If used, enter one per line of **property: value**, or use a JSON string.'</span>); 
+</span><span id="763" class="l"><a class="l" href="#763">763: </a>        
+</span><span id="764" class="l"><a class="l" href="#764">764: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
+</span><span id="765" class="l"><a class="l" href="#765">765: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">&quot;customOptions&quot;</span>);
+</span><span id="766" class="l"><a class="l" href="#766">766: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Config Options'</span>);
+</span><span id="767" class="l"><a class="l" href="#767">767: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Use this when you want to specify CKEditor config settings beyond those available on this screen.'</span>) . <span class="php-quote">&quot; </span><span class="php-var">$descriptionJSON</span><span class="php-quote">&quot;</span>;
+</span><span id="768" class="l"><a class="l" href="#768">768: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
+</span><span id="769" class="l"><a class="l" href="#769">769: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">&quot;customOptions&quot;</span>);
+</span><span id="770" class="l"><a class="l" href="#770">770: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span>) {
+</span><span id="771" class="l"><a class="l" href="#771">771: </a>            <span class="php-var">$test</span> = <span class="php-var">$this</span>-&gt;convertPluginSettingsStr(<span class="php-var">$value</span>, <span class="php-quote">''</span>);
+</span><span id="772" class="l"><a class="l" href="#772">772: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$test</span> === <span class="php-keyword1">false</span>) {
+</span><span id="773" class="l"><a class="l" href="#773">773: </a>                <span class="php-var">$f</span>-&gt;error(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Custom Config Options failed JSON validation.'</span>));
+</span><span id="774" class="l"><a class="l" href="#774">774: </a>            }
+</span><span id="775" class="l"><a class="l" href="#775">775: </a>        }
+</span><span id="776" class="l"><a class="l" href="#776">776: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span> ? <span class="php-var">$value</span> : <span class="php-quote">''</span>);
+</span><span id="777" class="l"><a class="l" href="#777">777: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">&quot;uiColor: #438ef0\n&quot;</span> . 
+</span><span id="778" class="l"><a class="l" href="#778">778: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If preferred, these settings can also be set in one of these files:'</span>) .
+</span><span id="779" class="l"><a class="l" href="#779">779: </a>            <span class="php-quote">&quot;\n[/site/modules/InputfieldCKEditor/config.js](https://github.com/ryancramerdesign/ProcessWire/blob/dev/site-default/modules/InputfieldCKEditor/config.js) - &quot;</span> . 
+</span><span id="780" class="l"><a class="l" href="#780">780: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'for all CKEditor fields'</span>) . <span class="php-quote">&quot; &quot;</span> .
+</span><span id="781" class="l"><a class="l" href="#781">781: </a>            <span class="php-quote">&quot;\n[/site/modules/InputfieldCKEditor/config-</span><span class="php-var">$this</span><span class="php-quote">-&gt;name.js](https://github.com/ryancramerdesign/ProcessWire/blob/dev/site-default/modules/InputfieldCKEditor/config-body.js) - &quot;</span> . 
+</span><span id="782" class="l"><a class="l" href="#782">782: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'only for this CKEditor field'</span>);
+</span><span id="783" class="l"><a class="l" href="#783">783: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="784" class="l"><a class="l" href="#784">784: </a>
+</span><span id="785" class="l"><a class="l" href="#785">785: </a>        <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>);
+</span><span id="786" class="l"><a class="l" href="#786">786: </a>        <span class="php-var">$fieldset</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_plugins_fieldset'</span>); 
+</span><span id="787" class="l"><a class="l" href="#787">787: </a>        <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Plugins'</span>); 
+</span><span id="788" class="l"><a class="l" href="#788">788: </a>        <span class="php-var">$wrapper</span>-&gt;add(<span class="php-var">$fieldset</span>); 
+</span><span id="789" class="l"><a class="l" href="#789">789: </a>        
+</span><span id="790" class="l"><a class="l" href="#790">790: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldCheckboxes'</span>); 
+</span><span id="791" class="l"><a class="l" href="#791">791: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'extraPlugins'</span>);
+</span><span id="792" class="l"><a class="l" href="#792">792: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Extra Plugins'</span>);
+</span><span id="793" class="l"><a class="l" href="#793">793: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'The following plugins were found. Check the box next to each plugin you would like to load.'</span>); 
+</span><span id="794" class="l"><a class="l" href="#794">794: </a>        <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'At least one plugin must be checked.'</span>);
+</span><span id="795" class="l"><a class="l" href="#795">795: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To add more plugins, place them in **/site/modules/InputfieldCKEditor/plugins/[name]/**, replacing **[name]** with the name of the plugin.'</span>); 
+</span><span id="796" class="l"><a class="l" href="#796">796: </a>        <span class="php-var">$plugins</span> = <span class="php-var">$this</span>-&gt;findPlugins(<span class="php-keyword1">true</span>);
+</span><span id="797" class="l"><a class="l" href="#797">797: </a>        <span class="php-keyword2">ksort</span>(<span class="php-var">$plugins</span>); 
+</span><span id="798" class="l"><a class="l" href="#798">798: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$plugins</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$file</span>) {
+</span><span id="799" class="l"><a class="l" href="#799">799: </a>            <span class="php-var">$label</span> = <span class="php-var">$name</span>; 
+</span><span id="800" class="l"><a class="l" href="#800">800: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$name</span> == <span class="php-quote">'pwlink'</span> || <span class="php-var">$name</span> == <span class="php-quote">'pwimage'</span>) <span class="php-var">$label</span> .= <span class="php-quote">&quot; (&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'recommended'</span>) . <span class="php-quote">&quot;)&quot;</span>;
+</span><span id="801" class="l"><a class="l" href="#801">801: </a>            <span class="php-var">$f</span>-&gt;addOption(<span class="php-var">$name</span>, <span class="php-var">$label</span>); 
+</span><span id="802" class="l"><a class="l" href="#802">802: </a>        }
+</span><span id="803" class="l"><a class="l" href="#803">803: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;extraPlugins); 
+</span><span id="804" class="l"><a class="l" href="#804">804: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="805" class="l"><a class="l" href="#805">805: </a>        
+</span><span id="806" class="l"><a class="l" href="#806">806: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$plugins</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$file</span>) {
+</span><span id="807" class="l"><a class="l" href="#807">807: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$name</span> == <span class="php-quote">'pwimage'</span> || <span class="php-var">$name</span> == <span class="php-quote">'pwlink'</span>) <span class="php-keyword1">continue</span>;
+</span><span id="808" class="l"><a class="l" href="#808">808: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
+</span><span id="809" class="l"><a class="l" href="#809">809: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">&quot;plugin_</span><span class="php-var">$name</span><span class="php-quote">&quot;</span>); 
+</span><span id="810" class="l"><a class="l" href="#810">810: </a>            <span class="php-var">$f</span>-&gt;label = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'%s settings'</span>), <span class="php-keyword2">ucfirst</span>(<span class="php-var">$name</span>));
+</span><span id="811" class="l"><a class="l" href="#811">811: </a>            <span class="php-var">$f</span>-&gt;description = <span class="php-var">$descriptionJSON</span>;
+</span><span id="812" class="l"><a class="l" href="#812">812: </a>            <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
+</span><span id="813" class="l"><a class="l" href="#813">813: </a>            <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">&quot;plugin_</span><span class="php-var">$name</span><span class="php-quote">&quot;</span>); 
+</span><span id="814" class="l"><a class="l" href="#814">814: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span>) {
+</span><span id="815" class="l"><a class="l" href="#815">815: </a>                <span class="php-var">$test</span> = <span class="php-var">$this</span>-&gt;convertPluginSettingsStr(<span class="php-var">$value</span>, <span class="php-quote">''</span>); 
+</span><span id="816" class="l"><a class="l" href="#816">816: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$test</span> === <span class="php-keyword1">false</span>) {
+</span><span id="817" class="l"><a class="l" href="#817">817: </a>                    <span class="php-var">$f</span>-&gt;error(<span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Plugin settings for &quot;%s&quot; failed JSON validation.'</span>), <span class="php-var">$name</span>));
+</span><span id="818" class="l"><a class="l" href="#818">818: </a>                }
+</span><span id="819" class="l"><a class="l" href="#819">819: </a>            }
+</span><span id="820" class="l"><a class="l" href="#820">820: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span> ? <span class="php-var">$value</span> : <span class="php-quote">''</span>); 
+</span><span id="821" class="l"><a class="l" href="#821">821: </a>            <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="822" class="l"><a class="l" href="#822">822: </a>        }
+</span><span id="823" class="l"><a class="l" href="#823">823: </a>
+</span><span id="824" class="l"><a class="l" href="#824">824: </a>        <span class="php-comment">/*
+</span></span><span id="825" class="l"><a class="l" href="#825">825: </a><span class="php-comment">        $f = $this-&gt;modules-&gt;get(&quot;InputfieldTextarea&quot;);
+</span></span><span id="826" class="l"><a class="l" href="#826">826: </a><span class="php-comment">        $f-&gt;label = $this-&gt;_('Extra Plugins');
+</span></span><span id="827" class="l"><a class="l" href="#827">827: </a><span class="php-comment">        $f-&gt;description = $this-&gt;_('Comma separated list of extra plugins that CKEditor should load.'); 
+</span></span><span id="828" class="l"><a class="l" href="#828">828: </a><span class="php-comment">        $f-&gt;notes = $this-&gt;_('Example: pwlink,pwimage,myplugin,anotherplugin');
+</span></span><span id="829" class="l"><a class="l" href="#829">829: </a><span class="php-comment">        $f-&gt;attr('name', 'extraPlugins');
+</span></span><span id="830" class="l"><a class="l" href="#830">830: </a><span class="php-comment">        $value = $this-&gt;get('extraPlugins');
+</span></span><span id="831" class="l"><a class="l" href="#831">831: </a><span class="php-comment">        $f-&gt;collapsed = ($value == self::EXTRA_PLUGINS ? Inputfield::collapsedYes : Inputfield::collapsedNo);
+</span></span><span id="832" class="l"><a class="l" href="#832">832: </a><span class="php-comment">        $f-&gt;attr('value', $value);
+</span></span><span id="833" class="l"><a class="l" href="#833">833: </a><span class="php-comment">        $fieldset-&gt;add($f);
+</span></span><span id="834" class="l"><a class="l" href="#834">834: </a><span class="php-comment">        */</span>
+</span><span id="835" class="l"><a class="l" href="#835">835: </a>        
+</span><span id="836" class="l"><a class="l" href="#836">836: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">&quot;InputfieldText&quot;</span>);
+</span><span id="837" class="l"><a class="l" href="#837">837: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Remove Plugins'</span>);
+</span><span id="838" class="l"><a class="l" href="#838">838: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Comma separated list of removed plugins that CKEditor should not load.'</span>); 
+</span><span id="839" class="l"><a class="l" href="#839">839: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$example</span> . <span class="php-quote">'link,image'</span>;
+</span><span id="840" class="l"><a class="l" href="#840">840: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'removePlugins'</span>);
+</span><span id="841" class="l"><a class="l" href="#841">841: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'removePlugins'</span>);
+</span><span id="842" class="l"><a class="l" href="#842">842: </a>        <span class="php-var">$f</span>-&gt;collapsed = (<span class="php-var">$value</span> == self::REMOVE_PLUGINS ? Inputfield::collapsedYes : Inputfield::collapsedNo);
+</span><span id="843" class="l"><a class="l" href="#843">843: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
+</span><span id="844" class="l"><a class="l" href="#844">844: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="845" class="l"><a class="l" href="#845">845: </a>        
+</span><span id="846" class="l"><a class="l" href="#846">846: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$wrapper</span>); 
+</span><span id="847" class="l"><a class="l" href="#847">847: </a>        
+</span><span id="848" class="l"><a class="l" href="#848">848: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
+</span><span id="849" class="l"><a class="l" href="#849">849: </a>    }
+</span><span id="850" class="l"><a class="l" href="#850">850: </a>}
+</span><span id="851" class="l"><a class="l" href="#851">851: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire API (devns namespace branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

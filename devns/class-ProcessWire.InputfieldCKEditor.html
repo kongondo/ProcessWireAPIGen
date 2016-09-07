@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldCKEditor | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -367,6 +367,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -503,7 +504,7 @@
 <p>CKEditor Copyright (C) 2003-2015, CKSource - Frederico Knabben <a
 href="http://ckeditor.com">http://ckeditor.com</a></p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -576,7 +577,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.InputfieldCKEditor.html#4-846" title="Go to source code">modules/Inputfield/InputfieldCKEditor/InputfieldCKEditor.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.InputfieldCKEditor.html#4-850" title="Go to source code">modules/Inputfield/InputfieldCKEditor/InputfieldCKEditor.module</a><br>
 	</div>
 
 
@@ -641,6 +642,10 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 				<h4>Overrides</h4>
@@ -807,54 +812,37 @@ URL</dd>
 
 		<div class="description short">
 			
-<p>Method called right before Inputfield markup is rendered, so that any
-dependencies can be loaded as well.</p>
+<p>Render ready</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Method called right before Inputfield markup is rendered, so that any
-dependencies can be loaded as well.</p>
-
-<p>Called before <code>Inputfield::render()</code> or
-<code>Inputfield::renderValue()</code> method by the parent
-<code>InputfieldWrapper</code> instance. If you are calling either of those
-methods yourself for some reason, make sure that you call this
-<code>renderReady()</code> method first.</p>
-
-<p>The default behavior of this method is to populate Inputfield-specific CSS
-and JS file assets into <code>$config-&gt;styles</code> and
-<code>$config-&gt;scripts</code>.</p>
-
-<p>The return value is true if assets were just added, and false if assets have
-already been added in a previous call. This distinction probably doesn't matter
-in most usages, but here just in case a descending class needs to know when/if
-to add additional assets (i.e. when this method returns true).</p>
-
-<p>#pw-group-output</p>
+<p>Render ready</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$parent</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent InputfieldWrapper that is rendering it, or null if no parent.</dd>
+					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code></code><br>$parent</dd>
 					<dt><var>$renderValueMode</var></dt>
-					<dd><code>boolean</code><br>$renderValueMode Specify true only if this is for
-<code>Inputfield::renderValue()</code> rather than
-<code>Inputfield::render()</code>.</dd>
+					<dd><code>boolean</code><br>$renderValueMode</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>True if assets were just added, false if already added.<br>
+					<code>boolean</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
 
 
-
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-ProcessWire.Inputfield.html#_renderReady">ProcessWire\Inputfield::renderReady()</a></code></div>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldText.html#_renderReady">ProcessWire\InputfieldText::renderReady()</a></code></div>
 
 		</div>
 		</div></td>
@@ -1147,8 +1135,7 @@ purposes</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$input</var></dt>
-					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input User input where value should be pulled from (typically
-<code>$input-&gt;post</code>)</dd>
+					<dd><code><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code></code><br>$input</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1159,7 +1146,7 @@ purposes</p>
 
 
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-ProcessWire.InputfieldText.html#____processInput">ProcessWire\InputfieldText::___processInput()</a></code></div>
+				<div class="list"><code><a href="class-ProcessWire.InputfieldTextarea.html#____processInput">ProcessWire\InputfieldTextarea::___processInput()</a></code></div>
 
 		</div>
 		</div></td>
@@ -1220,60 +1207,31 @@ string to return JSON string.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldCKEditor.html#619-845" title="Go to source code">___getConfigInputfields</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldCKEditor.html#619-849" title="Go to source code">___getConfigInputfields</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get any custom configuration fields for this Inputfield</p>
+<p>Get field configuration</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get any custom configuration fields for this Inputfield</p>
-
-<ul>
-	<li>Intended to be extended by each Inputfield as needed to add more config
-	options.</li>
-
-	<li>The returned InputfieldWrapper ultimately ends up as the "Input" tab in the
-	fields editor (admin).</li>
-
-	<li>Descending Inputfield classes should first call this method from the parent
-	class to get the default configuration fields and the InputfieldWrapper they can
-	add to.</li>
-
-	<li>Returned Inputfield instances with a name attribute that starts with an
-	underscore, i.e. "_myname" are assumed to be for runtime use and are NOT stored
-	in the database.</li>
-
-	<li>If you prefer, you may instead implement the
-	<code>Inputfield::getConfigArray()</code> method as an alternative.</li>
-</ul>
-
-<p>~~~~ // Example getConfigInputfields() implementation public function
-___getConfigInputfields() { // Get the defaults and $inputfields wrapper we can
-add to $inputfields = parent::___getConfigInputfields(); // Add a new Inputfield
-to it $f = $this-&gt;wire('modules')-&gt;get('InputfieldText');
-$f-&gt;attr('name', 'first_name'); $f-&gt;attr('value',
-$this-&gt;get('first_name')); $f-&gt;label = 'Your First Name';
-$inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
-
-<p>#pw-group-module</p>
+<p>Get field configuration</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>Populated with Inputfield instances<br>
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>
 				</div>
 
-
-				<h4>See</h4>
+				<h4>Throws</h4>
 				<div class="list">
-						Inputfield::getConfigArray()<br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
+
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.InputfieldTextarea.html#____getConfigInputfields">ProcessWire\InputfieldTextarea::___getConfigInputfields()</a></code></div>
@@ -1288,6 +1246,9 @@ $inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
 	<tr>
 		<td><code>
 			<a href="class-ProcessWire.InputfieldTextarea.html#____getConfigAllowContext">___getConfigAllowContext()</a>, 
+			<a href="class-ProcessWire.InputfieldTextarea.html#_getAttributes">getAttributes()</a>, 
+			<a href="class-ProcessWire.InputfieldTextarea.html#_getDefaultMaxlength">getDefaultMaxlength()</a>, 
+			<a href="class-ProcessWire.InputfieldTextarea.html#_getValueLength">getValueLength()</a>, 
 			<a href="class-ProcessWire.InputfieldTextarea.html#_init">init()</a>, 
 			<a href="class-ProcessWire.InputfieldTextarea.html#_setAttributeValue">setAttributeValue()</a>
 		</code></td>
@@ -1297,7 +1258,6 @@ $inputfields-&gt;add($f); return $inputfields; } ~~~~</p>
 	<caption>Methods inherited from <a href="class-ProcessWire.InputfieldText.html#methods">ProcessWire\InputfieldText</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-ProcessWire.InputfieldText.html#_getAttributes">getAttributes()</a>, 
 			<a href="class-ProcessWire.InputfieldText.html#_setAttribute">setAttribute()</a>
 		</code></td>
 	</tr>
@@ -1637,7 +1597,7 @@ mode</p>
 		<td class="name"><code>
 				<a href="source-class-ProcessWire.InputfieldCKEditor.html#83-87" title="Go to source code"><b>CKEDITOR_VERSION</b></a>
 		</code></td>
-		<td class="value"><code><span class="php-quote">'4.5.5'</span></code></td>
+		<td class="value"><code><span class="php-quote">'4.5.10'</span></code></td>
 		<td class="description"><div>
 			<a href="#CKEDITOR_VERSION" class="anchor">#</a>
 
@@ -1669,7 +1629,10 @@ mode</p>
 	<caption>Constants inherited from <a href="class-ProcessWire.InputfieldText.html#constants">ProcessWire\InputfieldText</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-ProcessWire.InputfieldText.html#defaultMaxlength"><b>defaultMaxlength</b></a>
+			<a href="class-ProcessWire.InputfieldText.html#defaultMaxlength"><b>defaultMaxlength</b></a>, 
+			<a href="class-ProcessWire.InputfieldText.html#showCountChars"><b>showCountChars</b></a>, 
+			<a href="class-ProcessWire.InputfieldText.html#showCountNone"><b>showCountNone</b></a>, 
+			<a href="class-ProcessWire.InputfieldText.html#showCountWords"><b>showCountWords</b></a>
 		</code></td>
 	</tr>
 	</table>

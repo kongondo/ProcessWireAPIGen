@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldIcon | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -367,6 +367,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -496,27 +497,22 @@
 
 	<div class="description">
 	
+<p>ProcessWire Inputfield - base class for Inputfield modules.</p>
+
+<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+href="https://processwire.com">https://processwire.com</a></p>
+
 <p>An Inputfield for an actual form input field widget, and this is provided as
 the base class for different kinds of form input widgets provided as
 modules.</p>
 
 <p>The class supports a parent/child hierarchy so that a given Inputfield can
 contain Inputfields below it. An example would be the relationship between
-fieldsets and fields in a form.</p>
+fieldsets and fields in a form. Parent Inputfields are almost always of type
+InputfieldWrapper.</p>
 
-<p>An Inputfield is typically associated with a Fieldtype module.</p>
-
-<p>All Inputfields have the following properties at minimum:</p>
-
-<p>Inputfield::id A unique string identifier for this Inputfield</p>
-
-<p>Inputfield::class Class name(s) to be rendered with the Inputfield HTML
-output</p>
-
-<p>Inputfield::name Corresponds to HTML "name" attribute</p>
-
-<p>Inputfield::value The current value of the field. May correspond go the XHTML
-"value" attribute on some inputs.</p>
+<p>An Inputfield is typically associated with a Fieldtype module when used for
+ProcessWire fields. Most Inputfields can also be used on their own.</p>
 
 <p>#pw-order-groups
 attribute-methods,attribute-properties,settings,traversal,labels,appearance,behavior,other,output,input,states

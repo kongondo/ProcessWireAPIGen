@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PagesEditor | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -367,6 +367,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -500,7 +501,7 @@
 
 <p>Implements page manipulation methods of the $pages API variable</p>
 
-<p>ProcessWire 3.x (development), Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -539,7 +540,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PagesEditor.html#4-1157" title="Go to source code">core/PagesEditor.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PagesEditor.html#4-1195" title="Go to source code">core/PagesEditor.php</a><br>
 	</div>
 
 
@@ -872,7 +873,7 @@ returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#413-476" title="Go to source code">save</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#413-484" title="Go to source code">save</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -898,15 +899,17 @@ $page-&gt;save($fieldName) instead.</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Optional array with the following optional elements: 'uncacheAll' =&gt;
-boolean - Whether the memory cache should be cleared (default=true)
-'resetTrackChanges' =&gt; boolean - Whether the page's change tracking should be
-reset (default=true) 'quiet' =&gt; boolean - When true, modified date and
-modified_users_id won't be updated (default=false) 'adjustName' =&gt; boolean -
-Adjust page name to ensure it is unique within its parent (default=false)
-'forceID' =&gt; integer - use this ID instead of an auto-assigned on (new page)
-or current ID (existing page) 'ignoreFamily' =&gt; boolean - Bypass check of
-allowed family/parent settings when saving (default=false)</dd>
+					<dd><code>array</code><br>$options Optional array with the following optional elements: -
+<code>uncacheAll</code> (boolean): Whether the memory cache should be cleared
+(default=true) - <code>resetTrackChanges</code> (boolean): Whether the page's
+change tracking should be reset (default=true) - <code>quiet</code> (boolean):
+When true, modified date and modified_users_id won't be updated (default=false)
+- <code>adjustName</code> (boolean): Adjust page name to ensure it is unique
+within its parent (default=false) - <code>forceID</code> (integer): Use this ID
+instead of an auto-assigned on (new page) or current ID (existing page) -
+<code>ignoreFamily</code> (boolean): Bypass check of allowed family/parent
+settings when saving (default=false) - <code>noHooks</code> (boolean): Prevent
+before/after save hooks from being called (default=false)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -935,7 +938,7 @@ allowed family/parent settings when saving (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_savePageQuery">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#478-620" title="Go to source code">savePageQuery</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#486-631" title="Go to source code">savePageQuery</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -985,7 +988,7 @@ allowed family/parent settings when saving (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_savePageFinish">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#622-738" title="Go to source code">savePageFinish</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$isNew</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#633-757" title="Go to source code">savePageFinish</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$isNew</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1033,7 +1036,7 @@ allowed family/parent settings when saving (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveField">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#740-786" title="Go to source code">saveField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#759-824" title="Go to source code">saveField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1057,8 +1060,10 @@ $page-&gt;save($field)</p>
 					<dt><var>$field</var></dt>
 					<dd><code>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field Field object or name (string)</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array|string</code><br>$options Specify option 'quiet' =&gt; true, to bypass updating of
-modified_users_id and modified time.</dd>
+					<dd><code>array|string</code><br>$options Specify options: - <code>quiet</code> (boolean): Specify true to bypass
+updating of modified_users_id and modified time (default=false). -
+<code>noHooks</code> (boolean): Specify true to bypass calling of before/after
+save hooks (default=false).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1087,7 +1092,7 @@ modified_users_id and modified time.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveParents">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#788-852" title="Go to source code">saveParents</a>( <span>integer <var>$pages_id</var></span>, <span>integer <var>$numChildren</var></span>, <span>integer <var>$level</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#826-890" title="Go to source code">saveParents</a>( <span>integer <var>$pages_id</var></span>, <span>integer <var>$numChildren</var></span>, <span>integer <var>$level</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1137,7 +1142,7 @@ other pages affected by a parent change</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_savePageStatus">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#854-905" title="Go to source code">savePageStatus</a>( <span>integer <var>$pageID</var></span>, <span>integer <var>$status</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$remove</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#892-943" title="Go to source code">savePageStatus</a>( <span>integer <var>$pageID</var></span>, <span>integer <var>$status</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$remove</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1189,7 +1194,7 @@ grandchildren, etc?</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#907-977" title="Go to source code">delete</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#945-1015" title="Go to source code">delete</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1246,7 +1251,7 @@ requested.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__clone">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#979-1108" title="Go to source code">_clone</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#1017-1146" title="Go to source code">_clone</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1301,7 +1306,7 @@ use only.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_touch">#</a>
-		<code><a href="source-class-ProcessWire.PagesEditor.html#1110-1156" title="Go to source code">touch</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array <var>$pages</var></span>, <span>null|integer|string <var>$modified</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesEditor.html#1148-1194" title="Go to source code">touch</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array <var>$pages</var></span>, <span>null|integer|string <var>$modified</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			

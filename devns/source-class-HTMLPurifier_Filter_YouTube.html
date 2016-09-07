@@ -8,7 +8,7 @@
 	<title>File modules/Markup/MarkupHTMLPurifier/htmlpurifier/standalone/HTMLPurifier/Filter/YouTube.php | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -107,6 +107,7 @@
 				<li><a href="class-HTMLPurifier_AttrTransform_SafeParam.html">HTMLPurifier_AttrTransform_SafeParam</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_ScriptRequired.html">HTMLPurifier_AttrTransform_ScriptRequired</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_TargetBlank.html">HTMLPurifier_AttrTransform_TargetBlank</a></li>
+				<li><a href="class-HTMLPurifier_AttrTransform_TargetNoreferrer.html">HTMLPurifier_AttrTransform_TargetNoreferrer</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_Textarea.html">HTMLPurifier_AttrTransform_Textarea</a></li>
 				<li><a href="class-HTMLPurifier_AttrTypes.html">HTMLPurifier_AttrTypes</a></li>
 				<li><a href="class-HTMLPurifier_AttrValidator.html">HTMLPurifier_AttrValidator</a></li>
@@ -179,6 +180,7 @@
 				<li><a href="class-HTMLPurifier_HTMLModule_Tables.html">HTMLPurifier_HTMLModule_Tables</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Target.html">HTMLPurifier_HTMLModule_Target</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_TargetBlank.html">HTMLPurifier_HTMLModule_TargetBlank</a></li>
+				<li><a href="class-HTMLPurifier_HTMLModule_TargetNoreferrer.html">HTMLPurifier_HTMLModule_TargetNoreferrer</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Text.html">HTMLPurifier_HTMLModule_Text</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Tidy.html">HTMLPurifier_HTMLModule_Tidy</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Tidy_Name.html">HTMLPurifier_HTMLModule_Tidy_Name</a></li>
@@ -262,6 +264,7 @@
 				<li><a href="class-HTMLPurifier_URIScheme_mailto.html">HTMLPurifier_URIScheme_mailto</a></li>
 				<li><a href="class-HTMLPurifier_URIScheme_news.html">HTMLPurifier_URIScheme_news</a></li>
 				<li><a href="class-HTMLPurifier_URIScheme_nntp.html">HTMLPurifier_URIScheme_nntp</a></li>
+				<li><a href="class-HTMLPurifier_URIScheme_tel.html">HTMLPurifier_URIScheme_tel</a></li>
 				<li><a href="class-HTMLPurifier_URISchemeRegistry.html">HTMLPurifier_URISchemeRegistry</a></li>
 				<li><a href="class-HTMLPurifier_VarParser.html">HTMLPurifier_VarParser</a></li>
 				<li><a href="class-HTMLPurifier_VarParser_Flexible.html">HTMLPurifier_VarParser_Flexible</a></li>
@@ -357,7 +360,7 @@
 </span><span id="17" class="l"><a class="l" href="#17">17: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_preFilter" href="#_preFilter">preFilter</a>(<span class="php-var">$html</span>, <span class="php-var">$config</span>, <span class="php-var">$context</span>)
 </span><span id="18" class="l"><a class="l" href="#18">18: </a>    {
 </span><span id="19" class="l"><a class="l" href="#19">19: </a>        <span class="php-var">$pre_regex</span> = <span class="php-quote">'#&lt;object[^&gt;]+&gt;.+?'</span> .
-</span><span id="20" class="l"><a class="l" href="#20">20: </a>            <span class="php-quote">'http://www.youtube.com/((?:v|cp)/[A-Za-z0-9\-_=]+).+?&lt;/object&gt;#s'</span>;
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>            <span class="php-quote">'(?:http:)?//www.youtube.com/((?:v|cp)/[A-Za-z0-9\-_=]+).+?&lt;/object&gt;#s'</span>;
 </span><span id="21" class="l"><a class="l" href="#21">21: </a>        <span class="php-var">$pre_replace</span> = <span class="php-quote">'&lt;span class=&quot;youtube-embed&quot;&gt;\1&lt;/span&gt;'</span>;
 </span><span id="22" class="l"><a class="l" href="#22">22: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">preg_replace</span>(<span class="php-var">$pre_regex</span>, <span class="php-var">$pre_replace</span>, <span class="php-var">$html</span>);
 </span><span id="23" class="l"><a class="l" href="#23">23: </a>    }
@@ -391,10 +394,10 @@
 </span><span id="51" class="l"><a class="l" href="#51">51: </a>    {
 </span><span id="52" class="l"><a class="l" href="#52">52: </a>        <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;armorUrl(<span class="php-var">$matches</span>[<span class="php-num">1</span>]);
 </span><span id="53" class="l"><a class="l" href="#53">53: </a>        <span class="php-keyword1">return</span> <span class="php-quote">'&lt;object width=&quot;425&quot; height=&quot;350&quot; type=&quot;application/x-shockwave-flash&quot; '</span> .
-</span><span id="54" class="l"><a class="l" href="#54">54: </a>        <span class="php-quote">'data=&quot;http://www.youtube.com/'</span> . <span class="php-var">$url</span> . <span class="php-quote">'&quot;&gt;'</span> .
-</span><span id="55" class="l"><a class="l" href="#55">55: </a>        <span class="php-quote">'&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/'</span> . <span class="php-var">$url</span> . <span class="php-quote">'&quot;&gt;&lt;/param&gt;'</span> .
+</span><span id="54" class="l"><a class="l" href="#54">54: </a>        <span class="php-quote">'data=&quot;//www.youtube.com/'</span> . <span class="php-var">$url</span> . <span class="php-quote">'&quot;&gt;'</span> .
+</span><span id="55" class="l"><a class="l" href="#55">55: </a>        <span class="php-quote">'&lt;param name=&quot;movie&quot; value=&quot;//www.youtube.com/'</span> . <span class="php-var">$url</span> . <span class="php-quote">'&quot;&gt;&lt;/param&gt;'</span> .
 </span><span id="56" class="l"><a class="l" href="#56">56: </a>        <span class="php-quote">'&lt;!--[if IE]&gt;'</span> .
-</span><span id="57" class="l"><a class="l" href="#57">57: </a>        <span class="php-quote">'&lt;embed src=&quot;http://www.youtube.com/'</span> . <span class="php-var">$url</span> . <span class="php-quote">'&quot;'</span> .
+</span><span id="57" class="l"><a class="l" href="#57">57: </a>        <span class="php-quote">'&lt;embed src=&quot;//www.youtube.com/'</span> . <span class="php-var">$url</span> . <span class="php-quote">'&quot;'</span> .
 </span><span id="58" class="l"><a class="l" href="#58">58: </a>        <span class="php-quote">'type=&quot;application/x-shockwave-flash&quot;'</span> .
 </span><span id="59" class="l"><a class="l" href="#59">59: </a>        <span class="php-quote">'wmode=&quot;transparent&quot; width=&quot;425&quot; height=&quot;350&quot; /&gt;'</span> .
 </span><span id="60" class="l"><a class="l" href="#60">60: </a>        <span class="php-quote">'&lt;![endif]--&gt;'</span> .

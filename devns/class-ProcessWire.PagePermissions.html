@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PagePermissions | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -367,6 +367,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -504,7 +505,7 @@ i.e.</p>
 <p>if($page-&gt;editable()) { do something } if(!$page-&gt;viewable()) { echo
 "sorry you can't view this"; } ...and so on...</p>
 
-<p>ProcessWire 3.x (development), Copyright 2015 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <p>Optional special permissions that are optional (by default, not
@@ -608,7 +609,7 @@ installed):</p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PagePermissions.html#4-919" title="Go to source code">modules/PagePermissions.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PagePermissions.html#4-939" title="Go to source code">modules/PagePermissions.module</a><br>
 	</div>
 
 
@@ -861,7 +862,7 @@ page is editable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_userCanAssignRole">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#289-332" title="Go to source code">userCanAssignRole</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$role</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#289-331" title="Go to source code">userCanAssignRole</a>( <span>string|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer <var>$role</var></span> )</code>
 
 		<div class="description short">
 			
@@ -878,7 +879,7 @@ page is editable.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$role</var></dt>
-					<dd><code><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code></code><br>$user</dd>
+					<dd><code>string|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer</code><br>$role</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -903,7 +904,7 @@ page is editable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fieldViewable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#334-377" title="Go to source code">fieldViewable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$name</var></span>, <span>boolean <var>$checkPageViewable</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#333-376" title="Go to source code">fieldViewable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$name</var></span>, <span>boolean <var>$checkPageViewable</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -953,7 +954,7 @@ here as an optimization if you've already confirmed $page is viewable.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fieldEditable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#379-447" title="Go to source code">fieldEditable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$name</var></span>, <span>boolean <var>$checkPageEditable</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#378-446" title="Go to source code">fieldEditable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$name</var></span>, <span>boolean <var>$checkPageEditable</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1003,7 +1004,7 @@ here as an optimization if you've already confirmed $page is editable.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_userFieldEditable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#449-465" title="Go to source code">userFieldEditable</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#448-464" title="Go to source code">userFieldEditable</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1047,7 +1048,7 @@ here as an optimization if you've already confirmed $page is editable.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_viewable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#467-527" title="Go to source code">viewable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#466-526" title="Go to source code">viewable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1102,7 +1103,7 @@ here as an optimization if you've already confirmed $page is editable.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_processViewable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#529-549" title="Go to source code">processViewable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#528-548" title="Go to source code">processViewable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1149,7 +1150,7 @@ process and then 'view' access is assumed for that page.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#551-575" title="Go to source code">listable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#550-574" title="Go to source code">listable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1190,7 +1191,7 @@ actually view the page or that the page is renderable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#577-607" title="Go to source code">deleteable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#576-609" title="Go to source code">deleteable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1228,7 +1229,7 @@ actually view the page or that the page is renderable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trashable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#609-624" title="Go to source code">trashable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#611-640" title="Go to source code">trashable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1239,6 +1240,9 @@ actually view the page or that the page is renderable.</p>
 		<div class="description detailed hidden">
 			
 <p>Is the page trashable by the current user?</p>
+
+<p>Optionally specify boolean true for first argument to make this method behave
+as: "Is page deleteable OR trashable?"</p>
 
 
 
@@ -1266,7 +1270,7 @@ actually view the page or that the page is renderable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#626-682" title="Go to source code">addable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#642-698" title="Go to source code">addable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1307,7 +1311,7 @@ access checking. i.e. if($page-&gt;addable($somePage))</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addableTemplate">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#684-730" title="Go to source code">addableTemplate</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#700-746" title="Go to source code">addableTemplate</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1357,7 +1361,7 @@ access on a template.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_moveable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#732-751" title="Go to source code">moveable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#748-768" title="Go to source code">moveable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1399,7 +1403,7 @@ argument to check if they are allowed to move to that parent.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sortable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#753-764" title="Go to source code">sortable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#770-782" title="Go to source code">sortable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1437,7 +1441,7 @@ argument to check if they are allowed to move to that parent.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_publishable">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#766-801" title="Go to source code">publishable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#784-821" title="Go to source code">publishable</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1478,7 +1482,7 @@ the field on that page will also be checked for access.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasLangPermission">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#803-834" title="Go to source code">hasLangPermission</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#823-854" title="Go to source code">hasLangPermission</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1532,7 +1536,7 @@ user is already known to have any pre-requisite permissions.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasPageEditLangDefault">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#836-846" title="Go to source code">hasPageEditLangDefault</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#856-866" title="Go to source code">hasPageEditLangDefault</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1576,7 +1580,7 @@ user is already known to have any pre-requisite permissions.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasPageEditLangNone">#</a>
-		<code><a href="source-class-ProcessWire.PagePermissions.html#848-858" title="Go to source code">hasPageEditLangNone</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagePermissions.html#868-878" title="Go to source code">hasPageEditLangNone</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			

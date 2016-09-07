@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireInputData | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -367,6 +367,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li><a href="class-ProcessWire._Module.html">_Module</a></li>
 				<li><a href="class-ProcessWire.CommentFormInterface.html">CommentFormInterface</a></li>
 				<li><a href="class-ProcessWire.CommentListInterface.html">CommentListInterface</a></li>
 				<li><a href="class-ProcessWire.ConfigurableModule.html">ConfigurableModule</a></li>
@@ -498,14 +499,20 @@
 	
 <p>WireInputData manages one of GET, POST, COOKIE, or whitelist</p>
 
+<p>WireInputData and the WireInput class together form a simple front end to
+PHP's $_GET, $_POST, and $_COOKIE superglobals.</p>
+
 <p>Vars retrieved from here will not have to consider magic_quotes. No
 sanitization or filtering is done, other than disallowing multi-dimensional
 arrays in input.</p>
 
 <p>WireInputData specifically manages one of: get, post, cookie or whitelist,
-whereas the Input class provides access to the 3 InputData instances.</p>
+whereas the WireInput class provides access to the 3 InputData instances.</p>
 
 <p>Each WireInputData is not instantiated unless specifically asked for.</p>
+
+<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
 
@@ -550,8 +557,8 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 		
 
 				<b>Link:</b>
-				<a href="http://processwire.com/api/variables/input/">Offical $input API variable Documentation</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.WireInputData.html#14-186" title="Go to source code">core/WireInputData.php</a><br>
+				<a href="http://processwire.com/api/ref/input/">Offical $input API variable documentation</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireInputData.html#3-231" title="Go to source code">core/WireInputData.php</a><br>
 	</div>
 
 
@@ -569,16 +576,25 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#65-69" title="Go to source code">__construct</a>( <span>array <var>$input</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#73-83" title="Go to source code">__construct</a>( <span>array <var>$input</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>Construct</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Construct</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$input</var></dt>
+					<dd><code>array</code><br>$input Associative array of variables to store</dd>
+				</dl></div>
 
 
 
@@ -593,24 +609,37 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setArray">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#71-74" title="Go to source code">setArray</a>( <span>array <var>$input</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#85-95" title="Go to source code">setArray</a>( <span>array <var>$input</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set associative array of variables to store</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set associative array of variables to store</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$input</var></dt>
+					<dd><code>array</code><br>$input</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
 
 
 
@@ -622,24 +651,32 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getArray">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#76-78" title="Go to source code">getArray</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#97-105" title="Go to source code">getArray</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get associative array of all input variables</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get associative array of all input variables</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
 
 
 
@@ -658,14 +695,18 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#80-89" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>ixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#107-118" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set an input value</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set an input value</p>
+
 
 
 				<h4>Parameters</h4>
@@ -673,7 +714,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 					<dt><var>$key</var></dt>
 					<dd><code>string</code><br>$key</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>ixed</code><br>$value</dd>
+					<dd><code>mixed</code><br>$value</dd>
 				</dl></div>
 
 
@@ -687,24 +728,39 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="attributes"><code>
 			 protected 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cleanArray">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#91-99" title="Go to source code">cleanArray</a>( <span>array <var>$a</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#120-137" title="Go to source code">cleanArray</a>( <span>array <var>$a</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Clean an array of data</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Clean an array of data</p>
+
+<p>Removes multi-dimensional arrays and slashes (if applicable)</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd><code>array</code><br>$a</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
 
 
 
@@ -723,16 +779,25 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setStripSlashes">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#101-103" title="Go to source code">setStripSlashes</a>( <span>mixed <var>$stripSlashes</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#139-147" title="Go to source code">setStripSlashes</a>( <span>mixed <var>$stripSlashes</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set whether or not slashes should be stripped</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set whether or not slashes should be stripped</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$stripSlashes</var></dt>
+					<dd><code>mixed</code><br>$stripSlashes</dd>
+				</dl></div>
 
 
 
@@ -752,14 +817,18 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#105-113" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#149-159" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Get an input value</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get an input value</p>
+
 
 
 				<h4>Parameters</h4>
@@ -792,7 +861,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIterator">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#115-117" title="Go to source code">getIterator</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#161-163" title="Go to source code">getIterator</a>( )</code>
 
 		<div class="description short">
 			
@@ -823,7 +892,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetExists">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#119-121" title="Go to source code">offsetExists</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#165-167" title="Go to source code">offsetExists</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -854,7 +923,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetGet">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#123-125" title="Go to source code">offsetGet</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#169-171" title="Go to source code">offsetGet</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -885,7 +954,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetSet">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#127-129" title="Go to source code">offsetSet</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#173-175" title="Go to source code">offsetSet</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -916,7 +985,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_offsetUnset">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#131-133" title="Go to source code">offsetUnset</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#177-179" title="Go to source code">offsetUnset</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -947,7 +1016,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_count">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#135-137" title="Go to source code">count</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#181-183" title="Go to source code">count</a>( )</code>
 
 		<div class="description short">
 			
@@ -978,7 +1047,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeAll">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#139-141" title="Go to source code">removeAll</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#185-187" title="Go to source code">removeAll</a>( )</code>
 
 		<div class="description short">
 			
@@ -1007,7 +1076,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___isset">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#143-145" title="Go to source code">__isset</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#189-191" title="Go to source code">__isset</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1036,7 +1105,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___unset">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#147-149" title="Go to source code">__unset</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#193-195" title="Go to source code">__unset</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1065,7 +1134,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_queryString">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#151-153" title="Go to source code">queryString</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#197-199" title="Go to source code">queryString</a>( )</code>
 
 		<div class="description short">
 			
@@ -1094,7 +1163,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___call">#</a>
-		<code><a href="source-class-ProcessWire.WireInputData.html#155-185" title="Go to source code">__call</a>( <span>mixed <var>$method</var></span>, <span>mixed <var>$arguments</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInputData.html#201-230" title="Go to source code">__call</a>( <span>mixed <var>$method</var></span>, <span>mixed <var>$arguments</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1210,11 +1279,11 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 	<tr data-order="stripSlashes" id="$stripSlashes">
 		<td class="attributes"><code>
 			protected  
-			boolean
+			boolean|integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireInputData.html#62" title="Go to source code"><var>$stripSlashes</var></a>
+				<a href="source-class-ProcessWire.WireInputData.html#57-63" title="Go to source code"><var>$stripSlashes</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -1222,10 +1291,14 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 			<div class="description short">
 				
+<p>Whether or not slashes should be stripped</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Whether or not slashes should be stripped</p>
+
 
 			</div>
 		</div></td>
@@ -1237,7 +1310,7 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireInputData.html#63" title="Go to source code"><var>$data</var></a>
+				<a href="source-class-ProcessWire.WireInputData.html#65-71" title="Go to source code"><var>$data</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -1245,10 +1318,14 @@ whereas the Input class provides access to the 3 InputData instances.</p>
 
 			<div class="description short">
 				
+<p>Input data container</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Input data container</p>
+
 
 			</div>
 		</div></td>

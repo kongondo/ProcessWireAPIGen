@@ -7,7 +7,7 @@
 	<title>Class HTMLPurifier_Lexer | ProcessWire API (devns namespace branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?2574835866"></script>
-	<script type="text/javascript" src="elementlist.js?2986313237"></script>
+	<script type="text/javascript" src="elementlist.js?1223941489"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.30 devns</span>
+			<span>Overview version 3.0.33 devns</span>
 		</a>
 
 
@@ -106,6 +106,7 @@
 				<li><a href="class-HTMLPurifier_AttrTransform_SafeParam.html">HTMLPurifier_AttrTransform_SafeParam</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_ScriptRequired.html">HTMLPurifier_AttrTransform_ScriptRequired</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_TargetBlank.html">HTMLPurifier_AttrTransform_TargetBlank</a></li>
+				<li><a href="class-HTMLPurifier_AttrTransform_TargetNoreferrer.html">HTMLPurifier_AttrTransform_TargetNoreferrer</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_Textarea.html">HTMLPurifier_AttrTransform_Textarea</a></li>
 				<li><a href="class-HTMLPurifier_AttrTypes.html">HTMLPurifier_AttrTypes</a></li>
 				<li><a href="class-HTMLPurifier_AttrValidator.html">HTMLPurifier_AttrValidator</a></li>
@@ -178,6 +179,7 @@
 				<li><a href="class-HTMLPurifier_HTMLModule_Tables.html">HTMLPurifier_HTMLModule_Tables</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Target.html">HTMLPurifier_HTMLModule_Target</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_TargetBlank.html">HTMLPurifier_HTMLModule_TargetBlank</a></li>
+				<li><a href="class-HTMLPurifier_HTMLModule_TargetNoreferrer.html">HTMLPurifier_HTMLModule_TargetNoreferrer</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Text.html">HTMLPurifier_HTMLModule_Text</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Tidy.html">HTMLPurifier_HTMLModule_Tidy</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Tidy_Name.html">HTMLPurifier_HTMLModule_Tidy_Name</a></li>
@@ -261,6 +263,7 @@
 				<li><a href="class-HTMLPurifier_URIScheme_mailto.html">HTMLPurifier_URIScheme_mailto</a></li>
 				<li><a href="class-HTMLPurifier_URIScheme_news.html">HTMLPurifier_URIScheme_news</a></li>
 				<li><a href="class-HTMLPurifier_URIScheme_nntp.html">HTMLPurifier_URIScheme_nntp</a></li>
+				<li><a href="class-HTMLPurifier_URIScheme_tel.html">HTMLPurifier_URIScheme_tel</a></li>
 				<li><a href="class-HTMLPurifier_URISchemeRegistry.html">HTMLPurifier_URISchemeRegistry</a></li>
 				<li><a href="class-HTMLPurifier_VarParser.html">HTMLPurifier_VarParser</a></li>
 				<li><a href="class-HTMLPurifier_VarParser_Flexible.html">HTMLPurifier_VarParser_Flexible</a></li>
@@ -400,7 +403,7 @@ Has the entire document structure (html and body not needed).<br>
 				However, DOM is helpful in that it makes it easy to move around nodes without a
 lot of lookaheads to see when a tag is closed. This is a limitation of the token
 system and some workarounds would be nice.<br>
-		<b>Located at</b> <a href="source-class-HTMLPurifier_Lexer.html#7392-7744" title="Go to source code">modules/Markup/MarkupHTMLPurifier/htmlpurifier/HTMLPurifier.standalone.php</a><br>
+		<b>Located at</b> <a href="source-class-HTMLPurifier_Lexer.html#7424-7781" title="Go to source code">modules/Markup/MarkupHTMLPurifier/htmlpurifier/HTMLPurifier.standalone.php</a><br>
 	</div>
 
 
@@ -418,7 +421,7 @@ system and some workarounds would be nice.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7442-7537" title="Go to source code">create</a>( <span><code><a href="class-HTMLPurifier_Config.html">HTMLPurifier_Config</a></code> <var>$config</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7474-7569" title="Go to source code">create</a>( <span><code><a href="class-HTMLPurifier_Config.html">HTMLPurifier_Config</a></code> <var>$config</var></span> )</code>
 
 		<div class="description short">
 			
@@ -474,7 +477,7 @@ object.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7541-7544" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7573-7576" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -503,7 +506,7 @@ object.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseData">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7561-7603" title="Go to source code">parseData</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7593-7635" title="Go to source code">parseData</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			
@@ -554,7 +557,7 @@ in substituteNonSpecialEntities()<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_tokenizeHTML">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7605-7615" title="Go to source code">tokenizeHTML</a>( <span>mixed <var>$string</var></span>, <span><code><a href="class-HTMLPurifier_Config.html">HTMLPurifier_Config</a></code> <var>$config</var></span>, <span><code><a href="class-HTMLPurifier_Context.html">HTMLPurifier_Context</a></code> <var>$context</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7637-7647" title="Go to source code">tokenizeHTML</a>( <span>mixed <var>$string</var></span>, <span><code><a href="class-HTMLPurifier_Config.html">HTMLPurifier_Config</a></code> <var>$config</var></span>, <span><code><a href="class-HTMLPurifier_Context.html">HTMLPurifier_Context</a></code> <var>$context</var></span> )</code>
 
 		<div class="description short">
 			
@@ -600,7 +603,7 @@ in substituteNonSpecialEntities()<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escapeCDATA">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7617-7629" title="Go to source code">escapeCDATA</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7649-7661" title="Go to source code">escapeCDATA</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			
@@ -642,7 +645,7 @@ in substituteNonSpecialEntities()<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escapeCommentedCDATA">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7631-7643" title="Go to source code">escapeCommentedCDATA</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7663-7675" title="Go to source code">escapeCommentedCDATA</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			
@@ -684,7 +687,7 @@ in substituteNonSpecialEntities()<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeIEConditional">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7645-7657" title="Go to source code">removeIEConditional</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7677-7689" title="Go to source code">removeIEConditional</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			
@@ -726,7 +729,7 @@ in substituteNonSpecialEntities()<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_CDATACallback">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7659-7672" title="Go to source code">CDATACallback</a>( <span>array <var>$matches</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7691-7704" title="Go to source code">CDATACallback</a>( <span>array <var>$matches</var></span> )</code>
 
 		<div class="description short">
 			
@@ -774,7 +777,7 @@ is not recommended.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_normalize">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7674-7728" title="Go to source code">normalize</a>( <span>string <var>$html</var></span>, <span><code><a href="class-HTMLPurifier_Config.html">HTMLPurifier_Config</a></code> <var>$config</var></span>, <span><code><a href="class-HTMLPurifier_Context.html">HTMLPurifier_Context</a></code> <var>$context</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7706-7760" title="Go to source code">normalize</a>( <span>string <var>$html</var></span>, <span><code><a href="class-HTMLPurifier_Config.html">HTMLPurifier_Config</a></code> <var>$config</var></span>, <span><code><a href="class-HTMLPurifier_Context.html">HTMLPurifier_Context</a></code> <var>$context</var></span> )</code>
 
 		<div class="description short">
 			
@@ -826,7 +829,7 @@ encoding, extracting bits, and other good stuff.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractBody">#</a>
-		<code><a href="source-class-HTMLPurifier_Lexer.html#7730-7743" title="Go to source code">extractBody</a>( <span>mixed <var>$html</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Lexer.html#7762-7780" title="Go to source code">extractBody</a>( <span>mixed <var>$html</var></span> )</code>
 
 		<div class="description short">
 			
@@ -874,7 +877,7 @@ encoding, extracting bits, and other good stuff.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Lexer.html#7434-7438" title="Go to source code"><var>$tracksLineNumbers</var></a>
+				<a href="source-class-HTMLPurifier_Lexer.html#7466-7470" title="Go to source code"><var>$tracksLineNumbers</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -903,7 +906,7 @@ it does, set to true.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Lexer.html#7546-7559" title="Go to source code"><var>$_special_entity2str</var></a>
+				<a href="source-class-HTMLPurifier_Lexer.html#7578-7591" title="Go to source code"><var>$_special_entity2str</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
         <span class="php-quote">'&amp;quot;'</span> =&gt; <span class="php-quote">'&quot;'</span>,
