@@ -8,7 +8,7 @@
 	<title>File core/Sanitizer.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3323939370"></script>
+	<script type="text/javascript" src="elementlist.js?2119032604"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.44 dev</span>
+			<span>Overview version 3.0.45 dev</span>
 		</a>
 
 
@@ -379,6 +379,7 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
@@ -2731,259 +2732,280 @@
 </span></span><span id="2180" class="l"><a class="l" href="#2180">2180: </a><span class="php-comment">     * #pw-group-arrays
 </span></span><span id="2181" class="l"><a class="l" href="#2181">2181: </a><span class="php-comment">     *
 </span></span><span id="2182" class="l"><a class="l" href="#2182">2182: </a><span class="php-comment">     * @param array $data Array to reduce
-</span></span><span id="2183" class="l"><a class="l" href="#2183">2183: </a><span class="php-comment">     * @param bool|array $allowEmpty Should empty values be allowed in the encoded data?
+</span></span><span id="2183" class="l"><a class="l" href="#2183">2183: </a><span class="php-comment">     * @param bool|array $allowEmpty Should empty values be allowed in the encoded data? Specify any of the following:
 </span></span><span id="2184" class="l"><a class="l" href="#2184">2184: </a><span class="php-comment">     *  - `false` (bool): to exclude all empty values (this is the default if not specified).
 </span></span><span id="2185" class="l"><a class="l" href="#2185">2185: </a><span class="php-comment">     *  - `true` (bool): to allow all empty values to be retained (thus no point in calling this function).
 </span></span><span id="2186" class="l"><a class="l" href="#2186">2186: </a><span class="php-comment">     *  - Specify array of keys (from data) that should be retained if you want some retained and not others.
-</span></span><span id="2187" class="l"><a class="l" href="#2187">2187: </a><span class="php-comment">     *  - Specify the digit `0` to retain values that are 0, but not other types of empty values.
-</span></span><span id="2188" class="l"><a class="l" href="#2188">2188: </a><span class="php-comment">     * @param bool $convert Perform type conversions where appropriate? i.e. convert digit-only string to integer (default=false). 
-</span></span><span id="2189" class="l"><a class="l" href="#2189">2189: </a><span class="php-comment">     * @return array
-</span></span><span id="2190" class="l"><a class="l" href="#2190">2190: </a><span class="php-comment">     *
-</span></span><span id="2191" class="l"><a class="l" href="#2191">2191: </a><span class="php-comment">     */</span>
-</span><span id="2192" class="l"><a class="l" href="#2192">2192: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_minArray" href="#_minArray">minArray</a>(<span class="php-var">$data</span>, <span class="php-var">$allowEmpty</span> = <span class="php-keyword1">false</span>, <span class="php-var">$convert</span> = <span class="php-keyword1">false</span>) {
-</span><span id="2193" class="l"><a class="l" href="#2193">2193: </a>        
-</span><span id="2194" class="l"><a class="l" href="#2194">2194: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>)) {
-</span><span id="2195" class="l"><a class="l" href="#2195">2195: </a>            <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;___array(<span class="php-var">$data</span>, <span class="php-keyword1">null</span>);
-</span><span id="2196" class="l"><a class="l" href="#2196">2196: </a>        }
-</span><span id="2197" class="l"><a class="l" href="#2197">2197: </a>
-</span><span id="2198" class="l"><a class="l" href="#2198">2198: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$data</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
-</span><span id="2199" class="l"><a class="l" href="#2199">2199: </a>
-</span><span id="2200" class="l"><a class="l" href="#2200">2200: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$convert</span> &amp;&amp; <span class="php-keyword2">is_string</span>(<span class="php-var">$value</span>)) {
-</span><span id="2201" class="l"><a class="l" href="#2201">2201: </a>                <span class="php-comment">// make sure ints are stored as ints</span>
-</span><span id="2202" class="l"><a class="l" href="#2202">2202: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>) &amp;&amp; <span class="php-var">$value</span> &lt;= PHP_INT_MAX) {
-</span><span id="2203" class="l"><a class="l" href="#2203">2203: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;0&quot;</span> || <span class="php-var">$value</span>[<span class="php-num">0</span>] != <span class="php-quote">'0'</span>) { <span class="php-comment">// avoid octal conversions (leading 0)</span>
-</span><span id="2204" class="l"><a class="l" href="#2204">2204: </a>                        <span class="php-var">$value</span> = (int) <span class="php-var">$value</span>;
-</span><span id="2205" class="l"><a class="l" href="#2205">2205: </a>                    }
-</span><span id="2206" class="l"><a class="l" href="#2206">2206: </a>                }
-</span><span id="2207" class="l"><a class="l" href="#2207">2207: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>) &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$value</span>)) {
-</span><span id="2208" class="l"><a class="l" href="#2208">2208: </a>                <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;minArray(<span class="php-var">$value</span>, <span class="php-var">$allowEmpty</span>, <span class="php-var">$convert</span>);
-</span><span id="2209" class="l"><a class="l" href="#2209">2209: </a>            }
-</span><span id="2210" class="l"><a class="l" href="#2210">2210: </a>
-</span><span id="2211" class="l"><a class="l" href="#2211">2211: </a>            <span class="php-var">$data</span>[<span class="php-var">$key</span>] = <span class="php-var">$value</span>;
-</span><span id="2212" class="l"><a class="l" href="#2212">2212: </a>
-</span><span id="2213" class="l"><a class="l" href="#2213">2213: </a>            <span class="php-comment">// skip empty values whether blank, 0, empty array, etc. </span>
-</span><span id="2214" class="l"><a class="l" href="#2214">2214: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>)) {
-</span><span id="2215" class="l"><a class="l" href="#2215">2215: </a>
-</span><span id="2216" class="l"><a class="l" href="#2216">2216: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$allowEmpty</span> === <span class="php-num">0</span> &amp;&amp; <span class="php-var">$value</span> === <span class="php-num">0</span>) {
-</span><span id="2217" class="l"><a class="l" href="#2217">2217: </a>                    <span class="php-comment">// keep it because $allowEmpty === 0 means to keep 0 values only</span>
-</span><span id="2218" class="l"><a class="l" href="#2218">2218: </a>
-</span><span id="2219" class="l"><a class="l" href="#2219">2219: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$allowEmpty</span>) &amp;&amp; !<span class="php-keyword2">in_array</span>(<span class="php-var">$key</span>, <span class="php-var">$allowEmpty</span>)) {
-</span><span id="2220" class="l"><a class="l" href="#2220">2220: </a>                    <span class="php-comment">// remove it because it's not specifically allowed in allowEmpty</span>
-</span><span id="2221" class="l"><a class="l" href="#2221">2221: </a>                    <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-var">$key</span>]);
-</span><span id="2222" class="l"><a class="l" href="#2222">2222: </a>
-</span><span id="2223" class="l"><a class="l" href="#2223">2223: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(!<span class="php-var">$allowEmpty</span>) {
-</span><span id="2224" class="l"><a class="l" href="#2224">2224: </a>                    <span class="php-comment">// remove the empty value</span>
-</span><span id="2225" class="l"><a class="l" href="#2225">2225: </a>                    <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-var">$key</span>]);
-</span><span id="2226" class="l"><a class="l" href="#2226">2226: </a>                }
-</span><span id="2227" class="l"><a class="l" href="#2227">2227: </a>            }
-</span><span id="2228" class="l"><a class="l" href="#2228">2228: </a>        }
-</span><span id="2229" class="l"><a class="l" href="#2229">2229: </a>
-</span><span id="2230" class="l"><a class="l" href="#2230">2230: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
-</span><span id="2231" class="l"><a class="l" href="#2231">2231: </a>    }
-</span><span id="2232" class="l"><a class="l" href="#2232">2232: </a>
-</span><span id="2233" class="l"><a class="l" href="#2233">2233: </a>    <span class="php-comment">/**
-</span></span><span id="2234" class="l"><a class="l" href="#2234">2234: </a><span class="php-comment">     * Return $value if it exists in $allowedValues, or null if it doesn't
-</span></span><span id="2235" class="l"><a class="l" href="#2235">2235: </a><span class="php-comment">     * 
-</span></span><span id="2236" class="l"><a class="l" href="#2236">2236: </a><span class="php-comment">     * #pw-group-arrays
-</span></span><span id="2237" class="l"><a class="l" href="#2237">2237: </a><span class="php-comment">     *
-</span></span><span id="2238" class="l"><a class="l" href="#2238">2238: </a><span class="php-comment">     * @param string|int $value
-</span></span><span id="2239" class="l"><a class="l" href="#2239">2239: </a><span class="php-comment">     * @param array $allowedValues Whitelist of option values that are allowed
-</span></span><span id="2240" class="l"><a class="l" href="#2240">2240: </a><span class="php-comment">     * @return string|int|null
-</span></span><span id="2241" class="l"><a class="l" href="#2241">2241: </a><span class="php-comment">     *
-</span></span><span id="2242" class="l"><a class="l" href="#2242">2242: </a><span class="php-comment">     */</span>
-</span><span id="2243" class="l"><a class="l" href="#2243">2243: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_option" href="#_option">option</a>(<span class="php-var">$value</span>, <span class="php-keyword1">array</span> <span class="php-var">$allowedValues</span>) {
-</span><span id="2244" class="l"><a class="l" href="#2244">2244: </a>        <span class="php-var">$key</span> = <span class="php-keyword2">array_search</span>(<span class="php-var">$value</span>, <span class="php-var">$allowedValues</span>);
-</span><span id="2245" class="l"><a class="l" href="#2245">2245: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> === <span class="php-keyword1">false</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
-</span><span id="2246" class="l"><a class="l" href="#2246">2246: </a>        <span class="php-keyword1">return</span> <span class="php-var">$allowedValues</span>[<span class="php-var">$key</span>];
-</span><span id="2247" class="l"><a class="l" href="#2247">2247: </a>    }
-</span><span id="2248" class="l"><a class="l" href="#2248">2248: </a>
-</span><span id="2249" class="l"><a class="l" href="#2249">2249: </a>    <span class="php-comment">/**
-</span></span><span id="2250" class="l"><a class="l" href="#2250">2250: </a><span class="php-comment">     * Return given values that that also exist in $allowedValues whitelist
-</span></span><span id="2251" class="l"><a class="l" href="#2251">2251: </a><span class="php-comment">     * 
-</span></span><span id="2252" class="l"><a class="l" href="#2252">2252: </a><span class="php-comment">     * #pw-group-arrays
-</span></span><span id="2253" class="l"><a class="l" href="#2253">2253: </a><span class="php-comment">     *
-</span></span><span id="2254" class="l"><a class="l" href="#2254">2254: </a><span class="php-comment">     * @param array $values
-</span></span><span id="2255" class="l"><a class="l" href="#2255">2255: </a><span class="php-comment">     * @param array $allowedValues Whitelist of option values that are allowed
-</span></span><span id="2256" class="l"><a class="l" href="#2256">2256: </a><span class="php-comment">     * @return array
-</span></span><span id="2257" class="l"><a class="l" href="#2257">2257: </a><span class="php-comment">     *
-</span></span><span id="2258" class="l"><a class="l" href="#2258">2258: </a><span class="php-comment">     */</span>
-</span><span id="2259" class="l"><a class="l" href="#2259">2259: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_options" href="#_options">options</a>(<span class="php-keyword1">array</span> <span class="php-var">$values</span>, <span class="php-keyword1">array</span> <span class="php-var">$allowedValues</span>) {
-</span><span id="2260" class="l"><a class="l" href="#2260">2260: </a>        <span class="php-var">$a</span> = <span class="php-keyword1">array</span>();
-</span><span id="2261" class="l"><a class="l" href="#2261">2261: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$values</span> <span class="php-keyword1">as</span> <span class="php-var">$value</span>) {
-</span><span id="2262" class="l"><a class="l" href="#2262">2262: </a>            <span class="php-var">$key</span> = <span class="php-keyword2">array_search</span>(<span class="php-var">$value</span>, <span class="php-var">$allowedValues</span>);
-</span><span id="2263" class="l"><a class="l" href="#2263">2263: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$key</span> !== <span class="php-keyword1">false</span>) <span class="php-var">$a</span>[] = <span class="php-var">$allowedValues</span>[<span class="php-var">$key</span>];
-</span><span id="2264" class="l"><a class="l" href="#2264">2264: </a>        }
-</span><span id="2265" class="l"><a class="l" href="#2265">2265: </a>        <span class="php-keyword1">return</span> <span class="php-var">$a</span>;
-</span><span id="2266" class="l"><a class="l" href="#2266">2266: </a>    }
-</span><span id="2267" class="l"><a class="l" href="#2267">2267: </a>
-</span><span id="2268" class="l"><a class="l" href="#2268">2268: </a>    <span class="php-comment">/****************************************************************************************************************************
-</span></span><span id="2269" class="l"><a class="l" href="#2269">2269: </a><span class="php-comment">     * OTHER SANITIZERS
-</span></span><span id="2270" class="l"><a class="l" href="#2270">2270: </a><span class="php-comment">     * 
-</span></span><span id="2271" class="l"><a class="l" href="#2271">2271: </a><span class="php-comment">     */</span>
-</span><span id="2272" class="l"><a class="l" href="#2272">2272: </a>
-</span><span id="2273" class="l"><a class="l" href="#2273">2273: </a>    <span class="php-comment">/**
-</span></span><span id="2274" class="l"><a class="l" href="#2274">2274: </a><span class="php-comment">     * Convert the given value to a boolean
-</span></span><span id="2275" class="l"><a class="l" href="#2275">2275: </a><span class="php-comment">     * 
-</span></span><span id="2276" class="l"><a class="l" href="#2276">2276: </a><span class="php-comment">     * This differs from regular boolean type conversion in the following ways: 
-</span></span><span id="2277" class="l"><a class="l" href="#2277">2277: </a><span class="php-comment">     * 
-</span></span><span id="2278" class="l"><a class="l" href="#2278">2278: </a><span class="php-comment">     * - This method will recognize things like the strings &quot;false&quot; or &quot;0&quot; representing a boolean false.
-</span></span><span id="2279" class="l"><a class="l" href="#2279">2279: </a><span class="php-comment">     * - If given an object, it will convert the object to a string before determining what boolean value it should represent.
-</span></span><span id="2280" class="l"><a class="l" href="#2280">2280: </a><span class="php-comment">     * - If given an array, it returns false if the array contains zero items. 
-</span></span><span id="2281" class="l"><a class="l" href="#2281">2281: </a><span class="php-comment">     * 
-</span></span><span id="2282" class="l"><a class="l" href="#2282">2282: </a><span class="php-comment">     * #pw-group-other
-</span></span><span id="2283" class="l"><a class="l" href="#2283">2283: </a><span class="php-comment">     * 
-</span></span><span id="2284" class="l"><a class="l" href="#2284">2284: </a><span class="php-comment">     * @param $value
-</span></span><span id="2285" class="l"><a class="l" href="#2285">2285: </a><span class="php-comment">     * @return bool
-</span></span><span id="2286" class="l"><a class="l" href="#2286">2286: </a><span class="php-comment">     * 
-</span></span><span id="2287" class="l"><a class="l" href="#2287">2287: </a><span class="php-comment">     */</span>
-</span><span id="2288" class="l"><a class="l" href="#2288">2288: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_bool" href="#_bool">bool</a>(<span class="php-var">$value</span>) {
-</span><span id="2289" class="l"><a class="l" href="#2289">2289: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$value</span>)) {
-</span><span id="2290" class="l"><a class="l" href="#2290">2290: </a>            <span class="php-var">$value</span> = <span class="php-keyword2">trim</span>(<span class="php-keyword2">strtolower</span>(<span class="php-var">$value</span>));
-</span><span id="2291" class="l"><a class="l" href="#2291">2291: </a>            <span class="php-var">$length</span> = <span class="php-keyword2">strlen</span>(<span class="php-var">$value</span>);
-</span><span id="2292" class="l"><a class="l" href="#2292">2292: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$length</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="2293" class="l"><a class="l" href="#2293">2293: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;0&quot;</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="2294" class="l"><a class="l" href="#2294">2294: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;1&quot;</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>; 
-</span><span id="2295" class="l"><a class="l" href="#2295">2295: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;false&quot;</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="2296" class="l"><a class="l" href="#2296">2296: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;true&quot;</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="2297" class="l"><a class="l" href="#2297">2297: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$length</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>; 
-</span><span id="2298" class="l"><a class="l" href="#2298">2298: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_object</span>(<span class="php-var">$value</span>)) {
-</span><span id="2299" class="l"><a class="l" href="#2299">2299: </a>            <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;string(<span class="php-var">$value</span>);
-</span><span id="2300" class="l"><a class="l" href="#2300">2300: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) {
-</span><span id="2301" class="l"><a class="l" href="#2301">2301: </a>            <span class="php-var">$value</span> = <span class="php-keyword2">count</span>(<span class="php-var">$value</span>) ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>;
-</span><span id="2302" class="l"><a class="l" href="#2302">2302: </a>        }
-</span><span id="2303" class="l"><a class="l" href="#2303">2303: </a>        <span class="php-keyword1">return</span> (bool) <span class="php-var">$value</span>;
-</span><span id="2304" class="l"><a class="l" href="#2304">2304: </a>    }
-</span><span id="2305" class="l"><a class="l" href="#2305">2305: </a>
-</span><span id="2306" class="l"><a class="l" href="#2306">2306: </a>    <span class="php-comment">/**
-</span></span><span id="2307" class="l"><a class="l" href="#2307">2307: </a><span class="php-comment">     * Run value through all sanitizers, return array indexed by sanitizer name and resulting value
-</span></span><span id="2308" class="l"><a class="l" href="#2308">2308: </a><span class="php-comment">     * 
-</span></span><span id="2309" class="l"><a class="l" href="#2309">2309: </a><span class="php-comment">     * Used for debugging and testing purposes. 
-</span></span><span id="2310" class="l"><a class="l" href="#2310">2310: </a><span class="php-comment">     * 
-</span></span><span id="2311" class="l"><a class="l" href="#2311">2311: </a><span class="php-comment">     * #pw-group-other
-</span></span><span id="2312" class="l"><a class="l" href="#2312">2312: </a><span class="php-comment">     * 
-</span></span><span id="2313" class="l"><a class="l" href="#2313">2313: </a><span class="php-comment">     * @param $value
-</span></span><span id="2314" class="l"><a class="l" href="#2314">2314: </a><span class="php-comment">     * @return array
-</span></span><span id="2315" class="l"><a class="l" href="#2315">2315: </a><span class="php-comment">     * 
-</span></span><span id="2316" class="l"><a class="l" href="#2316">2316: </a><span class="php-comment">     */</span>
-</span><span id="2317" class="l"><a class="l" href="#2317">2317: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_testAll" href="#_testAll">testAll</a>(<span class="php-var">$value</span>) {
-</span><span id="2318" class="l"><a class="l" href="#2318">2318: </a>        <span class="php-var">$sanitizers</span> = <span class="php-keyword1">array</span>(
-</span><span id="2319" class="l"><a class="l" href="#2319">2319: </a>            <span class="php-quote">'alpha'</span>, 
-</span><span id="2320" class="l"><a class="l" href="#2320">2320: </a>            <span class="php-quote">'alphanumeric'</span>,
-</span><span id="2321" class="l"><a class="l" href="#2321">2321: </a>            <span class="php-quote">'array'</span>,
-</span><span id="2322" class="l"><a class="l" href="#2322">2322: </a>            <span class="php-quote">'bool'</span>,
-</span><span id="2323" class="l"><a class="l" href="#2323">2323: </a>            <span class="php-quote">'date'</span>,
-</span><span id="2324" class="l"><a class="l" href="#2324">2324: </a>            <span class="php-quote">'digits'</span>, 
-</span><span id="2325" class="l"><a class="l" href="#2325">2325: </a>            <span class="php-quote">'email'</span>,
-</span><span id="2326" class="l"><a class="l" href="#2326">2326: </a>            <span class="php-quote">'emailHeader'</span>,
-</span><span id="2327" class="l"><a class="l" href="#2327">2327: </a>            <span class="php-quote">'entities'</span>,
-</span><span id="2328" class="l"><a class="l" href="#2328">2328: </a>            <span class="php-quote">'entities1'</span>,
-</span><span id="2329" class="l"><a class="l" href="#2329">2329: </a>            <span class="php-quote">'entitiesMarkdown'</span>,
-</span><span id="2330" class="l"><a class="l" href="#2330">2330: </a>            <span class="php-quote">'fieldName'</span>,
-</span><span id="2331" class="l"><a class="l" href="#2331">2331: </a>            <span class="php-quote">'filename'</span>,
-</span><span id="2332" class="l"><a class="l" href="#2332">2332: </a>            <span class="php-quote">'float'</span>,
-</span><span id="2333" class="l"><a class="l" href="#2333">2333: </a>            <span class="php-quote">'int'</span>,
-</span><span id="2334" class="l"><a class="l" href="#2334">2334: </a>            <span class="php-quote">'intArray'</span>,
-</span><span id="2335" class="l"><a class="l" href="#2335">2335: </a>            <span class="php-quote">'intSigned'</span>,
-</span><span id="2336" class="l"><a class="l" href="#2336">2336: </a>            <span class="php-quote">'intUnsigned'</span>,
-</span><span id="2337" class="l"><a class="l" href="#2337">2337: </a>            <span class="php-quote">'markupToLine'</span>,
-</span><span id="2338" class="l"><a class="l" href="#2338">2338: </a>            <span class="php-quote">'markupToText'</span>,
-</span><span id="2339" class="l"><a class="l" href="#2339">2339: </a>            <span class="php-quote">'minArray'</span>,
-</span><span id="2340" class="l"><a class="l" href="#2340">2340: </a>            <span class="php-quote">'name'</span>,
-</span><span id="2341" class="l"><a class="l" href="#2341">2341: </a>            <span class="php-quote">'names'</span>,
-</span><span id="2342" class="l"><a class="l" href="#2342">2342: </a>            <span class="php-quote">'pageName'</span>,
-</span><span id="2343" class="l"><a class="l" href="#2343">2343: </a>            <span class="php-quote">'pageNameTranslate'</span>,
-</span><span id="2344" class="l"><a class="l" href="#2344">2344: </a>            <span class="php-quote">'pageNameUTF8'</span>,
-</span><span id="2345" class="l"><a class="l" href="#2345">2345: </a>            <span class="php-quote">'pagePathName'</span>,
-</span><span id="2346" class="l"><a class="l" href="#2346">2346: </a>            <span class="php-quote">'pagePathNameUTF8'</span>,
-</span><span id="2347" class="l"><a class="l" href="#2347">2347: </a>            <span class="php-quote">'path'</span>,
-</span><span id="2348" class="l"><a class="l" href="#2348">2348: </a>            <span class="php-quote">'purify'</span>,
-</span><span id="2349" class="l"><a class="l" href="#2349">2349: </a>            <span class="php-quote">'removeNewlines'</span>,
-</span><span id="2350" class="l"><a class="l" href="#2350">2350: </a>            <span class="php-quote">'selectorField'</span>,
-</span><span id="2351" class="l"><a class="l" href="#2351">2351: </a>            <span class="php-quote">'selectorValue'</span>,
-</span><span id="2352" class="l"><a class="l" href="#2352">2352: </a>            <span class="php-quote">'string'</span>,
-</span><span id="2353" class="l"><a class="l" href="#2353">2353: </a>            <span class="php-quote">'templateName'</span>,
-</span><span id="2354" class="l"><a class="l" href="#2354">2354: </a>            <span class="php-quote">'text'</span>,
-</span><span id="2355" class="l"><a class="l" href="#2355">2355: </a>            <span class="php-quote">'textarea'</span>,
-</span><span id="2356" class="l"><a class="l" href="#2356">2356: </a>            <span class="php-quote">'unentities'</span>,
-</span><span id="2357" class="l"><a class="l" href="#2357">2357: </a>            <span class="php-quote">'url'</span>,
-</span><span id="2358" class="l"><a class="l" href="#2358">2358: </a>            <span class="php-quote">'varName'</span>,
-</span><span id="2359" class="l"><a class="l" href="#2359">2359: </a>        );
-</span><span id="2360" class="l"><a class="l" href="#2360">2360: </a>        <span class="php-var">$results</span> = <span class="php-keyword1">array</span>();
-</span><span id="2361" class="l"><a class="l" href="#2361">2361: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$sanitizers</span> <span class="php-keyword1">as</span> <span class="php-var">$method</span>) {
-</span><span id="2362" class="l"><a class="l" href="#2362">2362: </a>            <span class="php-var">$results</span>[<span class="php-var">$method</span>] = <span class="php-var">$this</span>-&gt;<span class="php-var">$method</span>(<span class="php-var">$value</span>);
-</span><span id="2363" class="l"><a class="l" href="#2363">2363: </a>        }
-</span><span id="2364" class="l"><a class="l" href="#2364">2364: </a>        <span class="php-keyword1">return</span> <span class="php-var">$results</span>;
-</span><span id="2365" class="l"><a class="l" href="#2365">2365: </a>    }
-</span><span id="2366" class="l"><a class="l" href="#2366">2366: </a>
-</span><span id="2367" class="l"><a class="l" href="#2367">2367: </a>    <span class="php-comment">/**********************************************************************************************************************
-</span></span><span id="2368" class="l"><a class="l" href="#2368">2368: </a><span class="php-comment">     * FILE VALIDATORS
-</span></span><span id="2369" class="l"><a class="l" href="#2369">2369: </a><span class="php-comment">     *
-</span></span><span id="2370" class="l"><a class="l" href="#2370">2370: </a><span class="php-comment">     */</span>
-</span><span id="2371" class="l"><a class="l" href="#2371">2371: </a>
-</span><span id="2372" class="l"><a class="l" href="#2372">2372: </a>    <span class="php-comment">/**
-</span></span><span id="2373" class="l"><a class="l" href="#2373">2373: </a><span class="php-comment">     * Validate a file using FileValidator modules
-</span></span><span id="2374" class="l"><a class="l" href="#2374">2374: </a><span class="php-comment">     *
-</span></span><span id="2375" class="l"><a class="l" href="#2375">2375: </a><span class="php-comment">     * Note that this is intended for validating file data, not file names.
-</span></span><span id="2376" class="l"><a class="l" href="#2376">2376: </a><span class="php-comment">     *
-</span></span><span id="2377" class="l"><a class="l" href="#2377">2377: </a><span class="php-comment">     * IMPORTANT: This method returns NULL if it can't find a validator for the file. This does
-</span></span><span id="2378" class="l"><a class="l" href="#2378">2378: </a><span class="php-comment">     * not mean the file is invalid, just that it didn't have the tools to validate it.
-</span></span><span id="2379" class="l"><a class="l" href="#2379">2379: </a><span class="php-comment">     * 
-</span></span><span id="2380" class="l"><a class="l" href="#2380">2380: </a><span class="php-comment">     * #pw-group-files
-</span></span><span id="2381" class="l"><a class="l" href="#2381">2381: </a><span class="php-comment">     *
-</span></span><span id="2382" class="l"><a class="l" href="#2382">2382: </a><span class="php-comment">     * @param string $filename Full path and filename to validate
-</span></span><span id="2383" class="l"><a class="l" href="#2383">2383: </a><span class="php-comment">     * @param array $options When available, provide array with any one or all of the following:
-</span></span><span id="2384" class="l"><a class="l" href="#2384">2384: </a><span class="php-comment">     *  - `page` (Page): Page object associated with $filename.
-</span></span><span id="2385" class="l"><a class="l" href="#2385">2385: </a><span class="php-comment">     *  - `field` (Field): Field object associated with $filename.
-</span></span><span id="2386" class="l"><a class="l" href="#2386">2386: </a><span class="php-comment">     *  - `pagefile` (Pagefile): Pagefile object associated with $filename.
-</span></span><span id="2387" class="l"><a class="l" href="#2387">2387: </a><span class="php-comment">     * @return bool|null Returns TRUE if valid, FALSE if not, or NULL if no validator available for given file type.
-</span></span><span id="2388" class="l"><a class="l" href="#2388">2388: </a><span class="php-comment">     *
-</span></span><span id="2389" class="l"><a class="l" href="#2389">2389: </a><span class="php-comment">     */</span>
-</span><span id="2390" class="l"><a class="l" href="#2390">2390: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_validateFile" href="#_validateFile">validateFile</a>(<span class="php-var">$filename</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
-</span><span id="2391" class="l"><a class="l" href="#2391">2391: </a>        <span class="php-var">$defaults</span> = <span class="php-keyword1">array</span>(
-</span><span id="2392" class="l"><a class="l" href="#2392">2392: </a>            <span class="php-quote">'page'</span> =&gt; <span class="php-keyword1">null</span>,
-</span><span id="2393" class="l"><a class="l" href="#2393">2393: </a>            <span class="php-quote">'field'</span> =&gt; <span class="php-keyword1">null</span>,
-</span><span id="2394" class="l"><a class="l" href="#2394">2394: </a>            <span class="php-quote">'pagefile'</span> =&gt; <span class="php-keyword1">null</span>,
-</span><span id="2395" class="l"><a class="l" href="#2395">2395: </a>        );
-</span><span id="2396" class="l"><a class="l" href="#2396">2396: </a>        <span class="php-var">$options</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$defaults</span>, <span class="php-var">$options</span>);
-</span><span id="2397" class="l"><a class="l" href="#2397">2397: </a>        <span class="php-var">$extension</span> = <span class="php-keyword2">strtolower</span>(<span class="php-keyword2">pathinfo</span>(<span class="php-var">$filename</span>, PATHINFO_EXTENSION));
-</span><span id="2398" class="l"><a class="l" href="#2398">2398: </a>        <span class="php-var">$validators</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;findByPrefix(<span class="php-quote">'FileValidator'</span>, <span class="php-keyword1">false</span>);
-</span><span id="2399" class="l"><a class="l" href="#2399">2399: </a>        <span class="php-var">$isValid</span> = <span class="php-keyword1">null</span>;
-</span><span id="2400" class="l"><a class="l" href="#2400">2400: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$validators</span> <span class="php-keyword1">as</span> <span class="php-var">$validatorName</span>) {
-</span><span id="2401" class="l"><a class="l" href="#2401">2401: </a>            <span class="php-var">$info</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;getModuleInfoVerbose(<span class="php-var">$validatorName</span>);
-</span><span id="2402" class="l"><a class="l" href="#2402">2402: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$info</span>) || <span class="php-keyword1">empty</span>(<span class="php-var">$info</span>[<span class="php-quote">'validates'</span>])) <span class="php-keyword1">continue</span>;
-</span><span id="2403" class="l"><a class="l" href="#2403">2403: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$info</span>[<span class="php-quote">'validates'</span>] <span class="php-keyword1">as</span> <span class="php-var">$ext</span>) {
-</span><span id="2404" class="l"><a class="l" href="#2404">2404: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$ext</span>[<span class="php-num">0</span>] == <span class="php-quote">'/'</span>) {
-</span><span id="2405" class="l"><a class="l" href="#2405">2405: </a>                    <span class="php-keyword1">if</span>(!<span class="php-keyword2">preg_match</span>(<span class="php-var">$ext</span>, <span class="php-var">$extension</span>)) <span class="php-keyword1">continue</span>;
-</span><span id="2406" class="l"><a class="l" href="#2406">2406: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$ext</span> !== <span class="php-var">$extension</span>) {
-</span><span id="2407" class="l"><a class="l" href="#2407">2407: </a>                    <span class="php-keyword1">continue</span>;
-</span><span id="2408" class="l"><a class="l" href="#2408">2408: </a>                }
-</span><span id="2409" class="l"><a class="l" href="#2409">2409: </a>                <span class="php-var">$validator</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-var">$validatorName</span>);
-</span><span id="2410" class="l"><a class="l" href="#2410">2410: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$validator</span>) <span class="php-keyword1">continue</span>;
-</span><span id="2411" class="l"><a class="l" href="#2411">2411: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'page'</span>])) <span class="php-var">$validator</span>-&gt;setPage(<span class="php-var">$options</span>[<span class="php-quote">'page'</span>]);
-</span><span id="2412" class="l"><a class="l" href="#2412">2412: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'field'</span>])) <span class="php-var">$validator</span>-&gt;setField(<span class="php-var">$options</span>[<span class="php-quote">'field'</span>]);
-</span><span id="2413" class="l"><a class="l" href="#2413">2413: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'pagefile'</span>])) <span class="php-var">$validator</span>-&gt;setPagefile(<span class="php-var">$options</span>[<span class="php-quote">'pagefile'</span>]);
-</span><span id="2414" class="l"><a class="l" href="#2414">2414: </a>                <span class="php-var">$isValid</span> = <span class="php-var">$validator</span>-&gt;isValid(<span class="php-var">$filename</span>);
-</span><span id="2415" class="l"><a class="l" href="#2415">2415: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$isValid</span>) {
-</span><span id="2416" class="l"><a class="l" href="#2416">2416: </a>                    <span class="php-comment">// move errors to Sanitizer class so they can be retrieved</span>
-</span><span id="2417" class="l"><a class="l" href="#2417">2417: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$validator</span>-&gt;errors(<span class="php-quote">'clear array'</span>) <span class="php-keyword1">as</span> <span class="php-var">$error</span>) {
-</span><span id="2418" class="l"><a class="l" href="#2418">2418: </a>                        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'log'</span>)-&gt;error(<span class="php-var">$error</span>);
-</span><span id="2419" class="l"><a class="l" href="#2419">2419: </a>                        <span class="php-var">$this</span>-&gt;error(<span class="php-var">$error</span>);
-</span><span id="2420" class="l"><a class="l" href="#2420">2420: </a>                    }
-</span><span id="2421" class="l"><a class="l" href="#2421">2421: </a>                    <span class="php-keyword1">break</span>;
-</span><span id="2422" class="l"><a class="l" href="#2422">2422: </a>                }
-</span><span id="2423" class="l"><a class="l" href="#2423">2423: </a>            }
-</span><span id="2424" class="l"><a class="l" href="#2424">2424: </a>        }
-</span><span id="2425" class="l"><a class="l" href="#2425">2425: </a>        <span class="php-keyword1">return</span> <span class="php-var">$isValid</span>;
-</span><span id="2426" class="l"><a class="l" href="#2426">2426: </a>    }
-</span><span id="2427" class="l"><a class="l" href="#2427">2427: </a>
-</span><span id="2428" class="l"><a class="l" href="#2428">2428: </a>
-</span><span id="2429" class="l"><a class="l" href="#2429">2429: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___toString" href="#___toString">__toString</a>() {
-</span><span id="2430" class="l"><a class="l" href="#2430">2430: </a>        <span class="php-keyword1">return</span> <span class="php-quote">&quot;Sanitizer&quot;</span>;
-</span><span id="2431" class="l"><a class="l" href="#2431">2431: </a>    }
-</span><span id="2432" class="l"><a class="l" href="#2432">2432: </a>
-</span><span id="2433" class="l"><a class="l" href="#2433">2433: </a>}
-</span><span id="2434" class="l"><a class="l" href="#2434">2434: </a>
-</span><span id="2435" class="l"><a class="l" href="#2435">2435: </a></span></code></pre>
+</span></span><span id="2187" class="l"><a class="l" href="#2187">2187: </a><span class="php-comment">     *  - Specify array of literal empty value types to retain, i.e. [ 0, '0', array(), false, null ]
+</span></span><span id="2188" class="l"><a class="l" href="#2188">2188: </a><span class="php-comment">     *  - Specify the digit `0` to retain values that are 0, but not other types of empty values.
+</span></span><span id="2189" class="l"><a class="l" href="#2189">2189: </a><span class="php-comment">     * @param bool $convert Perform type conversions where appropriate? i.e. convert digit-only string to integer (default=false). 
+</span></span><span id="2190" class="l"><a class="l" href="#2190">2190: </a><span class="php-comment">     * @return array
+</span></span><span id="2191" class="l"><a class="l" href="#2191">2191: </a><span class="php-comment">     *
+</span></span><span id="2192" class="l"><a class="l" href="#2192">2192: </a><span class="php-comment">     */</span>
+</span><span id="2193" class="l"><a class="l" href="#2193">2193: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_minArray" href="#_minArray">minArray</a>(<span class="php-var">$data</span>, <span class="php-var">$allowEmpty</span> = <span class="php-keyword1">false</span>, <span class="php-var">$convert</span> = <span class="php-keyword1">false</span>) {
+</span><span id="2194" class="l"><a class="l" href="#2194">2194: </a>        
+</span><span id="2195" class="l"><a class="l" href="#2195">2195: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>)) {
+</span><span id="2196" class="l"><a class="l" href="#2196">2196: </a>            <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;___array(<span class="php-var">$data</span>, <span class="php-keyword1">null</span>);
+</span><span id="2197" class="l"><a class="l" href="#2197">2197: </a>        }
+</span><span id="2198" class="l"><a class="l" href="#2198">2198: </a>    
+</span><span id="2199" class="l"><a class="l" href="#2199">2199: </a>        <span class="php-var">$allowEmptyTypes</span> = <span class="php-keyword1">array</span>();
+</span><span id="2200" class="l"><a class="l" href="#2200">2200: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$allowEmpty</span>)) {
+</span><span id="2201" class="l"><a class="l" href="#2201">2201: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$allowEmpty</span> <span class="php-keyword1">as</span> <span class="php-var">$emptyType</span>) {
+</span><span id="2202" class="l"><a class="l" href="#2202">2202: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$emptyType</span>)) <span class="php-keyword1">continue</span>;
+</span><span id="2203" class="l"><a class="l" href="#2203">2203: </a>                <span class="php-var">$allowEmptyTypes</span>[] = <span class="php-var">$emptyType</span>;
+</span><span id="2204" class="l"><a class="l" href="#2204">2204: </a>            }
+</span><span id="2205" class="l"><a class="l" href="#2205">2205: </a>        }
+</span><span id="2206" class="l"><a class="l" href="#2206">2206: </a>
+</span><span id="2207" class="l"><a class="l" href="#2207">2207: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$data</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
+</span><span id="2208" class="l"><a class="l" href="#2208">2208: </a>
+</span><span id="2209" class="l"><a class="l" href="#2209">2209: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$convert</span> &amp;&amp; <span class="php-keyword2">is_string</span>(<span class="php-var">$value</span>)) {
+</span><span id="2210" class="l"><a class="l" href="#2210">2210: </a>                <span class="php-comment">// make sure ints are stored as ints</span>
+</span><span id="2211" class="l"><a class="l" href="#2211">2211: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>) &amp;&amp; <span class="php-var">$value</span> &lt;= PHP_INT_MAX) {
+</span><span id="2212" class="l"><a class="l" href="#2212">2212: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;0&quot;</span> || <span class="php-var">$value</span>[<span class="php-num">0</span>] != <span class="php-quote">'0'</span>) { <span class="php-comment">// avoid octal conversions (leading 0)</span>
+</span><span id="2213" class="l"><a class="l" href="#2213">2213: </a>                        <span class="php-var">$value</span> = (int) <span class="php-var">$value</span>;
+</span><span id="2214" class="l"><a class="l" href="#2214">2214: </a>                    }
+</span><span id="2215" class="l"><a class="l" href="#2215">2215: </a>                }
+</span><span id="2216" class="l"><a class="l" href="#2216">2216: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>) &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$value</span>)) {
+</span><span id="2217" class="l"><a class="l" href="#2217">2217: </a>                <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;minArray(<span class="php-var">$value</span>, <span class="php-var">$allowEmpty</span>, <span class="php-var">$convert</span>);
+</span><span id="2218" class="l"><a class="l" href="#2218">2218: </a>            }
+</span><span id="2219" class="l"><a class="l" href="#2219">2219: </a>
+</span><span id="2220" class="l"><a class="l" href="#2220">2220: </a>            <span class="php-var">$data</span>[<span class="php-var">$key</span>] = <span class="php-var">$value</span>;
+</span><span id="2221" class="l"><a class="l" href="#2221">2221: </a>
+</span><span id="2222" class="l"><a class="l" href="#2222">2222: </a>            <span class="php-comment">// if value is not empty, no need to continue further checks</span>
+</span><span id="2223" class="l"><a class="l" href="#2223">2223: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>)) <span class="php-keyword1">continue</span>;
+</span><span id="2224" class="l"><a class="l" href="#2224">2224: </a>            
+</span><span id="2225" class="l"><a class="l" href="#2225">2225: </a>            <span class="php-var">$typeMatched</span> = <span class="php-keyword1">false</span>;
+</span><span id="2226" class="l"><a class="l" href="#2226">2226: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$allowEmptyTypes</span>)) {
+</span><span id="2227" class="l"><a class="l" href="#2227">2227: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$allowEmptyTypes</span> <span class="php-keyword1">as</span> <span class="php-var">$emptyType</span>) {
+</span><span id="2228" class="l"><a class="l" href="#2228">2228: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-var">$emptyType</span>) {
+</span><span id="2229" class="l"><a class="l" href="#2229">2229: </a>                        <span class="php-var">$typeMatched</span> = <span class="php-keyword1">true</span>;
+</span><span id="2230" class="l"><a class="l" href="#2230">2230: </a>                        <span class="php-keyword1">break</span>;
+</span><span id="2231" class="l"><a class="l" href="#2231">2231: </a>                    }
+</span><span id="2232" class="l"><a class="l" href="#2232">2232: </a>                }
+</span><span id="2233" class="l"><a class="l" href="#2233">2233: </a>            }
+</span><span id="2234" class="l"><a class="l" href="#2234">2234: </a>            
+</span><span id="2235" class="l"><a class="l" href="#2235">2235: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$typeMatched</span>) {
+</span><span id="2236" class="l"><a class="l" href="#2236">2236: </a>                <span class="php-comment">// keep it because type matched an allowEmptyTypes</span>
+</span><span id="2237" class="l"><a class="l" href="#2237">2237: </a>
+</span><span id="2238" class="l"><a class="l" href="#2238">2238: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$allowEmpty</span> === <span class="php-num">0</span> &amp;&amp; <span class="php-var">$value</span> === <span class="php-num">0</span>) {
+</span><span id="2239" class="l"><a class="l" href="#2239">2239: </a>                <span class="php-comment">// keep it because $allowEmpty === 0 means to keep 0 values only</span>
+</span><span id="2240" class="l"><a class="l" href="#2240">2240: </a>                
+</span><span id="2241" class="l"><a class="l" href="#2241">2241: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$allowEmpty</span>) &amp;&amp; !<span class="php-keyword2">in_array</span>(<span class="php-var">$key</span>, <span class="php-var">$allowEmpty</span>)) {
+</span><span id="2242" class="l"><a class="l" href="#2242">2242: </a>                <span class="php-comment">// remove it because it's not specifically allowed in allowEmpty</span>
+</span><span id="2243" class="l"><a class="l" href="#2243">2243: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-var">$key</span>]);
+</span><span id="2244" class="l"><a class="l" href="#2244">2244: </a>
+</span><span id="2245" class="l"><a class="l" href="#2245">2245: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(!<span class="php-var">$allowEmpty</span>) {
+</span><span id="2246" class="l"><a class="l" href="#2246">2246: </a>                <span class="php-comment">// remove the empty value</span>
+</span><span id="2247" class="l"><a class="l" href="#2247">2247: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-var">$key</span>]);
+</span><span id="2248" class="l"><a class="l" href="#2248">2248: </a>            }
+</span><span id="2249" class="l"><a class="l" href="#2249">2249: </a>        }
+</span><span id="2250" class="l"><a class="l" href="#2250">2250: </a>
+</span><span id="2251" class="l"><a class="l" href="#2251">2251: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
+</span><span id="2252" class="l"><a class="l" href="#2252">2252: </a>    }
+</span><span id="2253" class="l"><a class="l" href="#2253">2253: </a>
+</span><span id="2254" class="l"><a class="l" href="#2254">2254: </a>    <span class="php-comment">/**
+</span></span><span id="2255" class="l"><a class="l" href="#2255">2255: </a><span class="php-comment">     * Return $value if it exists in $allowedValues, or null if it doesn't
+</span></span><span id="2256" class="l"><a class="l" href="#2256">2256: </a><span class="php-comment">     * 
+</span></span><span id="2257" class="l"><a class="l" href="#2257">2257: </a><span class="php-comment">     * #pw-group-arrays
+</span></span><span id="2258" class="l"><a class="l" href="#2258">2258: </a><span class="php-comment">     *
+</span></span><span id="2259" class="l"><a class="l" href="#2259">2259: </a><span class="php-comment">     * @param string|int $value
+</span></span><span id="2260" class="l"><a class="l" href="#2260">2260: </a><span class="php-comment">     * @param array $allowedValues Whitelist of option values that are allowed
+</span></span><span id="2261" class="l"><a class="l" href="#2261">2261: </a><span class="php-comment">     * @return string|int|null
+</span></span><span id="2262" class="l"><a class="l" href="#2262">2262: </a><span class="php-comment">     *
+</span></span><span id="2263" class="l"><a class="l" href="#2263">2263: </a><span class="php-comment">     */</span>
+</span><span id="2264" class="l"><a class="l" href="#2264">2264: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_option" href="#_option">option</a>(<span class="php-var">$value</span>, <span class="php-keyword1">array</span> <span class="php-var">$allowedValues</span>) {
+</span><span id="2265" class="l"><a class="l" href="#2265">2265: </a>        <span class="php-var">$key</span> = <span class="php-keyword2">array_search</span>(<span class="php-var">$value</span>, <span class="php-var">$allowedValues</span>);
+</span><span id="2266" class="l"><a class="l" href="#2266">2266: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$key</span> === <span class="php-keyword1">false</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
+</span><span id="2267" class="l"><a class="l" href="#2267">2267: </a>        <span class="php-keyword1">return</span> <span class="php-var">$allowedValues</span>[<span class="php-var">$key</span>];
+</span><span id="2268" class="l"><a class="l" href="#2268">2268: </a>    }
+</span><span id="2269" class="l"><a class="l" href="#2269">2269: </a>
+</span><span id="2270" class="l"><a class="l" href="#2270">2270: </a>    <span class="php-comment">/**
+</span></span><span id="2271" class="l"><a class="l" href="#2271">2271: </a><span class="php-comment">     * Return given values that that also exist in $allowedValues whitelist
+</span></span><span id="2272" class="l"><a class="l" href="#2272">2272: </a><span class="php-comment">     * 
+</span></span><span id="2273" class="l"><a class="l" href="#2273">2273: </a><span class="php-comment">     * #pw-group-arrays
+</span></span><span id="2274" class="l"><a class="l" href="#2274">2274: </a><span class="php-comment">     *
+</span></span><span id="2275" class="l"><a class="l" href="#2275">2275: </a><span class="php-comment">     * @param array $values
+</span></span><span id="2276" class="l"><a class="l" href="#2276">2276: </a><span class="php-comment">     * @param array $allowedValues Whitelist of option values that are allowed
+</span></span><span id="2277" class="l"><a class="l" href="#2277">2277: </a><span class="php-comment">     * @return array
+</span></span><span id="2278" class="l"><a class="l" href="#2278">2278: </a><span class="php-comment">     *
+</span></span><span id="2279" class="l"><a class="l" href="#2279">2279: </a><span class="php-comment">     */</span>
+</span><span id="2280" class="l"><a class="l" href="#2280">2280: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_options" href="#_options">options</a>(<span class="php-keyword1">array</span> <span class="php-var">$values</span>, <span class="php-keyword1">array</span> <span class="php-var">$allowedValues</span>) {
+</span><span id="2281" class="l"><a class="l" href="#2281">2281: </a>        <span class="php-var">$a</span> = <span class="php-keyword1">array</span>();
+</span><span id="2282" class="l"><a class="l" href="#2282">2282: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$values</span> <span class="php-keyword1">as</span> <span class="php-var">$value</span>) {
+</span><span id="2283" class="l"><a class="l" href="#2283">2283: </a>            <span class="php-var">$key</span> = <span class="php-keyword2">array_search</span>(<span class="php-var">$value</span>, <span class="php-var">$allowedValues</span>);
+</span><span id="2284" class="l"><a class="l" href="#2284">2284: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$key</span> !== <span class="php-keyword1">false</span>) <span class="php-var">$a</span>[] = <span class="php-var">$allowedValues</span>[<span class="php-var">$key</span>];
+</span><span id="2285" class="l"><a class="l" href="#2285">2285: </a>        }
+</span><span id="2286" class="l"><a class="l" href="#2286">2286: </a>        <span class="php-keyword1">return</span> <span class="php-var">$a</span>;
+</span><span id="2287" class="l"><a class="l" href="#2287">2287: </a>    }
+</span><span id="2288" class="l"><a class="l" href="#2288">2288: </a>
+</span><span id="2289" class="l"><a class="l" href="#2289">2289: </a>    <span class="php-comment">/****************************************************************************************************************************
+</span></span><span id="2290" class="l"><a class="l" href="#2290">2290: </a><span class="php-comment">     * OTHER SANITIZERS
+</span></span><span id="2291" class="l"><a class="l" href="#2291">2291: </a><span class="php-comment">     * 
+</span></span><span id="2292" class="l"><a class="l" href="#2292">2292: </a><span class="php-comment">     */</span>
+</span><span id="2293" class="l"><a class="l" href="#2293">2293: </a>
+</span><span id="2294" class="l"><a class="l" href="#2294">2294: </a>    <span class="php-comment">/**
+</span></span><span id="2295" class="l"><a class="l" href="#2295">2295: </a><span class="php-comment">     * Convert the given value to a boolean
+</span></span><span id="2296" class="l"><a class="l" href="#2296">2296: </a><span class="php-comment">     * 
+</span></span><span id="2297" class="l"><a class="l" href="#2297">2297: </a><span class="php-comment">     * This differs from regular boolean type conversion in the following ways: 
+</span></span><span id="2298" class="l"><a class="l" href="#2298">2298: </a><span class="php-comment">     * 
+</span></span><span id="2299" class="l"><a class="l" href="#2299">2299: </a><span class="php-comment">     * - This method will recognize things like the strings &quot;false&quot; or &quot;0&quot; representing a boolean false.
+</span></span><span id="2300" class="l"><a class="l" href="#2300">2300: </a><span class="php-comment">     * - If given an object, it will convert the object to a string before determining what boolean value it should represent.
+</span></span><span id="2301" class="l"><a class="l" href="#2301">2301: </a><span class="php-comment">     * - If given an array, it returns false if the array contains zero items. 
+</span></span><span id="2302" class="l"><a class="l" href="#2302">2302: </a><span class="php-comment">     * 
+</span></span><span id="2303" class="l"><a class="l" href="#2303">2303: </a><span class="php-comment">     * #pw-group-other
+</span></span><span id="2304" class="l"><a class="l" href="#2304">2304: </a><span class="php-comment">     * 
+</span></span><span id="2305" class="l"><a class="l" href="#2305">2305: </a><span class="php-comment">     * @param $value
+</span></span><span id="2306" class="l"><a class="l" href="#2306">2306: </a><span class="php-comment">     * @return bool
+</span></span><span id="2307" class="l"><a class="l" href="#2307">2307: </a><span class="php-comment">     * 
+</span></span><span id="2308" class="l"><a class="l" href="#2308">2308: </a><span class="php-comment">     */</span>
+</span><span id="2309" class="l"><a class="l" href="#2309">2309: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_bool" href="#_bool">bool</a>(<span class="php-var">$value</span>) {
+</span><span id="2310" class="l"><a class="l" href="#2310">2310: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$value</span>)) {
+</span><span id="2311" class="l"><a class="l" href="#2311">2311: </a>            <span class="php-var">$value</span> = <span class="php-keyword2">trim</span>(<span class="php-keyword2">strtolower</span>(<span class="php-var">$value</span>));
+</span><span id="2312" class="l"><a class="l" href="#2312">2312: </a>            <span class="php-var">$length</span> = <span class="php-keyword2">strlen</span>(<span class="php-var">$value</span>);
+</span><span id="2313" class="l"><a class="l" href="#2313">2313: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$length</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="2314" class="l"><a class="l" href="#2314">2314: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;0&quot;</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="2315" class="l"><a class="l" href="#2315">2315: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;1&quot;</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>; 
+</span><span id="2316" class="l"><a class="l" href="#2316">2316: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;false&quot;</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="2317" class="l"><a class="l" href="#2317">2317: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">&quot;true&quot;</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="2318" class="l"><a class="l" href="#2318">2318: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$length</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>; 
+</span><span id="2319" class="l"><a class="l" href="#2319">2319: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_object</span>(<span class="php-var">$value</span>)) {
+</span><span id="2320" class="l"><a class="l" href="#2320">2320: </a>            <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;string(<span class="php-var">$value</span>);
+</span><span id="2321" class="l"><a class="l" href="#2321">2321: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) {
+</span><span id="2322" class="l"><a class="l" href="#2322">2322: </a>            <span class="php-var">$value</span> = <span class="php-keyword2">count</span>(<span class="php-var">$value</span>) ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>;
+</span><span id="2323" class="l"><a class="l" href="#2323">2323: </a>        }
+</span><span id="2324" class="l"><a class="l" href="#2324">2324: </a>        <span class="php-keyword1">return</span> (bool) <span class="php-var">$value</span>;
+</span><span id="2325" class="l"><a class="l" href="#2325">2325: </a>    }
+</span><span id="2326" class="l"><a class="l" href="#2326">2326: </a>
+</span><span id="2327" class="l"><a class="l" href="#2327">2327: </a>    <span class="php-comment">/**
+</span></span><span id="2328" class="l"><a class="l" href="#2328">2328: </a><span class="php-comment">     * Run value through all sanitizers, return array indexed by sanitizer name and resulting value
+</span></span><span id="2329" class="l"><a class="l" href="#2329">2329: </a><span class="php-comment">     * 
+</span></span><span id="2330" class="l"><a class="l" href="#2330">2330: </a><span class="php-comment">     * Used for debugging and testing purposes. 
+</span></span><span id="2331" class="l"><a class="l" href="#2331">2331: </a><span class="php-comment">     * 
+</span></span><span id="2332" class="l"><a class="l" href="#2332">2332: </a><span class="php-comment">     * #pw-group-other
+</span></span><span id="2333" class="l"><a class="l" href="#2333">2333: </a><span class="php-comment">     * 
+</span></span><span id="2334" class="l"><a class="l" href="#2334">2334: </a><span class="php-comment">     * @param $value
+</span></span><span id="2335" class="l"><a class="l" href="#2335">2335: </a><span class="php-comment">     * @return array
+</span></span><span id="2336" class="l"><a class="l" href="#2336">2336: </a><span class="php-comment">     * 
+</span></span><span id="2337" class="l"><a class="l" href="#2337">2337: </a><span class="php-comment">     */</span>
+</span><span id="2338" class="l"><a class="l" href="#2338">2338: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_testAll" href="#_testAll">testAll</a>(<span class="php-var">$value</span>) {
+</span><span id="2339" class="l"><a class="l" href="#2339">2339: </a>        <span class="php-var">$sanitizers</span> = <span class="php-keyword1">array</span>(
+</span><span id="2340" class="l"><a class="l" href="#2340">2340: </a>            <span class="php-quote">'alpha'</span>, 
+</span><span id="2341" class="l"><a class="l" href="#2341">2341: </a>            <span class="php-quote">'alphanumeric'</span>,
+</span><span id="2342" class="l"><a class="l" href="#2342">2342: </a>            <span class="php-quote">'array'</span>,
+</span><span id="2343" class="l"><a class="l" href="#2343">2343: </a>            <span class="php-quote">'bool'</span>,
+</span><span id="2344" class="l"><a class="l" href="#2344">2344: </a>            <span class="php-quote">'date'</span>,
+</span><span id="2345" class="l"><a class="l" href="#2345">2345: </a>            <span class="php-quote">'digits'</span>, 
+</span><span id="2346" class="l"><a class="l" href="#2346">2346: </a>            <span class="php-quote">'email'</span>,
+</span><span id="2347" class="l"><a class="l" href="#2347">2347: </a>            <span class="php-quote">'emailHeader'</span>,
+</span><span id="2348" class="l"><a class="l" href="#2348">2348: </a>            <span class="php-quote">'entities'</span>,
+</span><span id="2349" class="l"><a class="l" href="#2349">2349: </a>            <span class="php-quote">'entities1'</span>,
+</span><span id="2350" class="l"><a class="l" href="#2350">2350: </a>            <span class="php-quote">'entitiesMarkdown'</span>,
+</span><span id="2351" class="l"><a class="l" href="#2351">2351: </a>            <span class="php-quote">'fieldName'</span>,
+</span><span id="2352" class="l"><a class="l" href="#2352">2352: </a>            <span class="php-quote">'filename'</span>,
+</span><span id="2353" class="l"><a class="l" href="#2353">2353: </a>            <span class="php-quote">'float'</span>,
+</span><span id="2354" class="l"><a class="l" href="#2354">2354: </a>            <span class="php-quote">'int'</span>,
+</span><span id="2355" class="l"><a class="l" href="#2355">2355: </a>            <span class="php-quote">'intArray'</span>,
+</span><span id="2356" class="l"><a class="l" href="#2356">2356: </a>            <span class="php-quote">'intSigned'</span>,
+</span><span id="2357" class="l"><a class="l" href="#2357">2357: </a>            <span class="php-quote">'intUnsigned'</span>,
+</span><span id="2358" class="l"><a class="l" href="#2358">2358: </a>            <span class="php-quote">'markupToLine'</span>,
+</span><span id="2359" class="l"><a class="l" href="#2359">2359: </a>            <span class="php-quote">'markupToText'</span>,
+</span><span id="2360" class="l"><a class="l" href="#2360">2360: </a>            <span class="php-quote">'minArray'</span>,
+</span><span id="2361" class="l"><a class="l" href="#2361">2361: </a>            <span class="php-quote">'name'</span>,
+</span><span id="2362" class="l"><a class="l" href="#2362">2362: </a>            <span class="php-quote">'names'</span>,
+</span><span id="2363" class="l"><a class="l" href="#2363">2363: </a>            <span class="php-quote">'pageName'</span>,
+</span><span id="2364" class="l"><a class="l" href="#2364">2364: </a>            <span class="php-quote">'pageNameTranslate'</span>,
+</span><span id="2365" class="l"><a class="l" href="#2365">2365: </a>            <span class="php-quote">'pageNameUTF8'</span>,
+</span><span id="2366" class="l"><a class="l" href="#2366">2366: </a>            <span class="php-quote">'pagePathName'</span>,
+</span><span id="2367" class="l"><a class="l" href="#2367">2367: </a>            <span class="php-quote">'pagePathNameUTF8'</span>,
+</span><span id="2368" class="l"><a class="l" href="#2368">2368: </a>            <span class="php-quote">'path'</span>,
+</span><span id="2369" class="l"><a class="l" href="#2369">2369: </a>            <span class="php-quote">'purify'</span>,
+</span><span id="2370" class="l"><a class="l" href="#2370">2370: </a>            <span class="php-quote">'removeNewlines'</span>,
+</span><span id="2371" class="l"><a class="l" href="#2371">2371: </a>            <span class="php-quote">'selectorField'</span>,
+</span><span id="2372" class="l"><a class="l" href="#2372">2372: </a>            <span class="php-quote">'selectorValue'</span>,
+</span><span id="2373" class="l"><a class="l" href="#2373">2373: </a>            <span class="php-quote">'string'</span>,
+</span><span id="2374" class="l"><a class="l" href="#2374">2374: </a>            <span class="php-quote">'templateName'</span>,
+</span><span id="2375" class="l"><a class="l" href="#2375">2375: </a>            <span class="php-quote">'text'</span>,
+</span><span id="2376" class="l"><a class="l" href="#2376">2376: </a>            <span class="php-quote">'textarea'</span>,
+</span><span id="2377" class="l"><a class="l" href="#2377">2377: </a>            <span class="php-quote">'unentities'</span>,
+</span><span id="2378" class="l"><a class="l" href="#2378">2378: </a>            <span class="php-quote">'url'</span>,
+</span><span id="2379" class="l"><a class="l" href="#2379">2379: </a>            <span class="php-quote">'varName'</span>,
+</span><span id="2380" class="l"><a class="l" href="#2380">2380: </a>        );
+</span><span id="2381" class="l"><a class="l" href="#2381">2381: </a>        <span class="php-var">$results</span> = <span class="php-keyword1">array</span>();
+</span><span id="2382" class="l"><a class="l" href="#2382">2382: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$sanitizers</span> <span class="php-keyword1">as</span> <span class="php-var">$method</span>) {
+</span><span id="2383" class="l"><a class="l" href="#2383">2383: </a>            <span class="php-var">$results</span>[<span class="php-var">$method</span>] = <span class="php-var">$this</span>-&gt;<span class="php-var">$method</span>(<span class="php-var">$value</span>);
+</span><span id="2384" class="l"><a class="l" href="#2384">2384: </a>        }
+</span><span id="2385" class="l"><a class="l" href="#2385">2385: </a>        <span class="php-keyword1">return</span> <span class="php-var">$results</span>;
+</span><span id="2386" class="l"><a class="l" href="#2386">2386: </a>    }
+</span><span id="2387" class="l"><a class="l" href="#2387">2387: </a>
+</span><span id="2388" class="l"><a class="l" href="#2388">2388: </a>    <span class="php-comment">/**********************************************************************************************************************
+</span></span><span id="2389" class="l"><a class="l" href="#2389">2389: </a><span class="php-comment">     * FILE VALIDATORS
+</span></span><span id="2390" class="l"><a class="l" href="#2390">2390: </a><span class="php-comment">     *
+</span></span><span id="2391" class="l"><a class="l" href="#2391">2391: </a><span class="php-comment">     */</span>
+</span><span id="2392" class="l"><a class="l" href="#2392">2392: </a>
+</span><span id="2393" class="l"><a class="l" href="#2393">2393: </a>    <span class="php-comment">/**
+</span></span><span id="2394" class="l"><a class="l" href="#2394">2394: </a><span class="php-comment">     * Validate a file using FileValidator modules
+</span></span><span id="2395" class="l"><a class="l" href="#2395">2395: </a><span class="php-comment">     *
+</span></span><span id="2396" class="l"><a class="l" href="#2396">2396: </a><span class="php-comment">     * Note that this is intended for validating file data, not file names.
+</span></span><span id="2397" class="l"><a class="l" href="#2397">2397: </a><span class="php-comment">     *
+</span></span><span id="2398" class="l"><a class="l" href="#2398">2398: </a><span class="php-comment">     * IMPORTANT: This method returns NULL if it can't find a validator for the file. This does
+</span></span><span id="2399" class="l"><a class="l" href="#2399">2399: </a><span class="php-comment">     * not mean the file is invalid, just that it didn't have the tools to validate it.
+</span></span><span id="2400" class="l"><a class="l" href="#2400">2400: </a><span class="php-comment">     * 
+</span></span><span id="2401" class="l"><a class="l" href="#2401">2401: </a><span class="php-comment">     * #pw-group-files
+</span></span><span id="2402" class="l"><a class="l" href="#2402">2402: </a><span class="php-comment">     *
+</span></span><span id="2403" class="l"><a class="l" href="#2403">2403: </a><span class="php-comment">     * @param string $filename Full path and filename to validate
+</span></span><span id="2404" class="l"><a class="l" href="#2404">2404: </a><span class="php-comment">     * @param array $options When available, provide array with any one or all of the following:
+</span></span><span id="2405" class="l"><a class="l" href="#2405">2405: </a><span class="php-comment">     *  - `page` (Page): Page object associated with $filename.
+</span></span><span id="2406" class="l"><a class="l" href="#2406">2406: </a><span class="php-comment">     *  - `field` (Field): Field object associated with $filename.
+</span></span><span id="2407" class="l"><a class="l" href="#2407">2407: </a><span class="php-comment">     *  - `pagefile` (Pagefile): Pagefile object associated with $filename.
+</span></span><span id="2408" class="l"><a class="l" href="#2408">2408: </a><span class="php-comment">     * @return bool|null Returns TRUE if valid, FALSE if not, or NULL if no validator available for given file type.
+</span></span><span id="2409" class="l"><a class="l" href="#2409">2409: </a><span class="php-comment">     *
+</span></span><span id="2410" class="l"><a class="l" href="#2410">2410: </a><span class="php-comment">     */</span>
+</span><span id="2411" class="l"><a class="l" href="#2411">2411: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_validateFile" href="#_validateFile">validateFile</a>(<span class="php-var">$filename</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="2412" class="l"><a class="l" href="#2412">2412: </a>        <span class="php-var">$defaults</span> = <span class="php-keyword1">array</span>(
+</span><span id="2413" class="l"><a class="l" href="#2413">2413: </a>            <span class="php-quote">'page'</span> =&gt; <span class="php-keyword1">null</span>,
+</span><span id="2414" class="l"><a class="l" href="#2414">2414: </a>            <span class="php-quote">'field'</span> =&gt; <span class="php-keyword1">null</span>,
+</span><span id="2415" class="l"><a class="l" href="#2415">2415: </a>            <span class="php-quote">'pagefile'</span> =&gt; <span class="php-keyword1">null</span>,
+</span><span id="2416" class="l"><a class="l" href="#2416">2416: </a>        );
+</span><span id="2417" class="l"><a class="l" href="#2417">2417: </a>        <span class="php-var">$options</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$defaults</span>, <span class="php-var">$options</span>);
+</span><span id="2418" class="l"><a class="l" href="#2418">2418: </a>        <span class="php-var">$extension</span> = <span class="php-keyword2">strtolower</span>(<span class="php-keyword2">pathinfo</span>(<span class="php-var">$filename</span>, PATHINFO_EXTENSION));
+</span><span id="2419" class="l"><a class="l" href="#2419">2419: </a>        <span class="php-var">$validators</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;findByPrefix(<span class="php-quote">'FileValidator'</span>, <span class="php-keyword1">false</span>);
+</span><span id="2420" class="l"><a class="l" href="#2420">2420: </a>        <span class="php-var">$isValid</span> = <span class="php-keyword1">null</span>;
+</span><span id="2421" class="l"><a class="l" href="#2421">2421: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$validators</span> <span class="php-keyword1">as</span> <span class="php-var">$validatorName</span>) {
+</span><span id="2422" class="l"><a class="l" href="#2422">2422: </a>            <span class="php-var">$info</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;getModuleInfoVerbose(<span class="php-var">$validatorName</span>);
+</span><span id="2423" class="l"><a class="l" href="#2423">2423: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$info</span>) || <span class="php-keyword1">empty</span>(<span class="php-var">$info</span>[<span class="php-quote">'validates'</span>])) <span class="php-keyword1">continue</span>;
+</span><span id="2424" class="l"><a class="l" href="#2424">2424: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$info</span>[<span class="php-quote">'validates'</span>] <span class="php-keyword1">as</span> <span class="php-var">$ext</span>) {
+</span><span id="2425" class="l"><a class="l" href="#2425">2425: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$ext</span>[<span class="php-num">0</span>] == <span class="php-quote">'/'</span>) {
+</span><span id="2426" class="l"><a class="l" href="#2426">2426: </a>                    <span class="php-keyword1">if</span>(!<span class="php-keyword2">preg_match</span>(<span class="php-var">$ext</span>, <span class="php-var">$extension</span>)) <span class="php-keyword1">continue</span>;
+</span><span id="2427" class="l"><a class="l" href="#2427">2427: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$ext</span> !== <span class="php-var">$extension</span>) {
+</span><span id="2428" class="l"><a class="l" href="#2428">2428: </a>                    <span class="php-keyword1">continue</span>;
+</span><span id="2429" class="l"><a class="l" href="#2429">2429: </a>                }
+</span><span id="2430" class="l"><a class="l" href="#2430">2430: </a>                <span class="php-var">$validator</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-var">$validatorName</span>);
+</span><span id="2431" class="l"><a class="l" href="#2431">2431: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$validator</span>) <span class="php-keyword1">continue</span>;
+</span><span id="2432" class="l"><a class="l" href="#2432">2432: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'page'</span>])) <span class="php-var">$validator</span>-&gt;setPage(<span class="php-var">$options</span>[<span class="php-quote">'page'</span>]);
+</span><span id="2433" class="l"><a class="l" href="#2433">2433: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'field'</span>])) <span class="php-var">$validator</span>-&gt;setField(<span class="php-var">$options</span>[<span class="php-quote">'field'</span>]);
+</span><span id="2434" class="l"><a class="l" href="#2434">2434: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'pagefile'</span>])) <span class="php-var">$validator</span>-&gt;setPagefile(<span class="php-var">$options</span>[<span class="php-quote">'pagefile'</span>]);
+</span><span id="2435" class="l"><a class="l" href="#2435">2435: </a>                <span class="php-var">$isValid</span> = <span class="php-var">$validator</span>-&gt;isValid(<span class="php-var">$filename</span>);
+</span><span id="2436" class="l"><a class="l" href="#2436">2436: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$isValid</span>) {
+</span><span id="2437" class="l"><a class="l" href="#2437">2437: </a>                    <span class="php-comment">// move errors to Sanitizer class so they can be retrieved</span>
+</span><span id="2438" class="l"><a class="l" href="#2438">2438: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$validator</span>-&gt;errors(<span class="php-quote">'clear array'</span>) <span class="php-keyword1">as</span> <span class="php-var">$error</span>) {
+</span><span id="2439" class="l"><a class="l" href="#2439">2439: </a>                        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'log'</span>)-&gt;error(<span class="php-var">$error</span>);
+</span><span id="2440" class="l"><a class="l" href="#2440">2440: </a>                        <span class="php-var">$this</span>-&gt;error(<span class="php-var">$error</span>);
+</span><span id="2441" class="l"><a class="l" href="#2441">2441: </a>                    }
+</span><span id="2442" class="l"><a class="l" href="#2442">2442: </a>                    <span class="php-keyword1">break</span>;
+</span><span id="2443" class="l"><a class="l" href="#2443">2443: </a>                }
+</span><span id="2444" class="l"><a class="l" href="#2444">2444: </a>            }
+</span><span id="2445" class="l"><a class="l" href="#2445">2445: </a>        }
+</span><span id="2446" class="l"><a class="l" href="#2446">2446: </a>        <span class="php-keyword1">return</span> <span class="php-var">$isValid</span>;
+</span><span id="2447" class="l"><a class="l" href="#2447">2447: </a>    }
+</span><span id="2448" class="l"><a class="l" href="#2448">2448: </a>
+</span><span id="2449" class="l"><a class="l" href="#2449">2449: </a>
+</span><span id="2450" class="l"><a class="l" href="#2450">2450: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___toString" href="#___toString">__toString</a>() {
+</span><span id="2451" class="l"><a class="l" href="#2451">2451: </a>        <span class="php-keyword1">return</span> <span class="php-quote">&quot;Sanitizer&quot;</span>;
+</span><span id="2452" class="l"><a class="l" href="#2452">2452: </a>    }
+</span><span id="2453" class="l"><a class="l" href="#2453">2453: </a>
+</span><span id="2454" class="l"><a class="l" href="#2454">2454: </a>}
+</span><span id="2455" class="l"><a class="l" href="#2455">2455: </a>
+</span><span id="2456" class="l"><a class="l" href="#2456">2456: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

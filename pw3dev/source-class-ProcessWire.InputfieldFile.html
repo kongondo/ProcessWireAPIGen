@@ -8,7 +8,7 @@
 	<title>File modules/Inputfield/InputfieldFile/InputfieldFile.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3323939370"></script>
+	<script type="text/javascript" src="elementlist.js?2119032604"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.44 dev</span>
+			<span>Overview version 3.0.45 dev</span>
 		</a>
 
 
@@ -379,6 +379,7 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
@@ -553,7 +554,7 @@
 </span><span id="2" class="l"><a class="l" href="#2">  2: </a>
 </span><span id="3" class="l"><a class="l" href="#3">  3: </a><span class="php-comment">/**
 </span></span><span id="4" class="l"><a class="l" href="#4">  4: </a><span class="php-comment"> * An Inputfield for handling file uploads
-</span></span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-comment"> * 
+</span></span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-comment"> *
 </span></span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-comment"> * @property string $extensions Allowed file extensions, space separated
 </span></span><span id="7" class="l"><a class="l" href="#7">  7: </a><span class="php-comment"> * @property int $maxFiles Maximum number of files allowed
 </span></span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-comment"> * @property int $maxFilesize Maximum file size
@@ -570,7 +571,7 @@
 </span></span><span id="19" class="l"><a class="l" href="#19"> 19: </a><span class="php-comment"> * @property bool|int $noCollapseItem Set to true to disable collapsed items (like for LanguageTranslator tool or other things that add tools to files)
 </span></span><span id="20" class="l"><a class="l" href="#20"> 20: </a><span class="php-comment"> * @property bool|int $noShortName Set to true to disable shortened filenames in output
 </span></span><span id="21" class="l"><a class="l" href="#21"> 21: </a><span class="php-comment"> * @property bool|int $noCustomButton Set to true to disable use of the styled &lt;input type='file'&gt;
-</span></span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-comment"> * 
+</span></span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-comment"> *
 </span></span><span id="23" class="l"><a class="l" href="#23"> 23: </a><span class="php-comment"> * @method string renderItem($pagefile, $id, $n)
 </span></span><span id="24" class="l"><a class="l" href="#24"> 24: </a><span class="php-comment"> * @method string renderList($value)
 </span></span><span id="25" class="l"><a class="l" href="#25"> 25: </a><span class="php-comment"> * @method string renderUpload($value)
@@ -581,7 +582,7 @@
 </span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment"> * @method bool processInputFile(WireInputData $input, Pagefile $pagefile, $n)
 </span></span><span id="31" class="l"><a class="l" href="#31"> 31: </a><span class="php-comment"> *
 </span></span><span id="32" class="l"><a class="l" href="#32"> 32: </a><span class="php-comment"> */</span>
-</span><span id="33" class="l"><a class="l" href="#33"> 33: </a><span class="php-keyword1">class</span> <a id="InputfieldFile" href="#InputfieldFile">InputfieldFile</a> <span class="php-keyword1">extends</span> Inputfield <span class="php-keyword1">implements</span> InputfieldItemList {
+</span><span id="33" class="l"><a class="l" href="#33"> 33: </a><span class="php-keyword1">class</span> <a id="InputfieldFile" href="#InputfieldFile">InputfieldFile</a> <span class="php-keyword1">extends</span> Inputfield <span class="php-keyword1">implements</span> InputfieldItemList, InputfieldHasSortableValue {
 </span><span id="34" class="l"><a class="l" href="#34"> 34: </a>
 </span><span id="35" class="l"><a class="l" href="#35"> 35: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getModuleInfo" href="#_getModuleInfo">getModuleInfo</a>() {
 </span><span id="36" class="l"><a class="l" href="#36"> 36: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>(
