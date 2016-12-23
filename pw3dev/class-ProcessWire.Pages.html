@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Pages | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2119032604"></script>
+	<script type="text/javascript" src="elementlist.js?1688547908"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.45 dev</span>
+			<span>Overview version 3.0.46 dev</span>
 		</a>
 
 
@@ -614,7 +614,7 @@ PROPERTIES
 				Add a getCopy method that does a getById($id, array('cache' =&gt; false) ?<br>
 				<b>Todo:</b>
 				Update saveField to accept array of field names as an option.<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Pages.html#4-1625" title="Go to source code">core/Pages.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Pages.html#4-1762" title="Go to source code">core/Pages.php</a><br>
 	</div>
 
 
@@ -632,7 +632,7 @@ PROPERTIES
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#133-147" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#137-151" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
 
 		<div class="description short">
 			
@@ -672,7 +672,7 @@ PROPERTIES
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#149-157" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#153-161" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -707,7 +707,7 @@ PROPERTIES
 
 		<td class="name"><div>
 		<a class="anchor" href="#_count">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#164-184" title="Go to source code">count</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#168-188" title="Go to source code">count</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -755,14 +755,14 @@ template $numBlogPosts = $pages-&gt;count("template=blog-post"); ~~~~~~~~~</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>
+			<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____find">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#186-228" title="Go to source code">___find</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#190-233" title="Go to source code">___find</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -803,15 +803,17 @@ array of page IDs.</dd>
 associative array or "key=value" selector string. - <code>findOne</code>
 (boolean): Apply optimizations for finding a single page (default=false). -
 <code>findAll</code> (boolean): Find all pages with no exclusions, same as
-"include=all" option (default=false). - <code>getTotal</code> (boolean): Whether
-to set returning PageArray's "total" property (default=true, except when
-findOne=true). - <code>loadPages</code> (boolean): Whether to populate the
-returned PageArray with found pages (default=true). The only reason why you'd
-want to change this to false would be if you only needed the count details from
-the PageArray: getTotal(), getStart(), getLimit, etc. This is intended as an
-optimization for $pages-&gt;count(). Does not apply if $selector argument is an
-array. - <code>cache</code> (boolean): Allow caching of selectors and loaded
-pages? (default=true). Also sets loadOptions[cache]. - <code>allowCustom</code>
+"include=all" option (default=false). - <code>findIDs</code> (boolean|int):
+Specify 1 to return array of only page IDs, or true to return verbose array
+(default=false). - <code>getTotal</code> (boolean): Whether to set returning
+PageArray's "total" property (default=true, except when findOne=true). -
+<code>loadPages</code> (boolean): Whether to populate the returned PageArray
+with found pages (default=true). The only reason why you'd want to change this
+to false would be if you only needed the count details from the PageArray:
+getTotal(), getStart(), getLimit, etc. This is intended as an optimization for
+$pages-&gt;count(). Does not apply if $selector argument is an array. -
+<code>cache</code> (boolean): Allow caching of selectors and loaded pages?
+(default=true). Also sets loadOptions[cache]. - <code>allowCustom</code>
 (boolean): Allow use of _custom="another selector" in given $selector? For
 specific uses. (default=false) - <code>caller</code> (string): Optional name of
 calling function, for debugging purposes, i.e. "pages.count" (default=blank). -
@@ -829,10 +831,11 @@ to getById() load options.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>Pages that matched the given selector. Non-visible pages are excluded unless an
-"include=x" mode is specified in the selector (where "x" is "hidden",
-"unpublished" or "all"). If "all" is specified, then non-accessible pages (via
-access control) can also be included.<br>
+					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array</code><br>PageArray of that matched the given selector, or array of page IDs (if using
+findIDs option). Non-visible pages are excluded unless an "include=x" mode is
+specified in the selector (where "x" is "hidden", "unpublished" or "all"). If
+"all" is specified, then non-accessible pages (via access control) can also be
+included.<br>
 				</div>
 
 
@@ -856,7 +859,7 @@ access control) can also be included.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findOne">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#230-254" title="Go to source code">findOne</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#235-259" title="Go to source code">findOne</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -921,7 +924,7 @@ $pages-&gt;findOne("template=blog-post, sort=-created"); ~~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findMany">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#256-299" title="Go to source code">findMany</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#261-304" title="Go to source code">findMany</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -985,6 +988,86 @@ argument for details.</dd>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="findIDs" id="_findIDs">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_findIDs">#</a>
+		<code><a href="source-class-ProcessWire.Pages.html#306-347" title="Go to source code">findIDs</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Like $pages-&gt;find() except returns array of IDs rather than Page
+objects.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Like $pages-&gt;find() except returns array of IDs rather than Page
+objects.</p>
+
+<ul>
+	<li>This is a faster method to use when you only need to know the matching page
+	IDs.</li>
+
+	<li>The default behavior is to simply return a regular PHP array of matching
+	page IDs in order.</li>
+
+	<li>The alternate behavior (verbose) returns more information for each match, as
+	outlined below.</li>
+</ul>
+
+<p><strong>Verbose option:</strong> When specifying boolean true for the
+<code>$options</code> argument (or using the <code>verbose</code> option), the
+return value is an array of associative arrays, with each of those associative
+arrays containing <code>id</code>, <code>parent_id</code> and
+<code>templates_id</code> keys for each page.</p>
+
+<p>~~~~~ // returns array of page IDs (integers) like [ 1234, 1235, 1236 ] $a =
+$pages-&gt;findIDs("foo=bar");</p>
+
+<p>// verbose option: returns array of associative arrays, each with id,
+parent_id and templates_id $a = $pages-&gt;findIDs("foo=bar", true); ~~~~~</p>
+
+<p>#pw-group-retrieval</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$selector</var></dt>
+					<dd><code>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code></code><br>$selector Selector to find page IDs.</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array|boolean</code><br>$options Options to modify behavior. - <code>verbose</code> (bool): Specify true
+to make return value array of associative arrays, each with verbose info. - The
+verbose option above can also be specified by providing boolean true as the
+$options argument. - See <code>Pages::find()</code> $options argument for
+additional options.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Array of page IDs, or in verbose mode: array of arrays, each with id, parent_id
+and templates_id keys.<br>
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						3.0.46<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="get" id="_get">
 
 		<td class="attributes"><code>
@@ -996,7 +1079,7 @@ argument for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#301-327" title="Go to source code">get</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|integer <var>$selector</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#349-375" title="Go to source code">get</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|integer <var>$selector</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1058,7 +1141,7 @@ found.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____save">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#329-363" title="Go to source code">___save</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#377-411" title="Go to source code">___save</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1134,7 +1217,7 @@ $pages-&gt;___save() for call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveField">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#365-390" title="Go to source code">___saveField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#413-438" title="Go to source code">___saveField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1200,7 +1283,7 @@ $pages-&gt;___saveField() for call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____add">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#392-426" title="Go to source code">___add</a>( <span>string|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span>string|integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#440-474" title="Go to source code">___add</a>( <span>string|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span>string|integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1270,7 +1353,7 @@ also be 3rd param.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____clone">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#428-466" title="Go to source code">___clone</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#476-514" title="Go to source code">___clone</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1344,7 +1427,7 @@ Array of properties to set to the clone (you can also do this later). -
 
 		<td class="name"><div>
 		<a class="anchor" href="#____delete">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#468-496" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean|array <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#516-544" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean|array <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1414,7 +1497,7 @@ requested.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____trash">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#498-522" title="Go to source code">___trash</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$save</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#546-570" title="Go to source code">___trash</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$save</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1477,7 +1560,7 @@ complete the operation. Omit otherwise. Primarily for internal use.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____restore">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#524-547" title="Go to source code">___restore</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$save</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#572-595" title="Go to source code">___restore</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$save</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1536,7 +1619,7 @@ save the page yourself later). Primarily for internal use.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____emptyTrash">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#554-574" title="Go to source code">___emptyTrash</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#602-622" title="Go to source code">___emptyTrash</a>( )</code>
 
 		<div class="description short">
 			
@@ -1586,7 +1669,7 @@ if not all pages could be deleted and error notices may be present.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getById">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#576-640" title="Go to source code">getById</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|string <var>$_ids</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|array|null <var>$template</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$parent_id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#624-688" title="Go to source code">getById</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|string <var>$_ids</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|array|null <var>$template</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$parent_id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1736,7 +1819,7 @@ a PageArray.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPath">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#642-672" title="Go to source code">getPath</a>( <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$id</var></span>, <span>null|array|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#690-720" title="Go to source code">getPath</a>( <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$id</var></span>, <span>null|array|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1814,7 +1897,7 @@ PagePaths module, if installed? (default=true)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__path">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#674-683" title="Go to source code">_path</a>( <span>integer <var>$id</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#722-731" title="Go to source code">_path</a>( <span>integer <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1856,7 +1939,7 @@ PagePaths module, if installed? (default=true)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getByPath">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#685-725" title="Go to source code">getByPath</a>( <span>string <var>$path</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#733-773" title="Go to source code">getByPath</a>( <span>string <var>$path</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1937,7 +2020,7 @@ is installed (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____setupNew">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#727-741" title="Go to source code">___setupNew</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#775-789" title="Go to source code">___setupNew</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1986,7 +2069,7 @@ is installed (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____setupPageName">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#743-761" title="Go to source code">___setupPageName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#791-809" title="Go to source code">___setupPageName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2040,7 +2123,7 @@ returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____touch">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#763-791" title="Go to source code">___touch</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array <var>$pages</var></span>, <span>null|integer|string <var>$modified</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#811-839" title="Go to source code">___touch</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array <var>$pages</var></span>, <span>null|integer|string <var>$modified</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2097,6 +2180,180 @@ recognized time string</dd>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="___sort" id="____sort">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____sort">#</a>
+		<code><a href="source-class-ProcessWire.Pages.html#841-888" title="Go to source code">___sort</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>integer|boolean <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the “sort” value for given $page while adjusting siblings, or
+re-build sort for its children</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the “sort” value for given $page while adjusting siblings, or
+re-build sort for its children</p>
+
+<p><em>This method is primarily applicable to manually sorted pages. If pages
+are automatically sorted by some other field, this method isn’t useful unless
+using the “re-build children” option, which may be helpful if converting a
+page’s children from auto-sort to manual sort.</em></p>
+
+<p>The default behavior of this method is to set the “sort” value for the
+given $page, and adjust the sort value of sibling pages having the same or
+greater sort value, to ensure all are unique and in order without gaps.</p>
+
+<p>The alternate behavior of this method is to re-build the sort values of all
+children of the given $page. This is done by specifying boolean true for the
+$value argument. When used, duplicate sort values and gaps are removed from all
+children.</p>
+
+<p><strong>Do you need this method?</strong> If you are wondering whether you
+need to use this method for something, chances are that you do not. This method
+is mostly applicable for internal core use, as ProcessWire manages Page sort
+values on its own internally for the most part.</p>
+
+<p>~~~~~ // set $page to have sort=5, moving any 5+ sort pages ahead
+$pages-&gt;sort($page, 5);</p>
+
+<p>// same as above using alternate syntax $page-&gt;sort = 5;
+$pages-&gt;sort($page);</p>
+
+<p>// re-build sort values for children of $page, removing duplicates and gaps
+$pages-&gt;sort($page, true); ~~~~~</p>
+
+<p>#pw-advanced</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page to sort (or parent of pages to sort, if using $value=true option)</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>integer|boolean</code><br>$value Specify one of the following: - Omit to set and use sort value from given
+$page. - Specify sort value (integer) to save that value. - Specify boolean true
+to instead rebuild sort for all of $page children.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>Number of pages that had sort values adjusted<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___insertBefore" id="____insertBefore">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____insertBefore">#</a>
+		<code><a href="source-class-ProcessWire.Pages.html#890-902" title="Go to source code">___insertBefore</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$beforePage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Sort/move one page above another (for manually sorted pages)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sort/move one page above another (for manually sorted pages)</p>
+
+<p>#pw-advanced</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page you want to move/sort</dd>
+					<dt><var>$beforePage</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$beforePage Page you want to insert before</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="___insertAfter" id="____insertAfter">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____insertAfter">#</a>
+		<code><a href="source-class-ProcessWire.Pages.html#904-916" title="Go to source code">___insertAfter</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$afterPage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Sort/move one page after another (for manually sorted pages)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sort/move one page after another (for manually sorted pages)</p>
+
+<p>#pw-advanced</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page you want to move/sort</dd>
+					<dt><var>$afterPage</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$afterPage Page you want to insert after</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="isSaveable" id="_isSaveable">
 
 		<td class="attributes"><code>
@@ -2108,7 +2365,7 @@ recognized time string</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSaveable">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#793-810" title="Go to source code">isSaveable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>&amp; $reason</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$fieldName</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#918-935" title="Go to source code">isSaveable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>&amp; $reason</var></span>, <span>string|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$fieldName</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2162,7 +2419,7 @@ saveable)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isDeleteable">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#812-826" title="Go to source code">isDeleteable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#937-951" title="Go to source code">isDeleteable</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2209,7 +2466,7 @@ the page is in a state to be deleteable via the API.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCache">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#828-843" title="Go to source code">getCache</a>( <span>integer|string|null <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#953-968" title="Go to source code">getCache</a>( <span>integer|string|null <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2258,7 +2515,7 @@ cache.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cache">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#845-856" title="Go to source code">cache</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#970-981" title="Go to source code">cache</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2298,7 +2555,7 @@ cache.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_uncache">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#858-884" title="Go to source code">uncache</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|null <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#983-1009" title="Go to source code">uncache</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|null <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2352,7 +2609,7 @@ set this to true.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_uncacheAll">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#886-923" title="Go to source code">uncacheAll</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1011-1048" title="Go to source code">uncacheAll</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2415,7 +2672,7 @@ this to true.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sortfields">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#925-940" title="Go to source code">sortfields</a>( <span>boolean <var>$reset</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1050-1065" title="Go to source code">sortfields</a>( <span>boolean <var>$reset</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2459,7 +2716,7 @@ this to true.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#942-954" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1067-1079" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2503,7 +2760,7 @@ this to true.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOutputFormatting">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#956-972" title="Go to source code">setOutputFormatting</a>( <span>boolean <var>$outputFormatting</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1081-1097" title="Go to source code">setOutputFormatting</a>( <span>boolean <var>$outputFormatting</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2549,7 +2806,7 @@ back-end (admin) of the site.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_of">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#974-1002" title="Go to source code">of</a>( <span>null|boolean <var>$of</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1099-1127" title="Go to source code">of</a>( <span>null|boolean <var>$of</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2605,7 +2862,7 @@ formatting state.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_debugLog">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1004-1024" title="Go to source code">debugLog</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span>, <span>string <var>$details</var> = <span class="php-quote">''</span></span>, <span>string|object <var>$result</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1129-1149" title="Go to source code">debugLog</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span>, <span>string <var>$details</var> = <span class="php-quote">''</span></span>, <span>string|object <var>$result</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2651,7 +2908,7 @@ formatting state.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDebugLog">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1026-1043" title="Go to source code">getDebugLog</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1151-1168" title="Go to source code">getDebugLog</a>( <span>string <var>$action</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2697,7 +2954,7 @@ formatting state.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageFinder">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1045-1055" title="Go to source code">getPageFinder</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1170-1180" title="Go to source code">getPageFinder</a>( )</code>
 
 		<div class="description short">
 			
@@ -2736,7 +2993,7 @@ formatting state.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAutojoin">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1057-1070" title="Go to source code">setAutojoin</a>( <span>boolean <var>$autojoin</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1182-1195" title="Go to source code">setAutojoin</a>( <span>boolean <var>$autojoin</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2779,7 +3036,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newPageArray">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1072-1088" title="Go to source code">newPageArray</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1197-1213" title="Go to source code">newPageArray</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2823,7 +3080,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newPage">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1090-1120" title="Go to source code">newPage</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1215-1245" title="Go to source code">newPage</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2869,7 +3126,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newNullPage">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1122-1134" title="Go to source code">newNullPage</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1247-1259" title="Go to source code">newNullPage</a>( )</code>
 
 		<div class="description short">
 			
@@ -2908,7 +3165,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1153-1170" title="Go to source code">__invoke</a>( <span>string|integer|array <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1278-1295" title="Go to source code">__invoke</a>( <span>string|integer|array <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2954,7 +3211,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_log">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1172-1187" title="Go to source code">log</a>( <span>mixed <var>$str</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1297-1312" title="Go to source code">log</a>( <span>mixed <var>$str</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3000,7 +3257,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loader">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1189-1197" title="Go to source code">loader</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1314-1322" title="Go to source code">loader</a>( )</code>
 
 		<div class="description short">
 			
@@ -3033,7 +3290,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editor">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1199-1208" title="Go to source code">editor</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1324-1333" title="Go to source code">editor</a>( )</code>
 
 		<div class="description short">
 			
@@ -3066,7 +3323,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cacher">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1210-1218" title="Go to source code">cacher</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1335-1343" title="Go to source code">cacher</a>( )</code>
 
 		<div class="description short">
 			
@@ -3099,7 +3356,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trasher">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1220-1229" title="Go to source code">trasher</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1345-1354" title="Go to source code">trasher</a>( )</code>
 
 		<div class="description short">
 			
@@ -3132,7 +3389,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_debug">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1231-1247" title="Go to source code">debug</a>( <span>boolean|null <var>$debug</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1356-1372" title="Go to source code">debug</a>( <span>boolean|null <var>$debug</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3176,7 +3433,7 @@ $pages-&gt;getById($key);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saved">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1254-1278" title="Go to source code">___saved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$changes</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1379-1403" title="Go to source code">___saved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$changes</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$values</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3225,7 +3482,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____added">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1280-1294" title="Go to source code">___added</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1405-1419" title="Go to source code">___added</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3265,7 +3522,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____moved">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1296-1312" title="Go to source code">___moved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1421-1437" title="Go to source code">___moved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3308,7 +3565,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____templateChanged">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1314-1330" title="Go to source code">___templateChanged</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1439-1455" title="Go to source code">___templateChanged</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3351,7 +3608,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____trashed">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1332-1342" title="Go to source code">___trashed</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1457-1467" title="Go to source code">___trashed</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3391,7 +3648,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____restored">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1344-1354" title="Go to source code">___restored</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1469-1479" title="Go to source code">___restored</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3431,7 +3688,7 @@ Wire::getChanges(true) for details.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1356-1376" title="Go to source code">___saveReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1481-1501" title="Go to source code">___saveReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3480,7 +3737,7 @@ as an error may prevent it.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleteReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1378-1394" title="Go to source code">___deleteReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1503-1519" title="Go to source code">___deleteReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3526,7 +3783,7 @@ hook is called once it has been confirmed that the page is deleteable and
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleted">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1396-1413" title="Go to source code">___deleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1521-1538" title="Go to source code">___deleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3566,7 +3823,7 @@ hook is called once it has been confirmed that the page is deleteable and
 
 		<td class="name"><div>
 		<a class="anchor" href="#____cloneReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1415-1424" title="Go to source code">___cloneReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$copy</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1540-1549" title="Go to source code">___cloneReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$copy</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3610,7 +3867,7 @@ touched</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____cloned">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1426-1437" title="Go to source code">___cloned</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$copy</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1551-1562" title="Go to source code">___cloned</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$copy</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3652,19 +3909,17 @@ touched</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____renamed">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1439-1462" title="Go to source code">___renamed</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1564-1587" title="Go to source code">___renamed</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Hook called when a page has been renamed (i.e. had it's name field
-change)</p>
+<p>Hook called when a page has been renamed (i.e. had its name field change)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Hook called when a page has been renamed (i.e. had it's name field
-change)</p>
+<p>Hook called when a page has been renamed (i.e. had its name field change)</p>
 
 <p>The previous name can be accessed at <code>$page-&gt;namePrevious</code>. The
 new name can be accessed at <code>$page-&gt;name</code>.</p>
@@ -3694,6 +3949,48 @@ is the language ID).</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="___sorted" id="____sorted">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#____sorted">#</a>
+		<code><a href="source-class-ProcessWire.Pages.html#1589-1599" title="Go to source code">___sorted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean <var>$children</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$total</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Hook called after a page has been sorted, or had its children re-sorted</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Hook called after a page has been sorted, or had its children re-sorted</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page given to have sort adjusted</dd>
+					<dt><var>$children</var></dt>
+					<dd><code>boolean</code><br>$children If true, children of $page have been all been re-sorted</dd>
+					<dt><var>$total</var></dt>
+					<dd><code>integer</code><br>$total Total number of pages that had sort adjusted as a result</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="___statusChanged" id="____statusChanged">
 
 		<td class="attributes"><code>
@@ -3705,7 +4002,7 @@ is the language ID).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____statusChanged">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1464-1502" title="Go to source code">___statusChanged</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1601-1639" title="Go to source code">___statusChanged</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3747,7 +4044,7 @@ is the language ID).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____statusChangeReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1504-1519" title="Go to source code">___statusChangeReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1641-1656" title="Go to source code">___statusChangeReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3789,7 +4086,7 @@ is the language ID).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____published">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1521-1531" title="Go to source code">___published</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1658-1668" title="Go to source code">___published</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3829,7 +4126,7 @@ is the language ID).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____unpublished">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1533-1543" title="Go to source code">___unpublished</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1670-1680" title="Go to source code">___unpublished</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3869,7 +4166,7 @@ is the language ID).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____publishReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1545-1553" title="Go to source code">___publishReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1682-1690" title="Go to source code">___publishReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3909,7 +4206,7 @@ is the language ID).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____unpublishReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1555-1563" title="Go to source code">___unpublishReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1692-1700" title="Go to source code">___unpublishReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3949,7 +4246,7 @@ is the language ID).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____found">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1565-1577" title="Go to source code">___found</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$pages</var></span>, <span>array <var>$details</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1702-1714" title="Go to source code">___found</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$pages</var></span>, <span>array <var>$details</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3996,7 +4293,7 @@ in the resulting PageArray</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveFieldReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1579-1588" title="Go to source code">___saveFieldReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1716-1725" title="Go to source code">___saveFieldReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4038,7 +4335,7 @@ in the resulting PageArray</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____savedField">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1590-1601" title="Go to source code">___savedField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1727-1738" title="Go to source code">___savedField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4080,7 +4377,7 @@ in the resulting PageArray</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____savePageOrFieldReady">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1603-1612" title="Go to source code">___savePageOrFieldReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$fieldName</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1740-1749" title="Go to source code">___savePageOrFieldReady</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$fieldName</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -4124,7 +4421,7 @@ execute</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____savedPageOrField">#</a>
-		<code><a href="source-class-ProcessWire.Pages.html#1614-1623" title="Go to source code">___savedPageOrField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$changes</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pages.html#1751-1760" title="Go to source code">___savedPageOrField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$changes</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -4224,7 +4521,7 @@ executes</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Pages.html#77-81" title="Go to source code"><b>nameMaxLength</b></a>
+				<a href="source-class-ProcessWire.Pages.html#81-85" title="Go to source code"><b>nameMaxLength</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">128</span></code></td>
 		<td class="description"><div>
@@ -4248,7 +4545,7 @@ executes</p>
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Pages.html#83-87" title="Go to source code"><b>defaultRootName</b></a>
+				<a href="source-class-ProcessWire.Pages.html#87-91" title="Go to source code"><b>defaultRootName</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">'home'</span></code></td>
 		<td class="description"><div>
@@ -4291,7 +4588,7 @@ executes</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#89-93" title="Go to source code"><var>$sortfields</var></a>
+				<a href="source-class-ProcessWire.Pages.html#93-97" title="Go to source code"><var>$sortfields</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -4318,7 +4615,7 @@ executes</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#95-101" title="Go to source code"><var>$debug</var></a>
+				<a href="source-class-ProcessWire.Pages.html#99-105" title="Go to source code"><var>$debug</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -4345,7 +4642,7 @@ executes</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#103-107" title="Go to source code"><var>$debugLog</var></a>
+				<a href="source-class-ProcessWire.Pages.html#107-111" title="Go to source code"><var>$debugLog</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -4372,7 +4669,7 @@ executes</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#109-113" title="Go to source code"><var>$loader</var></a>
+				<a href="source-class-ProcessWire.Pages.html#113-117" title="Go to source code"><var>$loader</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -4395,7 +4692,7 @@ executes</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#115-119" title="Go to source code"><var>$editor</var></a>
+				<a href="source-class-ProcessWire.Pages.html#119-123" title="Go to source code"><var>$editor</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -4418,7 +4715,7 @@ executes</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#121-125" title="Go to source code"><var>$cacher</var></a>
+				<a href="source-class-ProcessWire.Pages.html#125-129" title="Go to source code"><var>$cacher</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -4441,7 +4738,7 @@ executes</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Pages.html#127-131" title="Go to source code"><var>$trasher</var></a>
+				<a href="source-class-ProcessWire.Pages.html#131-135" title="Go to source code"><var>$trasher</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>

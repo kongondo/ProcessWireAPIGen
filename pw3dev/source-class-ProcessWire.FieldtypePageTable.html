@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypePageTable.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2119032604"></script>
+	<script type="text/javascript" src="elementlist.js?1688547908"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.45 dev</span>
+			<span>Overview version 3.0.46 dev</span>
 		</a>
 
 
@@ -957,219 +957,211 @@
 </span><span id="405" class="l"><a class="l" href="#405">405: </a>        <span class="php-var">$loadOptions</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'cache'</span> =&gt; <span class="php-keyword1">false</span>);
 </span><span id="406" class="l"><a class="l" href="#406">406: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$template</span>) <span class="php-var">$loadOptions</span>[<span class="php-quote">'template'</span>] = <span class="php-var">$template</span>;
 </span><span id="407" class="l"><a class="l" href="#407">407: </a>        
-</span><span id="408" class="l"><a class="l" href="#408">408: </a>        <span class="php-var">$sortfields</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'sortfields'</span>);
+</span><span id="408" class="l"><a class="l" href="#408">408: </a>        <span class="php-var">$items</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;getById(<span class="php-var">$value</span>, <span class="php-var">$loadOptions</span>);
 </span><span id="409" class="l"><a class="l" href="#409">409: </a>        
-</span><span id="410" class="l"><a class="l" href="#410">410: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$sortfields</span>) {
-</span><span id="411" class="l"><a class="l" href="#411">411: </a>            <span class="php-var">$selector</span> = <span class="php-var">$template</span> ? <span class="php-quote">&quot;template=</span><span class="php-var">$template</span><span class="php-quote">, &quot;</span> : <span class="php-quote">&quot;&quot;</span>; 
-</span><span id="412" class="l"><a class="l" href="#412">412: </a>            <span class="php-var">$selector</span> .= <span class="php-quote">&quot;include=unpublished, id=&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">'|'</span>, <span class="php-var">$value</span>);
+</span><span id="410" class="l"><a class="l" href="#410">410: </a>        <span class="php-var">$sortfields</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'sortfields'</span>);
+</span><span id="411" class="l"><a class="l" href="#411">411: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$sortfields</span>) {
+</span><span id="412" class="l"><a class="l" href="#412">412: </a>            <span class="php-var">$sorts</span> = <span class="php-keyword1">array</span>();
 </span><span id="413" class="l"><a class="l" href="#413">413: </a>            <span class="php-keyword1">foreach</span>(<span class="php-keyword2">explode</span>(<span class="php-quote">','</span>, <span class="php-var">$sortfields</span>) <span class="php-keyword1">as</span> <span class="php-var">$sortfield</span>) {
-</span><span id="414" class="l"><a class="l" href="#414">414: </a>                <span class="php-var">$selector</span> .= <span class="php-quote">&quot;, sort=&quot;</span> . <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;name(<span class="php-keyword2">trim</span>(<span class="php-var">$sortfield</span>));
+</span><span id="414" class="l"><a class="l" href="#414">414: </a>                <span class="php-var">$sorts</span>[] = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;name(<span class="php-keyword2">trim</span>(<span class="php-var">$sortfield</span>));
 </span><span id="415" class="l"><a class="l" href="#415">415: </a>            }
-</span><span id="416" class="l"><a class="l" href="#416">416: </a>            <span class="php-var">$options</span> = <span class="php-keyword1">array</span>(
-</span><span id="417" class="l"><a class="l" href="#417">417: </a>                <span class="php-quote">'cache'</span> =&gt; <span class="php-keyword1">false</span>,
-</span><span id="418" class="l"><a class="l" href="#418">418: </a>                <span class="php-quote">'caller'</span> =&gt; <span class="php-var">$this</span>-&gt;className() . <span class="php-quote">'::wakeupValue'</span>,
-</span><span id="419" class="l"><a class="l" href="#419">419: </a>                <span class="php-quote">'loadOptions'</span> =&gt; <span class="php-var">$loadOptions</span>
-</span><span id="420" class="l"><a class="l" href="#420">420: </a>            );
-</span><span id="421" class="l"><a class="l" href="#421">421: </a>            <span class="php-var">$items</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;find(<span class="php-var">$selector</span>, <span class="php-var">$options</span>); 
-</span><span id="422" class="l"><a class="l" href="#422">422: </a>            
-</span><span id="423" class="l"><a class="l" href="#423">423: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="424" class="l"><a class="l" href="#424">424: </a>            <span class="php-var">$items</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;getById(<span class="php-var">$value</span>, <span class="php-var">$loadOptions</span>); 
-</span><span id="425" class="l"><a class="l" href="#425">425: </a>        }
-</span><span id="426" class="l"><a class="l" href="#426">426: </a>            
-</span><span id="427" class="l"><a class="l" href="#427">427: </a>        <span class="php-keyword1">return</span> <span class="php-var">$items</span>; 
-</span><span id="428" class="l"><a class="l" href="#428">428: </a>    }
-</span><span id="429" class="l"><a class="l" href="#429">429: </a>
-</span><span id="430" class="l"><a class="l" href="#430">430: </a>    <span class="php-comment">/**
-</span></span><span id="431" class="l"><a class="l" href="#431">431: </a><span class="php-comment">     * Get information used by selectors for querying this field
-</span></span><span id="432" class="l"><a class="l" href="#432">432: </a><span class="php-comment">     * 
-</span></span><span id="433" class="l"><a class="l" href="#433">433: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="434" class="l"><a class="l" href="#434">434: </a><span class="php-comment">     * @param array $data
-</span></span><span id="435" class="l"><a class="l" href="#435">435: </a><span class="php-comment">     * @return array
-</span></span><span id="436" class="l"><a class="l" href="#436">436: </a><span class="php-comment">     * 
-</span></span><span id="437" class="l"><a class="l" href="#437">437: </a><span class="php-comment">     */</span>
-</span><span id="438" class="l"><a class="l" href="#438">438: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getSelectorInfo" href="#____getSelectorInfo">___getSelectorInfo</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span> = <span class="php-keyword1">array</span>()) {
-</span><span id="439" class="l"><a class="l" href="#439">439: </a>        <span class="php-var">$info</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'FieldtypePage'</span>)-&gt;getSelectorInfo(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
-</span><span id="440" class="l"><a class="l" href="#440">440: </a>        <span class="php-var">$info</span>[<span class="php-quote">'operators'</span>] = <span class="php-keyword1">array</span>(); <span class="php-comment">// force it to be non selectable, subfields only</span>
-</span><span id="441" class="l"><a class="l" href="#441">441: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>; 
-</span><span id="442" class="l"><a class="l" href="#442">442: </a>    }
-</span><span id="443" class="l"><a class="l" href="#443">443: </a>
-</span><span id="444" class="l"><a class="l" href="#444">444: </a>    <span class="php-comment">/**
-</span></span><span id="445" class="l"><a class="l" href="#445">445: </a><span class="php-comment">     * Export configuration values for external consumption
-</span></span><span id="446" class="l"><a class="l" href="#446">446: </a><span class="php-comment">     *
-</span></span><span id="447" class="l"><a class="l" href="#447">447: </a><span class="php-comment">     * Use this method to externalize any config values when necessary.
-</span></span><span id="448" class="l"><a class="l" href="#448">448: </a><span class="php-comment">     * For example, internal IDs should be converted to GUIDs where possible.
-</span></span><span id="449" class="l"><a class="l" href="#449">449: </a><span class="php-comment">     *
-</span></span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="451" class="l"><a class="l" href="#451">451: </a><span class="php-comment">     * @param array $data
-</span></span><span id="452" class="l"><a class="l" href="#452">452: </a><span class="php-comment">     * @return array
-</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment">     *
-</span></span><span id="454" class="l"><a class="l" href="#454">454: </a><span class="php-comment">     */</span>
-</span><span id="455" class="l"><a class="l" href="#455">455: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____exportConfigData" href="#____exportConfigData">___exportConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="456" class="l"><a class="l" href="#456">456: </a>        <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldtypes'</span>)-&gt;get(<span class="php-quote">'FieldtypePage'</span>)-&gt;exportConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
-</span><span id="457" class="l"><a class="l" href="#457">457: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
-</span><span id="458" class="l"><a class="l" href="#458">458: </a>    }
-</span><span id="459" class="l"><a class="l" href="#459">459: </a>    
-</span><span id="460" class="l"><a class="l" href="#460">460: </a>    <span class="php-comment">/**
-</span></span><span id="461" class="l"><a class="l" href="#461">461: </a><span class="php-comment">     * Convert an array of exported data to a format that will be understood internally (opposite of exportConfigData)
-</span></span><span id="462" class="l"><a class="l" href="#462">462: </a><span class="php-comment">     *
-</span></span><span id="463" class="l"><a class="l" href="#463">463: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="464" class="l"><a class="l" href="#464">464: </a><span class="php-comment">     * @param array $data
-</span></span><span id="465" class="l"><a class="l" href="#465">465: </a><span class="php-comment">     * @return array Data as given and modified as needed. Also included is $data[errors], an associative array
-</span></span><span id="466" class="l"><a class="l" href="#466">466: </a><span class="php-comment">     *  indexed by property name containing errors that occurred during import of config data.
-</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment">     *
-</span></span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-comment">     */</span>
-</span><span id="469" class="l"><a class="l" href="#469">469: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____importConfigData" href="#____importConfigData">___importConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="470" class="l"><a class="l" href="#470">470: </a>        <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldtypes'</span>)-&gt;get(<span class="php-quote">'FieldtypePage'</span>)-&gt;importConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>);
-</span><span id="471" class="l"><a class="l" href="#471">471: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
-</span><span id="472" class="l"><a class="l" href="#472">472: </a>    }
-</span><span id="473" class="l"><a class="l" href="#473">473: </a>
-</span><span id="474" class="l"><a class="l" href="#474">474: </a>    <span class="php-comment">/**
-</span></span><span id="475" class="l"><a class="l" href="#475">475: </a><span class="php-comment">     * Return orphan pages that match the PageTable settings
-</span></span><span id="476" class="l"><a class="l" href="#476">476: </a><span class="php-comment">     * 
-</span></span><span id="477" class="l"><a class="l" href="#477">477: </a><span class="php-comment">     * Applicable only to PageTable fields utilizing the editable page's children as PageTable items.
-</span></span><span id="478" class="l"><a class="l" href="#478">478: </a><span class="php-comment">     * (i.e. no parent_id is set)
-</span></span><span id="479" class="l"><a class="l" href="#479">479: </a><span class="php-comment">     *
-</span></span><span id="480" class="l"><a class="l" href="#480">480: </a><span class="php-comment">     * @param Page $page
-</span></span><span id="481" class="l"><a class="l" href="#481">481: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="482" class="l"><a class="l" href="#482">482: </a><span class="php-comment">     * @return PageArray Found orphans
-</span></span><span id="483" class="l"><a class="l" href="#483">483: </a><span class="php-comment">     *
-</span></span><span id="484" class="l"><a class="l" href="#484">484: </a><span class="php-comment">     */</span>
-</span><span id="485" class="l"><a class="l" href="#485">485: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_findOrphans" href="#_findOrphans">findOrphans</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>) { 
-</span><span id="486" class="l"><a class="l" href="#486">486: </a>        <span class="php-var">$orphans</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;newPageArray();
-</span><span id="487" class="l"><a class="l" href="#487">487: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;parent_id) <span class="php-keyword1">return</span> <span class="php-var">$orphans</span>;
-</span><span id="488" class="l"><a class="l" href="#488">488: </a>        <span class="php-var">$templateID</span> = <span class="php-var">$field</span>-&gt;template_id; 
-</span><span id="489" class="l"><a class="l" href="#489">489: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$templateID</span>) <span class="php-keyword1">return</span> <span class="php-var">$orphans</span>; <span class="php-comment">// we need at least a template to do this</span>
-</span><span id="490" class="l"><a class="l" href="#490">490: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$templateID</span>)) <span class="php-var">$templateID</span> = <span class="php-keyword1">array</span>(<span class="php-var">$templateID</span>); 
-</span><span id="491" class="l"><a class="l" href="#491">491: </a>        <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;getUnformatted(<span class="php-var">$field</span>-&gt;name); 
-</span><span id="492" class="l"><a class="l" href="#492">492: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> PageArray) <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;newPageArray();
-</span><span id="493" class="l"><a class="l" href="#493">493: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;numChildren &lt;= <span class="php-var">$value</span>-&gt;<span class="php-keyword2">count</span>()) <span class="php-keyword1">return</span> <span class="php-var">$orphans</span>; <span class="php-comment">// nothing new</span>
-</span><span id="494" class="l"><a class="l" href="#494">494: </a>        <span class="php-var">$templateNames</span> = <span class="php-keyword1">array</span>();
-</span><span id="495" class="l"><a class="l" href="#495">495: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$templateID</span> <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
-</span><span id="496" class="l"><a class="l" href="#496">496: </a>            <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get(<span class="php-var">$id</span>);
-</span><span id="497" class="l"><a class="l" href="#497">497: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$template</span>) <span class="php-var">$templateNames</span>[] = <span class="php-var">$template</span>-&gt;name; 
-</span><span id="498" class="l"><a class="l" href="#498">498: </a>        }
-</span><span id="499" class="l"><a class="l" href="#499">499: </a>        <span class="php-var">$selector</span> = <span class="php-quote">&quot;include=unpublished, template=&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">'|'</span>, <span class="php-var">$templateNames</span>); 
-</span><span id="500" class="l"><a class="l" href="#500">500: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span>-&gt;<span class="php-keyword2">count</span>()) <span class="php-var">$selector</span> .= <span class="php-quote">&quot;, id!=</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>;
-</span><span id="501" class="l"><a class="l" href="#501">501: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;children(<span class="php-var">$selector</span>) <span class="php-keyword1">as</span> <span class="php-var">$item</span>) <span class="php-var">$orphans</span>-&gt;add(<span class="php-var">$item</span>); 
-</span><span id="502" class="l"><a class="l" href="#502">502: </a>        <span class="php-keyword1">return</span> <span class="php-var">$orphans</span>;    
-</span><span id="503" class="l"><a class="l" href="#503">503: </a>    }
-</span><span id="504" class="l"><a class="l" href="#504">504: </a>
-</span><span id="505" class="l"><a class="l" href="#505">505: </a>    <span class="php-comment">/**
-</span></span><span id="506" class="l"><a class="l" href="#506">506: </a><span class="php-comment">     * Return configuration fields definable for each FieldtypePage
-</span></span><span id="507" class="l"><a class="l" href="#507">507: </a><span class="php-comment">     * 
-</span></span><span id="508" class="l"><a class="l" href="#508">508: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="509" class="l"><a class="l" href="#509">509: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="510" class="l"><a class="l" href="#510">510: </a><span class="php-comment">     *
-</span></span><span id="511" class="l"><a class="l" href="#511">511: </a><span class="php-comment">     */</span>
-</span><span id="512" class="l"><a class="l" href="#512">512: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>(Field <span class="php-var">$field</span>) {
-</span><span id="513" class="l"><a class="l" href="#513">513: </a>        
-</span><span id="514" class="l"><a class="l" href="#514">514: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;autoTrash !== <span class="php-keyword1">null</span>) { <span class="php-comment">// autoTrash was renamed to trashOnDelete</span>
-</span><span id="515" class="l"><a class="l" href="#515">515: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;trashOnDelete === <span class="php-keyword1">null</span>) {    
-</span><span id="516" class="l"><a class="l" href="#516">516: </a>                <span class="php-var">$field</span>-&gt;trashOnDelete = <span class="php-var">$field</span>-&gt;autoTrash; 
-</span><span id="517" class="l"><a class="l" href="#517">517: </a>            }
-</span><span id="518" class="l"><a class="l" href="#518">518: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$field</span>-&gt;autoTrash); 
-</span><span id="519" class="l"><a class="l" href="#519">519: </a>        }
-</span><span id="520" class="l"><a class="l" href="#520">520: </a>
-</span><span id="521" class="l"><a class="l" href="#521">521: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields(<span class="php-var">$field</span>);
-</span><span id="522" class="l"><a class="l" href="#522">522: </a>
-</span><span id="523" class="l"><a class="l" href="#523">523: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldAsmSelect'</span>);
-</span><span id="524" class="l"><a class="l" href="#524">524: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'template_id'</span>);
-</span><span id="525" class="l"><a class="l" href="#525">525: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select one or more templates for items'</span>);
-</span><span id="526" class="l"><a class="l" href="#526">526: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>) <span class="php-keyword1">as</span> <span class="php-var">$template</span>) {
-</span><span id="527" class="l"><a class="l" href="#527">527: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$template</span>-&gt;flags &amp; Template::flagSystem) <span class="php-keyword1">continue</span>; 
-</span><span id="528" class="l"><a class="l" href="#528">528: </a>            <span class="php-var">$f</span>-&gt;addOption(<span class="php-var">$template</span>-&gt;id, <span class="php-var">$template</span>-&gt;name); 
-</span><span id="529" class="l"><a class="l" href="#529">529: </a>        }
-</span><span id="530" class="l"><a class="l" href="#530">530: </a>        <span class="php-var">$value</span> = <span class="php-var">$field</span>-&gt;template_id; 
-</span><span id="531" class="l"><a class="l" href="#531">531: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-var">$value</span> ? <span class="php-keyword1">array</span>(<span class="php-var">$value</span>) : <span class="php-keyword1">array</span>();
-</span><span id="532" class="l"><a class="l" href="#532">532: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>); 
-</span><span id="533" class="l"><a class="l" href="#533">533: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">true</span>; 
-</span><span id="534" class="l"><a class="l" href="#534">534: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'These are the templates that will be used by pages managed from this field. You may wish to create a new template specific to the needs of this field.'</span>); <span class="php-comment">// Templates selection description</span>
-</span><span id="535" class="l"><a class="l" href="#535">535: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Please hit Save after selecting a template and the remaining configuration on the Input tab will contain more context.'</span>); <span class="php-comment">// Templates selection notes </span>
-</span><span id="536" class="l"><a class="l" href="#536">536: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="537" class="l"><a class="l" href="#537">537: </a>
-</span><span id="538" class="l"><a class="l" href="#538">538: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldPageListSelect'</span>); 
-</span><span id="539" class="l"><a class="l" href="#539">539: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'parent_id'</span>); 
-</span><span id="540" class="l"><a class="l" href="#540">540: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select a parent for items'</span>); 
-</span><span id="541" class="l"><a class="l" href="#541">541: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'All items created and managed from this field will live under the parent you select here.'</span>);
-</span><span id="542" class="l"><a class="l" href="#542">542: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If no parent is selected, then items will be placed as children of the page being edited.'</span>); 
-</span><span id="543" class="l"><a class="l" href="#543">543: </a>        <span class="php-var">$f</span>-&gt;collapsed = <span class="php-var">$field</span>-&gt;parent_id ? Inputfield::collapsedNo : Inputfield::collapsedYes;
-</span><span id="544" class="l"><a class="l" href="#544">544: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$field</span>-&gt;parent_id); 
-</span><span id="545" class="l"><a class="l" href="#545">545: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="546" class="l"><a class="l" href="#546">546: </a>        
-</span><span id="547" class="l"><a class="l" href="#547">547: </a>        <span class="php-comment">/*
-</span></span><span id="548" class="l"><a class="l" href="#548">548: </a><span class="php-comment">        $f = $this-&gt;wire('modules')-&gt;get('InputfieldCheckbox'); 
-</span></span><span id="549" class="l"><a class="l" href="#549">549: </a><span class="php-comment">        $f-&gt;attr('name', 'autoTrash'); 
-</span></span><span id="550" class="l"><a class="l" href="#550">550: </a><span class="php-comment">        $f-&gt;attr('value', 1); 
-</span></span><span id="551" class="l"><a class="l" href="#551">551: </a><span class="php-comment">        if($field-&gt;autoTrash) $f-&gt;attr('checked', 'checked'); 
-</span></span><span id="552" class="l"><a class="l" href="#552">552: </a><span class="php-comment">        $f-&gt;label = $this-&gt;_('Trash items when page is deleted?'); 
-</span></span><span id="553" class="l"><a class="l" href="#553">553: </a><span class="php-comment">        $f-&gt;description = $this-&gt;_('When checked, items created/managed by a given page will be automatically trashed when that page is deleted. If not checked, the items will remain under the parent you selected above.'); // autoTrash option description
-</span></span><span id="554" class="l"><a class="l" href="#554">554: </a><span class="php-comment">        $f-&gt;notes = $this-&gt;_('This option applies only if you have selected a parent above.'); 
-</span></span><span id="555" class="l"><a class="l" href="#555">555: </a><span class="php-comment">        $f-&gt;collapsed = Inputfield::collapsedBlank;
-</span></span><span id="556" class="l"><a class="l" href="#556">556: </a><span class="php-comment">        $inputfields-&gt;add($f);
-</span></span><span id="557" class="l"><a class="l" href="#557">557: </a><span class="php-comment">        */</span>
-</span><span id="558" class="l"><a class="l" href="#558">558: </a>        
-</span><span id="559" class="l"><a class="l" href="#559">559: </a>        <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>); 
-</span><span id="560" class="l"><a class="l" href="#560">560: </a>        <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Page behaviors'</span>);
-</span><span id="561" class="l"><a class="l" href="#561">561: </a>        <span class="php-var">$fieldset</span>-&gt;showIf = <span class="php-quote">'parent_id!=&quot;&quot;'</span>;
-</span><span id="562" class="l"><a class="l" href="#562">562: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$fieldset</span>);
+</span><span id="416" class="l"><a class="l" href="#416">416: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$sorts</span>)) <span class="php-var">$items</span>-&gt;<span class="php-keyword2">sort</span>(<span class="php-var">$sorts</span>);
+</span><span id="417" class="l"><a class="l" href="#417">417: </a>        }
+</span><span id="418" class="l"><a class="l" href="#418">418: </a>        
+</span><span id="419" class="l"><a class="l" href="#419">419: </a>        <span class="php-keyword1">return</span> <span class="php-var">$items</span>; 
+</span><span id="420" class="l"><a class="l" href="#420">420: </a>    }
+</span><span id="421" class="l"><a class="l" href="#421">421: </a>
+</span><span id="422" class="l"><a class="l" href="#422">422: </a>    <span class="php-comment">/**
+</span></span><span id="423" class="l"><a class="l" href="#423">423: </a><span class="php-comment">     * Get information used by selectors for querying this field
+</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     * 
+</span></span><span id="425" class="l"><a class="l" href="#425">425: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="426" class="l"><a class="l" href="#426">426: </a><span class="php-comment">     * @param array $data
+</span></span><span id="427" class="l"><a class="l" href="#427">427: </a><span class="php-comment">     * @return array
+</span></span><span id="428" class="l"><a class="l" href="#428">428: </a><span class="php-comment">     * 
+</span></span><span id="429" class="l"><a class="l" href="#429">429: </a><span class="php-comment">     */</span>
+</span><span id="430" class="l"><a class="l" href="#430">430: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getSelectorInfo" href="#____getSelectorInfo">___getSelectorInfo</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="431" class="l"><a class="l" href="#431">431: </a>        <span class="php-var">$info</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'FieldtypePage'</span>)-&gt;getSelectorInfo(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
+</span><span id="432" class="l"><a class="l" href="#432">432: </a>        <span class="php-var">$info</span>[<span class="php-quote">'operators'</span>] = <span class="php-keyword1">array</span>(); <span class="php-comment">// force it to be non selectable, subfields only</span>
+</span><span id="433" class="l"><a class="l" href="#433">433: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>; 
+</span><span id="434" class="l"><a class="l" href="#434">434: </a>    }
+</span><span id="435" class="l"><a class="l" href="#435">435: </a>
+</span><span id="436" class="l"><a class="l" href="#436">436: </a>    <span class="php-comment">/**
+</span></span><span id="437" class="l"><a class="l" href="#437">437: </a><span class="php-comment">     * Export configuration values for external consumption
+</span></span><span id="438" class="l"><a class="l" href="#438">438: </a><span class="php-comment">     *
+</span></span><span id="439" class="l"><a class="l" href="#439">439: </a><span class="php-comment">     * Use this method to externalize any config values when necessary.
+</span></span><span id="440" class="l"><a class="l" href="#440">440: </a><span class="php-comment">     * For example, internal IDs should be converted to GUIDs where possible.
+</span></span><span id="441" class="l"><a class="l" href="#441">441: </a><span class="php-comment">     *
+</span></span><span id="442" class="l"><a class="l" href="#442">442: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="443" class="l"><a class="l" href="#443">443: </a><span class="php-comment">     * @param array $data
+</span></span><span id="444" class="l"><a class="l" href="#444">444: </a><span class="php-comment">     * @return array
+</span></span><span id="445" class="l"><a class="l" href="#445">445: </a><span class="php-comment">     *
+</span></span><span id="446" class="l"><a class="l" href="#446">446: </a><span class="php-comment">     */</span>
+</span><span id="447" class="l"><a class="l" href="#447">447: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____exportConfigData" href="#____exportConfigData">___exportConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="448" class="l"><a class="l" href="#448">448: </a>        <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldtypes'</span>)-&gt;get(<span class="php-quote">'FieldtypePage'</span>)-&gt;exportConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
+</span><span id="449" class="l"><a class="l" href="#449">449: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
+</span><span id="450" class="l"><a class="l" href="#450">450: </a>    }
+</span><span id="451" class="l"><a class="l" href="#451">451: </a>    
+</span><span id="452" class="l"><a class="l" href="#452">452: </a>    <span class="php-comment">/**
+</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment">     * Convert an array of exported data to a format that will be understood internally (opposite of exportConfigData)
+</span></span><span id="454" class="l"><a class="l" href="#454">454: </a><span class="php-comment">     *
+</span></span><span id="455" class="l"><a class="l" href="#455">455: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="456" class="l"><a class="l" href="#456">456: </a><span class="php-comment">     * @param array $data
+</span></span><span id="457" class="l"><a class="l" href="#457">457: </a><span class="php-comment">     * @return array Data as given and modified as needed. Also included is $data[errors], an associative array
+</span></span><span id="458" class="l"><a class="l" href="#458">458: </a><span class="php-comment">     *  indexed by property name containing errors that occurred during import of config data.
+</span></span><span id="459" class="l"><a class="l" href="#459">459: </a><span class="php-comment">     *
+</span></span><span id="460" class="l"><a class="l" href="#460">460: </a><span class="php-comment">     */</span>
+</span><span id="461" class="l"><a class="l" href="#461">461: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____importConfigData" href="#____importConfigData">___importConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="462" class="l"><a class="l" href="#462">462: </a>        <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldtypes'</span>)-&gt;get(<span class="php-quote">'FieldtypePage'</span>)-&gt;importConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>);
+</span><span id="463" class="l"><a class="l" href="#463">463: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
+</span><span id="464" class="l"><a class="l" href="#464">464: </a>    }
+</span><span id="465" class="l"><a class="l" href="#465">465: </a>
+</span><span id="466" class="l"><a class="l" href="#466">466: </a>    <span class="php-comment">/**
+</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment">     * Return orphan pages that match the PageTable settings
+</span></span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-comment">     * 
+</span></span><span id="469" class="l"><a class="l" href="#469">469: </a><span class="php-comment">     * Applicable only to PageTable fields utilizing the editable page's children as PageTable items.
+</span></span><span id="470" class="l"><a class="l" href="#470">470: </a><span class="php-comment">     * (i.e. no parent_id is set)
+</span></span><span id="471" class="l"><a class="l" href="#471">471: </a><span class="php-comment">     *
+</span></span><span id="472" class="l"><a class="l" href="#472">472: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="473" class="l"><a class="l" href="#473">473: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="474" class="l"><a class="l" href="#474">474: </a><span class="php-comment">     * @return PageArray Found orphans
+</span></span><span id="475" class="l"><a class="l" href="#475">475: </a><span class="php-comment">     *
+</span></span><span id="476" class="l"><a class="l" href="#476">476: </a><span class="php-comment">     */</span>
+</span><span id="477" class="l"><a class="l" href="#477">477: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_findOrphans" href="#_findOrphans">findOrphans</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>) { 
+</span><span id="478" class="l"><a class="l" href="#478">478: </a>        <span class="php-var">$orphans</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;newPageArray();
+</span><span id="479" class="l"><a class="l" href="#479">479: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;parent_id) <span class="php-keyword1">return</span> <span class="php-var">$orphans</span>;
+</span><span id="480" class="l"><a class="l" href="#480">480: </a>        <span class="php-var">$templateID</span> = <span class="php-var">$field</span>-&gt;template_id; 
+</span><span id="481" class="l"><a class="l" href="#481">481: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$templateID</span>) <span class="php-keyword1">return</span> <span class="php-var">$orphans</span>; <span class="php-comment">// we need at least a template to do this</span>
+</span><span id="482" class="l"><a class="l" href="#482">482: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$templateID</span>)) <span class="php-var">$templateID</span> = <span class="php-keyword1">array</span>(<span class="php-var">$templateID</span>); 
+</span><span id="483" class="l"><a class="l" href="#483">483: </a>        <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;getUnformatted(<span class="php-var">$field</span>-&gt;name); 
+</span><span id="484" class="l"><a class="l" href="#484">484: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> PageArray) <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;newPageArray();
+</span><span id="485" class="l"><a class="l" href="#485">485: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;numChildren &lt;= <span class="php-var">$value</span>-&gt;<span class="php-keyword2">count</span>()) <span class="php-keyword1">return</span> <span class="php-var">$orphans</span>; <span class="php-comment">// nothing new</span>
+</span><span id="486" class="l"><a class="l" href="#486">486: </a>        <span class="php-var">$templateNames</span> = <span class="php-keyword1">array</span>();
+</span><span id="487" class="l"><a class="l" href="#487">487: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$templateID</span> <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
+</span><span id="488" class="l"><a class="l" href="#488">488: </a>            <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get(<span class="php-var">$id</span>);
+</span><span id="489" class="l"><a class="l" href="#489">489: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$template</span>) <span class="php-var">$templateNames</span>[] = <span class="php-var">$template</span>-&gt;name; 
+</span><span id="490" class="l"><a class="l" href="#490">490: </a>        }
+</span><span id="491" class="l"><a class="l" href="#491">491: </a>        <span class="php-var">$selector</span> = <span class="php-quote">&quot;include=unpublished, template=&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">'|'</span>, <span class="php-var">$templateNames</span>); 
+</span><span id="492" class="l"><a class="l" href="#492">492: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span>-&gt;<span class="php-keyword2">count</span>()) <span class="php-var">$selector</span> .= <span class="php-quote">&quot;, id!=</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>;
+</span><span id="493" class="l"><a class="l" href="#493">493: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;children(<span class="php-var">$selector</span>) <span class="php-keyword1">as</span> <span class="php-var">$item</span>) <span class="php-var">$orphans</span>-&gt;add(<span class="php-var">$item</span>); 
+</span><span id="494" class="l"><a class="l" href="#494">494: </a>        <span class="php-keyword1">return</span> <span class="php-var">$orphans</span>;    
+</span><span id="495" class="l"><a class="l" href="#495">495: </a>    }
+</span><span id="496" class="l"><a class="l" href="#496">496: </a>
+</span><span id="497" class="l"><a class="l" href="#497">497: </a>    <span class="php-comment">/**
+</span></span><span id="498" class="l"><a class="l" href="#498">498: </a><span class="php-comment">     * Return configuration fields definable for each FieldtypePage
+</span></span><span id="499" class="l"><a class="l" href="#499">499: </a><span class="php-comment">     * 
+</span></span><span id="500" class="l"><a class="l" href="#500">500: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="501" class="l"><a class="l" href="#501">501: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="502" class="l"><a class="l" href="#502">502: </a><span class="php-comment">     *
+</span></span><span id="503" class="l"><a class="l" href="#503">503: </a><span class="php-comment">     */</span>
+</span><span id="504" class="l"><a class="l" href="#504">504: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>(Field <span class="php-var">$field</span>) {
+</span><span id="505" class="l"><a class="l" href="#505">505: </a>        
+</span><span id="506" class="l"><a class="l" href="#506">506: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;autoTrash !== <span class="php-keyword1">null</span>) { <span class="php-comment">// autoTrash was renamed to trashOnDelete</span>
+</span><span id="507" class="l"><a class="l" href="#507">507: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;trashOnDelete === <span class="php-keyword1">null</span>) {    
+</span><span id="508" class="l"><a class="l" href="#508">508: </a>                <span class="php-var">$field</span>-&gt;trashOnDelete = <span class="php-var">$field</span>-&gt;autoTrash; 
+</span><span id="509" class="l"><a class="l" href="#509">509: </a>            }
+</span><span id="510" class="l"><a class="l" href="#510">510: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$field</span>-&gt;autoTrash); 
+</span><span id="511" class="l"><a class="l" href="#511">511: </a>        }
+</span><span id="512" class="l"><a class="l" href="#512">512: </a>
+</span><span id="513" class="l"><a class="l" href="#513">513: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields(<span class="php-var">$field</span>);
+</span><span id="514" class="l"><a class="l" href="#514">514: </a>
+</span><span id="515" class="l"><a class="l" href="#515">515: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldAsmSelect'</span>);
+</span><span id="516" class="l"><a class="l" href="#516">516: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'template_id'</span>);
+</span><span id="517" class="l"><a class="l" href="#517">517: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select one or more templates for items'</span>);
+</span><span id="518" class="l"><a class="l" href="#518">518: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>) <span class="php-keyword1">as</span> <span class="php-var">$template</span>) {
+</span><span id="519" class="l"><a class="l" href="#519">519: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$template</span>-&gt;flags &amp; Template::flagSystem) <span class="php-keyword1">continue</span>; 
+</span><span id="520" class="l"><a class="l" href="#520">520: </a>            <span class="php-var">$f</span>-&gt;addOption(<span class="php-var">$template</span>-&gt;id, <span class="php-var">$template</span>-&gt;name); 
+</span><span id="521" class="l"><a class="l" href="#521">521: </a>        }
+</span><span id="522" class="l"><a class="l" href="#522">522: </a>        <span class="php-var">$value</span> = <span class="php-var">$field</span>-&gt;template_id; 
+</span><span id="523" class="l"><a class="l" href="#523">523: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-var">$value</span> ? <span class="php-keyword1">array</span>(<span class="php-var">$value</span>) : <span class="php-keyword1">array</span>();
+</span><span id="524" class="l"><a class="l" href="#524">524: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>); 
+</span><span id="525" class="l"><a class="l" href="#525">525: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">true</span>; 
+</span><span id="526" class="l"><a class="l" href="#526">526: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'These are the templates that will be used by pages managed from this field. You may wish to create a new template specific to the needs of this field.'</span>); <span class="php-comment">// Templates selection description</span>
+</span><span id="527" class="l"><a class="l" href="#527">527: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Please hit Save after selecting a template and the remaining configuration on the Input tab will contain more context.'</span>); <span class="php-comment">// Templates selection notes </span>
+</span><span id="528" class="l"><a class="l" href="#528">528: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="529" class="l"><a class="l" href="#529">529: </a>
+</span><span id="530" class="l"><a class="l" href="#530">530: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldPageListSelect'</span>); 
+</span><span id="531" class="l"><a class="l" href="#531">531: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'parent_id'</span>); 
+</span><span id="532" class="l"><a class="l" href="#532">532: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select a parent for items'</span>); 
+</span><span id="533" class="l"><a class="l" href="#533">533: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'All items created and managed from this field will live under the parent you select here.'</span>);
+</span><span id="534" class="l"><a class="l" href="#534">534: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If no parent is selected, then items will be placed as children of the page being edited.'</span>); 
+</span><span id="535" class="l"><a class="l" href="#535">535: </a>        <span class="php-var">$f</span>-&gt;collapsed = <span class="php-var">$field</span>-&gt;parent_id ? Inputfield::collapsedNo : Inputfield::collapsedYes;
+</span><span id="536" class="l"><a class="l" href="#536">536: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$field</span>-&gt;parent_id); 
+</span><span id="537" class="l"><a class="l" href="#537">537: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="538" class="l"><a class="l" href="#538">538: </a>        
+</span><span id="539" class="l"><a class="l" href="#539">539: </a>        <span class="php-comment">/*
+</span></span><span id="540" class="l"><a class="l" href="#540">540: </a><span class="php-comment">        $f = $this-&gt;wire('modules')-&gt;get('InputfieldCheckbox'); 
+</span></span><span id="541" class="l"><a class="l" href="#541">541: </a><span class="php-comment">        $f-&gt;attr('name', 'autoTrash'); 
+</span></span><span id="542" class="l"><a class="l" href="#542">542: </a><span class="php-comment">        $f-&gt;attr('value', 1); 
+</span></span><span id="543" class="l"><a class="l" href="#543">543: </a><span class="php-comment">        if($field-&gt;autoTrash) $f-&gt;attr('checked', 'checked'); 
+</span></span><span id="544" class="l"><a class="l" href="#544">544: </a><span class="php-comment">        $f-&gt;label = $this-&gt;_('Trash items when page is deleted?'); 
+</span></span><span id="545" class="l"><a class="l" href="#545">545: </a><span class="php-comment">        $f-&gt;description = $this-&gt;_('When checked, items created/managed by a given page will be automatically trashed when that page is deleted. If not checked, the items will remain under the parent you selected above.'); // autoTrash option description
+</span></span><span id="546" class="l"><a class="l" href="#546">546: </a><span class="php-comment">        $f-&gt;notes = $this-&gt;_('This option applies only if you have selected a parent above.'); 
+</span></span><span id="547" class="l"><a class="l" href="#547">547: </a><span class="php-comment">        $f-&gt;collapsed = Inputfield::collapsedBlank;
+</span></span><span id="548" class="l"><a class="l" href="#548">548: </a><span class="php-comment">        $inputfields-&gt;add($f);
+</span></span><span id="549" class="l"><a class="l" href="#549">549: </a><span class="php-comment">        */</span>
+</span><span id="550" class="l"><a class="l" href="#550">550: </a>        
+</span><span id="551" class="l"><a class="l" href="#551">551: </a>        <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>); 
+</span><span id="552" class="l"><a class="l" href="#552">552: </a>        <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Page behaviors'</span>);
+</span><span id="553" class="l"><a class="l" href="#553">553: </a>        <span class="php-var">$fieldset</span>-&gt;showIf = <span class="php-quote">'parent_id!=&quot;&quot;'</span>;
+</span><span id="554" class="l"><a class="l" href="#554">554: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$fieldset</span>);
+</span><span id="555" class="l"><a class="l" href="#555">555: </a>        
+</span><span id="556" class="l"><a class="l" href="#556">556: </a>        <span class="php-var">$labels</span> = <span class="php-keyword1">array</span>(
+</span><span id="557" class="l"><a class="l" href="#557">557: </a>            <span class="php-quote">'nothing'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Nothing'</span>), 
+</span><span id="558" class="l"><a class="l" href="#558">558: </a>            <span class="php-quote">'trash'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Trash them'</span>),
+</span><span id="559" class="l"><a class="l" href="#559">559: </a>            <span class="php-quote">'delete'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Delete them'</span>),
+</span><span id="560" class="l"><a class="l" href="#560">560: </a>            <span class="php-quote">'unpub'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Unpublish them'</span>), 
+</span><span id="561" class="l"><a class="l" href="#561">561: </a>            <span class="php-quote">'hide'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Hide them'</span>), 
+</span><span id="562" class="l"><a class="l" href="#562">562: </a>            );
 </span><span id="563" class="l"><a class="l" href="#563">563: </a>        
-</span><span id="564" class="l"><a class="l" href="#564">564: </a>        <span class="php-var">$labels</span> = <span class="php-keyword1">array</span>(
-</span><span id="565" class="l"><a class="l" href="#565">565: </a>            <span class="php-quote">'nothing'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Nothing'</span>), 
-</span><span id="566" class="l"><a class="l" href="#566">566: </a>            <span class="php-quote">'trash'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Trash them'</span>),
-</span><span id="567" class="l"><a class="l" href="#567">567: </a>            <span class="php-quote">'delete'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Delete them'</span>),
-</span><span id="568" class="l"><a class="l" href="#568">568: </a>            <span class="php-quote">'unpub'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Unpublish them'</span>), 
-</span><span id="569" class="l"><a class="l" href="#569">569: </a>            <span class="php-quote">'hide'</span> =&gt; <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Hide them'</span>), 
-</span><span id="570" class="l"><a class="l" href="#570">570: </a>            );
-</span><span id="571" class="l"><a class="l" href="#571">571: </a>        
-</span><span id="572" class="l"><a class="l" href="#572">572: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>);
-</span><span id="573" class="l"><a class="l" href="#573">573: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'trashOnDelete'</span>);
-</span><span id="574" class="l"><a class="l" href="#574">574: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Delete'</span>);
-</span><span id="575" class="l"><a class="l" href="#575">575: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'What should happen to &quot;%s&quot; items when the containing page is permanently deleted?'</span>), <span class="php-var">$field</span>-&gt;name); 
-</span><span id="576" class="l"><a class="l" href="#576">576: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$labels</span>[<span class="php-quote">'nothing'</span>]); 
-</span><span id="577" class="l"><a class="l" href="#577">577: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$labels</span>[<span class="php-quote">'trash'</span>]);
-</span><span id="578" class="l"><a class="l" href="#578">578: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">2</span>, <span class="php-var">$labels</span>[<span class="php-quote">'delete'</span>]); 
-</span><span id="579" class="l"><a class="l" href="#579">579: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$field</span>-&gt;trashOnDelete); <span class="php-comment">// aka autoTrash</span>
-</span><span id="580" class="l"><a class="l" href="#580">580: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
-</span><span id="581" class="l"><a class="l" href="#581">581: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="582" class="l"><a class="l" href="#582">582: </a>
-</span><span id="583" class="l"><a class="l" href="#583">583: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>);
-</span><span id="584" class="l"><a class="l" href="#584">584: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'unpubOnTrash'</span>);
-</span><span id="585" class="l"><a class="l" href="#585">585: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Trash'</span>);
-</span><span id="586" class="l"><a class="l" href="#586">586: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'What should happen to &quot;%s&quot; items when the containing page is trashed?'</span>), <span class="php-var">$field</span>-&gt;name); 
-</span><span id="587" class="l"><a class="l" href="#587">587: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$labels</span>[<span class="php-quote">'nothing'</span>]);
-</span><span id="588" class="l"><a class="l" href="#588">588: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$labels</span>[<span class="php-quote">'unpub'</span>]);
-</span><span id="589" class="l"><a class="l" href="#589">589: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$field</span>-&gt;unpubOnTrash);
-</span><span id="590" class="l"><a class="l" href="#590">590: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
-</span><span id="591" class="l"><a class="l" href="#591">591: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="592" class="l"><a class="l" href="#592">592: </a>        
-</span><span id="593" class="l"><a class="l" href="#593">593: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>);
-</span><span id="594" class="l"><a class="l" href="#594">594: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'unpubOnUnpub'</span>);
-</span><span id="595" class="l"><a class="l" href="#595">595: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Unpublish'</span>);
-</span><span id="596" class="l"><a class="l" href="#596">596: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'What should happen to &quot;%s&quot; items when the containing page is unpublished?'</span>), <span class="php-var">$field</span>-&gt;name); 
-</span><span id="597" class="l"><a class="l" href="#597">597: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$labels</span>[<span class="php-quote">'nothing'</span>]);
-</span><span id="598" class="l"><a class="l" href="#598">598: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$labels</span>[<span class="php-quote">'unpub'</span>]);
-</span><span id="599" class="l"><a class="l" href="#599">599: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">2</span>, <span class="php-var">$labels</span>[<span class="php-quote">'hide'</span>]);
-</span><span id="600" class="l"><a class="l" href="#600">600: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$field</span>-&gt;unpubOnUnpub);
-</span><span id="601" class="l"><a class="l" href="#601">601: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
-</span><span id="602" class="l"><a class="l" href="#602">602: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="603" class="l"><a class="l" href="#603">603: </a>        
-</span><span id="604" class="l"><a class="l" href="#604">604: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldText'</span>); 
-</span><span id="605" class="l"><a class="l" href="#605">605: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'sortfields'</span>); 
-</span><span id="606" class="l"><a class="l" href="#606">606: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Sort fields'</span>); 
-</span><span id="607" class="l"><a class="l" href="#607">607: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Enter the field name that you want your table to sort by. For a descending sort, precede the field name with a hyphen, i.e. &quot;-date&quot; rather than &quot;date&quot;.'</span>); <span class="php-comment">// sort description 1 </span>
-</span><span id="608" class="l"><a class="l" href="#608">608: </a>        <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'You may specify multiple sort fields by separating each with a comma, i.e. &quot;last_name, first_name, -birthday&quot;.'</span>); <span class="php-comment">// sort description 2</span>
-</span><span id="609" class="l"><a class="l" href="#609">609: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Leave this blank for manual drag-and-drop sorting (default).'</span>); 
-</span><span id="610" class="l"><a class="l" href="#610">610: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
-</span><span id="611" class="l"><a class="l" href="#611">611: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$field</span>-&gt;sortfields); 
-</span><span id="612" class="l"><a class="l" href="#612">612: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="613" class="l"><a class="l" href="#613">613: </a>        
-</span><span id="614" class="l"><a class="l" href="#614">614: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="615" class="l"><a class="l" href="#615">615: </a>    }
-</span><span id="616" class="l"><a class="l" href="#616">616: </a>
-</span><span id="617" class="l"><a class="l" href="#617">617: </a>
-</span><span id="618" class="l"><a class="l" href="#618">618: </a>}
-</span><span id="619" class="l"><a class="l" href="#619">619: </a>
-</span><span id="620" class="l"><a class="l" href="#620">620: </a></span></code></pre>
+</span><span id="564" class="l"><a class="l" href="#564">564: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>);
+</span><span id="565" class="l"><a class="l" href="#565">565: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'trashOnDelete'</span>);
+</span><span id="566" class="l"><a class="l" href="#566">566: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Delete'</span>);
+</span><span id="567" class="l"><a class="l" href="#567">567: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'What should happen to &quot;%s&quot; items when the containing page is permanently deleted?'</span>), <span class="php-var">$field</span>-&gt;name); 
+</span><span id="568" class="l"><a class="l" href="#568">568: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$labels</span>[<span class="php-quote">'nothing'</span>]); 
+</span><span id="569" class="l"><a class="l" href="#569">569: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$labels</span>[<span class="php-quote">'trash'</span>]);
+</span><span id="570" class="l"><a class="l" href="#570">570: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">2</span>, <span class="php-var">$labels</span>[<span class="php-quote">'delete'</span>]); 
+</span><span id="571" class="l"><a class="l" href="#571">571: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$field</span>-&gt;trashOnDelete); <span class="php-comment">// aka autoTrash</span>
+</span><span id="572" class="l"><a class="l" href="#572">572: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
+</span><span id="573" class="l"><a class="l" href="#573">573: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="574" class="l"><a class="l" href="#574">574: </a>
+</span><span id="575" class="l"><a class="l" href="#575">575: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>);
+</span><span id="576" class="l"><a class="l" href="#576">576: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'unpubOnTrash'</span>);
+</span><span id="577" class="l"><a class="l" href="#577">577: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Trash'</span>);
+</span><span id="578" class="l"><a class="l" href="#578">578: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'What should happen to &quot;%s&quot; items when the containing page is trashed?'</span>), <span class="php-var">$field</span>-&gt;name); 
+</span><span id="579" class="l"><a class="l" href="#579">579: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$labels</span>[<span class="php-quote">'nothing'</span>]);
+</span><span id="580" class="l"><a class="l" href="#580">580: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$labels</span>[<span class="php-quote">'unpub'</span>]);
+</span><span id="581" class="l"><a class="l" href="#581">581: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$field</span>-&gt;unpubOnTrash);
+</span><span id="582" class="l"><a class="l" href="#582">582: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
+</span><span id="583" class="l"><a class="l" href="#583">583: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="584" class="l"><a class="l" href="#584">584: </a>        
+</span><span id="585" class="l"><a class="l" href="#585">585: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>);
+</span><span id="586" class="l"><a class="l" href="#586">586: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'unpubOnUnpub'</span>);
+</span><span id="587" class="l"><a class="l" href="#587">587: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Unpublish'</span>);
+</span><span id="588" class="l"><a class="l" href="#588">588: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'What should happen to &quot;%s&quot; items when the containing page is unpublished?'</span>), <span class="php-var">$field</span>-&gt;name); 
+</span><span id="589" class="l"><a class="l" href="#589">589: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">0</span>, <span class="php-var">$labels</span>[<span class="php-quote">'nothing'</span>]);
+</span><span id="590" class="l"><a class="l" href="#590">590: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">1</span>, <span class="php-var">$labels</span>[<span class="php-quote">'unpub'</span>]);
+</span><span id="591" class="l"><a class="l" href="#591">591: </a>        <span class="php-var">$f</span>-&gt;addOption(<span class="php-num">2</span>, <span class="php-var">$labels</span>[<span class="php-quote">'hide'</span>]);
+</span><span id="592" class="l"><a class="l" href="#592">592: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, (int) <span class="php-var">$field</span>-&gt;unpubOnUnpub);
+</span><span id="593" class="l"><a class="l" href="#593">593: </a>        <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">33</span>; 
+</span><span id="594" class="l"><a class="l" href="#594">594: </a>        <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="595" class="l"><a class="l" href="#595">595: </a>        
+</span><span id="596" class="l"><a class="l" href="#596">596: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldText'</span>); 
+</span><span id="597" class="l"><a class="l" href="#597">597: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'sortfields'</span>); 
+</span><span id="598" class="l"><a class="l" href="#598">598: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Sort fields'</span>); 
+</span><span id="599" class="l"><a class="l" href="#599">599: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Enter the field name that you want your table to sort by. For a descending sort, precede the field name with a hyphen, i.e. &quot;-date&quot; rather than &quot;date&quot;.'</span>); <span class="php-comment">// sort description 1 </span>
+</span><span id="600" class="l"><a class="l" href="#600">600: </a>        <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'You may specify multiple sort fields by separating each with a comma, i.e. &quot;last_name, first_name, -birthday&quot;.'</span>); <span class="php-comment">// sort description 2</span>
+</span><span id="601" class="l"><a class="l" href="#601">601: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Leave this blank for manual drag-and-drop sorting (default).'</span>); 
+</span><span id="602" class="l"><a class="l" href="#602">602: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
+</span><span id="603" class="l"><a class="l" href="#603">603: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$field</span>-&gt;sortfields); 
+</span><span id="604" class="l"><a class="l" href="#604">604: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="605" class="l"><a class="l" href="#605">605: </a>        
+</span><span id="606" class="l"><a class="l" href="#606">606: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="607" class="l"><a class="l" href="#607">607: </a>    }
+</span><span id="608" class="l"><a class="l" href="#608">608: </a>
+</span><span id="609" class="l"><a class="l" href="#609">609: </a>
+</span><span id="610" class="l"><a class="l" href="#610">610: </a>}
+</span><span id="611" class="l"><a class="l" href="#611">611: </a>
+</span><span id="612" class="l"><a class="l" href="#612">612: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

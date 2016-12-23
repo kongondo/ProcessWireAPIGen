@@ -8,7 +8,7 @@
 	<title>File core/PagesEditor.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2119032604"></script>
+	<script type="text/javascript" src="elementlist.js?1688547908"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.45 dev</span>
+			<span>Overview version 3.0.46 dev</span>
 		</a>
 
 
@@ -1722,62 +1722,222 @@
 </span><span id="1170" class="l"><a class="l" href="#1170">1170: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$recursive</span> &amp;&amp; <span class="php-var">$options</span>[<span class="php-quote">'recursionLevel'</span>] === <span class="php-num">0</span>) {
 </span><span id="1171" class="l"><a class="l" href="#1171">1171: </a>            <span class="php-var">$this</span>-&gt;saveParents(<span class="php-var">$copy</span>-&gt;id, <span class="php-var">$copy</span>-&gt;numChildren);
 </span><span id="1172" class="l"><a class="l" href="#1172">1172: </a>        }
-</span><span id="1173" class="l"><a class="l" href="#1173">1173: </a>
-</span><span id="1174" class="l"><a class="l" href="#1174">1174: </a>        <span class="php-var">$copy</span>-&gt;resetTrackChanges();
-</span><span id="1175" class="l"><a class="l" href="#1175">1175: </a>        <span class="php-var">$this</span>-&gt;pages-&gt;cloned(<span class="php-var">$page</span>, <span class="php-var">$copy</span>);
-</span><span id="1176" class="l"><a class="l" href="#1176">1176: </a>        <span class="php-var">$this</span>-&gt;pages-&gt;debugLog(<span class="php-quote">'clone'</span>, <span class="php-quote">&quot;page=</span><span class="php-var">$page</span><span class="php-quote">, parent=</span><span class="php-var">$parent</span><span class="php-quote">&quot;</span>, <span class="php-var">$copy</span>);
-</span><span id="1177" class="l"><a class="l" href="#1177">1177: </a>
-</span><span id="1178" class="l"><a class="l" href="#1178">1178: </a>        <span class="php-keyword1">return</span> <span class="php-var">$copy</span>;
-</span><span id="1179" class="l"><a class="l" href="#1179">1179: </a>    }
-</span><span id="1180" class="l"><a class="l" href="#1180">1180: </a>
-</span><span id="1181" class="l"><a class="l" href="#1181">1181: </a>    <span class="php-comment">/**
-</span></span><span id="1182" class="l"><a class="l" href="#1182">1182: </a><span class="php-comment">     * Update page modification time to now (or the given modification time)
-</span></span><span id="1183" class="l"><a class="l" href="#1183">1183: </a><span class="php-comment">     * 
-</span></span><span id="1184" class="l"><a class="l" href="#1184">1184: </a><span class="php-comment">     * @param Page|PageArray|array $pages May be Page, PageArray or array of page IDs (integers)
-</span></span><span id="1185" class="l"><a class="l" href="#1185">1185: </a><span class="php-comment">     * @param null|int|string $modified Omit to update to now, or specify unix timestamp or strtotime() recognized time string
-</span></span><span id="1186" class="l"><a class="l" href="#1186">1186: </a><span class="php-comment">     * @throws WireException if given invalid format for $modified argument or failed database query
-</span></span><span id="1187" class="l"><a class="l" href="#1187">1187: </a><span class="php-comment">     * @return bool True on success, false on fail
-</span></span><span id="1188" class="l"><a class="l" href="#1188">1188: </a><span class="php-comment">     * 
-</span></span><span id="1189" class="l"><a class="l" href="#1189">1189: </a><span class="php-comment">     */</span>
-</span><span id="1190" class="l"><a class="l" href="#1190">1190: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">touch</span>(<span class="php-var">$pages</span>, <span class="php-var">$modified</span> = <span class="php-keyword1">null</span>) {
-</span><span id="1191" class="l"><a class="l" href="#1191">1191: </a>        
-</span><span id="1192" class="l"><a class="l" href="#1192">1192: </a>        <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
-</span><span id="1193" class="l"><a class="l" href="#1193">1193: </a>        
-</span><span id="1194" class="l"><a class="l" href="#1194">1194: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$pages</span> <span class="php-keyword1">instanceof</span> Page) {
-</span><span id="1195" class="l"><a class="l" href="#1195">1195: </a>            <span class="php-var">$ids</span>[] = (int) <span class="php-var">$pages</span>-&gt;id;
-</span><span id="1196" class="l"><a class="l" href="#1196">1196: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="1197" class="l"><a class="l" href="#1197">1197: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$pages</span> <span class="php-keyword1">as</span> <span class="php-var">$page</span>) {
-</span><span id="1198" class="l"><a class="l" href="#1198">1198: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">is_int</span>(<span class="php-var">$page</span>)) {
-</span><span id="1199" class="l"><a class="l" href="#1199">1199: </a>                    <span class="php-var">$ids</span>[] = (int) <span class="php-var">$page</span>;
-</span><span id="1200" class="l"><a class="l" href="#1200">1200: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$page</span> <span class="php-keyword1">instanceof</span> Page) {
-</span><span id="1201" class="l"><a class="l" href="#1201">1201: </a>                    <span class="php-var">$ids</span>[] = (int) <span class="php-var">$page</span>-&gt;id;
-</span><span id="1202" class="l"><a class="l" href="#1202">1202: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="1203" class="l"><a class="l" href="#1203">1203: </a>                    <span class="php-comment">// invalid</span>
-</span><span id="1204" class="l"><a class="l" href="#1204">1204: </a>                }
-</span><span id="1205" class="l"><a class="l" href="#1205">1205: </a>            }
-</span><span id="1206" class="l"><a class="l" href="#1206">1206: </a>        }
-</span><span id="1207" class="l"><a class="l" href="#1207">1207: </a>        
-</span><span id="1208" class="l"><a class="l" href="#1208">1208: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">count</span>(<span class="php-var">$ids</span>)) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="1209" class="l"><a class="l" href="#1209">1209: </a>        
-</span><span id="1210" class="l"><a class="l" href="#1210">1210: </a>        <span class="php-var">$sql</span> = <span class="php-quote">'UPDATE pages SET modified='</span>;
-</span><span id="1211" class="l"><a class="l" href="#1211">1211: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$modified</span>)) {
-</span><span id="1212" class="l"><a class="l" href="#1212">1212: </a>            <span class="php-var">$sql</span> .= <span class="php-quote">'NOW() '</span>;
-</span><span id="1213" class="l"><a class="l" href="#1213">1213: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_int</span>(<span class="php-var">$modified</span>) || <span class="php-keyword2">ctype_digit</span>(<span class="php-var">$modified</span>)) {
-</span><span id="1214" class="l"><a class="l" href="#1214">1214: </a>            <span class="php-var">$modified</span> = (int) <span class="php-var">$modified</span>;
-</span><span id="1215" class="l"><a class="l" href="#1215">1215: </a>            <span class="php-var">$sql</span> .= <span class="php-quote">':modified '</span>;
-</span><span id="1216" class="l"><a class="l" href="#1216">1216: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$modified</span>)) {
-</span><span id="1217" class="l"><a class="l" href="#1217">1217: </a>            <span class="php-var">$modified</span> = <span class="php-keyword2">strtotime</span>(<span class="php-var">$modified</span>);
-</span><span id="1218" class="l"><a class="l" href="#1218">1218: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$modified</span>) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Unrecognized time format provided to Pages::touch()&quot;</span>);
-</span><span id="1219" class="l"><a class="l" href="#1219">1219: </a>            <span class="php-var">$sql</span> .= <span class="php-quote">':modified '</span>;
-</span><span id="1220" class="l"><a class="l" href="#1220">1220: </a>        }
-</span><span id="1221" class="l"><a class="l" href="#1221">1221: </a>        
-</span><span id="1222" class="l"><a class="l" href="#1222">1222: </a>        <span class="php-var">$sql</span> .= <span class="php-quote">'WHERE id IN('</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$ids</span>) . <span class="php-quote">')'</span>;
-</span><span id="1223" class="l"><a class="l" href="#1223">1223: </a>        <span class="php-var">$query</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;prepare(<span class="php-var">$sql</span>);
-</span><span id="1224" class="l"><a class="l" href="#1224">1224: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$sql</span>, <span class="php-quote">':modified'</span>)) <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':modified'</span>, <span class="php-keyword2">date</span>(<span class="php-quote">'Y-m-d H:i:s'</span>, <span class="php-var">$modified</span>));
-</span><span id="1225" class="l"><a class="l" href="#1225">1225: </a>        
-</span><span id="1226" class="l"><a class="l" href="#1226">1226: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;execute(<span class="php-var">$query</span>);
-</span><span id="1227" class="l"><a class="l" href="#1227">1227: </a>    }
-</span><span id="1228" class="l"><a class="l" href="#1228">1228: </a></span>}</code></pre>
+</span><span id="1173" class="l"><a class="l" href="#1173">1173: </a>        
+</span><span id="1174" class="l"><a class="l" href="#1174">1174: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$options</span>[<span class="php-quote">'recursionLevel'</span>] === <span class="php-num">0</span>) {
+</span><span id="1175" class="l"><a class="l" href="#1175">1175: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$copy</span>-&gt;parent()-&gt;sortfield() == <span class="php-quote">'sort'</span>) {
+</span><span id="1176" class="l"><a class="l" href="#1176">1176: </a>                <span class="php-var">$this</span>-&gt;sortPage(<span class="php-var">$copy</span>, <span class="php-var">$copy</span>-&gt;<span class="php-keyword2">sort</span>, <span class="php-keyword1">true</span>);
+</span><span id="1177" class="l"><a class="l" href="#1177">1177: </a>            }
+</span><span id="1178" class="l"><a class="l" href="#1178">1178: </a>        }
+</span><span id="1179" class="l"><a class="l" href="#1179">1179: </a>
+</span><span id="1180" class="l"><a class="l" href="#1180">1180: </a>        <span class="php-var">$copy</span>-&gt;resetTrackChanges();
+</span><span id="1181" class="l"><a class="l" href="#1181">1181: </a>        <span class="php-var">$this</span>-&gt;pages-&gt;cloned(<span class="php-var">$page</span>, <span class="php-var">$copy</span>);
+</span><span id="1182" class="l"><a class="l" href="#1182">1182: </a>        <span class="php-var">$this</span>-&gt;pages-&gt;debugLog(<span class="php-quote">'clone'</span>, <span class="php-quote">&quot;page=</span><span class="php-var">$page</span><span class="php-quote">, parent=</span><span class="php-var">$parent</span><span class="php-quote">&quot;</span>, <span class="php-var">$copy</span>);
+</span><span id="1183" class="l"><a class="l" href="#1183">1183: </a>
+</span><span id="1184" class="l"><a class="l" href="#1184">1184: </a>        <span class="php-keyword1">return</span> <span class="php-var">$copy</span>;
+</span><span id="1185" class="l"><a class="l" href="#1185">1185: </a>    }
+</span><span id="1186" class="l"><a class="l" href="#1186">1186: </a>
+</span><span id="1187" class="l"><a class="l" href="#1187">1187: </a>    <span class="php-comment">/**
+</span></span><span id="1188" class="l"><a class="l" href="#1188">1188: </a><span class="php-comment">     * Update page modification time to now (or the given modification time)
+</span></span><span id="1189" class="l"><a class="l" href="#1189">1189: </a><span class="php-comment">     * 
+</span></span><span id="1190" class="l"><a class="l" href="#1190">1190: </a><span class="php-comment">     * @param Page|PageArray|array $pages May be Page, PageArray or array of page IDs (integers)
+</span></span><span id="1191" class="l"><a class="l" href="#1191">1191: </a><span class="php-comment">     * @param null|int|string $modified Omit to update to now, or specify unix timestamp or strtotime() recognized time string
+</span></span><span id="1192" class="l"><a class="l" href="#1192">1192: </a><span class="php-comment">     * @throws WireException if given invalid format for $modified argument or failed database query
+</span></span><span id="1193" class="l"><a class="l" href="#1193">1193: </a><span class="php-comment">     * @return bool True on success, false on fail
+</span></span><span id="1194" class="l"><a class="l" href="#1194">1194: </a><span class="php-comment">     * 
+</span></span><span id="1195" class="l"><a class="l" href="#1195">1195: </a><span class="php-comment">     */</span>
+</span><span id="1196" class="l"><a class="l" href="#1196">1196: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">touch</span>(<span class="php-var">$pages</span>, <span class="php-var">$modified</span> = <span class="php-keyword1">null</span>) {
+</span><span id="1197" class="l"><a class="l" href="#1197">1197: </a>        
+</span><span id="1198" class="l"><a class="l" href="#1198">1198: </a>        <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
+</span><span id="1199" class="l"><a class="l" href="#1199">1199: </a>        
+</span><span id="1200" class="l"><a class="l" href="#1200">1200: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$pages</span> <span class="php-keyword1">instanceof</span> Page) {
+</span><span id="1201" class="l"><a class="l" href="#1201">1201: </a>            <span class="php-var">$ids</span>[] = (int) <span class="php-var">$pages</span>-&gt;id;
+</span><span id="1202" class="l"><a class="l" href="#1202">1202: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="1203" class="l"><a class="l" href="#1203">1203: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$pages</span> <span class="php-keyword1">as</span> <span class="php-var">$page</span>) {
+</span><span id="1204" class="l"><a class="l" href="#1204">1204: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">is_int</span>(<span class="php-var">$page</span>)) {
+</span><span id="1205" class="l"><a class="l" href="#1205">1205: </a>                    <span class="php-var">$ids</span>[] = (int) <span class="php-var">$page</span>;
+</span><span id="1206" class="l"><a class="l" href="#1206">1206: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$page</span> <span class="php-keyword1">instanceof</span> Page) {
+</span><span id="1207" class="l"><a class="l" href="#1207">1207: </a>                    <span class="php-var">$ids</span>[] = (int) <span class="php-var">$page</span>-&gt;id;
+</span><span id="1208" class="l"><a class="l" href="#1208">1208: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="1209" class="l"><a class="l" href="#1209">1209: </a>                    <span class="php-comment">// invalid</span>
+</span><span id="1210" class="l"><a class="l" href="#1210">1210: </a>                }
+</span><span id="1211" class="l"><a class="l" href="#1211">1211: </a>            }
+</span><span id="1212" class="l"><a class="l" href="#1212">1212: </a>        }
+</span><span id="1213" class="l"><a class="l" href="#1213">1213: </a>        
+</span><span id="1214" class="l"><a class="l" href="#1214">1214: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">count</span>(<span class="php-var">$ids</span>)) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="1215" class="l"><a class="l" href="#1215">1215: </a>        
+</span><span id="1216" class="l"><a class="l" href="#1216">1216: </a>        <span class="php-var">$sql</span> = <span class="php-quote">'UPDATE pages SET modified='</span>;
+</span><span id="1217" class="l"><a class="l" href="#1217">1217: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$modified</span>)) {
+</span><span id="1218" class="l"><a class="l" href="#1218">1218: </a>            <span class="php-var">$sql</span> .= <span class="php-quote">'NOW() '</span>;
+</span><span id="1219" class="l"><a class="l" href="#1219">1219: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_int</span>(<span class="php-var">$modified</span>) || <span class="php-keyword2">ctype_digit</span>(<span class="php-var">$modified</span>)) {
+</span><span id="1220" class="l"><a class="l" href="#1220">1220: </a>            <span class="php-var">$modified</span> = (int) <span class="php-var">$modified</span>;
+</span><span id="1221" class="l"><a class="l" href="#1221">1221: </a>            <span class="php-var">$sql</span> .= <span class="php-quote">':modified '</span>;
+</span><span id="1222" class="l"><a class="l" href="#1222">1222: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_string</span>(<span class="php-var">$modified</span>)) {
+</span><span id="1223" class="l"><a class="l" href="#1223">1223: </a>            <span class="php-var">$modified</span> = <span class="php-keyword2">strtotime</span>(<span class="php-var">$modified</span>);
+</span><span id="1224" class="l"><a class="l" href="#1224">1224: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$modified</span>) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Unrecognized time format provided to Pages::touch()&quot;</span>);
+</span><span id="1225" class="l"><a class="l" href="#1225">1225: </a>            <span class="php-var">$sql</span> .= <span class="php-quote">':modified '</span>;
+</span><span id="1226" class="l"><a class="l" href="#1226">1226: </a>        }
+</span><span id="1227" class="l"><a class="l" href="#1227">1227: </a>        
+</span><span id="1228" class="l"><a class="l" href="#1228">1228: </a>        <span class="php-var">$sql</span> .= <span class="php-quote">'WHERE id IN('</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$ids</span>) . <span class="php-quote">')'</span>;
+</span><span id="1229" class="l"><a class="l" href="#1229">1229: </a>        <span class="php-var">$query</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;prepare(<span class="php-var">$sql</span>);
+</span><span id="1230" class="l"><a class="l" href="#1230">1230: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$sql</span>, <span class="php-quote">':modified'</span>)) <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':modified'</span>, <span class="php-keyword2">date</span>(<span class="php-quote">'Y-m-d H:i:s'</span>, <span class="php-var">$modified</span>));
+</span><span id="1231" class="l"><a class="l" href="#1231">1231: </a>        
+</span><span id="1232" class="l"><a class="l" href="#1232">1232: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;execute(<span class="php-var">$query</span>);
+</span><span id="1233" class="l"><a class="l" href="#1233">1233: </a>    }
+</span><span id="1234" class="l"><a class="l" href="#1234">1234: </a>
+</span><span id="1235" class="l"><a class="l" href="#1235">1235: </a>    <span class="php-comment">/**
+</span></span><span id="1236" class="l"><a class="l" href="#1236">1236: </a><span class="php-comment">     * Set page $sort value and increment siblings having same or greater sort value 
+</span></span><span id="1237" class="l"><a class="l" href="#1237">1237: </a><span class="php-comment">     * 
+</span></span><span id="1238" class="l"><a class="l" href="#1238">1238: </a><span class="php-comment">     * - This method is primarily applicable if configured sortfield is manual “sort” (or “none”).
+</span></span><span id="1239" class="l"><a class="l" href="#1239">1239: </a><span class="php-comment">     * - This is typically used after a move, sort, clone or delete operation. 
+</span></span><span id="1240" class="l"><a class="l" href="#1240">1240: </a><span class="php-comment">     * 
+</span></span><span id="1241" class="l"><a class="l" href="#1241">1241: </a><span class="php-comment">     * @param Page $page Page that you want to set the sort value for
+</span></span><span id="1242" class="l"><a class="l" href="#1242">1242: </a><span class="php-comment">     * @param int|null $sort New sort value for page or null to pull from $page-&gt;sort
+</span></span><span id="1243" class="l"><a class="l" href="#1243">1243: </a><span class="php-comment">     * @param bool $after If another page already has the sort, make $page go after it rather than before it? (default=false)
+</span></span><span id="1244" class="l"><a class="l" href="#1244">1244: </a><span class="php-comment">     * @throws WireException if given invalid arguments
+</span></span><span id="1245" class="l"><a class="l" href="#1245">1245: </a><span class="php-comment">     * @return int Number of sibling pages that had to have sort adjusted
+</span></span><span id="1246" class="l"><a class="l" href="#1246">1246: </a><span class="php-comment">     * 
+</span></span><span id="1247" class="l"><a class="l" href="#1247">1247: </a><span class="php-comment">     */</span>
+</span><span id="1248" class="l"><a class="l" href="#1248">1248: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sortPage" href="#_sortPage">sortPage</a>(Page <span class="php-var">$page</span>, <span class="php-var">$sort</span> = <span class="php-keyword1">null</span>, <span class="php-var">$after</span> = <span class="php-keyword1">false</span>) {
+</span><span id="1249" class="l"><a class="l" href="#1249">1249: </a>    
+</span><span id="1250" class="l"><a class="l" href="#1250">1250: </a>        <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
+</span><span id="1251" class="l"><a class="l" href="#1251">1251: </a>
+</span><span id="1252" class="l"><a class="l" href="#1252">1252: </a>        <span class="php-comment">// reorder siblings having same or greater sort value, when necessary</span>
+</span><span id="1253" class="l"><a class="l" href="#1253">1253: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id &lt;= <span class="php-num">1</span>) <span class="php-keyword1">return</span> <span class="php-num">0</span>;
+</span><span id="1254" class="l"><a class="l" href="#1254">1254: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$sort</span>)) <span class="php-var">$sort</span> = <span class="php-var">$page</span>-&gt;<span class="php-keyword2">sort</span>;
+</span><span id="1255" class="l"><a class="l" href="#1255">1255: </a>        
+</span><span id="1256" class="l"><a class="l" href="#1256">1256: </a>        <span class="php-comment">// determine if any other siblings have same sort value</span>
+</span><span id="1257" class="l"><a class="l" href="#1257">1257: </a>        <span class="php-var">$sql</span> = <span class="php-quote">'SELECT id FROM pages WHERE parent_id=:parent_id AND sort=:sort AND id!=:id'</span>;
+</span><span id="1258" class="l"><a class="l" href="#1258">1258: </a>        <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-var">$sql</span>);
+</span><span id="1259" class="l"><a class="l" href="#1259">1259: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':parent_id'</span>, <span class="php-var">$page</span>-&gt;parent_id, \PDO::PARAM_INT);
+</span><span id="1260" class="l"><a class="l" href="#1260">1260: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':sort'</span>, <span class="php-var">$sort</span>, \PDO::PARAM_INT);
+</span><span id="1261" class="l"><a class="l" href="#1261">1261: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':id'</span>, <span class="php-var">$page</span>-&gt;id, \PDO::PARAM_INT);
+</span><span id="1262" class="l"><a class="l" href="#1262">1262: </a>        <span class="php-var">$query</span>-&gt;execute();
+</span><span id="1263" class="l"><a class="l" href="#1263">1263: </a>        <span class="php-var">$rowCount</span> = <span class="php-var">$query</span>-&gt;rowCount();
+</span><span id="1264" class="l"><a class="l" href="#1264">1264: </a>        <span class="php-var">$query</span>-&gt;closeCursor();
+</span><span id="1265" class="l"><a class="l" href="#1265">1265: </a>    
+</span><span id="1266" class="l"><a class="l" href="#1266">1266: </a>        <span class="php-comment">// move sort to after if requested</span>
+</span><span id="1267" class="l"><a class="l" href="#1267">1267: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$after</span> &amp;&amp; <span class="php-var">$rowCount</span>) <span class="php-var">$sort</span> += <span class="php-var">$rowCount</span>;
+</span><span id="1268" class="l"><a class="l" href="#1268">1268: </a>        
+</span><span id="1269" class="l"><a class="l" href="#1269">1269: </a>        <span class="php-comment">// update $page-&gt;sort property if needed</span>
+</span><span id="1270" class="l"><a class="l" href="#1270">1270: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;<span class="php-keyword2">sort</span> != <span class="php-var">$sort</span>) <span class="php-var">$page</span>-&gt;<span class="php-keyword2">sort</span> = <span class="php-var">$sort</span>;
+</span><span id="1271" class="l"><a class="l" href="#1271">1271: </a>        
+</span><span id="1272" class="l"><a class="l" href="#1272">1272: </a>        <span class="php-comment">// make sure that $page has the sort value indicated</span>
+</span><span id="1273" class="l"><a class="l" href="#1273">1273: </a>        <span class="php-var">$sql</span> = <span class="php-quote">'UPDATE pages SET sort=:sort WHERE id=:id'</span>;
+</span><span id="1274" class="l"><a class="l" href="#1274">1274: </a>        <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-var">$sql</span>);
+</span><span id="1275" class="l"><a class="l" href="#1275">1275: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':sort'</span>, <span class="php-var">$sort</span>, \PDO::PARAM_INT);
+</span><span id="1276" class="l"><a class="l" href="#1276">1276: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':id'</span>, <span class="php-var">$page</span>-&gt;id, \PDO::PARAM_INT);
+</span><span id="1277" class="l"><a class="l" href="#1277">1277: </a>        <span class="php-var">$query</span>-&gt;execute();
+</span><span id="1278" class="l"><a class="l" href="#1278">1278: </a>        <span class="php-var">$sortCnt</span> = <span class="php-var">$query</span>-&gt;rowCount();
+</span><span id="1279" class="l"><a class="l" href="#1279">1279: </a>        
+</span><span id="1280" class="l"><a class="l" href="#1280">1280: </a>        <span class="php-comment">// no need for $page to have 'sort' indicated as a change, since we just updated it above</span>
+</span><span id="1281" class="l"><a class="l" href="#1281">1281: </a>        <span class="php-var">$page</span>-&gt;untrackChange(<span class="php-quote">'sort'</span>);
+</span><span id="1282" class="l"><a class="l" href="#1282">1282: </a>
+</span><span id="1283" class="l"><a class="l" href="#1283">1283: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$rowCount</span>) {
+</span><span id="1284" class="l"><a class="l" href="#1284">1284: </a>            <span class="php-comment">// update order of all siblings </span>
+</span><span id="1285" class="l"><a class="l" href="#1285">1285: </a>            <span class="php-var">$sql</span> = <span class="php-quote">'UPDATE pages SET sort=sort+1 WHERE parent_id=:parent_id AND sort&gt;=:sort AND id!=:id'</span>;
+</span><span id="1286" class="l"><a class="l" href="#1286">1286: </a>            <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-var">$sql</span>);
+</span><span id="1287" class="l"><a class="l" href="#1287">1287: </a>            <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':parent_id'</span>, <span class="php-var">$page</span>-&gt;parent_id, \PDO::PARAM_INT);
+</span><span id="1288" class="l"><a class="l" href="#1288">1288: </a>            <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':sort'</span>, <span class="php-var">$sort</span>, \PDO::PARAM_INT);
+</span><span id="1289" class="l"><a class="l" href="#1289">1289: </a>            <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':id'</span>, <span class="php-var">$page</span>-&gt;id, \PDO::PARAM_INT);
+</span><span id="1290" class="l"><a class="l" href="#1290">1290: </a>            <span class="php-var">$query</span>-&gt;execute();
+</span><span id="1291" class="l"><a class="l" href="#1291">1291: </a>            <span class="php-var">$sortCnt</span> += <span class="php-var">$query</span>-&gt;rowCount();
+</span><span id="1292" class="l"><a class="l" href="#1292">1292: </a>        }
+</span><span id="1293" class="l"><a class="l" href="#1293">1293: </a>    
+</span><span id="1294" class="l"><a class="l" href="#1294">1294: </a>        <span class="php-comment">// call the sorted hook</span>
+</span><span id="1295" class="l"><a class="l" href="#1295">1295: </a>        <span class="php-var">$this</span>-&gt;pages-&gt;sorted(<span class="php-var">$page</span>, <span class="php-keyword1">false</span>, <span class="php-var">$sortCnt</span>);
+</span><span id="1296" class="l"><a class="l" href="#1296">1296: </a>    
+</span><span id="1297" class="l"><a class="l" href="#1297">1297: </a>        <span class="php-keyword1">return</span> <span class="php-var">$sortCnt</span>;
+</span><span id="1298" class="l"><a class="l" href="#1298">1298: </a>    }
+</span><span id="1299" class="l"><a class="l" href="#1299">1299: </a>
+</span><span id="1300" class="l"><a class="l" href="#1300">1300: </a>    <span class="php-comment">/**
+</span></span><span id="1301" class="l"><a class="l" href="#1301">1301: </a><span class="php-comment">     * Sort one page before another (for pages using manual sort)
+</span></span><span id="1302" class="l"><a class="l" href="#1302">1302: </a><span class="php-comment">     * 
+</span></span><span id="1303" class="l"><a class="l" href="#1303">1303: </a><span class="php-comment">     * Note that if given $sibling parent is different from `$page` parent, then the `$pages-&gt;save()`
+</span></span><span id="1304" class="l"><a class="l" href="#1304">1304: </a><span class="php-comment">     * method will also be called to perform that movement. 
+</span></span><span id="1305" class="l"><a class="l" href="#1305">1305: </a><span class="php-comment">     * 
+</span></span><span id="1306" class="l"><a class="l" href="#1306">1306: </a><span class="php-comment">     * @param Page $page Page to move/sort
+</span></span><span id="1307" class="l"><a class="l" href="#1307">1307: </a><span class="php-comment">     * @param Page $sibling Sibling that page will be moved/sorted before 
+</span></span><span id="1308" class="l"><a class="l" href="#1308">1308: </a><span class="php-comment">     * @param bool $after Specify true to make $page move after $sibling instead of before (default=false)
+</span></span><span id="1309" class="l"><a class="l" href="#1309">1309: </a><span class="php-comment">     * @throws WireException When conditions don't allow page insertions
+</span></span><span id="1310" class="l"><a class="l" href="#1310">1310: </a><span class="php-comment">     * 
+</span></span><span id="1311" class="l"><a class="l" href="#1311">1311: </a><span class="php-comment">     */</span>
+</span><span id="1312" class="l"><a class="l" href="#1312">1312: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_insertBefore" href="#_insertBefore">insertBefore</a>(Page <span class="php-var">$page</span>, Page <span class="php-var">$sibling</span>, <span class="php-var">$after</span> = <span class="php-keyword1">false</span>) {
+</span><span id="1313" class="l"><a class="l" href="#1313">1313: </a>        <span class="php-var">$sortfield</span> = <span class="php-var">$sibling</span>-&gt;parent()-&gt;sortfield();
+</span><span id="1314" class="l"><a class="l" href="#1314">1314: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$sortfield</span> != <span class="php-quote">'sort'</span>) {
+</span><span id="1315" class="l"><a class="l" href="#1315">1315: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">'Insert before/after operations can only be used with manually sorted pages'</span>);
+</span><span id="1316" class="l"><a class="l" href="#1316">1316: </a>        }
+</span><span id="1317" class="l"><a class="l" href="#1317">1317: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$sibling</span>-&gt;id || !<span class="php-var">$page</span>-&gt;id) {
+</span><span id="1318" class="l"><a class="l" href="#1318">1318: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">'New pages must be saved before using insert before/after operations'</span>);
+</span><span id="1319" class="l"><a class="l" href="#1319">1319: </a>        }
+</span><span id="1320" class="l"><a class="l" href="#1320">1320: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$sibling</span>-&gt;id == <span class="php-num">1</span> || <span class="php-var">$page</span>-&gt;id == <span class="php-num">1</span>) {
+</span><span id="1321" class="l"><a class="l" href="#1321">1321: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">'Insert before/after operations cannot involve homepage'</span>);
+</span><span id="1322" class="l"><a class="l" href="#1322">1322: </a>        }
+</span><span id="1323" class="l"><a class="l" href="#1323">1323: </a>        <span class="php-var">$page</span>-&gt;<span class="php-keyword2">sort</span> = <span class="php-var">$sibling</span>-&gt;<span class="php-keyword2">sort</span>;
+</span><span id="1324" class="l"><a class="l" href="#1324">1324: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;parent_id != <span class="php-var">$sibling</span>-&gt;parent_id) {
+</span><span id="1325" class="l"><a class="l" href="#1325">1325: </a>            <span class="php-comment">// page needs to be moved first</span>
+</span><span id="1326" class="l"><a class="l" href="#1326">1326: </a>            <span class="php-var">$page</span>-&gt;parent = <span class="php-var">$sibling</span>-&gt;parent;
+</span><span id="1327" class="l"><a class="l" href="#1327">1327: </a>            <span class="php-var">$page</span>-&gt;save();
+</span><span id="1328" class="l"><a class="l" href="#1328">1328: </a>        }
+</span><span id="1329" class="l"><a class="l" href="#1329">1329: </a>        <span class="php-var">$this</span>-&gt;sortPage(<span class="php-var">$page</span>, <span class="php-var">$page</span>-&gt;<span class="php-keyword2">sort</span>, <span class="php-var">$after</span>); 
+</span><span id="1330" class="l"><a class="l" href="#1330">1330: </a>    }
+</span><span id="1331" class="l"><a class="l" href="#1331">1331: </a>
+</span><span id="1332" class="l"><a class="l" href="#1332">1332: </a>    <span class="php-comment">/**
+</span></span><span id="1333" class="l"><a class="l" href="#1333">1333: </a><span class="php-comment">     * Rebuild the “sort” values for all children of the given $parent page, fixing duplicates and gaps
+</span></span><span id="1334" class="l"><a class="l" href="#1334">1334: </a><span class="php-comment">     * 
+</span></span><span id="1335" class="l"><a class="l" href="#1335">1335: </a><span class="php-comment">     * If used on a $parent not currently sorted by by “sort” then it will update the “sort” index to be
+</span></span><span id="1336" class="l"><a class="l" href="#1336">1336: </a><span class="php-comment">     * consistent with whatever the pages are sorted by. 
+</span></span><span id="1337" class="l"><a class="l" href="#1337">1337: </a><span class="php-comment">     * 
+</span></span><span id="1338" class="l"><a class="l" href="#1338">1338: </a><span class="php-comment">     * @param Page $parent
+</span></span><span id="1339" class="l"><a class="l" href="#1339">1339: </a><span class="php-comment">     * @return int
+</span></span><span id="1340" class="l"><a class="l" href="#1340">1340: </a><span class="php-comment">     * 
+</span></span><span id="1341" class="l"><a class="l" href="#1341">1341: </a><span class="php-comment">     */</span>
+</span><span id="1342" class="l"><a class="l" href="#1342">1342: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sortRebuild" href="#_sortRebuild">sortRebuild</a>(Page <span class="php-var">$parent</span>) {
+</span><span id="1343" class="l"><a class="l" href="#1343">1343: </a>        
+</span><span id="1344" class="l"><a class="l" href="#1344">1344: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$parent</span>-&gt;id || !<span class="php-var">$parent</span>-&gt;numChildren) <span class="php-keyword1">return</span> <span class="php-num">0</span>;
+</span><span id="1345" class="l"><a class="l" href="#1345">1345: </a>        <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>);
+</span><span id="1346" class="l"><a class="l" href="#1346">1346: </a>        <span class="php-var">$sorts</span> = <span class="php-keyword1">array</span>();
+</span><span id="1347" class="l"><a class="l" href="#1347">1347: </a>        <span class="php-var">$sort</span> = <span class="php-num">0</span>;
+</span><span id="1348" class="l"><a class="l" href="#1348">1348: </a>        
+</span><span id="1349" class="l"><a class="l" href="#1349">1349: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$parent</span>-&gt;sortfield() == <span class="php-quote">'sort'</span>) {
+</span><span id="1350" class="l"><a class="l" href="#1350">1350: </a>            <span class="php-comment">// pages are manually sorted, so we can find IDs directly from the database</span>
+</span><span id="1351" class="l"><a class="l" href="#1351">1351: </a>            <span class="php-var">$sql</span> = <span class="php-quote">'SELECT id FROM pages WHERE parent_id=:parent_id ORDER BY sort, created'</span>;
+</span><span id="1352" class="l"><a class="l" href="#1352">1352: </a>            <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(<span class="php-var">$sql</span>);
+</span><span id="1353" class="l"><a class="l" href="#1353">1353: </a>            <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':parent_id'</span>, <span class="php-var">$parent</span>-&gt;id, \PDO::PARAM_INT);
+</span><span id="1354" class="l"><a class="l" href="#1354">1354: </a>            <span class="php-var">$query</span>-&gt;execute();
+</span><span id="1355" class="l"><a class="l" href="#1355">1355: </a>
+</span><span id="1356" class="l"><a class="l" href="#1356">1356: </a>            <span class="php-comment">// establish new sort values</span>
+</span><span id="1357" class="l"><a class="l" href="#1357">1357: </a>            <span class="php-keyword1">do</span> {
+</span><span id="1358" class="l"><a class="l" href="#1358">1358: </a>                <span class="php-var">$id</span> = (int) <span class="php-var">$query</span>-&gt;fetch(\PDO::FETCH_COLUMN);
+</span><span id="1359" class="l"><a class="l" href="#1359">1359: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$id</span>) <span class="php-keyword1">break</span>;
+</span><span id="1360" class="l"><a class="l" href="#1360">1360: </a>                <span class="php-var">$sorts</span>[] = <span class="php-quote">&quot;(</span><span class="php-var">$id</span><span class="php-quote">,</span><span class="php-var">$sort</span><span class="php-quote">)&quot;</span>;
+</span><span id="1361" class="l"><a class="l" href="#1361">1361: </a>            } <span class="php-keyword1">while</span>(++<span class="php-var">$sort</span>);
+</span><span id="1362" class="l"><a class="l" href="#1362">1362: </a>
+</span><span id="1363" class="l"><a class="l" href="#1363">1363: </a>            <span class="php-var">$query</span>-&gt;closeCursor();
+</span><span id="1364" class="l"><a class="l" href="#1364">1364: </a>            
+</span><span id="1365" class="l"><a class="l" href="#1365">1365: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="1366" class="l"><a class="l" href="#1366">1366: </a>            <span class="php-comment">// children of $parent don't currently use &quot;sort&quot; as sort property</span>
+</span><span id="1367" class="l"><a class="l" href="#1367">1367: </a>            <span class="php-comment">// so we will update the &quot;sort&quot; of children to be consistent with that</span>
+</span><span id="1368" class="l"><a class="l" href="#1368">1368: </a>            <span class="php-comment">// of whatever sort property is in use. </span>
+</span><span id="1369" class="l"><a class="l" href="#1369">1369: </a>            <span class="php-var">$o</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'findIDs'</span> =&gt; <span class="php-num">1</span>, <span class="php-quote">'cache'</span> =&gt; <span class="php-keyword1">false</span>);
+</span><span id="1370" class="l"><a class="l" href="#1370">1370: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$parent</span>-&gt;children(<span class="php-quote">'include=all'</span>, <span class="php-var">$o</span>) <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
+</span><span id="1371" class="l"><a class="l" href="#1371">1371: </a>                <span class="php-var">$id</span> = (int) <span class="php-var">$id</span>;
+</span><span id="1372" class="l"><a class="l" href="#1372">1372: </a>                <span class="php-var">$sorts</span>[] = <span class="php-quote">&quot;(</span><span class="php-var">$id</span><span class="php-quote">,</span><span class="php-var">$sort</span><span class="php-quote">)&quot;</span>;   
+</span><span id="1373" class="l"><a class="l" href="#1373">1373: </a>                <span class="php-var">$sort</span>++;
+</span><span id="1374" class="l"><a class="l" href="#1374">1374: </a>            }
+</span><span id="1375" class="l"><a class="l" href="#1375">1375: </a>        }
+</span><span id="1376" class="l"><a class="l" href="#1376">1376: </a>
+</span><span id="1377" class="l"><a class="l" href="#1377">1377: </a>        <span class="php-comment">// update sort values</span>
+</span><span id="1378" class="l"><a class="l" href="#1378">1378: </a>        <span class="php-var">$query</span> = <span class="php-var">$database</span>-&gt;prepare(
+</span><span id="1379" class="l"><a class="l" href="#1379">1379: </a>            <span class="php-quote">'INSERT INTO pages (id,sort) VALUES '</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$sorts</span>) . <span class="php-quote">' '</span> .
+</span><span id="1380" class="l"><a class="l" href="#1380">1380: </a>            <span class="php-quote">'ON DUPLICATE KEY UPDATE sort=VALUES(sort)'</span>
+</span><span id="1381" class="l"><a class="l" href="#1381">1381: </a>        );
+</span><span id="1382" class="l"><a class="l" href="#1382">1382: </a>
+</span><span id="1383" class="l"><a class="l" href="#1383">1383: </a>        <span class="php-var">$query</span>-&gt;execute();
+</span><span id="1384" class="l"><a class="l" href="#1384">1384: </a>        
+</span><span id="1385" class="l"><a class="l" href="#1385">1385: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">count</span>(<span class="php-var">$sorts</span>);
+</span><span id="1386" class="l"><a class="l" href="#1386">1386: </a>    }
+</span><span id="1387" class="l"><a class="l" href="#1387">1387: </a>}
+</span><span id="1388" class="l"><a class="l" href="#1388">1388: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

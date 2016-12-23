@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PagesLoader | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2119032604"></script>
+	<script type="text/javascript" src="elementlist.js?1688547908"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.45 dev</span>
+			<span>Overview version 3.0.46 dev</span>
 		</a>
 
 
@@ -597,7 +597,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PagesLoader.html#4-1117" title="Go to source code">core/PagesLoader.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PagesLoader.html#4-1149" title="Go to source code">core/PagesLoader.php</a><br>
 	</div>
 
 
@@ -794,7 +794,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findShortcut">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#103-152" title="Go to source code">findShortcut</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>&amp; $selector</var></span>, <span>array <var>$options</var></span>, <span>array <var>$loadOptions</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#103-165" title="Go to source code">findShortcut</a>( <span>string|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>&amp; $selector</var></span>, <span>array <var>$options</var></span>, <span>array <var>$loadOptions</var></span> )</code>
 
 		<div class="description short">
 			
@@ -840,7 +840,7 @@ temporarily, but you should remember to turn it back on</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_find">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#154-343" title="Go to source code">find</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#167-375" title="Go to source code">find</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -869,19 +869,20 @@ array of page IDs.</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array|string</code><br>$options Optional one or more options that can modify certain behaviors. May be
 assoc array or key=value string. - findOne: boolean - apply optimizations for
-finding a single page - findAll: boolean - find all pages with no exculsions
-(same as include=all option) - getTotal: boolean - whether to set returning
-PageArray's "total" property (default: true except when findOne=true) - cache:
-boolean - Allow caching of selectors and pages loaded (default=true). Also sets
-loadOptions[cache]. - allowCustom: boolean - Whether to allow use of
-"_custom=new selector" in selectors (default=false). - lazy: boolean - makes
-find() return Page objects that don't have any data populated to them (other
-than id and template). - loadPages: boolean - whether to populate the returned
-PageArray with found pages (default: true). The only reason why you'd want to
-change this to false would be if you only needed the count details from the
-PageArray: getTotal(), getStart(), getLimit, etc. This is intended as an
-optimization for Pages::count(). Does not apply if $selectorString argument is
-an array. - caller: string - optional name of calling function, for debugging
+finding a single page - findAll: boolean - find all pages with no exclusions
+(same as include=all option) - findIDs: boolean|int - true=return array of [id,
+template_id, parent_id], or 1=return just page IDs. - getTotal: boolean -
+whether to set returning PageArray's "total" property (default: true except when
+findOne=true) - cache: boolean - Allow caching of selectors and pages loaded
+(default=true). Also sets loadOptions[cache]. - allowCustom: boolean - Whether
+to allow use of "_custom=new selector" in selectors (default=false). - lazy:
+boolean - makes find() return Page objects that don't have any data populated to
+them (other than id and template). - loadPages: boolean - whether to populate
+the returned PageArray with found pages (default: true). The only reason why
+you'd want to change this to false would be if you only needed the count details
+from the PageArray: getTotal(), getStart(), getLimit, etc. This is intended as
+an optimization for Pages::count(). Does not apply if $selectorString argument
+is an array. - caller: string - optional name of calling function, for debugging
 purposes, i.e. pages.count - include: string - Optional inclusion mode of
 'hidden', 'unpublished' or 'all'. Default=none. Typically you would specify this
 directly in the selector string, so the option is mainly useful if your first
@@ -914,7 +915,7 @@ options.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findOne">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#345-370" title="Go to source code">findOne</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#377-402" title="Go to source code">findOne</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -966,7 +967,7 @@ get() does not.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#372-396" title="Go to source code">get</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#404-428" title="Go to source code">get</a>( <span>string|integer|array|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code> <var>$selector</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1011,7 +1012,7 @@ found<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getById">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#398-715" title="Go to source code">getById</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|string <var>$_ids</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|array|null <var>$template</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$parent_id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#430-747" title="Go to source code">getById</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|string <var>$_ids</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|array|null <var>$template</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$parent_id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1135,7 +1136,7 @@ a PageArray.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPath">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#717-842" title="Go to source code">getPath</a>( <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$id</var></span>, <span>null|array|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#749-874" title="Go to source code">getPath</a>( <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$id</var></span>, <span>null|array|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1201,7 +1202,7 @@ pulling paths from PagePaths module, if installed? (default=true)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getByPath">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#844-998" title="Go to source code">getByPath</a>( <span>mixed <var>$path</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#876-1030" title="Go to source code">getByPath</a>( <span>mixed <var>$path</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1267,7 +1268,7 @@ PagePathHistory module is installed (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_count">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1000-1030" title="Go to source code">count</a>( <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1032-1062" title="Go to source code">count</a>( <span>string|array <var>$selector</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1311,7 +1312,7 @@ PagePathHistory module is installed (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filterListable">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1032-1060" title="Go to source code">filterListable</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>string <var>$includeMode</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1064-1092" title="Go to source code">filterListable</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>string <var>$includeMode</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1359,7 +1360,7 @@ status' - 'unpublished': Allow pages with 'unpublished' or 'hidden' status -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNativeColumns">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1062-1080" title="Go to source code">getNativeColumns</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1094-1112" title="Go to source code">getNativeColumns</a>( )</code>
 
 		<div class="description short">
 			
@@ -1396,7 +1397,7 @@ status' - 'unpublished': Allow pages with 'unpublished' or 'hidden' status -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isNativeColumn">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1082-1092" title="Go to source code">isNativeColumn</a>( <span>mixed <var>$columnName</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1114-1124" title="Go to source code">isNativeColumn</a>( <span>mixed <var>$columnName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1438,7 +1439,7 @@ status' - 'unpublished': Allow pages with 'unpublished' or 'hidden' status -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_debug">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1094-1105" title="Go to source code">debug</a>( <span>boolean|null <var>$debug</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1126-1137" title="Go to source code">debug</a>( <span>boolean|null <var>$debug</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1480,7 +1481,7 @@ status' - 'unpublished': Allow pages with 'unpublished' or 'hidden' status -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTotalPagesLoaded">#</a>
-		<code><a href="source-class-ProcessWire.PagesLoader.html#1107-1115" title="Go to source code">getTotalPagesLoaded</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagesLoader.html#1139-1147" title="Go to source code">getTotalPagesLoaded</a>( )</code>
 
 		<div class="description short">
 			
