@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeDatetime | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2761634355"></script>
+	<script type="text/javascript" src="elementlist.js?1720652584"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.47 dev</span>
+			<span>Overview version 3.0.48 dev</span>
 		</a>
 
 
@@ -223,6 +223,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -888,7 +889,7 @@ compatible format</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____exportValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeDatetime.html#154-157" title="Go to source code">___exportValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeDatetime.html#154-157" title="Go to source code">___exportValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|float|array|object|null <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -905,6 +906,9 @@ float or array</p>
 <p>If an array is returned, it should only contain: strings, ints, floats or
 more arrays of those types. This is intended for web service exports.</p>
 
+<p>When applicable, this method should map things like internal IDs to named
+equivalents (name, path, etc.).</p>
+
 <p>If not overridden, this takes on the same behavior as
 <code>Fieldtype::sleepValue()</code>. However, if overridden, it is intended to
 be more verbose than wakeupValue, where applicable.</p>
@@ -920,9 +924,13 @@ be more verbose than wakeupValue, where applicable.</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer|array|object</code><br>$value</dd>
+					<dd><code>string|integer|float|array|object|null</code><br>$value</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Optional settings to shape the exported value, if needed.</dd>
+					<dd><code>array</code><br>$options Optional settings to shape the exported value, if needed: -
+<code>system</code> (boolean): Indicates value is being used for a system export
+via $pages-&gt;export() call (default=false). - <code>human</code> (boolean):
+When true, Fieldtype may optionally emphasize human readability over
+importability (default=false).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1207,6 +1215,7 @@ specified another)</dd>
 			<a href="class-ProcessWire.Fieldtype.html#____getConfigAllowContext">___getConfigAllowContext()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____getConfigArray">___getConfigArray()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____getSelectorInfo">___getSelectorInfo()</a>, 
+			<a href="class-ProcessWire.Fieldtype.html#____importValue">___importValue()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____install">___install()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____loadPageField">___loadPageField()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____loadPageFieldFilter">___loadPageFieldFilter()</a>, 

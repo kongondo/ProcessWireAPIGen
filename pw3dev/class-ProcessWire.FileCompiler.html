@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FileCompiler | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2761634355"></script>
+	<script type="text/javascript" src="elementlist.js?1720652584"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.47 dev</span>
+			<span>Overview version 3.0.48 dev</span>
 		</a>
 
 
@@ -223,6 +223,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -598,7 +599,7 @@ wire('cache').<br>
 				<b>Todo:</b>
 				handle race conditions for multiple requests attempting to compile the same
 file(s).<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.FileCompiler.html#4-1041" title="Go to source code">core/FileCompiler.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.FileCompiler.html#4-1164" title="Go to source code">core/FileCompiler.php</a><br>
 	</div>
 
 
@@ -616,7 +617,7 @@ file(s).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#102-137" title="Go to source code">__construct</a>( <span>string <var>$sourcePath</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#118-153" title="Go to source code">__construct</a>( <span>string <var>$sourcePath</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -659,7 +660,7 @@ file(s).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#139-174" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#155-190" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -696,7 +697,7 @@ file(s).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_mkdir">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#176-188" title="Go to source code">mkdir</a>( <span>string <var>$path</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#192-204" title="Go to source code">mkdir</a>( <span>string <var>$path</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -740,7 +741,7 @@ file(s).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_chmod">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#190-201" title="Go to source code">chmod</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#206-217" title="Go to source code">chmod</a>( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -782,7 +783,7 @@ file(s).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_initTargetPath">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#203-215" title="Go to source code">initTargetPath</a>( )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#219-231" title="Go to source code">initTargetPath</a>( )</code>
 
 		<div class="description short">
 			
@@ -810,6 +811,46 @@ not</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="initRawPHP" id="_initRawPHP">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_initRawPHP">#</a>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#233-277" title="Go to source code">initRawPHP</a>( <span>string <var>&amp; $data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Populate the $this-&gt;rawPHP data which contains only raw php without quoted
+values</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Populate the $this-&gt;rawPHP data which contains only raw php without quoted
+values</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>string</code><br>$data</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="allowCompile" id="_allowCompile">
 
 		<td class="attributes"><code>
@@ -821,7 +862,7 @@ not</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_allowCompile">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#217-263" title="Go to source code">allowCompile</a>( <span>string <var>&amp; $filename</var></span>, <span>string <var>&amp; $basename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#279-325" title="Go to source code">allowCompile</a>( <span>string <var>&amp; $filename</var></span>, <span>string <var>&amp; $basename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -866,7 +907,7 @@ the function).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____compile">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#265-371" title="Go to source code">___compile</a>( <span>string <var>$sourceFile</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#327-433" title="Go to source code">___compile</a>( <span>string <var>$sourceFile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -913,7 +954,7 @@ not necessary.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____compileData">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#373-438" title="Go to source code">___compileData</a>( <span>string <var>$data</var></span>, <span>string <var>$sourceFile</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#435-504" title="Go to source code">___compileData</a>( <span>string <var>$data</var></span>, <span>string <var>$sourceFile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -957,7 +998,7 @@ not necessary.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileComments">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#440-503" title="Go to source code">compileComments</a>( <span>mixed <var>&amp; $data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#506-569" title="Go to source code">compileComments</a>( <span>mixed <var>&amp; $data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1001,7 +1042,7 @@ methods</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileIncludes">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#505-668" title="Go to source code">compileIncludes</a>( <span>string <var>&amp; $data</var></span>, <span>string <var>$sourceFile</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#571-694" title="Go to source code">compileIncludes</a>( <span>string <var>&amp; $data</var></span>, <span>string <var>$sourceFile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1032,6 +1073,94 @@ where possible</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="compileIncludesValidLineOpen" id="_compileIncludesValidLineOpen">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileIncludesValidLineOpen">#</a>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#696-728" title="Go to source code">compileIncludesValidLineOpen</a>( <span>string <var>$open</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Test the given line $open preceding an include statement for validity</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Test the given line $open preceding an include statement for validity</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$open</var></dt>
+					<dd><code>string</code><br>$open</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>Returns true if valid, false if not<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileIncludesFileMatchType" id="_compileIncludesFileMatchType">
+
+		<td class="attributes"><code>
+			 protected 
+			string|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileIncludesFileMatchType">#</a>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#730-786" title="Go to source code">compileIncludesFileMatchType</a>( <span>string <var>$fileMatch</var></span>, <span>string <var>$funcMatch</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns fileMatch type of 'var', 'file', 'func' or boolean false if not
+valid</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns fileMatch type of 'var', 'file', 'func' or boolean false if not
+valid</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fileMatch</var></dt>
+					<dd><code>string</code><br>$fileMatch The $fileMatch var from compileIncludes() method</dd>
+					<dt><var>$funcMatch</var></dt>
+					<dd><code>string</code><br>$funcMatch include function name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="compileNamespace" id="_compileNamespace">
 
 		<td class="attributes"><code>
@@ -1043,7 +1172,7 @@ where possible</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileNamespace">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#670-803" title="Go to source code">compileNamespace</a>( <span>string <var>&amp; $data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#788-926" title="Go to source code">compileNamespace</a>( <span>string <var>&amp; $data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1085,7 +1214,7 @@ where possible</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_copyAllNewerFiles">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#805-865" title="Go to source code">copyAllNewerFiles</a>( <span>string <var>$source</var></span>, <span>string <var>$target</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#928-988" title="Go to source code">copyAllNewerFiles</a>( <span>string <var>$source</var></span>, <span>string <var>$target</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1133,7 +1262,7 @@ is $newer</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNumCacheFiles">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#867-900" title="Go to source code">getNumCacheFiles</a>( <span>boolean <var>$all</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$targetPath</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#990-1023" title="Go to source code">getNumCacheFiles</a>( <span>boolean <var>$all</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$targetPath</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1177,7 +1306,7 @@ is $newer</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_clearCache">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#902-919" title="Go to source code">clearCache</a>( <span>boolean <var>$all</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#1025-1042" title="Go to source code">clearCache</a>( <span>boolean <var>$all</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1219,7 +1348,7 @@ is $newer</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maintenance">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#921-944" title="Go to source code">maintenance</a>( <span>integer <var>$interval</var> = <span class="php-num">86400</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#1044-1067" title="Go to source code">maintenance</a>( <span>integer <var>$interval</var> = <span class="php-num">86400</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1263,7 +1392,7 @@ is $newer</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__maintenance">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#946-1002" title="Go to source code">_maintenance</a>( <span>mixed <var>$sourcePath</var></span>, <span>mixed <var>$targetPath</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#1069-1125" title="Go to source code">_maintenance</a>( <span>mixed <var>$sourcePath</var></span>, <span>mixed <var>$targetPath</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1309,7 +1438,7 @@ is $newer</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_optionsToString">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#1004-1029" title="Go to source code">optionsToString</a>( <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#1127-1152" title="Go to source code">optionsToString</a>( <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1351,7 +1480,7 @@ is $newer</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addExclusion">#</a>
-		<code><a href="source-class-ProcessWire.FileCompiler.html#1031-1039" title="Go to source code">addExclusion</a>( <span>string <var>$pathname</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FileCompiler.html#1154-1162" title="Go to source code">addExclusion</a>( <span>string <var>$pathname</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1689,6 +1818,60 @@ $config-&gt;fileCompilerOptions at runtime.</p>
 			<div class="description detailed hidden">
 				
 <p>Detected file namespace (during compileData)</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="rawPHP" id="$rawPHP">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.FileCompiler.html#102-108" title="Go to source code"><var>$rawPHP</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">''</span></code></td>
+		<td class="description"><div>
+			<a href="#$rawPHP" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>String with raw PHP blocks only, and with any quoted values removed.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>String with raw PHP blocks only, and with any quoted values removed.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="rawDequotedPHP" id="$rawDequotedPHP">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.FileCompiler.html#110-116" title="Go to source code"><var>$rawDequotedPHP</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">''</span></code></td>
+		<td class="description"><div>
+			<a href="#$rawDequotedPHP" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Same as raw PHP but with all quoted values converted to literal "string"</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Same as raw PHP but with all quoted values converted to literal "string"</p>
 
 
 			</div>
