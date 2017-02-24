@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldMarkup | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?679538713"></script>
+	<script type="text/javascript" src="elementlist.js?2099102864"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.52 dev</span>
+			<span>Overview version 3.0.53 dev</span>
 		</a>
 
 
@@ -626,7 +626,7 @@ Inputfields</p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.InputfieldMarkup.html#4-124" title="Go to source code">modules/Inputfield/InputfieldMarkup.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.InputfieldMarkup.html#4-133" title="Go to source code">modules/Inputfield/InputfieldMarkup.module</a><br>
 	</div>
 
 
@@ -701,6 +701,73 @@ been populated to the Inputfield, but before render.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="renderReady" id="_renderReady">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderReady">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldMarkup.html#33-40" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Method called right before Inputfield markup is rendered, so that any
+dependencies can be loaded as well.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Method called right before Inputfield markup is rendered, so that any
+dependencies can be loaded as well.</p>
+
+<p>Called before <code>Inputfield::render()</code> or
+<code>Inputfield::renderValue()</code> method by the parent
+<code>InputfieldWrapper</code> instance. If you are calling either of those
+methods yourself for some reason, make sure that you call this
+<code>renderReady()</code> method first.</p>
+
+<p>The default behavior of this method is to populate Inputfield-specific CSS
+and JS file assets into <code>$config-&gt;styles</code> and
+<code>$config-&gt;scripts</code>.</p>
+
+<p>The return value is true if assets were just added, and false if assets have
+already been added in a previous call. This distinction probably doesn't matter
+in most usages, but here just in case a descending class needs to know when/if
+to add additional assets (i.e. when this method returns true).</p>
+
+<p>#pw-group-output</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parent</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code>|<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>|null</code><br>The parent InputfieldWrapper that is rendering it, or null if no parent.</dd>
+					<dt><var>$renderValueMode</var></dt>
+					<dd><code>boolean</code><br>$renderValueMode Specify true only if this is for
+<code>Inputfield::renderValue()</code> rather than
+<code>Inputfield::render()</code>.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True if assets were just added, false if already added.<br>
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.Inputfield.html#_renderReady">ProcessWire\Inputfield::renderReady()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="___render" id="____render">
 
 		<td class="attributes"><code>
@@ -712,7 +779,7 @@ been populated to the Inputfield, but before render.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____render">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldMarkup.html#33-85" title="Go to source code">___render</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldMarkup.html#42-94" title="Go to source code">___render</a>( )</code>
 
 		<div class="description short">
 			
@@ -758,7 +825,7 @@ split it up a lot<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____renderValue">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldMarkup.html#87-92" title="Go to source code">___renderValue</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldMarkup.html#96-101" title="Go to source code">___renderValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -801,7 +868,7 @@ split it up a lot<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldMarkup.html#94-122" title="Go to source code">___getConfigInputfields</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldMarkup.html#103-131" title="Go to source code">___getConfigInputfields</a>( )</code>
 
 		<div class="description short">
 			
@@ -905,7 +972,6 @@ split it up a lot<br>
 			<a href="class-ProcessWire.Inputfield.html#_removeAttr">removeAttr()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_removeAttribute">removeAttribute()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_removeClass">removeClass()</a>, 
-			<a href="class-ProcessWire.Inputfield.html#_renderReady">renderReady()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_set">set()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_setAttribute">setAttribute()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_setAttributes">setAttributes()</a>, 
@@ -952,6 +1018,7 @@ split it up a lot<br>
 			<a href="class-ProcessWire.Wire.html#___call">__call()</a>, 
 			<a href="class-ProcessWire.Wire.html#___clone">__clone()</a>, 
 			<a href="class-ProcessWire.Wire.html#___toString">__toString()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callHookMethod">_callHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#__callMethod">_callMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#__n">_n()</a>, 
 			<a href="class-ProcessWire.Wire.html#__notice">_notice()</a>, 
@@ -1080,7 +1147,8 @@ split it up a lot<br>
 			<a href="class-ProcessWire.InputfieldWrapper.html#$defaultMarkup"><var>$defaultMarkup</var></a>, 
 			<a href="class-ProcessWire.InputfieldWrapper.html#$delayedChildren"><var>$delayedChildren</var></a>, 
 			<a href="class-ProcessWire.InputfieldWrapper.html#$markup"><var>$markup</var></a>, 
-			<a href="class-ProcessWire.InputfieldWrapper.html#$requiredLabel"><var>$requiredLabel</var></a>
+			<a href="class-ProcessWire.InputfieldWrapper.html#$requiredLabel"><var>$requiredLabel</var></a>, 
+			<a href="class-ProcessWire.InputfieldWrapper.html#$useColumnWidth"><var>$useColumnWidth</var></a>
 		</code></td>
 	</tr>
 	</table>

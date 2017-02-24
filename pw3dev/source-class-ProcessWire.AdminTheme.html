@@ -8,7 +8,7 @@
 	<title>File core/AdminTheme.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?679538713"></script>
+	<script type="text/javascript" src="elementlist.js?2099102864"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.52 dev</span>
+			<span>Overview version 3.0.53 dev</span>
 		</a>
 
 
@@ -803,69 +803,75 @@
 </span><span id="249" class="l"><a class="l" href="#249">249: </a>        <span class="php-comment">// we already have this field installed, no need to continue</span>
 </span><span id="250" class="l"><a class="l" href="#250">250: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span>) {
 </span><span id="251" class="l"><a class="l" href="#251">251: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-var">$toUseNote</span>); 
-</span><span id="252" class="l"><a class="l" href="#252">252: </a>            <span class="php-keyword1">return</span>;
-</span><span id="253" class="l"><a class="l" href="#253">253: </a>        }
-</span><span id="254" class="l"><a class="l" href="#254">254: </a>
-</span><span id="255" class="l"><a class="l" href="#255">255: </a>        <span class="php-comment">// this will be the 2nd admin theme installed, so add a field that lets them select admin theme</span>
-</span><span id="256" class="l"><a class="l" href="#256">256: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> Field());
-</span><span id="257" class="l"><a class="l" href="#257">257: </a>        <span class="php-var">$field</span>-&gt;name = <span class="php-quote">'admin_theme'</span>;
-</span><span id="258" class="l"><a class="l" href="#258">258: </a>        <span class="php-var">$field</span>-&gt;type = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'FieldtypeModule'</span>); 
-</span><span id="259" class="l"><a class="l" href="#259">259: </a>        <span class="php-var">$field</span>-&gt;set(<span class="php-quote">'moduleTypes'</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'AdminTheme'</span>)); 
-</span><span id="260" class="l"><a class="l" href="#260">260: </a>        <span class="php-var">$field</span>-&gt;set(<span class="php-quote">'labelField'</span>, <span class="php-quote">'title'</span>); 
-</span><span id="261" class="l"><a class="l" href="#261">261: </a>        <span class="php-var">$field</span>-&gt;set(<span class="php-quote">'inputfieldClass'</span>, <span class="php-quote">'InputfieldRadios'</span>); 
-</span><span id="262" class="l"><a class="l" href="#262">262: </a>        <span class="php-var">$field</span>-&gt;label = <span class="php-quote">'Admin Theme'</span>;
-</span><span id="263" class="l"><a class="l" href="#263">263: </a>        <span class="php-var">$field</span>-&gt;flags = Field::flagSystem; 
-</span><span id="264" class="l"><a class="l" href="#264">264: </a>        <span class="php-var">$field</span>-&gt;save(); 
-</span><span id="265" class="l"><a class="l" href="#265">265: </a>
-</span><span id="266" class="l"><a class="l" href="#266">266: </a>        <span class="php-var">$fieldgroup</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldgroups'</span>)-&gt;get(<span class="php-quote">'user'</span>); 
-</span><span id="267" class="l"><a class="l" href="#267">267: </a>        <span class="php-var">$fieldgroup</span>-&gt;add(<span class="php-var">$field</span>); 
-</span><span id="268" class="l"><a class="l" href="#268">268: </a>        <span class="php-var">$fieldgroup</span>-&gt;save();
-</span><span id="269" class="l"><a class="l" href="#269">269: </a>
-</span><span id="270" class="l"><a class="l" href="#270">270: </a>        <span class="php-comment">// make this field one that the user is allowed to configure in their profile</span>
-</span><span id="271" class="l"><a class="l" href="#271">271: </a>        <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;getModuleConfigData(<span class="php-quote">'ProcessProfile'</span>); 
-</span><span id="272" class="l"><a class="l" href="#272">272: </a>        <span class="php-var">$data</span>[<span class="php-quote">'profileFields'</span>][] = <span class="php-quote">'admin_theme'</span>;
-</span><span id="273" class="l"><a class="l" href="#273">273: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;saveModuleConfigData(<span class="php-quote">'ProcessProfile'</span>, <span class="php-var">$data</span>); 
-</span><span id="274" class="l"><a class="l" href="#274">274: </a>
-</span><span id="275" class="l"><a class="l" href="#275">275: </a>        <span class="php-var">$this</span>-&gt;message(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Installed field &quot;admin_theme&quot; and added to user profile settings.'</span>)); 
-</span><span id="276" class="l"><a class="l" href="#276">276: </a>        <span class="php-var">$this</span>-&gt;message(<span class="php-var">$toUseNote</span>); 
-</span><span id="277" class="l"><a class="l" href="#277">277: </a>    }
-</span><span id="278" class="l"><a class="l" href="#278">278: </a>
-</span><span id="279" class="l"><a class="l" href="#279">279: </a>    <span class="php-comment">/**
-</span></span><span id="280" class="l"><a class="l" href="#280">280: </a><span class="php-comment">     * Set a pre-render URL or get currently pre-render URL(s)
-</span></span><span id="281" class="l"><a class="l" href="#281">281: </a><span class="php-comment">     * 
-</span></span><span id="282" class="l"><a class="l" href="#282">282: </a><span class="php-comment">     * #pw-internal
-</span></span><span id="283" class="l"><a class="l" href="#283">283: </a><span class="php-comment">     * 
-</span></span><span id="284" class="l"><a class="l" href="#284">284: </a><span class="php-comment">     * @param string $url
-</span></span><span id="285" class="l"><a class="l" href="#285">285: </a><span class="php-comment">     * @return array
-</span></span><span id="286" class="l"><a class="l" href="#286">286: </a><span class="php-comment">     * 
-</span></span><span id="287" class="l"><a class="l" href="#287">287: </a><span class="php-comment">     */</span>
-</span><span id="288" class="l"><a class="l" href="#288">288: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_preRenderURL" href="#_preRenderURL">preRenderURL</a>(<span class="php-var">$url</span> = <span class="php-quote">''</span>) {
-</span><span id="289" class="l"><a class="l" href="#289">289: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$url</span>)) <span class="php-var">$this</span>-&gt;preRenderURLs[] = <span class="php-var">$url</span>;
-</span><span id="290" class="l"><a class="l" href="#290">290: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;preRenderURLs;
-</span><span id="291" class="l"><a class="l" href="#291">291: </a>    }
-</span><span id="292" class="l"><a class="l" href="#292">292: </a>    
-</span><span id="293" class="l"><a class="l" href="#293">293: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() { 
-</span><span id="294" class="l"><a class="l" href="#294">294: </a>
-</span><span id="295" class="l"><a class="l" href="#295">295: </a>        <span class="php-comment">/*
-</span></span><span id="296" class="l"><a class="l" href="#296">296: </a><span class="php-comment">        if(self::$numAdminThemes &gt; 1) return;
-</span></span><span id="297" class="l"><a class="l" href="#297">297: </a><span class="php-comment">
-</span></span><span id="298" class="l"><a class="l" href="#298">298: </a><span class="php-comment">        // this is the last installed admin theme
-</span></span><span id="299" class="l"><a class="l" href="#299">299: </a><span class="php-comment">        $field = $this-&gt;wire('fields')-&gt;get('admin_theme');     
-</span></span><span id="300" class="l"><a class="l" href="#300">300: </a><span class="php-comment">        $field-&gt;flags = Field::flagSystemOverride; 
-</span></span><span id="301" class="l"><a class="l" href="#301">301: </a><span class="php-comment">        $field-&gt;flags = 0; 
-</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">        $field-&gt;save();
+</span><span id="252" class="l"><a class="l" href="#252">252: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="253" class="l"><a class="l" href="#253">253: </a>            <span class="php-comment">// this will be the 2nd admin theme installed, so add a field that lets them select admin theme</span>
+</span><span id="254" class="l"><a class="l" href="#254">254: </a>            <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> Field());
+</span><span id="255" class="l"><a class="l" href="#255">255: </a>            <span class="php-var">$field</span>-&gt;name = <span class="php-quote">'admin_theme'</span>;
+</span><span id="256" class="l"><a class="l" href="#256">256: </a>            <span class="php-var">$field</span>-&gt;type = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'FieldtypeModule'</span>);
+</span><span id="257" class="l"><a class="l" href="#257">257: </a>            <span class="php-var">$field</span>-&gt;set(<span class="php-quote">'moduleTypes'</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'AdminTheme'</span>));
+</span><span id="258" class="l"><a class="l" href="#258">258: </a>            <span class="php-var">$field</span>-&gt;set(<span class="php-quote">'labelField'</span>, <span class="php-quote">'title'</span>);
+</span><span id="259" class="l"><a class="l" href="#259">259: </a>            <span class="php-var">$field</span>-&gt;set(<span class="php-quote">'inputfieldClass'</span>, <span class="php-quote">'InputfieldRadios'</span>);
+</span><span id="260" class="l"><a class="l" href="#260">260: </a>            <span class="php-var">$field</span>-&gt;label = <span class="php-quote">'Admin Theme'</span>;
+</span><span id="261" class="l"><a class="l" href="#261">261: </a>            <span class="php-var">$field</span>-&gt;flags = Field::flagSystem;
+</span><span id="262" class="l"><a class="l" href="#262">262: </a>            <span class="php-keyword1">try</span> {
+</span><span id="263" class="l"><a class="l" href="#263">263: </a>                <span class="php-var">$field</span>-&gt;save();
+</span><span id="264" class="l"><a class="l" href="#264">264: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
+</span><span id="265" class="l"><a class="l" href="#265">265: </a>                <span class="php-var">$this</span>-&gt;error(<span class="php-quote">&quot;Error creating 'admin_theme' field: &quot;</span> . <span class="php-var">$e</span>-&gt;getMessage());
+</span><span id="266" class="l"><a class="l" href="#266">266: </a>            }
+</span><span id="267" class="l"><a class="l" href="#267">267: </a>        }
+</span><span id="268" class="l"><a class="l" href="#268">268: </a>
+</span><span id="269" class="l"><a class="l" href="#269">269: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span> &amp;&amp; <span class="php-var">$field</span>-&gt;id) {
+</span><span id="270" class="l"><a class="l" href="#270">270: </a>            <span class="php-comment">/** @var Fieldgroup $fieldgroup */</span>
+</span><span id="271" class="l"><a class="l" href="#271">271: </a>            <span class="php-var">$fieldgroup</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldgroups'</span>)-&gt;get(<span class="php-quote">'user'</span>);
+</span><span id="272" class="l"><a class="l" href="#272">272: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$fieldgroup</span>-&gt;hasField(<span class="php-var">$field</span>)) {
+</span><span id="273" class="l"><a class="l" href="#273">273: </a>                <span class="php-var">$fieldgroup</span>-&gt;add(<span class="php-var">$field</span>);
+</span><span id="274" class="l"><a class="l" href="#274">274: </a>                <span class="php-var">$fieldgroup</span>-&gt;save();
+</span><span id="275" class="l"><a class="l" href="#275">275: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Installed field &quot;admin_theme&quot; and added to user profile settings.'</span>));
+</span><span id="276" class="l"><a class="l" href="#276">276: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-var">$toUseNote</span>);
+</span><span id="277" class="l"><a class="l" href="#277">277: </a>            }
+</span><span id="278" class="l"><a class="l" href="#278">278: </a>            <span class="php-comment">// make this field one that the user is allowed to configure in their profile</span>
+</span><span id="279" class="l"><a class="l" href="#279">279: </a>            <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;getModuleConfigData(<span class="php-quote">'ProcessProfile'</span>);
+</span><span id="280" class="l"><a class="l" href="#280">280: </a>            <span class="php-var">$data</span>[<span class="php-quote">'profileFields'</span>][] = <span class="php-quote">'admin_theme'</span>;
+</span><span id="281" class="l"><a class="l" href="#281">281: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;saveModuleConfigData(<span class="php-quote">'ProcessProfile'</span>, <span class="php-var">$data</span>); 
+</span><span id="282" class="l"><a class="l" href="#282">282: </a>        }
+</span><span id="283" class="l"><a class="l" href="#283">283: </a>    }
+</span><span id="284" class="l"><a class="l" href="#284">284: </a>
+</span><span id="285" class="l"><a class="l" href="#285">285: </a>    <span class="php-comment">/**
+</span></span><span id="286" class="l"><a class="l" href="#286">286: </a><span class="php-comment">     * Set a pre-render URL or get currently pre-render URL(s)
+</span></span><span id="287" class="l"><a class="l" href="#287">287: </a><span class="php-comment">     * 
+</span></span><span id="288" class="l"><a class="l" href="#288">288: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="289" class="l"><a class="l" href="#289">289: </a><span class="php-comment">     * 
+</span></span><span id="290" class="l"><a class="l" href="#290">290: </a><span class="php-comment">     * @param string $url
+</span></span><span id="291" class="l"><a class="l" href="#291">291: </a><span class="php-comment">     * @return array
+</span></span><span id="292" class="l"><a class="l" href="#292">292: </a><span class="php-comment">     * 
+</span></span><span id="293" class="l"><a class="l" href="#293">293: </a><span class="php-comment">     */</span>
+</span><span id="294" class="l"><a class="l" href="#294">294: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_preRenderURL" href="#_preRenderURL">preRenderURL</a>(<span class="php-var">$url</span> = <span class="php-quote">''</span>) {
+</span><span id="295" class="l"><a class="l" href="#295">295: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$url</span>)) <span class="php-var">$this</span>-&gt;preRenderURLs[] = <span class="php-var">$url</span>;
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;preRenderURLs;
+</span><span id="297" class="l"><a class="l" href="#297">297: </a>    }
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>    
+</span><span id="299" class="l"><a class="l" href="#299">299: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() { 
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>        <span class="php-comment">/*
+</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">        if(self::$numAdminThemes &gt; 1) return;
 </span></span><span id="303" class="l"><a class="l" href="#303">303: </a><span class="php-comment">
-</span></span><span id="304" class="l"><a class="l" href="#304">304: </a><span class="php-comment">        $fieldgroup = $this-&gt;wire('fieldgroups')-&gt;get('user'); 
-</span></span><span id="305" class="l"><a class="l" href="#305">305: </a><span class="php-comment">        $fieldgroup-&gt;remove($field); 
-</span></span><span id="306" class="l"><a class="l" href="#306">306: </a><span class="php-comment">        $fieldgroup-&gt;save();
-</span></span><span id="307" class="l"><a class="l" href="#307">307: </a><span class="php-comment">
-</span></span><span id="308" class="l"><a class="l" href="#308">308: </a><span class="php-comment">        $this-&gt;wire('fields')-&gt;delete($field); 
-</span></span><span id="309" class="l"><a class="l" href="#309">309: </a><span class="php-comment">        $this-&gt;message($this-&gt;_('Removed field &quot;admin_theme&quot; from system.')); 
-</span></span><span id="310" class="l"><a class="l" href="#310">310: </a><span class="php-comment">        */</span>
-</span><span id="311" class="l"><a class="l" href="#311">311: </a>    }
-</span><span id="312" class="l"><a class="l" href="#312">312: </a>}
-</span><span id="313" class="l"><a class="l" href="#313">313: </a>
-</span><span id="314" class="l"><a class="l" href="#314">314: </a></span></code></pre>
+</span></span><span id="304" class="l"><a class="l" href="#304">304: </a><span class="php-comment">        // this is the last installed admin theme
+</span></span><span id="305" class="l"><a class="l" href="#305">305: </a><span class="php-comment">        $field = $this-&gt;wire('fields')-&gt;get('admin_theme');     
+</span></span><span id="306" class="l"><a class="l" href="#306">306: </a><span class="php-comment">        $field-&gt;flags = Field::flagSystemOverride; 
+</span></span><span id="307" class="l"><a class="l" href="#307">307: </a><span class="php-comment">        $field-&gt;flags = 0; 
+</span></span><span id="308" class="l"><a class="l" href="#308">308: </a><span class="php-comment">        $field-&gt;save();
+</span></span><span id="309" class="l"><a class="l" href="#309">309: </a><span class="php-comment">
+</span></span><span id="310" class="l"><a class="l" href="#310">310: </a><span class="php-comment">        $fieldgroup = $this-&gt;wire('fieldgroups')-&gt;get('user'); 
+</span></span><span id="311" class="l"><a class="l" href="#311">311: </a><span class="php-comment">        $fieldgroup-&gt;remove($field); 
+</span></span><span id="312" class="l"><a class="l" href="#312">312: </a><span class="php-comment">        $fieldgroup-&gt;save();
+</span></span><span id="313" class="l"><a class="l" href="#313">313: </a><span class="php-comment">
+</span></span><span id="314" class="l"><a class="l" href="#314">314: </a><span class="php-comment">        $this-&gt;wire('fields')-&gt;delete($field); 
+</span></span><span id="315" class="l"><a class="l" href="#315">315: </a><span class="php-comment">        $this-&gt;message($this-&gt;_('Removed field &quot;admin_theme&quot; from system.')); 
+</span></span><span id="316" class="l"><a class="l" href="#316">316: </a><span class="php-comment">        */</span>
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>    }
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>}
+</span><span id="319" class="l"><a class="l" href="#319">319: </a>
+</span><span id="320" class="l"><a class="l" href="#320">320: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
