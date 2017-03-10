@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeFile.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1618895904"></script>
+	<script type="text/javascript" src="elementlist.js?1383577702"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.54 dev</span>
+			<span>Overview version 3.0.55 dev</span>
 		</a>
 
 
@@ -324,6 +324,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -1235,29 +1236,31 @@
 </span><span id="680" class="l"><a class="l" href="#680">680: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'inputfieldClass'</span>);
 </span><span id="681" class="l"><a class="l" href="#681">681: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Inputfield Type'</span>);
 </span><span id="682" class="l"><a class="l" href="#682">682: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'The type of field that will be used to collect input.'</span>);
-</span><span id="683" class="l"><a class="l" href="#683">683: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">true</span>;
-</span><span id="684" class="l"><a class="l" href="#684">684: </a>        <span class="php-var">$baseClass</span> = <span class="php-var">$this</span>-&gt;defaultInputfieldClass;
-</span><span id="685" class="l"><a class="l" href="#685">685: </a>        
-</span><span id="686" class="l"><a class="l" href="#686">686: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>) <span class="php-keyword1">as</span> <span class="php-var">$fm</span>) {
-</span><span id="687" class="l"><a class="l" href="#687">687: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$fm</span>-&gt;className(), <span class="php-quote">'Inputfield'</span>) !== <span class="php-num">0</span>) <span class="php-keyword1">continue</span>;
-</span><span id="688" class="l"><a class="l" href="#688">688: </a>            <span class="php-keyword1">if</span>(<span class="php-quote">&quot;</span><span class="php-var">$fm</span><span class="php-quote">&quot;</span> == <span class="php-var">$baseClass</span> || <span class="php-keyword2">is_subclass_of</span>(<span class="php-var">$fm</span>-&gt;className(<span class="php-keyword1">true</span>), __NAMESPACE__ . <span class="php-quote">&quot;\\</span><span class="php-var">$baseClass</span><span class="php-quote">&quot;</span>))
-</span><span id="689" class="l"><a class="l" href="#689">689: </a>                <span class="php-var">$f</span>-&gt;addOption(<span class="php-quote">&quot;</span><span class="php-var">$fm</span><span class="php-quote">&quot;</span>, <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;Inputfield&quot;</span>, <span class="php-quote">''</span>, <span class="php-quote">&quot;</span><span class="php-var">$fm</span><span class="php-quote">&quot;</span>));
-</span><span id="690" class="l"><a class="l" href="#690">690: </a>        }
-</span><span id="691" class="l"><a class="l" href="#691">691: </a>        
-</span><span id="692" class="l"><a class="l" href="#692">692: </a>        <span class="php-var">$inputfieldClass</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'inputfieldClass'</span>);
-</span><span id="693" class="l"><a class="l" href="#693">693: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$inputfieldClass</span> ? <span class="php-var">$inputfieldClass</span> : <span class="php-var">$this</span>-&gt;defaultInputfieldClass);
-</span><span id="694" class="l"><a class="l" href="#694">694: </a>        <span class="php-var">$f</span>-&gt;collapsed = <span class="php-var">$inputfieldClass</span> &amp;&amp; <span class="php-var">$inputfieldClass</span> != <span class="php-var">$this</span>-&gt;defaultInputfieldClass ? Inputfield::collapsedNo : Inputfield::collapsedYes; 
-</span><span id="695" class="l"><a class="l" href="#695">695: </a>        
-</span><span id="696" class="l"><a class="l" href="#696">696: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$f</span>);
+</span><span id="683" class="l"><a class="l" href="#683">683: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Change this only if instructed to do so by 3rd party Inputfield module instructions.'</span>);
+</span><span id="684" class="l"><a class="l" href="#684">684: </a>        <span class="php-var">$f</span>-&gt;required = <span class="php-keyword1">true</span>;
+</span><span id="685" class="l"><a class="l" href="#685">685: </a>        <span class="php-var">$baseClass</span> = <span class="php-var">$this</span>-&gt;defaultInputfieldClass;
+</span><span id="686" class="l"><a class="l" href="#686">686: </a>        
+</span><span id="687" class="l"><a class="l" href="#687">687: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;findByPrefix(<span class="php-quote">'Inputfield'</span>) <span class="php-keyword1">as</span> <span class="php-var">$fm</span>) {
+</span><span id="688" class="l"><a class="l" href="#688">688: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$baseClass</span> == <span class="php-quote">'InputfieldFile'</span> &amp;&amp; <span class="php-keyword2">strpos</span>(<span class="php-var">$fm</span>, <span class="php-quote">'InputfieldImage'</span>) === <span class="php-num">0</span>) <span class="php-keyword1">continue</span>;
+</span><span id="689" class="l"><a class="l" href="#689">689: </a>            <span class="php-keyword1">if</span>(<span class="php-quote">&quot;</span><span class="php-var">$fm</span><span class="php-quote">&quot;</span> == <span class="php-var">$baseClass</span> || <span class="php-keyword2">is_subclass_of</span>(__NAMESPACE__ . <span class="php-quote">&quot;\\</span><span class="php-var">$fm</span><span class="php-quote">&quot;</span>, __NAMESPACE__ . <span class="php-quote">&quot;\\</span><span class="php-var">$baseClass</span><span class="php-quote">&quot;</span>)) {
+</span><span id="690" class="l"><a class="l" href="#690">690: </a>                <span class="php-var">$f</span>-&gt;addOption(<span class="php-quote">&quot;</span><span class="php-var">$fm</span><span class="php-quote">&quot;</span>, <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;Inputfield&quot;</span>, <span class="php-quote">''</span>, <span class="php-quote">&quot;</span><span class="php-var">$fm</span><span class="php-quote">&quot;</span>));
+</span><span id="691" class="l"><a class="l" href="#691">691: </a>            }
+</span><span id="692" class="l"><a class="l" href="#692">692: </a>        }
+</span><span id="693" class="l"><a class="l" href="#693">693: </a>        
+</span><span id="694" class="l"><a class="l" href="#694">694: </a>        <span class="php-var">$inputfieldClass</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'inputfieldClass'</span>);
+</span><span id="695" class="l"><a class="l" href="#695">695: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$inputfieldClass</span> ? <span class="php-var">$inputfieldClass</span> : <span class="php-var">$this</span>-&gt;defaultInputfieldClass);
+</span><span id="696" class="l"><a class="l" href="#696">696: </a>        <span class="php-var">$f</span>-&gt;collapsed = <span class="php-var">$inputfieldClass</span> &amp;&amp; <span class="php-var">$inputfieldClass</span> != <span class="php-var">$this</span>-&gt;defaultInputfieldClass ? Inputfield::collapsedNo : Inputfield::collapsedYes; 
 </span><span id="697" class="l"><a class="l" href="#697">697: </a>        
-</span><span id="698" class="l"><a class="l" href="#698">698: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="699" class="l"><a class="l" href="#699">699: </a>    }
-</span><span id="700" class="l"><a class="l" href="#700">700: </a>
-</span><span id="701" class="l"><a class="l" href="#701">701: </a>
+</span><span id="698" class="l"><a class="l" href="#698">698: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$f</span>);
+</span><span id="699" class="l"><a class="l" href="#699">699: </a>        
+</span><span id="700" class="l"><a class="l" href="#700">700: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="701" class="l"><a class="l" href="#701">701: </a>    }
 </span><span id="702" class="l"><a class="l" href="#702">702: </a>
-</span><span id="703" class="l"><a class="l" href="#703">703: </a>}
+</span><span id="703" class="l"><a class="l" href="#703">703: </a>
 </span><span id="704" class="l"><a class="l" href="#704">704: </a>
-</span><span id="705" class="l"><a class="l" href="#705">705: </a></span></code></pre>
+</span><span id="705" class="l"><a class="l" href="#705">705: </a>}
+</span><span id="706" class="l"><a class="l" href="#706">706: </a>
+</span><span id="707" class="l"><a class="l" href="#707">707: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
