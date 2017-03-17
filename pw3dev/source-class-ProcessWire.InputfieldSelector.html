@@ -8,7 +8,7 @@
 	<title>File modules/Inputfield/InputfieldSelector/InputfieldSelector.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1383577702"></script>
+	<script type="text/javascript" src="elementlist.js?3620946837"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.55 dev</span>
+			<span>Overview version 3.0.56 dev</span>
 		</a>
 
 
@@ -2344,166 +2344,167 @@
 </span><span id="1788" class="l"><a class="l" href="#1788">1788: </a>                    <span class="php-var">$operator</span> = <span class="php-var">$selector</span>-&gt;operator;
 </span><span id="1789" class="l"><a class="l" href="#1789">1789: </a>                    <span class="php-comment">// convert to not operator when finding a not selector</span>
 </span><span id="1790" class="l"><a class="l" href="#1790">1790: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$selector</span>-&gt;not &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;operators[<span class="php-quote">&quot;!</span><span class="php-var">$selector</span><span class="php-quote">-&gt;operator&quot;</span>])) <span class="php-var">$operator</span> = <span class="php-quote">&quot;!</span><span class="php-var">$selector</span><span class="php-quote">-&gt;operator&quot;</span>;
-</span><span id="1791" class="l"><a class="l" href="#1791">1791: </a>                    <span class="php-var">$opval</span> = <span class="php-var">$this</span>-&gt;renderOpval((<span class="php-var">$field2</span> ? <span class="php-var">$field2</span> : <span class="php-var">$field1</span>), <span class="php-quote">''</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>, <span class="php-var">$orChecked</span>); 
-</span><span id="1792" class="l"><a class="l" href="#1792">1792: </a>                    <span class="php-var">$rows</span> .= <span class="php-var">$this</span>-&gt;renderRow(<span class="php-var">$select</span>, <span class="php-var">$select2</span>, <span class="php-var">$opval</span>, <span class="php-var">$rowClass</span>);            
-</span><span id="1793" class="l"><a class="l" href="#1793">1793: </a>                }
-</span><span id="1794" class="l"><a class="l" href="#1794">1794: </a>            }
-</span><span id="1795" class="l"><a class="l" href="#1795">1795: </a>        }
-</span><span id="1796" class="l"><a class="l" href="#1796">1796: </a>
-</span><span id="1797" class="l"><a class="l" href="#1797">1797: </a>        <span class="php-var">$notes</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Each selector row above says: field must match value. These are called AND conditions. In cases where the same field or value appears in more than one row, an OR condition is possible. The presence of a checkbox at the end of the row indicates this. Check this box to make the row an OR condition rather than an AND condition.'</span>);  <span class="php-comment">// Description of OR checkbox</span>
-</span><span id="1798" class="l"><a class="l" href="#1798">1798: </a>
-</span><span id="1799" class="l"><a class="l" href="#1799">1799: </a>        <span class="php-comment">// attributes for our hidden input, populated by javascript as filters are added/changed/removed</span>
-</span><span id="1800" class="l"><a class="l" href="#1800">1800: </a>        <span class="php-var">$attr</span> = <span class="php-keyword1">array</span>(
-</span><span id="1801" class="l"><a class="l" href="#1801">1801: </a>            <span class="php-quote">'type'</span> =&gt; <span class="php-quote">'hidden'</span>, 
-</span><span id="1802" class="l"><a class="l" href="#1802">1802: </a>            <span class="php-quote">'id'</span> =&gt; <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'id'</span>), 
-</span><span id="1803" class="l"><a class="l" href="#1803">1803: </a>            <span class="php-quote">'name'</span> =&gt; <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'name'</span>), 
-</span><span id="1804" class="l"><a class="l" href="#1804">1804: </a>            <span class="php-quote">'value'</span> =&gt; <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>), 
-</span><span id="1805" class="l"><a class="l" href="#1805">1805: </a>            <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'selector-value'</span>, 
-</span><span id="1806" class="l"><a class="l" href="#1806">1806: </a>            <span class="php-quote">'data-template-ids'</span> =&gt; <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$this</span>-&gt;getTemplatesFromInitValue(<span class="php-var">$this</span>-&gt;initValue)), 
-</span><span id="1807" class="l"><a class="l" href="#1807">1807: </a>            );
-</span><span id="1808" class="l"><a class="l" href="#1808">1808: </a>
-</span><span id="1809" class="l"><a class="l" href="#1809">1809: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;allowBlankValues) <span class="php-var">$attr</span>[<span class="php-quote">'class'</span>] .= <span class="php-quote">' allow-blank'</span>;
-</span><span id="1810" class="l"><a class="l" href="#1810">1810: </a>        <span class="php-var">$attrStr</span> = <span class="php-var">$this</span>-&gt;getAttributesString(<span class="php-var">$attr</span>);
-</span><span id="1811" class="l"><a class="l" href="#1811">1811: </a>        <span class="php-var">$attr</span>[<span class="php-quote">'value'</span>] = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$attr</span>[<span class="php-quote">'value'</span>]); 
-</span><span id="1812" class="l"><a class="l" href="#1812">1812: </a>        <span class="php-var">$initValue</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$this</span>-&gt;initValue); 
-</span><span id="1813" class="l"><a class="l" href="#1813">1813: </a>
-</span><span id="1814" class="l"><a class="l" href="#1814">1814: </a>        <span class="php-comment">// starting output</span>
-</span><span id="1815" class="l"><a class="l" href="#1815">1815: </a>        <span class="php-var">$out</span> =  <span class="php-quote">&quot;
-</span></span><span id="1816" class="l"><a class="l" href="#1816">1816: </a><span class="php-quote">            &lt;ul class='selector-list'&gt;
-</span></span><span id="1817" class="l"><a class="l" href="#1817">1817: </a><span class="php-quote">            </span><span class="php-var">$rows</span><span class="php-quote">
-</span></span><span id="1818" class="l"><a class="l" href="#1818">1818: </a><span class="php-quote">            &lt;/ul&gt;
-</span></span><span id="1819" class="l"><a class="l" href="#1819">1819: </a><span class="php-quote">            &lt;div class='ui-helper-clearfix'&gt;
-</span></span><span id="1820" class="l"><a class="l" href="#1820">1820: </a><span class="php-quote">            &quot;</span>;
-</span><span id="1821" class="l"><a class="l" href="#1821">1821: </a>        
+</span><span id="1791" class="l"><a class="l" href="#1791">1791: </a>                    <span class="php-comment">//$opval = $this-&gt;renderOpval(($field2 ? $field2 : $field1), '', $operator, $value, $orChecked);</span>
+</span><span id="1792" class="l"><a class="l" href="#1792">1792: </a>                    <span class="php-var">$opval</span> = <span class="php-var">$this</span>-&gt;renderOpval(<span class="php-var">$field</span>, <span class="php-quote">''</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>, <span class="php-var">$orChecked</span>); 
+</span><span id="1793" class="l"><a class="l" href="#1793">1793: </a>                    <span class="php-var">$rows</span> .= <span class="php-var">$this</span>-&gt;renderRow(<span class="php-var">$select</span>, <span class="php-var">$select2</span>, <span class="php-var">$opval</span>, <span class="php-var">$rowClass</span>);            
+</span><span id="1794" class="l"><a class="l" href="#1794">1794: </a>                }
+</span><span id="1795" class="l"><a class="l" href="#1795">1795: </a>            }
+</span><span id="1796" class="l"><a class="l" href="#1796">1796: </a>        }
+</span><span id="1797" class="l"><a class="l" href="#1797">1797: </a>
+</span><span id="1798" class="l"><a class="l" href="#1798">1798: </a>        <span class="php-var">$notes</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Each selector row above says: field must match value. These are called AND conditions. In cases where the same field or value appears in more than one row, an OR condition is possible. The presence of a checkbox at the end of the row indicates this. Check this box to make the row an OR condition rather than an AND condition.'</span>);  <span class="php-comment">// Description of OR checkbox</span>
+</span><span id="1799" class="l"><a class="l" href="#1799">1799: </a>
+</span><span id="1800" class="l"><a class="l" href="#1800">1800: </a>        <span class="php-comment">// attributes for our hidden input, populated by javascript as filters are added/changed/removed</span>
+</span><span id="1801" class="l"><a class="l" href="#1801">1801: </a>        <span class="php-var">$attr</span> = <span class="php-keyword1">array</span>(
+</span><span id="1802" class="l"><a class="l" href="#1802">1802: </a>            <span class="php-quote">'type'</span> =&gt; <span class="php-quote">'hidden'</span>, 
+</span><span id="1803" class="l"><a class="l" href="#1803">1803: </a>            <span class="php-quote">'id'</span> =&gt; <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'id'</span>), 
+</span><span id="1804" class="l"><a class="l" href="#1804">1804: </a>            <span class="php-quote">'name'</span> =&gt; <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'name'</span>), 
+</span><span id="1805" class="l"><a class="l" href="#1805">1805: </a>            <span class="php-quote">'value'</span> =&gt; <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>), 
+</span><span id="1806" class="l"><a class="l" href="#1806">1806: </a>            <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'selector-value'</span>, 
+</span><span id="1807" class="l"><a class="l" href="#1807">1807: </a>            <span class="php-quote">'data-template-ids'</span> =&gt; <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$this</span>-&gt;getTemplatesFromInitValue(<span class="php-var">$this</span>-&gt;initValue)), 
+</span><span id="1808" class="l"><a class="l" href="#1808">1808: </a>            );
+</span><span id="1809" class="l"><a class="l" href="#1809">1809: </a>
+</span><span id="1810" class="l"><a class="l" href="#1810">1810: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;allowBlankValues) <span class="php-var">$attr</span>[<span class="php-quote">'class'</span>] .= <span class="php-quote">' allow-blank'</span>;
+</span><span id="1811" class="l"><a class="l" href="#1811">1811: </a>        <span class="php-var">$attrStr</span> = <span class="php-var">$this</span>-&gt;getAttributesString(<span class="php-var">$attr</span>);
+</span><span id="1812" class="l"><a class="l" href="#1812">1812: </a>        <span class="php-var">$attr</span>[<span class="php-quote">'value'</span>] = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$attr</span>[<span class="php-quote">'value'</span>]); 
+</span><span id="1813" class="l"><a class="l" href="#1813">1813: </a>        <span class="php-var">$initValue</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$this</span>-&gt;initValue); 
+</span><span id="1814" class="l"><a class="l" href="#1814">1814: </a>
+</span><span id="1815" class="l"><a class="l" href="#1815">1815: </a>        <span class="php-comment">// starting output</span>
+</span><span id="1816" class="l"><a class="l" href="#1816">1816: </a>        <span class="php-var">$out</span> =  <span class="php-quote">&quot;
+</span></span><span id="1817" class="l"><a class="l" href="#1817">1817: </a><span class="php-quote">            &lt;ul class='selector-list'&gt;
+</span></span><span id="1818" class="l"><a class="l" href="#1818">1818: </a><span class="php-quote">            </span><span class="php-var">$rows</span><span class="php-quote">
+</span></span><span id="1819" class="l"><a class="l" href="#1819">1819: </a><span class="php-quote">            &lt;/ul&gt;
+</span></span><span id="1820" class="l"><a class="l" href="#1820">1820: </a><span class="php-quote">            &lt;div class='ui-helper-clearfix'&gt;
+</span></span><span id="1821" class="l"><a class="l" href="#1821">1821: </a><span class="php-quote">            &quot;</span>;
 </span><span id="1822" class="l"><a class="l" href="#1822">1822: </a>        
-</span><span id="1823" class="l"><a class="l" href="#1823">1823: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;allowAddRemove) <span class="php-var">$out</span> .= <span class="php-quote">&quot;
-</span></span><span id="1824" class="l"><a class="l" href="#1824">1824: </a><span class="php-quote">                &lt;a class='selector-add' href='#'&gt;&lt;i class='fa fa-</span><span class="php-var">$this</span><span class="php-quote">-&gt;addIcon'&gt;&lt;/i&gt; </span><span class="php-var">$this</span><span class="php-quote">-&gt;addLabel&lt;/a&gt;
-</span></span><span id="1825" class="l"><a class="l" href="#1825">1825: </a><span class="php-quote">            &quot;</span>;
-</span><span id="1826" class="l"><a class="l" href="#1826">1826: </a>        <span class="php-var">$out</span> .= <span class="php-quote">&quot;
-</span></span><span id="1827" class="l"><a class="l" href="#1827">1827: </a><span class="php-quote">                &lt;span class='selector-counter</span><span class="php-var">$counterClass</span><span class="php-quote"> detail'&gt;&lt;/span&gt;
-</span></span><span id="1828" class="l"><a class="l" href="#1828">1828: </a><span class="php-quote">                &lt;p class='selector-preview</span><span class="php-var">$previewClass</span><span class="php-quote">' data-init-value='</span><span class="php-var">$initValue</span><span class="php-quote">'&gt;</span><span class="php-var">$attr</span><span class="php-quote">[value]&lt;/p&gt;
-</span></span><span id="1829" class="l"><a class="l" href="#1829">1829: </a><span class="php-quote">                &lt;input </span><span class="php-var">$attrStr</span><span class="php-quote"> /&gt;
-</span></span><span id="1830" class="l"><a class="l" href="#1830">1830: </a><span class="php-quote">                &lt;p class='detail or-notes'&gt;</span><span class="php-var">$notes</span><span class="php-quote">&lt;/p&gt;
-</span></span><span id="1831" class="l"><a class="l" href="#1831">1831: </a><span class="php-quote">            &lt;/div&gt;
-</span></span><span id="1832" class="l"><a class="l" href="#1832">1832: </a><span class="php-quote">
-</span></span><span id="1833" class="l"><a class="l" href="#1833">1833: </a><span class="php-quote">            &quot;</span>;
-</span><span id="1834" class="l"><a class="l" href="#1834">1834: </a>
-</span><span id="1835" class="l"><a class="l" href="#1835">1835: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;prep(<span class="php-var">$out</span>);
-</span><span id="1836" class="l"><a class="l" href="#1836">1836: </a>    }
-</span><span id="1837" class="l"><a class="l" href="#1837">1837: </a>
+</span><span id="1823" class="l"><a class="l" href="#1823">1823: </a>        
+</span><span id="1824" class="l"><a class="l" href="#1824">1824: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;allowAddRemove) <span class="php-var">$out</span> .= <span class="php-quote">&quot;
+</span></span><span id="1825" class="l"><a class="l" href="#1825">1825: </a><span class="php-quote">                &lt;a class='selector-add' href='#'&gt;&lt;i class='fa fa-</span><span class="php-var">$this</span><span class="php-quote">-&gt;addIcon'&gt;&lt;/i&gt; </span><span class="php-var">$this</span><span class="php-quote">-&gt;addLabel&lt;/a&gt;
+</span></span><span id="1826" class="l"><a class="l" href="#1826">1826: </a><span class="php-quote">            &quot;</span>;
+</span><span id="1827" class="l"><a class="l" href="#1827">1827: </a>        <span class="php-var">$out</span> .= <span class="php-quote">&quot;
+</span></span><span id="1828" class="l"><a class="l" href="#1828">1828: </a><span class="php-quote">                &lt;span class='selector-counter</span><span class="php-var">$counterClass</span><span class="php-quote"> detail'&gt;&lt;/span&gt;
+</span></span><span id="1829" class="l"><a class="l" href="#1829">1829: </a><span class="php-quote">                &lt;p class='selector-preview</span><span class="php-var">$previewClass</span><span class="php-quote">' data-init-value='</span><span class="php-var">$initValue</span><span class="php-quote">'&gt;</span><span class="php-var">$attr</span><span class="php-quote">[value]&lt;/p&gt;
+</span></span><span id="1830" class="l"><a class="l" href="#1830">1830: </a><span class="php-quote">                &lt;input </span><span class="php-var">$attrStr</span><span class="php-quote"> /&gt;
+</span></span><span id="1831" class="l"><a class="l" href="#1831">1831: </a><span class="php-quote">                &lt;p class='detail or-notes'&gt;</span><span class="php-var">$notes</span><span class="php-quote">&lt;/p&gt;
+</span></span><span id="1832" class="l"><a class="l" href="#1832">1832: </a><span class="php-quote">            &lt;/div&gt;
+</span></span><span id="1833" class="l"><a class="l" href="#1833">1833: </a><span class="php-quote">
+</span></span><span id="1834" class="l"><a class="l" href="#1834">1834: </a><span class="php-quote">            &quot;</span>;
+</span><span id="1835" class="l"><a class="l" href="#1835">1835: </a>
+</span><span id="1836" class="l"><a class="l" href="#1836">1836: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;prep(<span class="php-var">$out</span>);
+</span><span id="1837" class="l"><a class="l" href="#1837">1837: </a>    }
 </span><span id="1838" class="l"><a class="l" href="#1838">1838: </a>
-</span><span id="1839" class="l"><a class="l" href="#1839">1839: </a>    <span class="php-comment">/**
-</span></span><span id="1840" class="l"><a class="l" href="#1840">1840: </a><span class="php-comment">     * Sanitize a selector string and return it
-</span></span><span id="1841" class="l"><a class="l" href="#1841">1841: </a><span class="php-comment">     * 
-</span></span><span id="1842" class="l"><a class="l" href="#1842">1842: </a><span class="php-comment">     * @param $selectorString
-</span></span><span id="1843" class="l"><a class="l" href="#1843">1843: </a><span class="php-comment">     * @param bool $parseVars Whether variables like [user.id] should be converted to actual value
-</span></span><span id="1844" class="l"><a class="l" href="#1844">1844: </a><span class="php-comment">     * @return string
-</span></span><span id="1845" class="l"><a class="l" href="#1845">1845: </a><span class="php-comment">     * 
-</span></span><span id="1846" class="l"><a class="l" href="#1846">1846: </a><span class="php-comment">     */</span>
-</span><span id="1847" class="l"><a class="l" href="#1847">1847: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sanitizeSelectorString" href="#_sanitizeSelectorString">sanitizeSelectorString</a>(<span class="php-var">$selectorString</span>, <span class="php-var">$parseVars</span> = <span class="php-keyword1">true</span>) {
-</span><span id="1848" class="l"><a class="l" href="#1848">1848: </a>        
-</span><span id="1849" class="l"><a class="l" href="#1849">1849: </a>        <span class="php-var">$initSelectors</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> Selectors()); 
-</span><span id="1850" class="l"><a class="l" href="#1850">1850: </a>        <span class="php-var">$userSelectors</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> Selectors()); 
-</span><span id="1851" class="l"><a class="l" href="#1851">1851: </a>        
-</span><span id="1852" class="l"><a class="l" href="#1852">1852: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$parseVars</span>) {
-</span><span id="1853" class="l"><a class="l" href="#1853">1853: </a>            <span class="php-var">$initSelectors</span>-&gt;setParseVars(<span class="php-keyword1">false</span>); 
-</span><span id="1854" class="l"><a class="l" href="#1854">1854: </a>            <span class="php-var">$userSelectors</span>-&gt;setParseVars(<span class="php-keyword1">false</span>);
-</span><span id="1855" class="l"><a class="l" href="#1855">1855: </a>        }
-</span><span id="1856" class="l"><a class="l" href="#1856">1856: </a>        
-</span><span id="1857" class="l"><a class="l" href="#1857">1857: </a>        <span class="php-var">$initSelectors</span>-&gt;setSelectorString(<span class="php-var">$this</span>-&gt;initValue); 
-</span><span id="1858" class="l"><a class="l" href="#1858">1858: </a>        <span class="php-var">$userSelectors</span>-&gt;setSelectorString(<span class="php-var">$selectorString</span>); 
-</span><span id="1859" class="l"><a class="l" href="#1859">1859: </a>    
-</span><span id="1860" class="l"><a class="l" href="#1860">1860: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$userSelectors</span> <span class="php-keyword1">as</span> <span class="php-var">$s</span>) {
-</span><span id="1861" class="l"><a class="l" href="#1861">1861: </a>            
-</span><span id="1862" class="l"><a class="l" href="#1862">1862: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$s</span>-&gt;quote == <span class="php-quote">'['</span> &amp;&amp; !<span class="php-var">$this</span>-&gt;allowSubselectors) {
-</span><span id="1863" class="l"><a class="l" href="#1863">1863: </a>                <span class="php-var">$this</span>-&gt;error(<span class="php-quote">&quot;Subselectors are disabled&quot;</span>); 
-</span><span id="1864" class="l"><a class="l" href="#1864">1864: </a>                <span class="php-var">$userSelectors</span>-&gt;remove(<span class="php-var">$s</span>);
-</span><span id="1865" class="l"><a class="l" href="#1865">1865: </a>                <span class="php-var">$userSelectors</span>-&gt;add(<span class="php-keyword1">new</span> SelectorLessThan(<span class="php-quote">'id'</span>, <span class="php-num">0</span>)); <span class="php-comment">// forced non match</span>
-</span><span id="1866" class="l"><a class="l" href="#1866">1866: </a>            }
-</span><span id="1867" class="l"><a class="l" href="#1867">1867: </a>        
-</span><span id="1868" class="l"><a class="l" href="#1868">1868: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$s</span>-&gt;field, <span class="php-keyword1">array</span>(<span class="php-quote">'modified_users_id'</span>, <span class="php-quote">'created_users_id'</span>)) &amp;&amp; !<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$s</span><span class="php-quote">-&gt;value&quot;</span>)) {
-</span><span id="1869" class="l"><a class="l" href="#1869">1869: </a>                <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
-</span><span id="1870" class="l"><a class="l" href="#1870">1870: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$s</span>-&gt;values <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$name</span>) {
-</span><span id="1871" class="l"><a class="l" href="#1871">1871: </a>                    <span class="php-var">$property</span> = <span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$name</span><span class="php-quote">&quot;</span>) ? <span class="php-quote">'id'</span> : <span class="php-quote">'name'</span>;
-</span><span id="1872" class="l"><a class="l" href="#1872">1872: </a>                    <span class="php-var">$users</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'users'</span>)-&gt;find(<span class="php-quote">&quot;</span><span class="php-var">$property$s</span><span class="php-quote">-&gt;operator&quot;</span> . 
-</span><span id="1873" class="l"><a class="l" href="#1873">1873: </a>                        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;selectorValue(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageNameUTF8(<span class="php-var">$name</span>)));
-</span><span id="1874" class="l"><a class="l" href="#1874">1874: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$users</span> <span class="php-keyword1">as</span> <span class="php-var">$u</span>) <span class="php-var">$ids</span>[<span class="php-var">$u</span>-&gt;id] = <span class="php-var">$u</span>-&gt;id;
-</span><span id="1875" class="l"><a class="l" href="#1875">1875: </a>                }
-</span><span id="1876" class="l"><a class="l" href="#1876">1876: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$s</span>-&gt;operator != <span class="php-quote">'='</span> &amp;&amp; <span class="php-var">$s</span>-&gt;operator != <span class="php-quote">'!='</span>) {
-</span><span id="1877" class="l"><a class="l" href="#1877">1877: </a>                    <span class="php-var">$userSelectors</span>-&gt;remove(<span class="php-var">$s</span>);
-</span><span id="1878" class="l"><a class="l" href="#1878">1878: </a>                    <span class="php-var">$s</span> = <span class="php-keyword1">new</span> SelectorEqual(<span class="php-var">$s</span>-&gt;field, <span class="php-keyword2">count</span>(<span class="php-var">$ids</span>) ? <span class="php-var">$ids</span> : <span class="php-num">0</span>);
-</span><span id="1879" class="l"><a class="l" href="#1879">1879: </a>                    <span class="php-var">$userSelectors</span>-&gt;add(<span class="php-var">$s</span>);
-</span><span id="1880" class="l"><a class="l" href="#1880">1880: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="1881" class="l"><a class="l" href="#1881">1881: </a>                    <span class="php-var">$s</span>-&gt;value = <span class="php-keyword2">count</span>(<span class="php-var">$ids</span>) ? <span class="php-var">$ids</span> : <span class="php-num">0</span>;
-</span><span id="1882" class="l"><a class="l" href="#1882">1882: </a>                }
-</span><span id="1883" class="l"><a class="l" href="#1883">1883: </a>            }
-</span><span id="1884" class="l"><a class="l" href="#1884">1884: </a>        }
-</span><span id="1885" class="l"><a class="l" href="#1885">1885: </a>
-</span><span id="1886" class="l"><a class="l" href="#1886">1886: </a>        <span class="php-var">$selector</span> = (string) <span class="php-var">$initSelectors</span> . <span class="php-quote">&quot;, &quot;</span>;
-</span><span id="1887" class="l"><a class="l" href="#1887">1887: </a>        <span class="php-var">$selector</span> .= (string) <span class="php-var">$userSelectors</span>; 
-</span><span id="1888" class="l"><a class="l" href="#1888">1888: </a>        <span class="php-var">$selector</span> = <span class="php-keyword2">trim</span>(<span class="php-var">$selector</span>, <span class="php-quote">&quot;, &quot;</span>);
-</span><span id="1889" class="l"><a class="l" href="#1889">1889: </a>        <span class="php-keyword1">return</span> <span class="php-var">$selector</span>; 
-</span><span id="1890" class="l"><a class="l" href="#1890">1890: </a>    }
-</span><span id="1891" class="l"><a class="l" href="#1891">1891: </a>
+</span><span id="1839" class="l"><a class="l" href="#1839">1839: </a>
+</span><span id="1840" class="l"><a class="l" href="#1840">1840: </a>    <span class="php-comment">/**
+</span></span><span id="1841" class="l"><a class="l" href="#1841">1841: </a><span class="php-comment">     * Sanitize a selector string and return it
+</span></span><span id="1842" class="l"><a class="l" href="#1842">1842: </a><span class="php-comment">     * 
+</span></span><span id="1843" class="l"><a class="l" href="#1843">1843: </a><span class="php-comment">     * @param $selectorString
+</span></span><span id="1844" class="l"><a class="l" href="#1844">1844: </a><span class="php-comment">     * @param bool $parseVars Whether variables like [user.id] should be converted to actual value
+</span></span><span id="1845" class="l"><a class="l" href="#1845">1845: </a><span class="php-comment">     * @return string
+</span></span><span id="1846" class="l"><a class="l" href="#1846">1846: </a><span class="php-comment">     * 
+</span></span><span id="1847" class="l"><a class="l" href="#1847">1847: </a><span class="php-comment">     */</span>
+</span><span id="1848" class="l"><a class="l" href="#1848">1848: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sanitizeSelectorString" href="#_sanitizeSelectorString">sanitizeSelectorString</a>(<span class="php-var">$selectorString</span>, <span class="php-var">$parseVars</span> = <span class="php-keyword1">true</span>) {
+</span><span id="1849" class="l"><a class="l" href="#1849">1849: </a>        
+</span><span id="1850" class="l"><a class="l" href="#1850">1850: </a>        <span class="php-var">$initSelectors</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> Selectors()); 
+</span><span id="1851" class="l"><a class="l" href="#1851">1851: </a>        <span class="php-var">$userSelectors</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> Selectors()); 
+</span><span id="1852" class="l"><a class="l" href="#1852">1852: </a>        
+</span><span id="1853" class="l"><a class="l" href="#1853">1853: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$parseVars</span>) {
+</span><span id="1854" class="l"><a class="l" href="#1854">1854: </a>            <span class="php-var">$initSelectors</span>-&gt;setParseVars(<span class="php-keyword1">false</span>); 
+</span><span id="1855" class="l"><a class="l" href="#1855">1855: </a>            <span class="php-var">$userSelectors</span>-&gt;setParseVars(<span class="php-keyword1">false</span>);
+</span><span id="1856" class="l"><a class="l" href="#1856">1856: </a>        }
+</span><span id="1857" class="l"><a class="l" href="#1857">1857: </a>        
+</span><span id="1858" class="l"><a class="l" href="#1858">1858: </a>        <span class="php-var">$initSelectors</span>-&gt;setSelectorString(<span class="php-var">$this</span>-&gt;initValue); 
+</span><span id="1859" class="l"><a class="l" href="#1859">1859: </a>        <span class="php-var">$userSelectors</span>-&gt;setSelectorString(<span class="php-var">$selectorString</span>); 
+</span><span id="1860" class="l"><a class="l" href="#1860">1860: </a>    
+</span><span id="1861" class="l"><a class="l" href="#1861">1861: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$userSelectors</span> <span class="php-keyword1">as</span> <span class="php-var">$s</span>) {
+</span><span id="1862" class="l"><a class="l" href="#1862">1862: </a>            
+</span><span id="1863" class="l"><a class="l" href="#1863">1863: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$s</span>-&gt;quote == <span class="php-quote">'['</span> &amp;&amp; !<span class="php-var">$this</span>-&gt;allowSubselectors) {
+</span><span id="1864" class="l"><a class="l" href="#1864">1864: </a>                <span class="php-var">$this</span>-&gt;error(<span class="php-quote">&quot;Subselectors are disabled&quot;</span>); 
+</span><span id="1865" class="l"><a class="l" href="#1865">1865: </a>                <span class="php-var">$userSelectors</span>-&gt;remove(<span class="php-var">$s</span>);
+</span><span id="1866" class="l"><a class="l" href="#1866">1866: </a>                <span class="php-var">$userSelectors</span>-&gt;add(<span class="php-keyword1">new</span> SelectorLessThan(<span class="php-quote">'id'</span>, <span class="php-num">0</span>)); <span class="php-comment">// forced non match</span>
+</span><span id="1867" class="l"><a class="l" href="#1867">1867: </a>            }
+</span><span id="1868" class="l"><a class="l" href="#1868">1868: </a>        
+</span><span id="1869" class="l"><a class="l" href="#1869">1869: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$s</span>-&gt;field, <span class="php-keyword1">array</span>(<span class="php-quote">'modified_users_id'</span>, <span class="php-quote">'created_users_id'</span>)) &amp;&amp; !<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$s</span><span class="php-quote">-&gt;value&quot;</span>)) {
+</span><span id="1870" class="l"><a class="l" href="#1870">1870: </a>                <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
+</span><span id="1871" class="l"><a class="l" href="#1871">1871: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$s</span>-&gt;values <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$name</span>) {
+</span><span id="1872" class="l"><a class="l" href="#1872">1872: </a>                    <span class="php-var">$property</span> = <span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$name</span><span class="php-quote">&quot;</span>) ? <span class="php-quote">'id'</span> : <span class="php-quote">'name'</span>;
+</span><span id="1873" class="l"><a class="l" href="#1873">1873: </a>                    <span class="php-var">$users</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'users'</span>)-&gt;find(<span class="php-quote">&quot;</span><span class="php-var">$property$s</span><span class="php-quote">-&gt;operator&quot;</span> . 
+</span><span id="1874" class="l"><a class="l" href="#1874">1874: </a>                        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;selectorValue(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageNameUTF8(<span class="php-var">$name</span>)));
+</span><span id="1875" class="l"><a class="l" href="#1875">1875: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$users</span> <span class="php-keyword1">as</span> <span class="php-var">$u</span>) <span class="php-var">$ids</span>[<span class="php-var">$u</span>-&gt;id] = <span class="php-var">$u</span>-&gt;id;
+</span><span id="1876" class="l"><a class="l" href="#1876">1876: </a>                }
+</span><span id="1877" class="l"><a class="l" href="#1877">1877: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$s</span>-&gt;operator != <span class="php-quote">'='</span> &amp;&amp; <span class="php-var">$s</span>-&gt;operator != <span class="php-quote">'!='</span>) {
+</span><span id="1878" class="l"><a class="l" href="#1878">1878: </a>                    <span class="php-var">$userSelectors</span>-&gt;remove(<span class="php-var">$s</span>);
+</span><span id="1879" class="l"><a class="l" href="#1879">1879: </a>                    <span class="php-var">$s</span> = <span class="php-keyword1">new</span> SelectorEqual(<span class="php-var">$s</span>-&gt;field, <span class="php-keyword2">count</span>(<span class="php-var">$ids</span>) ? <span class="php-var">$ids</span> : <span class="php-num">0</span>);
+</span><span id="1880" class="l"><a class="l" href="#1880">1880: </a>                    <span class="php-var">$userSelectors</span>-&gt;add(<span class="php-var">$s</span>);
+</span><span id="1881" class="l"><a class="l" href="#1881">1881: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="1882" class="l"><a class="l" href="#1882">1882: </a>                    <span class="php-var">$s</span>-&gt;value = <span class="php-keyword2">count</span>(<span class="php-var">$ids</span>) ? <span class="php-var">$ids</span> : <span class="php-num">0</span>;
+</span><span id="1883" class="l"><a class="l" href="#1883">1883: </a>                }
+</span><span id="1884" class="l"><a class="l" href="#1884">1884: </a>            }
+</span><span id="1885" class="l"><a class="l" href="#1885">1885: </a>        }
+</span><span id="1886" class="l"><a class="l" href="#1886">1886: </a>
+</span><span id="1887" class="l"><a class="l" href="#1887">1887: </a>        <span class="php-var">$selector</span> = (string) <span class="php-var">$initSelectors</span> . <span class="php-quote">&quot;, &quot;</span>;
+</span><span id="1888" class="l"><a class="l" href="#1888">1888: </a>        <span class="php-var">$selector</span> .= (string) <span class="php-var">$userSelectors</span>; 
+</span><span id="1889" class="l"><a class="l" href="#1889">1889: </a>        <span class="php-var">$selector</span> = <span class="php-keyword2">trim</span>(<span class="php-var">$selector</span>, <span class="php-quote">&quot;, &quot;</span>);
+</span><span id="1890" class="l"><a class="l" href="#1890">1890: </a>        <span class="php-keyword1">return</span> <span class="php-var">$selector</span>; 
+</span><span id="1891" class="l"><a class="l" href="#1891">1891: </a>    }
 </span><span id="1892" class="l"><a class="l" href="#1892">1892: </a>
-</span><span id="1893" class="l"><a class="l" href="#1893">1893: </a>    <span class="php-comment">/**
-</span></span><span id="1894" class="l"><a class="l" href="#1894">1894: </a><span class="php-comment">     * Returns array of template IDs that correspond with any templates specified in the initValue
-</span></span><span id="1895" class="l"><a class="l" href="#1895">1895: </a><span class="php-comment">     * 
-</span></span><span id="1896" class="l"><a class="l" href="#1896">1896: </a><span class="php-comment">     * @param string $initValue
-</span></span><span id="1897" class="l"><a class="l" href="#1897">1897: </a><span class="php-comment">     * @return array of template IDs
-</span></span><span id="1898" class="l"><a class="l" href="#1898">1898: </a><span class="php-comment">     *
-</span></span><span id="1899" class="l"><a class="l" href="#1899">1899: </a><span class="php-comment">     */</span>
-</span><span id="1900" class="l"><a class="l" href="#1900">1900: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getTemplatesFromInitValue" href="#_getTemplatesFromInitValue">getTemplatesFromInitValue</a>(<span class="php-var">$initValue</span>) {
-</span><span id="1901" class="l"><a class="l" href="#1901">1901: </a>        <span class="php-comment">// determine if a template is enforced and populate allowedTemplates</span>
-</span><span id="1902" class="l"><a class="l" href="#1902">1902: </a>        <span class="php-var">$templates</span> = <span class="php-keyword1">array</span>();
-</span><span id="1903" class="l"><a class="l" href="#1903">1903: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$initValue</span> || <span class="php-keyword2">strpos</span>(<span class="php-var">$initValue</span>, <span class="php-quote">'template='</span>) === <span class="php-keyword1">false</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>();
-</span><span id="1904" class="l"><a class="l" href="#1904">1904: </a>        <span class="php-keyword1">foreach</span>(<span class="php-keyword1">new</span> Selectors(<span class="php-var">$initValue</span>) <span class="php-keyword1">as</span> <span class="php-var">$selector</span>) {
-</span><span id="1905" class="l"><a class="l" href="#1905">1905: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$selector</span>-&gt;field == <span class="php-quote">'template'</span>) {
-</span><span id="1906" class="l"><a class="l" href="#1906">1906: </a>                <span class="php-var">$value</span> = <span class="php-keyword2">is_array</span>(<span class="php-var">$selector</span>-&gt;value) ? <span class="php-var">$selector</span>-&gt;value : <span class="php-keyword1">array</span>(<span class="php-var">$selector</span>-&gt;value); 
-</span><span id="1907" class="l"><a class="l" href="#1907">1907: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span>) {
-</span><span id="1908" class="l"><a class="l" href="#1908">1908: </a>                    <span class="php-var">$t</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get(<span class="php-var">$name</span>); 
-</span><span id="1909" class="l"><a class="l" href="#1909">1909: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$t</span>) <span class="php-var">$templates</span>[] = <span class="php-var">$t</span>-&gt;id;
-</span><span id="1910" class="l"><a class="l" href="#1910">1910: </a>                }
-</span><span id="1911" class="l"><a class="l" href="#1911">1911: </a>            }
-</span><span id="1912" class="l"><a class="l" href="#1912">1912: </a>        }
-</span><span id="1913" class="l"><a class="l" href="#1913">1913: </a>        <span class="php-keyword1">return</span> <span class="php-var">$templates</span>; 
-</span><span id="1914" class="l"><a class="l" href="#1914">1914: </a>    }
-</span><span id="1915" class="l"><a class="l" href="#1915">1915: </a>
-</span><span id="1916" class="l"><a class="l" href="#1916">1916: </a>    <span class="php-comment">/**
-</span></span><span id="1917" class="l"><a class="l" href="#1917">1917: </a><span class="php-comment">     * Process input submitted to this Inputfield
-</span></span><span id="1918" class="l"><a class="l" href="#1918">1918: </a><span class="php-comment">     * 
-</span></span><span id="1919" class="l"><a class="l" href="#1919">1919: </a><span class="php-comment">     * @param WireInputData $input
-</span></span><span id="1920" class="l"><a class="l" href="#1920">1920: </a><span class="php-comment">     * @return $this
-</span></span><span id="1921" class="l"><a class="l" href="#1921">1921: </a><span class="php-comment">     * 
-</span></span><span id="1922" class="l"><a class="l" href="#1922">1922: </a><span class="php-comment">     */</span>
-</span><span id="1923" class="l"><a class="l" href="#1923">1923: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____processInput" href="#____processInput">___processInput</a>(WireInputData <span class="php-var">$input</span>) {
-</span><span id="1924" class="l"><a class="l" href="#1924">1924: </a>        parent::___processInput(<span class="php-var">$input</span>); 
-</span><span id="1925" class="l"><a class="l" href="#1925">1925: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>); 
-</span><span id="1926" class="l"><a class="l" href="#1926">1926: </a>        <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;sanitizeSelectorString(<span class="php-var">$value</span>, <span class="php-keyword1">false</span>));
-</span><span id="1927" class="l"><a class="l" href="#1927">1927: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>; 
-</span><span id="1928" class="l"><a class="l" href="#1928">1928: </a>    }
-</span><span id="1929" class="l"><a class="l" href="#1929">1929: </a>
-</span><span id="1930" class="l"><a class="l" href="#1930">1930: </a>    <span class="php-comment">/**
-</span></span><span id="1931" class="l"><a class="l" href="#1931">1931: </a><span class="php-comment">     * Module settings: provide a sandbox area for playing with the Inputfield
-</span></span><span id="1932" class="l"><a class="l" href="#1932">1932: </a><span class="php-comment">     * 
-</span></span><span id="1933" class="l"><a class="l" href="#1933">1933: </a><span class="php-comment">     * @param array $data
-</span></span><span id="1934" class="l"><a class="l" href="#1934">1934: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="1935" class="l"><a class="l" href="#1935">1935: </a><span class="php-comment">     * 
-</span></span><span id="1936" class="l"><a class="l" href="#1936">1936: </a><span class="php-comment">     */</span>
-</span><span id="1937" class="l"><a class="l" href="#1937">1937: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="1938" class="l"><a class="l" href="#1938">1938: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$data</span>) {} <span class="php-comment">// ignore</span>
-</span><span id="1939" class="l"><a class="l" href="#1939">1939: </a>        <span class="php-var">$form</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
-</span><span id="1940" class="l"><a class="l" href="#1940">1940: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldSelector'</span>); 
-</span><span id="1941" class="l"><a class="l" href="#1941">1941: </a>        <span class="php-var">$f</span>-&gt;name = <span class="php-quote">'test'</span>;
-</span><span id="1942" class="l"><a class="l" href="#1942">1942: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Selector Sandbox'</span>);
-</span><span id="1943" class="l"><a class="l" href="#1943">1943: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This is here just in case you want to test out the functionality of this Inputfield.'</span>); 
-</span><span id="1944" class="l"><a class="l" href="#1944">1944: </a>        <span class="php-var">$form</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="1945" class="l"><a class="l" href="#1945">1945: </a>        <span class="php-keyword1">return</span> <span class="php-var">$form</span>; 
-</span><span id="1946" class="l"><a class="l" href="#1946">1946: </a>    }
-</span><span id="1947" class="l"><a class="l" href="#1947">1947: </a>
+</span><span id="1893" class="l"><a class="l" href="#1893">1893: </a>
+</span><span id="1894" class="l"><a class="l" href="#1894">1894: </a>    <span class="php-comment">/**
+</span></span><span id="1895" class="l"><a class="l" href="#1895">1895: </a><span class="php-comment">     * Returns array of template IDs that correspond with any templates specified in the initValue
+</span></span><span id="1896" class="l"><a class="l" href="#1896">1896: </a><span class="php-comment">     * 
+</span></span><span id="1897" class="l"><a class="l" href="#1897">1897: </a><span class="php-comment">     * @param string $initValue
+</span></span><span id="1898" class="l"><a class="l" href="#1898">1898: </a><span class="php-comment">     * @return array of template IDs
+</span></span><span id="1899" class="l"><a class="l" href="#1899">1899: </a><span class="php-comment">     *
+</span></span><span id="1900" class="l"><a class="l" href="#1900">1900: </a><span class="php-comment">     */</span>
+</span><span id="1901" class="l"><a class="l" href="#1901">1901: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getTemplatesFromInitValue" href="#_getTemplatesFromInitValue">getTemplatesFromInitValue</a>(<span class="php-var">$initValue</span>) {
+</span><span id="1902" class="l"><a class="l" href="#1902">1902: </a>        <span class="php-comment">// determine if a template is enforced and populate allowedTemplates</span>
+</span><span id="1903" class="l"><a class="l" href="#1903">1903: </a>        <span class="php-var">$templates</span> = <span class="php-keyword1">array</span>();
+</span><span id="1904" class="l"><a class="l" href="#1904">1904: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$initValue</span> || <span class="php-keyword2">strpos</span>(<span class="php-var">$initValue</span>, <span class="php-quote">'template='</span>) === <span class="php-keyword1">false</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>();
+</span><span id="1905" class="l"><a class="l" href="#1905">1905: </a>        <span class="php-keyword1">foreach</span>(<span class="php-keyword1">new</span> Selectors(<span class="php-var">$initValue</span>) <span class="php-keyword1">as</span> <span class="php-var">$selector</span>) {
+</span><span id="1906" class="l"><a class="l" href="#1906">1906: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$selector</span>-&gt;field == <span class="php-quote">'template'</span>) {
+</span><span id="1907" class="l"><a class="l" href="#1907">1907: </a>                <span class="php-var">$value</span> = <span class="php-keyword2">is_array</span>(<span class="php-var">$selector</span>-&gt;value) ? <span class="php-var">$selector</span>-&gt;value : <span class="php-keyword1">array</span>(<span class="php-var">$selector</span>-&gt;value); 
+</span><span id="1908" class="l"><a class="l" href="#1908">1908: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span>) {
+</span><span id="1909" class="l"><a class="l" href="#1909">1909: </a>                    <span class="php-var">$t</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get(<span class="php-var">$name</span>); 
+</span><span id="1910" class="l"><a class="l" href="#1910">1910: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$t</span>) <span class="php-var">$templates</span>[] = <span class="php-var">$t</span>-&gt;id;
+</span><span id="1911" class="l"><a class="l" href="#1911">1911: </a>                }
+</span><span id="1912" class="l"><a class="l" href="#1912">1912: </a>            }
+</span><span id="1913" class="l"><a class="l" href="#1913">1913: </a>        }
+</span><span id="1914" class="l"><a class="l" href="#1914">1914: </a>        <span class="php-keyword1">return</span> <span class="php-var">$templates</span>; 
+</span><span id="1915" class="l"><a class="l" href="#1915">1915: </a>    }
+</span><span id="1916" class="l"><a class="l" href="#1916">1916: </a>
+</span><span id="1917" class="l"><a class="l" href="#1917">1917: </a>    <span class="php-comment">/**
+</span></span><span id="1918" class="l"><a class="l" href="#1918">1918: </a><span class="php-comment">     * Process input submitted to this Inputfield
+</span></span><span id="1919" class="l"><a class="l" href="#1919">1919: </a><span class="php-comment">     * 
+</span></span><span id="1920" class="l"><a class="l" href="#1920">1920: </a><span class="php-comment">     * @param WireInputData $input
+</span></span><span id="1921" class="l"><a class="l" href="#1921">1921: </a><span class="php-comment">     * @return $this
+</span></span><span id="1922" class="l"><a class="l" href="#1922">1922: </a><span class="php-comment">     * 
+</span></span><span id="1923" class="l"><a class="l" href="#1923">1923: </a><span class="php-comment">     */</span>
+</span><span id="1924" class="l"><a class="l" href="#1924">1924: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____processInput" href="#____processInput">___processInput</a>(WireInputData <span class="php-var">$input</span>) {
+</span><span id="1925" class="l"><a class="l" href="#1925">1925: </a>        parent::___processInput(<span class="php-var">$input</span>); 
+</span><span id="1926" class="l"><a class="l" href="#1926">1926: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>); 
+</span><span id="1927" class="l"><a class="l" href="#1927">1927: </a>        <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;sanitizeSelectorString(<span class="php-var">$value</span>, <span class="php-keyword1">false</span>));
+</span><span id="1928" class="l"><a class="l" href="#1928">1928: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>; 
+</span><span id="1929" class="l"><a class="l" href="#1929">1929: </a>    }
+</span><span id="1930" class="l"><a class="l" href="#1930">1930: </a>
+</span><span id="1931" class="l"><a class="l" href="#1931">1931: </a>    <span class="php-comment">/**
+</span></span><span id="1932" class="l"><a class="l" href="#1932">1932: </a><span class="php-comment">     * Module settings: provide a sandbox area for playing with the Inputfield
+</span></span><span id="1933" class="l"><a class="l" href="#1933">1933: </a><span class="php-comment">     * 
+</span></span><span id="1934" class="l"><a class="l" href="#1934">1934: </a><span class="php-comment">     * @param array $data
+</span></span><span id="1935" class="l"><a class="l" href="#1935">1935: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="1936" class="l"><a class="l" href="#1936">1936: </a><span class="php-comment">     * 
+</span></span><span id="1937" class="l"><a class="l" href="#1937">1937: </a><span class="php-comment">     */</span>
+</span><span id="1938" class="l"><a class="l" href="#1938">1938: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="1939" class="l"><a class="l" href="#1939">1939: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$data</span>) {} <span class="php-comment">// ignore</span>
+</span><span id="1940" class="l"><a class="l" href="#1940">1940: </a>        <span class="php-var">$form</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
+</span><span id="1941" class="l"><a class="l" href="#1941">1941: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldSelector'</span>); 
+</span><span id="1942" class="l"><a class="l" href="#1942">1942: </a>        <span class="php-var">$f</span>-&gt;name = <span class="php-quote">'test'</span>;
+</span><span id="1943" class="l"><a class="l" href="#1943">1943: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Selector Sandbox'</span>);
+</span><span id="1944" class="l"><a class="l" href="#1944">1944: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This is here just in case you want to test out the functionality of this Inputfield.'</span>); 
+</span><span id="1945" class="l"><a class="l" href="#1945">1945: </a>        <span class="php-var">$form</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="1946" class="l"><a class="l" href="#1946">1946: </a>        <span class="php-keyword1">return</span> <span class="php-var">$form</span>; 
+</span><span id="1947" class="l"><a class="l" href="#1947">1947: </a>    }
 </span><span id="1948" class="l"><a class="l" href="#1948">1948: </a>
-</span><span id="1949" class="l"><a class="l" href="#1949">1949: </a>}
-</span><span id="1950" class="l"><a class="l" href="#1950">1950: </a></span></code></pre>
+</span><span id="1949" class="l"><a class="l" href="#1949">1949: </a>
+</span><span id="1950" class="l"><a class="l" href="#1950">1950: </a>}
+</span><span id="1951" class="l"><a class="l" href="#1951">1951: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

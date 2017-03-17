@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessPageEdit/ProcessPageEdit.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1383577702"></script>
+	<script type="text/javascript" src="elementlist.js?3620946837"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.55 dev</span>
+			<span>Overview version 3.0.56 dev</span>
 		</a>
 
 
@@ -2786,64 +2786,65 @@
 </span><span id="2230" class="l"><a class="l" href="#2230">2230: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;page &amp;&amp; <span class="php-var">$this</span>-&gt;page-&gt;id != <span class="php-num">1</span>) <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'breadcrumbs'</span>)-&gt;shift(); <span class="php-comment">// shift off the 'Pages' breadcrumb</span>
 </span><span id="2231" class="l"><a class="l" href="#2231">2231: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;page ? <span class="php-var">$this</span>-&gt;page : <span class="php-var">$this</span>-&gt;parent;
 </span><span id="2232" class="l"><a class="l" href="#2232">2232: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;masterPage) <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;masterPage;
-</span><span id="2233" class="l"><a class="l" href="#2233">2233: </a>
-</span><span id="2234" class="l"><a class="l" href="#2234">2234: </a>        <span class="php-var">$numParents</span> = <span class="php-var">$page</span>-&gt;parents-&gt;<span class="php-keyword2">count</span>();
-</span><span id="2235" class="l"><a class="l" href="#2235">2235: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;parents() <span class="php-keyword1">as</span> <span class="php-var">$cnt</span> =&gt; <span class="php-var">$p</span>) {
-</span><span id="2236" class="l"><a class="l" href="#2236">2236: </a>            <span class="php-var">$url</span> = <span class="php-quote">&quot;../?open=</span><span class="php-var">$p</span><span class="php-quote">-&gt;id&quot;</span>;
-</span><span id="2237" class="l"><a class="l" href="#2237">2237: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$cnt</span> == <span class="php-var">$numParents</span>-<span class="php-num">1</span>) <span class="php-var">$url</span> = <span class="php-quote">&quot;../&quot;</span>;
-</span><span id="2238" class="l"><a class="l" href="#2238">2238: </a>            <span class="php-var">$this</span>-&gt;breadcrumb(<span class="php-var">$url</span>, <span class="php-var">$p</span>-&gt;get(<span class="php-quote">&quot;title|name&quot;</span>));
-</span><span id="2239" class="l"><a class="l" href="#2239">2239: </a>        }
-</span><span id="2240" class="l"><a class="l" href="#2240">2240: </a>
-</span><span id="2241" class="l"><a class="l" href="#2241">2241: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;page &amp;&amp; <span class="php-var">$this</span>-&gt;field) <span class="php-var">$this</span>-&gt;breadcrumb(<span class="php-quote">&quot;./?id=</span><span class="php-var">{$this-&gt;page-&gt;id}</span><span class="php-quote">&quot;</span>, <span class="php-var">$page</span>-&gt;get(<span class="php-quote">&quot;title|name&quot;</span>));
-</span><span id="2242" class="l"><a class="l" href="#2242">2242: </a>    }
-</span><span id="2243" class="l"><a class="l" href="#2243">2243: </a>
+</span><span id="2233" class="l"><a class="l" href="#2233">2233: </a>        <span class="php-var">$lastID</span> = (int) <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;get(<span class="php-quote">'ProcessPageList'</span>, <span class="php-quote">'lastID'</span>);
+</span><span id="2234" class="l"><a class="l" href="#2234">2234: </a>
+</span><span id="2235" class="l"><a class="l" href="#2235">2235: </a>        <span class="php-var">$numParents</span> = <span class="php-var">$page</span>-&gt;parents-&gt;<span class="php-keyword2">count</span>();
+</span><span id="2236" class="l"><a class="l" href="#2236">2236: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;parents() <span class="php-keyword1">as</span> <span class="php-var">$cnt</span> =&gt; <span class="php-var">$p</span>) {
+</span><span id="2237" class="l"><a class="l" href="#2237">2237: </a>            <span class="php-var">$url</span> = <span class="php-quote">&quot;../?open=</span><span class="php-var">$p</span><span class="php-quote">-&gt;id&quot;</span>;
+</span><span id="2238" class="l"><a class="l" href="#2238">2238: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$cnt</span> == <span class="php-var">$numParents</span>-<span class="php-num">1</span> &amp;&amp; <span class="php-var">$p</span>-&gt;id == <span class="php-var">$lastID</span>) <span class="php-var">$url</span> = <span class="php-quote">&quot;../&quot;</span>;
+</span><span id="2239" class="l"><a class="l" href="#2239">2239: </a>            <span class="php-var">$this</span>-&gt;breadcrumb(<span class="php-var">$url</span>, <span class="php-var">$p</span>-&gt;get(<span class="php-quote">&quot;title|name&quot;</span>));
+</span><span id="2240" class="l"><a class="l" href="#2240">2240: </a>        }
+</span><span id="2241" class="l"><a class="l" href="#2241">2241: </a>
+</span><span id="2242" class="l"><a class="l" href="#2242">2242: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;page &amp;&amp; <span class="php-var">$this</span>-&gt;field) <span class="php-var">$this</span>-&gt;breadcrumb(<span class="php-quote">&quot;./?id=</span><span class="php-var">{$this-&gt;page-&gt;id}</span><span class="php-quote">&quot;</span>, <span class="php-var">$page</span>-&gt;get(<span class="php-quote">&quot;title|name&quot;</span>));
+</span><span id="2243" class="l"><a class="l" href="#2243">2243: </a>    }
 </span><span id="2244" class="l"><a class="l" href="#2244">2244: </a>
-</span><span id="2245" class="l"><a class="l" href="#2245">2245: </a>    <span class="php-comment">/**
-</span></span><span id="2246" class="l"><a class="l" href="#2246">2246: </a><span class="php-comment">     * Module config
-</span></span><span id="2247" class="l"><a class="l" href="#2247">2247: </a><span class="php-comment">     * 
-</span></span><span id="2248" class="l"><a class="l" href="#2248">2248: </a><span class="php-comment">     * @param array $data
-</span></span><span id="2249" class="l"><a class="l" href="#2249">2249: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="2250" class="l"><a class="l" href="#2250">2250: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="2251" class="l"><a class="l" href="#2251">2251: </a><span class="php-comment">     * 
-</span></span><span id="2252" class="l"><a class="l" href="#2252">2252: </a><span class="php-comment">     */</span>
-</span><span id="2253" class="l"><a class="l" href="#2253">2253: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="2254" class="l"><a class="l" href="#2254">2254: </a>        
-</span><span id="2255" class="l"><a class="l" href="#2255">2255: </a>        <span class="php-var">$inputfields</span> = <span class="php-keyword1">new</span> InputfieldWrapper();
-</span><span id="2256" class="l"><a class="l" href="#2256">2256: </a>        
-</span><span id="2257" class="l"><a class="l" href="#2257">2257: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>);
-</span><span id="2258" class="l"><a class="l" href="#2258">2258: </a>        <span class="php-var">$f</span>-&gt;name = <span class="php-quote">'viewAction'</span>; 
-</span><span id="2259" class="l"><a class="l" href="#2259">2259: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Default &quot;view&quot; location/action'</span>); 
-</span><span id="2260" class="l"><a class="l" href="#2260">2260: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'The default type of action used when the &quot;view&quot; tab is clicked on in the page editor.'</span>);
-</span><span id="2261" class="l"><a class="l" href="#2261">2261: </a>        <span class="php-var">$f</span>-&gt;icon = <span class="php-quote">'eye'</span>;
-</span><span id="2262" class="l"><a class="l" href="#2262">2262: </a>        
-</span><span id="2263" class="l"><a class="l" href="#2263">2263: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;getViewActions(<span class="php-keyword1">array</span>(), <span class="php-keyword1">true</span>) <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$label</span>) {
-</span><span id="2264" class="l"><a class="l" href="#2264">2264: </a>            <span class="php-var">$f</span>-&gt;addOption(<span class="php-var">$name</span>, <span class="php-var">$label</span>);
-</span><span id="2265" class="l"><a class="l" href="#2265">2265: </a>        }
-</span><span id="2266" class="l"><a class="l" href="#2266">2266: </a>
-</span><span id="2267" class="l"><a class="l" href="#2267">2267: </a>        <span class="php-var">$configData</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;pageEdit;
-</span><span id="2268" class="l"><a class="l" href="#2268">2268: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'viewAction'</span>])) {
-</span><span id="2269" class="l"><a class="l" href="#2269">2269: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'viewAction'</span>]);
-</span><span id="2270" class="l"><a class="l" href="#2270">2270: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$configData</span>) &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$configData</span>[<span class="php-quote">'viewNew'</span>])) {
-</span><span id="2271" class="l"><a class="l" href="#2271">2271: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-quote">'new'</span>);
-</span><span id="2272" class="l"><a class="l" href="#2272">2272: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="2273" class="l"><a class="l" href="#2273">2273: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-quote">'this'</span>);
-</span><span id="2274" class="l"><a class="l" href="#2274">2274: </a>        }
-</span><span id="2275" class="l"><a class="l" href="#2275">2275: </a>        
-</span><span id="2276" class="l"><a class="l" href="#2276">2276: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="2277" class="l"><a class="l" href="#2277">2277: </a>        
+</span><span id="2245" class="l"><a class="l" href="#2245">2245: </a>
+</span><span id="2246" class="l"><a class="l" href="#2246">2246: </a>    <span class="php-comment">/**
+</span></span><span id="2247" class="l"><a class="l" href="#2247">2247: </a><span class="php-comment">     * Module config
+</span></span><span id="2248" class="l"><a class="l" href="#2248">2248: </a><span class="php-comment">     * 
+</span></span><span id="2249" class="l"><a class="l" href="#2249">2249: </a><span class="php-comment">     * @param array $data
+</span></span><span id="2250" class="l"><a class="l" href="#2250">2250: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="2251" class="l"><a class="l" href="#2251">2251: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="2252" class="l"><a class="l" href="#2252">2252: </a><span class="php-comment">     * 
+</span></span><span id="2253" class="l"><a class="l" href="#2253">2253: </a><span class="php-comment">     */</span>
+</span><span id="2254" class="l"><a class="l" href="#2254">2254: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="2255" class="l"><a class="l" href="#2255">2255: </a>        
+</span><span id="2256" class="l"><a class="l" href="#2256">2256: </a>        <span class="php-var">$inputfields</span> = <span class="php-keyword1">new</span> InputfieldWrapper();
+</span><span id="2257" class="l"><a class="l" href="#2257">2257: </a>        
+</span><span id="2258" class="l"><a class="l" href="#2258">2258: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldRadios'</span>);
+</span><span id="2259" class="l"><a class="l" href="#2259">2259: </a>        <span class="php-var">$f</span>-&gt;name = <span class="php-quote">'viewAction'</span>; 
+</span><span id="2260" class="l"><a class="l" href="#2260">2260: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Default &quot;view&quot; location/action'</span>); 
+</span><span id="2261" class="l"><a class="l" href="#2261">2261: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'The default type of action used when the &quot;view&quot; tab is clicked on in the page editor.'</span>);
+</span><span id="2262" class="l"><a class="l" href="#2262">2262: </a>        <span class="php-var">$f</span>-&gt;icon = <span class="php-quote">'eye'</span>;
+</span><span id="2263" class="l"><a class="l" href="#2263">2263: </a>        
+</span><span id="2264" class="l"><a class="l" href="#2264">2264: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;getViewActions(<span class="php-keyword1">array</span>(), <span class="php-keyword1">true</span>) <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$label</span>) {
+</span><span id="2265" class="l"><a class="l" href="#2265">2265: </a>            <span class="php-var">$f</span>-&gt;addOption(<span class="php-var">$name</span>, <span class="php-var">$label</span>);
+</span><span id="2266" class="l"><a class="l" href="#2266">2266: </a>        }
+</span><span id="2267" class="l"><a class="l" href="#2267">2267: </a>
+</span><span id="2268" class="l"><a class="l" href="#2268">2268: </a>        <span class="php-var">$configData</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;pageEdit;
+</span><span id="2269" class="l"><a class="l" href="#2269">2269: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'viewAction'</span>])) {
+</span><span id="2270" class="l"><a class="l" href="#2270">2270: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-quote">'viewAction'</span>]);
+</span><span id="2271" class="l"><a class="l" href="#2271">2271: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$configData</span>) &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$configData</span>[<span class="php-quote">'viewNew'</span>])) {
+</span><span id="2272" class="l"><a class="l" href="#2272">2272: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-quote">'new'</span>);
+</span><span id="2273" class="l"><a class="l" href="#2273">2273: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="2274" class="l"><a class="l" href="#2274">2274: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-quote">'this'</span>);
+</span><span id="2275" class="l"><a class="l" href="#2275">2275: </a>        }
+</span><span id="2276" class="l"><a class="l" href="#2276">2276: </a>        
+</span><span id="2277" class="l"><a class="l" href="#2277">2277: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>);
 </span><span id="2278" class="l"><a class="l" href="#2278">2278: </a>        
-</span><span id="2279" class="l"><a class="l" href="#2279">2279: </a>        <span class="php-var">$bookmarks</span> = <span class="php-var">$this</span>-&gt;getPageBookmarks();
-</span><span id="2280" class="l"><a class="l" href="#2280">2280: </a>        
-</span><span id="2281" class="l"><a class="l" href="#2281">2281: </a>        <span class="php-var">$bookmarks</span>-&gt;addConfigInputfields(<span class="php-var">$inputfields</span>);
-</span><span id="2282" class="l"><a class="l" href="#2282">2282: </a>        <span class="php-var">$admin</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;adminRootPageID);
-</span><span id="2283" class="l"><a class="l" href="#2283">2283: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get(<span class="php-var">$admin</span>-&gt;path . <span class="php-quote">'page/edit/'</span>);
-</span><span id="2284" class="l"><a class="l" href="#2284">2284: </a>        <span class="php-var">$bookmarks</span>-&gt;checkProcessPage(<span class="php-var">$page</span>);
-</span><span id="2285" class="l"><a class="l" href="#2285">2285: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="2286" class="l"><a class="l" href="#2286">2286: </a>    }
-</span><span id="2287" class="l"><a class="l" href="#2287">2287: </a>
-</span><span id="2288" class="l"><a class="l" href="#2288">2288: </a>}
-</span><span id="2289" class="l"><a class="l" href="#2289">2289: </a>
-</span><span id="2290" class="l"><a class="l" href="#2290">2290: </a></span></code></pre>
+</span><span id="2279" class="l"><a class="l" href="#2279">2279: </a>        
+</span><span id="2280" class="l"><a class="l" href="#2280">2280: </a>        <span class="php-var">$bookmarks</span> = <span class="php-var">$this</span>-&gt;getPageBookmarks();
+</span><span id="2281" class="l"><a class="l" href="#2281">2281: </a>        
+</span><span id="2282" class="l"><a class="l" href="#2282">2282: </a>        <span class="php-var">$bookmarks</span>-&gt;addConfigInputfields(<span class="php-var">$inputfields</span>);
+</span><span id="2283" class="l"><a class="l" href="#2283">2283: </a>        <span class="php-var">$admin</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;adminRootPageID);
+</span><span id="2284" class="l"><a class="l" href="#2284">2284: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get(<span class="php-var">$admin</span>-&gt;path . <span class="php-quote">'page/edit/'</span>);
+</span><span id="2285" class="l"><a class="l" href="#2285">2285: </a>        <span class="php-var">$bookmarks</span>-&gt;checkProcessPage(<span class="php-var">$page</span>);
+</span><span id="2286" class="l"><a class="l" href="#2286">2286: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="2287" class="l"><a class="l" href="#2287">2287: </a>    }
+</span><span id="2288" class="l"><a class="l" href="#2288">2288: </a>
+</span><span id="2289" class="l"><a class="l" href="#2289">2289: </a>}
+</span><span id="2290" class="l"><a class="l" href="#2290">2290: </a>
+</span><span id="2291" class="l"><a class="l" href="#2291">2291: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

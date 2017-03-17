@@ -8,7 +8,7 @@
 	<title>File modules/LanguageSupport/LanguageSupport.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1383577702"></script>
+	<script type="text/javascript" src="elementlist.js?3620946837"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.55 dev</span>
+			<span>Overview version 3.0.56 dev</span>
 		</a>
 
 
@@ -738,8 +738,8 @@
 </span><span id="182" class="l"><a class="l" href="#182">182: </a>        }
 </span><span id="183" class="l"><a class="l" href="#183">183: </a>
 </span><span id="184" class="l"><a class="l" href="#184">184: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;dateFormat = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Y-m-d H:i:s'</span>); <span class="php-comment">// Sortable date format used in the admin</span>
-</span><span id="185" class="l"><a class="l" href="#185">185: </a>        <span class="php-var">$locale</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'C'</span>); <span class="php-comment">// Value to pass to PHP's setlocale(LC_ALL, 'value') function when initializing this language // Default is 'C'. Specify '0' to skip the setlocale() call (and carry on system default).</span>
-</span><span id="186" class="l"><a class="l" href="#186">186: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$locale</span> != <span class="php-quote">'0'</span>) <span class="php-keyword2">setlocale</span>(LC_ALL, <span class="php-var">$locale</span>); 
+</span><span id="185" class="l"><a class="l" href="#185">185: </a>        <span class="php-var">$locale</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'C'</span>); <span class="php-comment">// Value to pass to PHP's setlocale(LC_ALL, 'value') function when initializing this language // Default is 'C'. Specify '0' to skip the setlocale() call (and carry on system default). Specify CSV string of locales to try multiple locales in order.</span>
+</span><span id="186" class="l"><a class="l" href="#186">186: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$locale</span> != <span class="php-quote">'0'</span>) <span class="php-var">$languages</span>-&gt;<span class="php-keyword2">setLocale</span>(LC_ALL, <span class="php-var">$locale</span>); 
 </span><span id="187" class="l"><a class="l" href="#187">187: </a>
 </span><span id="188" class="l"><a class="l" href="#188">188: </a>        <span class="php-comment">// setup our hooks handled by this class</span>
 </span><span id="189" class="l"><a class="l" href="#189">189: </a>        <span class="php-var">$this</span>-&gt;addHookBefore(<span class="php-quote">'Inputfield::render'</span>, <span class="php-var">$this</span>, <span class="php-quote">'hookInputfieldBeforeRender'</span>);
