@@ -8,7 +8,7 @@
 	<title>File modules/LanguageSupport/Language.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3620946837"></script>
+	<script type="text/javascript" src="elementlist.js?2678373995"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.56 dev</span>
+			<span>Overview version 3.0.57 dev</span>
 		</a>
 
 
@@ -660,9 +660,36 @@
 </span><span id="104" class="l"><a class="l" href="#104">104: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getPagesManager" href="#_getPagesManager">getPagesManager</a>() {
 </span><span id="105" class="l"><a class="l" href="#105">105: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>);
 </span><span id="106" class="l"><a class="l" href="#106">106: </a>    }
-</span><span id="107" class="l"><a class="l" href="#107">107: </a>}
-</span><span id="108" class="l"><a class="l" href="#108">108: </a>
-</span><span id="109" class="l"><a class="l" href="#109">109: </a></span></code></pre>
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>
+</span><span id="108" class="l"><a class="l" href="#108">108: </a>    <span class="php-comment">/**
+</span></span><span id="109" class="l"><a class="l" href="#109">109: </a><span class="php-comment">     * Get locale for this language
+</span></span><span id="110" class="l"><a class="l" href="#110">110: </a><span class="php-comment">     * 
+</span></span><span id="111" class="l"><a class="l" href="#111">111: </a><span class="php-comment">     * See the `Languages::getLocale()` method for full details.
+</span></span><span id="112" class="l"><a class="l" href="#112">112: </a><span class="php-comment">     * 
+</span></span><span id="113" class="l"><a class="l" href="#113">113: </a><span class="php-comment">     * @param int $category Optional category (default=LC_ALL)
+</span></span><span id="114" class="l"><a class="l" href="#114">114: </a><span class="php-comment">     * @return string|bool
+</span></span><span id="115" class="l"><a class="l" href="#115">115: </a><span class="php-comment">     * @see Languages::setLocale()
+</span></span><span id="116" class="l"><a class="l" href="#116">116: </a><span class="php-comment">     * 
+</span></span><span id="117" class="l"><a class="l" href="#117">117: </a><span class="php-comment">     */</span>
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getLocale" href="#_getLocale">getLocale</a>(<span class="php-var">$category</span> = LC_ALL) {
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)-&gt;getLocale(<span class="php-var">$category</span>, <span class="php-var">$this</span>);
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>    }
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>    <span class="php-comment">/**
+</span></span><span id="123" class="l"><a class="l" href="#123">123: </a><span class="php-comment">     * Set the current locale to use settings defined for this language
+</span></span><span id="124" class="l"><a class="l" href="#124">124: </a><span class="php-comment">     * 
+</span></span><span id="125" class="l"><a class="l" href="#125">125: </a><span class="php-comment">     * See the `Languages::setLocale()` method for full details.
+</span></span><span id="126" class="l"><a class="l" href="#126">126: </a><span class="php-comment">     * 
+</span></span><span id="127" class="l"><a class="l" href="#127">127: </a><span class="php-comment">     * @param int $category Optional category (default=LC_ALL)
+</span></span><span id="128" class="l"><a class="l" href="#128">128: </a><span class="php-comment">     * @see Languages::setLocale()
+</span></span><span id="129" class="l"><a class="l" href="#129">129: </a><span class="php-comment">     * 
+</span></span><span id="130" class="l"><a class="l" href="#130">130: </a><span class="php-comment">     */</span>
+</span><span id="131" class="l"><a class="l" href="#131">131: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">setLocale</span>(<span class="php-var">$category</span> = LC_ALL) {
+</span><span id="132" class="l"><a class="l" href="#132">132: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)-&gt;<span class="php-keyword2">setLocale</span>(<span class="php-var">$category</span>, <span class="php-var">$this</span>);
+</span><span id="133" class="l"><a class="l" href="#133">133: </a>    }
+</span><span id="134" class="l"><a class="l" href="#134">134: </a>}
+</span><span id="135" class="l"><a class="l" href="#135">135: </a>
+</span><span id="136" class="l"><a class="l" href="#136">136: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

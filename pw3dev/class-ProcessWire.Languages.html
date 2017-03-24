@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Languages | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3620946837"></script>
+	<script type="text/javascript" src="elementlist.js?2678373995"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.56 dev</span>
+			<span>Overview version 3.0.57 dev</span>
 		</a>
 
 
@@ -617,7 +617,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Languages.html#4-745" title="Go to source code">modules/LanguageSupport/Languages.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Languages.html#4-773" title="Go to source code">modules/LanguageSupport/Languages.php</a><br>
 	</div>
 
 
@@ -1256,7 +1256,7 @@ a <code>$languages-&gt;unsetLanguage()</code> call.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLocale">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#369-456" title="Go to source code">setLocale</a>( <span>integer <var>$category</var> = LC_ALL</span>, <span>string|array|null <var>$locale</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#369-469" title="Go to source code">setLocale</a>( <span>integer|string|array|null|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code> <var>$category</var> = LC_ALL</span>, <span>integer|string|array|null|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code> <var>$locale</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1284,11 +1284,19 @@ except for the following:</p>
 	argument. When this type of string is used, the $category argument is
 	ignored.</li>
 
-	<li>This method does not accept more than the 2 indicated arguments.</li>
+	<li>This method does not accept more than the 3 indicated arguments.</li>
+
+	<li>Any of the arguments may be swapped.</li>
 </ul>
 
 <p>See the PHP setlocale link above for a list of constants that can be used for
 the <code>$category</code> argument.</p>
+
+<p>Note that the locale is set once at bootup by ProcessWire, and does not
+change after that unless you call this method. Meaning, a change to
+<code>$user-&gt;language</code> does not automatically change the locale. If you
+want to change the locale, you would have to call this method after changing the
+user’s language from the API side.</p>
 
 <p>~~~~~ // Set locale to whatever settings defined for current $user language
 $languages-&gt;setLocale();</p>
@@ -1314,11 +1322,12 @@ $languages-&gt;setLocale(null, 'LC_CTYPE=en_US;LC_NUMERIC=de_DE;LC_TIME=es_ES');
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$category</var></dt>
-					<dd><code>integer</code><br>$category Specify a PHP “LC_” constant or omit (or null) for default
+					<dd><code>integer|string|array|null|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code></code><br>$category Specify a PHP “LC_” constant (int) or omit (or null) for default
 (LC_ALL).</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string|array|null</code><br>$locale Specify string, array or CSV string of locale name(s), or omit (null)
-for default language locale.</dd>
+					<dd><code>integer|string|array|null|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code></code><br>$locale Specify string, array or CSV string of locale name(s), omit (null) for
+current language locale, or specify Language object to pull locale from that
+language.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1348,7 +1357,7 @@ set.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLocale">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#458-471" title="Go to source code">getLocale</a>( <span>integer <var>$category</var> = LC_ALL</span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#471-499" title="Go to source code">getLocale</a>( <span>integer|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|string|null <var>$category</var> = LC_ALL</span>, <span><code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|string|integer|null <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1363,12 +1372,18 @@ set.<br>
 <p>If using LC_ALL category and locales change by category, the returned string
 will be in the format: “category=locale;category=locale”, and so on.</p>
 
+<p>The first and second arguments may optionally be swapped and either can be
+omitted.</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$category</var></dt>
-					<dd><code>integer</code><br>$category Optionally specify a PHP LC constant (default=LC_ALL)</dd>
+					<dd><code>integer|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|string|null</code><br>$category Optionally specify a PHP LC constant (default=LC_ALL)</dd>
+					<dt><var>$language</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|string|integer|null</code><br>$language Optionally return locale for specific language (default=current
+locale, regardless of language)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1376,6 +1391,10 @@ will be in the format: “category=locale;category=locale”, and so on.</p>
 					<code>string|boolean</code><br>Locale(s) string or boolean false if not supported by the system.<br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if given a $language argument that is invalid<br>
+				</div>
 
 				<h4>See</h4>
 				<div class="list">
@@ -1397,7 +1416,7 @@ will be in the format: “category=locale;category=locale”, and so on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleted">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#473-483" title="Go to source code">___deleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$language</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#501-511" title="Go to source code">___deleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$language</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1439,7 +1458,7 @@ will be in the format: “category=locale;category=locale”, and so on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____added">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#485-495" title="Go to source code">___added</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$language</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#513-523" title="Go to source code">___added</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$language</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1481,7 +1500,7 @@ will be in the format: “category=locale;category=locale”, and so on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____updated">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#497-509" title="Go to source code">___updated</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$language</var></span>, <span>string <var>$what</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#525-537" title="Go to source code">___updated</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$language</var></span>, <span>string <var>$what</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1523,7 +1542,7 @@ will be in the format: “category=locale;category=locale”, and so on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_reloadLanguages">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#511-520" title="Go to source code">reloadLanguages</a>( )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#539-548" title="Go to source code">reloadLanguages</a>( )</code>
 
 		<div class="description short">
 			
@@ -1558,7 +1577,7 @@ will be in the format: “category=locale;category=locale”, and so on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParent">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#522-532" title="Go to source code">getParent</a>( )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#550-560" title="Go to source code">getParent</a>( )</code>
 
 		<div class="description short">
 			
@@ -1599,7 +1618,7 @@ will be in the format: “category=locale;category=locale”, and so on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParents">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#534-548" title="Go to source code">getParents</a>( )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#562-576" title="Go to source code">getParents</a>( )</code>
 
 		<div class="description short">
 			
@@ -1640,7 +1659,7 @@ will be in the format: “category=locale;category=locale”, and so on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageEditPermissions">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#550-599" title="Go to source code">getPageEditPermissions</a>( <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#578-627" title="Go to source code">getPageEditPermissions</a>( <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1688,7 +1707,7 @@ permission name, it will return the language name (if exists) or false if not.<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPageEditPermission">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#601-620" title="Go to source code">getPageEditPermission</a>( <span>integer|string|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code> <var>$language</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#629-648" title="Go to source code">getPageEditPermission</a>( <span>integer|string|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code> <var>$language</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1734,7 +1753,7 @@ permission name, it will return the language name (if exists) or false if not.<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editable">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#622-681" title="Go to source code">editable</a>( <span><code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string <var>$language</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#650-709" title="Go to source code">editable</a>( <span><code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|integer|string <var>$language</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1777,7 +1796,7 @@ non-multi-language fields</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#683-697" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#711-725" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1823,7 +1842,7 @@ non-multi-language fields</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookUnknownColumnError">#</a>
-		<code><a href="source-class-ProcessWire.Languages.html#699-741" title="Go to source code">hookUnknownColumnError</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Languages.html#727-769" title="Go to source code">hookUnknownColumnError</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
