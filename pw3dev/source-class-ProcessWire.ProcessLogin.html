@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessLogin/ProcessLogin.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2678373995"></script>
+	<script type="text/javascript" src="elementlist.js?424740791"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.57 dev</span>
+			<span>Overview version 3.0.58 dev</span>
 		</a>
 
 
@@ -1013,25 +1013,27 @@
 </span></span><span id="457" class="l"><a class="l" href="#457">457: </a><span class="php-comment">     *
 </span></span><span id="458" class="l"><a class="l" href="#458">458: </a><span class="php-comment">     */</span>
 </span><span id="459" class="l"><a class="l" href="#459">459: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____afterLoginRedirect" href="#____afterLoginRedirect">___afterLoginRedirect</a>() {
-</span><span id="460" class="l"><a class="l" href="#460">460: </a>        <span class="php-var">$this</span>-&gt;session-&gt;redirect(<span class="php-var">$this</span>-&gt;pages-&gt;get(<span class="php-var">$this</span>-&gt;config-&gt;adminRootPageID)-&gt;url . <span class="php-quote">'?login=1'</span>);
-</span><span id="461" class="l"><a class="l" href="#461">461: </a>    }
-</span><span id="462" class="l"><a class="l" href="#462">462: </a>
-</span><span id="463" class="l"><a class="l" href="#463">463: </a>    <span class="php-comment">/**
-</span></span><span id="464" class="l"><a class="l" href="#464">464: </a><span class="php-comment">     * #pw-hooker
-</span></span><span id="465" class="l"><a class="l" href="#465">465: </a><span class="php-comment">     * #pw-internal
-</span></span><span id="466" class="l"><a class="l" href="#466">466: </a><span class="php-comment">     * 
-</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment">     * @param string $url
-</span></span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-comment">     * @return string
-</span></span><span id="469" class="l"><a class="l" href="#469">469: </a><span class="php-comment">     * 
-</span></span><span id="470" class="l"><a class="l" href="#470">470: </a><span class="php-comment">     */</span>
-</span><span id="471" class="l"><a class="l" href="#471">471: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____afterLoginURL" href="#____afterLoginURL">___afterLoginURL</a>(<span class="php-var">$url</span>) {
-</span><span id="472" class="l"><a class="l" href="#472">472: </a>        <span class="php-keyword1">return</span> <span class="php-var">$url</span>;
-</span><span id="473" class="l"><a class="l" href="#473">473: </a>    }
-</span><span id="474" class="l"><a class="l" href="#474">474: </a>
-</span><span id="475" class="l"><a class="l" href="#475">475: </a>
-</span><span id="476" class="l"><a class="l" href="#476">476: </a>}
+</span><span id="460" class="l"><a class="l" href="#460">460: </a>        <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;urls-&gt;admin . <span class="php-quote">'page/?login=1'</span>;
+</span><span id="461" class="l"><a class="l" href="#461">461: </a>        <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;afterLoginURL(<span class="php-var">$url</span>);
+</span><span id="462" class="l"><a class="l" href="#462">462: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;redirect(<span class="php-var">$url</span>);
+</span><span id="463" class="l"><a class="l" href="#463">463: </a>    }
+</span><span id="464" class="l"><a class="l" href="#464">464: </a>
+</span><span id="465" class="l"><a class="l" href="#465">465: </a>    <span class="php-comment">/**
+</span></span><span id="466" class="l"><a class="l" href="#466">466: </a><span class="php-comment">     * #pw-hooker
+</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-comment">     * 
+</span></span><span id="469" class="l"><a class="l" href="#469">469: </a><span class="php-comment">     * @param string $url
+</span></span><span id="470" class="l"><a class="l" href="#470">470: </a><span class="php-comment">     * @return string
+</span></span><span id="471" class="l"><a class="l" href="#471">471: </a><span class="php-comment">     * 
+</span></span><span id="472" class="l"><a class="l" href="#472">472: </a><span class="php-comment">     */</span>
+</span><span id="473" class="l"><a class="l" href="#473">473: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____afterLoginURL" href="#____afterLoginURL">___afterLoginURL</a>(<span class="php-var">$url</span>) {
+</span><span id="474" class="l"><a class="l" href="#474">474: </a>        <span class="php-keyword1">return</span> <span class="php-var">$url</span>;
+</span><span id="475" class="l"><a class="l" href="#475">475: </a>    }
+</span><span id="476" class="l"><a class="l" href="#476">476: </a>
 </span><span id="477" class="l"><a class="l" href="#477">477: </a>
-</span><span id="478" class="l"><a class="l" href="#478">478: </a></span></code></pre>
+</span><span id="478" class="l"><a class="l" href="#478">478: </a>}
+</span><span id="479" class="l"><a class="l" href="#479">479: </a>
+</span><span id="480" class="l"><a class="l" href="#480">480: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
