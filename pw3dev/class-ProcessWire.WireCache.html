@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireCache | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?424740791"></script>
+	<script type="text/javascript" src="elementlist.js?3975901054"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.59 dev</span>
+			<span>Overview version 3.0.60 dev</span>
 		</a>
 
 
@@ -609,7 +609,7 @@ PageArray objects. #pw-summary-constants These constants are used for the
 
 				<b>Todo:</b>
 				add support for a deleteAll() option that can delete non-system caches<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.WireCache.html#4-888" title="Go to source code">core/WireCache.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireCache.html#4-971" title="Go to source code">core/WireCache.php</a><br>
 	</div>
 
 
@@ -627,7 +627,7 @@ PageArray objects. #pw-summary-constants These constants are used for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preload">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#105-117" title="Go to source code">preload</a>( <span>array <var>$names</var></span>, <span>integer|string|null <var>$expire</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#105-119" title="Go to source code">preload</a>( <span>array <var>$names</var></span>, <span>integer|string|null <var>$expire</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -643,6 +643,8 @@ next get() call</p>
 
 <p>After a preloaded cache is returned from a get() call, it is removed from
 local storage.</p>
+
+<p>#pw-group-advanced</p>
 
 
 
@@ -672,7 +674,7 @@ local storage.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preloadFor">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#119-130" title="Go to source code">preloadFor</a>( <span>object|string <var>$ns</var></span>, <span>integer|string|null <var>$expire</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#121-134" title="Go to source code">preloadFor</a>( <span>object|string <var>$ns</var></span>, <span>integer|string|null <var>$expire</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -683,6 +685,8 @@ local storage.</p>
 		<div class="description detailed hidden">
 			
 <p>Preload all caches for the given object or namespace</p>
+
+<p>#pw-group-advanced</p>
 
 
 
@@ -712,7 +716,7 @@ local storage.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#132-268" title="Go to source code">get</a>( <span>string|array <var>$name</var></span>, <span>integer|string|null <var>$expire</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$func</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#136-293" title="Go to source code">get</a>( <span>string|array <var>$name</var></span>, <span>integer|string|null <var>$expire</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$func</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -727,32 +731,50 @@ local storage.</p>
 <p>Optionally specify expiration time and/or a cache generation function to use
 when cache needs to be created.</p>
 
+<p>Cached value can be a string, an array of non-object values, or a
+PageArray.</p>
+
+<p>~~~~~ // get single cache value $str = $cache-&gt;get('foo');</p>
+
+<p>// get 3 cached values, returns associative array with foo, bar, baz indexes
+$array = $cache-&gt;get([ 'foo', 'bar', 'baz' ]);</p>
+
+<p>// get all cache values with names starting with “hello” $array =
+$cache-&gt;get('hello*');</p>
+
+<p>// get cache only if it’s less than or equal to 1 hour old (3600 seconds)
+$str = $cache-&gt;get('foo', 3600);</p>
+
+<p>// same as above, but also generates the cache value with function when
+expired $str = $cache-&gt;get('foo', 3600, function() { return "This is the
+cached value"; }); ~~~~~</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
 					<dd><code>string|array</code><br>$name Provide a single cache name, an array of cache names, or an asterisk cache
-name. If given a single cache name (string) just the contents of that cache will
-be returned. If given an array of names, multiple caches will be returned,
-indexed by cache name. If given a cache name with an asterisk in it, it will
-return an array of all matching caches.</dd>
+name. - If given a single cache name (string) just the contents of that cache
+will be returned. - If given an array of names, multiple caches will be
+returned, indexed by cache name. - If given a cache name with an asterisk in it,
+it will return an array of all matching caches.</dd>
 					<dt><var>$expire</var></dt>
-					<dd><code>integer|string|null</code><br>$expire Optionally specify max age (in seconds) OR oldest date string. If cache
-exists and is older, then blank returned. You may omit this to divert to
+					<dd><code>integer|string|null</code><br>$expire Optionally specify max age (in seconds) OR oldest date string. - If
+cache exists and is older, then blank returned. You may omit this to divert to
 whatever expiration was specified at save() time. Note: The $expire and $func
-arguments may optionally be reversed. If using a $func, the behavior of $expire
-becomes the same as that of save().</dd>
+arguments may optionally be reversed. - If using a $func, the behavior of
+$expire becomes the same as that of save().</dd>
 					<dt><var>$func</var></dt>
 					<dd><code>callable</code><br>$func Optionally provide a function/closure that generates the cache value and
-it will be used when needed.This option requires that only one cache is being
+it will be used when needed. This option requires that only one cache is being
 retrieved (not an array of caches). Note: The $expire and $func arguments may
 optionally be reversed.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|mixed|null</code><br>Returns null if cache doesn't exist and no generation function provided.<br>
+					<code>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|mixed|null</code><br>Returns null if cache doesn’t exist and no generation function provided.<br>
 				</div>
 
 				<h4>Throws</h4>
@@ -776,7 +798,7 @@ optionally be reversed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderCacheValue">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#270-318" title="Go to source code">renderCacheValue</a>( <span>string <var>$name</var></span>, <span>integer|string|null <var>$expire</var></span>, <span>callable <var>$func</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#295-343" title="Go to source code">renderCacheValue</a>( <span>string <var>$name</var></span>, <span>integer|string|null <var>$expire</var></span>, <span>callable <var>$func</var></span> )</code>
 
 		<div class="description short">
 			
@@ -826,14 +848,14 @@ returned, then the output buffer will be used as the cache value.</p>
 
 		<td class="attributes"><code>
 			 public 
-			string|array
+			string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|mixed|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFor">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#320-333" title="Go to source code">getFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$name</var></span>, <span>null|integer|string <var>$expire</var> = <span class="php-keyword1">null</span></span>, <span>callable|null <var>$func</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#345-372" title="Go to source code">getFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$name</var></span>, <span>null|integer|string <var>$expire</var> = <span class="php-keyword1">null</span></span>, <span>callable|null <var>$func</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -845,6 +867,19 @@ returned, then the output buffer will be used as the cache value.</p>
 			
 <p>Same as get() but with namespace</p>
 
+<p>Namespace is useful to avoid cache name collisions. The ProcessWire core
+commonly uses cache namespace to bind cache values to the object class, which
+often make a good namespace.</p>
+
+<p>Please see the <code>$cache-&gt;get()</code> method for usage of all
+arguments.</p>
+
+<p>~~~~~ // specify namespace as a string $value =
+$cache-&gt;getFor('my-namespace', 'my-cache-name');</p>
+
+<p>// or specify namespace is an object instance $value = $cache-&gt;get($this,
+'my-cache-name'); ~~~~~</p>
+
 
 
 				<h4>Parameters</h4>
@@ -852,19 +887,23 @@ returned, then the output buffer will be used as the cache value.</p>
 					<dt><var>$ns</var></dt>
 					<dd><code>string|object</code><br>$ns Namespace</dd>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name</dd>
+					<dd><code>string</code><br>$name Cache name</dd>
 					<dt><var>$expire</var></dt>
-					<dd><code>null|integer|string</code><br>$expire</dd>
+					<dd><code>null|integer|string</code><br>$expire Optional expiration</dd>
 					<dt><var>$func</var></dt>
-					<dd><code>callable|null</code><br>$func</dd>
+					<dd><code>callable|null</code><br>$func Optional cache generation function</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|array</code><br>
+					<code>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|mixed|null</code><br>Returns null if cache doesn’t exist and no generation function provided.<br>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireCache.html#_get">ProcessWire\WireCache::get()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -881,7 +920,7 @@ returned, then the output buffer will be used as the cache value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#335-401" title="Go to source code">save</a>( <span>string <var>$name</var></span>, <span>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$data</var></span>, <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$expire</var> = <code><a href="class-ProcessWire.WireCache.html#expireDaily">ProcessWire\WireCache::<b>expireDaily</b></a></code></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#374-450" title="Go to source code">save</a>( <span>string <var>$name</var></span>, <span>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$data</var></span>, <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$expire</var> = <code><a href="class-ProcessWire.WireCache.html#expireDaily">ProcessWire\WireCache::<b>expireDaily</b></a></code></span> )</code>
 
 		<div class="description short">
 			
@@ -893,6 +932,14 @@ returned, then the output buffer will be used as the cache value.</p>
 			
 <p>Save data to cache with given name</p>
 
+<p>~~~~~ $value = "This is the value that will be cached.";</p>
+
+<p>// cache the value, using default expiration (daily)
+$cache-&gt;save("my-cache-name", $value);</p>
+
+<p>// cache the value, and expire after 1 hour (3600 seconds)
+$cache-&gt;save("my-cache-name", $value, 3600); ~~~~~</p>
+
 
 
 				<h4>Parameters</h4>
@@ -900,16 +947,17 @@ returned, then the output buffer will be used as the cache value.</p>
 					<dt><var>$name</var></dt>
 					<dd><code>string</code><br>$name Name of cache, can be any string up to 255 chars</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$data Data that you want to cache</dd>
+					<dd><code>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$data Data that you want to cache. May be string, array of non-object values, or
+PageArray.</dd>
 					<dt><var>$expire</var></dt>
 					<dd><code>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$expire Lifetime of this cache, in seconds, OR one of the following: - Specify
 one of the <code>WireCache::expire*</code> constants. - Specify the future date
-you want it to expire (as unix timestamp or any strtotime compatible date
-format) - Provide a Page object to expire when any page using that template is
-saved. - Specify <code>WireCache::expireNever</code> to prevent expiration. -
-Specify <code>WireCache::expireSave</code> to expire when any page or template
-is saved. - Specify selector string matching pages that, when saved, expire the
-cache.</dd>
+you want it to expire (as unix timestamp or any <code>strtotime()</code>
+compatible date format) - Provide a <code>Page</code> object to expire when any
+page using that template is saved. - Specify <code>WireCache::expireNever</code>
+to prevent expiration. - Specify <code>WireCache::expireSave</code> to expire
+when any page or template is saved. - Specify selector string matching pages
+that–when saved–expire the cache.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -919,7 +967,7 @@ cache.</dd>
 
 				<h4>Throws</h4>
 				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if given uncachable data<br>
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if given data that cannot be cached<br>
 				</div>
 
 
@@ -938,7 +986,7 @@ cache.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveFor">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#403-422" title="Go to source code">saveFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$name</var></span>, <span>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$data</var></span>, <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$expire</var> = <code><a href="class-ProcessWire.WireCache.html#expireDaily">ProcessWire\WireCache::<b>expireDaily</b></a></code></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#452-482" title="Go to source code">saveFor</a>( <span>string|object <var>$ns</var></span>, <span>string <var>$name</var></span>, <span>string|array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$data</var></span>, <span>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$expire</var> = <code><a href="class-ProcessWire.WireCache.html#expireDaily">ProcessWire\WireCache::<b>expireDaily</b></a></code></span> )</code>
 
 		<div class="description short">
 			
@@ -949,6 +997,16 @@ cache.</dd>
 		<div class="description detailed hidden">
 			
 <p>Same as save() except with namespace</p>
+
+<p>Namespace is useful to avoid cache name collisions. The ProcessWire core
+commonly uses cache namespace to bind cache values to the object class, which
+often make a good namespace.</p>
+
+<p>~~~~~ // save cache using manually specified namespace
+$cache-&gt;save("my-namespace", "my-cache-name", $value);</p>
+
+<p>// save cache using namespace of current object $cache-&gt;save($this,
+"my-cache-name", $value); ~~~~~</p>
 
 
 
@@ -964,11 +1022,11 @@ cache.</dd>
 					<dd><code>integer|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$expire Lifetime of this cache, in seconds, OR one of the following: - Specify
 one of the <code>WireCache::expire*</code> constants. - Specify the future date
 you want it to expire (as unix timestamp or any strtotime compatible date
-format) - Provide a Page object to expire when any page using that template is
-saved. - Specify <code>WireCache::expireNever</code> to prevent expiration. -
-Specify <code>WireCache::expireSave</code> to expire when any page or template
-is saved. - Specify selector string matching pages that, when saved, expire the
-cache.</dd>
+format) - Provide a <code>Page</code> object to expire when any page using that
+template is saved. - Specify <code>WireCache::expireNever</code> to prevent
+expiration. - Specify <code>WireCache::expireSave</code> to expire when any page
+or template is saved. - Specify selector string matching pages that, when saved,
+expire the cache.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -993,19 +1051,19 @@ cache.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getExpires">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#424-498" title="Go to source code">getExpires</a>( <span>mixed <var>$expire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#484-558" title="Go to source code">getExpires</a>( <span>mixed <var>$expire</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Given a $expire seconds, date, page, or template convert it to an ISO-8601
-date</p>
+<p>Given an expiration seconds, date, page, or template, convert it to an
+ISO-8601 date</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given a $expire seconds, date, page, or template convert it to an ISO-8601
-date</p>
+<p>Given an expiration seconds, date, page, or template, convert it to an
+ISO-8601 date</p>
 
 <p>Returns an array of expires info requires multiple parts, like with
 self::expireSelector. In this case it returns array with array('expires' =&gt;
@@ -1041,17 +1099,22 @@ date, 'selector' =&gt; selector);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#500-527" title="Go to source code">delete</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#560-595" title="Go to source code">delete</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Delete/clear the cache(s) identified by $name</p>
+<p>Delete/clear the cache(s) identified by given name or wildcard</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Delete/clear the cache(s) identified by $name</p>
+<p>Delete/clear the cache(s) identified by given name or wildcard</p>
+
+<p>~~~~~ // Delete cache named "my-cache-name"
+$cache-&gt;delete("my-cache-name");</p>
+
+<p>// Delete all caches starting with "my-" $cache-&gt;delete("my-*"); ~~~~~</p>
 
 
 
@@ -1084,26 +1147,31 @@ multiple caches.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteFor">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#529-541" title="Go to source code">deleteFor</a>( <span>string <var>$ns</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#597-617" title="Go to source code">deleteFor</a>( <span>string <var>$ns</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Delete the cache identified by $name within given namespace ($ns)</p>
+<p>Delete one or more caches in a given namespace</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Delete the cache identified by $name within given namespace ($ns)</p>
+<p>Delete one or more caches in a given namespace</p>
+
+<p>~~~~~ // Delete all in namespace $cache-&gt;deleteFor("my-namespace");</p>
+
+<p>// Delete one cache in namespace $cache-&gt;deleteFor("my-namespace",
+"my-cache-name"); ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$ns</var></dt>
-					<dd><code>string</code><br>$ns Namespace of cache</dd>
+					<dd><code>string</code><br>$ns Namespace of cache.</dd>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name If none specified, all for $ns are deleted</dd>
+					<dd><code>string</code><br>$name Name of cache. If none specified, all for namespace are deleted.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1128,7 +1196,7 @@ multiple caches.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maintenance">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#543-608" title="Go to source code">maintenance</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|null|boolean <var>$obj</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#619-687" title="Go to source code">maintenance</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|null|boolean <var>$obj</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1141,7 +1209,10 @@ multiple caches.</dd>
 <p>Cache maintenance removes expired caches</p>
 
 <p>Should be called as part of a regular maintenance routine and after
-page/template save/deletion.</p>
+page/template save/deletion. ProcessWire already calls this automatically, so
+you don’t typically need to call this method on your own.</p>
+
+<p>#pw-group-advanced</p>
 
 
 
@@ -1175,7 +1246,7 @@ to force general maintenance to run.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maintenanceGeneral">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#610-637" title="Go to source code">maintenanceGeneral</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#689-716" title="Go to source code">maintenanceGeneral</a>( )</code>
 
 		<div class="description short">
 			
@@ -1212,7 +1283,7 @@ to force general maintenance to run.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maintenancePage">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#639-708" title="Go to source code">maintenancePage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#718-787" title="Go to source code">maintenancePage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1254,7 +1325,7 @@ to force general maintenance to run.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maintenanceTemplate">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#710-728" title="Go to source code">maintenanceTemplate</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#789-807" title="Go to source code">maintenanceTemplate</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1296,7 +1367,7 @@ to force general maintenance to run.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_arrayToPageArray">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#730-754" title="Go to source code">arrayToPageArray</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#809-833" title="Go to source code">arrayToPageArray</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1342,7 +1413,7 @@ to force general maintenance to run.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pageArrayToArray">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#756-794" title="Go to source code">pageArrayToArray</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#835-873" title="Go to source code">pageArrayToArray</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1392,7 +1463,7 @@ to force general maintenance to run.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInfo">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#796-873" title="Go to source code">getInfo</a>( <span>boolean <var>$verbose</var> = <span class="php-keyword1">true</span></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#875-954" title="Go to source code">getInfo</a>( <span>boolean <var>$verbose</var> = <span class="php-keyword1">true</span></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1403,6 +1474,8 @@ to force general maintenance to run.</dd>
 		<div class="description detailed hidden">
 			
 <p>Get information about all the caches in this WireCache</p>
+
+<p>#pw-group-advanced</p>
 
 
 
@@ -1437,7 +1510,7 @@ included.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____log">#</a>
-		<code><a href="source-class-ProcessWire.WireCache.html#875-886" title="Go to source code">___log</a>( <span>string <var>$str</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireCache.html#956-969" title="Go to source code">___log</a>( <span>string <var>$str</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1448,6 +1521,8 @@ included.</dd>
 		<div class="description detailed hidden">
 			
 <p>Save to the cache log</p>
+
+<p>#pw-internal</p>
 
 
 

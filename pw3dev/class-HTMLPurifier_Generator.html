@@ -7,7 +7,7 @@
 	<title>Class HTMLPurifier_Generator | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?424740791"></script>
+	<script type="text/javascript" src="elementlist.js?3975901054"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.59 dev</span>
+			<span>Overview version 3.0.60 dev</span>
 		</a>
 
 
@@ -108,6 +108,7 @@
 				<li><a href="class-HTMLPurifier_AttrTransform_SafeParam.html">HTMLPurifier_AttrTransform_SafeParam</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_ScriptRequired.html">HTMLPurifier_AttrTransform_ScriptRequired</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_TargetBlank.html">HTMLPurifier_AttrTransform_TargetBlank</a></li>
+				<li><a href="class-HTMLPurifier_AttrTransform_TargetNoopener.html">HTMLPurifier_AttrTransform_TargetNoopener</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_TargetNoreferrer.html">HTMLPurifier_AttrTransform_TargetNoreferrer</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_Textarea.html">HTMLPurifier_AttrTransform_Textarea</a></li>
 				<li><a href="class-HTMLPurifier_AttrTypes.html">HTMLPurifier_AttrTypes</a></li>
@@ -181,6 +182,7 @@
 				<li><a href="class-HTMLPurifier_HTMLModule_Tables.html">HTMLPurifier_HTMLModule_Tables</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Target.html">HTMLPurifier_HTMLModule_Target</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_TargetBlank.html">HTMLPurifier_HTMLModule_TargetBlank</a></li>
+				<li><a href="class-HTMLPurifier_HTMLModule_TargetNoopener.html">HTMLPurifier_HTMLModule_TargetNoopener</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_TargetNoreferrer.html">HTMLPurifier_HTMLModule_TargetNoreferrer</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Text.html">HTMLPurifier_HTMLModule_Text</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Tidy.html">HTMLPurifier_HTMLModule_Tidy</a></li>
@@ -364,7 +366,7 @@ instantiation, no need for messy generateFromTokens() calls<br>
 				<b>Todo:</b>
 				Make some of the more internal functions protected, and have unit tests work
 around that<br>
-		<b>Located at</b> <a href="source-class-HTMLPurifier_Generator.html#4977-5258" title="Go to source code">modules/Markup/MarkupHTMLPurifier/htmlpurifier/HTMLPurifier.standalone.php</a><br>
+		<b>Located at</b> <a href="source-class-HTMLPurifier_Generator.html#5125-5406" title="Go to source code">modules/Markup/MarkupHTMLPurifier/htmlpurifier/HTMLPurifier.standalone.php</a><br>
 	</div>
 
 
@@ -382,7 +384,7 @@ around that<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-HTMLPurifier_Generator.html#5037-5050" title="Go to source code">__construct</a>( <span><code><a href="class-HTMLPurifier_Config.html">HTMLPurifier_Config</a></code> <var>$config</var></span>, <span><code><a href="class-HTMLPurifier_Context.html">HTMLPurifier_Context</a></code> <var>$context</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Generator.html#5185-5198" title="Go to source code">__construct</a>( <span><code><a href="class-HTMLPurifier_Config.html">HTMLPurifier_Config</a></code> <var>$config</var></span>, <span><code><a href="class-HTMLPurifier_Context.html">HTMLPurifier_Context</a></code> <var>$context</var></span> )</code>
 
 		<div class="description short">
 			
@@ -418,7 +420,7 @@ around that<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateFromTokens">#</a>
-		<code><a href="source-class-HTMLPurifier_Generator.html#5052-5106" title="Go to source code">generateFromTokens</a>( <span><code><a href="class-HTMLPurifier_Token.html">HTMLPurifier_Token</a>[]</code> <var>$tokens</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Generator.html#5200-5254" title="Go to source code">generateFromTokens</a>( <span><code><a href="class-HTMLPurifier_Token.html">HTMLPurifier_Token</a>[]</code> <var>$tokens</var></span> )</code>
 
 		<div class="description short">
 			
@@ -460,7 +462,7 @@ around that<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateFromToken">#</a>
-		<code><a href="source-class-HTMLPurifier_Generator.html#5108-5158" title="Go to source code">generateFromToken</a>( <span><code><a href="class-HTMLPurifier_Token.html">HTMLPurifier_Token</a></code> <var>$token</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Generator.html#5256-5306" title="Go to source code">generateFromToken</a>( <span><code><a href="class-HTMLPurifier_Token.html">HTMLPurifier_Token</a></code> <var>$token</var></span> )</code>
 
 		<div class="description short">
 			
@@ -502,7 +504,7 @@ around that<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateScriptFromToken">#</a>
-		<code><a href="source-class-HTMLPurifier_Generator.html#5160-5175" title="Go to source code">generateScriptFromToken</a>( <span><code><a href="class-HTMLPurifier_Token.html">HTMLPurifier_Token</a></code> <var>$token</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Generator.html#5308-5323" title="Go to source code">generateScriptFromToken</a>( <span><code><a href="class-HTMLPurifier_Token.html">HTMLPurifier_Token</a></code> <var>$token</var></span> )</code>
 
 		<div class="description short">
 			
@@ -549,7 +551,7 @@ script contents.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateAttributes">#</a>
-		<code><a href="source-class-HTMLPurifier_Generator.html#5177-5237" title="Go to source code">generateAttributes</a>( <span>array <var>$assoc_array_of_attributes</var></span>, <span>string <var>$element</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Generator.html#5325-5385" title="Go to source code">generateAttributes</a>( <span>array <var>$assoc_array_of_attributes</var></span>, <span>string <var>$element</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -598,7 +600,7 @@ minimization.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escape">#</a>
-		<code><a href="source-class-HTMLPurifier_Generator.html#5239-5257" title="Go to source code">escape</a>( <span>string <var>$string</var></span>, <span>integer <var>$quote</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-HTMLPurifier_Generator.html#5387-5405" title="Go to source code">escape</a>( <span>string <var>$string</var></span>, <span>integer <var>$quote</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -659,7 +661,7 @@ generating HTML here w/o using tokens, it stays public.<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Generator.html#4987-4991" title="Go to source code"><var>$_xhtml</var></a>
+				<a href="source-class-HTMLPurifier_Generator.html#5135-5139" title="Go to source code"><var>$_xhtml</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">true</span></code></td>
 		<td class="description"><div>
@@ -690,7 +692,7 @@ generating HTML here w/o using tokens, it stays public.<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Generator.html#4993-4997" title="Go to source code"><var>$_scriptFix</var></a>
+				<a href="source-class-HTMLPurifier_Generator.html#5141-5145" title="Go to source code"><var>$_scriptFix</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -723,7 +725,7 @@ tags.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Generator.html#4999-5004" title="Go to source code"><var>$_def</var></a>
+				<a href="source-class-HTMLPurifier_Generator.html#5147-5152" title="Go to source code"><var>$_def</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -756,7 +758,7 @@ attributes should be minimized.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Generator.html#5006-5010" title="Go to source code"><var>$_sortAttr</var></a>
+				<a href="source-class-HTMLPurifier_Generator.html#5154-5158" title="Go to source code"><var>$_sortAttr</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -787,7 +789,7 @@ attributes should be minimized.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Generator.html#5012-5016" title="Go to source code"><var>$_flashCompat</var></a>
+				<a href="source-class-HTMLPurifier_Generator.html#5160-5164" title="Go to source code"><var>$_flashCompat</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -818,7 +820,7 @@ attributes should be minimized.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Generator.html#5018-5022" title="Go to source code"><var>$_innerHTMLFix</var></a>
+				<a href="source-class-HTMLPurifier_Generator.html#5166-5170" title="Go to source code"><var>$_innerHTMLFix</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -849,7 +851,7 @@ attributes should be minimized.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Generator.html#5024-5029" title="Go to source code"><var>$_flashStack</var></a>
+				<a href="source-class-HTMLPurifier_Generator.html#5172-5177" title="Go to source code"><var>$_flashStack</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -882,7 +884,7 @@ compatibility code.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_Generator.html#5031-5035" title="Go to source code"><var>$config</var></a>
+				<a href="source-class-HTMLPurifier_Generator.html#5179-5183" title="Go to source code"><var>$config</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
