@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\User | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -43,6 +43,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -223,6 +224,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -321,6 +323,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -359,6 +362,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -378,10 +382,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -622,7 +628,7 @@ user, and the User class is Page type used for all users.</p>
 
 				<b>Link:</b>
 				<a href="http://processwire.com/api/variables/user/">Offical $user API variable Documentation</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.User.html#4-479" title="Go to source code">core/User.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.User.html#4-481" title="Go to source code">core/User.php</a><br>
 	</div>
 
 
@@ -1186,17 +1192,17 @@ potentially faster.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editUrl">#</a>
-		<code><a href="source-class-ProcessWire.User.html#437-450" title="Go to source code">editUrl</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#437-452" title="Go to source code">editUrl</a>( <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Returns the URL where this user can be edited</p>
+<p>Return the URL necessary to edit this user</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Returns the URL where this user can be edited</p>
+<p>Return the URL necessary to edit this user</p>
 
 <p>In this case we adjust the default page editor URL to ensure users are edited
 only from the Access section.</p>
@@ -1205,10 +1211,17 @@ only from the Access section.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd><code>array|boolean</code><br>$options Specify boolean true to force URL to include scheme and hostname, or
+use $options array: - <code>http</code> (bool): True to force scheme and
+hostname in URL (default=auto detect).</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code>string</code><br>URL for editing this user<br>
 				</div>
 
 
@@ -1230,7 +1243,7 @@ only from the Access section.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____setEditor">#</a>
-		<code><a href="source-class-ProcessWire.User.html#452-465" title="Go to source code">___setEditor</a>( <span><code><a href="class-ProcessWire.WirePageEditor.html">ProcessWire\WirePageEditor</a></code> <var>$editor</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#454-467" title="Go to source code">___setEditor</a>( <span><code><a href="class-ProcessWire.WirePageEditor.html">ProcessWire\WirePageEditor</a></code> <var>$editor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1275,7 +1288,7 @@ only from the Access section.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPagesManager">#</a>
-		<code><a href="source-class-ProcessWire.User.html#467-477" title="Go to source code">getPagesManager</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#469-479" title="Go to source code">getPagesManager</a>( )</code>
 
 		<div class="description short">
 			
@@ -1328,6 +1341,7 @@ only from the Access section.</p>
 			<a href="class-ProcessWire.Page.html#___set">__set()</a>, 
 			<a href="class-ProcessWire.Page.html#___toString">__toString()</a>, 
 			<a href="class-ProcessWire.Page.html#__lazy">_lazy()</a>, 
+			<a href="class-ProcessWire.Page.html#__pages">_pages()</a>, 
 			<a href="class-ProcessWire.Page.html#_access">access()</a>, 
 			<a href="class-ProcessWire.Page.html#_addStatus">addStatus()</a>, 
 			<a href="class-ProcessWire.Page.html#_child">child()</a>, 
@@ -1338,6 +1352,7 @@ only from the Access section.</p>
 			<a href="class-ProcessWire.Page.html#_delete">delete()</a>, 
 			<a href="class-ProcessWire.Page.html#_filesManager">filesManager()</a>, 
 			<a href="class-ProcessWire.Page.html#_find">find()</a>, 
+			<a href="class-ProcessWire.Page.html#_formatFieldValue">formatFieldValue()</a>, 
 			<a href="class-ProcessWire.Page.html#_get">get()</a>, 
 			<a href="class-ProcessWire.Page.html#_getAccessParent">getAccessParent()</a>, 
 			<a href="class-ProcessWire.Page.html#_getAccessRoles">getAccessRoles()</a>, 
@@ -1444,6 +1459,8 @@ only from the Access section.</p>
 			<a href="class-ProcessWire.Wire.html#____log">___log()</a>, 
 			<a href="class-ProcessWire.Wire.html#____trackException">___trackException()</a>, 
 			<a href="class-ProcessWire.Wire.html#___call">__call()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callHookMethod">_callHookMethod()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callMethod">_callMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#__n">_n()</a>, 
 			<a href="class-ProcessWire.Wire.html#__notice">_notice()</a>, 
 			<a href="class-ProcessWire.Wire.html#__x">_x()</a>, 
@@ -1526,6 +1543,8 @@ only from the Access section.</p>
 	<caption>Properties inherited from <a href="class-ProcessWire.Page.html#properties">ProcessWire\Page</a></caption>
 	<tr>
 		<td><code>
+			<a href="class-ProcessWire.Page.html#$_parent"><var>$_parent</var></a>, 
+			<a href="class-ProcessWire.Page.html#$_parent_id"><var>$_parent_id</var></a>, 
 			<a href="class-ProcessWire.Page.html#$baseProperties"><var>$baseProperties</var></a>, 
 			<a href="class-ProcessWire.Page.html#$basePropertiesAlternates"><var>$basePropertiesAlternates</var></a>, 
 			<a href="class-ProcessWire.Page.html#$config"><var>$config</var></a>, 
@@ -1536,11 +1555,11 @@ only from the Access section.</p>
 			<a href="class-ProcessWire.Page.html#$isLoaded"><var>$isLoaded</var></a>, 
 			<a href="class-ProcessWire.Page.html#$isNew"><var>$isNew</var></a>, 
 			<a href="class-ProcessWire.Page.html#$lazyLoad"><var>$lazyLoad</var></a>, 
+			<a href="class-ProcessWire.Page.html#$loaderCache"><var>$loaderCache</var></a>, 
 			<a href="class-ProcessWire.Page.html#$loadingStack"><var>$loadingStack</var></a>, 
 			<a href="class-ProcessWire.Page.html#$modifiedUser"><var>$modifiedUser</var></a>, 
 			<a href="class-ProcessWire.Page.html#$outputFormatting"><var>$outputFormatting</var></a>, 
 			<a href="class-ProcessWire.Page.html#$pageNum"><var>$pageNum</var></a>, 
-			<a href="class-ProcessWire.Page.html#$parent"><var>$parent</var></a>, 
 			<a href="class-ProcessWire.Page.html#$quietMode"><var>$quietMode</var></a>, 
 			<a href="class-ProcessWire.Page.html#$settings"><var>$settings</var></a>, 
 			<a href="class-ProcessWire.Page.html#$statuses"><var>$statuses</var></a>, 

@@ -8,7 +8,7 @@
 	<title>File core/Interfaces.php | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -44,6 +44,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -224,6 +225,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -322,6 +324,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -360,6 +363,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -379,10 +383,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li class="active"><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -994,49 +1000,118 @@
 </span><span id="444" class="l"><a class="l" href="#444">444: </a>}
 </span><span id="445" class="l"><a class="l" href="#445">445: </a>
 </span><span id="446" class="l"><a class="l" href="#446">446: </a><span class="php-comment">/**
-</span></span><span id="447" class="l"><a class="l" href="#447">447: </a><span class="php-comment"> * Interface for tracking runtime events
+</span></span><span id="447" class="l"><a class="l" href="#447">447: </a><span class="php-comment"> * Interface used to indicate that the Fieldtype supports multiple languages
 </span></span><span id="448" class="l"><a class="l" href="#448">448: </a><span class="php-comment"> *
 </span></span><span id="449" class="l"><a class="l" href="#449">449: </a><span class="php-comment"> */</span>
-</span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-keyword1">interface</span> <a id="WireProfilerInterface" href="#WireProfilerInterface">WireProfilerInterface</a> {
-</span><span id="451" class="l"><a class="l" href="#451">451: </a>    
-</span><span id="452" class="l"><a class="l" href="#452">452: </a>    <span class="php-comment">/**
-</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment">     * Start profiling an event
+</span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-keyword1">interface</span> <a id="FieldtypeLanguageInterface" href="#FieldtypeLanguageInterface">FieldtypeLanguageInterface</a> {
+</span><span id="451" class="l"><a class="l" href="#451">451: </a>    <span class="php-comment">/*
+</span></span><span id="452" class="l"><a class="l" href="#452">452: </a><span class="php-comment">     * This interface is symbolic only and doesn't require any additional methods, 
+</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment">     * however you do need to add an 'implements FieldtypeLanguageInterface' when defining your class. 
 </span></span><span id="454" class="l"><a class="l" href="#454">454: </a><span class="php-comment">     * 
-</span></span><span id="455" class="l"><a class="l" href="#455">455: </a><span class="php-comment">     * Return the event array to be used for stop profiling
-</span></span><span id="456" class="l"><a class="l" href="#456">456: </a><span class="php-comment">     * 
-</span></span><span id="457" class="l"><a class="l" href="#457">457: </a><span class="php-comment">     * @param string $name Name of event in format &quot;method&quot; or &quot;method.id&quot; or &quot;something&quot;
-</span></span><span id="458" class="l"><a class="l" href="#458">458: </a><span class="php-comment">     * @param Wire|object|string|null Source of event (may be object instance)
-</span></span><span id="459" class="l"><a class="l" href="#459">459: </a><span class="php-comment">     * @param array $data
-</span></span><span id="460" class="l"><a class="l" href="#460">460: </a><span class="php-comment">     * @return mixed Event to be used for stop call
-</span></span><span id="461" class="l"><a class="l" href="#461">461: </a><span class="php-comment">     * 
-</span></span><span id="462" class="l"><a class="l" href="#462">462: </a><span class="php-comment">     */</span>
-</span><span id="463" class="l"><a class="l" href="#463">463: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_start" href="#_start">start</a>(<span class="php-var">$name</span>, <span class="php-var">$source</span> = <span class="php-keyword1">null</span>, <span class="php-var">$data</span> = <span class="php-keyword1">array</span>()); 
-</span><span id="464" class="l"><a class="l" href="#464">464: </a>
-</span><span id="465" class="l"><a class="l" href="#465">465: </a>    <span class="php-comment">/**
-</span></span><span id="466" class="l"><a class="l" href="#466">466: </a><span class="php-comment">     * Stop profiling an event
-</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment">     * 
-</span></span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-comment">     * @param array|object|string $event Event returned by start() 
-</span></span><span id="469" class="l"><a class="l" href="#469">469: </a><span class="php-comment">     * @return void
-</span></span><span id="470" class="l"><a class="l" href="#470">470: </a><span class="php-comment">     * 
-</span></span><span id="471" class="l"><a class="l" href="#471">471: </a><span class="php-comment">     */</span>
-</span><span id="472" class="l"><a class="l" href="#472">472: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_stop" href="#_stop">stop</a>(<span class="php-var">$event</span>);
-</span><span id="473" class="l"><a class="l" href="#473">473: </a>
-</span><span id="474" class="l"><a class="l" href="#474">474: </a>    <span class="php-comment">/**
-</span></span><span id="475" class="l"><a class="l" href="#475">475: </a><span class="php-comment">     * End of request maintenance
-</span></span><span id="476" class="l"><a class="l" href="#476">476: </a><span class="php-comment">     * 
-</span></span><span id="477" class="l"><a class="l" href="#477">477: </a><span class="php-comment">     * @return void
-</span></span><span id="478" class="l"><a class="l" href="#478">478: </a><span class="php-comment">     * 
-</span></span><span id="479" class="l"><a class="l" href="#479">479: </a><span class="php-comment">     */</span>
-</span><span id="480" class="l"><a class="l" href="#480">480: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_maintenance" href="#_maintenance">maintenance</a>();
-</span><span id="481" class="l"><a class="l" href="#481">481: </a>}
+</span></span><span id="455" class="l"><a class="l" href="#455">455: </a><span class="php-comment">     */</span>
+</span><span id="456" class="l"><a class="l" href="#456">456: </a>}
+</span><span id="457" class="l"><a class="l" href="#457">457: </a>
+</span><span id="458" class="l"><a class="l" href="#458">458: </a><span class="php-comment">/**
+</span></span><span id="459" class="l"><a class="l" href="#459">459: </a><span class="php-comment"> * Interface for objects that carry a Field value for a Page
+</span></span><span id="460" class="l"><a class="l" href="#460">460: </a><span class="php-comment"> * 
+</span></span><span id="461" class="l"><a class="l" href="#461">461: </a><span class="php-comment"> * Optional, but enables Page to do some of the work rather than the Fieldtype
+</span></span><span id="462" class="l"><a class="l" href="#462">462: </a><span class="php-comment"> *
+</span></span><span id="463" class="l"><a class="l" href="#463">463: </a><span class="php-comment"> */</span>
+</span><span id="464" class="l"><a class="l" href="#464">464: </a><span class="php-keyword1">interface</span> <a id="PageFieldValueInterface" href="#PageFieldValueInterface">PageFieldValueInterface</a> {
+</span><span id="465" class="l"><a class="l" href="#465">465: </a>    
+</span><span id="466" class="l"><a class="l" href="#466">466: </a>    <span class="php-comment">/**
+</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment">     * Get or set formatted state
+</span></span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-comment">     * 
+</span></span><span id="469" class="l"><a class="l" href="#469">469: </a><span class="php-comment">     * @param bool|null $set Specify bool to set formatted state or omit to retrieve formatted state
+</span></span><span id="470" class="l"><a class="l" href="#470">470: </a><span class="php-comment">     * @return bool
+</span></span><span id="471" class="l"><a class="l" href="#471">471: </a><span class="php-comment">     * 
+</span></span><span id="472" class="l"><a class="l" href="#472">472: </a><span class="php-comment">     */</span>
+</span><span id="473" class="l"><a class="l" href="#473">473: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_formatted" href="#_formatted">formatted</a>(<span class="php-var">$set</span> = <span class="php-keyword1">null</span>);
+</span><span id="474" class="l"><a class="l" href="#474">474: </a>
+</span><span id="475" class="l"><a class="l" href="#475">475: </a>    <span class="php-comment">/**
+</span></span><span id="476" class="l"><a class="l" href="#476">476: </a><span class="php-comment">     * Set the Page
+</span></span><span id="477" class="l"><a class="l" href="#477">477: </a><span class="php-comment">     * 
+</span></span><span id="478" class="l"><a class="l" href="#478">478: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="479" class="l"><a class="l" href="#479">479: </a><span class="php-comment">     * 
+</span></span><span id="480" class="l"><a class="l" href="#480">480: </a><span class="php-comment">     */</span>
+</span><span id="481" class="l"><a class="l" href="#481">481: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setPage" href="#_setPage">setPage</a>(Page <span class="php-var">$page</span>);
 </span><span id="482" class="l"><a class="l" href="#482">482: </a>
-</span><span id="483" class="l"><a class="l" href="#483">483: </a><span class="php-comment">/**
-</span></span><span id="484" class="l"><a class="l" href="#484">484: </a><span class="php-comment"> * Inputfields that implement this interface always have a $value attribute that is an array
-</span></span><span id="485" class="l"><a class="l" href="#485">485: </a><span class="php-comment"> *
-</span></span><span id="486" class="l"><a class="l" href="#486">486: </a><span class="php-comment"> */</span>
-</span><span id="487" class="l"><a class="l" href="#487">487: </a><span class="php-keyword1">interface</span> <a id="InputfieldHasArrayValue" href="#InputfieldHasArrayValue">InputfieldHasArrayValue</a> { }
-</span><span id="488" class="l"><a class="l" href="#488">488: </a>
-</span><span id="489" class="l"><a class="l" href="#489">489: </a></span></code></pre>
+</span><span id="483" class="l"><a class="l" href="#483">483: </a>    <span class="php-comment">/**
+</span></span><span id="484" class="l"><a class="l" href="#484">484: </a><span class="php-comment">     * Set the Field
+</span></span><span id="485" class="l"><a class="l" href="#485">485: </a><span class="php-comment">     * 
+</span></span><span id="486" class="l"><a class="l" href="#486">486: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="487" class="l"><a class="l" href="#487">487: </a><span class="php-comment">     * 
+</span></span><span id="488" class="l"><a class="l" href="#488">488: </a><span class="php-comment">     */</span>
+</span><span id="489" class="l"><a class="l" href="#489">489: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setField" href="#_setField">setField</a>(Field <span class="php-var">$field</span>);
+</span><span id="490" class="l"><a class="l" href="#490">490: </a>
+</span><span id="491" class="l"><a class="l" href="#491">491: </a>    <span class="php-comment">/**
+</span></span><span id="492" class="l"><a class="l" href="#492">492: </a><span class="php-comment">     * Get the page or null if not set
+</span></span><span id="493" class="l"><a class="l" href="#493">493: </a><span class="php-comment">     * 
+</span></span><span id="494" class="l"><a class="l" href="#494">494: </a><span class="php-comment">     * @return Page|null
+</span></span><span id="495" class="l"><a class="l" href="#495">495: </a><span class="php-comment">     * 
+</span></span><span id="496" class="l"><a class="l" href="#496">496: </a><span class="php-comment">     */</span>
+</span><span id="497" class="l"><a class="l" href="#497">497: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getPage" href="#_getPage">getPage</a>();
+</span><span id="498" class="l"><a class="l" href="#498">498: </a>
+</span><span id="499" class="l"><a class="l" href="#499">499: </a>    <span class="php-comment">/**
+</span></span><span id="500" class="l"><a class="l" href="#500">500: </a><span class="php-comment">     * Get the field or null if not set
+</span></span><span id="501" class="l"><a class="l" href="#501">501: </a><span class="php-comment">     * 
+</span></span><span id="502" class="l"><a class="l" href="#502">502: </a><span class="php-comment">     * @return Field|null
+</span></span><span id="503" class="l"><a class="l" href="#503">503: </a><span class="php-comment">     * 
+</span></span><span id="504" class="l"><a class="l" href="#504">504: </a><span class="php-comment">     */</span>
+</span><span id="505" class="l"><a class="l" href="#505">505: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getField" href="#_getField">getField</a>();
+</span><span id="506" class="l"><a class="l" href="#506">506: </a>}
+</span><span id="507" class="l"><a class="l" href="#507">507: </a>
+</span><span id="508" class="l"><a class="l" href="#508">508: </a><span class="php-comment">/**
+</span></span><span id="509" class="l"><a class="l" href="#509">509: </a><span class="php-comment"> * Interface for tracking runtime events
+</span></span><span id="510" class="l"><a class="l" href="#510">510: </a><span class="php-comment"> *
+</span></span><span id="511" class="l"><a class="l" href="#511">511: </a><span class="php-comment"> */</span>
+</span><span id="512" class="l"><a class="l" href="#512">512: </a><span class="php-keyword1">interface</span> <a id="WireProfilerInterface" href="#WireProfilerInterface">WireProfilerInterface</a> {
+</span><span id="513" class="l"><a class="l" href="#513">513: </a>    
+</span><span id="514" class="l"><a class="l" href="#514">514: </a>    <span class="php-comment">/**
+</span></span><span id="515" class="l"><a class="l" href="#515">515: </a><span class="php-comment">     * Start profiling an event
+</span></span><span id="516" class="l"><a class="l" href="#516">516: </a><span class="php-comment">     * 
+</span></span><span id="517" class="l"><a class="l" href="#517">517: </a><span class="php-comment">     * Return the event array to be used for stop profiling
+</span></span><span id="518" class="l"><a class="l" href="#518">518: </a><span class="php-comment">     * 
+</span></span><span id="519" class="l"><a class="l" href="#519">519: </a><span class="php-comment">     * @param string $name Name of event in format &quot;method&quot; or &quot;method.id&quot; or &quot;something&quot;
+</span></span><span id="520" class="l"><a class="l" href="#520">520: </a><span class="php-comment">     * @param Wire|object|string|null Source of event (may be object instance)
+</span></span><span id="521" class="l"><a class="l" href="#521">521: </a><span class="php-comment">     * @param array $data
+</span></span><span id="522" class="l"><a class="l" href="#522">522: </a><span class="php-comment">     * @return mixed Event to be used for stop call
+</span></span><span id="523" class="l"><a class="l" href="#523">523: </a><span class="php-comment">     * 
+</span></span><span id="524" class="l"><a class="l" href="#524">524: </a><span class="php-comment">     */</span>
+</span><span id="525" class="l"><a class="l" href="#525">525: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_start" href="#_start">start</a>(<span class="php-var">$name</span>, <span class="php-var">$source</span> = <span class="php-keyword1">null</span>, <span class="php-var">$data</span> = <span class="php-keyword1">array</span>()); 
+</span><span id="526" class="l"><a class="l" href="#526">526: </a>
+</span><span id="527" class="l"><a class="l" href="#527">527: </a>    <span class="php-comment">/**
+</span></span><span id="528" class="l"><a class="l" href="#528">528: </a><span class="php-comment">     * Stop profiling an event
+</span></span><span id="529" class="l"><a class="l" href="#529">529: </a><span class="php-comment">     * 
+</span></span><span id="530" class="l"><a class="l" href="#530">530: </a><span class="php-comment">     * @param array|object|string $event Event returned by start() 
+</span></span><span id="531" class="l"><a class="l" href="#531">531: </a><span class="php-comment">     * @return void
+</span></span><span id="532" class="l"><a class="l" href="#532">532: </a><span class="php-comment">     * 
+</span></span><span id="533" class="l"><a class="l" href="#533">533: </a><span class="php-comment">     */</span>
+</span><span id="534" class="l"><a class="l" href="#534">534: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_stop" href="#_stop">stop</a>(<span class="php-var">$event</span>);
+</span><span id="535" class="l"><a class="l" href="#535">535: </a>
+</span><span id="536" class="l"><a class="l" href="#536">536: </a>    <span class="php-comment">/**
+</span></span><span id="537" class="l"><a class="l" href="#537">537: </a><span class="php-comment">     * End of request maintenance
+</span></span><span id="538" class="l"><a class="l" href="#538">538: </a><span class="php-comment">     * 
+</span></span><span id="539" class="l"><a class="l" href="#539">539: </a><span class="php-comment">     * @return void
+</span></span><span id="540" class="l"><a class="l" href="#540">540: </a><span class="php-comment">     * 
+</span></span><span id="541" class="l"><a class="l" href="#541">541: </a><span class="php-comment">     */</span>
+</span><span id="542" class="l"><a class="l" href="#542">542: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_maintenance" href="#_maintenance">maintenance</a>();
+</span><span id="543" class="l"><a class="l" href="#543">543: </a>}
+</span><span id="544" class="l"><a class="l" href="#544">544: </a>
+</span><span id="545" class="l"><a class="l" href="#545">545: </a><span class="php-comment">/**
+</span></span><span id="546" class="l"><a class="l" href="#546">546: </a><span class="php-comment"> * Inputfields that implement this interface always have a $value attribute that is an array
+</span></span><span id="547" class="l"><a class="l" href="#547">547: </a><span class="php-comment"> *
+</span></span><span id="548" class="l"><a class="l" href="#548">548: </a><span class="php-comment"> */</span>
+</span><span id="549" class="l"><a class="l" href="#549">549: </a><span class="php-keyword1">interface</span> <a id="InputfieldHasArrayValue" href="#InputfieldHasArrayValue">InputfieldHasArrayValue</a> { }
+</span><span id="550" class="l"><a class="l" href="#550">550: </a>
+</span><span id="551" class="l"><a class="l" href="#551">551: </a><span class="php-comment">/**
+</span></span><span id="552" class="l"><a class="l" href="#552">552: </a><span class="php-comment"> * Inputfield that has a sortable value (usually in addition to InputfieldHasArrayValue)
+</span></span><span id="553" class="l"><a class="l" href="#553">553: </a><span class="php-comment"> *
+</span></span><span id="554" class="l"><a class="l" href="#554">554: </a><span class="php-comment"> */</span>
+</span><span id="555" class="l"><a class="l" href="#555">555: </a><span class="php-keyword1">interface</span> <a id="InputfieldHasSortableValue" href="#InputfieldHasSortableValue">InputfieldHasSortableValue</a> { }
+</span><span id="556" class="l"><a class="l" href="#556">556: </a>
+</span><span id="557" class="l"><a class="l" href="#557">557: </a>
+</span><span id="558" class="l"><a class="l" href="#558">558: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (master branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

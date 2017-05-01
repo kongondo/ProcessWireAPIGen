@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessHome.module | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -44,6 +44,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -224,6 +225,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -322,6 +324,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -360,6 +363,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -379,10 +383,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -578,12 +584,24 @@
 </span><span id="28" class="l"><a class="l" href="#28">28: </a>    }
 </span><span id="29" class="l"><a class="l" href="#29">29: </a>
 </span><span id="30" class="l"><a class="l" href="#30">30: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____execute" href="#____execute">___execute</a>() {
-</span><span id="31" class="l"><a class="l" href="#31">31: </a>        <span class="php-var">$this</span>-&gt;session-&gt;redirect(<span class="php-quote">&quot;page/&quot;</span>); 
-</span><span id="32" class="l"><a class="l" href="#32">32: </a>    }   
-</span><span id="33" class="l"><a class="l" href="#33">33: </a>
-</span><span id="34" class="l"><a class="l" href="#34">34: </a>}
-</span><span id="35" class="l"><a class="l" href="#35">35: </a>
-</span><span id="36" class="l"><a class="l" href="#36">36: </a></span></code></pre>
+</span><span id="31" class="l"><a class="l" href="#31">31: </a>        <span class="php-var">$input</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>);
+</span><span id="32" class="l"><a class="l" href="#32">32: </a>        <span class="php-var">$vars</span> = <span class="php-keyword1">array</span>();
+</span><span id="33" class="l"><a class="l" href="#33">33: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$input</span>-&gt;get(<span class="php-quote">'login'</span>)) <span class="php-var">$vars</span>[<span class="php-quote">'login'</span>] = (int) <span class="php-var">$input</span>-&gt;get(<span class="php-quote">'login'</span>);
+</span><span id="34" class="l"><a class="l" href="#34">34: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$input</span>-&gt;get(<span class="php-quote">'layout'</span>)) <span class="php-var">$vars</span>[<span class="php-quote">'layout'</span>] = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;name(<span class="php-var">$input</span>-&gt;get(<span class="php-quote">'layout'</span>));
+</span><span id="35" class="l"><a class="l" href="#35">35: </a>        <span class="php-var">$url</span> = <span class="php-quote">&quot;page/&quot;</span>; 
+</span><span id="36" class="l"><a class="l" href="#36">36: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$vars</span>)) {
+</span><span id="37" class="l"><a class="l" href="#37">37: </a>            <span class="php-var">$url</span> .= <span class="php-quote">'?'</span>;
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$vars</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
+</span><span id="39" class="l"><a class="l" href="#39">39: </a>                <span class="php-var">$url</span> .= <span class="php-quote">&quot;</span><span class="php-var">$key</span><span class="php-quote">=&quot;</span> . <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$value</span>) . <span class="php-quote">&quot;&amp;&quot;</span>;
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>            }
+</span><span id="41" class="l"><a class="l" href="#41">41: </a>            <span class="php-var">$url</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$url</span>, <span class="php-quote">'&amp;'</span>);
+</span><span id="42" class="l"><a class="l" href="#42">42: </a>        }
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>        <span class="php-var">$this</span>-&gt;session-&gt;redirect(<span class="php-var">$url</span>); 
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>    }   
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>}
+</span><span id="47" class="l"><a class="l" href="#47">47: </a>
+</span><span id="48" class="l"><a class="l" href="#48">48: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (master branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

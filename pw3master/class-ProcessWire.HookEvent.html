@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\HookEvent | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -43,6 +43,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -223,6 +224,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -321,6 +323,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -359,6 +362,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -378,10 +382,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -615,7 +621,7 @@ $event-&gt;arguments(0); $event-&gt;message("You saved page $page-&gt;path");
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.HookEvent.html#3-231" title="Go to source code">core/HookEvent.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.HookEvent.html#3-236" title="Go to source code">core/HookEvent.php</a><br>
 	</div>
 
 
@@ -633,7 +639,7 @@ $event-&gt;arguments(0); $event-&gt;message("You saved page $page-&gt;path");
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#44-57" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#44-63" title="Go to source code">__construct</a>( <span>array <var>$eventData</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -647,6 +653,11 @@ $event-&gt;arguments(0); $event-&gt;message("You saved page $page-&gt;path");
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$eventData</var></dt>
+					<dd><code>array</code><br>$eventData Optional event data to start with</dd>
+				</dl></div>
 
 
 
@@ -668,7 +679,7 @@ $event-&gt;arguments(0); $event-&gt;message("You saved page $page-&gt;path");
 
 		<td class="name"><div>
 		<a class="anchor" href="#_arguments">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#59-95" title="Go to source code">arguments</a>( <span>integer <var>$n</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#65-101" title="Go to source code">arguments</a>( <span>integer <var>$n</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -726,7 +737,7 @@ argument.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_argumentsByName">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#97-135" title="Go to source code">argumentsByName</a>( <span>string <var>$n</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#103-141" title="Go to source code">argumentsByName</a>( <span>string <var>$n</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -780,7 +791,7 @@ argument values returned.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setArgument">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#138-164" title="Go to source code">setArgument</a>( <span>integer|string <var>$n</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#144-170" title="Go to source code">setArgument</a>( <span>integer|string <var>$n</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -835,7 +846,7 @@ being sent to the hooked function.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getArgumentNames">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#166-192" title="Go to source code">getArgumentNames</a>( )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#172-198" title="Go to source code">getArgumentNames</a>( )</code>
 
 		<div class="description short">
 			
@@ -865,14 +876,14 @@ being sent to the hooked function.</p>
 
 		<td class="attributes"><code>
 			 public 
-			mixed
+			<code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeHook">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#194-217" title="Go to source code">removeHook</a>( <span>string|null <var>$hookId</var></span> )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#200-223" title="Go to source code">removeHook</a>( <span>string|null <var>$hookId</var></span> )</code>
 
 		<div class="description short">
 			
@@ -900,7 +911,7 @@ $event-&gt;removeHook(null); ~~~~~</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>$this<br>
+					<code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code></code><br>$this<br>
 				</div>
 
 
@@ -922,7 +933,7 @@ $event-&gt;removeHook(null); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.HookEvent.html#219-228" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.HookEvent.html#225-234" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -993,6 +1004,8 @@ $event-&gt;removeHook(null); ~~~~~</p>
 			<a href="class-ProcessWire.Wire.html#____trackException">___trackException()</a>, 
 			<a href="class-ProcessWire.Wire.html#___call">__call()</a>, 
 			<a href="class-ProcessWire.Wire.html#___clone">__clone()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callHookMethod">_callHookMethod()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callMethod">_callMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#__n">_n()</a>, 
 			<a href="class-ProcessWire.Wire.html#__notice">_notice()</a>, 
 			<a href="class-ProcessWire.Wire.html#__x">_x()</a>, 

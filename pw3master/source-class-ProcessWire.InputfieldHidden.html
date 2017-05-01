@@ -8,7 +8,7 @@
 	<title>File modules/Inputfield/InputfieldHidden.module | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -44,6 +44,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -224,6 +225,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -322,6 +324,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -360,6 +363,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -379,10 +383,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -552,57 +558,68 @@
 </span><span id="2" class="l"><a class="l" href="#2"> 2: </a>
 </span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-comment">/**
 </span></span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-comment"> * An Inputfield for handling XHTML &quot;hidden&quot; form inputs
-</span></span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-comment"> *
-</span></span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment"> */</span>
-</span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-keyword1">class</span> <a id="InputfieldHidden" href="#InputfieldHidden">InputfieldHidden</a> <span class="php-keyword1">extends</span> Inputfield {
-</span><span id="8" class="l"><a class="l" href="#8"> 8: </a>
-</span><span id="9" class="l"><a class="l" href="#9"> 9: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getModuleInfo" href="#_getModuleInfo">getModuleInfo</a>() {
-</span><span id="10" class="l"><a class="l" href="#10">10: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>(
-</span><span id="11" class="l"><a class="l" href="#11">11: </a>            <span class="php-quote">'title'</span> =&gt; __(<span class="php-quote">'Hidden'</span>, __FILE__), <span class="php-comment">// Module Title</span>
-</span><span id="12" class="l"><a class="l" href="#12">12: </a>            <span class="php-quote">'version'</span> =&gt; <span class="php-num">101</span>,
-</span><span id="13" class="l"><a class="l" href="#13">13: </a>            <span class="php-quote">'summary'</span> =&gt; __(<span class="php-quote">'Hidden value in a form'</span>, __FILE__), <span class="php-comment">// Module Summary</span>
-</span><span id="14" class="l"><a class="l" href="#14">14: </a>            <span class="php-quote">'permanent'</span> =&gt; <span class="php-keyword1">true</span>, 
-</span><span id="15" class="l"><a class="l" href="#15">15: </a>            );
-</span><span id="16" class="l"><a class="l" href="#16">16: </a>    }
-</span><span id="17" class="l"><a class="l" href="#17">17: </a>
-</span><span id="18" class="l"><a class="l" href="#18">18: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>() {
-</span><span id="19" class="l"><a class="l" href="#19">19: </a>        parent::__construct();
-</span><span id="20" class="l"><a class="l" href="#20">20: </a>        <span class="php-var">$this</span>-&gt;setAttribute(<span class="php-quote">'type'</span>, <span class="php-quote">'hidden'</span>); 
-</span><span id="21" class="l"><a class="l" href="#21">21: </a>        <span class="php-var">$this</span>-&gt;initValue = <span class="php-quote">''</span>;
-</span><span id="22" class="l"><a class="l" href="#22">22: </a>    }
-</span><span id="23" class="l"><a class="l" href="#23">23: </a>
-</span><span id="24" class="l"><a class="l" href="#24">24: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____render" href="#____render">___render</a>() {
-</span><span id="25" class="l"><a class="l" href="#25">25: </a>        <span class="php-keyword1">return</span> <span class="php-quote">&quot;&lt;input &quot;</span> . <span class="php-var">$this</span>-&gt;getAttributesString() . <span class="php-quote">&quot; /&gt;&quot;</span>; 
-</span><span id="26" class="l"><a class="l" href="#26">26: </a>    }
-</span><span id="27" class="l"><a class="l" href="#27">27: </a>
-</span><span id="28" class="l"><a class="l" href="#28">28: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAttributes" href="#_getAttributes">getAttributes</a>() {
-</span><span id="29" class="l"><a class="l" href="#29">29: </a>        <span class="php-var">$attrs</span> = parent::getAttributes();
-</span><span id="30" class="l"><a class="l" href="#30">30: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">strlen</span>(<span class="php-var">$attrs</span>[<span class="php-quote">'value'</span>]) &amp;&amp; <span class="php-var">$this</span>-&gt;initValue) <span class="php-var">$attrs</span>[<span class="php-quote">'value'</span>] = <span class="php-var">$this</span>-&gt;initValue; 
-</span><span id="31" class="l"><a class="l" href="#31">31: </a>        <span class="php-keyword1">return</span> <span class="php-var">$attrs</span>; 
-</span><span id="32" class="l"><a class="l" href="#32">32: </a>    }
-</span><span id="33" class="l"><a class="l" href="#33">33: </a>
-</span><span id="34" class="l"><a class="l" href="#34">34: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>() {
-</span><span id="35" class="l"><a class="l" href="#35">35: </a>
-</span><span id="36" class="l"><a class="l" href="#36">36: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields();
-</span><span id="37" class="l"><a class="l" href="#37">37: </a>
-</span><span id="38" class="l"><a class="l" href="#38">38: </a>        <span class="php-comment">// remove config fields that don't need to be here</span>
-</span><span id="39" class="l"><a class="l" href="#39">39: </a>        <span class="php-var">$f</span> = <span class="php-var">$inputfields</span>-&gt;getChildByName(<span class="php-quote">'collapsed'</span>);
-</span><span id="40" class="l"><a class="l" href="#40">40: </a>        <span class="php-var">$inputfields</span>-&gt;remove(<span class="php-var">$f</span>); 
-</span><span id="41" class="l"><a class="l" href="#41">41: </a>        <span class="php-var">$f</span> = <span class="php-var">$inputfields</span>-&gt;getChildByName(<span class="php-quote">'columnWidth'</span>);
-</span><span id="42" class="l"><a class="l" href="#42">42: </a>        <span class="php-var">$inputfields</span>-&gt;remove(<span class="php-var">$f</span>); 
-</span><span id="43" class="l"><a class="l" href="#43">43: </a>
-</span><span id="44" class="l"><a class="l" href="#44">44: </a>        <span class="php-comment">/** @var InputfieldText $field */</span>
-</span><span id="45" class="l"><a class="l" href="#45">45: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldText'</span>);
-</span><span id="46" class="l"><a class="l" href="#46">46: </a>        <span class="php-var">$field</span>-&gt;setAttribute(<span class="php-quote">'name'</span>, <span class="php-quote">'initValue'</span>); 
-</span><span id="47" class="l"><a class="l" href="#47">47: </a>        <span class="php-var">$field</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Value'</span>);
-</span><span id="48" class="l"><a class="l" href="#48">48: </a>        <span class="php-var">$field</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Value to be populated in this hidden field.'</span>); 
-</span><span id="49" class="l"><a class="l" href="#49">49: </a>        <span class="php-var">$field</span>-&gt;setAttribute(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;initValue); 
-</span><span id="50" class="l"><a class="l" href="#50">50: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$field</span>);
-</span><span id="51" class="l"><a class="l" href="#51">51: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
-</span><span id="52" class="l"><a class="l" href="#52">52: </a>    }
-</span><span id="53" class="l"><a class="l" href="#53">53: </a>    
-</span><span id="54" class="l"><a class="l" href="#54">54: </a>}
-</span><span id="55" class="l"><a class="l" href="#55">55: </a></span></code></pre>
+</span></span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-comment"> * 
+</span></span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment"> * @property bool $renderValueAsInput Render the hidden input, even when in renderValue mode (default=false)
+</span></span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-comment"> *
+</span></span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-comment"> */</span>
+</span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">class</span> <a id="InputfieldHidden" href="#InputfieldHidden">InputfieldHidden</a> <span class="php-keyword1">extends</span> Inputfield {
+</span><span id="10" class="l"><a class="l" href="#10">10: </a>
+</span><span id="11" class="l"><a class="l" href="#11">11: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getModuleInfo" href="#_getModuleInfo">getModuleInfo</a>() {
+</span><span id="12" class="l"><a class="l" href="#12">12: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">array</span>(
+</span><span id="13" class="l"><a class="l" href="#13">13: </a>            <span class="php-quote">'title'</span> =&gt; __(<span class="php-quote">'Hidden'</span>, __FILE__), <span class="php-comment">// Module Title</span>
+</span><span id="14" class="l"><a class="l" href="#14">14: </a>            <span class="php-quote">'version'</span> =&gt; <span class="php-num">101</span>,
+</span><span id="15" class="l"><a class="l" href="#15">15: </a>            <span class="php-quote">'summary'</span> =&gt; __(<span class="php-quote">'Hidden value in a form'</span>, __FILE__), <span class="php-comment">// Module Summary</span>
+</span><span id="16" class="l"><a class="l" href="#16">16: </a>            <span class="php-quote">'permanent'</span> =&gt; <span class="php-keyword1">true</span>, 
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>            );
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>    }
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>() {
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>        parent::__construct();
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>        <span class="php-var">$this</span>-&gt;setAttribute(<span class="php-quote">'type'</span>, <span class="php-quote">'hidden'</span>); 
+</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-var">$this</span>-&gt;set(<span class="php-quote">'renderValueAsInput'</span>, <span class="php-keyword1">false</span>);
+</span><span id="24" class="l"><a class="l" href="#24">24: </a>        <span class="php-var">$this</span>-&gt;initValue = <span class="php-quote">''</span>;
+</span><span id="25" class="l"><a class="l" href="#25">25: </a>    }
+</span><span id="26" class="l"><a class="l" href="#26">26: </a>
+</span><span id="27" class="l"><a class="l" href="#27">27: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____render" href="#____render">___render</a>() {
+</span><span id="28" class="l"><a class="l" href="#28">28: </a>        <span class="php-keyword1">return</span> <span class="php-quote">&quot;&lt;input &quot;</span> . <span class="php-var">$this</span>-&gt;getAttributesString() . <span class="php-quote">&quot; /&gt;&quot;</span>; 
+</span><span id="29" class="l"><a class="l" href="#29">29: </a>    }
+</span><span id="30" class="l"><a class="l" href="#30">30: </a>    
+</span><span id="31" class="l"><a class="l" href="#31">31: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____renderValue" href="#____renderValue">___renderValue</a>() {
+</span><span id="32" class="l"><a class="l" href="#32">32: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;renderValueAsInput) {
+</span><span id="33" class="l"><a class="l" href="#33">33: </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;render();
+</span><span id="34" class="l"><a class="l" href="#34">34: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="35" class="l"><a class="l" href="#35">35: </a>            <span class="php-keyword1">return</span> parent::___renderValue();
+</span><span id="36" class="l"><a class="l" href="#36">36: </a>        }
+</span><span id="37" class="l"><a class="l" href="#37">37: </a>    }
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>
+</span><span id="39" class="l"><a class="l" href="#39">39: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAttributes" href="#_getAttributes">getAttributes</a>() {
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>        <span class="php-var">$attrs</span> = parent::getAttributes();
+</span><span id="41" class="l"><a class="l" href="#41">41: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">strlen</span>(<span class="php-var">$attrs</span>[<span class="php-quote">'value'</span>]) &amp;&amp; <span class="php-var">$this</span>-&gt;initValue) <span class="php-var">$attrs</span>[<span class="php-quote">'value'</span>] = <span class="php-var">$this</span>-&gt;initValue; 
+</span><span id="42" class="l"><a class="l" href="#42">42: </a>        <span class="php-keyword1">return</span> <span class="php-var">$attrs</span>; 
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>    }
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>() {
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>
+</span><span id="47" class="l"><a class="l" href="#47">47: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields();
+</span><span id="48" class="l"><a class="l" href="#48">48: </a>
+</span><span id="49" class="l"><a class="l" href="#49">49: </a>        <span class="php-comment">// remove config fields that don't need to be here</span>
+</span><span id="50" class="l"><a class="l" href="#50">50: </a>        <span class="php-var">$f</span> = <span class="php-var">$inputfields</span>-&gt;getChildByName(<span class="php-quote">'collapsed'</span>);
+</span><span id="51" class="l"><a class="l" href="#51">51: </a>        <span class="php-var">$inputfields</span>-&gt;remove(<span class="php-var">$f</span>); 
+</span><span id="52" class="l"><a class="l" href="#52">52: </a>        <span class="php-var">$f</span> = <span class="php-var">$inputfields</span>-&gt;getChildByName(<span class="php-quote">'columnWidth'</span>);
+</span><span id="53" class="l"><a class="l" href="#53">53: </a>        <span class="php-var">$inputfields</span>-&gt;remove(<span class="php-var">$f</span>); 
+</span><span id="54" class="l"><a class="l" href="#54">54: </a>
+</span><span id="55" class="l"><a class="l" href="#55">55: </a>        <span class="php-comment">/** @var InputfieldText $field */</span>
+</span><span id="56" class="l"><a class="l" href="#56">56: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;modules-&gt;get(<span class="php-quote">'InputfieldText'</span>);
+</span><span id="57" class="l"><a class="l" href="#57">57: </a>        <span class="php-var">$field</span>-&gt;setAttribute(<span class="php-quote">'name'</span>, <span class="php-quote">'initValue'</span>); 
+</span><span id="58" class="l"><a class="l" href="#58">58: </a>        <span class="php-var">$field</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Value'</span>);
+</span><span id="59" class="l"><a class="l" href="#59">59: </a>        <span class="php-var">$field</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Value to be populated in this hidden field.'</span>); 
+</span><span id="60" class="l"><a class="l" href="#60">60: </a>        <span class="php-var">$field</span>-&gt;setAttribute(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;initValue); 
+</span><span id="61" class="l"><a class="l" href="#61">61: </a>        <span class="php-var">$inputfields</span>-&gt;append(<span class="php-var">$field</span>);
+</span><span id="62" class="l"><a class="l" href="#62">62: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
+</span><span id="63" class="l"><a class="l" href="#63">63: </a>    }
+</span><span id="64" class="l"><a class="l" href="#64">64: </a>    
+</span><span id="65" class="l"><a class="l" href="#65">65: </a>}
+</span><span id="66" class="l"><a class="l" href="#66">66: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (master branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

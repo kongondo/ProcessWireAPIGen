@@ -7,7 +7,7 @@
 	<title>Class HTMLPurifier_EntityParser | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -108,6 +108,7 @@
 				<li><a href="class-HTMLPurifier_AttrTransform_SafeParam.html">HTMLPurifier_AttrTransform_SafeParam</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_ScriptRequired.html">HTMLPurifier_AttrTransform_ScriptRequired</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_TargetBlank.html">HTMLPurifier_AttrTransform_TargetBlank</a></li>
+				<li><a href="class-HTMLPurifier_AttrTransform_TargetNoopener.html">HTMLPurifier_AttrTransform_TargetNoopener</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_TargetNoreferrer.html">HTMLPurifier_AttrTransform_TargetNoreferrer</a></li>
 				<li><a href="class-HTMLPurifier_AttrTransform_Textarea.html">HTMLPurifier_AttrTransform_Textarea</a></li>
 				<li><a href="class-HTMLPurifier_AttrTypes.html">HTMLPurifier_AttrTypes</a></li>
@@ -181,6 +182,7 @@
 				<li><a href="class-HTMLPurifier_HTMLModule_Tables.html">HTMLPurifier_HTMLModule_Tables</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Target.html">HTMLPurifier_HTMLModule_Target</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_TargetBlank.html">HTMLPurifier_HTMLModule_TargetBlank</a></li>
+				<li><a href="class-HTMLPurifier_HTMLModule_TargetNoopener.html">HTMLPurifier_HTMLModule_TargetNoopener</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_TargetNoreferrer.html">HTMLPurifier_HTMLModule_TargetNoreferrer</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Text.html">HTMLPurifier_HTMLModule_Text</a></li>
 				<li><a href="class-HTMLPurifier_HTMLModule_Tidy.html">HTMLPurifier_HTMLModule_Tidy</a></li>
@@ -358,13 +360,173 @@
 		
 		
 
-		<b>Located at</b> <a href="source-class-HTMLPurifier_EntityParser.html#4437-4581" title="Go to source code">modules/Markup/MarkupHTMLPurifier/htmlpurifier/HTMLPurifier.standalone.php</a><br>
+		<b>Located at</b> <a href="source-class-HTMLPurifier_EntityParser.html#4453-4729" title="Go to source code">modules/Markup/MarkupHTMLPurifier/htmlpurifier/HTMLPurifier.standalone.php</a><br>
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-HTMLPurifier_EntityParser.html#4482-4519" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="substituteTextEntities" id="_substituteTextEntities">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_substituteTextEntities">#</a>
+		<code><a href="source-class-HTMLPurifier_EntityParser.html#4521-4535" title="Go to source code">substituteTextEntities</a>( <span>string <var>$string</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Substitute entities with the parsed equivalents. Use this on textual data in
+an HTML document (as opposed to attributes.)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Substitute entities with the parsed equivalents. Use this on textual data in
+an HTML document (as opposed to attributes.)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$string</var></dt>
+					<dd><code>string</code><br>$string String to have entities parsed.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Parsed string.<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="substituteAttrEntities" id="_substituteAttrEntities">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_substituteAttrEntities">#</a>
+		<code><a href="source-class-HTMLPurifier_EntityParser.html#4537-4551" title="Go to source code">substituteAttrEntities</a>( <span>string <var>$string</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Substitute entities with the parsed equivalents. Use this on attribute
+contents in documents.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Substitute entities with the parsed equivalents. Use this on attribute
+contents in documents.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$string</var></dt>
+					<dd><code>string</code><br>$string String to have entities parsed.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Parsed string.<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="entityCallback" id="_entityCallback">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_entityCallback">#</a>
+		<code><a href="source-class-HTMLPurifier_EntityParser.html#4554-4593" title="Go to source code">entityCallback</a>( <span>array <var>$matches</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Callback function for substituteNonSpecialEntities() that does the work.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Callback function for substituteNonSpecialEntities() that does the work.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$matches</var></dt>
+					<dd><code>array</code><br>$matches PCRE matches array, with 0 the entire match, and either index 1, 2 or 3
+set with a hex value, dec value, or string (respectively).</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Replacement string.<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="substituteNonSpecialEntities" id="_substituteNonSpecialEntities">
 
 		<td class="attributes"><code>
@@ -376,7 +538,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_substituteNonSpecialEntities">#</a>
-		<code><a href="source-class-HTMLPurifier_EntityParser.html#4482-4498" title="Go to source code">substituteNonSpecialEntities</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_EntityParser.html#4630-4646" title="Go to source code">substituteNonSpecialEntities</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			
@@ -422,7 +584,7 @@ else.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_nonSpecialEntityCallback">#</a>
-		<code><a href="source-class-HTMLPurifier_EntityParser.html#4501-4535" title="Go to source code">nonSpecialEntityCallback</a>( <span>array <var>$matches</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_EntityParser.html#4649-4683" title="Go to source code">nonSpecialEntityCallback</a>( <span>array <var>$matches</var></span> )</code>
 
 		<div class="description short">
 			
@@ -465,7 +627,7 @@ set with a hex value, dec value, or string (respectively).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_substituteSpecialEntities">#</a>
-		<code><a href="source-class-HTMLPurifier_EntityParser.html#4537-4553" title="Go to source code">substituteSpecialEntities</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_EntityParser.html#4685-4701" title="Go to source code">substituteSpecialEntities</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			
@@ -512,7 +674,7 @@ called a lot (for every parsed section).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_specialEntityCallback">#</a>
-		<code><a href="source-class-HTMLPurifier_EntityParser.html#4555-4580" title="Go to source code">specialEntityCallback</a>( <span>array <var>$matches</var></span> )</code>
+		<code><a href="source-class-HTMLPurifier_EntityParser.html#4703-4728" title="Go to source code">specialEntityCallback</a>( <span>array <var>$matches</var></span> )</code>
 
 		<div class="description short">
 			
@@ -568,7 +730,7 @@ called a lot (for every parsed section).<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_EntityParser.html#4443-4447" title="Go to source code"><var>$_entity_lookup</var></a>
+				<a href="source-class-HTMLPurifier_EntityParser.html#4459-4463" title="Go to source code"><var>$_entity_lookup</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -592,6 +754,95 @@ called a lot (for every parsed section).<br>
 			</div>
 		</div></td>
 	</tr>
+	<tr data-order="_textEntitiesRegex" id="$_textEntitiesRegex">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-HTMLPurifier_EntityParser.html#4465-4469" title="Go to source code"><var>$_textEntitiesRegex</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$_textEntitiesRegex" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Callback regex string for entities in text.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Callback regex string for entities in text.</p>
+
+
+					<h4>Type</h4>
+					<div class="list">
+							string<br>
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="_attrEntitiesRegex" id="$_attrEntitiesRegex">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-HTMLPurifier_EntityParser.html#4471-4475" title="Go to source code"><var>$_attrEntitiesRegex</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$_attrEntitiesRegex" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Callback regex string for entities in attributes.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Callback regex string for entities in attributes.</p>
+
+
+					<h4>Type</h4>
+					<div class="list">
+							string<br>
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="_semiOptionalPrefixRegex" id="$_semiOptionalPrefixRegex">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-HTMLPurifier_EntityParser.html#4477-4480" title="Go to source code"><var>$_semiOptionalPrefixRegex</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$_semiOptionalPrefixRegex" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Tests if the beginning of a string is a semi-optional regex</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Tests if the beginning of a string is a semi-optional regex</p>
+
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="_substituteEntitiesRegex" id="$_substituteEntitiesRegex">
 		<td class="attributes"><code>
 			protected  
@@ -599,7 +850,7 @@ called a lot (for every parsed section).<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_EntityParser.html#4449-4454" title="Go to source code"><var>$_substituteEntitiesRegex</var></a>
+				<a href="source-class-HTMLPurifier_EntityParser.html#4597-4602" title="Go to source code"><var>$_substituteEntitiesRegex</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'/&amp;(?:[#]x([a-fA-F0-9]+)|[#]0*(\d+)|([A-Za-z_:][A-Za-z0-9.\-_:]*));?/'</span></code></td>
 		<td class="description"><div>
@@ -630,7 +881,7 @@ called a lot (for every parsed section).<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_EntityParser.html#4457-4468" title="Go to source code"><var>$_special_dec2str</var></a>
+				<a href="source-class-HTMLPurifier_EntityParser.html#4605-4616" title="Go to source code"><var>$_special_dec2str</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
                 <span class="php-num">34</span> =&gt; <span class="php-quote">'&quot;'</span>,
@@ -667,7 +918,7 @@ called a lot (for every parsed section).<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-HTMLPurifier_EntityParser.html#4470-4480" title="Go to source code"><var>$_special_ent2dec</var></a>
+				<a href="source-class-HTMLPurifier_EntityParser.html#4618-4628" title="Go to source code"><var>$_special_ent2dec</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
                 <span class="php-quote">'quot'</span> =&gt; <span class="php-num">34</span>,

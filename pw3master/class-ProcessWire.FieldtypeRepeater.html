@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeRepeater | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -43,6 +43,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -223,6 +224,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -321,6 +323,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -359,6 +362,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -378,10 +382,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -626,7 +632,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 				<b>Todo::</b>
 				look into possibility of only creating repeater parents when there is at least
 one item.<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.FieldtypeRepeater.html#4-1481" title="Go to source code">modules/Fieldtype/FieldtypeRepeater/FieldtypeRepeater.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.FieldtypeRepeater.html#4-1488" title="Go to source code">modules/Fieldtype/FieldtypeRepeater/FieldtypeRepeater.module</a><br>
 	</div>
 
 
@@ -1225,7 +1231,7 @@ derived classes.</p>
 	<tr data-order="getUniqueRepeaterPageName" id="_getUniqueRepeaterPageName">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 			string
 			
 			</code>
@@ -1307,7 +1313,7 @@ derived classes.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInputfield">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#486-518" title="Go to source code">getInputfield</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#486-520" title="Go to source code">getInputfield</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1353,7 +1359,7 @@ derived classes.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNextReadyPage">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#520-554" title="Go to source code">getNextReadyPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$value</var></span>, <span>array <var>$notIDs</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#522-557" title="Go to source code">getNextReadyPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$value</var></span>, <span>array <var>$notIDs</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1403,7 +1409,7 @@ doesn't already exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getBlankRepeaterPage">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#556-580" title="Go to source code">getBlankRepeaterPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#559-583" title="Go to source code">getBlankRepeaterPage</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1450,7 +1456,7 @@ Inputfield can pull from it too.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____wakeupValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#582-648" title="Go to source code">___wakeupValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#585-661" title="Go to source code">___wakeupValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1507,7 +1513,7 @@ unlike most other fieldtypes.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____sleepValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#650-691" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#663-706" title="Go to source code">___sleepValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1560,7 +1566,7 @@ stored in pages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____exportValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#693-707" title="Go to source code">___exportValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|array|object <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#708-722" title="Go to source code">___exportValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string|integer|float|array|object|null <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1577,6 +1583,9 @@ float or array</p>
 <p>If an array is returned, it should only contain: strings, ints, floats or
 more arrays of those types. This is intended for web service exports.</p>
 
+<p>When applicable, this method should map things like internal IDs to named
+equivalents (name, path, etc.).</p>
+
 <p>If not overridden, this takes on the same behavior as
 <code>Fieldtype::sleepValue()</code>. However, if overridden, it is intended to
 be more verbose than wakeupValue, where applicable.</p>
@@ -1592,9 +1601,13 @@ be more verbose than wakeupValue, where applicable.</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string|integer|array|object</code><br>$value</dd>
+					<dd><code>string|integer|float|array|object|null</code><br>$value</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options Optional settings to shape the exported value, if needed.</dd>
+					<dd><code>array</code><br>$options Optional settings to shape the exported value, if needed: -
+<code>system</code> (boolean): Indicates value is being used for a system export
+via $pages-&gt;export() call (default=false). - <code>human</code> (boolean):
+When true, Fieldtype may optionally emphasize human readability over
+importability (default=false).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1621,7 +1634,7 @@ be more verbose than wakeupValue, where applicable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getSelectorInfo">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#710-722" title="Go to source code">___getSelectorInfo</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#725-737" title="Go to source code">___getSelectorInfo</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1667,7 +1680,7 @@ be more verbose than wakeupValue, where applicable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRepeaterPageParent">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#724-754" title="Go to source code">getRepeaterPageParent</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#739-769" title="Go to source code">getRepeaterPageParent</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1713,7 +1726,7 @@ be more verbose than wakeupValue, where applicable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRepeaterParent">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#756-804" title="Go to source code">getRepeaterParent</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#771-819" title="Go to source code">getRepeaterParent</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1764,7 +1777,7 @@ already exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRepeaterTemplate">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#807-859" title="Go to source code">getRepeaterTemplate</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#822-874" title="Go to source code">getRepeaterTemplate</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1812,7 +1825,7 @@ already exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sanitizeValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#861-903" title="Go to source code">sanitizeValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#876-918" title="Go to source code">sanitizeValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1858,7 +1871,7 @@ already exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sanitizeValueString">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#905-944" title="Go to source code">sanitizeValueString</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#920-959" title="Go to source code">sanitizeValueString</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1904,7 +1917,7 @@ already exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____formatValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#946-999" title="Go to source code">___formatValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#961-1006" title="Go to source code">___formatValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1957,7 +1970,7 @@ as single Page rather than a PageArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getMatchQuery">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1001-1096" title="Go to source code">getMatchQuery</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>string <var>$table</var></span>, <span>string <var>$subfield</var></span>, <span>string <var>$operator</var></span>, <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1008-1103" title="Go to source code">getMatchQuery</a>( <span><code><a href="class-ProcessWire.DatabaseQuerySelect.html">ProcessWire\DatabaseQuerySelect</a></code> <var>$query</var></span>, <span>string <var>$table</var></span>, <span>string <var>$subfield</var></span>, <span>string <var>$operator</var></span>, <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2013,7 +2026,7 @@ as single Page rather than a PageArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDatabaseSchema">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1098-1124" title="Go to source code">getDatabaseSchema</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1105-1131" title="Go to source code">getDatabaseSchema</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2057,7 +2070,7 @@ as single Page rather than a PageArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____savePageField">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1126-1232" title="Go to source code">___savePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1133-1239" title="Go to source code">___savePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2107,7 +2120,7 @@ as single Page rather than a PageArray.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleteField">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1234-1293" title="Go to source code">___deleteField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1241-1300" title="Go to source code">___deleteField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2157,7 +2170,7 @@ parent as well</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deletePageField">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1295-1324" title="Go to source code">___deletePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1302-1331" title="Go to source code">___deletePageField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2207,7 +2220,7 @@ parent as well</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_countOldReadyPages">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1326-1357" title="Go to source code">countOldReadyPages</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>boolean <var>$delete</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$secondsOld</var> = <span class="php-num">259200</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1333-1364" title="Go to source code">countOldReadyPages</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>boolean <var>$delete</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$secondsOld</var> = <span class="php-num">259200</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2254,7 +2267,7 @@ parent as well</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____cloneField">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1359-1375" title="Go to source code">___cloneField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1366-1382" title="Go to source code">___cloneField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2302,7 +2315,7 @@ parent as well</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1377-1398" title="Go to source code">___getConfigInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1384-1405" title="Go to source code">___getConfigInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2346,7 +2359,7 @@ parent as well</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1400-1412" title="Go to source code">___saveConfigInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1407-1419" title="Go to source code">___saveConfigInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$parent</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2390,7 +2403,7 @@ fields</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModuleConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1414-1423" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1421-1430" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2432,7 +2445,7 @@ fields</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getConfigAdvancedInputfields">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1425-1438" title="Go to source code">___getConfigAdvancedInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1432-1445" title="Go to source code">___getConfigAdvancedInputfields</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2476,7 +2489,7 @@ fields</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1440-1460" title="Go to source code">___install</a>( )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1447-1467" title="Go to source code">___install</a>( )</code>
 
 		<div class="description short">
 			
@@ -2515,7 +2528,7 @@ fields</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstall">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1462-1479" title="Go to source code">___uninstall</a>( )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeRepeater.html#1469-1486" title="Go to source code">___uninstall</a>( )</code>
 
 		<div class="description short">
 			
@@ -2556,6 +2569,7 @@ fields</p>
 			<a href="class-ProcessWire.Fieldtype.html#____getConfigAllowContext">___getConfigAllowContext()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____getConfigArray">___getConfigArray()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____importConfigData">___importConfigData()</a>, 
+			<a href="class-ProcessWire.Fieldtype.html#____importValue">___importValue()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____loadPageField">___loadPageField()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____loadPageFieldFilter">___loadPageFieldFilter()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#____markupValue">___markupValue()</a>, 
@@ -2618,6 +2632,8 @@ fields</p>
 			<a href="class-ProcessWire.Wire.html#____trackException">___trackException()</a>, 
 			<a href="class-ProcessWire.Wire.html#___call">__call()</a>, 
 			<a href="class-ProcessWire.Wire.html#___clone">__clone()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callHookMethod">_callHookMethod()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callMethod">_callMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#__n">_n()</a>, 
 			<a href="class-ProcessWire.Wire.html#__notice">_notice()</a>, 
 			<a href="class-ProcessWire.Wire.html#__x">_x()</a>, 

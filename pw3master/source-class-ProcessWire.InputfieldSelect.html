@@ -8,7 +8,7 @@
 	<title>File modules/Inputfield/InputfieldSelect.module | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -44,6 +44,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -224,6 +225,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -322,6 +324,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -360,6 +363,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -379,10 +383,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -1000,7 +1006,7 @@
 </span></span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-comment">     * 
 </span></span><span id="451" class="l"><a class="l" href="#451">451: </a><span class="php-comment">     * @param string $key
 </span></span><span id="452" class="l"><a class="l" href="#452">452: </a><span class="php-comment">     * @param mixed $value
-</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment">     * @return $this
+</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment">     * @return Inputfield|InputfieldSelect
 </span></span><span id="454" class="l"><a class="l" href="#454">454: </a><span class="php-comment">     * 
 </span></span><span id="455" class="l"><a class="l" href="#455">455: </a><span class="php-comment">     */</span>
 </span><span id="456" class="l"><a class="l" href="#456">456: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_set" href="#_set">set</a>(<span class="php-var">$key</span>, <span class="php-var">$value</span>) {
@@ -1019,7 +1025,7 @@
 </span></span><span id="469" class="l"><a class="l" href="#469">469: </a><span class="php-comment">     * 
 </span></span><span id="470" class="l"><a class="l" href="#470">470: </a><span class="php-comment">     * @param array|string $key
 </span></span><span id="471" class="l"><a class="l" href="#471">471: </a><span class="php-comment">     * @param array|int|string $value
-</span></span><span id="472" class="l"><a class="l" href="#472">472: </a><span class="php-comment">     * @return $this
+</span></span><span id="472" class="l"><a class="l" href="#472">472: </a><span class="php-comment">     * @return Inputfield|InputfieldSelect
 </span></span><span id="473" class="l"><a class="l" href="#473">473: </a><span class="php-comment">     * 
 </span></span><span id="474" class="l"><a class="l" href="#474">474: </a><span class="php-comment">     */</span>
 </span><span id="475" class="l"><a class="l" href="#475">475: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setAttribute" href="#_setAttribute">setAttribute</a>(<span class="php-var">$key</span>, <span class="php-var">$value</span>) {
@@ -1078,60 +1084,65 @@
 </span><span id="528" class="l"><a class="l" href="#528">528: </a>
 </span><span id="529" class="l"><a class="l" href="#529">529: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields();
 </span><span id="530" class="l"><a class="l" href="#530">530: </a>
-</span><span id="531" class="l"><a class="l" href="#531">531: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>); 
-</span><span id="532" class="l"><a class="l" href="#532">532: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'defaultValue'</span>); 
-</span><span id="533" class="l"><a class="l" href="#533">533: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;defaultValue); 
-</span><span id="534" class="l"><a class="l" href="#534">534: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Default Value'</span>); 
-</span><span id="535" class="l"><a class="l" href="#535">535: </a>        <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To have pre-selected default value(s), enter the option values (one per line) below. For page selections, this would be the page ID number(s).'</span>); 
-</span><span id="536" class="l"><a class="l" href="#536">536: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This default value(s) option is available because you checked the &quot;required&quot; box above.'</span>); 
-</span><span id="537" class="l"><a class="l" href="#537">537: </a>        <span class="php-var">$f</span>-&gt;showIf = <span class="php-quote">'required&gt;0'</span>;
-</span><span id="538" class="l"><a class="l" href="#538">538: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedBlank;
-</span><span id="539" class="l"><a class="l" href="#539">539: </a>        
-</span><span id="540" class="l"><a class="l" href="#540">540: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="541" class="l"><a class="l" href="#541">541: </a>
-</span><span id="542" class="l"><a class="l" href="#542">542: </a>        <span class="php-comment">// if dealing with an inputfield that has an associated fieldtype, </span>
-</span><span id="543" class="l"><a class="l" href="#543">543: </a>        <span class="php-comment">// we don't need to perform the remaining configuration</span>
-</span><span id="544" class="l"><a class="l" href="#544">544: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;hasFieldtype === <span class="php-keyword1">false</span>) {
-</span><span id="545" class="l"><a class="l" href="#545">545: </a>
-</span><span id="546" class="l"><a class="l" href="#546">546: </a>            <span class="php-var">$isInputfieldSelect</span> = <span class="php-var">$this</span>-&gt;className() == <span class="php-quote">'InputfieldSelect'</span>;
-</span><span id="547" class="l"><a class="l" href="#547">547: </a>
-</span><span id="548" class="l"><a class="l" href="#548">548: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>); 
-</span><span id="549" class="l"><a class="l" href="#549">549: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'options'</span>); 
-</span><span id="550" class="l"><a class="l" href="#550">550: </a>            <span class="php-var">$value</span> = <span class="php-quote">''</span>;
-</span><span id="551" class="l"><a class="l" href="#551">551: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;options <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$option</span>) {
-</span><span id="552" class="l"><a class="l" href="#552">552: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$option</span>)) {
-</span><span id="553" class="l"><a class="l" href="#553">553: </a>                    <span class="php-var">$value</span> .= <span class="php-quote">&quot;</span><span class="php-var">$key</span><span class="php-quote">\n&quot;</span>;
-</span><span id="554" class="l"><a class="l" href="#554">554: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$option</span> <span class="php-keyword1">as</span> <span class="php-var">$o</span>) {
-</span><span id="555" class="l"><a class="l" href="#555">555: </a>                        <span class="php-var">$value</span> .= <span class="php-quote">&quot;   </span><span class="php-var">$o</span><span class="php-quote">\n&quot;</span>;
-</span><span id="556" class="l"><a class="l" href="#556">556: </a>                    }
-</span><span id="557" class="l"><a class="l" href="#557">557: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="558" class="l"><a class="l" href="#558">558: </a>                    <span class="php-var">$value</span> .= <span class="php-quote">&quot;</span><span class="php-var">$option</span><span class="php-quote">\n&quot;</span>;
-</span><span id="559" class="l"><a class="l" href="#559">559: </a>                }
-</span><span id="560" class="l"><a class="l" href="#560">560: </a>            }
-</span><span id="561" class="l"><a class="l" href="#561">561: </a>            <span class="php-var">$value</span> = <span class="php-keyword2">trim</span>(<span class="php-var">$value</span>);
-</span><span id="562" class="l"><a class="l" href="#562">562: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>)) {
-</span><span id="563" class="l"><a class="l" href="#563">563: </a>                <span class="php-var">$value</span> = <span class="php-quote">&quot;=\nOption 1\nOption 2\nOption 3&quot;</span>;
-</span><span id="564" class="l"><a class="l" href="#564">564: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$isInputfieldSelect</span>) <span class="php-var">$value</span> = <span class="php-keyword2">ltrim</span>(<span class="php-var">$value</span>, <span class="php-quote">'='</span>); 
+</span><span id="531" class="l"><a class="l" href="#531">531: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span> <span class="php-keyword1">instanceof</span> InputfieldHasArrayValue) {
+</span><span id="532" class="l"><a class="l" href="#532">532: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>);
+</span><span id="533" class="l"><a class="l" href="#533">533: </a>            <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To have pre-selected default value(s), enter the option values (one per line) below.'</span>); 
+</span><span id="534" class="l"><a class="l" href="#534">534: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="535" class="l"><a class="l" href="#535">535: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldText'</span>);
+</span><span id="536" class="l"><a class="l" href="#536">536: </a>            <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To have a pre-selected default value, enter the option value below.'</span>); 
+</span><span id="537" class="l"><a class="l" href="#537">537: </a>        }
+</span><span id="538" class="l"><a class="l" href="#538">538: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'defaultValue'</span>); 
+</span><span id="539" class="l"><a class="l" href="#539">539: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Default value'</span>); 
+</span><span id="540" class="l"><a class="l" href="#540">540: </a>        <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$this</span>-&gt;defaultValue);
+</span><span id="541" class="l"><a class="l" href="#541">541: </a>        <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'For default page selection, the value would be the page ID number.'</span>); 
+</span><span id="542" class="l"><a class="l" href="#542">542: </a>        <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'IMPORTANT: The default value is not used unless the field is required (see the “required” checkbox on this screen).'</span>); 
+</span><span id="543" class="l"><a class="l" href="#543">543: </a>        <span class="php-var">$f</span>-&gt;collapsed = <span class="php-var">$this</span>-&gt;hasFieldtype === <span class="php-keyword1">false</span> ? Inputfield::collapsedBlank : Inputfield::collapsedNo;
+</span><span id="544" class="l"><a class="l" href="#544">544: </a>        
+</span><span id="545" class="l"><a class="l" href="#545">545: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="546" class="l"><a class="l" href="#546">546: </a>
+</span><span id="547" class="l"><a class="l" href="#547">547: </a>        <span class="php-comment">// if dealing with an inputfield that has an associated fieldtype, </span>
+</span><span id="548" class="l"><a class="l" href="#548">548: </a>        <span class="php-comment">// we don't need to perform the remaining configuration</span>
+</span><span id="549" class="l"><a class="l" href="#549">549: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;hasFieldtype === <span class="php-keyword1">false</span>) {
+</span><span id="550" class="l"><a class="l" href="#550">550: </a>
+</span><span id="551" class="l"><a class="l" href="#551">551: </a>            <span class="php-var">$isInputfieldSelect</span> = <span class="php-var">$this</span>-&gt;className() == <span class="php-quote">'InputfieldSelect'</span>;
+</span><span id="552" class="l"><a class="l" href="#552">552: </a>
+</span><span id="553" class="l"><a class="l" href="#553">553: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldTextarea'</span>); 
+</span><span id="554" class="l"><a class="l" href="#554">554: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'options'</span>); 
+</span><span id="555" class="l"><a class="l" href="#555">555: </a>            <span class="php-var">$value</span> = <span class="php-quote">''</span>;
+</span><span id="556" class="l"><a class="l" href="#556">556: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;options <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$option</span>) {
+</span><span id="557" class="l"><a class="l" href="#557">557: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$option</span>)) {
+</span><span id="558" class="l"><a class="l" href="#558">558: </a>                    <span class="php-var">$value</span> .= <span class="php-quote">&quot;</span><span class="php-var">$key</span><span class="php-quote">\n&quot;</span>;
+</span><span id="559" class="l"><a class="l" href="#559">559: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$option</span> <span class="php-keyword1">as</span> <span class="php-var">$o</span>) {
+</span><span id="560" class="l"><a class="l" href="#560">560: </a>                        <span class="php-var">$value</span> .= <span class="php-quote">&quot;   </span><span class="php-var">$o</span><span class="php-quote">\n&quot;</span>;
+</span><span id="561" class="l"><a class="l" href="#561">561: </a>                    }
+</span><span id="562" class="l"><a class="l" href="#562">562: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="563" class="l"><a class="l" href="#563">563: </a>                    <span class="php-var">$value</span> .= <span class="php-quote">&quot;</span><span class="php-var">$option</span><span class="php-quote">\n&quot;</span>;
+</span><span id="564" class="l"><a class="l" href="#564">564: </a>                }
 </span><span id="565" class="l"><a class="l" href="#565">565: </a>            }
-</span><span id="566" class="l"><a class="l" href="#566">566: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>); 
-</span><span id="567" class="l"><a class="l" href="#567">567: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'rows'</span>, <span class="php-num">10</span>); 
-</span><span id="568" class="l"><a class="l" href="#568">568: </a>            <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Options'</span>);
-</span><span id="569" class="l"><a class="l" href="#569">569: </a>            <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Enter the options that may be selected, one per line.'</span>);
-</span><span id="570" class="l"><a class="l" href="#570">570: </a>            <span class="php-var">$f</span>-&gt;notes = 
-</span><span id="571" class="l"><a class="l" href="#571">571: </a>                (<span class="php-var">$isInputfieldSelect</span> ? <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To precede your list with a blank option, enter just a equals sign &quot;=&quot; as the first option.'</span>) . <span class="php-quote">&quot;\n&quot;</span> : <span class="php-quote">''</span>) . 
-</span><span id="572" class="l"><a class="l" href="#572">572: </a>                <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To make an option selected, precede it with a plus sign. Example: +My Option'</span>) . <span class="php-quote">&quot;\n&quot;</span> . 
-</span><span id="573" class="l"><a class="l" href="#573">573: </a>                <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To keep a separate value and label, separate them with an equals sign. Example: value=My Option'</span>) . <span class="php-quote">&quot;\n&quot;</span> . 
-</span><span id="574" class="l"><a class="l" href="#574">574: </a>                (<span class="php-var">$isInputfieldSelect</span> ? <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To create an optgroup (option group) indent the options in the group with 3 or more spaces.'</span>) : <span class="php-quote">''</span>); 
-</span><span id="575" class="l"><a class="l" href="#575">575: </a>                
-</span><span id="576" class="l"><a class="l" href="#576">576: </a>            <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="577" class="l"><a class="l" href="#577">577: </a>        }
-</span><span id="578" class="l"><a class="l" href="#578">578: </a>
-</span><span id="579" class="l"><a class="l" href="#579">579: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
-</span><span id="580" class="l"><a class="l" href="#580">580: </a>    }
-</span><span id="581" class="l"><a class="l" href="#581">581: </a>
-</span><span id="582" class="l"><a class="l" href="#582">582: </a>    
-</span><span id="583" class="l"><a class="l" href="#583">583: </a>}
-</span><span id="584" class="l"><a class="l" href="#584">584: </a></span></code></pre>
+</span><span id="566" class="l"><a class="l" href="#566">566: </a>            <span class="php-var">$value</span> = <span class="php-keyword2">trim</span>(<span class="php-var">$value</span>);
+</span><span id="567" class="l"><a class="l" href="#567">567: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>)) {
+</span><span id="568" class="l"><a class="l" href="#568">568: </a>                <span class="php-var">$value</span> = <span class="php-quote">&quot;=\nOption 1\nOption 2\nOption 3&quot;</span>;
+</span><span id="569" class="l"><a class="l" href="#569">569: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$isInputfieldSelect</span>) <span class="php-var">$value</span> = <span class="php-keyword2">ltrim</span>(<span class="php-var">$value</span>, <span class="php-quote">'='</span>); 
+</span><span id="570" class="l"><a class="l" href="#570">570: </a>            }
+</span><span id="571" class="l"><a class="l" href="#571">571: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>); 
+</span><span id="572" class="l"><a class="l" href="#572">572: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'rows'</span>, <span class="php-num">10</span>); 
+</span><span id="573" class="l"><a class="l" href="#573">573: </a>            <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Options'</span>);
+</span><span id="574" class="l"><a class="l" href="#574">574: </a>            <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Enter the options that may be selected, one per line.'</span>);
+</span><span id="575" class="l"><a class="l" href="#575">575: </a>            <span class="php-var">$f</span>-&gt;notes = 
+</span><span id="576" class="l"><a class="l" href="#576">576: </a>                (<span class="php-var">$isInputfieldSelect</span> ? <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To precede your list with a blank option, enter just a equals sign &quot;=&quot; as the first option.'</span>) . <span class="php-quote">&quot;\n&quot;</span> : <span class="php-quote">''</span>) . 
+</span><span id="577" class="l"><a class="l" href="#577">577: </a>                <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To make an option selected, precede it with a plus sign. Example: +My Option'</span>) . <span class="php-quote">&quot;\n&quot;</span> . 
+</span><span id="578" class="l"><a class="l" href="#578">578: </a>                <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To keep a separate value and label, separate them with an equals sign. Example: value=My Option'</span>) . <span class="php-quote">&quot;\n&quot;</span> . 
+</span><span id="579" class="l"><a class="l" href="#579">579: </a>                (<span class="php-var">$isInputfieldSelect</span> ? <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To create an optgroup (option group) indent the options in the group with 3 or more spaces.'</span>) : <span class="php-quote">''</span>); 
+</span><span id="580" class="l"><a class="l" href="#580">580: </a>                
+</span><span id="581" class="l"><a class="l" href="#581">581: </a>            <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
+</span><span id="582" class="l"><a class="l" href="#582">582: </a>        }
+</span><span id="583" class="l"><a class="l" href="#583">583: </a>
+</span><span id="584" class="l"><a class="l" href="#584">584: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
+</span><span id="585" class="l"><a class="l" href="#585">585: </a>    }
+</span><span id="586" class="l"><a class="l" href="#586">586: </a>
+</span><span id="587" class="l"><a class="l" href="#587">587: </a>    
+</span><span id="588" class="l"><a class="l" href="#588">588: </a>}
+</span><span id="589" class="l"><a class="l" href="#589">589: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (master branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

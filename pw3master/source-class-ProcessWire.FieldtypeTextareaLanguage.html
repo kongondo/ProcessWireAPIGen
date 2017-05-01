@@ -8,7 +8,7 @@
 	<title>File modules/LanguageSupport/FieldtypeTextareaLanguage.module | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -44,6 +44,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -224,6 +225,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -322,6 +324,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -360,6 +363,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -379,10 +383,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -614,8 +620,25 @@
 </span><span id="64" class="l"><a class="l" href="#64">64: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_formatValue" href="#_formatValue">formatValue</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>, <span class="php-var">$value</span>) {
 </span><span id="65" class="l"><a class="l" href="#65">65: </a>        <span class="php-keyword1">return</span> parent::formatValue(<span class="php-var">$page</span>, <span class="php-var">$field</span>, (string) <span class="php-var">$value</span>); 
 </span><span id="66" class="l"><a class="l" href="#66">66: </a>    }
-</span><span id="67" class="l"><a class="l" href="#67">67: </a>}
-</span><span id="68" class="l"><a class="l" href="#68">68: </a></span></code></pre>
+</span><span id="67" class="l"><a class="l" href="#67">67: </a>
+</span><span id="68" class="l"><a class="l" href="#68">68: </a>    <span class="php-comment">/**
+</span></span><span id="69" class="l"><a class="l" href="#69">69: </a><span class="php-comment">     * Given a value, return an portable version of it as array
+</span></span><span id="70" class="l"><a class="l" href="#70">70: </a><span class="php-comment">     *
+</span></span><span id="71" class="l"><a class="l" href="#71">71: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="72" class="l"><a class="l" href="#72">72: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="73" class="l"><a class="l" href="#73">73: </a><span class="php-comment">     * @param string|int|float|array|object|null $value
+</span></span><span id="74" class="l"><a class="l" href="#74">74: </a><span class="php-comment">     * @param array $options Optional settings to shape the exported value, if needed.
+</span></span><span id="75" class="l"><a class="l" href="#75">75: </a><span class="php-comment">     * @return string|float|int|array
+</span></span><span id="76" class="l"><a class="l" href="#76">76: </a><span class="php-comment">     *
+</span></span><span id="77" class="l"><a class="l" href="#77">77: </a><span class="php-comment">     */</span>
+</span><span id="78" class="l"><a class="l" href="#78">78: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____exportValue" href="#____exportValue">___exportValue</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>, <span class="php-var">$value</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="79" class="l"><a class="l" href="#79">79: </a>        <span class="php-comment">// in this method we are delegating the exportValue() to FieldtypeTextLanguage::exportValue</span>
+</span><span id="80" class="l"><a class="l" href="#80">80: </a>        <span class="php-comment">// but we want to make sure it has textarea sleepValue, so we pass sleepValue in the $options</span>
+</span><span id="81" class="l"><a class="l" href="#81">81: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$options</span>[<span class="php-quote">'sleepValue'</span>])) <span class="php-var">$options</span>[<span class="php-quote">'sleepValue'</span>] = <span class="php-var">$this</span>-&gt;sleepValue(<span class="php-var">$page</span>, <span class="php-var">$field</span>, <span class="php-var">$value</span>);
+</span><span id="82" class="l"><a class="l" href="#82">82: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldtypes'</span>)-&gt;get(<span class="php-quote">'FieldtypeTextLanguage'</span>)-&gt;___exportValue(<span class="php-var">$page</span>, <span class="php-var">$field</span>, <span class="php-var">$value</span>, <span class="php-var">$options</span>);
+</span><span id="83" class="l"><a class="l" href="#83">83: </a>    }
+</span><span id="84" class="l"><a class="l" href="#84">84: </a>}
+</span><span id="85" class="l"><a class="l" href="#85">85: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (master branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

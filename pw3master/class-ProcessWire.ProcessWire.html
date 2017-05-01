@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ProcessWire | ProcessWire 3 API (master branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3667647988"></script>
-	<script type="text/javascript" src="elementlist.js?2591832032"></script>
+	<script type="text/javascript" src="elementlist.js?4031893991"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.42 master</span>
+			<span>Overview version 3.0.61 master</span>
 		</a>
 
 
@@ -43,6 +43,7 @@
 				<li><a href="class-ProcessWire.AdminTheme.html">AdminTheme</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefault.html">AdminThemeDefault</a></li>
 				<li><a href="class-ProcessWire.AdminThemeDefaultHelpers.html">AdminThemeDefaultHelpers</a></li>
+				<li><a href="class-ProcessWire.AdminThemeFramework.html">AdminThemeFramework</a></li>
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
@@ -223,6 +224,7 @@
 				<li><a href="class-ProcessWire.Pages.html">Pages</a></li>
 				<li><a href="class-ProcessWire.PagesAccess.html">PagesAccess</a></li>
 				<li><a href="class-ProcessWire.PagesEditor.html">PagesEditor</a></li>
+				<li><a href="class-ProcessWire.PagesExportImport.html">PagesExportImport</a></li>
 				<li><a href="class-ProcessWire.PagesLoader.html">PagesLoader</a></li>
 				<li><a href="class-ProcessWire.PagesLoaderCache.html">PagesLoaderCache</a></li>
 				<li><a href="class-ProcessWire.PagesSortfields.html">PagesSortfields</a></li>
@@ -321,6 +323,7 @@
 				<li><a href="class-ProcessWire.SystemUpdate13.html">SystemUpdate13</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate14.html">SystemUpdate14</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate15.html">SystemUpdate15</a></li>
+				<li><a href="class-ProcessWire.SystemUpdate16.html">SystemUpdate16</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate4.html">SystemUpdate4</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate5.html">SystemUpdate5</a></li>
 				<li><a href="class-ProcessWire.SystemUpdate6.html">SystemUpdate6</a></li>
@@ -359,6 +362,7 @@
 				<li><a href="class-ProcessWire.WireLog.html">WireLog</a></li>
 				<li><a href="class-ProcessWire.WireMail.html">WireMail</a></li>
 				<li><a href="class-ProcessWire.WireMailTools.html">WireMailTools</a></li>
+				<li><a href="class-ProcessWire.WireMarkupRegions.html">WireMarkupRegions</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItems.html">WireSaveableItems</a></li>
 				<li><a href="class-ProcessWire.WireSaveableItemsLookup.html">WireSaveableItemsLookup</a></li>
 				<li><a href="class-ProcessWire.WireSessionHandler.html">WireSessionHandler</a></li>
@@ -378,10 +382,12 @@
 				<li><a href="class-ProcessWire.FieldtypePageTitleCompatible.html">FieldtypePageTitleCompatible</a></li>
 				<li><a href="class-ProcessWire.HasLookupItems.html">HasLookupItems</a></li>
 				<li><a href="class-ProcessWire.InputfieldHasArrayValue.html">InputfieldHasArrayValue</a></li>
+				<li><a href="class-ProcessWire.InputfieldHasSortableValue.html">InputfieldHasSortableValue</a></li>
 				<li><a href="class-ProcessWire.InputfieldItemList.html">InputfieldItemList</a></li>
 				<li><a href="class-ProcessWire.InputfieldPageListSelection.html">InputfieldPageListSelection</a></li>
 				<li><a href="class-ProcessWire.LanguagesValueInterface.html">LanguagesValueInterface</a></li>
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
+				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
@@ -562,7 +568,7 @@ current ProcessWire instance is represented by the <code>$wire</code> API
 variable. ~~~~~ // To create a new ProcessWire instance $wire = new
 ProcessWire('/server/path/', 'https://hostname/url/'); ~~~~~ #pw-body</p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2017 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -601,7 +607,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.ProcessWire.html#6-886" title="Go to source code">core/ProcessWire.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.ProcessWire.html#6-900" title="Go to source code">core/ProcessWire.php</a><br>
 	</div>
 
 
@@ -726,7 +732,7 @@ typecast as a string</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setConfig">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#227-287" title="Go to source code">setConfig</a>( <span><code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code> <var>$config</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#227-293" title="Go to source code">setConfig</a>( <span><code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code> <var>$config</var></span> )</code>
 
 		<div class="description short">
 			
@@ -764,7 +770,7 @@ typecast as a string</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getHttpHost">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#289-337" title="Go to source code">getHttpHost</a>( <span><code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code> <var>$config</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#295-343" title="Go to source code">getHttpHost</a>( <span><code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code> <var>$config</var></span> )</code>
 
 		<div class="description short">
 			
@@ -806,7 +812,7 @@ typecast as a string</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_load">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#339-434" title="Go to source code">load</a>( <span><code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code> <var>$config</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#345-442" title="Go to source code">load</a>( <span><code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code> <var>$config</var></span> )</code>
 
 		<div class="description short">
 			
@@ -850,7 +856,7 @@ typecast as a string</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_initVar">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#436-447" title="Go to source code">initVar</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.Fieldtypes.html">ProcessWire\Fieldtypes</a></code>|<code><a href="class-ProcessWire.Fields.html">ProcessWire\Fields</a></code>|<code><a href="class-ProcessWire.Fieldgroups.html">ProcessWire\Fieldgroups</a></code>|<code><a href="class-ProcessWire.Templates.html">ProcessWire\Templates</a></code>|<code><a href="class-ProcessWire.Pages.html">ProcessWire\Pages</a></code>|<code><a href="class-ProcessWire.Session.html">ProcessWire\Session</a></code> <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#444-455" title="Go to source code">initVar</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.Fieldtypes.html">ProcessWire\Fieldtypes</a></code>|<code><a href="class-ProcessWire.Fields.html">ProcessWire\Fields</a></code>|<code><a href="class-ProcessWire.Fieldgroups.html">ProcessWire\Fieldgroups</a></code>|<code><a href="class-ProcessWire.Templates.html">ProcessWire\Templates</a></code>|<code><a href="class-ProcessWire.Pages.html">ProcessWire\Pages</a></code>|<code><a href="class-ProcessWire.Session.html">ProcessWire\Session</a></code> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -890,7 +896,7 @@ typecast as a string</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setStatus">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#449-477" title="Go to source code">setStatus</a>( <span>mixed <var>$status</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#457-485" title="Go to source code">setStatus</a>( <span>mixed <var>$status</var></span> )</code>
 
 		<div class="description short">
 			
@@ -930,7 +936,7 @@ typecast as a string</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____init">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#479-489" title="Go to source code">___init</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#487-497" title="Go to source code">___init</a>( )</code>
 
 		<div class="description short">
 			
@@ -967,7 +973,7 @@ modules initialized or after all modules initialized</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____ready">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#491-503" title="Go to source code">___ready</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#499-511" title="Go to source code">___ready</a>( )</code>
 
 		<div class="description short">
 			
@@ -1004,7 +1010,7 @@ modules ready or after all modules ready</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____finished">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#505-532" title="Go to source code">___finished</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#513-540" title="Go to source code">___finished</a>( )</code>
 
 		<div class="description short">
 			
@@ -1039,7 +1045,7 @@ modules ready or after all modules ready</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#534-548" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$value</var></span>, <span>boolean <var>$lock</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#542-556" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|mixed <var>$value</var></span>, <span>boolean <var>$lock</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1088,7 +1094,7 @@ i.e. $this-&gt;wire()-&gt;set($key, $value);</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#550-554" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#558-562" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1138,7 +1144,7 @@ one when they can't find something.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_includeFile">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#556-576" title="Go to source code">includeFile</a>( <span>string <var>$file</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#564-584" title="Go to source code">includeFile</a>( <span>string <var>$file</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1182,7 +1188,7 @@ one when they can't find something.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___call">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#578-583" title="Go to source code">__call</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#586-591" title="Go to source code">__call</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1248,7 +1254,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fuel">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#585-597" title="Go to source code">fuel</a>( <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#593-605" title="Go to source code">fuel</a>( <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1294,7 +1300,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getProcessWireInstanceID">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#617-627" title="Go to source code">getProcessWireInstanceID</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#625-635" title="Go to source code">getProcessWireInstanceID</a>( )</code>
 
 		<div class="description short">
 			
@@ -1333,7 +1339,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addInstance">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#629-643" title="Go to source code">addInstance</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#637-651" title="Go to source code">addInstance</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1377,7 +1383,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInstances">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#645-655" title="Go to source code">getInstances</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#653-663" title="Go to source code">getInstances</a>( )</code>
 
 		<div class="description short">
 			
@@ -1416,7 +1422,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNumInstances">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#657-667" title="Go to source code">getNumInstances</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#665-675" title="Go to source code">getNumInstances</a>( )</code>
 
 		<div class="description short">
 			
@@ -1455,7 +1461,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInstance">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#669-681" title="Go to source code">getInstance</a>( <span>integer|null <var>$instanceID</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#677-689" title="Go to source code">getInstance</a>( <span>integer|null <var>$instanceID</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1499,7 +1505,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCurrentInstance">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#683-697" title="Go to source code">getCurrentInstance</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#691-705" title="Go to source code">getCurrentInstance</a>( )</code>
 
 		<div class="description short">
 			
@@ -1538,7 +1544,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCurrentInstance">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#699-709" title="Go to source code">setCurrentInstance</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#707-717" title="Go to source code">setCurrentInstance</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1578,7 +1584,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeInstance">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#711-727" title="Go to source code">removeInstance</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#719-735" title="Go to source code">removeInstance</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1618,7 +1624,7 @@ calls.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_buildConfig">#</a>
-		<code><a href="source-class-ProcessWire.ProcessWire.html#729-884" title="Go to source code">buildConfig</a>( <span>string <var>$rootPath</var></span>, <span>string <var>$rootURL</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessWire.html#737-898" title="Go to source code">buildConfig</a>( <span>string <var>$rootPath</var></span>, <span>string <var>$rootURL</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1671,6 +1677,8 @@ contains site's config.php, no slashes (default="site").</dd>
 			<a href="class-ProcessWire.Wire.html#____trackException">___trackException()</a>, 
 			<a href="class-ProcessWire.Wire.html#___clone">__clone()</a>, 
 			<a href="class-ProcessWire.Wire.html#___debugInfo">__debugInfo()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callHookMethod">_callHookMethod()</a>, 
+			<a href="class-ProcessWire.Wire.html#__callMethod">_callMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#__n">_n()</a>, 
 			<a href="class-ProcessWire.Wire.html#__notice">_notice()</a>, 
 			<a href="class-ProcessWire.Wire.html#__x">_x()</a>, 
@@ -1771,7 +1779,7 @@ contains site's config.php, no slashes (default="site").</dd>
 		<td class="name"><code>
 				<a href="source-class-ProcessWire.ProcessWire.html#44-48" title="Go to source code"><b>versionRevision</b></a>
 		</code></td>
-		<td class="value"><code><span class="php-num">42</span></code></td>
+		<td class="value"><code><span class="php-num">61</span></code></td>
 		<td class="description"><div>
 			<a href="#versionRevision" class="anchor">#</a>
 
@@ -2185,7 +2193,7 @@ it is just here as a placeholder.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.ProcessWire.html#601-607" title="Go to source code"><var>$instances</var></a>
+				<a href="source-class-ProcessWire.ProcessWire.html#609-615" title="Go to source code"><var>$instances</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2212,7 +2220,7 @@ it is just here as a placeholder.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.ProcessWire.html#609-615" title="Go to source code"><var>$currentInstance</var></a>
+				<a href="source-class-ProcessWire.ProcessWire.html#617-623" title="Go to source code"><var>$currentInstance</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
