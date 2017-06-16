@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PagesExportImport | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2876800063"></script>
+	<script type="text/javascript" src="elementlist.js?3276292090"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.63 dev</span>
+			<span>Overview version 3.0.64 dev</span>
 		</a>
 
 
@@ -560,6 +560,45 @@
 	
 <p>ProcessWire Pages Export/Import Helpers</p>
 
+<p>This class is in development and not yet ready for use.</p>
+
+<p>$options argument for import methods:</p>
+
+<ul>
+	<li><code>parent</code> (Page|int|string): Parent Page, path or ID. (default=0,
+	auto detect from imported page path)</li>
+
+	<li><code>template</code> (Template|int|string): Template object, name or ID.
+	(default=0, auto detect from imported page template)</li>
+
+	<li><code>update</code> (bool): Update existing Page (rather than create new) if
+	another page already has the same name+parent? (default=true)</li>
+
+	<li><code>skip</code> (bool): Skip page update/create if page already exists?
+	(default=false)</li>
+
+	<li><code>changeTemplate</code> (bool): Allow template to be changed on updated
+	pages? (default=false)</li>
+
+	<li><code>changeParent</code> (bool): Allow parent of existing pages to be
+	changed? (default=false)</li>
+
+	<li><code>changeName</code> (bool): Allow name of existing pages to be changed?
+	(default=false)</li>
+
+	<li><code>changeStatus</code> (bool): Allow status of existing pages to be
+	changed? (default=true)</li>
+
+	<li><code>changeSort</code> (bool): Allow sort and sortfield properties of
+	existing pages to be changed? (default=true)</li>
+
+	<li><code>saveOptions</code> (array): The $options agument provided to
+	Pages::save() method. (default=['adjustName'=&gt;true])</li>
+</ul>
+
+<p>Note: all the "change" prefix options require update=true and skip=false
+options to be set.</p>
+
 <p>ProcessWire 3.x, Copyright 2017 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
@@ -599,13 +638,192 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PagesExportImport.html#4-189" title="Go to source code">core/PagesExportImport.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PagesExportImport.html#4-543" title="Go to source code">core/PagesExportImport.php</a><br>
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="exportZIP" id="_exportZIP">
+
+		<td class="attributes"><code>
+			 public 
+			string|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_exportZIP">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#31-41" title="Go to source code">exportZIP</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Export given PageArray to a ZIP file (method not yet implemented)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Export given PageArray to a ZIP file (method not yet implemented)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$items</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|boolean</code><br>Path+filename to ZIP file or boolean false on failure<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importZIP" id="_importZIP">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importZIP">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#43-54" title="Go to source code">importZIP</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Import ZIP file to create pages (method not yet implemented)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Import ZIP file to create pages (method not yet implemented)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filename</var></dt>
+					<dd><code>string</code><br>$filename Path+filename to ZIP file</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|integer</code><br>Pages that were imported (or count, if requested)<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="exportJSON" id="_exportJSON">
+
+		<td class="attributes"><code>
+			 public 
+			string|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_exportJSON">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#56-68" title="Go to source code">exportJSON</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Export a PageArray to JSON string</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Export a PageArray to JSON string</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd><code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code></code><br>$items</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|boolean</code><br>JSON string of pages or boolean false on error<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importJSON" id="_importJSON">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importJSON">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#70-85" title="Go to source code">importJSON</a>( <span>string <var>$json</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Import a PageArray from a JSON string</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Import a PageArray from a JSON string</p>
+
+<p>Given JSON string must be one previously exported by the exportJSON() method
+in this class.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$json</var></dt>
+					<dd><code>string</code><br>$json</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="pagesToArray" id="_pagesToArray">
 
 		<td class="attributes"><code>
@@ -617,7 +835,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pagesToArray">#</a>
-		<code><a href="source-class-ProcessWire.PagesExportImport.html#13-105" title="Go to source code">pagesToArray</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#87-179" title="Go to source code">pagesToArray</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -661,7 +879,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pageToArray">#</a>
-		<code><a href="source-class-ProcessWire.PagesExportImport.html#107-187" title="Go to source code">pageToArray</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#181-260" title="Go to source code">pageToArray</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -681,6 +899,196 @@ href="https://processwire.com">https://processwire.com</a></p>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="arrayToPages" id="_arrayToPages">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_arrayToPages">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#262-303" title="Go to source code">arrayToPages</a>( <span>array <var>$a</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Import an array of page data to create or update pages</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Import an array of page data to create or update pages</p>
+
+<p>Provided array ($a) must originate from the pagesToArray() method format.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd><code>array</code><br>$a</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|boolean</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="arrayToPage" id="_arrayToPage">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_arrayToPage">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#305-472" title="Go to source code">arrayToPage</a>( <span>array <var>$a</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Import an array of page data to a new Page (or update existing page)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Import an array of page data to a new Page (or update existing page)</p>
+
+<p>Provided array ($a) must originate from the pageToArray() method format.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd><code>array</code><br>$a</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importFileField" id="_importFileField">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importFileField">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#474-498" title="Go to source code">importFileField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Import a files/images field and populate to given $page</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Import a files/images field and populate to given $page</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dt><var>$field</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data Export/sleep value of file field</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFieldInfo" id="_getFieldInfo">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFieldInfo">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#500-541" title="Go to source code">getFieldInfo</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns array of information about given Field</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns array of information about given Field</p>
+
+<p>Populates the following indexes: - <code>exportable</code> (bool): True if
+field is exportable, false if not. - <code>reason</code> (string): Reason why
+field is not exportable (when exportable==true).</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
