@@ -8,7 +8,7 @@
 	<title>File core/Fieldgroup.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1195307863"></script>
+	<script type="text/javascript" src="elementlist.js?72396189"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.65 dev</span>
+			<span>Overview version 3.0.66 dev</span>
 		</a>
 
 
@@ -733,7 +733,7 @@
 </span></span><span id="177" class="l"><a class="l" href="#177">177: </a><span class="php-comment">     * #pw-internal
 </span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     * 
 </span></span><span id="179" class="l"><a class="l" href="#179">179: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     * @return bool
+</span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     * @return Fieldgroup $this
 </span></span><span id="181" class="l"><a class="l" href="#181">181: </a><span class="php-comment">     *
 </span></span><span id="182" class="l"><a class="l" href="#182">182: </a><span class="php-comment">     */</span>
 </span><span id="183" class="l"><a class="l" href="#183">183: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_finishRemove" href="#_finishRemove">finishRemove</a>(Field <span class="php-var">$field</span>) {
@@ -750,7 +750,7 @@
 </span></span><span id="194" class="l"><a class="l" href="#194">194: </a><span class="php-comment">     * #pw-group-manipulation
 </span></span><span id="195" class="l"><a class="l" href="#195">195: </a><span class="php-comment">     *
 </span></span><span id="196" class="l"><a class="l" href="#196">196: </a><span class="php-comment">     * @param Field|string|int $field Field object, name or id. 
-</span></span><span id="197" class="l"><a class="l" href="#197">197: </a><span class="php-comment">     * @return bool
+</span></span><span id="197" class="l"><a class="l" href="#197">197: </a><span class="php-comment">     * @return Fieldgroup $this
 </span></span><span id="198" class="l"><a class="l" href="#198">198: </a><span class="php-comment">     *
 </span></span><span id="199" class="l"><a class="l" href="#199">199: </a><span class="php-comment">     */</span>
 </span><span id="200" class="l"><a class="l" href="#200">200: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_softRemove" href="#_softRemove">softRemove</a>(<span class="php-var">$field</span>) {
@@ -1168,7 +1168,7 @@
 </span><span id="612" class="l"><a class="l" href="#612">612: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$inputfield</span>) <span class="php-keyword1">continue</span>;
 </span><span id="613" class="l"><a class="l" href="#613">613: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$inputfield</span>-&gt;collapsed == Inputfield::collapsedHidden) <span class="php-keyword1">continue</span>;
 </span><span id="614" class="l"><a class="l" href="#614">614: </a>
-</span><span id="615" class="l"><a class="l" href="#615">615: </a>            <span class="php-var">$inputfield</span>-&gt;value = <span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name); 
+</span><span id="615" class="l"><a class="l" href="#615">615: </a>            <span class="php-var">$inputfield</span>-&gt;setAttribute(<span class="php-quote">'value'</span>, <span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name));
 </span><span id="616" class="l"><a class="l" href="#616">616: </a>            
 </span><span id="617" class="l"><a class="l" href="#617">617: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$multiMode</span>) {
 </span><span id="618" class="l"><a class="l" href="#618">618: </a>                <span class="php-var">$fieldInputfields</span>[<span class="php-var">$field</span>-&gt;id] = <span class="php-var">$inputfield</span>;
