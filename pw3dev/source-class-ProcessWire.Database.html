@@ -8,7 +8,7 @@
 	<title>File core/Database.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?72396189"></script>
+	<script type="text/javascript" src="elementlist.js?669356065"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.66 dev</span>
+			<span>Overview version 3.0.67 dev</span>
 		</a>
 
 
@@ -660,7 +660,7 @@
 </span><span id="104" class="l"><a class="l" href="#104">104: </a>
 </span><span id="105" class="l"><a class="l" href="#105">105: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;debug) {
 </span><span id="106" class="l"><a class="l" href="#106">106: </a>            <span class="php-var">$timerKey</span> = Debug::timer();
-</span><span id="107" class="l"><a class="l" href="#107">107: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$timerFirstStartTime</span>) <span class="php-var">$timerFirstStartTime</span> = <span class="php-var">$timerKey</span>; 
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$timerFirstStartTime</span>) <span class="php-var">$timerFirstStartTime</span> = (float) <span class="php-var">$timerKey</span>; 
 </span><span id="108" class="l"><a class="l" href="#108">108: </a>        } <span class="php-keyword1">else</span> <span class="php-var">$timerKey</span> = <span class="php-keyword1">null</span>; 
 </span><span id="109" class="l"><a class="l" href="#109">109: </a>
 </span><span id="110" class="l"><a class="l" href="#110">110: </a>        <span class="php-var">$result</span> = @parent::query(<span class="php-var">$sql</span>, <span class="php-var">$resultmode</span>); 
@@ -669,9 +669,9 @@
 </span><span id="113" class="l"><a class="l" href="#113">113: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;debug) { 
 </span><span id="114" class="l"><a class="l" href="#114">114: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$result</span>-&gt;num_rows)) <span class="php-var">$sql</span> .= <span class="php-quote">&quot; [&quot;</span> . <span class="php-var">$result</span>-&gt;num_rows . <span class="php-quote">&quot; rows]&quot;</span>;
 </span><span id="115" class="l"><a class="l" href="#115">115: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$timerKey</span>)) {
-</span><span id="116" class="l"><a class="l" href="#116">116: </a>                    <span class="php-var">$elapsed</span> = Debug::timer(<span class="php-var">$timerKey</span>); 
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>                    <span class="php-var">$elapsed</span> = (float) Debug::timer(<span class="php-var">$timerKey</span>); 
 </span><span id="117" class="l"><a class="l" href="#117">117: </a>                    <span class="php-var">$timerTotalQueryTime</span> += <span class="php-var">$elapsed</span>; 
-</span><span id="118" class="l"><a class="l" href="#118">118: </a>                    <span class="php-var">$timerTotalSinceStart</span> = Debug::timer() - <span class="php-var">$timerFirstStartTime</span>; 
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>                    <span class="php-var">$timerTotalSinceStart</span> = ((float) Debug::timer()) - <span class="php-var">$timerFirstStartTime</span>; 
 </span><span id="119" class="l"><a class="l" href="#119">119: </a>                    <span class="php-var">$sql</span> .= <span class="php-quote">&quot; [</span><span class="php-var">{$elapsed}</span><span class="php-quote">s, </span><span class="php-var">{$timerTotalQueryTime}</span><span class="php-quote">s, </span><span class="php-var">{$timerTotalSinceStart}</span><span class="php-quote">s]&quot;</span>;
 </span><span id="120" class="l"><a class="l" href="#120">120: </a>                }
 </span><span id="121" class="l"><a class="l" href="#121">121: </a>                <span class="php-var">$this</span>-&gt;queryLog(<span class="php-var">$sql</span>); 

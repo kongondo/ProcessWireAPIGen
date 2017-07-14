@@ -8,7 +8,7 @@
 	<title>File modules/Jquery/JqueryUI/JqueryUI.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?72396189"></script>
+	<script type="text/javascript" src="elementlist.js?669356065"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.66 dev</span>
+			<span>Overview version 3.0.67 dev</span>
 		</a>
 
 
@@ -589,29 +589,38 @@
 </span><span id="33" class="l"><a class="l" href="#33">33: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$name</span> == <span class="php-quote">'vex'</span>) {
 </span><span id="34" class="l"><a class="l" href="#34">34: </a>            <span class="php-comment">// custom loader for vex</span>
 </span><span id="35" class="l"><a class="l" href="#35">35: </a>            <span class="php-keyword1">static</span> <span class="php-var"><a id="$vexLoaded" href="#$vexLoaded">$vexLoaded</a></span> = <span class="php-keyword1">false</span>;
-</span><span id="36" class="l"><a class="l" href="#36">36: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$vexLoaded</span>) {
-</span><span id="37" class="l"><a class="l" href="#37">37: </a>                <span class="php-var">$vexLoaded</span> = <span class="php-keyword1">true</span>;
-</span><span id="38" class="l"><a class="l" href="#38">38: </a>                <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;config-&gt;urls(<span class="php-quote">'JqueryUI'</span>) . <span class="php-quote">'vex/'</span>;
-</span><span id="39" class="l"><a class="l" href="#39">39: </a>                <span class="php-var">$this</span>-&gt;config-&gt;styles-&gt;add(<span class="php-var">$url</span> . <span class="php-quote">'css/vex.css'</span>);
-</span><span id="40" class="l"><a class="l" href="#40">40: </a>                <span class="php-var">$this</span>-&gt;config-&gt;styles-&gt;add(<span class="php-var">$url</span> . <span class="php-quote">'styles/vex-theme-default.css'</span>);
-</span><span id="41" class="l"><a class="l" href="#41">41: </a>                <span class="php-var">$this</span>-&gt;config-&gt;scripts-&gt;add(<span class="php-var">$url</span> . <span class="php-quote">'scripts/vex.combined.min.js'</span>);
-</span><span id="42" class="l"><a class="l" href="#42">42: </a>                <span class="php-var">$adminTheme</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'adminTheme'</span>);
-</span><span id="43" class="l"><a class="l" href="#43">43: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$adminTheme</span>) <span class="php-var">$adminTheme</span>-&gt;addExtraMarkup(<span class="php-quote">'head'</span>,
-</span><span id="44" class="l"><a class="l" href="#44">44: </a>                    <span class="php-quote">&quot;&lt;script&gt;&quot;</span> .
-</span><span id="45" class="l"><a class="l" href="#45">45: </a>                    <span class="php-quote">&quot;vex.defaultOptions.className='vex-theme-default';&quot;</span> .
-</span><span id="46" class="l"><a class="l" href="#46">46: </a>                    <span class="php-quote">&quot;vex.dialog.buttons.YES.text='&quot;</span> . __(<span class="php-quote">'Ok'</span>, <span class="php-quote">'common'</span>) . <span class="php-quote">&quot;';&quot;</span> . <span class="php-comment">// Yes/Ok button text for Confirm dialog</span>
-</span><span id="47" class="l"><a class="l" href="#47">47: </a>                    <span class="php-quote">&quot;vex.dialog.buttons.NO.text='&quot;</span> . __(<span class="php-quote">'Cancel'</span>, <span class="php-quote">'common'</span>) . <span class="php-quote">&quot;';&quot;</span> . <span class="php-comment">// No/Cancel button text for Confirm dialog</span>
-</span><span id="48" class="l"><a class="l" href="#48">48: </a>                    <span class="php-quote">&quot;&lt;/script&gt;&quot;</span>
-</span><span id="49" class="l"><a class="l" href="#49">49: </a>                );
-</span><span id="50" class="l"><a class="l" href="#50">50: </a>            }
+</span><span id="36" class="l"><a class="l" href="#36">36: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$vexLoaded</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="37" class="l"><a class="l" href="#37">37: </a>            <span class="php-var">$vexLoaded</span> = <span class="php-keyword1">true</span>;
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>            <span class="php-var">$config</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>);
+</span><span id="39" class="l"><a class="l" href="#39">39: </a>            <span class="php-var">$url</span> = <span class="php-var">$config</span>-&gt;urls(<span class="php-quote">'JqueryUI'</span>) . <span class="php-quote">'vex/'</span>;
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>            <span class="php-var">$config</span>-&gt;styles-&gt;add(<span class="php-var">$url</span> . <span class="php-quote">'css/vex.css'</span>);
+</span><span id="41" class="l"><a class="l" href="#41">41: </a>            <span class="php-var">$config</span>-&gt;styles-&gt;add(<span class="php-var">$url</span> . <span class="php-quote">'styles/vex-theme-default.css'</span>);
+</span><span id="42" class="l"><a class="l" href="#42">42: </a>            <span class="php-var">$config</span>-&gt;scripts-&gt;add(<span class="php-var">$url</span> . <span class="php-quote">'scripts/vex.combined.min.js'</span>);
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>            <span class="php-var">$adminTheme</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'adminTheme'</span>);
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$adminTheme</span>) <span class="php-var">$adminTheme</span>-&gt;addExtraMarkup(<span class="php-quote">'head'</span>,
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>                <span class="php-quote">&quot;&lt;script&gt;&quot;</span> .
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>                <span class="php-quote">&quot;vex.defaultOptions.className='vex-theme-default';&quot;</span> .
+</span><span id="47" class="l"><a class="l" href="#47">47: </a>                <span class="php-quote">&quot;vex.dialog.buttons.YES.text='&quot;</span> . __(<span class="php-quote">'Ok'</span>, <span class="php-quote">'common'</span>) . <span class="php-quote">&quot;';&quot;</span> . <span class="php-comment">// Yes/Ok button text for Confirm dialog</span>
+</span><span id="48" class="l"><a class="l" href="#48">48: </a>                <span class="php-quote">&quot;vex.dialog.buttons.NO.text='&quot;</span> . __(<span class="php-quote">'Cancel'</span>, <span class="php-quote">'common'</span>) . <span class="php-quote">&quot;';&quot;</span> . <span class="php-comment">// No/Cancel button text for Confirm dialog</span>
+</span><span id="49" class="l"><a class="l" href="#49">49: </a>                <span class="php-quote">&quot;&lt;/script&gt;&quot;</span>
+</span><span id="50" class="l"><a class="l" href="#50">50: </a>            );
 </span><span id="51" class="l"><a class="l" href="#51">51: </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="52" class="l"><a class="l" href="#52">52: </a>        }
-</span><span id="53" class="l"><a class="l" href="#53">53: </a>        <span class="php-keyword1">return</span> parent::___use(<span class="php-var">$name</span>);
-</span><span id="54" class="l"><a class="l" href="#54">54: </a>    }
-</span><span id="55" class="l"><a class="l" href="#55">55: </a>
-</span><span id="56" class="l"><a class="l" href="#56">56: </a>
-</span><span id="57" class="l"><a class="l" href="#57">57: </a>}
-</span><span id="58" class="l"><a class="l" href="#58">58: </a></span></code></pre>
+</span><span id="52" class="l"><a class="l" href="#52">52: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$name</span> == <span class="php-quote">'selectize'</span>) {
+</span><span id="53" class="l"><a class="l" href="#53">53: </a>            <span class="php-keyword1">static</span> <span class="php-var"><a id="$selectizeLoaded" href="#$selectizeLoaded">$selectizeLoaded</a></span> = <span class="php-keyword1">false</span>;    
+</span><span id="54" class="l"><a class="l" href="#54">54: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$selectizeLoaded</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="55" class="l"><a class="l" href="#55">55: </a>            <span class="php-var">$selectizeLoaded</span> = <span class="php-keyword1">true</span>;
+</span><span id="56" class="l"><a class="l" href="#56">56: </a>            <span class="php-var">$config</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>);
+</span><span id="57" class="l"><a class="l" href="#57">57: </a>            <span class="php-var">$url</span> = <span class="php-var">$config</span>-&gt;urls(<span class="php-quote">'JqueryUI'</span>) . <span class="php-quote">'selectize/'</span>;
+</span><span id="58" class="l"><a class="l" href="#58">58: </a>            <span class="php-var">$config</span>-&gt;styles-&gt;add(<span class="php-var">$url</span> . <span class="php-quote">'css/selectize.css'</span>);
+</span><span id="59" class="l"><a class="l" href="#59">59: </a>            <span class="php-var">$config</span>-&gt;scripts-&gt;add(<span class="php-var">$url</span> . <span class="php-quote">'js/standalone/selectize.'</span> . (<span class="php-var">$config</span>-&gt;debug ? <span class="php-quote">'js'</span> : <span class="php-quote">'min.js'</span>)); 
+</span><span id="60" class="l"><a class="l" href="#60">60: </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>;   
+</span><span id="61" class="l"><a class="l" href="#61">61: </a>        }
+</span><span id="62" class="l"><a class="l" href="#62">62: </a>        <span class="php-keyword1">return</span> parent::___use(<span class="php-var">$name</span>);
+</span><span id="63" class="l"><a class="l" href="#63">63: </a>    }
+</span><span id="64" class="l"><a class="l" href="#64">64: </a>
+</span><span id="65" class="l"><a class="l" href="#65">65: </a>
+</span><span id="66" class="l"><a class="l" href="#66">66: </a>}
+</span><span id="67" class="l"><a class="l" href="#67">67: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
