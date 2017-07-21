@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Wire | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?669356065"></script>
+	<script type="text/javascript" src="elementlist.js?1647842118"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.67 dev</span>
+			<span>Overview version 3.0.68 dev</span>
 		</a>
 
 
@@ -924,7 +924,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Wire.html#4-1751" title="Go to source code">core/Wire.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Wire.html#4-1764" title="Go to source code">core/Wire.php</a><br>
 	</div>
 
 
@@ -2575,7 +2575,7 @@ true is assumed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getChanges">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1121-1139" title="Go to source code">getChanges</a>( <span>boolean <var>$getValues</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1121-1152" title="Go to source code">getChanges</a>( <span>boolean <var>$getValues</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2599,9 +2599,12 @@ $page-&gt;getChanges(); ~~~~~</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$getValues</var></dt>
-					<dd><code>boolean</code><br>$getValues Specify true to return an associative array containing an array of
-previous values, indexed by property name, oldest to newest. Requires
-Wire::trackChangesValues mode to be enabled.</dd>
+					<dd><code>boolean</code><br>$getValues Specify one of the following, or omit for default setting. -
+<code>false</code> (bool): return array of changed property names (default
+setting). - <code>true</code> (bool): return an associative array containing an
+array of previous values, indexed by property name, oldest to newest. Requires
+Wire::trackChangesValues mode to be enabled. - <code>2</code> (int): Return
+array where both keys and values are changed property names.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2628,7 +2631,7 @@ Wire::trackChangesValues mode to be enabled.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__notice">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1157-1176" title="Go to source code">_notice</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var></span>, <span>string <var>$name</var></span>, <span>string <var>$class</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1170-1189" title="Go to source code">_notice</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var></span>, <span>string <var>$name</var></span>, <span>string <var>$class</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2678,7 +2681,7 @@ error methods)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_message">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1178-1206" title="Go to source code">message</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1191-1219" title="Go to source code">message</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2745,7 +2748,7 @@ use of HTML markup tags. - <code>true</code> (boolean): Shortcut for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#_warning">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1208-1237" title="Go to source code">warning</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1221-1250" title="Go to source code">warning</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2810,7 +2813,7 @@ use of HTML markup tags. - <code>true</code> (boolean): Shortcut for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#_error">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1239-1268" title="Go to source code">error</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1252-1281" title="Go to source code">error</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2880,7 +2883,7 @@ use of HTML markup tags. - <code>true</code> (boolean): Shortcut for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#____trackException">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1270-1305" title="Go to source code">___trackException</a>( <span><code><a href="class-Exception.html">Exception</a></code> <var>$e</var></span>, <span>boolean|integer <var>$severe</var> = <span class="php-keyword1">true</span></span>, <span>string|array|object|true <var>$text</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1283-1318" title="Go to source code">___trackException</a>( <span><code><a href="class-Exception.html">Exception</a></code> <var>$e</var></span>, <span>boolean|integer <var>$severe</var> = <span class="php-keyword1">true</span></span>, <span>string|array|object|true <var>$text</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2947,7 +2950,7 @@ use of HTML markup tags. - <code>true</code> (boolean): Shortcut for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#_errors">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1307-1342" title="Go to source code">errors</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1320-1355" title="Go to source code">errors</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3010,7 +3013,7 @@ was specified.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_warnings">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1344-1380" title="Go to source code">warnings</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1357-1393" title="Go to source code">warnings</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3076,7 +3079,7 @@ option was specified.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_messages">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1382-1449" title="Go to source code">messages</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1395-1462" title="Go to source code">messages</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3142,7 +3145,7 @@ option was specified.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____log">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1451-1483" title="Go to source code">___log</a>( <span>string <var>$str</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1464-1496" title="Go to source code">___log</a>( <span>string <var>$str</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3197,7 +3200,7 @@ of log to use (default=auto-detect)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1490-1503" title="Go to source code">_</a>( <span>string <var>$text</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1503-1516" title="Go to source code">_</a>( <span>string <var>$text</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3246,7 +3249,7 @@ returns the text as is.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__x">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1505-1519" title="Go to source code">_x</a>( <span>string <var>$text</var></span>, <span>string <var>$context</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1518-1532" title="Go to source code">_x</a>( <span>string <var>$text</var></span>, <span>string <var>$context</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3297,7 +3300,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__n">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1521-1534" title="Go to source code">_n</a>( <span>string <var>$textSingular</var></span>, <span>string <var>$textPlural</var></span>, <span>integer <var>$count</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1534-1547" title="Go to source code">_n</a>( <span>string <var>$textSingular</var></span>, <span>string <var>$textPlural</var></span>, <span>integer <var>$count</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3347,7 +3350,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setWire">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1551-1564" title="Go to source code">setWire</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1564-1577" title="Go to source code">setWire</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3391,7 +3394,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getWire">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1566-1578" title="Go to source code">getWire</a>( )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1579-1591" title="Go to source code">getWire</a>( )</code>
 
 		<div class="description short">
 			
@@ -3434,7 +3437,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isWired">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1580-1590" title="Go to source code">isWired</a>( )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1593-1603" title="Go to source code">isWired</a>( )</code>
 
 		<div class="description short">
 			
@@ -3473,7 +3476,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_wire">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1592-1701" title="Go to source code">wire</a>( <span>string|object <var>$name</var> = <span class="php-quote">''</span></span>, <span>null|mixed <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$lock</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1605-1714" title="Go to source code">wire</a>( <span>string|object <var>$name</var> = <span class="php-quote">''</span></span>, <span>null|mixed <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$lock</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3574,7 +3577,7 @@ future changes (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1703-1732" title="Go to source code">__get</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1716-1745" title="Go to source code">__get</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3622,7 +3625,7 @@ one when they can't find something.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1734-1748" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1747-1761" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -3896,7 +3899,7 @@ while change tracking was ON.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Wire.html#1147-1155" title="Go to source code"><var>$_notices</var></a>
+				<a href="source-class-ProcessWire.Wire.html#1160-1168" title="Go to source code"><var>$_notices</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'errors'</span> =&gt; <span class="php-keyword1">null</span>, 
@@ -3923,7 +3926,7 @@ while change tracking was ON.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Wire.html#1543-1549" title="Go to source code"><var>$_wire</var></a>
+				<a href="source-class-ProcessWire.Wire.html#1556-1562" title="Go to source code"><var>$_wire</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
