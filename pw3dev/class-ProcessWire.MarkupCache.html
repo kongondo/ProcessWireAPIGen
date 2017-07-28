@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.68 dev</span>
+			<span>Overview version 3.0.69 dev</span>
 		</a>
 
 
@@ -616,7 +616,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<b>Todo:</b>
 				add serialize/unserialize to support non-string data in MarkupCache<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.MarkupCache.html#4-213" title="Go to source code">modules/Markup/MarkupCache.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.MarkupCache.html#4-220" title="Go to source code">modules/Markup/MarkupCache.module</a><br>
 	</div>
 
 
@@ -665,7 +665,7 @@ them</p>
 	<tr data-order="path" id="_path">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 			
 			
 			</code>
@@ -673,7 +673,7 @@ them</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_path">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#74-80" title="Go to source code">path</a>( )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#76-82" title="Go to source code">path</a>( )</code>
 
 		<div class="description short">
 			
@@ -708,7 +708,7 @@ getModuleConfigInputfields function</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#82-89" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#84-91" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -734,14 +734,14 @@ getModuleConfigInputfields function</p>
 
 		<td class="attributes"><code>
 			 public 
-			Returns
+			string|boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#91-104" title="Go to source code">get</a>( <span>string <var>$uniqueName</var></span>, <span>integer <var>$seconds</var> = <span class="php-num">3600</span></span> )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#93-107" title="Go to source code">get</a>( <span>string <var>$uniqueName</var></span>, <span>integer <var>$seconds</var> = <span class="php-num">3600</span></span> )</code>
 
 		<div class="description short">
 			
@@ -767,9 +767,13 @@ available</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>Returns</code><br>the cache data, or FALSE if it has expired and needs to be re-created.<br>
+					<code>string|boolean</code><br>Returns the cache data, or FALSE if it has expired and needs to be re-created.<br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -787,7 +791,7 @@ available</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#106-120" title="Go to source code">save</a>( <span>string <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#109-124" title="Go to source code">save</a>( <span>string <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -815,6 +819,10 @@ name</p>
 					<code>integer</code><br>Number of bytes written to cache, or FALSE on failure.<br>
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -832,7 +840,7 @@ name</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_expire">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#122-138" title="Go to source code">expire</a>( <span>mixed <var>$event</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#126-142" title="Go to source code">expire</a>( <span>mixed <var>$event</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -865,7 +873,7 @@ name</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeAll">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#140-154" title="Go to source code">removeAll</a>( )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#144-158" title="Go to source code">removeAll</a>( )</code>
 
 		<div class="description short">
 			
@@ -902,7 +910,7 @@ name</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#156-163" title="Go to source code">__set</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#160-167" title="Go to source code">__set</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -943,14 +951,14 @@ it</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModuleConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#165-201" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#169-208" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -964,7 +972,16 @@ it</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>
+				</div>
 
 
 
@@ -983,7 +1000,7 @@ it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstall">#</a>
-		<code><a href="source-class-ProcessWire.MarkupCache.html#203-210" title="Go to source code">___uninstall</a>( )</code>
+		<code><a href="source-class-ProcessWire.MarkupCache.html#210-217" title="Go to source code">___uninstall</a>( )</code>
 
 		<div class="description short">
 			
@@ -1087,11 +1104,11 @@ it</p>
 	<tr data-order="cache" id="$cache">
 		<td class="attributes"><code>
 			protected  
-			mixed
+			<code><a href="class-ProcessWire.CacheFile.html">ProcessWire\CacheFile</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.MarkupCache.html#49-53" title="Go to source code"><var>$cache</var></a>
+				<a href="source-class-ProcessWire.MarkupCache.html#49-55" title="Go to source code"><var>$cache</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1118,7 +1135,7 @@ it</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.MarkupCache.html#56-60" title="Go to source code"><var>$cleared</var></a>
+				<a href="source-class-ProcessWire.MarkupCache.html#58-62" title="Go to source code"><var>$cleared</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -1145,7 +1162,7 @@ it</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.MarkupCache.html#62-66" title="Go to source code"><var>$path</var></a>
+				<a href="source-class-ProcessWire.MarkupCache.html#64-68" title="Go to source code"><var>$path</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">''</span></code></td>
 		<td class="description"><div>
@@ -1172,7 +1189,7 @@ it</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.MarkupCache.html#68-72" title="Go to source code"><var>$noExpire</var></a>
+				<a href="source-class-ProcessWire.MarkupCache.html#70-74" title="Go to source code"><var>$noExpire</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
