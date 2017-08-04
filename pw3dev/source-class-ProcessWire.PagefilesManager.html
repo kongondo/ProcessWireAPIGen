@@ -8,7 +8,7 @@
 	<title>File core/PagefilesManager.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1647842118"></script>
+	<script type="text/javascript" src="elementlist.js?1676776488"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.69 dev</span>
+			<span>Overview version 3.0.70 dev</span>
 		</a>
 
 
@@ -1128,19 +1128,27 @@
 </span><span id="572" class="l"><a class="l" href="#572">572: </a>    }
 </span><span id="573" class="l"><a class="l" href="#573">573: </a>
 </span><span id="574" class="l"><a class="l" href="#574">574: </a>    <span class="php-comment">/**
-</span></span><span id="575" class="l"><a class="l" href="#575">575: </a><span class="php-comment">     * Return a path where temporary files can be stored.
+</span></span><span id="575" class="l"><a class="l" href="#575">575: </a><span class="php-comment">     * Return a path where temporary files can be stored unique to this ProcessWire instance
 </span></span><span id="576" class="l"><a class="l" href="#576">576: </a><span class="php-comment">     * 
 </span></span><span id="577" class="l"><a class="l" href="#577">577: </a><span class="php-comment">     * @return string
 </span></span><span id="578" class="l"><a class="l" href="#578">578: </a><span class="php-comment">     *
 </span></span><span id="579" class="l"><a class="l" href="#579">579: </a><span class="php-comment">     */</span>
 </span><span id="580" class="l"><a class="l" href="#580">580: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getTempPath" href="#_getTempPath">getTempPath</a>() {
 </span><span id="581" class="l"><a class="l" href="#581">581: </a>        <span class="php-keyword1">static</span> <span class="php-var"><a id="$wtd" href="#$wtd">$wtd</a></span> = <span class="php-keyword1">null</span>;
-</span><span id="582" class="l"><a class="l" href="#582">582: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$wtd</span>)) <span class="php-var">$wtd</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> WireTempDir(<span class="php-var">$this</span>-&gt;className() . <span class="php-var">$this</span>-&gt;page-&gt;id));
-</span><span id="583" class="l"><a class="l" href="#583">583: </a>        <span class="php-keyword1">return</span> <span class="php-var">$wtd</span>-&gt;get();
-</span><span id="584" class="l"><a class="l" href="#584">584: </a>    }
-</span><span id="585" class="l"><a class="l" href="#585">585: </a>
-</span><span id="586" class="l"><a class="l" href="#586">586: </a>}
-</span><span id="587" class="l"><a class="l" href="#587">587: </a></span></code></pre>
+</span><span id="582" class="l"><a class="l" href="#582">582: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$wtd</span>)) {
+</span><span id="583" class="l"><a class="l" href="#583">583: </a>            <span class="php-var">$wtd</span> = <span class="php-keyword1">new</span> WireTempDir();
+</span><span id="584" class="l"><a class="l" href="#584">584: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-var">$wtd</span>);
+</span><span id="585" class="l"><a class="l" href="#585">585: </a>            <span class="php-var">$wtd</span>-&gt;setMaxAge(<span class="php-num">3600</span>);
+</span><span id="586" class="l"><a class="l" href="#586">586: </a>            <span class="php-var">$name</span> = <span class="php-var">$wtd</span>-&gt;createName(<span class="php-quote">'PFM'</span>);
+</span><span id="587" class="l"><a class="l" href="#587">587: </a>            <span class="php-var">$wtd</span>-&gt;create(<span class="php-var">$name</span>);
+</span><span id="588" class="l"><a class="l" href="#588">588: </a>        }
+</span><span id="589" class="l"><a class="l" href="#589">589: </a>        <span class="php-keyword1">return</span> <span class="php-var">$wtd</span>-&gt;get();
+</span><span id="590" class="l"><a class="l" href="#590">590: </a>        <span class="php-comment">// if(is_null($wtd)) $wtd = $this-&gt;wire(new WireTempDir($this-&gt;className() . $this-&gt;page-&gt;id));</span>
+</span><span id="591" class="l"><a class="l" href="#591">591: </a>        <span class="php-comment">// return $wtd-&gt;get();</span>
+</span><span id="592" class="l"><a class="l" href="#592">592: </a>    }
+</span><span id="593" class="l"><a class="l" href="#593">593: </a>    
+</span><span id="594" class="l"><a class="l" href="#594">594: </a>}
+</span><span id="595" class="l"><a class="l" href="#595">595: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

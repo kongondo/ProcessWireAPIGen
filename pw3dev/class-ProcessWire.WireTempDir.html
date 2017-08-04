@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireTempDir | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1647842118"></script>
+	<script type="text/javascript" src="elementlist.js?1676776488"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.69 dev</span>
+			<span>Overview version 3.0.70 dev</span>
 		</a>
 
 
@@ -560,7 +560,7 @@
 	
 <p>ProcessWire Temporary Directory Manager</p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2017 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -599,7 +599,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireTempDir.html#4-195" title="Go to source code">core/WireTempDir.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireTempDir.html#4-378" title="Go to source code">core/WireTempDir.php</a><br>
 	</div>
 
 
@@ -617,7 +617,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.WireTempDir.html#19-49" title="Go to source code">__construct</a>( <span>string|object <var>$name</var></span>, <span>string <var>$basePath</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#26-39" title="Go to source code">__construct</a>( <span>string|object <var>$name</var> = <span class="php-quote">''</span></span>, <span>string <var>$basePath</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -628,6 +628,11 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<div class="description detailed hidden">
 			
 <p>Construct new temp dir</p>
+
+<p>While this constructor accepts arguments, if you are in a multi-instance
+environment you should instead construct with no arguments, inject the
+ProcessWire instance, and then call the create() method with those
+arguments.</p>
 
 
 
@@ -654,6 +659,103 @@ any string</dd>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="create" id="_create">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create">#</a>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#41-78" title="Go to source code">create</a>( <span>string|object <var>$name</var> = <span class="php-quote">''</span></span>, <span>string <var>$basePath</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create the temporary directory</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create the temporary directory</p>
+
+<p>This method should only be called once per instance of this class. If you
+specified a $name argument in the constructor, then you should not call this
+method because it will have already been called.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string|object</code><br>$name Recommend providing the object that is using the temp dir, but can also be
+any string</dd>
+					<dt><var>$basePath</var></dt>
+					<dd><code>string</code><br>$basePath Base path where temp dirs should be created. Omit to use default
+(recommended).</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Returns the root of the temporary directory. Use the get() method to get a dir
+for use.<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if given a $root that doesn't exist<br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createName" id="_createName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createName">#</a>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#80-97" title="Go to source code">createName</a>( <span>string <var>$prefix</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a randomized name for runtime temp dir</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a randomized name for runtime temp dir</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$prefix</var></dt>
+					<dd><code>string</code><br>$prefix Optional prefix for name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setMaxAge" id="_setMaxAge">
 
 		<td class="attributes"><code>
@@ -665,7 +767,7 @@ any string</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMaxAge">#</a>
-		<code><a href="source-class-ProcessWire.WireTempDir.html#51-61" title="Go to source code">setMaxAge</a>( <span>mixed <var>$seconds</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#99-109" title="Go to source code">setMaxAge</a>( <span>mixed <var>$seconds</var></span> )</code>
 
 		<div class="description short">
 			
@@ -707,7 +809,7 @@ any string</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRemove">#</a>
-		<code><a href="source-class-ProcessWire.WireTempDir.html#63-73" title="Go to source code">setRemove</a>( <span>boolean <var>$remove</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#111-121" title="Go to source code">setRemove</a>( <span>boolean <var>$remove</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -751,7 +853,7 @@ when object is destructed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___destruct">#</a>
-		<code><a href="source-class-ProcessWire.WireTempDir.html#75-77" title="Go to source code">__destruct</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#123-125" title="Go to source code">__destruct</a>( )</code>
 
 		<div class="description short">
 			
@@ -780,7 +882,7 @@ when object is destructed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.WireTempDir.html#79-118" title="Go to source code">get</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#127-187" title="Go to source code">get</a>( <span>string <var>$id</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -794,6 +896,11 @@ when object is destructed</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id Optional identifier to use (default=autogenerate)</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
@@ -821,7 +928,7 @@ when object is destructed</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-ProcessWire.WireTempDir.html#120-175" title="Go to source code">remove</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#189-234" title="Go to source code">remove</a>( )</code>
 
 		<div class="description short">
 			
@@ -850,6 +957,96 @@ destructed.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="removeExpiredDirs" id="_removeExpiredDirs">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_removeExpiredDirs">#</a>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#236-297" title="Go to source code">removeExpiredDirs</a>( <span>string <var>$path</var></span>, <span>integer|null <var>$maxAge</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove expired directories in the given $path</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove expired directories in the given $path</p>
+
+<p>Also removes $path if it's found that everything in it is expired.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+					<dt><var>$maxAge</var></dt>
+					<dd><code>integer|null</code><br>Optionally specify a max age to override default setting.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getNewestModTime" id="_getNewestModTime">
+
+		<td class="attributes"><code>
+			 protected 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNewestModTime">#</a>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#299-323" title="Go to source code">getNewestModTime</a>( <span>string <var>$path</var></span>, <span>integer <var>$maxDepth</var> = <span class="php-num">5</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the newest modification time of a file in $path, recursively</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the newest modification time of a file in $path, recursively</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path Path to start from</dd>
+					<dt><var>$maxDepth</var></dt>
+					<dd><code>integer</code><br>$maxDepth</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="removeAll" id="_removeAll">
 
 		<td class="attributes"><code>
@@ -861,7 +1058,7 @@ destructed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeAll">#</a>
-		<code><a href="source-class-ProcessWire.WireTempDir.html#177-184" title="Go to source code">removeAll</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#325-335" title="Go to source code">removeAll</a>( )</code>
 
 		<div class="description short">
 			
@@ -894,7 +1091,7 @@ destructed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.WireTempDir.html#186-194" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#337-345" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -918,6 +1115,94 @@ destructed.</p>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.Wire.html#___toString">ProcessWire\Wire::__toString()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mkdir" id="_mkdir">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mkdir">#</a>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#347-362" title="Go to source code">mkdir</a>( <span>string <var>$dir</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a temporary directory</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a temporary directory</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dir</var></dt>
+					<dd><code>string</code><br>$dir</dd>
+					<dt><var>$recursive</var></dt>
+					<dd><code>boolean</code><br>$recursive</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="rmdir" id="_rmdir">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_rmdir">#</a>
+		<code><a href="source-class-ProcessWire.WireTempDir.html#364-377" title="Go to source code">rmdir</a>( <span>string <var>$dir</var></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove a temporary directory</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove a temporary directory</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dir</var></dt>
+					<dd><code>string</code><br>$dir</dd>
+					<dt><var>$recursive</var></dt>
+					<dd><code>boolean</code><br>$recursive</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
+
+
+
 
 		</div>
 		</div></td>
@@ -984,6 +1269,35 @@ destructed.</p>
 
 
 
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="hiddenFileName" id="hiddenFileName">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ProcessWire.WireTempDir.html#13-17" title="Go to source code"><b>hiddenFileName</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'.wtd'</span></code></td>
+		<td class="description"><div>
+			<a href="#hiddenFileName" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>File automatically placed in created temp dirs for verification, contains
+timestamp</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>File automatically placed in created temp dirs for verification, contains
+timestamp</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 	<table class="summary inherited">
 	<caption>Constants inherited from <a href="class-ProcessWire.Wire.html#constants">ProcessWire\Wire</a></caption>
@@ -1006,7 +1320,7 @@ destructed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireTempDir.html#13" title="Go to source code"><var>$classRoot</var></a>
+				<a href="source-class-ProcessWire.WireTempDir.html#19" title="Go to source code"><var>$classRoot</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1029,7 +1343,7 @@ destructed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireTempDir.html#14" title="Go to source code"><var>$tempDirRoot</var></a>
+				<a href="source-class-ProcessWire.WireTempDir.html#20" title="Go to source code"><var>$tempDirRoot</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1052,7 +1366,7 @@ destructed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireTempDir.html#15" title="Go to source code"><var>$tempDir</var></a>
+				<a href="source-class-ProcessWire.WireTempDir.html#21" title="Go to source code"><var>$tempDir</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1075,7 +1389,7 @@ destructed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireTempDir.html#16" title="Go to source code"><var>$tempDirMaxAge</var></a>
+				<a href="source-class-ProcessWire.WireTempDir.html#22" title="Go to source code"><var>$tempDirMaxAge</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">120</span></code></td>
 		<td class="description"><div>
@@ -1098,11 +1412,34 @@ destructed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireTempDir.html#17" title="Go to source code"><var>$autoRemove</var></a>
+				<a href="source-class-ProcessWire.WireTempDir.html#23" title="Go to source code"><var>$autoRemove</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">true</span></code></td>
 		<td class="description"><div>
 			<a href="#$autoRemove" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="createdName" id="$createdName">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.WireTempDir.html#24" title="Go to source code"><var>$createdName</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">''</span></code></td>
+		<td class="description"><div>
+			<a href="#$createdName" class="anchor">#</a>
 
 			<div class="description short">
 				
