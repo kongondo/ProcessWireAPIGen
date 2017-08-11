@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeText.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1676776488"></script>
+	<script type="text/javascript" src="elementlist.js?4030804575"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.70 dev</span>
+			<span>Overview version 3.0.71 dev</span>
 		</a>
 
 
@@ -263,6 +263,7 @@
 				<li><a href="class-ProcessWire.ProcessPageListRender.html">ProcessPageListRender</a></li>
 				<li><a href="class-ProcessWire.ProcessPageListRenderJSON.html">ProcessPageListRenderJSON</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSearch.html">ProcessPageSearch</a></li>
+				<li><a href="class-ProcessWire.ProcessPagesExportImport.html">ProcessPagesExportImport</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSort.html">ProcessPageSort</a></li>
 				<li><a href="class-ProcessWire.ProcessPageTrash.html">ProcessPageTrash</a></li>
 				<li><a href="class-ProcessWire.ProcessPageType.html">ProcessPageType</a></li>
@@ -780,10 +781,29 @@
 </span><span id="224" class="l"><a class="l" href="#224">224: </a>        }
 </span><span id="225" class="l"><a class="l" href="#225">225: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
 </span><span id="226" class="l"><a class="l" href="#226">226: </a>    }
-</span><span id="227" class="l"><a class="l" href="#227">227: </a>
-</span><span id="228" class="l"><a class="l" href="#228">228: </a>}
-</span><span id="229" class="l"><a class="l" href="#229">229: </a>
-</span><span id="230" class="l"><a class="l" href="#230">230: </a></span></code></pre>
+</span><span id="227" class="l"><a class="l" href="#227">227: </a>    
+</span><span id="228" class="l"><a class="l" href="#228">228: </a>    <span class="php-comment">/**
+</span></span><span id="229" class="l"><a class="l" href="#229">229: </a><span class="php-comment">     * Import value
+</span></span><span id="230" class="l"><a class="l" href="#230">230: </a><span class="php-comment">     *
+</span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="232" class="l"><a class="l" href="#232">232: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="233" class="l"><a class="l" href="#233">233: </a><span class="php-comment">     * @param array|int|object|string $value
+</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">     * @param array $options
+</span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">     * @return array|string
+</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     *
+</span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">     */</span>
+</span><span id="238" class="l"><a class="l" href="#238">238: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____importValue" href="#____importValue">___importValue</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>, <span class="php-var">$value</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="239" class="l"><a class="l" href="#239">239: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>) &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$value</span>[<span class="php-quote">'default'</span>]) &amp;&amp; !<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)) {
+</span><span id="240" class="l"><a class="l" href="#240">240: </a>            <span class="php-comment">// multi-language value to non-multi-language site, use only default language</span>
+</span><span id="241" class="l"><a class="l" href="#241">241: </a>            <span class="php-var">$value</span> = <span class="php-var">$value</span>[<span class="php-quote">'default'</span>];
+</span><span id="242" class="l"><a class="l" href="#242">242: </a>        }
+</span><span id="243" class="l"><a class="l" href="#243">243: </a>        <span class="php-var">$value</span> = parent::___importValue(<span class="php-var">$page</span>, <span class="php-var">$field</span>, <span class="php-var">$value</span>, <span class="php-var">$options</span>);
+</span><span id="244" class="l"><a class="l" href="#244">244: </a>        <span class="php-keyword1">return</span> <span class="php-var">$value</span>;
+</span><span id="245" class="l"><a class="l" href="#245">245: </a>    }
+</span><span id="246" class="l"><a class="l" href="#246">246: </a>
+</span><span id="247" class="l"><a class="l" href="#247">247: </a>}
+</span><span id="248" class="l"><a class="l" href="#248">248: </a>
+</span><span id="249" class="l"><a class="l" href="#249">249: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PagesExportImport | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1676776488"></script>
+	<script type="text/javascript" src="elementlist.js?4030804575"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.70 dev</span>
+			<span>Overview version 3.0.71 dev</span>
 		</a>
 
 
@@ -262,6 +262,7 @@
 				<li><a href="class-ProcessWire.ProcessPageListRender.html">ProcessPageListRender</a></li>
 				<li><a href="class-ProcessWire.ProcessPageListRenderJSON.html">ProcessPageListRenderJSON</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSearch.html">ProcessPageSearch</a></li>
+				<li><a href="class-ProcessWire.ProcessPagesExportImport.html">ProcessPagesExportImport</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSort.html">ProcessPageSort</a></li>
 				<li><a href="class-ProcessWire.ProcessPageTrash.html">ProcessPageTrash</a></li>
 				<li><a href="class-ProcessWire.ProcessPageType.html">ProcessPageType</a></li>
@@ -616,7 +617,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PagesExportImport.html#4-634" title="Go to source code">core/PagesExportImport.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PagesExportImport.html#4-1174" title="Go to source code">core/PagesExportImport.php</a><br>
 	</div>
 
 
@@ -813,7 +814,7 @@ in this class.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pagesToArray">#</a>
-		<code><a href="source-class-ProcessWire.PagesExportImport.html#109-201" title="Go to source code">pagesToArray</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#109-206" title="Go to source code">pagesToArray</a>( <span><code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$items</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -857,7 +858,7 @@ in this class.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pageToArray">#</a>
-		<code><a href="source-class-ProcessWire.PagesExportImport.html#203-285" title="Go to source code">pageToArray</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#208-301" title="Go to source code">pageToArray</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -901,7 +902,7 @@ in this class.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_arrayToPages">#</a>
-		<code><a href="source-class-ProcessWire.PagesExportImport.html#287-328" title="Go to source code">arrayToPages</a>( <span>array <var>$a</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#303-347" title="Go to source code">arrayToPages</a>( <span>array <var>$a</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -951,7 +952,7 @@ in this class.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_arrayToPage">#</a>
-		<code><a href="source-class-ProcessWire.PagesExportImport.html#330-546" title="Go to source code">arrayToPage</a>( <span>array <var>$a</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#349-505" title="Go to source code">arrayToPage</a>( <span>array <var>$a</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -981,13 +982,18 @@ path or ID. Omit to use import data (default=0). - <code>template</code>
 or omit to use all import data (default=[]). - <code>changeStatus</code> (bool):
 Allow status to be changed aon existing pages? (default=true) -
 <code>changeSort</code> (bool): Allow sort and sortfield to be changed on
-existing pages? (default=true)</p>
+existing pages? (default=true) - <code>replaceTemplates</code> (array): Array of
+import-data template name to replacement template name (default=[]) -
+<code>replaceFields</code> (array): Array of import-data field name to
+replacement field name (default=[])</p>
 
 <p>The following options are for future use and not currently applicable: -
 <code>changeTemplate</code> (bool): Allow template to be changed on existing
 pages? (default=false) - <code>changeParent</code> (bool): Allow parent to be
 changed on existing pages? (default=false) - <code>changeName</code> (bool):
-Allow name to be changed on existing pages? (default=false)</p>
+Allow name to be changed on existing pages? (default=false) -
+<code>replaceParents</code> (array): Array of import-data parent path to
+replacement parent path (default=[])</p>
 
 
 
@@ -1014,7 +1020,145 @@ Allow name to be changed on existing pages? (default=false)</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="importFileField" id="_importFileField">
+	<tr data-order="importGetPage" id="_importGetPage">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importGetPage">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#507-557" title="Go to source code">importGetPage</a>( <span>array <var>&amp; $a</var></span>, <span>array <var>&amp; $options</var></span>, <span>array <var>&amp; $errors</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the page to import to</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the page to import to</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd><code>array</code><br>$a Import data</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Import settings</dd>
+					<dt><var>$errors</var></dt>
+					<dd><code>array</code><br>$errors Errors array</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importGetTemplate" id="_importGetTemplate">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importGetTemplate">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#559-585" title="Go to source code">importGetTemplate</a>( <span>array <var>&amp; $a</var></span>, <span>array <var>&amp; $options</var></span>, <span>array <var>&amp; $errors</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the Page Template to use for import</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the Page Template to use for import</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd><code>array</code><br>$a Import data</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Import options</dd>
+					<dt><var>$errors</var></dt>
+					<dd><code>array</code><br>$errors Errors array</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|null</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importGetParent" id="_importGetParent">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importGetParent">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#587-661" title="Go to source code">importGetParent</a>( <span>array <var>&amp; $a</var></span>, <span>array <var>&amp; $options</var></span>, <span>array <var>&amp; $errors</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the parent of the page being imported</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the parent of the page being imported</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd><code>array</code><br>$a Import data</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Import options</dd>
+					<dt><var>$errors</var></dt>
+					<dd><code>array</code><br>$errors Errors array</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code></code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importPageSettings" id="_importPageSettings">
 
 		<td class="attributes"><code>
 			 protected 
@@ -1024,8 +1168,94 @@ Allow name to be changed on existing pages? (default=false)</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_importFileField">#</a>
-		<code><a href="source-class-ProcessWire.PagesExportImport.html#548-579" title="Go to source code">importFileField</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<a class="anchor" href="#_importPageSettings">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#663-715" title="Go to source code">importPageSettings</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$settings</var></span>, <span>array <var>$options</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Import native page settings</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Import native page settings</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dt><var>$settings</var></dt>
+					<dd><code>array</code><br>$settings Contents of the import data 'settings' array</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importFieldValue" id="_importFieldValue">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importFieldValue">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#717-791" title="Go to source code">importFieldValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|string|integer|float <var>$importValue</var></span>, <span>array <var>$options</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Import value for a single field</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Import value for a single field</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dt><var>$field</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
+					<dt><var>$importValue</var></dt>
+					<dd><code>array|string|integer|float</code><br>$importValue</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Looks only at 'commit' option to determine when testing</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="importFileFieldValue" id="_importFileFieldValue">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_importFileFieldValue">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#793-961" title="Go to source code">importFileFieldValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$data</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1046,11 +1276,67 @@ Allow name to be changed on existing pages? (default=false)</p>
 					<dt><var>$field</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code></code><br>$field</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data Export/sleep value of file field</dd>
+					<dd><code>array</code><br>$data Export value of file field</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options</dd>
 				</dl></div>
 
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getImportInfo" id="_getImportInfo">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getImportInfo">#</a>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#962-1112" title="Go to source code">getImportInfo</a>( <span>array <var>&amp; $a</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Return array of info about the import data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return array of info about the import data</p>
+
+<p>This also populates the given import data ($a) with an '_info' property,
+which is an array containing all of the import info returned by this method. For
+each item in the 'pages' index it also populates an '_importToID' property
+containing the ID of the existing local page to update, or 0 if it should be a
+newly created page.</p>
+
+<p>Return value: ~~~~~ array( 'numNew' =&gt; 0, 'numExisting' =&gt; 0,
+'missingParents' =&gt; [ '/path/to/parent/' ], 'missingTemplates' =&gt; [
+'basic-page-hello' ], 'missingFields' =&gt; [ 'some_field', 'another_field' ],
+'missingFieldsTypes' =&gt; [ 'some_field' =&gt; 'FieldtypeText', 'another_field'
+=&gt; 'FieldtypeTextarea' ] 'mismatchedFields' =&gt; [ 'some_field' =&gt;
+'FieldtypeText' ] // field name =&gt; expected type 'missingTemplateFields'
+=&gt; [ 'template_name' =&gt; [ 'field1', 'field2', etc ] ] ); ~~~~~</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd><code>array</code><br>$a Import data array</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
 
 
 
@@ -1069,7 +1355,7 @@ Allow name to be changed on existing pages? (default=false)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFieldInfo">#</a>
-		<code><a href="source-class-ProcessWire.PagesExportImport.html#581-632" title="Go to source code">getFieldInfo</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesExportImport.html#1114-1172" title="Go to source code">getFieldInfo</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			

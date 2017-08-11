@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeRepeater/InputfieldRepeater.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1676776488"></script>
+	<script type="text/javascript" src="elementlist.js?4030804575"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.70 dev</span>
+			<span>Overview version 3.0.71 dev</span>
 		</a>
 
 
@@ -263,6 +263,7 @@
 				<li><a href="class-ProcessWire.ProcessPageListRender.html">ProcessPageListRender</a></li>
 				<li><a href="class-ProcessWire.ProcessPageListRenderJSON.html">ProcessPageListRenderJSON</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSearch.html">ProcessPageSearch</a></li>
+				<li><a href="class-ProcessWire.ProcessPagesExportImport.html">ProcessPagesExportImport</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSort.html">ProcessPageSort</a></li>
 				<li><a href="class-ProcessWire.ProcessPageTrash.html">ProcessPageTrash</a></li>
 				<li><a href="class-ProcessWire.ProcessPageType.html">ProcessPageType</a></li>
@@ -773,7 +774,7 @@
 </span><span id="217" class="l"><a class="l" href="#217">217: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$fieldIDs</span>)) <span class="php-keyword1">return</span>;
 </span><span id="218" class="l"><a class="l" href="#218">218: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$fieldIDs</span> <span class="php-keyword1">as</span> <span class="php-var">$fieldID</span>) {
 </span><span id="219" class="l"><a class="l" href="#219">219: </a>            <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$fieldID</span>);
-</span><span id="220" class="l"><a class="l" href="#220">220: </a>            <span class="php-keyword1">try</span> {
+</span><span id="220" class="l"><a class="l" href="#220">220: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$field</span>) <span class="php-keyword1">try</span> {
 </span><span id="221" class="l"><a class="l" href="#221">221: </a>                <span class="php-comment">// the following forces assets to be loaded</span>
 </span><span id="222" class="l"><a class="l" href="#222">222: </a>                <span class="php-var">$inputfield</span> = <span class="php-var">$field</span>-&gt;getInputfield(<span class="php-var">$this</span>-&gt;page);
 </span><span id="223" class="l"><a class="l" href="#223">223: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$inputfield</span>) <span class="php-var">$inputfield</span>-&gt;renderReady(<span class="php-keyword1">null</span>, <span class="php-keyword1">false</span>);
