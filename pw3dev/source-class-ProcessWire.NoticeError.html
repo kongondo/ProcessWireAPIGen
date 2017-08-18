@@ -8,7 +8,7 @@
 	<title>File core/Notices.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4030804575"></script>
+	<script type="text/javascript" src="elementlist.js?1298870549"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.71 dev</span>
+			<span>Overview version 3.0.72 dev</span>
 		</a>
 
 
@@ -207,7 +207,6 @@
 				<li><a href="class-ProcessWire.PageArrayIterator.html">PageArrayIterator</a></li>
 				<li><a href="class-ProcessWire.PageBookmarks.html">PageBookmarks</a></li>
 				<li><a href="class-ProcessWire.PageComparison.html">PageComparison</a></li>
-				<li><a href="class-ProcessWire.PageExport.html">PageExport</a></li>
 				<li><a href="class-ProcessWire.Pagefile.html">Pagefile</a></li>
 				<li><a href="class-ProcessWire.Pagefiles.html">Pagefiles</a></li>
 				<li><a href="class-ProcessWire.PagefilesManager.html">PagefilesManager</a></li>
@@ -479,6 +478,7 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
@@ -864,8 +864,36 @@
 </span><span id="307" class="l"><a class="l" href="#307">307: </a>        }
 </span><span id="308" class="l"><a class="l" href="#308">308: </a>        <span class="php-keyword1">return</span> <span class="php-var">$b</span>; 
 </span><span id="309" class="l"><a class="l" href="#309">309: </a>    }
-</span><span id="310" class="l"><a class="l" href="#310">310: </a>}
-</span><span id="311" class="l"><a class="l" href="#311">311: </a></span></code></pre>
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>    <span class="php-comment">/**
+</span></span><span id="312" class="l"><a class="l" href="#312">312: </a><span class="php-comment">     * Move notices from one Wire instance to another
+</span></span><span id="313" class="l"><a class="l" href="#313">313: </a><span class="php-comment">     * 
+</span></span><span id="314" class="l"><a class="l" href="#314">314: </a><span class="php-comment">     * @param Wire $from
+</span></span><span id="315" class="l"><a class="l" href="#315">315: </a><span class="php-comment">     * @param Wire $to
+</span></span><span id="316" class="l"><a class="l" href="#316">316: </a><span class="php-comment">     * @param array $options Additional options:
+</span></span><span id="317" class="l"><a class="l" href="#317">317: </a><span class="php-comment">     *  - `types` (array): Types to move (default=['messages','warnings','errors'])
+</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-comment">     *  - `prefix` (string): Optional prefix to add to moved notices text (default='')
+</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">     *  - `suffix` (string): Optional suffix to add to moved notices text (default='')
+</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">     * @return int Number of notices moved
+</span></span><span id="321" class="l"><a class="l" href="#321">321: </a><span class="php-comment">     * 
+</span></span><span id="322" class="l"><a class="l" href="#322">322: </a><span class="php-comment">     */</span>
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_move" href="#_move">move</a>(Wire <span class="php-var">$from</span>, Wire <span class="php-var">$to</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>        <span class="php-var">$n</span> = <span class="php-num">0</span>;
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>        <span class="php-var">$types</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$options</span>[<span class="php-quote">'types'</span>]) ? <span class="php-var">$options</span>[<span class="php-quote">'types'</span>] : <span class="php-keyword1">array</span>(<span class="php-quote">'errors'</span>, <span class="php-quote">'warnings'</span>, <span class="php-quote">'messages'</span>); 
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$types</span> <span class="php-keyword1">as</span> <span class="php-var">$type</span>) {
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>            <span class="php-var">$method</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$type</span>, <span class="php-quote">'s'</span>);
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$from</span>-&gt;<span class="php-var">$type</span>(<span class="php-quote">'clear'</span>) <span class="php-keyword1">as</span> <span class="php-var">$notice</span>) {
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>                <span class="php-var">$text</span> = <span class="php-var">$notice</span>-&gt;text; 
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$options</span>[<span class="php-quote">'prefix'</span>])) <span class="php-var">$text</span> = <span class="php-quote">&quot;</span><span class="php-var">$options</span><span class="php-quote">[prefix]</span><span class="php-var">$text</span><span class="php-quote">&quot;</span>;
+</span><span id="331" class="l"><a class="l" href="#331">331: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$options</span>[<span class="php-quote">'suffix'</span>])) <span class="php-var">$text</span> = <span class="php-quote">&quot;</span><span class="php-var">$text$options</span><span class="php-quote">[suffix]&quot;</span>;
+</span><span id="332" class="l"><a class="l" href="#332">332: </a>                <span class="php-var">$to</span>-&gt;<span class="php-var">$method</span>(<span class="php-var">$text</span>, <span class="php-var">$notice</span>-&gt;flags);
+</span><span id="333" class="l"><a class="l" href="#333">333: </a>                <span class="php-var">$n</span>++;
+</span><span id="334" class="l"><a class="l" href="#334">334: </a>            }
+</span><span id="335" class="l"><a class="l" href="#335">335: </a>        }
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>        <span class="php-keyword1">return</span> <span class="php-var">$n</span>;
+</span><span id="337" class="l"><a class="l" href="#337">337: </a>    }
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>}
+</span><span id="339" class="l"><a class="l" href="#339">339: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

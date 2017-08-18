@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireFileTools | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4030804575"></script>
+	<script type="text/javascript" src="elementlist.js?1298870549"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.71 dev</span>
+			<span>Overview version 3.0.72 dev</span>
 		</a>
 
 
@@ -206,7 +206,6 @@
 				<li><a href="class-ProcessWire.PageArrayIterator.html">PageArrayIterator</a></li>
 				<li><a href="class-ProcessWire.PageBookmarks.html">PageBookmarks</a></li>
 				<li><a href="class-ProcessWire.PageComparison.html">PageComparison</a></li>
-				<li><a href="class-ProcessWire.PageExport.html">PageExport</a></li>
 				<li><a href="class-ProcessWire.Pagefile.html">Pagefile</a></li>
 				<li><a href="class-ProcessWire.Pagefiles.html">Pagefiles</a></li>
 				<li><a href="class-ProcessWire.PagefilesManager.html">PagefilesManager</a></li>
@@ -478,6 +477,7 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
@@ -602,7 +602,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireFileTools.html#4-965" title="Go to source code">core/WireFileTools.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireFileTools.html#4-981" title="Go to source code">core/WireFileTools.php</a><br>
 	</div>
 
 
@@ -1033,7 +1033,7 @@ doesn't exist.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_zip">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#406-516" title="Go to source code">zip</a>( <span>string <var>$zipfile</var></span>, <span>array|string <var>$files</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#406-532" title="Go to source code">zip</a>( <span>string <var>$zipfile</var></span>, <span>array|string <var>$files</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1070,8 +1070,10 @@ actually specify a hidden file in your $files argument, then that overrides
 this. - <code>allowEmptyDirs</code> (boolean): allow empty directories in the
 ZIP file? (default=true) - <code>overwrite</code> (boolean): Replaces ZIP file
 if already present (rather than adding to it) (default=false) -
-<code>exclude</code> (array): Files or directories to exclude - <code>dir</code>
-(string): Directory name to prepend to added files in the ZIP</dd>
+<code>maxDepth</code> (int): Max dir depth 0 for no limit (default=0). Specify 1
+to stay only in dirs listed in $files. - <code>exclude</code> (array): Files or
+directories to exclude - <code>dir</code> (string): Directory name to prepend to
+added files in the ZIP</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1106,7 +1108,7 @@ thrown.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_send">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#518-536" title="Go to source code">send</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#534-552" title="Go to source code">send</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1164,7 +1166,7 @@ for details)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_render">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#539-637" title="Go to source code">render</a>( <span>string <var>$filename</var></span>, <span>array <var>$vars</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#555-653" title="Go to source code">render</a>( <span>string <var>$filename</var></span>, <span>array <var>$vars</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1249,7 +1251,7 @@ disabled)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____include">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#640-730" title="Go to source code">___include</a>( <span>string <var>$filename</var></span>, <span>array <var>$vars</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#656-746" title="Go to source code">___include</a>( <span>string <var>$filename</var></span>, <span>array <var>$vars</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1324,7 +1326,7 @@ allowed from. Note current dir is always allowed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_includeOnce">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#732-747" title="Go to source code">includeOnce</a>( <span>string <var>$filename</var></span>, <span>array <var>$vars</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#748-763" title="Go to source code">includeOnce</a>( <span>string <var>$filename</var></span>, <span>array <var>$vars</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1379,7 +1381,7 @@ and options.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNamespace">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#749-847" title="Go to source code">getNamespace</a>( <span>string <var>$file</var></span>, <span>boolean <var>$fileIsContents</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#765-863" title="Go to source code">getNamespace</a>( <span>string <var>$file</var></span>, <span>boolean <var>$fileIsContents</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1426,7 +1428,7 @@ file, rather than file name.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compile">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#849-879" title="Go to source code">compile</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#865-895" title="Go to source code">compile</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1483,7 +1485,7 @@ if compilation is not necessary.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileInclude">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#881-900" title="Go to source code">compileInclude</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#897-916" title="Go to source code">compileInclude</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1535,7 +1537,7 @@ namespace (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileIncludeOnce">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#902-921" title="Go to source code">compileIncludeOnce</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#918-937" title="Go to source code">compileIncludeOnce</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1587,7 +1589,7 @@ namespace (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileRequire">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#923-942" title="Go to source code">compileRequire</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#939-958" title="Go to source code">compileRequire</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1639,7 +1641,7 @@ namespace (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compileRequireOnce">#</a>
-		<code><a href="source-class-ProcessWire.WireFileTools.html#944-963" title="Go to source code">compileRequireOnce</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireFileTools.html#960-979" title="Go to source code">compileRequireOnce</a>( <span>string <var>$file</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
