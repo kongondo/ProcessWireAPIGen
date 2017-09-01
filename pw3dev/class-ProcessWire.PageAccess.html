@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PageAccess | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3572996590"></script>
+	<script type="text/javascript" src="elementlist.js?3513037563"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.73 dev</span>
+			<span>Overview version 3.0.74 dev</span>
 		</a>
 
 
@@ -72,6 +72,7 @@
 				<li><a href="class-ProcessWire.Fields.html">Fields</a></li>
 				<li><a href="class-ProcessWire.FieldsArray.html">FieldsArray</a></li>
 				<li><a href="class-ProcessWire.FieldSelectorInfo.html">FieldSelectorInfo</a></li>
+				<li><a href="class-ProcessWire.FieldsetPage.html">FieldsetPage</a></li>
 				<li><a href="class-ProcessWire.Fieldtype.html">Fieldtype</a></li>
 				<li><a href="class-ProcessWire.FieldtypeCache.html">FieldtypeCache</a></li>
 				<li><a href="class-ProcessWire.FieldtypeCheckbox.html">FieldtypeCheckbox</a></li>
@@ -80,6 +81,7 @@
 				<li><a href="class-ProcessWire.FieldtypeEmail.html">FieldtypeEmail</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetClose.html">FieldtypeFieldsetClose</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetOpen.html">FieldtypeFieldsetOpen</a></li>
+				<li><a href="class-ProcessWire.FieldtypeFieldsetPage.html">FieldtypeFieldsetPage</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetTabOpen.html">FieldtypeFieldsetTabOpen</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFile.html">FieldtypeFile</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFloat.html">FieldtypeFloat</a></li>
@@ -430,6 +432,7 @@
 				<li><a href="function-ProcessWire.database.html">database</a></li>
 				<li><a href="function-ProcessWire.datetime.html">datetime</a></li>
 				<li><a href="function-ProcessWire.fields.html">fields</a></li>
+				<li><a href="function-ProcessWire.FieldsetPageInstructions.html">FieldsetPageInstructions</a></li>
 				<li><a href="function-ProcessWire.files.html">files</a></li>
 				<li><a href="function-ProcessWire.hookMarkupPagerNavRender.html">hookMarkupPagerNavRender</a></li>
 				<li><a href="function-ProcessWire.input.html">input</a></li>
@@ -582,7 +585,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PageAccess.html#4-128" title="Go to source code">core/PageAccess.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PageAccess.html#4-174" title="Go to source code">core/PageAccess.php</a><br>
 	</div>
 
 
@@ -600,7 +603,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getType">#</a>
-		<code><a href="source-class-ProcessWire.PageAccess.html#30-53" title="Go to source code">getType</a>( <span>string|integer|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PageAccess.html#36-59" title="Go to source code">getType</a>( <span>string|integer|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -644,7 +647,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAccessParent">#</a>
-		<code><a href="source-class-ProcessWire.PageAccess.html#55-77" title="Go to source code">getAccessParent</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span>, <span>integer <var>$level</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageAccess.html#61-84" title="Go to source code">getAccessParent</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span>, <span>integer <var>$level</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -665,7 +668,7 @@ role/access settings from</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$type</var></dt>
-					<dd><code>string</code><br>Type, one of 'view', 'edit', 'create' or 'add' (default='view')</dd>
+					<dd><code>string</code><br>$type Type, one of 'view', 'edit', 'create' or 'add' (default='view')</dd>
 					<dt><var>$level</var></dt>
 					<dd><code>integer</code><br>$level Recursion level for internal use only</dd>
 				</dl></div>
@@ -692,7 +695,7 @@ role/access settings from</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAccessTemplate">#</a>
-		<code><a href="source-class-ProcessWire.PageAccess.html#79-91" title="Go to source code">getAccessTemplate</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageAccess.html#86-98" title="Go to source code">getAccessTemplate</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -711,7 +714,7 @@ role/access settings from</p>
 					<dt><var>$page</var></dt>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
 					<dt><var>$type</var></dt>
-					<dd><code>string</code><br>Type, one of 'view', 'edit', 'create' or 'add' (default='view')</dd>
+					<dd><code>string</code><br>$type Type, one of 'view', 'edit', 'create' or 'add' (default='view')</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -736,7 +739,7 @@ role/access settings from</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAccessRoles">#</a>
-		<code><a href="source-class-ProcessWire.PageAccess.html#93-108" title="Go to source code">getAccessRoles</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageAccess.html#100-115" title="Go to source code">getAccessRoles</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -784,7 +787,7 @@ retrieve that type</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasAccessRole">#</a>
-		<code><a href="source-class-ProcessWire.PageAccess.html#110-127" title="Go to source code">hasAccessRole</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code> <var>$role</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PageAccess.html#117-134" title="Go to source code">hasAccessRole</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code> <var>$role</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -807,12 +810,141 @@ retrieve that type</dd>
 					<dt><var>$role</var></dt>
 					<dd><code>string|integer|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code></code><br>$role</dd>
 					<dt><var>$type</var></dt>
-					<dd><code>string</code><br>Default is 'view', but you may specify 'create' or 'add' as well</dd>
+					<dd><code>string</code><br>$type Default is 'view', but you may specify 'create' or 'add' as well</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
 					<code>boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="wire" id="_wire">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|<code><a href="class-ProcessWire.Fuel.html">ProcessWire\Fuel</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_wire">#</a>
+		<code><a href="source-class-ProcessWire.PageAccess.html#136-153" title="Go to source code">wire</a>( <span>string|<code><a href="class-ProcessWire.WireFuelable.html">ProcessWire\WireFuelable</a></code> <var>$name</var> = <span class="php-quote">''</span></span>, <span>null|mixed <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$lock</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get or inject a ProcessWire API variable or fuel a new object instance</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get or inject a ProcessWire API variable or fuel a new object instance</p>
+
+<p>See Wire::wire() for explanation of all options.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string|<code><a href="class-ProcessWire.WireFuelable.html">ProcessWire\WireFuelable</a></code></code><br>$name Name of API variable to retrieve, set, or omit to retrieve entire Fuel
+object.</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>null|mixed</code><br>$value Value to set if using this as a setter, otherwise omit.</dd>
+					<dt><var>$lock</var></dt>
+					<dd><code>boolean</code><br>$lock When using as a setter, specify true if you want to lock the value from
+future changes (default=false)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|<code><a href="class-ProcessWire.Fuel.html">ProcessWire\Fuel</a></code></code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setWire" id="_setWire">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setWire">#</a>
+		<code><a href="source-class-ProcessWire.PageAccess.html#155-163" title="Go to source code">setWire</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the ProcessWire instance</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the ProcessWire instance</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$wire</var></dt>
+					<dd><code><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code></code><br>$wire</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getWire" id="_getWire">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getWire">#</a>
+		<code><a href="source-class-ProcessWire.PageAccess.html#165-173" title="Go to source code">getWire</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the ProcessWire instance</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the ProcessWire instance</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code></code><br>
 				</div>
 
 
@@ -836,6 +968,29 @@ retrieve that type</dd>
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="wire" id="$wire">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.PageAccess.html#15-19" title="Go to source code"><var>$wire</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$wire" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="types" id="$types">
 		<td class="attributes"><code>
 			protected  
@@ -843,7 +998,7 @@ retrieve that type</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PageAccess.html#15-28" title="Go to source code"><var>$types</var></a>
+				<a href="source-class-ProcessWire.PageAccess.html#21-34" title="Go to source code"><var>$types</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'view'</span>,

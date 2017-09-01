@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ProcessFieldExportImport | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3572996590"></script>
+	<script type="text/javascript" src="elementlist.js?3513037563"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.73 dev</span>
+			<span>Overview version 3.0.74 dev</span>
 		</a>
 
 
@@ -72,6 +72,7 @@
 				<li><a href="class-ProcessWire.Fields.html">Fields</a></li>
 				<li><a href="class-ProcessWire.FieldsArray.html">FieldsArray</a></li>
 				<li><a href="class-ProcessWire.FieldSelectorInfo.html">FieldSelectorInfo</a></li>
+				<li><a href="class-ProcessWire.FieldsetPage.html">FieldsetPage</a></li>
 				<li><a href="class-ProcessWire.Fieldtype.html">Fieldtype</a></li>
 				<li><a href="class-ProcessWire.FieldtypeCache.html">FieldtypeCache</a></li>
 				<li><a href="class-ProcessWire.FieldtypeCheckbox.html">FieldtypeCheckbox</a></li>
@@ -80,6 +81,7 @@
 				<li><a href="class-ProcessWire.FieldtypeEmail.html">FieldtypeEmail</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetClose.html">FieldtypeFieldsetClose</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetOpen.html">FieldtypeFieldsetOpen</a></li>
+				<li><a href="class-ProcessWire.FieldtypeFieldsetPage.html">FieldtypeFieldsetPage</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetTabOpen.html">FieldtypeFieldsetTabOpen</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFile.html">FieldtypeFile</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFloat.html">FieldtypeFloat</a></li>
@@ -430,6 +432,7 @@
 				<li><a href="function-ProcessWire.database.html">database</a></li>
 				<li><a href="function-ProcessWire.datetime.html">datetime</a></li>
 				<li><a href="function-ProcessWire.fields.html">fields</a></li>
+				<li><a href="function-ProcessWire.FieldsetPageInstructions.html">FieldsetPageInstructions</a></li>
 				<li><a href="function-ProcessWire.files.html">files</a></li>
 				<li><a href="function-ProcessWire.hookMarkupPagerNavRender.html">hookMarkupPagerNavRender</a></li>
 				<li><a href="function-ProcessWire.input.html">input</a></li>
@@ -559,30 +562,10 @@
 
 	<div class="description">
 	
-<p>ProcessWire Base Class "Wire"</p>
-
-<p>#pw-summary Wire is the base class for most ProcessWire classes and modules.
-#pw-body = Wire derived classes have a <code>$this-&gt;wire()</code> method that
-provides access to ProcessWire's API variables. API variables can also be
-accessed as local properties in most cases. Wire also provides basic methods for
-tracking changes and managing runtime notices specific to the instance.</p>
-
-<p>Wire derived classes can specify which methods are "hookable" by precending
-the method name with 3 underscores like this: <code>___myMethod()</code>. Other
-classes can then hook either before or after that method, modifying arguments or
-return values. Several other hook methods are also provided for Wire derived
-classes that are hooking into others. #pw-body #pw-order-groups
-common,identification,hooks,notices,changes,hooker,api-helpers
-#pw-summary-api-helpers Shortcuts to ProcessWire API variables. Access without
-any arguments returns the API variable. Some support arguments as shortcuts to
-methods in the API variable. #pw-summary-changes Methods to support tracking and
-retrieval of changes made to the object. #pw-summary-hooks Methods for managing
-hooks for an object instance or class.</p>
+<p>Handles import/export for ProcessField</p>
 
 <p>ProcessWire 3.x, Copyright 2017 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
-
-<p>#pw-use-constants</p>
 
 	</div>
 
@@ -620,7 +603,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.ProcessFieldExportImport.html#3-388" title="Go to source code">modules/Process/ProcessField/ProcessFieldExportImport.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.ProcessFieldExportImport.html#4-415" title="Go to source code">modules/Process/ProcessField/ProcessFieldExportImport.php</a><br>
 	</div>
 
 
@@ -638,7 +621,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#5-7" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#18-20" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -669,7 +652,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getExportData">#</a>
-		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#9-24" title="Go to source code">getExportData</a>( <span>array <var>$exportFields</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#22-37" title="Go to source code">getExportData</a>( <span>array <var>$exportFields</var></span> )</code>
 
 		<div class="description short">
 			
@@ -704,14 +687,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			string
+			<code><a href="class-ProcessWire.InputfieldForm.html">ProcessWire\InputfieldForm</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____buildExport">#</a>
-		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#26-103" title="Go to source code">___buildExport</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#39-117" title="Go to source code">___buildExport</a>( )</code>
 
 		<div class="description short">
 			
@@ -728,7 +711,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code><code><a href="class-ProcessWire.InputfieldForm.html">ProcessWire\InputfieldForm</a></code></code><br>
 				</div>
 
 
@@ -748,17 +731,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____buildInputDataForm">#</a>
-		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#105-133" title="Go to source code">___buildInputDataForm</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#119-150" title="Go to source code">___buildInputDataForm</a>( )</code>
 
 		<div class="description short">
 			
-<p>Build Textarea input form to past JSON data into</p>
+<p>Build Textarea input form to pass JSON data into</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Build Textarea input form to past JSON data into</p>
+<p>Build Textarea input form to pass JSON data into</p>
 
 
 
@@ -778,14 +761,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			string
+			<code><a href="class-ProcessWire.InputfieldForm.html">ProcessWire\InputfieldForm</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____buildImport">#</a>
-		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#135-317" title="Go to source code">___buildImport</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#152-344" title="Go to source code">___buildImport</a>( )</code>
 
 		<div class="description short">
 			
@@ -802,7 +785,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>
+					<code><code><a href="class-ProcessWire.InputfieldForm.html">ProcessWire\InputfieldForm</a></code></code><br>
 				</div>
 
 				<h4>Throws</h4>
@@ -826,7 +809,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____processImport">#</a>
-		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#319-385" title="Go to source code">___processImport</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessFieldExportImport.html#346-412" title="Go to source code">___processImport</a>( )</code>
 
 		<div class="description short">
 			

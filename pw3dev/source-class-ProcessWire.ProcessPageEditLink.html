@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessPageEditLink/ProcessPageEditLink.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3572996590"></script>
+	<script type="text/javascript" src="elementlist.js?3513037563"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.73 dev</span>
+			<span>Overview version 3.0.74 dev</span>
 		</a>
 
 
@@ -73,6 +73,7 @@
 				<li><a href="class-ProcessWire.Fields.html">Fields</a></li>
 				<li><a href="class-ProcessWire.FieldsArray.html">FieldsArray</a></li>
 				<li><a href="class-ProcessWire.FieldSelectorInfo.html">FieldSelectorInfo</a></li>
+				<li><a href="class-ProcessWire.FieldsetPage.html">FieldsetPage</a></li>
 				<li><a href="class-ProcessWire.Fieldtype.html">Fieldtype</a></li>
 				<li><a href="class-ProcessWire.FieldtypeCache.html">FieldtypeCache</a></li>
 				<li><a href="class-ProcessWire.FieldtypeCheckbox.html">FieldtypeCheckbox</a></li>
@@ -81,6 +82,7 @@
 				<li><a href="class-ProcessWire.FieldtypeEmail.html">FieldtypeEmail</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetClose.html">FieldtypeFieldsetClose</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetOpen.html">FieldtypeFieldsetOpen</a></li>
+				<li><a href="class-ProcessWire.FieldtypeFieldsetPage.html">FieldtypeFieldsetPage</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFieldsetTabOpen.html">FieldtypeFieldsetTabOpen</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFile.html">FieldtypeFile</a></li>
 				<li><a href="class-ProcessWire.FieldtypeFloat.html">FieldtypeFloat</a></li>
@@ -431,6 +433,7 @@
 				<li><a href="function-ProcessWire.database.html">database</a></li>
 				<li><a href="function-ProcessWire.datetime.html">datetime</a></li>
 				<li><a href="function-ProcessWire.fields.html">fields</a></li>
+				<li><a href="function-ProcessWire.FieldsetPageInstructions.html">FieldsetPageInstructions</a></li>
 				<li><a href="function-ProcessWire.files.html">files</a></li>
 				<li><a href="function-ProcessWire.hookMarkupPagerNavRender.html">hookMarkupPagerNavRender</a></li>
 				<li><a href="function-ProcessWire.input.html">input</a></li>
@@ -899,7 +902,7 @@
 </span><span id="342" class="l"><a class="l" href="#342">342: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;page;
 </span><span id="343" class="l"><a class="l" href="#343">343: </a>        <span class="php-comment">// As the link generator might be called in a repeater, we need to find the containing page     </span>
 </span><span id="344" class="l"><a class="l" href="#344">344: </a>        <span class="php-var">$n</span> = <span class="php-num">0</span>;
-</span><span id="345" class="l"><a class="l" href="#345">345: </a>        <span class="php-keyword1">while</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$page</span>-&gt;className(), <span class="php-quote">'Repeater'</span>) !== <span class="php-keyword1">false</span> &amp;&amp; ++<span class="php-var">$n</span> &lt; <span class="php-num">10</span>) {
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>        <span class="php-keyword1">while</span>(wireInstanceOf(<span class="php-var">$page</span>, <span class="php-quote">'RepeaterPage'</span>) &amp;&amp; ++<span class="php-var">$n</span> &lt; <span class="php-num">10</span>) {
 </span><span id="346" class="l"><a class="l" href="#346">346: </a>            <span class="php-comment">/** @var RepeaterPage $page */</span>
 </span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-var">$page</span> = <span class="php-var">$page</span>-&gt;getForPage();
 </span><span id="348" class="l"><a class="l" href="#348">348: </a>        }
@@ -928,7 +931,7 @@
 </span><span id="371" class="l"><a class="l" href="#371">371: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$value</span>) <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name) <span class="php-keyword1">as</span> <span class="php-var">$file</span>) {
 </span><span id="372" class="l"><a class="l" href="#372">372: </a>                    <span class="php-var">$files</span>[<span class="php-var">$file</span>-&gt;url] = <span class="php-var">$prefix</span> . <span class="php-var">$field</span>-&gt;getLabel() . <span class="php-quote">': '</span> . <span class="php-var">$file</span>-&gt;<span class="php-keyword2">basename</span>;
 </span><span id="373" class="l"><a class="l" href="#373">373: </a>                }
-</span><span id="374" class="l"><a class="l" href="#374">374: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$type</span>-&gt;className(), <span class="php-quote">'FieldtypeRepeater'</span>) !== <span class="php-keyword1">false</span>) {
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(wireInstanceOf(<span class="php-var">$type</span>, <span class="php-quote">'FieldtypeRepeater'</span>)) { 
 </span><span id="375" class="l"><a class="l" href="#375">375: </a>                <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name);
 </span><span id="376" class="l"><a class="l" href="#376">376: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$value</span>) <span class="php-keyword1">foreach</span>(<span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name) <span class="php-keyword1">as</span> <span class="php-var">$repeaterPage</span>){
 </span><span id="377" class="l"><a class="l" href="#377">377: </a>                    <span class="php-var">$files</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$this</span>-&gt;getFilesPage(<span class="php-var">$repeaterPage</span>, <span class="php-var">$field</span>-&gt;getLabel() . <span class="php-quote">': '</span>), <span class="php-var">$files</span>);
