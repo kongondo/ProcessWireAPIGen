@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.75 dev</span>
+			<span>Overview version 3.0.76 dev</span>
 		</a>
 
 
@@ -705,7 +705,7 @@
 </span><span id="145" class="l"><a class="l" href="#145"> 145: </a>        
 </span><span id="146" class="l"><a class="l" href="#146"> 146: </a>        <span class="php-comment">// make sure that all templates used by repeater pages enforce a Page type of RepeaterPage</span>
 </span><span id="147" class="l"><a class="l" href="#147"> 147: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$fields</span> <span class="php-keyword1">as</span> <span class="php-var">$field</span>) {
-</span><span id="148" class="l"><a class="l" href="#148"> 148: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;type-&gt;className() != <span class="php-var">$className</span>) <span class="php-keyword1">continue</span>; 
+</span><span id="148" class="l"><a class="l" href="#148"> 148: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;type || <span class="php-var">$field</span>-&gt;type-&gt;className() != <span class="php-var">$className</span>) <span class="php-keyword1">continue</span>; 
 </span><span id="149" class="l"><a class="l" href="#149"> 149: </a>            <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;getRepeaterTemplate(<span class="php-var">$field</span>);
 </span><span id="150" class="l"><a class="l" href="#150"> 150: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$template</span>) <span class="php-keyword1">continue</span>;
 </span><span id="151" class="l"><a class="l" href="#151"> 151: </a>            <span class="php-keyword1">if</span>(__NAMESPACE__) {
@@ -1470,11 +1470,11 @@
 </span><span id="910" class="l"><a class="l" href="#910"> 910: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$changesByField</span> <span class="php-keyword1">as</span> <span class="php-var">$fieldName</span> =&gt; <span class="php-var">$count</span>) {
 </span><span id="911" class="l"><a class="l" href="#911"> 911: </a>                <span class="php-var">$updateCounts</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$fieldName</span><span class="php-quote"> (</span><span class="php-var">$count</span><span class="php-quote">)&quot;</span>;    
 </span><span id="912" class="l"><a class="l" href="#912"> 912: </a>            }
-</span><span id="913" class="l"><a class="l" href="#913"> 913: </a>            <span class="php-var">$messages</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$numUpdated</span><span class="php-quote"> '</span><span class="php-var">$fieldName</span><span class="php-quote">' page(s) updated – &quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">', '</span>, <span class="php-var">$updateCounts</span>);
+</span><span id="913" class="l"><a class="l" href="#913"> 913: </a>            <span class="php-var">$messages</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$numUpdated</span><span class="php-quote"> page(s) updated – &quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">', '</span>, <span class="php-var">$updateCounts</span>);
 </span><span id="914" class="l"><a class="l" href="#914"> 914: </a>        }
 </span><span id="915" class="l"><a class="l" href="#915"> 915: </a>        
-</span><span id="916" class="l"><a class="l" href="#916"> 916: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numAdded</span>) <span class="php-var">$messages</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$numAdded</span><span class="php-quote"> new '</span><span class="php-var">$fieldName</span><span class="php-quote">' page(s) added&quot;</span>;
-</span><span id="917" class="l"><a class="l" href="#917"> 917: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numDeleted</span>) <span class="php-var">$messages</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$numDeleted</span><span class="php-quote"> '</span><span class="php-var">$fieldName</span><span class="php-quote">' page(s) DELETED&quot;</span>;
+</span><span id="916" class="l"><a class="l" href="#916"> 916: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numAdded</span>) <span class="php-var">$messages</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$numAdded</span><span class="php-quote"> new page(s) added&quot;</span>;
+</span><span id="917" class="l"><a class="l" href="#917"> 917: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numDeleted</span>) <span class="php-var">$messages</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$numDeleted</span><span class="php-quote"> page(s) DELETED&quot;</span>;
 </span><span id="918" class="l"><a class="l" href="#918"> 918: </a>        
 </span><span id="919" class="l"><a class="l" href="#919"> 919: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$messages</span> <span class="php-keyword1">as</span> <span class="php-var">$message</span>) {
 </span><span id="920" class="l"><a class="l" href="#920"> 920: </a>            <span class="php-var">$pageArray</span>-&gt;message(<span class="php-quote">&quot;</span><span class="php-var">$field</span><span class="php-quote">-&gt;name: </span><span class="php-var">$message</span><span class="php-quote">&quot;</span>);
