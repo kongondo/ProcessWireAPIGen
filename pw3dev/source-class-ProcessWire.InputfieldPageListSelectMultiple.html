@@ -8,7 +8,7 @@
 	<title>File modules/Inputfield/InputfieldPageListSelect/InputfieldPageListSelectMultiple.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2622003039"></script>
+	<script type="text/javascript" src="elementlist.js?747734638"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.78 dev</span>
+			<span>Overview version 3.0.79 dev</span>
 		</a>
 
 
@@ -624,78 +624,79 @@
 </span><span id="64" class="l"><a class="l" href="#64"> 64: </a>            <span class="php-comment">/** @var ProcessPageList $process */</span>
 </span><span id="65" class="l"><a class="l" href="#65"> 65: </a>            <span class="php-var">$process</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'ProcessPageList'</span>); <span class="php-comment">// prerequisite module</span>
 </span><span id="66" class="l"><a class="l" href="#66"> 66: </a>            <span class="php-var">$process</span>-&gt;setPageLabelField(<span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'name'</span>), <span class="php-var">$this</span>-&gt;labelFieldName);
-</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>        }
-</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>        <span class="php-keyword1">return</span> parent::renderReady(<span class="php-var">$parent</span>, <span class="php-var">$renderValueMode</span>);
-</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>    }
-</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>
-</span><span id="71" class="l"><a class="l" href="#71"> 71: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____render" href="#____render">___render</a>() {
-</span><span id="72" class="l"><a class="l" href="#72"> 72: </a>
-</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">strlen</span>(<span class="php-var">$this</span>-&gt;parent_id)) {
-</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>            <span class="php-keyword1">return</span> <span class="php-quote">&quot;&lt;p class='error'&gt;&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Unable to render this field due to missing parent page in field settings.'</span>) . <span class="php-quote">'&lt;/p&gt;'</span>;
-</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>        }
-</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>
-</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>        <span class="php-var">$out</span> = <span class="php-quote">&quot;&lt;ol id='</span><span class="php-var">{$this-&gt;id}</span><span class="php-quote">_items'&gt;&quot;</span> . <span class="php-var">$this</span>-&gt;renderListItem(<span class="php-quote">&quot;Label&quot;</span>, <span class="php-quote">&quot;1&quot;</span>, <span class="php-quote">&quot;itemTemplate&quot;</span>); 
-</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>
-</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;value <span class="php-keyword1">as</span> <span class="php-var">$page_id</span>) {
-</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>            <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;pages-&gt;get((int) <span class="php-var">$page_id</span>); 
-</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$page</span> || !<span class="php-var">$page</span>-&gt;id) <span class="php-keyword1">continue</span>; 
-</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>            <span class="php-var">$label</span> = <span class="php-var">$page</span>-&gt;<span class="php-keyword2">getText</span>(<span class="php-var">$this</span>-&gt;labelFieldName, <span class="php-keyword1">true</span>, <span class="php-keyword1">true</span>);
-</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">strlen</span>(<span class="php-var">$label</span>)) <span class="php-var">$label</span> = <span class="php-var">$page</span>-&gt;name;
-</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>            <span class="php-var">$out</span> .= <span class="php-var">$this</span>-&gt;renderListItem(<span class="php-var">$label</span>, <span class="php-var">$page</span>-&gt;id); 
-</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>        }
-</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>        
-</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>        <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;/ol&gt;&quot;</span>;
-</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>
-</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>        <span class="php-var">$this</span>-&gt;addClass(<span class="php-quote">'InputfieldPageListSelectMultipleData'</span>);
-</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>        <span class="php-var">$attrs</span> = <span class="php-var">$this</span>-&gt;getAttributes();
-</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>        <span class="php-keyword1">unset</span>(<span class="php-var">$attrs</span>[<span class="php-quote">'value'</span>]);
-</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>        
-</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-root'</span>] = <span class="php-var">$this</span>-&gt;parent_id; <span class="php-comment">// rootPageID</span>
-</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-href'</span>] = <span class="php-quote">&quot;#wrap_</span><span class="php-var">{$this-&gt;id}</span><span class="php-quote">&quot;</span>; <span class="php-comment">// selectSelectHref</span>
-</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-start'</span>] = <span class="php-var">$this</span>-&gt;startLabel; <span class="php-comment">// selectStartLabel</span>
-</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-cancel'</span>] = <span class="php-var">$this</span>-&gt;cancelLabel; <span class="php-comment">// selectCancelLabel</span>
-</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-select'</span>] = <span class="php-var">$this</span>-&gt;selectLabel; <span class="php-comment">// selectSelectLabel</span>
-</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-unselect'</span>] = <span class="php-var">$this</span>-&gt;unselectLabel; <span class="php-comment">// selectUnselectLabel</span>
-</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-more'</span>] = <span class="php-var">$this</span>-&gt;moreLabel; <span class="php-comment">// moreLabel</span>
-</span><span id="100" class="l"><a class="l" href="#100">100: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-labelName'</span>] = <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'name'</span>);
-</span><span id="101" class="l"><a class="l" href="#101">101: </a>    
-</span><span id="102" class="l"><a class="l" href="#102">102: </a>        <span class="php-var">$attrStr</span> = <span class="php-var">$this</span>-&gt;getAttributesString(<span class="php-var">$attrs</span>);
-</span><span id="103" class="l"><a class="l" href="#103">103: </a>        <span class="php-var">$attrStr</span> = <span class="php-quote">&quot;value='&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$this</span>-&gt;value) . <span class="php-quote">&quot;' </span><span class="php-var">$attrStr</span><span class="php-quote">&quot;</span>;
-</span><span id="104" class="l"><a class="l" href="#104">104: </a>        <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;input type='text' </span><span class="php-var">$attrStr</span><span class="php-quote"> /&gt;&quot;</span>;
-</span><span id="105" class="l"><a class="l" href="#105">105: </a>
-</span><span id="106" class="l"><a class="l" href="#106">106: </a>        <span class="php-keyword1">return</span> <span class="php-var">$out</span>; 
-</span><span id="107" class="l"><a class="l" href="#107">107: </a>    }
-</span><span id="108" class="l"><a class="l" href="#108">108: </a>
-</span><span id="109" class="l"><a class="l" href="#109">109: </a>    <span class="php-comment">/**
-</span></span><span id="110" class="l"><a class="l" href="#110">110: </a><span class="php-comment">     * Convert the CSV string provide in the $input to an array of ints needed for this fieldtype
-</span></span><span id="111" class="l"><a class="l" href="#111">111: </a><span class="php-comment">     * 
-</span></span><span id="112" class="l"><a class="l" href="#112">112: </a><span class="php-comment">     * @param WireInputData $input
-</span></span><span id="113" class="l"><a class="l" href="#113">113: </a><span class="php-comment">     * @return $this
-</span></span><span id="114" class="l"><a class="l" href="#114">114: </a><span class="php-comment">     *
-</span></span><span id="115" class="l"><a class="l" href="#115">115: </a><span class="php-comment">     */</span>
-</span><span id="116" class="l"><a class="l" href="#116">116: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____processInput" href="#____processInput">___processInput</a>(WireInputData <span class="php-var">$input</span>) {
-</span><span id="117" class="l"><a class="l" href="#117">117: </a>
-</span><span id="118" class="l"><a class="l" href="#118">118: </a>        parent::___processInput(<span class="php-var">$input</span>); 
-</span><span id="119" class="l"><a class="l" href="#119">119: </a>
-</span><span id="120" class="l"><a class="l" href="#120">120: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>);  
-</span><span id="121" class="l"><a class="l" href="#121">121: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-keyword2">reset</span>(<span class="php-var">$value</span>); 
-</span><span id="122" class="l"><a class="l" href="#122">122: </a>        <span class="php-var">$value</span> = <span class="php-keyword2">trim</span>(<span class="php-var">$value</span>); 
-</span><span id="123" class="l"><a class="l" href="#123">123: </a>
-</span><span id="124" class="l"><a class="l" href="#124">124: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$value</span>, <span class="php-quote">&quot;,&quot;</span>) !== <span class="php-keyword1">false</span>) <span class="php-var">$value</span> = <span class="php-keyword2">explode</span>(<span class="php-quote">&quot;,&quot;</span>, <span class="php-var">$value</span>); 
-</span><span id="125" class="l"><a class="l" href="#125">125: </a>            <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$value</span>) <span class="php-var">$value</span> = <span class="php-keyword1">array</span>(<span class="php-var">$value</span>);
-</span><span id="126" class="l"><a class="l" href="#126">126: </a>            <span class="php-keyword1">else</span> <span class="php-var">$value</span> = <span class="php-keyword1">array</span>();
-</span><span id="127" class="l"><a class="l" href="#127">127: </a>
-</span><span id="128" class="l"><a class="l" href="#128">128: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$v</span>) {
-</span><span id="129" class="l"><a class="l" href="#129">129: </a>            <span class="php-var">$value</span>[<span class="php-var">$k</span>] = (int) <span class="php-var">$v</span>; 
-</span><span id="130" class="l"><a class="l" href="#130">130: </a>        }
-</span><span id="131" class="l"><a class="l" href="#131">131: </a>
-</span><span id="132" class="l"><a class="l" href="#132">132: </a>        <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>); 
-</span><span id="133" class="l"><a class="l" href="#133">133: </a>
-</span><span id="134" class="l"><a class="l" href="#134">134: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>; 
-</span><span id="135" class="l"><a class="l" href="#135">135: </a>    }
-</span><span id="136" class="l"><a class="l" href="#136">136: </a>    
-</span><span id="137" class="l"><a class="l" href="#137">137: </a>}
-</span><span id="138" class="l"><a class="l" href="#138">138: </a></span></code></pre>
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>            <span class="php-var">$process</span>-&gt;renderReady();
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>        }
+</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>        <span class="php-keyword1">return</span> parent::renderReady(<span class="php-var">$parent</span>, <span class="php-var">$renderValueMode</span>);
+</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>    }
+</span><span id="71" class="l"><a class="l" href="#71"> 71: </a>
+</span><span id="72" class="l"><a class="l" href="#72"> 72: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____render" href="#____render">___render</a>() {
+</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">strlen</span>(<span class="php-var">$this</span>-&gt;parent_id)) {
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>            <span class="php-keyword1">return</span> <span class="php-quote">&quot;&lt;p class='error'&gt;&quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Unable to render this field due to missing parent page in field settings.'</span>) . <span class="php-quote">'&lt;/p&gt;'</span>;
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>        }
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>        <span class="php-var">$out</span> = <span class="php-quote">&quot;&lt;ol id='</span><span class="php-var">{$this-&gt;id}</span><span class="php-quote">_items'&gt;&quot;</span> . <span class="php-var">$this</span>-&gt;renderListItem(<span class="php-quote">&quot;Label&quot;</span>, <span class="php-quote">&quot;1&quot;</span>, <span class="php-quote">&quot;itemTemplate&quot;</span>); 
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>
+</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;value <span class="php-keyword1">as</span> <span class="php-var">$page_id</span>) {
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>            <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;pages-&gt;get((int) <span class="php-var">$page_id</span>); 
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$page</span> || !<span class="php-var">$page</span>-&gt;id) <span class="php-keyword1">continue</span>; 
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>            <span class="php-var">$label</span> = <span class="php-var">$page</span>-&gt;<span class="php-keyword2">getText</span>(<span class="php-var">$this</span>-&gt;labelFieldName, <span class="php-keyword1">true</span>, <span class="php-keyword1">true</span>);
+</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">strlen</span>(<span class="php-var">$label</span>)) <span class="php-var">$label</span> = <span class="php-var">$page</span>-&gt;name;
+</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>            <span class="php-var">$out</span> .= <span class="php-var">$this</span>-&gt;renderListItem(<span class="php-var">$label</span>, <span class="php-var">$page</span>-&gt;id); 
+</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>        }
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>        
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>        <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;/ol&gt;&quot;</span>;
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>
+</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>        <span class="php-var">$this</span>-&gt;addClass(<span class="php-quote">'InputfieldPageListSelectMultipleData'</span>);
+</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>        <span class="php-var">$attrs</span> = <span class="php-var">$this</span>-&gt;getAttributes();
+</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>        <span class="php-keyword1">unset</span>(<span class="php-var">$attrs</span>[<span class="php-quote">'value'</span>]);
+</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>        
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-root'</span>] = <span class="php-var">$this</span>-&gt;parent_id; <span class="php-comment">// rootPageID</span>
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-href'</span>] = <span class="php-quote">&quot;#wrap_</span><span class="php-var">{$this-&gt;id}</span><span class="php-quote">&quot;</span>; <span class="php-comment">// selectSelectHref</span>
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-start'</span>] = <span class="php-var">$this</span>-&gt;startLabel; <span class="php-comment">// selectStartLabel</span>
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-cancel'</span>] = <span class="php-var">$this</span>-&gt;cancelLabel; <span class="php-comment">// selectCancelLabel</span>
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-select'</span>] = <span class="php-var">$this</span>-&gt;selectLabel; <span class="php-comment">// selectSelectLabel</span>
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-unselect'</span>] = <span class="php-var">$this</span>-&gt;unselectLabel; <span class="php-comment">// selectUnselectLabel</span>
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-more'</span>] = <span class="php-var">$this</span>-&gt;moreLabel; <span class="php-comment">// moreLabel</span>
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>        <span class="php-var">$attrs</span>[<span class="php-quote">'data-labelName'</span>] = <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'name'</span>);
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>    
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>        <span class="php-var">$attrStr</span> = <span class="php-var">$this</span>-&gt;getAttributesString(<span class="php-var">$attrs</span>);
+</span><span id="104" class="l"><a class="l" href="#104">104: </a>        <span class="php-var">$attrStr</span> = <span class="php-quote">&quot;value='&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$this</span>-&gt;value) . <span class="php-quote">&quot;' </span><span class="php-var">$attrStr</span><span class="php-quote">&quot;</span>;
+</span><span id="105" class="l"><a class="l" href="#105">105: </a>        <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;input type='text' </span><span class="php-var">$attrStr</span><span class="php-quote"> /&gt;&quot;</span>;
+</span><span id="106" class="l"><a class="l" href="#106">106: </a>
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>        <span class="php-keyword1">return</span> <span class="php-var">$out</span>; 
+</span><span id="108" class="l"><a class="l" href="#108">108: </a>    }
+</span><span id="109" class="l"><a class="l" href="#109">109: </a>
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>    <span class="php-comment">/**
+</span></span><span id="111" class="l"><a class="l" href="#111">111: </a><span class="php-comment">     * Convert the CSV string provide in the $input to an array of ints needed for this fieldtype
+</span></span><span id="112" class="l"><a class="l" href="#112">112: </a><span class="php-comment">     * 
+</span></span><span id="113" class="l"><a class="l" href="#113">113: </a><span class="php-comment">     * @param WireInputData $input
+</span></span><span id="114" class="l"><a class="l" href="#114">114: </a><span class="php-comment">     * @return $this
+</span></span><span id="115" class="l"><a class="l" href="#115">115: </a><span class="php-comment">     *
+</span></span><span id="116" class="l"><a class="l" href="#116">116: </a><span class="php-comment">     */</span>
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____processInput" href="#____processInput">___processInput</a>(WireInputData <span class="php-var">$input</span>) {
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>        parent::___processInput(<span class="php-var">$input</span>); 
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>);  
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-keyword2">reset</span>(<span class="php-var">$value</span>); 
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>        <span class="php-var">$value</span> = <span class="php-keyword2">trim</span>(<span class="php-var">$value</span>); 
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$value</span>, <span class="php-quote">&quot;,&quot;</span>) !== <span class="php-keyword1">false</span>) <span class="php-var">$value</span> = <span class="php-keyword2">explode</span>(<span class="php-quote">&quot;,&quot;</span>, <span class="php-var">$value</span>); 
+</span><span id="126" class="l"><a class="l" href="#126">126: </a>            <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$value</span>) <span class="php-var">$value</span> = <span class="php-keyword1">array</span>(<span class="php-var">$value</span>);
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>            <span class="php-keyword1">else</span> <span class="php-var">$value</span> = <span class="php-keyword1">array</span>();
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$v</span>) {
+</span><span id="130" class="l"><a class="l" href="#130">130: </a>            <span class="php-var">$value</span>[<span class="php-var">$k</span>] = (int) <span class="php-var">$v</span>; 
+</span><span id="131" class="l"><a class="l" href="#131">131: </a>        }
+</span><span id="132" class="l"><a class="l" href="#132">132: </a>
+</span><span id="133" class="l"><a class="l" href="#133">133: </a>        <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>); 
+</span><span id="134" class="l"><a class="l" href="#134">134: </a>
+</span><span id="135" class="l"><a class="l" href="#135">135: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>; 
+</span><span id="136" class="l"><a class="l" href="#136">136: </a>    }
+</span><span id="137" class="l"><a class="l" href="#137">137: </a>    
+</span><span id="138" class="l"><a class="l" href="#138">138: </a>}
+</span><span id="139" class="l"><a class="l" href="#139">139: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
