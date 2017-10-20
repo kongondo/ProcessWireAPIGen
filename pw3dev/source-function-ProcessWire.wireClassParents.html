@@ -8,7 +8,7 @@
 	<title>File core/Functions.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?747734638"></script>
+	<script type="text/javascript" src="elementlist.js?512469714"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.79 dev</span>
+			<span>Overview version 3.0.80 dev</span>
 		</a>
 
 
@@ -467,6 +467,7 @@
 				<li class="active"><a href="function-ProcessWire.wireClassParents.html">wireClassParents</a></li>
 				<li><a href="function-ProcessWire.wireConfig.html">wireConfig</a></li>
 				<li><a href="function-ProcessWire.wireCopy.html">wireCopy</a></li>
+				<li><a href="function-ProcessWire.wireCount.html">wireCount</a></li>
 				<li><a href="function-ProcessWire.wireDatabase.html">wireDatabase</a></li>
 				<li><a href="function-ProcessWire.wireDate.html">wireDate</a></li>
 				<li><a href="function-ProcessWire.wireDatetime.html">wireDatetime</a></li>
@@ -1376,88 +1377,107 @@
 </span><span id="816" class="l"><a class="l" href="#816">816: </a>}
 </span><span id="817" class="l"><a class="l" href="#817">817: </a>
 </span><span id="818" class="l"><a class="l" href="#818">818: </a><span class="php-comment">/**
-</span></span><span id="819" class="l"><a class="l" href="#819">819: </a><span class="php-comment"> * Get or set an output region (primarily for front-end output usage)
-</span></span><span id="820" class="l"><a class="l" href="#820">820: </a><span class="php-comment"> *
-</span></span><span id="821" class="l"><a class="l" href="#821">821: </a><span class="php-comment"> * ~~~~~
-</span></span><span id="822" class="l"><a class="l" href="#822">822: </a><span class="php-comment"> * // define a region
-</span></span><span id="823" class="l"><a class="l" href="#823">823: </a><span class="php-comment"> * region('content', '&lt;p&gt;this is some content&lt;/p&gt;');
-</span></span><span id="824" class="l"><a class="l" href="#824">824: </a><span class="php-comment"> *
-</span></span><span id="825" class="l"><a class="l" href="#825">825: </a><span class="php-comment"> * // prepend some text to region
-</span></span><span id="826" class="l"><a class="l" href="#826">826: </a><span class="php-comment"> * region('+content', '&lt;h2&gt;Good morning&lt;/h2&gt;');
-</span></span><span id="827" class="l"><a class="l" href="#827">827: </a><span class="php-comment"> *
-</span></span><span id="828" class="l"><a class="l" href="#828">828: </a><span class="php-comment"> * // append some text to region
-</span></span><span id="829" class="l"><a class="l" href="#829">829: </a><span class="php-comment"> * region('content+', '&lt;p&gt;&lt;small&gt;Good night&lt;/small&gt;&lt;/p&gt;');
-</span></span><span id="830" class="l"><a class="l" href="#830">830: </a><span class="php-comment"> *
-</span></span><span id="831" class="l"><a class="l" href="#831">831: </a><span class="php-comment"> * // output a region
-</span></span><span id="832" class="l"><a class="l" href="#832">832: </a><span class="php-comment"> * echo region('content');
-</span></span><span id="833" class="l"><a class="l" href="#833">833: </a><span class="php-comment"> *
-</span></span><span id="834" class="l"><a class="l" href="#834">834: </a><span class="php-comment"> * // get all regions in an array
-</span></span><span id="835" class="l"><a class="l" href="#835">835: </a><span class="php-comment"> * $regions = region('*');
-</span></span><span id="836" class="l"><a class="l" href="#836">836: </a><span class="php-comment"> *
-</span></span><span id="837" class="l"><a class="l" href="#837">837: </a><span class="php-comment"> * // clear the 'content' region
-</span></span><span id="838" class="l"><a class="l" href="#838">838: </a><span class="php-comment"> * region('content', '');
+</span></span><span id="819" class="l"><a class="l" href="#819">819: </a><span class="php-comment"> * Return the count of item(s) present in the given value
+</span></span><span id="820" class="l"><a class="l" href="#820">820: </a><span class="php-comment"> * 
+</span></span><span id="821" class="l"><a class="l" href="#821">821: </a><span class="php-comment"> * Duplicates behavior of PHP count() function prior to PHP 7.2, which states:
+</span></span><span id="822" class="l"><a class="l" href="#822">822: </a><span class="php-comment"> * Returns the number of elements in $value. When the parameter is neither an array nor an 
+</span></span><span id="823" class="l"><a class="l" href="#823">823: </a><span class="php-comment"> * object with implemented Countable interface, 1 will be returned. There is one exception, 
+</span></span><span id="824" class="l"><a class="l" href="#824">824: </a><span class="php-comment"> * if $value is NULL, 0 will be returned.
+</span></span><span id="825" class="l"><a class="l" href="#825">825: </a><span class="php-comment"> * 
+</span></span><span id="826" class="l"><a class="l" href="#826">826: </a><span class="php-comment"> * @param mixed $value
+</span></span><span id="827" class="l"><a class="l" href="#827">827: </a><span class="php-comment"> * @return int
+</span></span><span id="828" class="l"><a class="l" href="#828">828: </a><span class="php-comment"> * 
+</span></span><span id="829" class="l"><a class="l" href="#829">829: </a><span class="php-comment"> */</span>
+</span><span id="830" class="l"><a class="l" href="#830">830: </a><span class="php-keyword1">function</span> <a id="_wireCount" href="#_wireCount">wireCount</a>(<span class="php-var">$value</span>) {
+</span><span id="831" class="l"><a class="l" href="#831">831: </a>    <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-keyword1">null</span>) <span class="php-keyword1">return</span> <span class="php-num">0</span>; 
+</span><span id="832" class="l"><a class="l" href="#832">832: </a>    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-keyword1">return</span> <span class="php-keyword2">count</span>(<span class="php-var">$value</span>); 
+</span><span id="833" class="l"><a class="l" href="#833">833: </a>    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_object</span>(<span class="php-var">$value</span>) &amp;&amp; <span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> \Countable) <span class="php-keyword1">return</span> <span class="php-keyword2">count</span>(<span class="php-var">$value</span>);
+</span><span id="834" class="l"><a class="l" href="#834">834: </a>    <span class="php-keyword1">return</span> <span class="php-num">1</span>;
+</span><span id="835" class="l"><a class="l" href="#835">835: </a>}
+</span><span id="836" class="l"><a class="l" href="#836">836: </a>
+</span><span id="837" class="l"><a class="l" href="#837">837: </a><span class="php-comment">/**
+</span></span><span id="838" class="l"><a class="l" href="#838">838: </a><span class="php-comment"> * Get or set an output region (primarily for front-end output usage)
 </span></span><span id="839" class="l"><a class="l" href="#839">839: </a><span class="php-comment"> *
-</span></span><span id="840" class="l"><a class="l" href="#840">840: </a><span class="php-comment"> * // clear all regions
-</span></span><span id="841" class="l"><a class="l" href="#841">841: </a><span class="php-comment"> * region('*', '');
-</span></span><span id="842" class="l"><a class="l" href="#842">842: </a><span class="php-comment"> * ~~~~~
+</span></span><span id="840" class="l"><a class="l" href="#840">840: </a><span class="php-comment"> * ~~~~~
+</span></span><span id="841" class="l"><a class="l" href="#841">841: </a><span class="php-comment"> * // define a region
+</span></span><span id="842" class="l"><a class="l" href="#842">842: </a><span class="php-comment"> * region('content', '&lt;p&gt;this is some content&lt;/p&gt;');
 </span></span><span id="843" class="l"><a class="l" href="#843">843: </a><span class="php-comment"> *
-</span></span><span id="844" class="l"><a class="l" href="#844">844: </a><span class="php-comment"> * @param string $key Name of region to get or set.
-</span></span><span id="845" class="l"><a class="l" href="#845">845: </a><span class="php-comment"> *  - Specify &quot;*&quot; to retrieve all defined regions in an array.
-</span></span><span id="846" class="l"><a class="l" href="#846">846: </a><span class="php-comment"> *  - Prepend a &quot;+&quot; to the region name to have it prepend your given value to any existing value.
-</span></span><span id="847" class="l"><a class="l" href="#847">847: </a><span class="php-comment"> *  - Append a &quot;+&quot; to the region name to have it append your given value to any existing value.
-</span></span><span id="848" class="l"><a class="l" href="#848">848: </a><span class="php-comment"> *  - Prepend a &quot;++&quot; to region name to make future calls without &quot;+&quot; automatically prepend. 
-</span></span><span id="849" class="l"><a class="l" href="#849">849: </a><span class="php-comment"> *  - Append a &quot;++&quot; to region name to make future calls without &quot;+&quot; to automatically append. 
-</span></span><span id="850" class="l"><a class="l" href="#850">850: </a><span class="php-comment"> * @param null|string $value If setting a region, the text that you want to set.
-</span></span><span id="851" class="l"><a class="l" href="#851">851: </a><span class="php-comment"> * @return string|null|bool|array Returns string of text when getting a region, NULL if region not set, or TRUE if setting region.
+</span></span><span id="844" class="l"><a class="l" href="#844">844: </a><span class="php-comment"> * // prepend some text to region
+</span></span><span id="845" class="l"><a class="l" href="#845">845: </a><span class="php-comment"> * region('+content', '&lt;h2&gt;Good morning&lt;/h2&gt;');
+</span></span><span id="846" class="l"><a class="l" href="#846">846: </a><span class="php-comment"> *
+</span></span><span id="847" class="l"><a class="l" href="#847">847: </a><span class="php-comment"> * // append some text to region
+</span></span><span id="848" class="l"><a class="l" href="#848">848: </a><span class="php-comment"> * region('content+', '&lt;p&gt;&lt;small&gt;Good night&lt;/small&gt;&lt;/p&gt;');
+</span></span><span id="849" class="l"><a class="l" href="#849">849: </a><span class="php-comment"> *
+</span></span><span id="850" class="l"><a class="l" href="#850">850: </a><span class="php-comment"> * // output a region
+</span></span><span id="851" class="l"><a class="l" href="#851">851: </a><span class="php-comment"> * echo region('content');
 </span></span><span id="852" class="l"><a class="l" href="#852">852: </a><span class="php-comment"> *
-</span></span><span id="853" class="l"><a class="l" href="#853">853: </a><span class="php-comment"> */</span>
-</span><span id="854" class="l"><a class="l" href="#854">854: </a><span class="php-keyword1">function</span> <a id="_wireRegion" href="#_wireRegion">wireRegion</a>(<span class="php-var">$key</span>, <span class="php-var">$value</span> = <span class="php-keyword1">null</span>) {
-</span><span id="855" class="l"><a class="l" href="#855">855: </a>    
-</span><span id="856" class="l"><a class="l" href="#856">856: </a>    <span class="php-keyword1">static</span> <span class="php-var"><a id="$regions" href="#$regions">$regions</a></span> = <span class="php-keyword1">array</span>();
-</span><span id="857" class="l"><a class="l" href="#857">857: </a>    <span class="php-keyword1">static</span> <span class="php-var"><a id="$locked" href="#$locked">$locked</a></span> = <span class="php-keyword1">array</span>();
-</span><span id="858" class="l"><a class="l" href="#858">858: </a>
-</span><span id="859" class="l"><a class="l" href="#859">859: </a>    <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$key</span>) || <span class="php-var">$key</span> === <span class="php-quote">'*'</span>) {
-</span><span id="860" class="l"><a class="l" href="#860">860: </a>        <span class="php-comment">// all regions</span>
-</span><span id="861" class="l"><a class="l" href="#861">861: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">''</span>) <span class="php-var">$regions</span> = <span class="php-keyword1">array</span>(); <span class="php-comment">// clear</span>
-</span><span id="862" class="l"><a class="l" href="#862">862: </a>        <span class="php-keyword1">return</span> <span class="php-var">$regions</span>;
-</span><span id="863" class="l"><a class="l" href="#863">863: </a>    }
-</span><span id="864" class="l"><a class="l" href="#864">864: </a>
-</span><span id="865" class="l"><a class="l" href="#865">865: </a>    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$value</span>)) {
-</span><span id="866" class="l"><a class="l" href="#866">866: </a>        <span class="php-comment">// get region</span>
-</span><span id="867" class="l"><a class="l" href="#867">867: </a>        <span class="php-var">$result</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$regions</span>[<span class="php-var">$key</span>]) ? <span class="php-var">$regions</span>[<span class="php-var">$key</span>] : <span class="php-keyword1">null</span>;
-</span><span id="868" class="l"><a class="l" href="#868">868: </a>
-</span><span id="869" class="l"><a class="l" href="#869">869: </a>    } <span class="php-keyword1">else</span> {
-</span><span id="870" class="l"><a class="l" href="#870">870: </a>        <span class="php-comment">// set region</span>
-</span><span id="871" class="l"><a class="l" href="#871">871: </a>        <span class="php-var">$pos</span> = <span class="php-keyword2">strpos</span>(<span class="php-var">$key</span>, <span class="php-quote">'+'</span>);
-</span><span id="872" class="l"><a class="l" href="#872">872: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$pos</span> !== <span class="php-keyword1">false</span>) {
-</span><span id="873" class="l"><a class="l" href="#873">873: </a>            <span class="php-var">$lock</span> = <span class="php-keyword2">strpos</span>(<span class="php-var">$key</span>, <span class="php-quote">'++'</span>) !== <span class="php-keyword1">false</span>;
-</span><span id="874" class="l"><a class="l" href="#874">874: </a>            <span class="php-var">$key</span> = <span class="php-keyword2">trim</span>(<span class="php-var">$key</span>, <span class="php-quote">'+'</span>);
-</span><span id="875" class="l"><a class="l" href="#875">875: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$lock</span> !== <span class="php-keyword1">false</span> &amp;&amp; !<span class="php-keyword1">isset</span>(<span class="php-var">$locked</span>[<span class="php-var">$key</span>])) {
-</span><span id="876" class="l"><a class="l" href="#876">876: </a>                <span class="php-var">$locked</span>[<span class="php-var">$key</span>] = <span class="php-var">$lock</span> === <span class="php-num">0</span> ? <span class="php-quote">'^'</span> : <span class="php-quote">'$'</span>; <span class="php-comment">// prepend : append</span>
-</span><span id="877" class="l"><a class="l" href="#877">877: </a>            }
-</span><span id="878" class="l"><a class="l" href="#878">878: </a>        }
-</span><span id="879" class="l"><a class="l" href="#879">879: </a>        <span class="php-var">$lock</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$locked</span>[<span class="php-var">$key</span>]) ? <span class="php-var">$locked</span>[<span class="php-var">$key</span>] : <span class="php-quote">''</span>;
-</span><span id="880" class="l"><a class="l" href="#880">880: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$regions</span>[<span class="php-var">$key</span>])) <span class="php-var">$regions</span>[<span class="php-var">$key</span>] = <span class="php-quote">''</span>;
-</span><span id="881" class="l"><a class="l" href="#881">881: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$pos</span> === <span class="php-num">0</span> || (<span class="php-var">$pos</span> === <span class="php-keyword1">false</span> &amp;&amp; <span class="php-var">$lock</span> == <span class="php-quote">'^'</span>)) {
-</span><span id="882" class="l"><a class="l" href="#882">882: </a>            <span class="php-comment">// prepend</span>
-</span><span id="883" class="l"><a class="l" href="#883">883: </a>            <span class="php-var">$regions</span>[<span class="php-var">$key</span>] = <span class="php-var">$value</span> . <span class="php-var">$regions</span>[<span class="php-var">$key</span>];
-</span><span id="884" class="l"><a class="l" href="#884">884: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$pos</span> || (<span class="php-var">$pos</span> === <span class="php-keyword1">false</span> &amp;&amp; <span class="php-var">$lock</span> == <span class="php-quote">'$'</span>)) {
-</span><span id="885" class="l"><a class="l" href="#885">885: </a>            <span class="php-comment">// append</span>
-</span><span id="886" class="l"><a class="l" href="#886">886: </a>            <span class="php-var">$regions</span>[<span class="php-var">$key</span>] .= <span class="php-var">$value</span>;
-</span><span id="887" class="l"><a class="l" href="#887">887: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">''</span>) {
-</span><span id="888" class="l"><a class="l" href="#888">888: </a>            <span class="php-comment">// clear region</span>
-</span><span id="889" class="l"><a class="l" href="#889">889: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$lock</span>) <span class="php-keyword1">unset</span>(<span class="php-var">$regions</span>[<span class="php-var">$key</span>]);
-</span><span id="890" class="l"><a class="l" href="#890">890: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="891" class="l"><a class="l" href="#891">891: </a>            <span class="php-comment">// insert/replace</span>
-</span><span id="892" class="l"><a class="l" href="#892">892: </a>            <span class="php-var">$regions</span>[<span class="php-var">$key</span>] = <span class="php-var">$value</span>;
-</span><span id="893" class="l"><a class="l" href="#893">893: </a>        }
-</span><span id="894" class="l"><a class="l" href="#894">894: </a>        <span class="php-var">$result</span> = <span class="php-keyword1">true</span>;
-</span><span id="895" class="l"><a class="l" href="#895">895: </a>    }
-</span><span id="896" class="l"><a class="l" href="#896">896: </a>
-</span><span id="897" class="l"><a class="l" href="#897">897: </a>    <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
-</span><span id="898" class="l"><a class="l" href="#898">898: </a>}
-</span><span id="899" class="l"><a class="l" href="#899">899: </a>
-</span><span id="900" class="l"><a class="l" href="#900">900: </a></span></code></pre>
+</span></span><span id="853" class="l"><a class="l" href="#853">853: </a><span class="php-comment"> * // get all regions in an array
+</span></span><span id="854" class="l"><a class="l" href="#854">854: </a><span class="php-comment"> * $regions = region('*');
+</span></span><span id="855" class="l"><a class="l" href="#855">855: </a><span class="php-comment"> *
+</span></span><span id="856" class="l"><a class="l" href="#856">856: </a><span class="php-comment"> * // clear the 'content' region
+</span></span><span id="857" class="l"><a class="l" href="#857">857: </a><span class="php-comment"> * region('content', '');
+</span></span><span id="858" class="l"><a class="l" href="#858">858: </a><span class="php-comment"> *
+</span></span><span id="859" class="l"><a class="l" href="#859">859: </a><span class="php-comment"> * // clear all regions
+</span></span><span id="860" class="l"><a class="l" href="#860">860: </a><span class="php-comment"> * region('*', '');
+</span></span><span id="861" class="l"><a class="l" href="#861">861: </a><span class="php-comment"> * ~~~~~
+</span></span><span id="862" class="l"><a class="l" href="#862">862: </a><span class="php-comment"> *
+</span></span><span id="863" class="l"><a class="l" href="#863">863: </a><span class="php-comment"> * @param string $key Name of region to get or set.
+</span></span><span id="864" class="l"><a class="l" href="#864">864: </a><span class="php-comment"> *  - Specify &quot;*&quot; to retrieve all defined regions in an array.
+</span></span><span id="865" class="l"><a class="l" href="#865">865: </a><span class="php-comment"> *  - Prepend a &quot;+&quot; to the region name to have it prepend your given value to any existing value.
+</span></span><span id="866" class="l"><a class="l" href="#866">866: </a><span class="php-comment"> *  - Append a &quot;+&quot; to the region name to have it append your given value to any existing value.
+</span></span><span id="867" class="l"><a class="l" href="#867">867: </a><span class="php-comment"> *  - Prepend a &quot;++&quot; to region name to make future calls without &quot;+&quot; automatically prepend. 
+</span></span><span id="868" class="l"><a class="l" href="#868">868: </a><span class="php-comment"> *  - Append a &quot;++&quot; to region name to make future calls without &quot;+&quot; to automatically append. 
+</span></span><span id="869" class="l"><a class="l" href="#869">869: </a><span class="php-comment"> * @param null|string $value If setting a region, the text that you want to set.
+</span></span><span id="870" class="l"><a class="l" href="#870">870: </a><span class="php-comment"> * @return string|null|bool|array Returns string of text when getting a region, NULL if region not set, or TRUE if setting region.
+</span></span><span id="871" class="l"><a class="l" href="#871">871: </a><span class="php-comment"> *
+</span></span><span id="872" class="l"><a class="l" href="#872">872: </a><span class="php-comment"> */</span>
+</span><span id="873" class="l"><a class="l" href="#873">873: </a><span class="php-keyword1">function</span> <a id="_wireRegion" href="#_wireRegion">wireRegion</a>(<span class="php-var">$key</span>, <span class="php-var">$value</span> = <span class="php-keyword1">null</span>) {
+</span><span id="874" class="l"><a class="l" href="#874">874: </a>    
+</span><span id="875" class="l"><a class="l" href="#875">875: </a>    <span class="php-keyword1">static</span> <span class="php-var"><a id="$regions" href="#$regions">$regions</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="876" class="l"><a class="l" href="#876">876: </a>    <span class="php-keyword1">static</span> <span class="php-var"><a id="$locked" href="#$locked">$locked</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="877" class="l"><a class="l" href="#877">877: </a>
+</span><span id="878" class="l"><a class="l" href="#878">878: </a>    <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$key</span>) || <span class="php-var">$key</span> === <span class="php-quote">'*'</span>) {
+</span><span id="879" class="l"><a class="l" href="#879">879: </a>        <span class="php-comment">// all regions</span>
+</span><span id="880" class="l"><a class="l" href="#880">880: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">''</span>) <span class="php-var">$regions</span> = <span class="php-keyword1">array</span>(); <span class="php-comment">// clear</span>
+</span><span id="881" class="l"><a class="l" href="#881">881: </a>        <span class="php-keyword1">return</span> <span class="php-var">$regions</span>;
+</span><span id="882" class="l"><a class="l" href="#882">882: </a>    }
+</span><span id="883" class="l"><a class="l" href="#883">883: </a>
+</span><span id="884" class="l"><a class="l" href="#884">884: </a>    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$value</span>)) {
+</span><span id="885" class="l"><a class="l" href="#885">885: </a>        <span class="php-comment">// get region</span>
+</span><span id="886" class="l"><a class="l" href="#886">886: </a>        <span class="php-var">$result</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$regions</span>[<span class="php-var">$key</span>]) ? <span class="php-var">$regions</span>[<span class="php-var">$key</span>] : <span class="php-keyword1">null</span>;
+</span><span id="887" class="l"><a class="l" href="#887">887: </a>
+</span><span id="888" class="l"><a class="l" href="#888">888: </a>    } <span class="php-keyword1">else</span> {
+</span><span id="889" class="l"><a class="l" href="#889">889: </a>        <span class="php-comment">// set region</span>
+</span><span id="890" class="l"><a class="l" href="#890">890: </a>        <span class="php-var">$pos</span> = <span class="php-keyword2">strpos</span>(<span class="php-var">$key</span>, <span class="php-quote">'+'</span>);
+</span><span id="891" class="l"><a class="l" href="#891">891: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$pos</span> !== <span class="php-keyword1">false</span>) {
+</span><span id="892" class="l"><a class="l" href="#892">892: </a>            <span class="php-var">$lock</span> = <span class="php-keyword2">strpos</span>(<span class="php-var">$key</span>, <span class="php-quote">'++'</span>) !== <span class="php-keyword1">false</span>;
+</span><span id="893" class="l"><a class="l" href="#893">893: </a>            <span class="php-var">$key</span> = <span class="php-keyword2">trim</span>(<span class="php-var">$key</span>, <span class="php-quote">'+'</span>);
+</span><span id="894" class="l"><a class="l" href="#894">894: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$lock</span> !== <span class="php-keyword1">false</span> &amp;&amp; !<span class="php-keyword1">isset</span>(<span class="php-var">$locked</span>[<span class="php-var">$key</span>])) {
+</span><span id="895" class="l"><a class="l" href="#895">895: </a>                <span class="php-var">$locked</span>[<span class="php-var">$key</span>] = <span class="php-var">$lock</span> === <span class="php-num">0</span> ? <span class="php-quote">'^'</span> : <span class="php-quote">'$'</span>; <span class="php-comment">// prepend : append</span>
+</span><span id="896" class="l"><a class="l" href="#896">896: </a>            }
+</span><span id="897" class="l"><a class="l" href="#897">897: </a>        }
+</span><span id="898" class="l"><a class="l" href="#898">898: </a>        <span class="php-var">$lock</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$locked</span>[<span class="php-var">$key</span>]) ? <span class="php-var">$locked</span>[<span class="php-var">$key</span>] : <span class="php-quote">''</span>;
+</span><span id="899" class="l"><a class="l" href="#899">899: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$regions</span>[<span class="php-var">$key</span>])) <span class="php-var">$regions</span>[<span class="php-var">$key</span>] = <span class="php-quote">''</span>;
+</span><span id="900" class="l"><a class="l" href="#900">900: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$pos</span> === <span class="php-num">0</span> || (<span class="php-var">$pos</span> === <span class="php-keyword1">false</span> &amp;&amp; <span class="php-var">$lock</span> == <span class="php-quote">'^'</span>)) {
+</span><span id="901" class="l"><a class="l" href="#901">901: </a>            <span class="php-comment">// prepend</span>
+</span><span id="902" class="l"><a class="l" href="#902">902: </a>            <span class="php-var">$regions</span>[<span class="php-var">$key</span>] = <span class="php-var">$value</span> . <span class="php-var">$regions</span>[<span class="php-var">$key</span>];
+</span><span id="903" class="l"><a class="l" href="#903">903: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$pos</span> || (<span class="php-var">$pos</span> === <span class="php-keyword1">false</span> &amp;&amp; <span class="php-var">$lock</span> == <span class="php-quote">'$'</span>)) {
+</span><span id="904" class="l"><a class="l" href="#904">904: </a>            <span class="php-comment">// append</span>
+</span><span id="905" class="l"><a class="l" href="#905">905: </a>            <span class="php-var">$regions</span>[<span class="php-var">$key</span>] .= <span class="php-var">$value</span>;
+</span><span id="906" class="l"><a class="l" href="#906">906: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$value</span> === <span class="php-quote">''</span>) {
+</span><span id="907" class="l"><a class="l" href="#907">907: </a>            <span class="php-comment">// clear region</span>
+</span><span id="908" class="l"><a class="l" href="#908">908: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$lock</span>) <span class="php-keyword1">unset</span>(<span class="php-var">$regions</span>[<span class="php-var">$key</span>]);
+</span><span id="909" class="l"><a class="l" href="#909">909: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="910" class="l"><a class="l" href="#910">910: </a>            <span class="php-comment">// insert/replace</span>
+</span><span id="911" class="l"><a class="l" href="#911">911: </a>            <span class="php-var">$regions</span>[<span class="php-var">$key</span>] = <span class="php-var">$value</span>;
+</span><span id="912" class="l"><a class="l" href="#912">912: </a>        }
+</span><span id="913" class="l"><a class="l" href="#913">913: </a>        <span class="php-var">$result</span> = <span class="php-keyword1">true</span>;
+</span><span id="914" class="l"><a class="l" href="#914">914: </a>    }
+</span><span id="915" class="l"><a class="l" href="#915">915: </a>
+</span><span id="916" class="l"><a class="l" href="#916">916: </a>    <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="917" class="l"><a class="l" href="#917">917: </a>}
+</span><span id="918" class="l"><a class="l" href="#918">918: </a>
+</span><span id="919" class="l"><a class="l" href="#919">919: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
