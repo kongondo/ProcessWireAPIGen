@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ProcessRole | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?512469714"></script>
+	<script type="text/javascript" src="elementlist.js?2544582619"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.80 dev</span>
+			<span>Overview version 3.0.81 dev</span>
 		</a>
 
 
@@ -638,7 +638,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.ProcessRole.html#4-280" title="Go to source code">modules/Process/ProcessRole/ProcessRole.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.ProcessRole.html#4-698" title="Go to source code">modules/Process/ProcessRole/ProcessRole.module</a><br>
 	</div>
 
 
@@ -687,17 +687,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.ProcessRole.html#30-41" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#38-80" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
-<p>Init</p>
+<p>Init and attach hooks</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Init</p>
+<p>Init and attach hooks</p>
 
 
 
@@ -707,6 +707,44 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-ProcessWire.ProcessPageType.html#_init">ProcessWire\ProcessPageType::init()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hookProcessInput" id="_hookProcessInput">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hookProcessInput">#</a>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#82-92" title="Go to source code">hookProcessInput</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Hook ProcessPageEdit::processInput to save permission options</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Hook ProcessPageEdit::processInput to save permission options</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event</dd>
+				</dl></div>
+
+
+
+
 
 		</div>
 		</div></td>
@@ -722,16 +760,27 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookFormRender">#</a>
-		<code><a href="source-class-ProcessWire.ProcessRole.html#43-127" title="Go to source code">hookFormRender</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#94-176" title="Go to source code">hookFormRender</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Hook before InputfieldForm::render to manipulate output of permissions
+field</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Hook before InputfieldForm::render to manipulate output of permissions
+field</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event</dd>
+				</dl></div>
 
 
 
@@ -751,14 +800,327 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addPermissionOptions">#</a>
-		<code><a href="source-class-ProcessWire.ProcessRole.html#129-279" title="Go to source code">addPermissionOptions</a>( <span>array <var>$permissions</var></span>, <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$f</var></span>, <span>mixed <var>$level</var> = <span class="php-num">0</span></span>, <span>mixed <var>&amp; $inputfieldValue</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#178-378" title="Go to source code">addPermissionOptions</a>( <span>array <var>$permissions</var></span>, <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$f</var></span>, <span>integer <var>$level</var> = <span class="php-num">0</span></span>, <span>mixed <var>&amp; $inputfieldValue</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Add permission options to checkboxes Inputfield</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Add permission options to checkboxes Inputfield</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$permissions</var></dt>
+					<dd><code>array</code><br>$permissions</dd>
+					<dt><var>$f</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code></code><br>$f</dd>
+					<dt><var>$level</var></dt>
+					<dd><code>integer</code><br>$level</dd>
+					<dt><var>$inputfieldValue</var></dt>
+					<dd><code>mixed</code><br>$inputfieldValue</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderTemplatePermissionCheckboxes" id="_renderTemplatePermissionCheckboxes">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderTemplatePermissionCheckboxes">#</a>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#380-424" title="Go to source code">renderTemplatePermissionCheckboxes</a>( <span><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$permission</var></span>, <span>array <var>$checkboxes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Render a div containing template permission checkboxes</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render a div containing template permission checkboxes</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$permission</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code></code><br>$permission</dd>
+					<dt><var>$checkboxes</var></dt>
+					<dd><code>array</code><br>$checkboxes Array of individually rendered checkboxes for each template</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderTemplatePermissionCheckbox" id="_renderTemplatePermissionCheckbox">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderTemplatePermissionCheckbox">#</a>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#426-490" title="Go to source code">renderTemplatePermissionCheckbox</a>( <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span>, <span><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$permission</var></span>, <span>boolean <var>$checked</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Render a single template permission checkbox</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render a single template permission checkbox</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$template</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code></code><br>$template</dd>
+					<dt><var>$permission</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code></code><br>$permission</dd>
+					<dt><var>$checked</var></dt>
+					<dd><code>boolean</code><br>$checked</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderTemplatePermissionToggle" id="_renderTemplatePermissionToggle">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderTemplatePermissionToggle">#</a>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#492-503" title="Go to source code">renderTemplatePermissionToggle</a>( )</code>
+
+		<div class="description short">
+			
+<p>Render the toggle that can trigger the template permission checkboxes</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render the toggle that can trigger the template permission checkboxes</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderLink" id="_renderLink">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderLink">#</a>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#505-522" title="Go to source code">renderLink</a>( <span>string <var>$href</var></span>, <span>string <var>$text</var></span>, <span>array <var>$attr</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Render an &lt;a&gt; link</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render an &lt;a&gt; link</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$href</var></dt>
+					<dd><code>string</code><br>$href</dd>
+					<dt><var>$text</var></dt>
+					<dd><code>string</code><br>$text</dd>
+					<dt><var>$attr</var></dt>
+					<dd><code>array</code><br>$attr</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderDetail" id="_renderDetail">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderDetail">#</a>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#524-536" title="Go to source code">renderDetail</a>( <span>string <var>$text</var></span>, <span>string <var>$class</var> = <span class="php-quote">''</span></span>, <span>string <var>$tag</var> = <span class="php-quote">'span'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Render a detail</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render a detail</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$text</var></dt>
+					<dd><code>string</code><br>$text Markup to render in the detail</dd>
+					<dt><var>$class</var></dt>
+					<dd><code>string</code><br>$class May be omitted if not needed</dd>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag Default is span</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderText" id="_renderText">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderText">#</a>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#538-550" title="Go to source code">renderText</a>( <span>string <var>$text</var></span>, <span>string <var>$class</var> = <span class="php-quote">''</span></span>, <span>string <var>$tag</var> = <span class="php-quote">'p'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Render paragraph of text (or other tag as specified)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render paragraph of text (or other tag as specified)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$text</var></dt>
+					<dd><code>string</code><br>$text</dd>
+					<dt><var>$class</var></dt>
+					<dd><code>string</code><br>$class Default is blank</dd>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag Default is p</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="savePermissionOptions" id="_savePermissionOptions">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_savePermissionOptions">#</a>
+		<code><a href="source-class-ProcessWire.ProcessRole.html#552-697" title="Go to source code">savePermissionOptions</a>( )</code>
+
+		<div class="description short">
+			
+<p>Save posted permission options to templates</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save posted permission options to templates</p>
+
 
 
 
@@ -942,6 +1304,75 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$icons" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="templatePermissionNotes" id="$templatePermissionNotes">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.ProcessRole.html#29" title="Go to source code"><var>$templatePermissionNotes</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$templatePermissionNotes" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="templatePermissionDescriptions" id="$templatePermissionDescriptions">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.ProcessRole.html#30" title="Go to source code"><var>$templatePermissionDescriptions</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$templatePermissionDescriptions" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="guestRole" id="$guestRole">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.ProcessRole.html#32-36" title="Go to source code"><var>$guestRole</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$guestRole" class="anchor">#</a>
 
 			<div class="description short">
 				
