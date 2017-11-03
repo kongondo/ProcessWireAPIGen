@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessLogin/ProcessLogin.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2544582619"></script>
+	<script type="text/javascript" src="elementlist.js?892699733"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.81 dev</span>
+			<span>Overview version 3.0.82 dev</span>
 		</a>
 
 
@@ -992,53 +992,59 @@
 </span></span><span id="431" class="l"><a class="l" href="#431">431: </a><span class="php-comment">     *
 </span></span><span id="432" class="l"><a class="l" href="#432">432: </a><span class="php-comment">     */</span>
 </span><span id="433" class="l"><a class="l" href="#433">433: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____renderLoginForm" href="#____renderLoginForm">___renderLoginForm</a>() {
-</span><span id="434" class="l"><a class="l" href="#434">434: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;get(<span class="php-quote">'login'</span>)) {
-</span><span id="435" class="l"><a class="l" href="#435">435: </a>            <span class="php-var">$this</span>-&gt;afterLoginRedirect();
-</span><span id="436" class="l"><a class="l" href="#436">436: </a>            <span class="php-keyword1">return</span> <span class="php-quote">''</span>;
-</span><span id="437" class="l"><a class="l" href="#437">437: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="438" class="l"><a class="l" href="#438">438: </a>            <span class="php-comment">// note the space after 'Login ' is intentional to separate it from the Login button for translation purposes</span>
-</span><span id="439" class="l"><a class="l" href="#439">439: </a>            <span class="php-var">$this</span>-&gt;headline(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Login '</span>)); <span class="php-comment">// Headline for login form page</span>
-</span><span id="440" class="l"><a class="l" href="#440">440: </a>            <span class="php-var">$this</span>-&gt;passField-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-quote">''</span>);
-</span><span id="441" class="l"><a class="l" href="#441">441: </a>            <span class="php-var">$out</span> = <span class="php-var">$this</span>-&gt;form-&gt;render();
-</span><span id="442" class="l"><a class="l" href="#442">442: </a>            <span class="php-var">$links</span> = <span class="php-quote">''</span>;
-</span><span id="443" class="l"><a class="l" href="#443">443: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;allowForgot) {
-</span><span id="444" class="l"><a class="l" href="#444">444: </a>                <span class="php-var">$links</span> .= <span class="php-quote">&quot;&lt;div&gt;&lt;a href='./?forgot=1'&gt;&lt;i class='fa fa-question-circle'&gt;&lt;/i&gt; &quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Forgot your password?&quot;</span>) . <span class="php-quote">&quot;&lt;/a&gt;&lt;/div&gt;&quot;</span>; <span class="php-comment">// Forgot password link text</span>
-</span><span id="445" class="l"><a class="l" href="#445">445: </a>            }
-</span><span id="446" class="l"><a class="l" href="#446">446: </a>            <span class="php-var">$home</span> = <span class="php-var">$this</span>-&gt;pages-&gt;get(<span class="php-quote">&quot;/&quot;</span>); 
-</span><span id="447" class="l"><a class="l" href="#447">447: </a>            <span class="php-var">$links</span> .= <span class="php-quote">&quot;&lt;div&gt;&lt;a href='</span><span class="php-var">{$home-&gt;url}</span><span class="php-quote">'&gt;&lt;i class='fa fa-home'&gt;&lt;/i&gt; </span><span class="php-var">{$home-&gt;title}</span><span class="php-quote">&lt;/a&gt;&lt;/div&gt;&quot;</span>;
-</span><span id="448" class="l"><a class="l" href="#448">448: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$links</span>) <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;p&gt;</span><span class="php-var">$links</span><span class="php-quote">&lt;/p&gt;&quot;</span>;
-</span><span id="449" class="l"><a class="l" href="#449">449: </a>            <span class="php-keyword1">return</span> <span class="php-var">$out</span>; 
-</span><span id="450" class="l"><a class="l" href="#450">450: </a>        }
-</span><span id="451" class="l"><a class="l" href="#451">451: </a>    }
-</span><span id="452" class="l"><a class="l" href="#452">452: </a>
-</span><span id="453" class="l"><a class="l" href="#453">453: </a>    <span class="php-comment">/**
-</span></span><span id="454" class="l"><a class="l" href="#454">454: </a><span class="php-comment">     * Redirect to admin root after login
-</span></span><span id="455" class="l"><a class="l" href="#455">455: </a><span class="php-comment">     *
-</span></span><span id="456" class="l"><a class="l" href="#456">456: </a><span class="php-comment">     * Called only if the login request originated on the actual login page. 
-</span></span><span id="457" class="l"><a class="l" href="#457">457: </a><span class="php-comment">     *
-</span></span><span id="458" class="l"><a class="l" href="#458">458: </a><span class="php-comment">     */</span>
-</span><span id="459" class="l"><a class="l" href="#459">459: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____afterLoginRedirect" href="#____afterLoginRedirect">___afterLoginRedirect</a>() {
-</span><span id="460" class="l"><a class="l" href="#460">460: </a>        <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;urls-&gt;admin . <span class="php-quote">'page/?login=1'</span>;
-</span><span id="461" class="l"><a class="l" href="#461">461: </a>        <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;afterLoginURL(<span class="php-var">$url</span>);
-</span><span id="462" class="l"><a class="l" href="#462">462: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;redirect(<span class="php-var">$url</span>);
-</span><span id="463" class="l"><a class="l" href="#463">463: </a>    }
-</span><span id="464" class="l"><a class="l" href="#464">464: </a>
-</span><span id="465" class="l"><a class="l" href="#465">465: </a>    <span class="php-comment">/**
-</span></span><span id="466" class="l"><a class="l" href="#466">466: </a><span class="php-comment">     * #pw-hooker
-</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment">     * #pw-internal
-</span></span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-comment">     * 
-</span></span><span id="469" class="l"><a class="l" href="#469">469: </a><span class="php-comment">     * @param string $url
-</span></span><span id="470" class="l"><a class="l" href="#470">470: </a><span class="php-comment">     * @return string
-</span></span><span id="471" class="l"><a class="l" href="#471">471: </a><span class="php-comment">     * 
-</span></span><span id="472" class="l"><a class="l" href="#472">472: </a><span class="php-comment">     */</span>
-</span><span id="473" class="l"><a class="l" href="#473">473: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____afterLoginURL" href="#____afterLoginURL">___afterLoginURL</a>(<span class="php-var">$url</span>) {
-</span><span id="474" class="l"><a class="l" href="#474">474: </a>        <span class="php-keyword1">return</span> <span class="php-var">$url</span>;
-</span><span id="475" class="l"><a class="l" href="#475">475: </a>    }
-</span><span id="476" class="l"><a class="l" href="#476">476: </a>
-</span><span id="477" class="l"><a class="l" href="#477">477: </a>
-</span><span id="478" class="l"><a class="l" href="#478">478: </a>}
-</span><span id="479" class="l"><a class="l" href="#479">479: </a>
-</span><span id="480" class="l"><a class="l" href="#480">480: </a></span></code></pre>
+</span><span id="434" class="l"><a class="l" href="#434">434: </a>        <span class="php-var">$loggedIn</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'user'</span>)-&gt;isLoggedin();
+</span><span id="435" class="l"><a class="l" href="#435">435: </a>        <span class="php-var">$out</span> = <span class="php-quote">''</span>;
+</span><span id="436" class="l"><a class="l" href="#436">436: </a>        
+</span><span id="437" class="l"><a class="l" href="#437">437: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;get(<span class="php-quote">'login'</span>) &amp;&amp; <span class="php-var">$loggedIn</span>) {
+</span><span id="438" class="l"><a class="l" href="#438">438: </a>            <span class="php-comment">// redirect to page after login</span>
+</span><span id="439" class="l"><a class="l" href="#439">439: </a>            <span class="php-var">$this</span>-&gt;afterLoginRedirect();
+</span><span id="440" class="l"><a class="l" href="#440">440: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$loggedIn</span>) {
+</span><span id="441" class="l"><a class="l" href="#441">441: </a>            <span class="php-comment">// user is already logged in, do nothing</span>
+</span><span id="442" class="l"><a class="l" href="#442">442: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="443" class="l"><a class="l" href="#443">443: </a>            <span class="php-comment">// note the space after 'Login ' is intentional to separate it from the Login button for translation purposes</span>
+</span><span id="444" class="l"><a class="l" href="#444">444: </a>            <span class="php-var">$this</span>-&gt;headline(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Login '</span>)); <span class="php-comment">// Headline for login form page</span>
+</span><span id="445" class="l"><a class="l" href="#445">445: </a>            <span class="php-var">$this</span>-&gt;passField-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-quote">''</span>);
+</span><span id="446" class="l"><a class="l" href="#446">446: </a>            <span class="php-var">$out</span> = <span class="php-var">$this</span>-&gt;form-&gt;render();
+</span><span id="447" class="l"><a class="l" href="#447">447: </a>            <span class="php-var">$links</span> = <span class="php-quote">''</span>;
+</span><span id="448" class="l"><a class="l" href="#448">448: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;allowForgot) {
+</span><span id="449" class="l"><a class="l" href="#449">449: </a>                <span class="php-var">$links</span> .= <span class="php-quote">&quot;&lt;div&gt;&lt;a href='./?forgot=1'&gt;&lt;i class='fa fa-question-circle'&gt;&lt;/i&gt; &quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Forgot your password?&quot;</span>) . <span class="php-quote">&quot;&lt;/a&gt;&lt;/div&gt;&quot;</span>; <span class="php-comment">// Forgot password link text</span>
+</span><span id="450" class="l"><a class="l" href="#450">450: </a>            }
+</span><span id="451" class="l"><a class="l" href="#451">451: </a>            <span class="php-var">$home</span> = <span class="php-var">$this</span>-&gt;pages-&gt;get(<span class="php-quote">&quot;/&quot;</span>); 
+</span><span id="452" class="l"><a class="l" href="#452">452: </a>            <span class="php-var">$links</span> .= <span class="php-quote">&quot;&lt;div&gt;&lt;a href='</span><span class="php-var">{$home-&gt;url}</span><span class="php-quote">'&gt;&lt;i class='fa fa-home'&gt;&lt;/i&gt; </span><span class="php-var">{$home-&gt;title}</span><span class="php-quote">&lt;/a&gt;&lt;/div&gt;&quot;</span>;
+</span><span id="453" class="l"><a class="l" href="#453">453: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$links</span>) <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;p&gt;</span><span class="php-var">$links</span><span class="php-quote">&lt;/p&gt;&quot;</span>;
+</span><span id="454" class="l"><a class="l" href="#454">454: </a>        }
+</span><span id="455" class="l"><a class="l" href="#455">455: </a>        
+</span><span id="456" class="l"><a class="l" href="#456">456: </a>        <span class="php-keyword1">return</span> <span class="php-var">$out</span>;
+</span><span id="457" class="l"><a class="l" href="#457">457: </a>    }
+</span><span id="458" class="l"><a class="l" href="#458">458: </a>
+</span><span id="459" class="l"><a class="l" href="#459">459: </a>    <span class="php-comment">/**
+</span></span><span id="460" class="l"><a class="l" href="#460">460: </a><span class="php-comment">     * Redirect to admin root after login
+</span></span><span id="461" class="l"><a class="l" href="#461">461: </a><span class="php-comment">     *
+</span></span><span id="462" class="l"><a class="l" href="#462">462: </a><span class="php-comment">     * Called only if the login request originated on the actual login page. 
+</span></span><span id="463" class="l"><a class="l" href="#463">463: </a><span class="php-comment">     *
+</span></span><span id="464" class="l"><a class="l" href="#464">464: </a><span class="php-comment">     */</span>
+</span><span id="465" class="l"><a class="l" href="#465">465: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____afterLoginRedirect" href="#____afterLoginRedirect">___afterLoginRedirect</a>() {
+</span><span id="466" class="l"><a class="l" href="#466">466: </a>        <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;urls-&gt;admin . <span class="php-quote">'page/?login=1'</span>;
+</span><span id="467" class="l"><a class="l" href="#467">467: </a>        <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;afterLoginURL(<span class="php-var">$url</span>);
+</span><span id="468" class="l"><a class="l" href="#468">468: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;redirect(<span class="php-var">$url</span>);
+</span><span id="469" class="l"><a class="l" href="#469">469: </a>    }
+</span><span id="470" class="l"><a class="l" href="#470">470: </a>
+</span><span id="471" class="l"><a class="l" href="#471">471: </a>    <span class="php-comment">/**
+</span></span><span id="472" class="l"><a class="l" href="#472">472: </a><span class="php-comment">     * #pw-hooker
+</span></span><span id="473" class="l"><a class="l" href="#473">473: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="474" class="l"><a class="l" href="#474">474: </a><span class="php-comment">     * 
+</span></span><span id="475" class="l"><a class="l" href="#475">475: </a><span class="php-comment">     * @param string $url
+</span></span><span id="476" class="l"><a class="l" href="#476">476: </a><span class="php-comment">     * @return string
+</span></span><span id="477" class="l"><a class="l" href="#477">477: </a><span class="php-comment">     * 
+</span></span><span id="478" class="l"><a class="l" href="#478">478: </a><span class="php-comment">     */</span>
+</span><span id="479" class="l"><a class="l" href="#479">479: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____afterLoginURL" href="#____afterLoginURL">___afterLoginURL</a>(<span class="php-var">$url</span>) {
+</span><span id="480" class="l"><a class="l" href="#480">480: </a>        <span class="php-keyword1">return</span> <span class="php-var">$url</span>;
+</span><span id="481" class="l"><a class="l" href="#481">481: </a>    }
+</span><span id="482" class="l"><a class="l" href="#482">482: </a>
+</span><span id="483" class="l"><a class="l" href="#483">483: </a>
+</span><span id="484" class="l"><a class="l" href="#484">484: </a>}
+</span><span id="485" class="l"><a class="l" href="#485">485: </a>
+</span><span id="486" class="l"><a class="l" href="#486">486: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
