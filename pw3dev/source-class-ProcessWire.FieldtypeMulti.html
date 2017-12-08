@@ -8,7 +8,7 @@
 	<title>File core/FieldtypeMulti.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?895110817"></script>
+	<script type="text/javascript" src="elementlist.js?2602472759"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.84 dev</span>
+			<span>Overview version 3.0.85 dev</span>
 		</a>
 
 
@@ -1361,103 +1361,108 @@
 </span><span id="798" class="l"><a class="l" href="#798">798: </a>            }
 </span><span id="799" class="l"><a class="l" href="#799">799: </a>
 </span><span id="800" class="l"><a class="l" href="#800">800: </a>            <span class="php-comment">// only allow matches using templates with the requested field</span>
-</span><span id="801" class="l"><a class="l" href="#801">801: </a>            <span class="php-var">$sql</span> = <span class="php-quote">'pages.templates_id IN('</span>;
-</span><span id="802" class="l"><a class="l" href="#802">802: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$field</span>-&gt;getTemplates() <span class="php-keyword1">as</span> <span class="php-var">$template</span>) {
-</span><span id="803" class="l"><a class="l" href="#803">803: </a>                <span class="php-var">$sql</span> .= ((int) <span class="php-var">$template</span>-&gt;id) . <span class="php-quote">','</span>;    
-</span><span id="804" class="l"><a class="l" href="#804">804: </a>            }
-</span><span id="805" class="l"><a class="l" href="#805">805: </a>            <span class="php-var">$sql</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$sql</span>, <span class="php-quote">','</span>) . <span class="php-quote">')'</span>;
-</span><span id="806" class="l"><a class="l" href="#806">806: </a>            <span class="php-var">$query</span>-&gt;where(<span class="php-var">$sql</span>); <span class="php-comment">// QA</span>
-</span><span id="807" class="l"><a class="l" href="#807">807: </a>
-</span><span id="808" class="l"><a class="l" href="#808">808: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="809" class="l"><a class="l" href="#809">809: </a>            <span class="php-var">$query</span> = parent::getMatchQuery(<span class="php-var">$query</span>, <span class="php-var">$table</span>, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>);
-</span><span id="810" class="l"><a class="l" href="#810">810: </a>        }
-</span><span id="811" class="l"><a class="l" href="#811">811: </a>
-</span><span id="812" class="l"><a class="l" href="#812">812: </a>        <span class="php-keyword1">return</span> <span class="php-var">$query</span>;
-</span><span id="813" class="l"><a class="l" href="#813">813: </a>    }
-</span><span id="814" class="l"><a class="l" href="#814">814: </a>
-</span><span id="815" class="l"><a class="l" href="#815">815: </a>    <span class="php-comment">/**
-</span></span><span id="816" class="l"><a class="l" href="#816">816: </a><span class="php-comment">     * Get Inputfields for advanced settings of the Field and Fieldtype
-</span></span><span id="817" class="l"><a class="l" href="#817">817: </a><span class="php-comment">     *
-</span></span><span id="818" class="l"><a class="l" href="#818">818: </a><span class="php-comment">     * Inputfields returned from this appear under the &quot;Advanced&quot; tab rather than the &quot;Details&quot; tab,
-</span></span><span id="819" class="l"><a class="l" href="#819">819: </a><span class="php-comment">     * in the Field editor.
-</span></span><span id="820" class="l"><a class="l" href="#820">820: </a><span class="php-comment">     *
-</span></span><span id="821" class="l"><a class="l" href="#821">821: </a><span class="php-comment">     * In most cases, you will want to implement the getConfigInputfields() or getConfigArray() rather than this method.
+</span><span id="801" class="l"><a class="l" href="#801">801: </a>            <span class="php-var">$templates</span> = <span class="php-var">$field</span>-&gt;getTemplates();
+</span><span id="802" class="l"><a class="l" href="#802">802: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$templates</span>)) {
+</span><span id="803" class="l"><a class="l" href="#803">803: </a>                <span class="php-var">$sql</span> = <span class="php-quote">'pages.templates_id IN('</span>;
+</span><span id="804" class="l"><a class="l" href="#804">804: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$templates</span> <span class="php-keyword1">as</span> <span class="php-var">$template</span>) {
+</span><span id="805" class="l"><a class="l" href="#805">805: </a>                    <span class="php-var">$sql</span> .= ((int) <span class="php-var">$template</span>-&gt;id) . <span class="php-quote">','</span>;
+</span><span id="806" class="l"><a class="l" href="#806">806: </a>                }
+</span><span id="807" class="l"><a class="l" href="#807">807: </a>                <span class="php-var">$sql</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$sql</span>, <span class="php-quote">','</span>) . <span class="php-quote">')'</span>;
+</span><span id="808" class="l"><a class="l" href="#808">808: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="809" class="l"><a class="l" href="#809">809: </a>                <span class="php-var">$sql</span> = <span class="php-quote">'pages.templates_id=0'</span>;
+</span><span id="810" class="l"><a class="l" href="#810">810: </a>            }
+</span><span id="811" class="l"><a class="l" href="#811">811: </a>            <span class="php-var">$query</span>-&gt;where(<span class="php-var">$sql</span>); <span class="php-comment">// QA</span>
+</span><span id="812" class="l"><a class="l" href="#812">812: </a>
+</span><span id="813" class="l"><a class="l" href="#813">813: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="814" class="l"><a class="l" href="#814">814: </a>            <span class="php-var">$query</span> = parent::getMatchQuery(<span class="php-var">$query</span>, <span class="php-var">$table</span>, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>);
+</span><span id="815" class="l"><a class="l" href="#815">815: </a>        }
+</span><span id="816" class="l"><a class="l" href="#816">816: </a>
+</span><span id="817" class="l"><a class="l" href="#817">817: </a>        <span class="php-keyword1">return</span> <span class="php-var">$query</span>;
+</span><span id="818" class="l"><a class="l" href="#818">818: </a>    }
+</span><span id="819" class="l"><a class="l" href="#819">819: </a>
+</span><span id="820" class="l"><a class="l" href="#820">820: </a>    <span class="php-comment">/**
+</span></span><span id="821" class="l"><a class="l" href="#821">821: </a><span class="php-comment">     * Get Inputfields for advanced settings of the Field and Fieldtype
 </span></span><span id="822" class="l"><a class="l" href="#822">822: </a><span class="php-comment">     *
-</span></span><span id="823" class="l"><a class="l" href="#823">823: </a><span class="php-comment">     * NOTE: Inputfields with a name that starts with an underscore, i.e. &quot;_myname&quot; are assumed to be for runtime
-</span></span><span id="824" class="l"><a class="l" href="#824">824: </a><span class="php-comment">     * use and are NOT stored in the database.
+</span></span><span id="823" class="l"><a class="l" href="#823">823: </a><span class="php-comment">     * Inputfields returned from this appear under the &quot;Advanced&quot; tab rather than the &quot;Details&quot; tab,
+</span></span><span id="824" class="l"><a class="l" href="#824">824: </a><span class="php-comment">     * in the Field editor.
 </span></span><span id="825" class="l"><a class="l" href="#825">825: </a><span class="php-comment">     *
-</span></span><span id="826" class="l"><a class="l" href="#826">826: </a><span class="php-comment">     * #pw-group-configuration
+</span></span><span id="826" class="l"><a class="l" href="#826">826: </a><span class="php-comment">     * In most cases, you will want to implement the getConfigInputfields() or getConfigArray() rather than this method.
 </span></span><span id="827" class="l"><a class="l" href="#827">827: </a><span class="php-comment">     *
-</span></span><span id="828" class="l"><a class="l" href="#828">828: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="829" class="l"><a class="l" href="#829">829: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="828" class="l"><a class="l" href="#828">828: </a><span class="php-comment">     * NOTE: Inputfields with a name that starts with an underscore, i.e. &quot;_myname&quot; are assumed to be for runtime
+</span></span><span id="829" class="l"><a class="l" href="#829">829: </a><span class="php-comment">     * use and are NOT stored in the database.
 </span></span><span id="830" class="l"><a class="l" href="#830">830: </a><span class="php-comment">     *
-</span></span><span id="831" class="l"><a class="l" href="#831">831: </a><span class="php-comment">     */</span>
-</span><span id="832" class="l"><a class="l" href="#832">832: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>(Field <span class="php-var">$field</span>) {
-</span><span id="833" class="l"><a class="l" href="#833">833: </a>        
-</span><span id="834" class="l"><a class="l" href="#834">834: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields(<span class="php-var">$field</span>);
-</span><span id="835" class="l"><a class="l" href="#835">835: </a>        
-</span><span id="836" class="l"><a class="l" href="#836">836: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;get(<span class="php-quote">'useOrderByCols'</span>)) {
-</span><span id="837" class="l"><a class="l" href="#837">837: </a>
-</span><span id="838" class="l"><a class="l" href="#838">838: </a>            <span class="php-keyword1">try</span> {
-</span><span id="839" class="l"><a class="l" href="#839">839: </a>                <span class="php-var">$info</span> = <span class="php-var">$this</span>-&gt;getDatabaseSchemaVerbose(<span class="php-var">$field</span>);
-</span><span id="840" class="l"><a class="l" href="#840">840: </a>                <span class="php-var">$primaryKeys</span> = <span class="php-var">$info</span>[<span class="php-quote">'primaryKeys'</span>];
-</span><span id="841" class="l"><a class="l" href="#841">841: </a>                <span class="php-var">$schema</span> = <span class="php-var">$info</span>[<span class="php-quote">'schema'</span>];
-</span><span id="842" class="l"><a class="l" href="#842">842: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
-</span><span id="843" class="l"><a class="l" href="#843">843: </a>                <span class="php-var">$schema</span> = <span class="php-keyword1">array</span>();
-</span><span id="844" class="l"><a class="l" href="#844">844: </a>                <span class="php-var">$primaryKeys</span> = <span class="php-keyword1">array</span>();
-</span><span id="845" class="l"><a class="l" href="#845">845: </a>            }
-</span><span id="846" class="l"><a class="l" href="#846">846: </a>            
-</span><span id="847" class="l"><a class="l" href="#847">847: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$schema</span>)) {
-</span><span id="848" class="l"><a class="l" href="#848">848: </a>                
-</span><span id="849" class="l"><a class="l" href="#849">849: </a>                <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>);
-</span><span id="850" class="l"><a class="l" href="#850">850: </a>                <span class="php-var">$fieldset</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_FieldtypeMultiExtras'</span>);
-</span><span id="851" class="l"><a class="l" href="#851">851: </a>                <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Sorting and Pagination'</span>);
-</span><span id="852" class="l"><a class="l" href="#852">852: </a>                <span class="php-var">$fieldset</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'These settings apply to both front-end (site) and back-end (editor).'</span>);
-</span><span id="853" class="l"><a class="l" href="#853">853: </a>                <span class="php-var">$fieldset</span>-&gt;collapsed = Inputfield::collapsedYes;
-</span><span id="854" class="l"><a class="l" href="#854">854: </a>                <span class="php-var">$fieldset</span>-&gt;icon = <span class="php-quote">'sliders'</span>;
-</span><span id="855" class="l"><a class="l" href="#855">855: </a>                <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$fieldset</span>);
-</span><span id="856" class="l"><a class="l" href="#856">856: </a>
-</span><span id="857" class="l"><a class="l" href="#857">857: </a>                <span class="php-var">$sorts</span> = <span class="php-keyword1">array</span>();
-</span><span id="858" class="l"><a class="l" href="#858">858: </a>                <span class="php-var">$sortsReverse</span> = <span class="php-keyword1">array</span>();
-</span><span id="859" class="l"><a class="l" href="#859">859: </a>                <span class="php-keyword1">foreach</span>(<span class="php-keyword2">array_keys</span>(<span class="php-var">$this</span>-&gt;trimDatabaseSchema(<span class="php-var">$schema</span>)) <span class="php-keyword1">as</span> <span class="php-var">$sort</span>) {
-</span><span id="860" class="l"><a class="l" href="#860">860: </a>                    <span class="php-var">$sorts</span>[<span class="php-var">$sort</span>] = <span class="php-var">$sort</span>;
-</span><span id="861" class="l"><a class="l" href="#861">861: </a>                    <span class="php-var">$sortsReverse</span>[<span class="php-quote">&quot;-</span><span class="php-var">$sort</span><span class="php-quote">&quot;</span>] = <span class="php-quote">&quot;-</span><span class="php-var">$sort</span><span class="php-quote"> &quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'(reverse)'</span>);
-</span><span id="862" class="l"><a class="l" href="#862">862: </a>                }
-</span><span id="863" class="l"><a class="l" href="#863">863: </a>                <span class="php-var">$sorts</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$sorts</span>, <span class="php-var">$sortsReverse</span>);
-</span><span id="864" class="l"><a class="l" href="#864">864: </a>
-</span><span id="865" class="l"><a class="l" href="#865">865: </a>                <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldAsmSelect'</span>);
-</span><span id="866" class="l"><a class="l" href="#866">866: </a>                <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'orderByCols'</span>);
-</span><span id="867" class="l"><a class="l" href="#867">867: </a>                <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Automatic sorting'</span>);
-</span><span id="868" class="l"><a class="l" href="#868">868: </a>                <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select one or more fields to sort by below. For manual sort, leave this setting blank.'</span>);
-</span><span id="869" class="l"><a class="l" href="#869">869: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$sorts</span> <span class="php-keyword1">as</span> <span class="php-var">$sort</span> =&gt; <span class="php-var">$label</span>) <span class="php-var">$f</span>-&gt;addOption(<span class="php-var">$sort</span>, <span class="php-var">$label</span>);
-</span><span id="870" class="l"><a class="l" href="#870">870: </a>                <span class="php-var">$value</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'orderByCols'</span>);
-</span><span id="871" class="l"><a class="l" href="#871">871: </a>                <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
-</span><span id="872" class="l"><a class="l" href="#872">872: </a>                <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">50</span>;
-</span><span id="873" class="l"><a class="l" href="#873">873: </a>                <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="874" class="l"><a class="l" href="#874">874: </a>                
-</span><span id="875" class="l"><a class="l" href="#875">875: </a>                <span class="php-comment">// pagination support</span>
-</span><span id="876" class="l"><a class="l" href="#876">876: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;get(<span class="php-quote">'usePagination'</span>) &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$primaryKeys</span>) === <span class="php-num">1</span>) {
-</span><span id="877" class="l"><a class="l" href="#877">877: </a>                    <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldInteger'</span>);
-</span><span id="878" class="l"><a class="l" href="#878">878: </a>                    <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'paginationLimit'</span>);
-</span><span id="879" class="l"><a class="l" href="#879">879: </a>                    <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Pagination limit / items per page'</span>);
-</span><span id="880" class="l"><a class="l" href="#880">880: </a>                    <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This limits the number of items loaded/edited per pagination. The value “0” indicates no limit (default).'</span>);
-</span><span id="881" class="l"><a class="l" href="#881">881: </a>                    <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Pagination is recommended if you will be working with hundreds to thousands of items (or more).'</span>);
-</span><span id="882" class="l"><a class="l" href="#882">882: </a>                    <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This setting does not take effect unless a selection is made for “Automatic sorting”.'</span>);
-</span><span id="883" class="l"><a class="l" href="#883">883: </a>                    <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$field</span>-&gt;paginationLimit ? (int) <span class="php-var">$field</span>-&gt;paginationLimit : <span class="php-num">0</span>);
-</span><span id="884" class="l"><a class="l" href="#884">884: </a>                    <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">50</span>;
-</span><span id="885" class="l"><a class="l" href="#885">885: </a>                    <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
-</span><span id="886" class="l"><a class="l" href="#886">886: </a>                }
-</span><span id="887" class="l"><a class="l" href="#887">887: </a>            }
-</span><span id="888" class="l"><a class="l" href="#888">888: </a>
-</span><span id="889" class="l"><a class="l" href="#889">889: </a>        }
-</span><span id="890" class="l"><a class="l" href="#890">890: </a>        
-</span><span id="891" class="l"><a class="l" href="#891">891: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="892" class="l"><a class="l" href="#892">892: </a>    }
+</span></span><span id="831" class="l"><a class="l" href="#831">831: </a><span class="php-comment">     * #pw-group-configuration
+</span></span><span id="832" class="l"><a class="l" href="#832">832: </a><span class="php-comment">     *
+</span></span><span id="833" class="l"><a class="l" href="#833">833: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="834" class="l"><a class="l" href="#834">834: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="835" class="l"><a class="l" href="#835">835: </a><span class="php-comment">     *
+</span></span><span id="836" class="l"><a class="l" href="#836">836: </a><span class="php-comment">     */</span>
+</span><span id="837" class="l"><a class="l" href="#837">837: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>(Field <span class="php-var">$field</span>) {
+</span><span id="838" class="l"><a class="l" href="#838">838: </a>        
+</span><span id="839" class="l"><a class="l" href="#839">839: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields(<span class="php-var">$field</span>);
+</span><span id="840" class="l"><a class="l" href="#840">840: </a>        
+</span><span id="841" class="l"><a class="l" href="#841">841: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;get(<span class="php-quote">'useOrderByCols'</span>)) {
+</span><span id="842" class="l"><a class="l" href="#842">842: </a>
+</span><span id="843" class="l"><a class="l" href="#843">843: </a>            <span class="php-keyword1">try</span> {
+</span><span id="844" class="l"><a class="l" href="#844">844: </a>                <span class="php-var">$info</span> = <span class="php-var">$this</span>-&gt;getDatabaseSchemaVerbose(<span class="php-var">$field</span>);
+</span><span id="845" class="l"><a class="l" href="#845">845: </a>                <span class="php-var">$primaryKeys</span> = <span class="php-var">$info</span>[<span class="php-quote">'primaryKeys'</span>];
+</span><span id="846" class="l"><a class="l" href="#846">846: </a>                <span class="php-var">$schema</span> = <span class="php-var">$info</span>[<span class="php-quote">'schema'</span>];
+</span><span id="847" class="l"><a class="l" href="#847">847: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
+</span><span id="848" class="l"><a class="l" href="#848">848: </a>                <span class="php-var">$schema</span> = <span class="php-keyword1">array</span>();
+</span><span id="849" class="l"><a class="l" href="#849">849: </a>                <span class="php-var">$primaryKeys</span> = <span class="php-keyword1">array</span>();
+</span><span id="850" class="l"><a class="l" href="#850">850: </a>            }
+</span><span id="851" class="l"><a class="l" href="#851">851: </a>            
+</span><span id="852" class="l"><a class="l" href="#852">852: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$schema</span>)) {
+</span><span id="853" class="l"><a class="l" href="#853">853: </a>                
+</span><span id="854" class="l"><a class="l" href="#854">854: </a>                <span class="php-var">$fieldset</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldFieldset'</span>);
+</span><span id="855" class="l"><a class="l" href="#855">855: </a>                <span class="php-var">$fieldset</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_FieldtypeMultiExtras'</span>);
+</span><span id="856" class="l"><a class="l" href="#856">856: </a>                <span class="php-var">$fieldset</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Sorting and Pagination'</span>);
+</span><span id="857" class="l"><a class="l" href="#857">857: </a>                <span class="php-var">$fieldset</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'These settings apply to both front-end (site) and back-end (editor).'</span>);
+</span><span id="858" class="l"><a class="l" href="#858">858: </a>                <span class="php-var">$fieldset</span>-&gt;collapsed = Inputfield::collapsedYes;
+</span><span id="859" class="l"><a class="l" href="#859">859: </a>                <span class="php-var">$fieldset</span>-&gt;icon = <span class="php-quote">'sliders'</span>;
+</span><span id="860" class="l"><a class="l" href="#860">860: </a>                <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$fieldset</span>);
+</span><span id="861" class="l"><a class="l" href="#861">861: </a>
+</span><span id="862" class="l"><a class="l" href="#862">862: </a>                <span class="php-var">$sorts</span> = <span class="php-keyword1">array</span>();
+</span><span id="863" class="l"><a class="l" href="#863">863: </a>                <span class="php-var">$sortsReverse</span> = <span class="php-keyword1">array</span>();
+</span><span id="864" class="l"><a class="l" href="#864">864: </a>                <span class="php-keyword1">foreach</span>(<span class="php-keyword2">array_keys</span>(<span class="php-var">$this</span>-&gt;trimDatabaseSchema(<span class="php-var">$schema</span>)) <span class="php-keyword1">as</span> <span class="php-var">$sort</span>) {
+</span><span id="865" class="l"><a class="l" href="#865">865: </a>                    <span class="php-var">$sorts</span>[<span class="php-var">$sort</span>] = <span class="php-var">$sort</span>;
+</span><span id="866" class="l"><a class="l" href="#866">866: </a>                    <span class="php-var">$sortsReverse</span>[<span class="php-quote">&quot;-</span><span class="php-var">$sort</span><span class="php-quote">&quot;</span>] = <span class="php-quote">&quot;-</span><span class="php-var">$sort</span><span class="php-quote"> &quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'(reverse)'</span>);
+</span><span id="867" class="l"><a class="l" href="#867">867: </a>                }
+</span><span id="868" class="l"><a class="l" href="#868">868: </a>                <span class="php-var">$sorts</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$sorts</span>, <span class="php-var">$sortsReverse</span>);
+</span><span id="869" class="l"><a class="l" href="#869">869: </a>
+</span><span id="870" class="l"><a class="l" href="#870">870: </a>                <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldAsmSelect'</span>);
+</span><span id="871" class="l"><a class="l" href="#871">871: </a>                <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'orderByCols'</span>);
+</span><span id="872" class="l"><a class="l" href="#872">872: </a>                <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Automatic sorting'</span>);
+</span><span id="873" class="l"><a class="l" href="#873">873: </a>                <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select one or more fields to sort by below. For manual sort, leave this setting blank.'</span>);
+</span><span id="874" class="l"><a class="l" href="#874">874: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$sorts</span> <span class="php-keyword1">as</span> <span class="php-var">$sort</span> =&gt; <span class="php-var">$label</span>) <span class="php-var">$f</span>-&gt;addOption(<span class="php-var">$sort</span>, <span class="php-var">$label</span>);
+</span><span id="875" class="l"><a class="l" href="#875">875: </a>                <span class="php-var">$value</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'orderByCols'</span>);
+</span><span id="876" class="l"><a class="l" href="#876">876: </a>                <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$value</span>);
+</span><span id="877" class="l"><a class="l" href="#877">877: </a>                <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">50</span>;
+</span><span id="878" class="l"><a class="l" href="#878">878: </a>                <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="879" class="l"><a class="l" href="#879">879: </a>                
+</span><span id="880" class="l"><a class="l" href="#880">880: </a>                <span class="php-comment">// pagination support</span>
+</span><span id="881" class="l"><a class="l" href="#881">881: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;get(<span class="php-quote">'usePagination'</span>) &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$primaryKeys</span>) === <span class="php-num">1</span>) {
+</span><span id="882" class="l"><a class="l" href="#882">882: </a>                    <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldInteger'</span>);
+</span><span id="883" class="l"><a class="l" href="#883">883: </a>                    <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'paginationLimit'</span>);
+</span><span id="884" class="l"><a class="l" href="#884">884: </a>                    <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Pagination limit / items per page'</span>);
+</span><span id="885" class="l"><a class="l" href="#885">885: </a>                    <span class="php-var">$f</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This limits the number of items loaded/edited per pagination. The value “0” indicates no limit (default).'</span>);
+</span><span id="886" class="l"><a class="l" href="#886">886: </a>                    <span class="php-var">$f</span>-&gt;description .= <span class="php-quote">' '</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Pagination is recommended if you will be working with hundreds to thousands of items (or more).'</span>);
+</span><span id="887" class="l"><a class="l" href="#887">887: </a>                    <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This setting does not take effect unless a selection is made for “Automatic sorting”.'</span>);
+</span><span id="888" class="l"><a class="l" href="#888">888: </a>                    <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$field</span>-&gt;paginationLimit ? (int) <span class="php-var">$field</span>-&gt;paginationLimit : <span class="php-num">0</span>);
+</span><span id="889" class="l"><a class="l" href="#889">889: </a>                    <span class="php-var">$f</span>-&gt;columnWidth = <span class="php-num">50</span>;
+</span><span id="890" class="l"><a class="l" href="#890">890: </a>                    <span class="php-var">$fieldset</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="891" class="l"><a class="l" href="#891">891: </a>                }
+</span><span id="892" class="l"><a class="l" href="#892">892: </a>            }
 </span><span id="893" class="l"><a class="l" href="#893">893: </a>
-</span><span id="894" class="l"><a class="l" href="#894">894: </a>}
-</span><span id="895" class="l"><a class="l" href="#895">895: </a>
-</span><span id="896" class="l"><a class="l" href="#896">896: </a>
-</span><span id="897" class="l"><a class="l" href="#897">897: </a></span></code></pre>
+</span><span id="894" class="l"><a class="l" href="#894">894: </a>        }
+</span><span id="895" class="l"><a class="l" href="#895">895: </a>        
+</span><span id="896" class="l"><a class="l" href="#896">896: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="897" class="l"><a class="l" href="#897">897: </a>    }
+</span><span id="898" class="l"><a class="l" href="#898">898: </a>
+</span><span id="899" class="l"><a class="l" href="#899">899: </a>}
+</span><span id="900" class="l"><a class="l" href="#900">900: </a>
+</span><span id="901" class="l"><a class="l" href="#901">901: </a>
+</span><span id="902" class="l"><a class="l" href="#902">902: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

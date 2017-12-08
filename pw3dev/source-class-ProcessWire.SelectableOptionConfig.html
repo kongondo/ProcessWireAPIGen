@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeOptions/SelectableOptionConfig.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?895110817"></script>
+	<script type="text/javascript" src="elementlist.js?2602472759"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.84 dev</span>
+			<span>Overview version 3.0.85 dev</span>
 		</a>
 
 
@@ -776,15 +776,37 @@
 </span><span id="213" class="l"><a class="l" href="#213">213: </a>                <span class="php-var">$f</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This feature is active since a value is always required.'</span>); 
 </span><span id="214" class="l"><a class="l" href="#214">214: </a>            }
 </span><span id="215" class="l"><a class="l" href="#215">215: </a>            <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$f</span>); 
-</span><span id="216" class="l"><a class="l" href="#216">216: </a>        }
-</span><span id="217" class="l"><a class="l" href="#217">217: </a>
-</span><span id="218" class="l"><a class="l" href="#218">218: </a>        <span class="php-comment">// $this-&gt;manager-&gt;updateLanguages();</span>
-</span><span id="219" class="l"><a class="l" href="#219">219: </a>
-</span><span id="220" class="l"><a class="l" href="#220">220: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="221" class="l"><a class="l" href="#221">221: </a>    }
-</span><span id="222" class="l"><a class="l" href="#222">222: </a>}
-</span><span id="223" class="l"><a class="l" href="#223">223: </a>
-</span><span id="224" class="l"><a class="l" href="#224">224: </a></span></code></pre>
+</span><span id="216" class="l"><a class="l" href="#216">216: </a>            <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$this</span>-&gt;getInstructions());
+</span><span id="217" class="l"><a class="l" href="#217">217: </a>        }
+</span><span id="218" class="l"><a class="l" href="#218">218: </a>
+</span><span id="219" class="l"><a class="l" href="#219">219: </a>        <span class="php-comment">// $this-&gt;manager-&gt;updateLanguages();</span>
+</span><span id="220" class="l"><a class="l" href="#220">220: </a>
+</span><span id="221" class="l"><a class="l" href="#221">221: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="222" class="l"><a class="l" href="#222">222: </a>    }
+</span><span id="223" class="l"><a class="l" href="#223">223: </a>    
+</span><span id="224" class="l"><a class="l" href="#224">224: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getInstructions" href="#_getInstructions">getInstructions</a>() {
+</span><span id="225" class="l"><a class="l" href="#225">225: </a>        <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;field;
+</span><span id="226" class="l"><a class="l" href="#226">226: </a>        <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldMarkup'</span>);
+</span><span id="227" class="l"><a class="l" href="#227">227: </a>        <span class="php-var">$f</span>-&gt;collapsed = Inputfield::collapsedYes;
+</span><span id="228" class="l"><a class="l" href="#228">228: </a>        <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'API usage example'</span>); 
+</span><span id="229" class="l"><a class="l" href="#229">229: </a>        <span class="php-var">$f</span>-&gt;icon = <span class="php-quote">'code'</span>;
+</span><span id="230" class="l"><a class="l" href="#230">230: </a>        <span class="php-var">$f</span>-&gt;value = 
+</span><span id="231" class="l"><a class="l" href="#231">231: </a>            <span class="php-quote">&quot;&lt;pre&gt;&lt;code&gt;&quot;</span> .
+</span><span id="232" class="l"><a class="l" href="#232">232: </a>            <span class="php-quote">&quot;// &quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Output a single selection:'</span>) . 
+</span><span id="233" class="l"><a class="l" href="#233">233: </a>            <span class="php-quote">&quot;\necho '&amp;lt;h2&amp;gt;' . \</span><span class="php-var">$page</span><span class="php-quote">-&amp;gt;</span><span class="php-var">{$field-&gt;name}</span><span class="php-quote">-&amp;gt;title . '&amp;lt;/h2&amp;gt;';&quot;</span> . 
+</span><span id="234" class="l"><a class="l" href="#234">234: </a>            <span class="php-quote">&quot;\n\n// &quot;</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Output multiple selection:'</span>) . 
+</span><span id="235" class="l"><a class="l" href="#235">235: </a>            <span class="php-quote">&quot;\nforeach(\</span><span class="php-var">$page</span><span class="php-quote">-&amp;gt;</span><span class="php-var">$field</span><span class="php-quote">-&gt;name as \</span><span class="php-var">$item</span><span class="php-quote">) {&quot;</span> .  
+</span><span id="236" class="l"><a class="l" href="#236">236: </a>            <span class="php-quote">&quot;\n  echo '&amp;lt;li&amp;gt;' . \</span><span class="php-var">$item</span><span class="php-quote">-&amp;gt;title . '&amp;lt;/li&amp;gt;';&quot;</span> . 
+</span><span id="237" class="l"><a class="l" href="#237">237: </a>            <span class="php-quote">&quot;\n}&quot;</span> . 
+</span><span id="238" class="l"><a class="l" href="#238">238: </a>            <span class="php-quote">&quot;&lt;/code&gt;&lt;/pre&gt;&quot;</span> . 
+</span><span id="239" class="l"><a class="l" href="#239">239: </a>            <span class="php-quote">&quot;&lt;p class='detail'&gt;&quot;</span> . 
+</span><span id="240" class="l"><a class="l" href="#240">240: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'If you want to output values rather than titles, then replace “title” with “value” in the examples above.'</span>) . 
+</span><span id="241" class="l"><a class="l" href="#241">241: </a>            <span class="php-quote">&quot;&lt;/p&gt;&quot;</span>;
+</span><span id="242" class="l"><a class="l" href="#242">242: </a>        <span class="php-keyword1">return</span> <span class="php-var">$f</span>;
+</span><span id="243" class="l"><a class="l" href="#243">243: </a>    }
+</span><span id="244" class="l"><a class="l" href="#244">244: </a>}
+</span><span id="245" class="l"><a class="l" href="#245">245: </a>
+</span><span id="246" class="l"><a class="l" href="#246">246: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
