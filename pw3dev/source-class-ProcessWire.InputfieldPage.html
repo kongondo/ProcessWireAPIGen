@@ -8,7 +8,7 @@
 	<title>File modules/Inputfield/InputfieldPage/InputfieldPage.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2602472759"></script>
+	<script type="text/javascript" src="elementlist.js?1495762015"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.85 dev</span>
+			<span>Overview version 3.0.86 dev</span>
 		</a>
 
 
@@ -1790,48 +1790,50 @@
 </span><span id="1227" class="l"><a class="l" href="#1227">1227: </a>                <span class="php-var">$fieldset</span>-&gt;label = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Settings specific to “%s”'</span>), <span class="php-var">$info</span>[<span class="php-quote">'title'</span>]);
 </span><span id="1228" class="l"><a class="l" href="#1228">1228: </a>                <span class="php-var">$fieldset</span>-&gt;icon = <span class="php-quote">'gear'</span>;
 </span><span id="1229" class="l"><a class="l" href="#1229">1229: </a>                <span class="php-var">$fieldset</span>-&gt;collapsed = Inputfield::collapsedYes;
-</span><span id="1230" class="l"><a class="l" href="#1230">1230: </a>                <span class="php-var">$fieldset</span>-&gt;showIf = <span class="php-quote">'inputfield='</span> . <span class="php-var">$inputfield</span>-&gt;className();
-</span><span id="1231" class="l"><a class="l" href="#1231">1231: </a>                <span class="php-var">$inputfields</span>-&gt;insertAfter(<span class="php-var">$fieldset</span>, <span class="php-var">$inputfieldSelection</span>);
-</span><span id="1232" class="l"><a class="l" href="#1232">1232: </a>            }
-</span><span id="1233" class="l"><a class="l" href="#1233">1233: </a>        }
-</span><span id="1234" class="l"><a class="l" href="#1234">1234: </a>        
-</span><span id="1235" class="l"><a class="l" href="#1235">1235: </a>        <span class="php-var">$this</span>-&gt;configMode = <span class="php-keyword1">false</span>; <span class="php-comment">// reverse what was set at the top of this function</span>
-</span><span id="1236" class="l"><a class="l" href="#1236">1236: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
-</span><span id="1237" class="l"><a class="l" href="#1237">1237: </a>    }
-</span><span id="1238" class="l"><a class="l" href="#1238">1238: </a>
-</span><span id="1239" class="l"><a class="l" href="#1239">1239: </a>    <span class="php-comment">/**
-</span></span><span id="1240" class="l"><a class="l" href="#1240">1240: </a><span class="php-comment">     * Get module configuration Inputfields
-</span></span><span id="1241" class="l"><a class="l" href="#1241">1241: </a><span class="php-comment">     * 
-</span></span><span id="1242" class="l"><a class="l" href="#1242">1242: </a><span class="php-comment">     * @param array $data
-</span></span><span id="1243" class="l"><a class="l" href="#1243">1243: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="1244" class="l"><a class="l" href="#1244">1244: </a><span class="php-comment">     * 
-</span></span><span id="1245" class="l"><a class="l" href="#1245">1245: </a><span class="php-comment">     */</span>
-</span><span id="1246" class="l"><a class="l" href="#1246">1246: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="1247" class="l"><a class="l" href="#1247">1247: </a>
-</span><span id="1248" class="l"><a class="l" href="#1248">1248: </a>        <span class="php-var">$name</span> = <span class="php-quote">'inputfieldClasses'</span>;
+</span><span id="1230" class="l"><a class="l" href="#1230">1230: </a>                <span class="php-var">$inClass</span> = <span class="php-var">$inputfield</span>-&gt;className();
+</span><span id="1231" class="l"><a class="l" href="#1231">1231: </a>                <span class="php-var">$fieldset</span>-&gt;showIf = <span class="php-quote">'inputfield='</span> . <span class="php-var">$inClass</span>;
+</span><span id="1232" class="l"><a class="l" href="#1232">1232: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$inClass</span> == <span class="php-quote">'InputfieldPageAutocomplete'</span>) <span class="php-var">$fieldset</span>-&gt;showIf .= <span class="php-quote">&quot;|_</span><span class="php-var">$inClass</span><span class="php-quote">&quot;</span>;
+</span><span id="1233" class="l"><a class="l" href="#1233">1233: </a>                <span class="php-var">$inputfields</span>-&gt;insertAfter(<span class="php-var">$fieldset</span>, <span class="php-var">$inputfieldSelection</span>);
+</span><span id="1234" class="l"><a class="l" href="#1234">1234: </a>            }
+</span><span id="1235" class="l"><a class="l" href="#1235">1235: </a>        }
+</span><span id="1236" class="l"><a class="l" href="#1236">1236: </a>        
+</span><span id="1237" class="l"><a class="l" href="#1237">1237: </a>        <span class="php-var">$this</span>-&gt;configMode = <span class="php-keyword1">false</span>; <span class="php-comment">// reverse what was set at the top of this function</span>
+</span><span id="1238" class="l"><a class="l" href="#1238">1238: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
+</span><span id="1239" class="l"><a class="l" href="#1239">1239: </a>    }
+</span><span id="1240" class="l"><a class="l" href="#1240">1240: </a>
+</span><span id="1241" class="l"><a class="l" href="#1241">1241: </a>    <span class="php-comment">/**
+</span></span><span id="1242" class="l"><a class="l" href="#1242">1242: </a><span class="php-comment">     * Get module configuration Inputfields
+</span></span><span id="1243" class="l"><a class="l" href="#1243">1243: </a><span class="php-comment">     * 
+</span></span><span id="1244" class="l"><a class="l" href="#1244">1244: </a><span class="php-comment">     * @param array $data
+</span></span><span id="1245" class="l"><a class="l" href="#1245">1245: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="1246" class="l"><a class="l" href="#1246">1246: </a><span class="php-comment">     * 
+</span></span><span id="1247" class="l"><a class="l" href="#1247">1247: </a><span class="php-comment">     */</span>
+</span><span id="1248" class="l"><a class="l" href="#1248">1248: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
 </span><span id="1249" class="l"><a class="l" href="#1249">1249: </a>
-</span><span id="1250" class="l"><a class="l" href="#1250">1250: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-var">$name</span>]) || !<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>[<span class="php-var">$name</span>])) <span class="php-var">$data</span>[<span class="php-var">$name</span>] = self::<span class="php-var">$defaultInputfieldClasses</span>; 
-</span><span id="1251" class="l"><a class="l" href="#1251">1251: </a>        <span class="php-var">$fields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
-</span><span id="1252" class="l"><a class="l" href="#1252">1252: </a>        <span class="php-var">$modules</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>);
-</span><span id="1253" class="l"><a class="l" href="#1253">1253: </a>        <span class="php-comment">/** @var InputfieldAsmSelect $field */</span>
-</span><span id="1254" class="l"><a class="l" href="#1254">1254: </a>        <span class="php-var">$field</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldAsmSelect&quot;</span>);
-</span><span id="1255" class="l"><a class="l" href="#1255">1255: </a>        <span class="php-var">$field</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-var">$name</span>);
-</span><span id="1256" class="l"><a class="l" href="#1256">1256: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$modules</span>-&gt;find(<span class="php-quote">'className^=Inputfield'</span>) <span class="php-keyword1">as</span> <span class="php-var">$inputfield</span>) {
-</span><span id="1257" class="l"><a class="l" href="#1257">1257: </a>            <span class="php-var">$field</span>-&gt;addOption(<span class="php-var">$inputfield</span>-&gt;className(), <span class="php-keyword2">str_replace</span>(<span class="php-quote">'Inputfield'</span>, <span class="php-quote">''</span>, <span class="php-var">$inputfield</span>-&gt;className())); 
-</span><span id="1258" class="l"><a class="l" href="#1258">1258: </a>        }
-</span><span id="1259" class="l"><a class="l" href="#1259">1259: </a>        <span class="php-var">$field</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-var">$name</span>]); 
-</span><span id="1260" class="l"><a class="l" href="#1260">1260: </a>        <span class="php-var">$field</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Inputfield modules available for page selection'</span>);
-</span><span id="1261" class="l"><a class="l" href="#1261">1261: </a>        <span class="php-var">$field</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select the Inputfield modules that may be used for page selection. These should generally be Inputfields that allow you to select one or more options.'</span>); <span class="php-comment">// Description </span>
-</span><span id="1262" class="l"><a class="l" href="#1262">1262: </a>        <span class="php-var">$fields</span>-&gt;append(<span class="php-var">$field</span>);
-</span><span id="1263" class="l"><a class="l" href="#1263">1263: </a>
-</span><span id="1264" class="l"><a class="l" href="#1264">1264: </a>        <span class="php-keyword1">return</span> <span class="php-var">$fields</span>;
-</span><span id="1265" class="l"><a class="l" href="#1265">1265: </a>    }
-</span><span id="1266" class="l"><a class="l" href="#1266">1266: </a>
-</span><span id="1267" class="l"><a class="l" href="#1267">1267: </a>
+</span><span id="1250" class="l"><a class="l" href="#1250">1250: </a>        <span class="php-var">$name</span> = <span class="php-quote">'inputfieldClasses'</span>;
+</span><span id="1251" class="l"><a class="l" href="#1251">1251: </a>
+</span><span id="1252" class="l"><a class="l" href="#1252">1252: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-var">$name</span>]) || !<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>[<span class="php-var">$name</span>])) <span class="php-var">$data</span>[<span class="php-var">$name</span>] = self::<span class="php-var">$defaultInputfieldClasses</span>; 
+</span><span id="1253" class="l"><a class="l" href="#1253">1253: </a>        <span class="php-var">$fields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
+</span><span id="1254" class="l"><a class="l" href="#1254">1254: </a>        <span class="php-var">$modules</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>);
+</span><span id="1255" class="l"><a class="l" href="#1255">1255: </a>        <span class="php-comment">/** @var InputfieldAsmSelect $field */</span>
+</span><span id="1256" class="l"><a class="l" href="#1256">1256: </a>        <span class="php-var">$field</span> = <span class="php-var">$modules</span>-&gt;get(<span class="php-quote">&quot;InputfieldAsmSelect&quot;</span>);
+</span><span id="1257" class="l"><a class="l" href="#1257">1257: </a>        <span class="php-var">$field</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-var">$name</span>);
+</span><span id="1258" class="l"><a class="l" href="#1258">1258: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$modules</span>-&gt;find(<span class="php-quote">'className^=Inputfield'</span>) <span class="php-keyword1">as</span> <span class="php-var">$inputfield</span>) {
+</span><span id="1259" class="l"><a class="l" href="#1259">1259: </a>            <span class="php-var">$field</span>-&gt;addOption(<span class="php-var">$inputfield</span>-&gt;className(), <span class="php-keyword2">str_replace</span>(<span class="php-quote">'Inputfield'</span>, <span class="php-quote">''</span>, <span class="php-var">$inputfield</span>-&gt;className())); 
+</span><span id="1260" class="l"><a class="l" href="#1260">1260: </a>        }
+</span><span id="1261" class="l"><a class="l" href="#1261">1261: </a>        <span class="php-var">$field</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-var">$data</span>[<span class="php-var">$name</span>]); 
+</span><span id="1262" class="l"><a class="l" href="#1262">1262: </a>        <span class="php-var">$field</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Inputfield modules available for page selection'</span>);
+</span><span id="1263" class="l"><a class="l" href="#1263">1263: </a>        <span class="php-var">$field</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Select the Inputfield modules that may be used for page selection. These should generally be Inputfields that allow you to select one or more options.'</span>); <span class="php-comment">// Description </span>
+</span><span id="1264" class="l"><a class="l" href="#1264">1264: </a>        <span class="php-var">$fields</span>-&gt;append(<span class="php-var">$field</span>);
+</span><span id="1265" class="l"><a class="l" href="#1265">1265: </a>
+</span><span id="1266" class="l"><a class="l" href="#1266">1266: </a>        <span class="php-keyword1">return</span> <span class="php-var">$fields</span>;
+</span><span id="1267" class="l"><a class="l" href="#1267">1267: </a>    }
 </span><span id="1268" class="l"><a class="l" href="#1268">1268: </a>
-</span><span id="1269" class="l"><a class="l" href="#1269">1269: </a>    
-</span><span id="1270" class="l"><a class="l" href="#1270">1270: </a>}
-</span><span id="1271" class="l"><a class="l" href="#1271">1271: </a></span></code></pre>
+</span><span id="1269" class="l"><a class="l" href="#1269">1269: </a>
+</span><span id="1270" class="l"><a class="l" href="#1270">1270: </a>
+</span><span id="1271" class="l"><a class="l" href="#1271">1271: </a>    
+</span><span id="1272" class="l"><a class="l" href="#1272">1272: </a>}
+</span><span id="1273" class="l"><a class="l" href="#1273">1273: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

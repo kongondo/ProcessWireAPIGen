@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\ProcessUser | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2602472759"></script>
+	<script type="text/javascript" src="elementlist.js?1495762015"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.85 dev</span>
+			<span>Overview version 3.0.86 dev</span>
 		</a>
 
 
@@ -640,7 +640,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.ProcessUser.html#4-311" title="Go to source code">modules/Process/ProcessUser/ProcessUser.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.ProcessUser.html#4-461" title="Go to source code">modules/Process/ProcessUser/ProcessUser.module</a><br>
 	</div>
 
 
@@ -689,17 +689,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#30-33" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#30-37" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
-<p>Construct</p>
+<p>Construct and set default config values</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Construct</p>
+<p>Construct and set default config values</p>
 
 
 
@@ -724,17 +724,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#35-44" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#39-52" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
-<p>Init</p>
+<p>Init and prepare for execute methods</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Init</p>
+<p>Init and prepare for execute methods</p>
 
 
 
@@ -759,19 +759,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_useLister">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#46-48" title="Go to source code">useLister</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#54-62" title="Go to source code">useLister</a>( )</code>
 
 		<div class="description short">
 			
-<p>Return true or false as to whether use of Lister should be attempted
-(template method)</p>
+<p>Determine whether Lister should be used or not</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return true or false as to whether use of Lister should be attempted
-(template method)</p>
+<p>Determine whether Lister should be used or not</p>
 
 
 
@@ -793,14 +791,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			string
+			string|array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____executeNavJSON">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#50-82" title="Go to source code">___executeNavJSON</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#64-99" title="Go to source code">___executeNavJSON</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -817,12 +815,12 @@ href="https://processwire.com">https://processwire.com</a></p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options For descending classes to modify behavior (see $defaults in method)</dd>
+					<dd><code>array</code><br>$options</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>rendered JSON string<br>
+					<code>string|array</code><br>
 				</div>
 
 				<h4>Throws</h4>
@@ -848,16 +846,27 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookListerExecute">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#84-97" title="Go to source code">hookListerExecute</a>( <span>mixed <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#101-120" title="Go to source code">hookListerExecute</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Hook to ProcessPageLister::execute method to adjust selector to show specific
+roles</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Hook to ProcessPageLister::execute method to adjust selector to show specific
+roles</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event</dd>
+				</dl></div>
 
 
 
@@ -877,17 +886,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getListerSettings">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#99-147" title="Go to source code">getListerSettings</a>( <span><code><a href="class-ProcessWire.ProcessPageLister.html">ProcessWire\ProcessPageLister</a></code> <var>$lister</var></span>, <span>string <var>$selector</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#122-178" title="Go to source code">getListerSettings</a>( <span><code><a href="class-ProcessWire.ProcessPageLister.html">ProcessWire\ProcessPageLister</a></code> <var>$lister</var></span>, <span>string <var>$selector</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return an array of Lister settings, ready to be populated to Lister</p>
+<p>Get settings to be used for Lister</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return an array of Lister settings, ready to be populated to Lister</p>
+<p>Get settings to be used for Lister</p>
 
 
 
@@ -912,28 +921,117 @@ href="https://processwire.com">https://processwire.com</a></p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getPage" id="_getPage">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPage">#</a>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#180-192" title="Go to source code">getPage</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the Page being edited, when applicable</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the Page being edited, when applicable</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.NullPage.html">ProcessWire\NullPage</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.ProcessPageType.html#_getPage">ProcessWire\ProcessPageType::getPage()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEditableRoles" id="_getEditableRoles">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEditableRoles">#</a>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#194-242" title="Go to source code">getEditableRoles</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$page</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Return array of roles editable by current user for user $page</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return array of roles editable by current user for user $page</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code></code><br>$page</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>of role names indexed by role ID<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="___executeEdit" id="____executeEdit">
 
 		<td class="attributes"><code>
 			 public 
-			
+			array|string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____executeEdit">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#149-201" title="Go to source code">___executeEdit</a>( )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#244-273" title="Go to source code">___executeEdit</a>( )</code>
 
 		<div class="description short">
 			
+<p>Edit user</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Edit user</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|string</code><br>
+				</div>
 
 
 
@@ -954,16 +1052,25 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookGetSelectablePages">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#203-209" title="Go to source code">hookGetSelectablePages</a>( <span>mixed <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#275-287" title="Go to source code">hookGetSelectablePages</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Hook to InputfieldPage::getSelectablePages to target the "roles" field</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Hook to InputfieldPage::getSelectablePages to target the "roles" field</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event</dd>
+				</dl></div>
 
 
 
@@ -983,16 +1090,27 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookPageEditBuildForm">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#211-218" title="Go to source code">hookPageEditBuildForm</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#289-303" title="Go to source code">hookPageEditBuildForm</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Hook to ProcessPageEdit::buildForm to adjust User edit form before presenting
+to user</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Hook to ProcessPageEdit::buildForm to adjust User edit form before presenting
+to user</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event</dd>
+				</dl></div>
 
 
 
@@ -1012,22 +1130,117 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookPageSave">#</a>
-		<code><a href="source-class-ProcessWire.ProcessUser.html#220-309" title="Go to source code">hookPageSave</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#305-359" title="Go to source code">hookPageSave</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Perform a security check to make sure that a non-superuser isn't assigning
-superuser access to themselves or someone else.</p>
+<p>Hook before Pages::save()</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Hook before Pages::save()</p>
+
 <p>Perform a security check to make sure that a non-superuser isn't assigning
-superuser access to themselves or someone else.</p>
+superuser access to themselves or someone else. Plus perform addition role
+add/remove checks.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="checkSaveRoles" id="_checkSaveRoles">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_checkSaveRoles">#</a>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#361-403" title="Go to source code">checkSaveRoles</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$page</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Perform a general check for saving the roles field, making sure added/removed
+roles are okay</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Perform a general check for saving the roles field, making sure added/removed
+roles are okay</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user</var></dt>
+					<dd><code><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code></code><br>$user</dd>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code></code><br>$page</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="checkSaveUserAdminAll" id="_checkSaveUserAdminAll">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_checkSaveUserAdminAll">#</a>
+		<code><a href="source-class-ProcessWire.ProcessUser.html#405-459" title="Go to source code">checkSaveUserAdminAll</a>( <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$page</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Perform checks for when "user-admin-all" permission is installed and user
+does not have it</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Perform checks for when "user-admin-all" permission is installed and user
+does not have it</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user</var></dt>
+					<dd><code><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code></code><br>$user</dd>
+					<dt><var>$page</var></dt>
+					<dd><code><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code></code><br>$page</dd>
+				</dl></div>
 
 
 
@@ -1056,7 +1269,6 @@ superuser access to themselves or someone else.</p>
 			<a href="class-ProcessWire.ProcessPageType.html#_getEditor">getEditor()</a>, 
 			<a href="class-ProcessWire.ProcessPageType.html#_getLister">getLister()</a>, 
 			<a href="class-ProcessWire.ProcessPageType.html#_getModuleConfigInputfields">getModuleConfigInputfields()</a>, 
-			<a href="class-ProcessWire.ProcessPageType.html#_getPage">getPage()</a>, 
 			<a href="class-ProcessWire.ProcessPageType.html#_getTemplateFilterForm">getTemplateFilterForm()</a>, 
 			<a href="class-ProcessWire.ProcessPageType.html#_initLister">initLister()</a>, 
 			<a href="class-ProcessWire.ProcessPageType.html#_renderEmptyList">renderEmptyList()</a>, 
