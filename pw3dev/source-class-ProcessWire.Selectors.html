@@ -8,7 +8,7 @@
 	<title>File core/Selectors.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1495762015"></script>
+	<script type="text/javascript" src="elementlist.js?2460175656"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -1772,32 +1772,73 @@
 </span><span id="1209" class="l"><a class="l" href="#1209">1209: </a>    }
 </span><span id="1210" class="l"><a class="l" href="#1210">1210: </a>
 </span><span id="1211" class="l"><a class="l" href="#1211">1211: </a>    <span class="php-comment">/**
-</span></span><span id="1212" class="l"><a class="l" href="#1212">1212: </a><span class="php-comment">     * See if the given $selector specifies the given $field somewhere
+</span></span><span id="1212" class="l"><a class="l" href="#1212">1212: </a><span class="php-comment">     * Get the first selector that uses given field name
 </span></span><span id="1213" class="l"><a class="l" href="#1213">1213: </a><span class="php-comment">     * 
-</span></span><span id="1214" class="l"><a class="l" href="#1214">1214: </a><span class="php-comment">     * @param array|string|Selectors $selector
-</span></span><span id="1215" class="l"><a class="l" href="#1215">1215: </a><span class="php-comment">     * @param string $field
-</span></span><span id="1216" class="l"><a class="l" href="#1216">1216: </a><span class="php-comment">     * @return bool
-</span></span><span id="1217" class="l"><a class="l" href="#1217">1217: </a><span class="php-comment">     * 
-</span></span><span id="1218" class="l"><a class="l" href="#1218">1218: </a><span class="php-comment">    public static function selectorHasField($selector, $field) {
-</span></span><span id="1219" class="l"><a class="l" href="#1219">1219: </a><span class="php-comment">        
-</span></span><span id="1220" class="l"><a class="l" href="#1220">1220: </a><span class="php-comment">        if(is_object($selector)) $selector = (string) $selector;
-</span></span><span id="1221" class="l"><a class="l" href="#1221">1221: </a><span class="php-comment">        
-</span></span><span id="1222" class="l"><a class="l" href="#1222">1222: </a><span class="php-comment">        if(is_array($selector)) {
-</span></span><span id="1223" class="l"><a class="l" href="#1223">1223: </a><span class="php-comment">            if(array_key_exists($field, $selector)) return true;
-</span></span><span id="1224" class="l"><a class="l" href="#1224">1224: </a><span class="php-comment">            $test = print_r($selector, true);
-</span></span><span id="1225" class="l"><a class="l" href="#1225">1225: </a><span class="php-comment">            if(strpos($test, $field) === false) return false; 
-</span></span><span id="1226" class="l"><a class="l" href="#1226">1226: </a><span class="php-comment">            
-</span></span><span id="1227" class="l"><a class="l" href="#1227">1227: </a><span class="php-comment">            
-</span></span><span id="1228" class="l"><a class="l" href="#1228">1228: </a><span class="php-comment">        } else if(is_string($selector)) {
-</span></span><span id="1229" class="l"><a class="l" href="#1229">1229: </a><span class="php-comment">            if(strpos($selector, $field) === false) return false; // quick exit
-</span></span><span id="1230" class="l"><a class="l" href="#1230">1230: </a><span class="php-comment">        }
-</span></span><span id="1231" class="l"><a class="l" href="#1231">1231: </a><span class="php-comment">    }
-</span></span><span id="1232" class="l"><a class="l" href="#1232">1232: </a><span class="php-comment">     */</span>
-</span><span id="1233" class="l"><a class="l" href="#1233">1233: </a>
-</span><span id="1234" class="l"><a class="l" href="#1234">1234: </a>}
-</span><span id="1235" class="l"><a class="l" href="#1235">1235: </a>
-</span><span id="1236" class="l"><a class="l" href="#1236">1236: </a>Selector::loadSelectorTypes();
-</span><span id="1237" class="l"><a class="l" href="#1237">1237: </a></span></code></pre>
+</span></span><span id="1214" class="l"><a class="l" href="#1214">1214: </a><span class="php-comment">     * This is useful for quickly retrieving values of reserved properties like &quot;include&quot;, &quot;limit&quot;, &quot;start&quot;, etc. 
+</span></span><span id="1215" class="l"><a class="l" href="#1215">1215: </a><span class="php-comment">     * 
+</span></span><span id="1216" class="l"><a class="l" href="#1216">1216: </a><span class="php-comment">     * Using **$or:** By default this excludes selectors that have fields in an OR expression, like &quot;a|b|c&quot;. 
+</span></span><span id="1217" class="l"><a class="l" href="#1217">1217: </a><span class="php-comment">     * So if you specified field &quot;a&quot; it would not be matched. If you wanted it to still match, specify true 
+</span></span><span id="1218" class="l"><a class="l" href="#1218">1218: </a><span class="php-comment">     * for the $or argument.
+</span></span><span id="1219" class="l"><a class="l" href="#1219">1219: </a><span class="php-comment">     * 
+</span></span><span id="1220" class="l"><a class="l" href="#1220">1220: </a><span class="php-comment">     * Using **$all:** By default only the first matching selector is returned. If you want it to return all 
+</span></span><span id="1221" class="l"><a class="l" href="#1221">1221: </a><span class="php-comment">     * matching selectors in an array, then specify true for the $all argument. This changes the return value
+</span></span><span id="1222" class="l"><a class="l" href="#1222">1222: </a><span class="php-comment">     * to always be an array of Selector objects, or a blank array if no match. 
+</span></span><span id="1223" class="l"><a class="l" href="#1223">1223: </a><span class="php-comment">     * 
+</span></span><span id="1224" class="l"><a class="l" href="#1224">1224: </a><span class="php-comment">     * @param string $fieldName Name of field to return value for (i.e. &quot;include&quot;, &quot;limit&quot;, etc.)
+</span></span><span id="1225" class="l"><a class="l" href="#1225">1225: </a><span class="php-comment">     * @param bool $or Allow fields that appear in OR expressions? (default=false)
+</span></span><span id="1226" class="l"><a class="l" href="#1226">1226: </a><span class="php-comment">     * @param bool $all Return an array of all matching Selector objects? (default=false)
+</span></span><span id="1227" class="l"><a class="l" href="#1227">1227: </a><span class="php-comment">     * @return Selector|array|null Returns null if field not present in selectors (or blank array if $all mode)
+</span></span><span id="1228" class="l"><a class="l" href="#1228">1228: </a><span class="php-comment">     * 
+</span></span><span id="1229" class="l"><a class="l" href="#1229">1229: </a><span class="php-comment">     */</span>
+</span><span id="1230" class="l"><a class="l" href="#1230">1230: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getSelectorByField" href="#_getSelectorByField">getSelectorByField</a>(<span class="php-var">$fieldName</span>, <span class="php-var">$or</span> = <span class="php-keyword1">false</span>, <span class="php-var">$all</span> = <span class="php-keyword1">false</span>) {
+</span><span id="1231" class="l"><a class="l" href="#1231">1231: </a>        
+</span><span id="1232" class="l"><a class="l" href="#1232">1232: </a>        <span class="php-var">$selector</span> = <span class="php-keyword1">null</span>;
+</span><span id="1233" class="l"><a class="l" href="#1233">1233: </a>        <span class="php-var">$matches</span> = <span class="php-keyword1">array</span>();
+</span><span id="1234" class="l"><a class="l" href="#1234">1234: </a>        
+</span><span id="1235" class="l"><a class="l" href="#1235">1235: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span> <span class="php-keyword1">as</span> <span class="php-var">$sel</span>) {
+</span><span id="1236" class="l"><a class="l" href="#1236">1236: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$or</span>) {
+</span><span id="1237" class="l"><a class="l" href="#1237">1237: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword2">in_array</span>(<span class="php-var">$fieldName</span>, <span class="php-var">$sel</span>-&gt;fields)) <span class="php-keyword1">continue</span>;
+</span><span id="1238" class="l"><a class="l" href="#1238">1238: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1239" class="l"><a class="l" href="#1239">1239: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$sel</span>-&gt;field() !== <span class="php-var">$fieldName</span>) <span class="php-keyword1">continue</span>;
+</span><span id="1240" class="l"><a class="l" href="#1240">1240: </a>            }
+</span><span id="1241" class="l"><a class="l" href="#1241">1241: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$all</span>) {
+</span><span id="1242" class="l"><a class="l" href="#1242">1242: </a>                <span class="php-var">$matches</span>[] = <span class="php-var">$sel</span>;
+</span><span id="1243" class="l"><a class="l" href="#1243">1243: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1244" class="l"><a class="l" href="#1244">1244: </a>                <span class="php-var">$selector</span> = <span class="php-var">$sel</span>;
+</span><span id="1245" class="l"><a class="l" href="#1245">1245: </a>                <span class="php-keyword1">break</span>;
+</span><span id="1246" class="l"><a class="l" href="#1246">1246: </a>            }
+</span><span id="1247" class="l"><a class="l" href="#1247">1247: </a>        }
+</span><span id="1248" class="l"><a class="l" href="#1248">1248: </a>        
+</span><span id="1249" class="l"><a class="l" href="#1249">1249: </a>        <span class="php-keyword1">return</span> <span class="php-var">$all</span> ? <span class="php-var">$matches</span> : <span class="php-var">$selector</span>;
+</span><span id="1250" class="l"><a class="l" href="#1250">1250: </a>    }
+</span><span id="1251" class="l"><a class="l" href="#1251">1251: </a>
+</span><span id="1252" class="l"><a class="l" href="#1252">1252: </a>    <span class="php-comment">/**
+</span></span><span id="1253" class="l"><a class="l" href="#1253">1253: </a><span class="php-comment">     * See if the given $selector specifies the given $field somewhere
+</span></span><span id="1254" class="l"><a class="l" href="#1254">1254: </a><span class="php-comment">     * 
+</span></span><span id="1255" class="l"><a class="l" href="#1255">1255: </a><span class="php-comment">     * @param array|string|Selectors $selector
+</span></span><span id="1256" class="l"><a class="l" href="#1256">1256: </a><span class="php-comment">     * @param string $field
+</span></span><span id="1257" class="l"><a class="l" href="#1257">1257: </a><span class="php-comment">     * @return bool
+</span></span><span id="1258" class="l"><a class="l" href="#1258">1258: </a><span class="php-comment">     * 
+</span></span><span id="1259" class="l"><a class="l" href="#1259">1259: </a><span class="php-comment">    public static function selectorHasField($selector, $field) {
+</span></span><span id="1260" class="l"><a class="l" href="#1260">1260: </a><span class="php-comment">        
+</span></span><span id="1261" class="l"><a class="l" href="#1261">1261: </a><span class="php-comment">        if(is_object($selector)) $selector = (string) $selector;
+</span></span><span id="1262" class="l"><a class="l" href="#1262">1262: </a><span class="php-comment">        
+</span></span><span id="1263" class="l"><a class="l" href="#1263">1263: </a><span class="php-comment">        if(is_array($selector)) {
+</span></span><span id="1264" class="l"><a class="l" href="#1264">1264: </a><span class="php-comment">            if(array_key_exists($field, $selector)) return true;
+</span></span><span id="1265" class="l"><a class="l" href="#1265">1265: </a><span class="php-comment">            $test = print_r($selector, true);
+</span></span><span id="1266" class="l"><a class="l" href="#1266">1266: </a><span class="php-comment">            if(strpos($test, $field) === false) return false; 
+</span></span><span id="1267" class="l"><a class="l" href="#1267">1267: </a><span class="php-comment">            
+</span></span><span id="1268" class="l"><a class="l" href="#1268">1268: </a><span class="php-comment">            
+</span></span><span id="1269" class="l"><a class="l" href="#1269">1269: </a><span class="php-comment">        } else if(is_string($selector)) {
+</span></span><span id="1270" class="l"><a class="l" href="#1270">1270: </a><span class="php-comment">            if(strpos($selector, $field) === false) return false; // quick exit
+</span></span><span id="1271" class="l"><a class="l" href="#1271">1271: </a><span class="php-comment">        }
+</span></span><span id="1272" class="l"><a class="l" href="#1272">1272: </a><span class="php-comment">    }
+</span></span><span id="1273" class="l"><a class="l" href="#1273">1273: </a><span class="php-comment">     */</span>
+</span><span id="1274" class="l"><a class="l" href="#1274">1274: </a>
+</span><span id="1275" class="l"><a class="l" href="#1275">1275: </a>}
+</span><span id="1276" class="l"><a class="l" href="#1276">1276: </a>
+</span><span id="1277" class="l"><a class="l" href="#1277">1277: </a>Selector::loadSelectorTypes();
+</span><span id="1278" class="l"><a class="l" href="#1278">1278: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
