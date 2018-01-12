@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessTemplate/ProcessTemplate.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1172255501"></script>
+	<script type="text/javascript" src="elementlist.js?92293601"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -1556,10 +1556,10 @@
 </span><span id="993" class="l"><a class="l" href="#993"> 993: </a>            <span class="php-var">$desc</span> = <span class="php-var">$field</span>-&gt;label;
 </span><span id="994" class="l"><a class="l" href="#994"> 994: </a>            <span class="php-var">$maxDesc</span> = <span class="php-num">30</span>;
 </span><span id="995" class="l"><a class="l" href="#995"> 995: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strlen</span>(<span class="php-var">$desc</span>) &gt; <span class="php-var">$maxDesc</span>) {
-</span><span id="996" class="l"><a class="l" href="#996"> 996: </a>                <span class="php-var">$desc</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-keyword2">substr</span>(<span class="php-var">$desc</span>, <span class="php-num">0</span>, <span class="php-var">$maxDesc</span>));
+</span><span id="996" class="l"><a class="l" href="#996"> 996: </a>                <span class="php-var">$desc</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$desc</span>, <span class="php-num">0</span>, <span class="php-var">$maxDesc</span>);
 </span><span id="997" class="l"><a class="l" href="#997"> 997: </a>                <span class="php-var">$pos</span> = <span class="php-keyword2">strrpos</span>(<span class="php-var">$desc</span>, <span class="php-quote">' '</span>);
 </span><span id="998" class="l"><a class="l" href="#998"> 998: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$pos</span>) <span class="php-var">$desc</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$desc</span>, <span class="php-num">0</span>, <span class="php-keyword2">strrpos</span>(<span class="php-var">$desc</span>, <span class="php-quote">' '</span>));
-</span><span id="999" class="l"><a class="l" href="#999"> 999: </a>                <span class="php-var">$desc</span> .= <span class="php-quote">'&amp;hellip;'</span>;
+</span><span id="999" class="l"><a class="l" href="#999"> 999: </a>                <span class="php-var">$desc</span> .= <span class="php-quote">'…'</span>;
 </span><span id="1000" class="l"><a class="l" href="#1000">1000: </a>            }
 </span><span id="1001" class="l"><a class="l" href="#1001">1001: </a>
 </span><span id="1002" class="l"><a class="l" href="#1002">1002: </a>            <span class="php-var">$status</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">'Fieldtype'</span>, <span class="php-quote">''</span>, <span class="php-var">$field</span>-&gt;type);
@@ -1573,7 +1573,7 @@
 </span><span id="1010" class="l"><a class="l" href="#1010">1010: </a>        
 </span><span id="1011" class="l"><a class="l" href="#1011">1011: </a>        <span class="php-var">$attrs</span> = <span class="php-keyword1">array</span>(
 </span><span id="1012" class="l"><a class="l" href="#1012">1012: </a>            <span class="php-quote">'data-status'</span> =&gt; <span class="php-var">$icons</span> . <span class="php-var">$status</span>,
-</span><span id="1013" class="l"><a class="l" href="#1013">1013: </a>            <span class="php-quote">'data-desc'</span> =&gt; <span class="php-var">$desc</span>
+</span><span id="1013" class="l"><a class="l" href="#1013">1013: </a>            <span class="php-quote">'data-desc'</span> =&gt; <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$desc</span>)
 </span><span id="1014" class="l"><a class="l" href="#1014">1014: </a>            );
 </span><span id="1015" class="l"><a class="l" href="#1015">1015: </a>
 </span><span id="1016" class="l"><a class="l" href="#1016">1016: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;icon) {
