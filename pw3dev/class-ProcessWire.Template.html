@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Template | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?92293601"></script>
+	<script type="text/javascript" src="elementlist.js?907016521"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.88 dev</span>
+			<span>Overview version 3.0.89 dev</span>
 		</a>
 
 
@@ -629,7 +629,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<b>Todo:</b>
 				add multi-language option for redirectLogin setting Identification<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Template.html#4-1101" title="Go to source code">core/Template.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Template.html#4-1143" title="Go to source code">core/Template.php</a><br>
 	</div>
 
 
@@ -693,7 +693,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRoles">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#291-352" title="Go to source code">getRoles</a>( <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#291-355" title="Go to source code">getRoles</a>( <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -705,9 +705,17 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Get the role pages that are part of this template</p>
 
-<p>This method returns a blank PageArray if roles haven't yet been loaded into
-the template. If the roles have previously been loaded as an array, then this
-method converts that array to a PageArray and returns it.</p>
+<ul>
+	<li>This method returns a blank PageArray if roles haven’t yet been loaded
+	into the template.</li>
+
+	<li>If the roles have previously been loaded as an array, then this method
+	converts that array to a PageArray and returns it.</li>
+
+	<li>If you make changes to returned roles, make sure to set it back to the
+	template again with setRoles(). It’s preferable to make changes with addRole()
+	and removeRole() methods instead.</li>
+</ul>
 
 <p>#pw-group-access</p>
 
@@ -746,7 +754,7 @@ retrieve those.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasRole">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#354-396" title="Go to source code">hasRole</a>( <span>string|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$role</var></span>, <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#357-399" title="Go to source code">hasRole</a>( <span>string|<code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$role</var></span>, <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -794,7 +802,7 @@ of <code>page-view</code> or <code>page-edit</code></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRoles">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#398-434" title="Go to source code">setRoles</a>( <span>array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$value</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#401-440" title="Go to source code">setRoles</a>( <span>array|<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code> <var>$value</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -828,6 +836,102 @@ of <code>page-view</code> or <code>page-edit</code></dd>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="addRole" id="_addRole">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addRole">#</a>
+		<code><a href="source-class-ProcessWire.Template.html#442-460" title="Go to source code">addRole</a>( <span><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer|string <var>$role</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a Role to this template for view, edit, create, or add permission</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a Role to this template for view, edit, create, or add permission</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$role</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer|string</code><br>$role Role instance, id or name</dd>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type Type of role being added, one of: view, edit, create, add. (default=view)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given $role cannot be resolved<br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="removeRole" id="_removeRole">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_removeRole">#</a>
+		<code><a href="source-class-ProcessWire.Template.html#462-480" title="Go to source code">removeRole</a>( <span><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer|string <var>$role</var></span>, <span>string <var>$type</var> = <span class="php-quote">'view'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove a Role to this template for view, edit, create, or add permission</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove a Role to this template for view, edit, create, or add permission</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$role</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer|string</code><br>$role Role instance, id or name</dd>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type Type of role being added, one of: view, edit, create, add. (default=view)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>If given $role cannot be resolved<br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="addPermissionByRole" id="_addPermissionByRole">
 
 		<td class="attributes"><code>
@@ -839,7 +943,7 @@ of <code>page-view</code> or <code>page-edit</code></dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addPermissionByRole">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#436-449" title="Go to source code">addPermissionByRole</a>( <span><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|integer|string <var>$permission</var></span>, <span><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer|string <var>$role</var></span>, <span>boolean <var>$test</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#482-495" title="Go to source code">addPermissionByRole</a>( <span><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|integer|string <var>$permission</var></span>, <span><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer|string <var>$role</var></span>, <span>boolean <var>$test</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -890,7 +994,7 @@ anything</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_revokePermissionByRole">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#451-464" title="Go to source code">revokePermissionByRole</a>( <span><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|integer|string <var>$permission</var></span>, <span><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer|string <var>$role</var></span>, <span>boolean <var>$test</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#497-510" title="Go to source code">revokePermissionByRole</a>( <span><code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code>|integer|string <var>$permission</var></span>, <span><code><a href="class-ProcessWire.Role.html">ProcessWire\Role</a></code>|integer|string <var>$role</var></span>, <span>boolean <var>$test</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -930,35 +1034,6 @@ anything</dd>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="hasPermissionByRole" id="_hasPermissionByRole">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_hasPermissionByRole">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#466-468" title="Go to source code">hasPermissionByRole</a>( <span>mixed <var>$permission</var></span>, <span>mixed <var>$role</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="hasField" id="_hasField">
 
 		<td class="attributes"><code>
@@ -970,7 +1045,7 @@ anything</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasField">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#470-481" title="Go to source code">hasField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#512-523" title="Go to source code">hasField</a>( <span>string|integer|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1014,7 +1089,7 @@ anything</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#483-635" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#525-677" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1066,7 +1141,7 @@ anything</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_urlSegments">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#637-689" title="Go to source code">urlSegments</a>( <span>array|integer|boolean|string <var>$value</var> = <span class="php-quote">'~'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#679-731" title="Go to source code">urlSegments</a>( <span>array|integer|boolean|string <var>$value</var> = <span class="php-quote">'~'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1113,7 +1188,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFlags">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#691-707" title="Go to source code">setFlags</a>( <span>integer <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#733-749" title="Go to source code">setFlags</a>( <span>integer <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1153,7 +1228,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFilename">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#710-730" title="Go to source code">setFilename</a>( <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#752-772" title="Go to source code">setFilename</a>( <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1191,7 +1266,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFieldgroup">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#732-764" title="Go to source code">setFieldgroup</a>( <span><code><a href="class-ProcessWire.Fieldgroup.html">ProcessWire\Fieldgroup</a></code> <var>$fieldgroup</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#774-806" title="Go to source code">setFieldgroup</a>( <span><code><a href="class-ProcessWire.Fieldgroup.html">ProcessWire\Fieldgroup</a></code> <var>$fieldgroup</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1239,7 +1314,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNumPages">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#766-776" title="Go to source code">getNumPages</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#808-818" title="Go to source code">getNumPages</a>( )</code>
 
 		<div class="description short">
 			
@@ -1278,7 +1353,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#778-793" title="Go to source code">save</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#820-835" title="Go to source code">save</a>( )</code>
 
 		<div class="description short">
 			
@@ -1321,7 +1396,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filename">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#795-835" title="Go to source code">filename</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#837-877" title="Go to source code">filename</a>( )</code>
 
 		<div class="description short">
 			
@@ -1364,7 +1439,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookFinished">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#837-849" title="Go to source code">hookFinished</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$e</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#879-891" title="Go to source code">hookFinished</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$e</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1404,7 +1479,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filenameExists">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#851-863" title="Go to source code">filenameExists</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#893-905" title="Go to source code">filenameExists</a>( )</code>
 
 		<div class="description short">
 			
@@ -1443,7 +1518,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getArray">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#865-886" title="Go to source code">getArray</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#907-928" title="Go to source code">getArray</a>( )</code>
 
 		<div class="description short">
 			
@@ -1486,7 +1561,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTableData">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#888-903" title="Go to source code">getTableData</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#930-945" title="Go to source code">getTableData</a>( )</code>
 
 		<div class="description short">
 			
@@ -1527,7 +1602,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getExportData">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#905-913" title="Go to source code">getExportData</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#947-955" title="Go to source code">getExportData</a>( )</code>
 
 		<div class="description short">
 			
@@ -1568,7 +1643,7 @@ boolean false, or blank array to disable all URL segments.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setImportData">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#915-932" title="Go to source code">setImportData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#957-974" title="Go to source code">setImportData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1616,7 +1691,7 @@ error message (string) or messages (array) ) #pw-internal<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#934-940" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#976-982" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -1655,7 +1730,7 @@ error message (string) or messages (array) ) #pw-internal<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParentPage">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#943-960" title="Go to source code">getParentPage</a>( <span>boolean <var>$checkAccess</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#985-1002" title="Go to source code">getParentPage</a>( <span>boolean <var>$checkAccess</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1707,7 +1782,7 @@ possible shortcut parents, a NullPage is returned.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParentPages">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#962-973" title="Go to source code">getParentPages</a>( <span>boolean <var>$checkAccess</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#1004-1015" title="Go to source code">getParentPages</a>( <span>boolean <var>$checkAccess</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1752,7 +1827,7 @@ add children to (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLabel">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#975-998" title="Go to source code">getLabel</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code> <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#1017-1040" title="Go to source code">getLabel</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code> <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1803,7 +1878,7 @@ still get the name.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTabLabel">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#1000-1016" title="Go to source code">getTabLabel</a>( <span>string <var>$tab</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code> <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#1042-1058" title="Go to source code">getTabLabel</a>( <span>string <var>$tab</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code> <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1851,7 +1926,7 @@ provided)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNameLabel">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#1018-1031" title="Go to source code">getNameLabel</a>( <span><code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|null <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#1060-1073" title="Go to source code">getNameLabel</a>( <span><code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|null <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1895,7 +1970,7 @@ provided)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIcon">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#1033-1052" title="Go to source code">getIcon</a>( <span>boolean <var>$prefix</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#1075-1094" title="Go to source code">getIcon</a>( <span>boolean <var>$prefix</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1940,7 +2015,7 @@ provided)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLanguages">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#1054-1071" title="Go to source code">getLanguages</a>( )</code>
+		<code><a href="source-class-ProcessWire.Template.html#1096-1113" title="Go to source code">getLanguages</a>( )</code>
 
 		<div class="description short">
 			
@@ -1981,7 +2056,7 @@ active.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setIcon">#</a>
-		<code><a href="source-class-ProcessWire.Template.html#1073-1099" title="Go to source code">setIcon</a>( <span>string <var>$icon</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Template.html#1115-1141" title="Go to source code">setIcon</a>( <span>string <var>$icon</var></span> )</code>
 
 		<div class="description short">
 			

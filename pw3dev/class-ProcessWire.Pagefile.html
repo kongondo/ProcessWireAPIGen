@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Pagefile | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?92293601"></script>
+	<script type="text/javascript" src="elementlist.js?907016521"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.88 dev</span>
+			<span>Overview version 3.0.89 dev</span>
 		</a>
 
 
@@ -630,7 +630,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Pagefile.html#4-935" title="Go to source code">core/Pagefile.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Pagefile.html#4-1010" title="Go to source code">core/Pagefile.php</a><br>
 	</div>
 
 
@@ -648,7 +648,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#59-80" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Pagefiles.html">ProcessWire\Pagefiles</a></code> <var>$pagefiles</var></span>, <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#67-88" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Pagefiles.html">ProcessWire\Pagefiles</a></code> <var>$pagefiles</var></span>, <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -694,7 +694,7 @@ FieldtypeFile Field $pagefile = new Pagefile($page-&gt;files,
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFilename">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#83-106" title="Go to source code">setFilename</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#91-114" title="Go to source code">setFilename</a>( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -738,7 +738,7 @@ applicable.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#108-160" title="Go to source code">___install</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#116-168" title="Go to source code">___install</a>( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -787,7 +787,7 @@ file from.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#162-196" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#170-210" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -827,6 +827,75 @@ description</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="filedata" id="_filedata">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code>|array|string|integer|float|boolean|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_filedata">#</a>
+		<code><a href="source-class-ProcessWire.Pagefile.html#212-266" title="Go to source code">filedata</a>( <span>string|array|false|null <var>$key</var> = <span class="php-quote">''</span></span>, <span>null|string|array|integer|float <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get or set filedata</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get or set filedata</p>
+
+<p>Filedata is any additional data that you want to store with the file’s
+database record.</p>
+
+<ul>
+	<li>To get a value, specify just the $key argument. Null is returned if request
+	value is not present.</li>
+
+	<li>To get all values, omit all arguments. An associative array will be
+	returned.</li>
+
+	<li>To set a value, specify the $key and the $value to set.</li>
+
+	<li>To set all values at once, specify an associative array for the $key
+	argument.</li>
+
+	<li>To unset, specify boolean false (or null) for $key, and the name of the
+	property to unset as $value.</li>
+
+	<li>To unset, you can also get all values, unset it from the retuned array, and
+	set the array back.</li>
+</ul>
+
+<p>#pw-internal</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string|array|false|null</code><br>$key Specify array to set all file data, or key (string) to set or get a
+property, Or specify boolean false to remove key specified by $value argument.</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>null|string|array|integer|float</code><br>$value Specify a value to set for given property</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.Pagefile.html">ProcessWire\Pagefile</a></code>|<code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code>|array|string|integer|float|boolean|null</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setDescription" id="_setDescription">
 
 		<td class="attributes"><code>
@@ -838,7 +907,7 @@ description</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDescription">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#198-279" title="Go to source code">setDescription</a>( <span>string|array <var>$value</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#268-350" title="Go to source code">setDescription</a>( <span>string|array <var>$value</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$language</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -884,7 +953,7 @@ separate properties</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_description">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#281-394" title="Go to source code">description</a>( <span>null|boolean|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|array <var>$language</var> = <span class="php-keyword1">null</span></span>, <span>null|string <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#352-465" title="Go to source code">description</a>( <span>null|boolean|<code><a href="class-ProcessWire.Language.html">ProcessWire\Language</a></code>|array <var>$language</var> = <span class="php-keyword1">null</span></span>, <span>null|string <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -957,7 +1026,7 @@ value.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#396-454" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#467-529" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1003,7 +1072,7 @@ value.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNext">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#456-466" title="Go to source code">getNext</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#531-541" title="Go to source code">getNext</a>( )</code>
 
 		<div class="description short">
 			
@@ -1044,7 +1113,7 @@ end.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrev">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#468-478" title="Go to source code">getPrev</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#543-553" title="Go to source code">getPrev</a>( )</code>
 
 		<div class="description short">
 			
@@ -1085,7 +1154,7 @@ the beginning.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#480-499" title="Go to source code">url</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#555-574" title="Go to source code">url</a>( )</code>
 
 		<div class="description short">
 			
@@ -1129,7 +1198,7 @@ $file) { echo "<a href="$file-&gt;url">$file-&gt;description</a>"; } ~~~~~
 
 		<td class="name"><div>
 		<a class="anchor" href="#____url">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#501-509" title="Go to source code">___url</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#576-584" title="Go to source code">___url</a>( )</code>
 
 		<div class="description short">
 			
@@ -1166,7 +1235,7 @@ $file) { echo "<a href="$file-&gt;url">$file-&gt;description</a>"; } ~~~~~
 
 		<td class="name"><div>
 		<a class="anchor" href="#____httpUrl">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#511-522" title="Go to source code">___httpUrl</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#586-597" title="Go to source code">___httpUrl</a>( )</code>
 
 		<div class="description short">
 			
@@ -1209,7 +1278,7 @@ Pagefile.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filename">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#524-535" title="Go to source code">filename</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#599-610" title="Go to source code">filename</a>( )</code>
 
 		<div class="description short">
 			
@@ -1248,7 +1317,7 @@ Pagefile.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____filename">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#537-543" title="Go to source code">___filename</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#612-618" title="Go to source code">___filename</a>( )</code>
 
 		<div class="description short">
 			
@@ -1281,7 +1350,7 @@ Pagefile.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_basename">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#545-556" title="Go to source code">basename</a>( <span>boolean <var>$ext</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#620-631" title="Go to source code">basename</a>( <span>boolean <var>$ext</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1325,7 +1394,7 @@ path).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_tags">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#558-610" title="Go to source code">tags</a>( <span>boolean|string|array <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#633-685" title="Go to source code">tags</a>( <span>boolean|string|array <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1383,7 +1452,7 @@ always lowercase).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasTag">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#612-691" title="Go to source code">hasTag</a>( <span>string <var>$tag</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#687-766" title="Go to source code">hasTag</a>( <span>string <var>$tag</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1448,7 +1517,7 @@ all tags are present, it returns true. (since 3.0.17)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addTag">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#693-731" title="Go to source code">addTag</a>( <span>string|array <var>$tag</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#768-806" title="Go to source code">addTag</a>( <span>string|array <var>$tag</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1504,7 +1573,7 @@ $file-&gt;addTag(['foo', 'bar', 'baz']); // same as above, using array ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeTag">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#733-772" title="Go to source code">removeTag</a>( <span>string <var>$tag</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#808-847" title="Go to source code">removeTag</a>( <span>string <var>$tag</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1561,7 +1630,7 @@ $file-&gt;removeTag(['foo', 'bar', 'baz']); // same as above, using array
 
 		<td class="name"><div>
 		<a class="anchor" href="#_formatted">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#774-782" title="Go to source code">formatted</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#849-857" title="Go to source code">formatted</a>( )</code>
 
 		<div class="description short">
 			
@@ -1596,7 +1665,7 @@ $file-&gt;removeTag(['foo', 'bar', 'baz']); // same as above, using array
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filesize">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#784-792" title="Go to source code">filesize</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#859-867" title="Go to source code">filesize</a>( )</code>
 
 		<div class="description short">
 			
@@ -1633,7 +1702,7 @@ $file-&gt;removeTag(['foo', 'bar', 'baz']); // same as above, using array
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filesizeStr">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#794-802" title="Go to source code">filesizeStr</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#869-877" title="Go to source code">filesizeStr</a>( )</code>
 
 		<div class="description short">
 			
@@ -1670,7 +1739,7 @@ $file-&gt;removeTag(['foo', 'bar', 'baz']); // same as above, using array
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ext">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#804-812" title="Go to source code">ext</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#879-887" title="Go to source code">ext</a>( )</code>
 
 		<div class="description short">
 			
@@ -1707,7 +1776,7 @@ $file-&gt;removeTag(['foo', 'bar', 'baz']); // same as above, using array
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#814-822" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#889-897" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -1746,7 +1815,7 @@ $file-&gt;removeTag(['foo', 'bar', 'baz']); // same as above, using array
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hash">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#824-837" title="Go to source code">hash</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#899-912" title="Go to source code">hash</a>( )</code>
 
 		<div class="description short">
 			
@@ -1786,7 +1855,7 @@ regardless of field.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unlink">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#839-850" title="Go to source code">unlink</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#914-925" title="Go to source code">unlink</a>( )</code>
 
 		<div class="description short">
 			
@@ -1826,7 +1895,7 @@ Pagefiles.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rename">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#852-870" title="Go to source code">rename</a>( <span>string <var>$basename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#927-945" title="Go to source code">rename</a>( <span>string <var>$basename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1866,14 +1935,14 @@ that the file lives on.</p>
 
 		<td class="attributes"><code>
 			 public 
-			mixed
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_copyToPath">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#872-885" title="Go to source code">copyToPath</a>( <span>string <var>$path</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#947-960" title="Go to source code">copyToPath</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1897,7 +1966,7 @@ that the file lives on.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>result of copy() function<br>
+					<code>boolean</code><br>result of copy() function<br>
 				</div>
 
 
@@ -1917,7 +1986,7 @@ that the file lives on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____changed">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#887-905" title="Go to source code">___changed</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#962-980" title="Go to source code">___changed</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1965,7 +2034,7 @@ that the file lives on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPagefilesParent">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#907-919" title="Go to source code">setPagefilesParent</a>( <span><code><a href="class-ProcessWire.Pagefiles.html">ProcessWire\Pagefiles</a></code> <var>$pagefiles</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#982-994" title="Go to source code">setPagefilesParent</a>( <span><code><a href="class-ProcessWire.Pagefiles.html">ProcessWire\Pagefiles</a></code> <var>$pagefiles</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2009,7 +2078,7 @@ that the file lives on.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isTemp">#</a>
-		<code><a href="source-class-ProcessWire.Pagefile.html#921-934" title="Go to source code">isTemp</a>( <span>boolean <var>$set</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pagefile.html#996-1009" title="Go to source code">isTemp</a>( <span>boolean <var>$set</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2198,6 +2267,33 @@ published</p>
 			<div class="description detailed hidden">
 				
 <p>Reference to the owning collection of Pagefiles</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="filedata" id="$filedata">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.Pagefile.html#59-65" title="Go to source code"><var>$filedata</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$filedata" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Extra file data</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Extra file data</p>
 
 
 			</div>
