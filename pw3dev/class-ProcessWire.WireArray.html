@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireArray | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2408275362"></script>
+	<script type="text/javascript" src="elementlist.js?1490393523"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.90 dev</span>
+			<span>Overview version 3.0.91 dev</span>
 		</a>
 
 
@@ -652,7 +652,7 @@ getPrev()?<br>
 				narrow down to one method of addition and removal, especially for removal, i.e.
 make shift() run through remove() ProcessWire 3.x, Copyright 2016 by Ryan Cramer
 <a href="https://processwire.com">https://processwire.com</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.WireArray.html#4-2344" title="Go to source code">core/WireArray.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireArray.html#4-2380" title="Go to source code">core/WireArray.php</a><br>
 	</div>
 
 
@@ -4425,7 +4425,7 @@ href="https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev
 
 		<td class="name"><div>
 		<a class="anchor" href="#_data">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2085-2118" title="Go to source code">data</a>( <span>string|null <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2085-2154" title="Go to source code">data</a>( <span>string|null|array|boolean <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed|null|boolean <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -4455,10 +4455,16 @@ href="https://processwire.com/talk/topic/5098-new-wirearray-api-additions-on-dev
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string|null</code><br>$key Name of data property you want to get or set. Omit to get all data
-properties.</dd>
+					<dd><code>string|null|array|boolean</code><br>$key Name of data property you want to get or set, or: - Omit to get all data
+properties. - Specify associative array of [property =&gt; value] to set
+multiple properties. - Specify associative array and boolean TRUE for $value
+argument to replace all data with the new array given in $key. - Specify regular
+array of property names to return multiple properties. - Specify boolean FALSE
+to unset property name specified in $value argument.</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>mixed|null</code><br>$value Value of data property you want to set. Omit when getting properties.</dd>
+					<dd><code>mixed|null|boolean</code><br>$value Value of data property you want to set. Omit when getting properties. -
+Specify boolean TRUE to replace all data with associative array of data given in
+$key argument.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -4468,7 +4474,7 @@ properties.</dd>
 will get back. - <code>null</code> if the property you are trying to get does
 not exist in the data. - <code>$this</code> reference to this WireArray if you
 were setting a value. - <code>array</code> of all data if you specified no
-arguments.<br>
+arguments or requested multiple keys.<br>
 				</div>
 
 
@@ -4488,7 +4494,7 @@ arguments.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeData">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2120-2132" title="Go to source code">removeData</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2156-2168" title="Go to source code">removeData</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4532,7 +4538,7 @@ arguments.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2134-2155" title="Go to source code">__invoke</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2170-2191" title="Go to source code">__invoke</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4574,7 +4580,7 @@ arguments.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____callUnknown">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2157-2214" title="Go to source code">___callUnknown</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2193-2250" title="Go to source code">___callUnknown</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4658,7 +4664,7 @@ $titlesString = $items-&gt;title("\n"); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_each">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2216-2297" title="Go to source code">each</a>( <span>callable|string|array|null <var>$func</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2252-2333" title="Go to source code">each</a>( <span>callable|string|array|null <var>$func</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -4738,7 +4744,7 @@ in arguments).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDuplicateChecking">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2299-2310" title="Go to source code">setDuplicateChecking</a>( <span>boolean <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2335-2346" title="Go to source code">setDuplicateChecking</a>( <span>boolean <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4778,7 +4784,7 @@ in arguments).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2312-2343" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2348-2379" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			

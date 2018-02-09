@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireBytesStr | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2408275362"></script>
+	<script type="text/javascript" src="elementlist.js?1490393523"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.90 dev</span>
+			<span>Overview version 3.0.91 dev</span>
 		</a>
 
 
@@ -575,17 +575,39 @@
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireBytesStr.html#627-638" title="Go to source code">core/Functions.php</a><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireBytesStr.html#627-720" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
-	<tr id="$size">
+	<tr id="$bytes">
 		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$size</var></code></td>
+		<td class="value"><code><var>$bytes</var></code></td>
 		<td>
-			
+			 Quantity in bytes
+		</td>
+	</tr>
+	<tr id="$small">
+		<td class="name"><code>boolean|integer|array</code></td>
+		<td class="value"><code><var>$small</var> = <span class="php-keyword1">false</span></code></td>
+		<td>
+			 Make returned string as small as possible (default=false), …or specify
+integer 1 for $small option but with space between number and unit label. …or
+optionally specify $options argument here.
+		</td>
+	</tr>
+	<tr id="$options">
+		<td class="name"><code>array|integer</code></td>
+		<td class="value"><code><var>$options</var> = <span class="php-keyword1">array</span>()</code></td>
+		<td>
+			 Options to modify default behavior, or if an integer then <code>decimals</code>
+option is assumed: - <code>decimals</code> (int): Number of decimals to use in
+returned value (default=0). - <code>decimal_point</code> (string|null): Decimal
+point character, or null to detect from locale (default=null). -
+<code>thousands_sep</code> (string|null): Thousands separator, or null to detect
+from locale (default=null). - <code>small</code> (bool): If no $small argument
+was specified, you can optionally specify it in this $options array.
 		</td>
 	</tr>
 	</table>
