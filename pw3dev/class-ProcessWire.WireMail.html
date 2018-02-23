@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireMail | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2607882468"></script>
+	<script type="text/javascript" src="elementlist.js?3983910236"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.92 dev</span>
+			<span>Overview version 3.0.93 dev</span>
 		</a>
 
 
@@ -654,7 +654,7 @@ $numSent = $m-&gt;send(); ~~~~~ #pw-body</p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireMail.html#4-585" title="Go to source code">core/WireMail.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireMail.html#4-675" title="Go to source code">core/WireMail.php</a><br>
 	</div>
 
 
@@ -672,7 +672,7 @@ $numSent = $m-&gt;send(); ~~~~~ #pw-body</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#86-88" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#92-95" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -692,6 +692,135 @@ $numSent = $m-&gt;send(); ~~~~~ #pw-body</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-ProcessWire.WireMail.html#97-101" title="Go to source code">get</a>( <span>string|object <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve the value for a previously set property, or retrieve an API
+variable</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve the value for a previously set property, or retrieve an API
+variable</p>
+
+<ul>
+	<li>If the given $key is an object, it will cast it to a string.</li>
+
+	<li>If the given $key is a string with "|" pipe characters in it, it will try
+	all till it finds a non-empty value.</li>
+
+	<li>If given an API variable name, it will return that API variable unless the
+	class has direct access API variables disabled.</li>
+</ul>
+
+<p>~~~~~ // Retrieve the value of a property $value =
+$item-&gt;get("some_property");</p>
+
+<p>// Retrieve the value of the first non-empty property: $value =
+$item-&gt;get("property1|property2|property2");</p>
+
+<p>// Retrieve a value using array access $value = $item["some_property"];
+~~~~~</p>
+
+<p>#pw-group-retrieval</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string|object</code><br>$key Name of property you want to retrieve.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|null</code><br>Returns value of requested property, or null if the property was not found.<br>
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireData.html#_set">ProcessWire\WireData::set()</a></code></code><br>
+				</div>
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.WireData.html#_get">ProcessWire\WireData::get()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="set" id="_set">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_set">#</a>
+		<code><a href="source-class-ProcessWire.WireMail.html#103-112" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set a value to this object’s data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set a value to this object’s data</p>
+
+<p>~~~~~ // Set a value for a property $item-&gt;set('foo', 'bar');</p>
+
+<p>// Set a property value directly $item-&gt;foo = 'bar';</p>
+
+<p>// Set a property using array access $item['foo'] = 'bar'; ~~~~~</p>
+
+<p>#pw-group-manipulation</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key Name of property you want to set</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value Value of property</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.WireData.html#_setQuietly">ProcessWire\WireData::setQuietly()</a></code></code>, <code><code><a href="class-ProcessWire.WireData.html#_get">ProcessWire\WireData::get()</a></code></code><br>
+				</div>
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.WireData.html#_set">ProcessWire\WireData::set()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="__get" id="___get">
 
 		<td class="attributes"><code>
@@ -703,7 +832,7 @@ $numSent = $m-&gt;send(); ~~~~~ #pw-body</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#90-93" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#114" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -749,7 +878,7 @@ $numSent = $m-&gt;send(); ~~~~~ #pw-body</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#95-98" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#115" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -784,25 +913,42 @@ $numSent = $m-&gt;send(); ~~~~~ #pw-body</p>
 
 		<td class="attributes"><code>
 			 protected 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sanitizeEmail">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#100-108" title="Go to source code">sanitizeEmail</a>( <span>mixed <var>$email</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#117-133" title="Go to source code">sanitizeEmail</a>( <span>string <var>$email</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Sanitize an email address or throw WireException if invalid</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Sanitize an email address or throw WireException if invalid</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -813,24 +959,37 @@ $numSent = $m-&gt;send(); ~~~~~ #pw-body</p>
 
 		<td class="attributes"><code>
 			 protected 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sanitizeHeader">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#110-112" title="Go to source code">sanitizeHeader</a>( <span>mixed <var>$header</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#135-144" title="Go to source code">sanitizeHeader</a>( <span>string <var>$header</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Sanitize string for use in a email header</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Sanitize string for use in a email header</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$header</var></dt>
+					<dd><code>string</code><br>$header</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
 
 
 
@@ -849,7 +1008,7 @@ $numSent = $m-&gt;send(); ~~~~~ #pw-body</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractEmailAndName">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#114-132" title="Go to source code">extractEmailAndName</a>( <span>string <var>$email</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#146-164" title="Go to source code">extractEmailAndName</a>( <span>string <var>$email</var></span> )</code>
 
 		<div class="description short">
 			
@@ -895,7 +1054,7 @@ and return email and username separately</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bundleEmailAndName">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#134-156" title="Go to source code">bundleEmailAndName</a>( <span>string <var>$email</var></span>, <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#166-188" title="Go to source code">bundleEmailAndName</a>( <span>string <var>$email</var></span>, <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -941,7 +1100,7 @@ and return email and username separately</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_to">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#158-212" title="Go to source code">to</a>( <span>string|array|null <var>$email</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#190-244" title="Go to source code">to</a>( <span>string|array|null <var>$email</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -999,7 +1158,7 @@ email) for the first argument.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toName">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#214-233" title="Go to source code">toName</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#246-265" title="Go to source code">toName</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1023,7 +1182,7 @@ was.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>The 'to' name</dd>
+					<dd><code>string</code><br>$name The 'to' name</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1052,17 +1211,17 @@ was.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_from">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#235-249" title="Go to source code">from</a>( <span>string <var>$email</var></span>, <span>string|null <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#267-285" title="Go to source code">from</a>( <span>string <var>$email</var></span>, <span>string|null <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the email from address</p>
+<p>Set the email 'from' address and optionally name</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the email from address</p>
+<p>Set the email 'from' address and optionally name</p>
 
 
 
@@ -1103,7 +1262,7 @@ href="mailto:user&#64;example.com">user&#64;<!-- -->example.com</a>&gt;" string.
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fromName">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#251-264" title="Go to source code">fromName</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#287-300" title="Go to source code">fromName</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1124,7 +1283,98 @@ $mailer-&gt;fromName = 'User Name';</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>The 'from' name</dd>
+					<dd><code>string</code><br>$name The 'from' name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="replyTo" id="_replyTo">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_replyTo">#</a>
+		<code><a href="source-class-ProcessWire.WireMail.html#302-323" title="Go to source code">replyTo</a>( <span>string <var>$email</var></span>, <span>string|null <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the 'reply-to' email address and optionally name (where supported)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the 'reply-to' email address and optionally name (where supported)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email Must be a single email address or "User Name &lt;<a
+href="mailto:user&#64;example.com">user&#64;<!-- -->example.com</a>&gt;" string.</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string|null</code><br>An optional Reply-To name (same as setting/calling replyToName method)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if provided email was invalid<br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="replyToName" id="_replyToName">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_replyToName">#</a>
+		<code><a href="source-class-ProcessWire.WireMail.html#325-336" title="Go to source code">replyToName</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the 'reply-to' name (where supported)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the 'reply-to' name (where supported)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1149,7 +1399,7 @@ $mailer-&gt;fromName = 'User Name';</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_subject">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#266-276" title="Go to source code">subject</a>( <span>string <var>$subject</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#338-348" title="Go to source code">subject</a>( <span>string <var>$subject</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1193,7 +1443,7 @@ $mailer-&gt;fromName = 'User Name';</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_body">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#278-293" title="Go to source code">body</a>( <span>string <var>$body</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#350-365" title="Go to source code">body</a>( <span>string <var>$body</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1239,7 +1489,7 @@ $mailer-&gt;fromName = 'User Name';</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bodyHTML">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#295-312" title="Go to source code">bodyHTML</a>( <span>string <var>$body</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#367-384" title="Go to source code">bodyHTML</a>( <span>string <var>$body</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1290,7 +1540,7 @@ world&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_header">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#314-339" title="Go to source code">header</a>( <span>string <var>$key</var></span>, <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#386-415" title="Go to source code">header</a>( <span>string|array <var>$key</var></span>, <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1315,9 +1565,9 @@ world&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'); ~~~~~</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$key</var></dt>
-					<dd><code>string</code><br>$key Header name</dd>
+					<dd><code>string|array</code><br>$key Header name</dd>
 					<dt><var>$value</var></dt>
-					<dd><code>string</code><br>$value Header value</dd>
+					<dd><code>string</code><br>$value Header value or specify null to unset</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1333,6 +1583,48 @@ world&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'); ~~~~~</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="headers" id="_headers">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_headers">#</a>
+		<code><a href="source-class-ProcessWire.WireMail.html#417-429" title="Go to source code">headers</a>( <span>array <var>$headers</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set multiple email headers using associative array</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set multiple email headers using associative array</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$headers</var></dt>
+					<dd><code>array</code><br>$headers</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="param" id="_param">
 
 		<td class="attributes"><code>
@@ -1344,7 +1636,7 @@ world&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_param">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#341-365" title="Go to source code">param</a>( <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#431-455" title="Go to source code">param</a>( <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1403,7 +1695,7 @@ function.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_attachment">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#367-398" title="Go to source code">attachment</a>( <span>string <var>$value</var></span>, <span>string <var>$filename</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#457-488" title="Go to source code">attachment</a>( <span>string <var>$value</var></span>, <span>string <var>$filename</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1462,7 +1754,7 @@ $m-&gt;attachment('/path/to/file.jpg'); $m-&gt;send(); ~~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____send">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#400-501" title="Go to source code">___send</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#490-591" title="Go to source code">___send</a>( )</code>
 
 		<div class="description short">
 			
@@ -1508,7 +1800,7 @@ failure.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_encodeSubject">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#503-532" title="Go to source code">encodeSubject</a>( <span>string <var>$subject</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#593-622" title="Go to source code">encodeSubject</a>( <span>string <var>$subject</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1552,7 +1844,7 @@ failure.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findBestEncodePart">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#534-568" title="Go to source code">findBestEncodePart</a>( <span>string <var>$input</var></span>, <span>integer <var>$maxlen</var> = <span class="php-num">63</span></span>, <span>boolean <var>$isFirst</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#624-658" title="Go to source code">findBestEncodePart</a>( <span>string <var>$input</var></span>, <span>integer <var>$maxlen</var> = <span class="php-num">63</span></span>, <span>boolean <var>$isFirst</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1604,7 +1896,7 @@ characters for whitespace) given in rfc2047.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_quotedPrintableString">#</a>
-		<code><a href="source-class-ProcessWire.WireMail.html#570-584" title="Go to source code">quotedPrintableString</a>( <span>string <var>$text</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMail.html#660-674" title="Go to source code">quotedPrintableString</a>( <span>string <var>$text</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1653,7 +1945,6 @@ laid out in rfc2047.</p>
 			<a href="class-ProcessWire.WireData.html#___unset">__unset()</a>, 
 			<a href="class-ProcessWire.WireData.html#__getDot">_getDot()</a>, 
 			<a href="class-ProcessWire.WireData.html#_data">data()</a>, 
-			<a href="class-ProcessWire.WireData.html#_get">get()</a>, 
 			<a href="class-ProcessWire.WireData.html#_getArray">getArray()</a>, 
 			<a href="class-ProcessWire.WireData.html#_getDot">getDot()</a>, 
 			<a href="class-ProcessWire.WireData.html#_getIterator">getIterator()</a>, 
@@ -1664,7 +1955,6 @@ laid out in rfc2047.</p>
 			<a href="class-ProcessWire.WireData.html#_offsetSet">offsetSet()</a>, 
 			<a href="class-ProcessWire.WireData.html#_offsetUnset">offsetUnset()</a>, 
 			<a href="class-ProcessWire.WireData.html#_remove">remove()</a>, 
-			<a href="class-ProcessWire.WireData.html#_set">set()</a>, 
 			<a href="class-ProcessWire.WireData.html#_setArray">setArray()</a>, 
 			<a href="class-ProcessWire.WireData.html#_setQuietly">setQuietly()</a>
 		</code></td>
@@ -1751,13 +2041,15 @@ laid out in rfc2047.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireMail.html#69-84" title="Go to source code"><var>$mail</var></a>
+				<a href="source-class-ProcessWire.WireMail.html#73-90" title="Go to source code"><var>$mail</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'to'</span> =&gt; <span class="php-keyword1">array</span>(), <span class="php-comment">// to addresses - associative: both key and value are email (to prevent dups)</span>
 	<span class="php-quote">'toName'</span> =&gt; <span class="php-keyword1">array</span>(), <span class="php-comment">// to names - associative: indexed by 'to' email address, may be blank/null for any email </span>
 	<span class="php-quote">'from'</span> =&gt; <span class="php-quote">''</span>, 
 	<span class="php-quote">'fromName'</span> =&gt; <span class="php-quote">''</span>, 
+	<span class="php-quote">'replyTo'</span> =&gt; <span class="php-quote">''</span>,
+	<span class="php-quote">'replyToName'</span> =&gt; <span class="php-quote">''</span>, 
 	<span class="php-quote">'subject'</span> =&gt; <span class="php-quote">''</span>, 
 	<span class="php-quote">'body'</span> =&gt; <span class="php-quote">''</span>,
 	<span class="php-quote">'bodyHTML'</span> =&gt; <span class="php-quote">''</span>,

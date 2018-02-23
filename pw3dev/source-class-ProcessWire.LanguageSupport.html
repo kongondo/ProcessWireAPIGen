@@ -8,7 +8,7 @@
 	<title>File modules/LanguageSupport/LanguageSupport.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2607882468"></script>
+	<script type="text/javascript" src="elementlist.js?3983910236"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.92 dev</span>
+			<span>Overview version 3.0.93 dev</span>
 		</a>
 
 
@@ -1396,78 +1396,79 @@
 </span></span><span id="830" class="l"><a class="l" href="#830">830: </a><span class="php-comment">     * @return InputfieldWrapper
 </span></span><span id="831" class="l"><a class="l" href="#831">831: </a><span class="php-comment">     *
 </span></span><span id="832" class="l"><a class="l" href="#832">832: </a><span class="php-comment">     */</span>
-</span><span id="833" class="l"><a class="l" href="#833">833: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="834" class="l"><a class="l" href="#834">834: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$data</span>) {}
-</span><span id="835" class="l"><a class="l" href="#835">835: </a>        <span class="php-var">$form</span> = <span class="php-keyword1">new</span> InputfieldWrapper();
-</span><span id="836" class="l"><a class="l" href="#836">836: </a>        <span class="php-comment">// TBA</span>
-</span><span id="837" class="l"><a class="l" href="#837">837: </a>        <span class="php-keyword1">return</span> <span class="php-var">$form</span>; 
-</span><span id="838" class="l"><a class="l" href="#838">838: </a>    }
-</span><span id="839" class="l"><a class="l" href="#839">839: </a>
-</span><span id="840" class="l"><a class="l" href="#840">840: </a>    <span class="php-comment">/**
-</span></span><span id="841" class="l"><a class="l" href="#841">841: </a><span class="php-comment">     * Refresh the config stored value for $this-&gt;otherLanguagePageIDs
-</span></span><span id="842" class="l"><a class="l" href="#842">842: </a><span class="php-comment">     * 
-</span></span><span id="843" class="l"><a class="l" href="#843">843: </a><span class="php-comment">     */</span>
-</span><span id="844" class="l"><a class="l" href="#844">844: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_refreshLanguageIDs" href="#_refreshLanguageIDs">refreshLanguageIDs</a>() {
-</span><span id="845" class="l"><a class="l" href="#845">845: </a>        <span class="php-var">$this</span>-&gt;message(<span class="php-quote">'Refreshing other language page IDs'</span>, Notice::debug); 
-</span><span id="846" class="l"><a class="l" href="#846">846: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)) <span class="php-keyword1">return</span>;
-</span><span id="847" class="l"><a class="l" href="#847">847: </a>        <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
-</span><span id="848" class="l"><a class="l" href="#848">848: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>) <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
-</span><span id="849" class="l"><a class="l" href="#849">849: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$language</span>-&gt;isDefault()) <span class="php-keyword1">continue</span>; 
-</span><span id="850" class="l"><a class="l" href="#850">850: </a>            <span class="php-var">$ids</span>[] = <span class="php-var">$language</span>-&gt;id; 
-</span><span id="851" class="l"><a class="l" href="#851">851: </a>        }
-</span><span id="852" class="l"><a class="l" href="#852">852: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;otherLanguagePageIDs != <span class="php-var">$ids</span>) {
-</span><span id="853" class="l"><a class="l" href="#853">853: </a>            <span class="php-var">$this</span>-&gt;set(<span class="php-quote">'otherLanguagePageIDs'</span>, <span class="php-var">$ids</span>);
-</span><span id="854" class="l"><a class="l" href="#854">854: </a>            <span class="php-var">$configData</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;getModuleConfigData(<span class="php-quote">'LanguageSupport'</span>);
-</span><span id="855" class="l"><a class="l" href="#855">855: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$configData</span>[<span class="php-quote">'otherLanguagePageIDs'</span>] != <span class="php-var">$ids</span>) {
-</span><span id="856" class="l"><a class="l" href="#856">856: </a>                <span class="php-var">$configData</span>[<span class="php-quote">'otherLanguagePageIDs'</span>] = <span class="php-var">$ids</span>;
-</span><span id="857" class="l"><a class="l" href="#857">857: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;saveModuleConfigData(<span class="php-quote">'LanguageSupport'</span>, <span class="php-var">$configData</span>);
-</span><span id="858" class="l"><a class="l" href="#858">858: </a>            }
-</span><span id="859" class="l"><a class="l" href="#859">859: </a>        }
-</span><span id="860" class="l"><a class="l" href="#860">860: </a>    }
-</span><span id="861" class="l"><a class="l" href="#861">861: </a>    
-</span><span id="862" class="l"><a class="l" href="#862">862: </a>
-</span><span id="863" class="l"><a class="l" href="#863">863: </a>    <span class="php-comment">/**
-</span></span><span id="864" class="l"><a class="l" href="#864">864: </a><span class="php-comment">     * Install or uninstall by loading the LanguageSupportInstall script
-</span></span><span id="865" class="l"><a class="l" href="#865">865: </a><span class="php-comment">     * 
-</span></span><span id="866" class="l"><a class="l" href="#866">866: </a><span class="php-comment">     * @param bool $install
-</span></span><span id="867" class="l"><a class="l" href="#867">867: </a><span class="php-comment">     *
-</span></span><span id="868" class="l"><a class="l" href="#868">868: </a><span class="php-comment">     */</span>
-</span><span id="869" class="l"><a class="l" href="#869">869: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_installer" href="#_installer">installer</a>(<span class="php-var">$install</span> = <span class="php-keyword1">true</span>) {
-</span><span id="870" class="l"><a class="l" href="#870">870: </a>        <span class="php-keyword1">require_once</span>(<span class="php-keyword2">dirname</span>(__FILE__) . <span class="php-quote">'/LanguageSupportInstall.php'</span>); 
-</span><span id="871" class="l"><a class="l" href="#871">871: </a>        <span class="php-comment">/** @var LanguageSupportInstall $installer */</span>
-</span><span id="872" class="l"><a class="l" href="#872">872: </a>        <span class="php-var">$installer</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> LanguageSupportInstall());
-</span><span id="873" class="l"><a class="l" href="#873">873: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$install</span>) <span class="php-var">$installer</span>-&gt;install();
-</span><span id="874" class="l"><a class="l" href="#874">874: </a>            <span class="php-keyword1">else</span> <span class="php-var">$installer</span>-&gt;uninstall();
-</span><span id="875" class="l"><a class="l" href="#875">875: </a>    }
-</span><span id="876" class="l"><a class="l" href="#876">876: </a>
-</span><span id="877" class="l"><a class="l" href="#877">877: </a>    <span class="php-comment">/**
-</span></span><span id="878" class="l"><a class="l" href="#878">878: </a><span class="php-comment">     * Get the LanguageTabs module instance, if it is installed, or null if not
-</span></span><span id="879" class="l"><a class="l" href="#879">879: </a><span class="php-comment">     * 
-</span></span><span id="880" class="l"><a class="l" href="#880">880: </a><span class="php-comment">     * @return LanguageTabs|null
-</span></span><span id="881" class="l"><a class="l" href="#881">881: </a><span class="php-comment">     * 
-</span></span><span id="882" class="l"><a class="l" href="#882">882: </a><span class="php-comment">     */</span>
-</span><span id="883" class="l"><a class="l" href="#883">883: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getLanguageTabs" href="#_getLanguageTabs">getLanguageTabs</a>() {
-</span><span id="884" class="l"><a class="l" href="#884">884: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;languageTabs;
-</span><span id="885" class="l"><a class="l" href="#885">885: </a>    }
-</span><span id="886" class="l"><a class="l" href="#886">886: </a>
-</span><span id="887" class="l"><a class="l" href="#887">887: </a>    <span class="php-comment">/**
-</span></span><span id="888" class="l"><a class="l" href="#888">888: </a><span class="php-comment">     * Install the module
-</span></span><span id="889" class="l"><a class="l" href="#889">889: </a><span class="php-comment">     *
-</span></span><span id="890" class="l"><a class="l" href="#890">890: </a><span class="php-comment">     */</span>
-</span><span id="891" class="l"><a class="l" href="#891">891: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____install" href="#____install">___install</a>() {
-</span><span id="892" class="l"><a class="l" href="#892">892: </a>        <span class="php-var">$this</span>-&gt;installer(<span class="php-keyword1">true</span>); 
-</span><span id="893" class="l"><a class="l" href="#893">893: </a>    }
-</span><span id="894" class="l"><a class="l" href="#894">894: </a>
-</span><span id="895" class="l"><a class="l" href="#895">895: </a>    <span class="php-comment">/**
-</span></span><span id="896" class="l"><a class="l" href="#896">896: </a><span class="php-comment">     * Uninstall the module
-</span></span><span id="897" class="l"><a class="l" href="#897">897: </a><span class="php-comment">     *
-</span></span><span id="898" class="l"><a class="l" href="#898">898: </a><span class="php-comment">     */</span>
-</span><span id="899" class="l"><a class="l" href="#899">899: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() {
-</span><span id="900" class="l"><a class="l" href="#900">900: </a>        <span class="php-var">$this</span>-&gt;installer(<span class="php-keyword1">false</span>);
-</span><span id="901" class="l"><a class="l" href="#901">901: </a>    }
-</span><span id="902" class="l"><a class="l" href="#902">902: </a>
-</span><span id="903" class="l"><a class="l" href="#903">903: </a>}
-</span><span id="904" class="l"><a class="l" href="#904">904: </a></span></code></pre>
+</span><span id="833" class="l"><a class="l" href="#833">833: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="834" class="l"><a class="l" href="#834">834: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$data</span>) { }
+</span><span id="835" class="l"><a class="l" href="#835">835: </a>        <span class="php-keyword1">require</span>(<span class="php-keyword2">dirname</span>(__FILE__) . <span class="php-quote">'/LanguageSupportInstall.php'</span>); 
+</span><span id="836" class="l"><a class="l" href="#836">836: </a>        <span class="php-comment">/** @var LanguageSupportInstall $installer */</span>
+</span><span id="837" class="l"><a class="l" href="#837">837: </a>        <span class="php-var">$installer</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> LanguageSupportInstall());
+</span><span id="838" class="l"><a class="l" href="#838">838: </a>        <span class="php-keyword1">return</span> <span class="php-var">$installer</span>-&gt;getModuleConfigInputfields();
+</span><span id="839" class="l"><a class="l" href="#839">839: </a>    }
+</span><span id="840" class="l"><a class="l" href="#840">840: </a>
+</span><span id="841" class="l"><a class="l" href="#841">841: </a>    <span class="php-comment">/**
+</span></span><span id="842" class="l"><a class="l" href="#842">842: </a><span class="php-comment">     * Refresh the config stored value for $this-&gt;otherLanguagePageIDs
+</span></span><span id="843" class="l"><a class="l" href="#843">843: </a><span class="php-comment">     * 
+</span></span><span id="844" class="l"><a class="l" href="#844">844: </a><span class="php-comment">     */</span>
+</span><span id="845" class="l"><a class="l" href="#845">845: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_refreshLanguageIDs" href="#_refreshLanguageIDs">refreshLanguageIDs</a>() {
+</span><span id="846" class="l"><a class="l" href="#846">846: </a>        <span class="php-var">$this</span>-&gt;message(<span class="php-quote">'Refreshing other language page IDs'</span>, Notice::debug); 
+</span><span id="847" class="l"><a class="l" href="#847">847: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>)) <span class="php-keyword1">return</span>;
+</span><span id="848" class="l"><a class="l" href="#848">848: </a>        <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
+</span><span id="849" class="l"><a class="l" href="#849">849: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>) <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
+</span><span id="850" class="l"><a class="l" href="#850">850: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$language</span>-&gt;isDefault()) <span class="php-keyword1">continue</span>; 
+</span><span id="851" class="l"><a class="l" href="#851">851: </a>            <span class="php-var">$ids</span>[] = <span class="php-var">$language</span>-&gt;id; 
+</span><span id="852" class="l"><a class="l" href="#852">852: </a>        }
+</span><span id="853" class="l"><a class="l" href="#853">853: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;otherLanguagePageIDs != <span class="php-var">$ids</span>) {
+</span><span id="854" class="l"><a class="l" href="#854">854: </a>            <span class="php-var">$this</span>-&gt;set(<span class="php-quote">'otherLanguagePageIDs'</span>, <span class="php-var">$ids</span>);
+</span><span id="855" class="l"><a class="l" href="#855">855: </a>            <span class="php-var">$configData</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;getModuleConfigData(<span class="php-quote">'LanguageSupport'</span>);
+</span><span id="856" class="l"><a class="l" href="#856">856: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$configData</span>[<span class="php-quote">'otherLanguagePageIDs'</span>] != <span class="php-var">$ids</span>) {
+</span><span id="857" class="l"><a class="l" href="#857">857: </a>                <span class="php-var">$configData</span>[<span class="php-quote">'otherLanguagePageIDs'</span>] = <span class="php-var">$ids</span>;
+</span><span id="858" class="l"><a class="l" href="#858">858: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;saveModuleConfigData(<span class="php-quote">'LanguageSupport'</span>, <span class="php-var">$configData</span>);
+</span><span id="859" class="l"><a class="l" href="#859">859: </a>            }
+</span><span id="860" class="l"><a class="l" href="#860">860: </a>        }
+</span><span id="861" class="l"><a class="l" href="#861">861: </a>    }
+</span><span id="862" class="l"><a class="l" href="#862">862: </a>    
+</span><span id="863" class="l"><a class="l" href="#863">863: </a>
+</span><span id="864" class="l"><a class="l" href="#864">864: </a>    <span class="php-comment">/**
+</span></span><span id="865" class="l"><a class="l" href="#865">865: </a><span class="php-comment">     * Install or uninstall by loading the LanguageSupportInstall script
+</span></span><span id="866" class="l"><a class="l" href="#866">866: </a><span class="php-comment">     * 
+</span></span><span id="867" class="l"><a class="l" href="#867">867: </a><span class="php-comment">     * @param bool $install
+</span></span><span id="868" class="l"><a class="l" href="#868">868: </a><span class="php-comment">     *
+</span></span><span id="869" class="l"><a class="l" href="#869">869: </a><span class="php-comment">     */</span>
+</span><span id="870" class="l"><a class="l" href="#870">870: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_installer" href="#_installer">installer</a>(<span class="php-var">$install</span> = <span class="php-keyword1">true</span>) {
+</span><span id="871" class="l"><a class="l" href="#871">871: </a>        <span class="php-keyword1">require_once</span>(<span class="php-keyword2">dirname</span>(__FILE__) . <span class="php-quote">'/LanguageSupportInstall.php'</span>); 
+</span><span id="872" class="l"><a class="l" href="#872">872: </a>        <span class="php-comment">/** @var LanguageSupportInstall $installer */</span>
+</span><span id="873" class="l"><a class="l" href="#873">873: </a>        <span class="php-var">$installer</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> LanguageSupportInstall());
+</span><span id="874" class="l"><a class="l" href="#874">874: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$install</span>) <span class="php-var">$installer</span>-&gt;install();
+</span><span id="875" class="l"><a class="l" href="#875">875: </a>            <span class="php-keyword1">else</span> <span class="php-var">$installer</span>-&gt;uninstall();
+</span><span id="876" class="l"><a class="l" href="#876">876: </a>    }
+</span><span id="877" class="l"><a class="l" href="#877">877: </a>
+</span><span id="878" class="l"><a class="l" href="#878">878: </a>    <span class="php-comment">/**
+</span></span><span id="879" class="l"><a class="l" href="#879">879: </a><span class="php-comment">     * Get the LanguageTabs module instance, if it is installed, or null if not
+</span></span><span id="880" class="l"><a class="l" href="#880">880: </a><span class="php-comment">     * 
+</span></span><span id="881" class="l"><a class="l" href="#881">881: </a><span class="php-comment">     * @return LanguageTabs|null
+</span></span><span id="882" class="l"><a class="l" href="#882">882: </a><span class="php-comment">     * 
+</span></span><span id="883" class="l"><a class="l" href="#883">883: </a><span class="php-comment">     */</span>
+</span><span id="884" class="l"><a class="l" href="#884">884: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getLanguageTabs" href="#_getLanguageTabs">getLanguageTabs</a>() {
+</span><span id="885" class="l"><a class="l" href="#885">885: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;languageTabs;
+</span><span id="886" class="l"><a class="l" href="#886">886: </a>    }
+</span><span id="887" class="l"><a class="l" href="#887">887: </a>
+</span><span id="888" class="l"><a class="l" href="#888">888: </a>    <span class="php-comment">/**
+</span></span><span id="889" class="l"><a class="l" href="#889">889: </a><span class="php-comment">     * Install the module
+</span></span><span id="890" class="l"><a class="l" href="#890">890: </a><span class="php-comment">     *
+</span></span><span id="891" class="l"><a class="l" href="#891">891: </a><span class="php-comment">     */</span>
+</span><span id="892" class="l"><a class="l" href="#892">892: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____install" href="#____install">___install</a>() {
+</span><span id="893" class="l"><a class="l" href="#893">893: </a>        <span class="php-var">$this</span>-&gt;installer(<span class="php-keyword1">true</span>); 
+</span><span id="894" class="l"><a class="l" href="#894">894: </a>    }
+</span><span id="895" class="l"><a class="l" href="#895">895: </a>
+</span><span id="896" class="l"><a class="l" href="#896">896: </a>    <span class="php-comment">/**
+</span></span><span id="897" class="l"><a class="l" href="#897">897: </a><span class="php-comment">     * Uninstall the module
+</span></span><span id="898" class="l"><a class="l" href="#898">898: </a><span class="php-comment">     *
+</span></span><span id="899" class="l"><a class="l" href="#899">899: </a><span class="php-comment">     */</span>
+</span><span id="900" class="l"><a class="l" href="#900">900: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() {
+</span><span id="901" class="l"><a class="l" href="#901">901: </a>        <span class="php-var">$this</span>-&gt;installer(<span class="php-keyword1">false</span>);
+</span><span id="902" class="l"><a class="l" href="#902">902: </a>    }
+</span><span id="903" class="l"><a class="l" href="#903">903: </a>
+</span><span id="904" class="l"><a class="l" href="#904">904: </a>}
+</span><span id="905" class="l"><a class="l" href="#905">905: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

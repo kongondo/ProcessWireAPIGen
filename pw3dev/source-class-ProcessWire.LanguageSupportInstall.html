@@ -8,7 +8,7 @@
 	<title>File modules/LanguageSupport/LanguageSupportInstall.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2607882468"></script>
+	<script type="text/javascript" src="elementlist.js?3983910236"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.92 dev</span>
+			<span>Overview version 3.0.93 dev</span>
 		</a>
 
 
@@ -842,8 +842,65 @@
 </span><span id="276" class="l"><a class="l" href="#276">276: </a>        }
 </span><span id="277" class="l"><a class="l" href="#277">277: </a>
 </span><span id="278" class="l"><a class="l" href="#278">278: </a>    }
-</span><span id="279" class="l"><a class="l" href="#279">279: </a>}
-</span><span id="280" class="l"><a class="l" href="#280">280: </a></span></code></pre>
+</span><span id="279" class="l"><a class="l" href="#279">279: </a>
+</span><span id="280" class="l"><a class="l" href="#280">280: </a>
+</span><span id="281" class="l"><a class="l" href="#281">281: </a>    <span class="php-comment">/**
+</span></span><span id="282" class="l"><a class="l" href="#282">282: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="283" class="l"><a class="l" href="#283">283: </a><span class="php-comment">     * 
+</span></span><span id="284" class="l"><a class="l" href="#284">284: </a><span class="php-comment">     */</span>
+</span><span id="285" class="l"><a class="l" href="#285">285: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>() {
+</span><span id="286" class="l"><a class="l" href="#286">286: </a>        <span class="php-var">$install</span> = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Click to install:'</span>) . <span class="php-quote">' '</span>;
+</span><span id="287" class="l"><a class="l" href="#287">287: </a>
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>        <span class="php-var">$form</span> = <span class="php-keyword1">new</span> InputfieldWrapper();
+</span><span id="289" class="l"><a class="l" href="#289">289: </a>        <span class="php-var">$names</span> = <span class="php-keyword1">array</span>(
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>            <span class="php-quote">'LanguageSupportFields'</span>,
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>            <span class="php-quote">'LanguageSupportPageNames'</span>,
+</span><span id="292" class="l"><a class="l" href="#292">292: </a>            <span class="php-quote">'LanguageTabs'</span>,
+</span><span id="293" class="l"><a class="l" href="#293">293: </a>        );
+</span><span id="294" class="l"><a class="l" href="#294">294: </a>        <span class="php-var">$installed</span> = <span class="php-keyword1">array</span>();
+</span><span id="295" class="l"><a class="l" href="#295">295: </a>        <span class="php-var">$list</span> = <span class="php-keyword1">array</span>();
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>
+</span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$names</span> <span class="php-keyword1">as</span> <span class="php-var">$name</span>) {
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;isInstalled(<span class="php-var">$name</span>)) <span class="php-keyword1">continue</span>;
+</span><span id="299" class="l"><a class="l" href="#299">299: </a>            <span class="php-var">$list</span>[<span class="php-quote">&quot;./installConfirm?name=</span><span class="php-var">$name</span><span class="php-quote">&quot;</span>] = <span class="php-quote">&quot;</span><span class="php-var">$install</span><span class="php-quote"> </span><span class="php-var">$name</span><span class="php-quote">&quot;</span>;
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>            <span class="php-var">$installed</span>[<span class="php-var">$name</span>] = <span class="php-keyword1">true</span>;
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>        }
+</span><span id="302" class="l"><a class="l" href="#302">302: </a>        
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>        <span class="php-var">$list</span>[<span class="php-quote">&quot;../setup/languages/&quot;</span>] =
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Add and configure new languages'</span>);
+</span><span id="305" class="l"><a class="l" href="#305">305: </a>
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>        <span class="php-var">$title</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-quote">'title'</span>);
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$title</span> &amp;&amp; <span class="php-keyword2">strpos</span>(<span class="php-var">$title</span>-&gt;type-&gt;className(), <span class="php-quote">'Language'</span>) === <span class="php-keyword1">false</span>) {
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>            <span class="php-var">$list</span>[<span class="php-quote">&quot;../setup/field/edit?id=</span><span class="php-var">$title</span><span class="php-quote">-&gt;id&quot;</span>] =
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>                <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Change the type of your &quot;title&quot; field from &quot;Page Title&quot; to &quot;Page Title (Multi-language)&quot;'</span>) . <span class="php-quote">' *'</span>;
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>        }
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>        <span class="php-var">$list</span>[<span class="php-quote">&quot;../setup/field/?fieldtype=FieldtypeText&quot;</span>] =
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Change the type of any other desired &quot;Text&quot; fields to &quot;Text (Multi-language)&quot;'</span>) . <span class="php-quote">' *'</span>;
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>        <span class="php-var">$list</span>[<span class="php-quote">&quot;../setup/field/?fieldtype=FieldtypeTextarea&quot;</span>] =
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Change the type of any other desired &quot;Textarea&quot; fields to &quot;Textarea (Multi-language)&quot;'</span>) . <span class="php-quote">' *'</span>;
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$list</span>)) {
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'JqueryUI'</span>)-&gt;<span class="php-keyword1">use</span>(<span class="php-quote">'modal'</span>);
+</span><span id="319" class="l"><a class="l" href="#319">319: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldMarkup'</span>);
+</span><span id="320" class="l"><a class="l" href="#320">320: </a>            <span class="php-var">$f</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_next_steps'</span>);
+</span><span id="321" class="l"><a class="l" href="#321">321: </a>            <span class="php-var">$f</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Next steps'</span>);
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>            <span class="php-var">$f</span>-&gt;value = <span class="php-quote">&quot;&lt;ul&gt;&quot;</span>;
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$list</span> <span class="php-keyword1">as</span> <span class="php-var">$url</span> =&gt; <span class="php-var">$text</span>) {
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>                <span class="php-var">$f</span>-&gt;value .= <span class="php-quote">&quot;&lt;li&gt;&lt;a target='_blank' href='</span><span class="php-var">$url</span><span class="php-quote">'&gt;</span><span class="php-var">$text</span><span class="php-quote">&lt;/a&gt;&lt;/li&gt;&quot;</span>;
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>            }
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>            <span class="php-var">$f</span>-&gt;value .= <span class="php-quote">&quot;&lt;/ul&gt;&quot;</span>;
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>            <span class="php-var">$f</span>-&gt;description = 
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>                <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'To continue setting up multi-language support, we recommend the following next steps.'</span>) . <span class="php-quote">' '</span> . 
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>                <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'The links below will open in a new window/tab. Close each after finishing to return here.'</span>); 
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>            <span class="php-var">$f</span>-&gt;notes = <span class="php-quote">'*'</span> . <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Install the LanguageSupportFields module before attempting to change text field types.'</span>);
+</span><span id="331" class="l"><a class="l" href="#331">331: </a>            <span class="php-var">$form</span>-&gt;add(<span class="php-var">$f</span>);
+</span><span id="332" class="l"><a class="l" href="#332">332: </a>        }
+</span><span id="333" class="l"><a class="l" href="#333">333: </a>
+</span><span id="334" class="l"><a class="l" href="#334">334: </a>        <span class="php-keyword1">return</span> <span class="php-var">$form</span>; 
+</span><span id="335" class="l"><a class="l" href="#335">335: </a>    }
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>}
+</span><span id="337" class="l"><a class="l" href="#337">337: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
