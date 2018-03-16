@@ -8,7 +8,7 @@
 	<title>File core/AdminTheme.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2722864406"></script>
+	<script type="text/javascript" src="elementlist.js?1399113759"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.95 dev</span>
+			<span>Overview version 3.0.96 dev</span>
 		</a>
 
 
@@ -661,7 +661,7 @@
 </span><span id="95" class="l"><a class="l" href="#95"> 95: </a>    }
 </span><span id="96" class="l"><a class="l" href="#96"> 96: </a>
 </span><span id="97" class="l"><a class="l" href="#97"> 97: </a>    <span class="php-comment">/**
-</span></span><span id="98" class="l"><a class="l" href="#98"> 98: </a><span class="php-comment">     * Initialize the admin theme systme and determine which admin theme should be used
+</span></span><span id="98" class="l"><a class="l" href="#98"> 98: </a><span class="php-comment">     * Initialize the admin theme system and determine which admin theme should be used
 </span></span><span id="99" class="l"><a class="l" href="#99"> 99: </a><span class="php-comment">     *
 </span></span><span id="100" class="l"><a class="l" href="#100">100: </a><span class="php-comment">     * All admin themes must call this init() method to register themselves. 
 </span></span><span id="101" class="l"><a class="l" href="#101">101: </a><span class="php-comment">     * 
@@ -878,27 +878,35 @@
 </span><span id="312" class="l"><a class="l" href="#312">312: </a>    }
 </span><span id="313" class="l"><a class="l" href="#313">313: </a>    
 </span><span id="314" class="l"><a class="l" href="#314">314: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() { 
-</span><span id="315" class="l"><a class="l" href="#315">315: </a>
-</span><span id="316" class="l"><a class="l" href="#316">316: </a>        <span class="php-comment">/*
-</span></span><span id="317" class="l"><a class="l" href="#317">317: </a><span class="php-comment">        if(self::$numAdminThemes &gt; 1) return;
-</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-comment">
-</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">        // this is the last installed admin theme
-</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">        $field = $this-&gt;wire('fields')-&gt;get('admin_theme');     
-</span></span><span id="321" class="l"><a class="l" href="#321">321: </a><span class="php-comment">        $field-&gt;flags = Field::flagSystemOverride; 
-</span></span><span id="322" class="l"><a class="l" href="#322">322: </a><span class="php-comment">        $field-&gt;flags = 0; 
-</span></span><span id="323" class="l"><a class="l" href="#323">323: </a><span class="php-comment">        $field-&gt;save();
-</span></span><span id="324" class="l"><a class="l" href="#324">324: </a><span class="php-comment">
-</span></span><span id="325" class="l"><a class="l" href="#325">325: </a><span class="php-comment">        $fieldgroup = $this-&gt;wire('fieldgroups')-&gt;get('user'); 
-</span></span><span id="326" class="l"><a class="l" href="#326">326: </a><span class="php-comment">        $fieldgroup-&gt;remove($field); 
-</span></span><span id="327" class="l"><a class="l" href="#327">327: </a><span class="php-comment">        $fieldgroup-&gt;save();
-</span></span><span id="328" class="l"><a class="l" href="#328">328: </a><span class="php-comment">
-</span></span><span id="329" class="l"><a class="l" href="#329">329: </a><span class="php-comment">        $this-&gt;wire('fields')-&gt;delete($field); 
-</span></span><span id="330" class="l"><a class="l" href="#330">330: </a><span class="php-comment">        $this-&gt;message($this-&gt;_('Removed field &quot;admin_theme&quot; from system.')); 
-</span></span><span id="331" class="l"><a class="l" href="#331">331: </a><span class="php-comment">        */</span>
-</span><span id="332" class="l"><a class="l" href="#332">332: </a>    }
-</span><span id="333" class="l"><a class="l" href="#333">333: </a>}
-</span><span id="334" class="l"><a class="l" href="#334">334: </a>
-</span><span id="335" class="l"><a class="l" href="#335">335: </a></span></code></pre>
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>    
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>        <span class="php-var">$defaultAdminTheme</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;defaultAdminTheme;
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$defaultAdminTheme</span> == <span class="php-var">$this</span>-&gt;className()) {
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(
+</span><span id="319" class="l"><a class="l" href="#319">319: </a>                <span class="php-quote">&quot;Cannot uninstall this admin theme because \</span><span class="php-var">$config</span><span class="php-quote">-&gt;defaultAdminTheme = '</span><span class="php-var">$defaultAdminTheme</span><span class="php-quote">'; &quot;</span> . 
+</span><span id="320" class="l"><a class="l" href="#320">320: </a>                <span class="php-quote">&quot;Please add this setting with a different value in /site/config.php&quot;</span>
+</span><span id="321" class="l"><a class="l" href="#321">321: </a>            ); 
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>        }
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>        <span class="php-comment">/*
+</span></span><span id="325" class="l"><a class="l" href="#325">325: </a><span class="php-comment">        if(self::$numAdminThemes &gt; 1) return;
+</span></span><span id="326" class="l"><a class="l" href="#326">326: </a><span class="php-comment">
+</span></span><span id="327" class="l"><a class="l" href="#327">327: </a><span class="php-comment">        // this is the last installed admin theme
+</span></span><span id="328" class="l"><a class="l" href="#328">328: </a><span class="php-comment">        $field = $this-&gt;wire('fields')-&gt;get('admin_theme');     
+</span></span><span id="329" class="l"><a class="l" href="#329">329: </a><span class="php-comment">        $field-&gt;flags = Field::flagSystemOverride; 
+</span></span><span id="330" class="l"><a class="l" href="#330">330: </a><span class="php-comment">        $field-&gt;flags = 0; 
+</span></span><span id="331" class="l"><a class="l" href="#331">331: </a><span class="php-comment">        $field-&gt;save();
+</span></span><span id="332" class="l"><a class="l" href="#332">332: </a><span class="php-comment">
+</span></span><span id="333" class="l"><a class="l" href="#333">333: </a><span class="php-comment">        $fieldgroup = $this-&gt;wire('fieldgroups')-&gt;get('user'); 
+</span></span><span id="334" class="l"><a class="l" href="#334">334: </a><span class="php-comment">        $fieldgroup-&gt;remove($field); 
+</span></span><span id="335" class="l"><a class="l" href="#335">335: </a><span class="php-comment">        $fieldgroup-&gt;save();
+</span></span><span id="336" class="l"><a class="l" href="#336">336: </a><span class="php-comment">
+</span></span><span id="337" class="l"><a class="l" href="#337">337: </a><span class="php-comment">        $this-&gt;wire('fields')-&gt;delete($field); 
+</span></span><span id="338" class="l"><a class="l" href="#338">338: </a><span class="php-comment">        $this-&gt;message($this-&gt;_('Removed field &quot;admin_theme&quot; from system.')); 
+</span></span><span id="339" class="l"><a class="l" href="#339">339: </a><span class="php-comment">        */</span>
+</span><span id="340" class="l"><a class="l" href="#340">340: </a>    }
+</span><span id="341" class="l"><a class="l" href="#341">341: </a>}
+</span><span id="342" class="l"><a class="l" href="#342">342: </a>
+</span><span id="343" class="l"><a class="l" href="#343">343: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireHooks | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2722864406"></script>
+	<script type="text/javascript" src="elementlist.js?1399113759"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.95 dev</span>
+			<span>Overview version 3.0.96 dev</span>
 		</a>
 
 
@@ -592,7 +592,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireHooks.html#4-926" title="Go to source code">core/WireHooks.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireHooks.html#4-960" title="Go to source code">core/WireHooks.php</a><br>
 	</div>
 
 
@@ -1089,7 +1089,7 @@ Optional.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_runHooks">#</a>
-		<code><a href="source-class-ProcessWire.WireHooks.html#667-844" title="Go to source code">runHooks</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$object</var></span>, <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span>, <span>string <var>$type</var> = <span class="php-quote">'method'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHooks.html#667-858" title="Go to source code">runHooks</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$object</var></span>, <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span>, <span>string|array <var>$type</var> = <span class="php-quote">'method'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1116,9 +1116,10 @@ call.</p>
 					<dt><var>$arguments</var></dt>
 					<dd><code>array</code><br>$arguments Arguments passed to the method and hook.</dd>
 					<dt><var>$type</var></dt>
-					<dd><code>string</code><br>$type May be any one of the following: - method: for hooked methods (default) -
+					<dd><code>string|array</code><br>$type May be any one of the following: - method: for hooked methods (default) -
 property: for hooked properties - before: only run before hooks and do nothing
-else - after: only run after hooks and do nothing else</dd>
+else - after: only run after hooks and do nothing else - Or array[] of hooks
+(from getHooks method) to run (does not call hooked method)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1129,6 +1130,52 @@ returned from the hook or NULL if no value returned or hook didn't exist.
 =&gt; Did the hook method exist as a real method in the class? (i.e. with 3
 underscores ___method). [replace] =&gt; Set by the hook at runtime if it wants
 to prevent execution of the original hooked method.<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="filterHooks" id="_filterHooks">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_filterHooks">#</a>
+		<code><a href="source-class-ProcessWire.WireHooks.html#860-878" title="Go to source code">filterHooks</a>( <span>array <var>$hooks</var></span>, <span>string <var>$property</var></span>, <span>string|boolean|integer <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Filter and return hooks matching given property and value</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Filter and return hooks matching given property and value</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$hooks</var></dt>
+					<dd><code>array</code><br>$hooks Hooks from getHooks() method</dd>
+					<dt><var>$property</var></dt>
+					<dd><code>string</code><br>$property Property name from hook (or hook options)</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string|boolean|integer</code><br>$value Value to match</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
 				</div>
 
 
@@ -1148,7 +1195,7 @@ to prevent execution of the original hooked method.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hookTimer">#</a>
-		<code><a href="source-class-ProcessWire.WireHooks.html#846-872" title="Go to source code">hookTimer</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$object</var></span>, <span>String <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHooks.html#880-906" title="Go to source code">hookTimer</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$object</var></span>, <span>String <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1194,7 +1241,7 @@ to prevent execution of the original hooked method.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeHook">#</a>
-		<code><a href="source-class-ProcessWire.WireHooks.html#874-902" title="Go to source code">removeHook</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$object</var></span>, <span>string|null <var>$hookID</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHooks.html#908-936" title="Go to source code">removeHook</a>( <span><code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$object</var></span>, <span>string|null <var>$hookID</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1242,7 +1289,7 @@ remove self }</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAllLocalHooks">#</a>
-		<code><a href="source-class-ProcessWire.WireHooks.html#904-912" title="Go to source code">getAllLocalHooks</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHooks.html#938-946" title="Go to source code">getAllLocalHooks</a>( )</code>
 
 		<div class="description short">
 			
@@ -1279,7 +1326,7 @@ remove self }</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_className">#</a>
-		<code><a href="source-class-ProcessWire.WireHooks.html#914-920" title="Go to source code">className</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHooks.html#948-954" title="Go to source code">className</a>( )</code>
 
 		<div class="description short">
 			
@@ -1312,7 +1359,7 @@ remove self }</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.WireHooks.html#922-924" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHooks.html#956-958" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			

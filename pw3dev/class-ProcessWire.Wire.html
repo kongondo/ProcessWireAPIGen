@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Wire | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2722864406"></script>
+	<script type="text/javascript" src="elementlist.js?1399113759"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.95 dev</span>
+			<span>Overview version 3.0.96 dev</span>
 		</a>
 
 
@@ -1572,7 +1572,7 @@ $event-&gt;return if // you want the unknown method to return a value. });
 
 		<td class="name"><div>
 		<a class="anchor" href="#_runHooks">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#522-542" title="Go to source code">runHooks</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span>, <span>string <var>$type</var> = <span class="php-quote">'method'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#522-542" title="Go to source code">runHooks</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span>, <span>string|array <var>$type</var> = <span class="php-quote">'method'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1599,8 +1599,8 @@ call.</p>
 					<dt><var>$arguments</var></dt>
 					<dd><code>array</code><br>$arguments Arguments passed to the method and hook.</dd>
 					<dt><var>$type</var></dt>
-					<dd><code>string</code><br>$type May be either 'method' or 'property', depending on the type of call.
-Default is 'method'.</dd>
+					<dd><code>string|array</code><br>$type May be either 'method', 'property' or array of hooks (from getHooks) to
+run. Default is 'method'.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1706,8 +1706,8 @@ WireHooks class): - <code>WireHooks::getHooksAll</code> returns all hooks
 	<li>Also considers the class parents for hooks.</li>
 </ul>
 
-<p>~~~~~ if($pages-&gt;hasHook('find')) { // the Pages::find method is hooked }
-~~~~~</p>
+<p>~~~~~ if($pages-&gt;hasHook('find()')) { // the Pages::find() method is
+hooked } ~~~~~</p>
 
 <p>#pw-group-hooks</p>
 
