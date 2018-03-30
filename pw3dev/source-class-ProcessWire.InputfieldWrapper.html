@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.96 dev</span>
+			<span>Overview version 3.0.97 dev</span>
 		</a>
 
 
@@ -1046,7 +1046,7 @@
 </span><span id="480" class="l"><a class="l" href="#480"> 480: </a>                <span class="php-var">$ffAttrs</span>[<span class="php-quote">'class'</span>] .= <span class="php-quote">' '</span> . <span class="php-var">$classes</span>[<span class="php-quote">'item_required_if'</span>]; 
 </span><span id="481" class="l"><a class="l" href="#481"> 481: </a>            }
 </span><span id="482" class="l"><a class="l" href="#482"> 482: </a>
-</span><span id="483" class="l"><a class="l" href="#483"> 483: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$collapsed</span>) {
+</span><span id="483" class="l"><a class="l" href="#483"> 483: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$collapsed</span> &amp;&amp; <span class="php-var">$collapsed</span> !== Inputfield::collapsedNever) {
 </span><span id="484" class="l"><a class="l" href="#484"> 484: </a>                <span class="php-var">$isEmpty</span> = <span class="php-var">$inputfield</span>-&gt;isEmpty();
 </span><span id="485" class="l"><a class="l" href="#485"> 485: </a>                <span class="php-keyword1">if</span>((<span class="php-var">$isEmpty</span> &amp;&amp; <span class="php-var">$inputfield</span> <span class="php-keyword1">instanceof</span> InputfieldWrapper) || 
 </span><span id="486" class="l"><a class="l" href="#486"> 486: </a>                    <span class="php-var">$collapsed</span> === Inputfield::collapsedYes ||
@@ -1621,7 +1621,7 @@
 </span></span><span id="1055" class="l"><a class="l" href="#1055">1055: </a><span class="php-comment">     * #pw-internal
 </span></span><span id="1056" class="l"><a class="l" href="#1056">1056: </a><span class="php-comment">     * 
 </span></span><span id="1057" class="l"><a class="l" href="#1057">1057: </a><span class="php-comment">     * @param bool $trackChanges
-</span></span><span id="1058" class="l"><a class="l" href="#1058">1058: </a><span class="php-comment">     * @return $this
+</span></span><span id="1058" class="l"><a class="l" href="#1058">1058: </a><span class="php-comment">     * @return Inputfield|InputfieldWrapper
 </span></span><span id="1059" class="l"><a class="l" href="#1059">1059: </a><span class="php-comment">     *
 </span></span><span id="1060" class="l"><a class="l" href="#1060">1060: </a><span class="php-comment">     */</span>
 </span><span id="1061" class="l"><a class="l" href="#1061">1061: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setTrackChanges" href="#_setTrackChanges">setTrackChanges</a>(<span class="php-var">$trackChanges</span> = <span class="php-keyword1">true</span>) {
@@ -1635,7 +1635,7 @@
 </span></span><span id="1069" class="l"><a class="l" href="#1069">1069: </a><span class="php-comment">     * #pw-internal
 </span></span><span id="1070" class="l"><a class="l" href="#1070">1070: </a><span class="php-comment">     *
 </span></span><span id="1071" class="l"><a class="l" href="#1071">1071: </a><span class="php-comment">     * @param bool $trackChanges
-</span></span><span id="1072" class="l"><a class="l" href="#1072">1072: </a><span class="php-comment">     * @return $this
+</span></span><span id="1072" class="l"><a class="l" href="#1072">1072: </a><span class="php-comment">     * @return Inputfield|InputfieldWrapper
 </span></span><span id="1073" class="l"><a class="l" href="#1073">1073: </a><span class="php-comment">     *
 </span></span><span id="1074" class="l"><a class="l" href="#1074">1074: </a><span class="php-comment">     */</span>
 </span><span id="1075" class="l"><a class="l" href="#1075">1075: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_resetTrackChanges" href="#_resetTrackChanges">resetTrackChanges</a>(<span class="php-var">$trackChanges</span> = <span class="php-keyword1">true</span>) {
