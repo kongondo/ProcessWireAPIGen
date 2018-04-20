@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessPageView.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1659038858"></script>
+	<script type="text/javascript" src="elementlist.js?417986044"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.98 dev</span>
+			<span>Overview version 3.0.99 dev</span>
 		</a>
 
 
@@ -48,6 +48,7 @@
 				<li><a href="class-ProcessWire.AdminThemeReno.html">AdminThemeReno</a></li>
 				<li><a href="class-ProcessWire.AdminThemeRenoHelpers.html">AdminThemeRenoHelpers</a></li>
 				<li><a href="class-ProcessWire.AdminThemeUikit.html">AdminThemeUikit</a></li>
+				<li><a href="class-ProcessWire.AdminThemeUikitConfigHelper.html">AdminThemeUikitConfigHelper</a></li>
 				<li><a href="class-ProcessWire.Breadcrumb.html">Breadcrumb</a></li>
 				<li><a href="class-ProcessWire.Breadcrumbs.html">Breadcrumbs</a></li>
 				<li><a href="class-ProcessWire.CacheFile.html">CacheFile</a></li>
@@ -432,7 +433,6 @@
 				<li><a href="function-ProcessWire._wireDataAPI.html">_wireDataAPI</a></li>
 				<li><a href="function-ProcessWire._wirePagesAPI.html">_wirePagesAPI</a></li>
 				<li><a href="function-ProcessWire._x.html">_x</a></li>
-				<li><a href="function-ProcessWire.AdminThemeUikitConfig.html">AdminThemeUikitConfig</a></li>
 				<li><a href="function-ProcessWire.cache.html">cache</a></li>
 				<li><a href="function-ProcessWire.config.html">config</a></li>
 				<li><a href="function-ProcessWire.database.html">database</a></li>
@@ -1243,176 +1243,177 @@
 </span></span><span id="677" class="l"><a class="l" href="#677">677: </a><span class="php-comment">     *
 </span></span><span id="678" class="l"><a class="l" href="#678">678: </a><span class="php-comment">     */</span>
 </span><span id="679" class="l"><a class="l" href="#679">679: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_checkProtocol" href="#_checkProtocol">checkProtocol</a>(<span class="php-var">$page</span>) {
-</span><span id="680" class="l"><a class="l" href="#680">680: </a>
-</span><span id="681" class="l"><a class="l" href="#681">681: </a>        <span class="php-var">$requireHTTPS</span> = <span class="php-var">$page</span>-&gt;template-&gt;https;
-</span><span id="682" class="l"><a class="l" href="#682">682: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$requireHTTPS</span> == <span class="php-num">0</span>) <span class="php-keyword1">return</span>; <span class="php-comment">// neither HTTP or HTTPS required</span>
-</span><span id="683" class="l"><a class="l" href="#683">683: </a>        
-</span><span id="684" class="l"><a class="l" href="#684">684: </a>        <span class="php-var">$config</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>);
-</span><span id="685" class="l"><a class="l" href="#685">685: </a>        <span class="php-var">$isHTTPS</span> = <span class="php-var">$config</span>-&gt;https; 
-</span><span id="686" class="l"><a class="l" href="#686">686: </a>        <span class="php-var">$scheme</span> = <span class="php-quote">''</span>;
-</span><span id="687" class="l"><a class="l" href="#687">687: </a>
-</span><span id="688" class="l"><a class="l" href="#688">688: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$requireHTTPS</span> == -<span class="php-num">1</span> &amp;&amp; <span class="php-var">$isHTTPS</span>) {
-</span><span id="689" class="l"><a class="l" href="#689">689: </a>            <span class="php-comment">// HTTP required: redirect to HTTP non-secure version</span>
-</span><span id="690" class="l"><a class="l" href="#690">690: </a>            <span class="php-var">$scheme</span> = <span class="php-quote">&quot;http&quot;</span>;
-</span><span id="691" class="l"><a class="l" href="#691">691: </a>
-</span><span id="692" class="l"><a class="l" href="#692">692: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$requireHTTPS</span> == <span class="php-num">1</span> &amp;&amp; !<span class="php-var">$isHTTPS</span>) {
-</span><span id="693" class="l"><a class="l" href="#693">693: </a>            <span class="php-comment">// HTTPS required: redirect to HTTPS secure version</span>
-</span><span id="694" class="l"><a class="l" href="#694">694: </a>            <span class="php-var">$scheme</span> = <span class="php-quote">&quot;https&quot;</span>;
-</span><span id="695" class="l"><a class="l" href="#695">695: </a>        }
-</span><span id="696" class="l"><a class="l" href="#696">696: </a>        
-</span><span id="697" class="l"><a class="l" href="#697">697: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$scheme</span>) <span class="php-keyword1">return</span>;
-</span><span id="698" class="l"><a class="l" href="#698">698: </a>        
-</span><span id="699" class="l"><a class="l" href="#699">699: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;redirectURL) {
-</span><span id="700" class="l"><a class="l" href="#700">700: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$this</span>-&gt;redirectURL, <span class="php-quote">'://'</span>) !== <span class="php-keyword1">false</span>) {
-</span><span id="701" class="l"><a class="l" href="#701">701: </a>                <span class="php-var">$url</span> = <span class="php-keyword2">str_replace</span>(<span class="php-keyword1">array</span>(<span class="php-quote">'http://'</span>, <span class="php-quote">'https://'</span>), <span class="php-quote">&quot;</span><span class="php-var">$scheme</span><span class="php-quote">://&quot;</span>, <span class="php-var">$this</span>-&gt;redirectURL);
-</span><span id="702" class="l"><a class="l" href="#702">702: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="703" class="l"><a class="l" href="#703">703: </a>                <span class="php-var">$url</span> = <span class="php-quote">&quot;</span><span class="php-var">$scheme</span><span class="php-quote">://</span><span class="php-var">$config</span><span class="php-quote">-&gt;httpHost</span><span class="php-var">$this</span><span class="php-quote">-&gt;redirectURL&quot;</span>;
-</span><span id="704" class="l"><a class="l" href="#704">704: </a>            }
-</span><span id="705" class="l"><a class="l" href="#705">705: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="706" class="l"><a class="l" href="#706">706: </a>            <span class="php-var">$url</span> = <span class="php-quote">&quot;</span><span class="php-var">$scheme</span><span class="php-quote">://</span><span class="php-var">$config</span><span class="php-quote">-&gt;httpHost</span><span class="php-var">$page</span><span class="php-quote">-&gt;url&quot;</span>;
-</span><span id="707" class="l"><a class="l" href="#707">707: </a>        }
-</span><span id="708" class="l"><a class="l" href="#708">708: </a>        <span class="php-var">$input</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>); 
-</span><span id="709" class="l"><a class="l" href="#709">709: </a>    
-</span><span id="710" class="l"><a class="l" href="#710">710: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;redirectURL) {
-</span><span id="711" class="l"><a class="l" href="#711">711: </a>            <span class="php-comment">// existing redirectURL will already have segments/page numbers as needed</span>
-</span><span id="712" class="l"><a class="l" href="#712">712: </a>            
-</span><span id="713" class="l"><a class="l" href="#713">713: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="714" class="l"><a class="l" href="#714">714: </a>            <span class="php-var">$urlSegmentStr</span> = <span class="php-var">$input</span>-&gt;urlSegmentStr;
-</span><span id="715" class="l"><a class="l" href="#715">715: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strlen</span>(<span class="php-var">$urlSegmentStr</span>) &amp;&amp; <span class="php-var">$page</span>-&gt;template-&gt;urlSegments) {
-</span><span id="716" class="l"><a class="l" href="#716">716: </a>                <span class="php-var">$url</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$url</span>, <span class="php-quote">'/'</span>) . <span class="php-quote">'/'</span> . <span class="php-var">$urlSegmentStr</span>;
-</span><span id="717" class="l"><a class="l" href="#717">717: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;template-&gt;slashUrlSegments) {
-</span><span id="718" class="l"><a class="l" href="#718">718: </a>                    <span class="php-comment">// use defined setting for trailing slash</span>
-</span><span id="719" class="l"><a class="l" href="#719">719: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;template-&gt;slashUrlSegments == <span class="php-num">1</span>) <span class="php-var">$url</span> .= <span class="php-quote">'/'</span>;
-</span><span id="720" class="l"><a class="l" href="#720">720: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="721" class="l"><a class="l" href="#721">721: </a>                    <span class="php-comment">// use whatever the request came with   </span>
-</span><span id="722" class="l"><a class="l" href="#722">722: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">substr</span>(<span class="php-var">$this</span>-&gt;requestURL, -<span class="php-num">1</span>) == <span class="php-quote">'/'</span>) <span class="php-var">$url</span> .= <span class="php-quote">'/'</span>;
-</span><span id="723" class="l"><a class="l" href="#723">723: </a>                }
-</span><span id="724" class="l"><a class="l" href="#724">724: </a>            }
-</span><span id="725" class="l"><a class="l" href="#725">725: </a>
-</span><span id="726" class="l"><a class="l" href="#726">726: </a>            <span class="php-var">$pageNum</span> = <span class="php-var">$input</span>-&gt;pageNum;
-</span><span id="727" class="l"><a class="l" href="#727">727: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$pageNum</span> &gt; <span class="php-num">1</span> &amp;&amp; <span class="php-var">$page</span>-&gt;template-&gt;allowPageNum) {
-</span><span id="728" class="l"><a class="l" href="#728">728: </a>                <span class="php-var">$prefix</span> = <span class="php-var">$this</span>-&gt;pageNumPrefix ? <span class="php-var">$this</span>-&gt;pageNumPrefix : <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;pageNumUrlPrefix;
-</span><span id="729" class="l"><a class="l" href="#729">729: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$prefix</span>) <span class="php-var">$prefix</span> = <span class="php-quote">'page'</span>;
-</span><span id="730" class="l"><a class="l" href="#730">730: </a>                <span class="php-var">$url</span> .= <span class="php-quote">&quot;</span><span class="php-var">$prefix$pageNum</span><span class="php-quote">&quot;</span>;
-</span><span id="731" class="l"><a class="l" href="#731">731: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;template-&gt;slashPageNum) {
-</span><span id="732" class="l"><a class="l" href="#732">732: </a>                    <span class="php-comment">// defined setting for trailing slash   </span>
-</span><span id="733" class="l"><a class="l" href="#733">733: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;template-&gt;slashPageNum == <span class="php-num">1</span>) <span class="php-var">$url</span> .= <span class="php-quote">'/'</span>;
-</span><span id="734" class="l"><a class="l" href="#734">734: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="735" class="l"><a class="l" href="#735">735: </a>                    <span class="php-comment">// use whatever setting the URL came with</span>
-</span><span id="736" class="l"><a class="l" href="#736">736: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">substr</span>(<span class="php-var">$this</span>-&gt;requestURL, <span class="php-quote">'-1'</span>) == <span class="php-quote">'/'</span>) <span class="php-var">$url</span> .= <span class="php-quote">'/'</span>;
-</span><span id="737" class="l"><a class="l" href="#737">737: </a>                }
-</span><span id="738" class="l"><a class="l" href="#738">738: </a>            }
-</span><span id="739" class="l"><a class="l" href="#739">739: </a>        }
-</span><span id="740" class="l"><a class="l" href="#740">740: </a>        
-</span><span id="741" class="l"><a class="l" href="#741">741: </a>        <span class="php-var">$this</span>-&gt;redirectURL = <span class="php-var">$url</span>;
-</span><span id="742" class="l"><a class="l" href="#742">742: </a>    }
-</span><span id="743" class="l"><a class="l" href="#743">743: </a>    
-</span><span id="744" class="l"><a class="l" href="#744">744: </a>    <span class="php-comment">/**
-</span></span><span id="745" class="l"><a class="l" href="#745">745: </a><span class="php-comment">     * Passthru a file for a non-public page
-</span></span><span id="746" class="l"><a class="l" href="#746">746: </a><span class="php-comment">     *
-</span></span><span id="747" class="l"><a class="l" href="#747">747: </a><span class="php-comment">     * If the page is public, then it just does a 301 redirect to the file.
-</span></span><span id="748" class="l"><a class="l" href="#748">748: </a><span class="php-comment">     * 
-</span></span><span id="749" class="l"><a class="l" href="#749">749: </a><span class="php-comment">     * @param Page $page
-</span></span><span id="750" class="l"><a class="l" href="#750">750: </a><span class="php-comment">     * @param string $basename
-</span></span><span id="751" class="l"><a class="l" href="#751">751: </a><span class="php-comment">     * @throws Wire404Exception
-</span></span><span id="752" class="l"><a class="l" href="#752">752: </a><span class="php-comment">     *
-</span></span><span id="753" class="l"><a class="l" href="#753">753: </a><span class="php-comment">     */</span>
-</span><span id="754" class="l"><a class="l" href="#754">754: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____sendFile" href="#____sendFile">___sendFile</a>(<span class="php-var">$page</span>, <span class="php-var">$basename</span>) {
-</span><span id="755" class="l"><a class="l" href="#755">755: </a>
-</span><span id="756" class="l"><a class="l" href="#756">756: </a>        <span class="php-var">$err</span> = <span class="php-quote">'File not found'</span>;
-</span><span id="757" class="l"><a class="l" href="#757">757: </a>
-</span><span id="758" class="l"><a class="l" href="#758">758: </a>        <span class="php-comment">// use the static hasPath first to make sure this page actually has a files directory</span>
-</span><span id="759" class="l"><a class="l" href="#759">759: </a>        <span class="php-comment">// this ensures one isn't automatically created when we call $page-&gt;filesManager-&gt;path below</span>
-</span><span id="760" class="l"><a class="l" href="#760">760: </a>        <span class="php-keyword1">if</span>(!PagefilesManager::hasPath(<span class="php-var">$page</span>)) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> Wire404Exception(<span class="php-var">$err</span>);
-</span><span id="761" class="l"><a class="l" href="#761">761: </a>
-</span><span id="762" class="l"><a class="l" href="#762">762: </a>        <span class="php-var">$filename</span> = <span class="php-var">$page</span>-&gt;filesManager-&gt;path() . <span class="php-var">$basename</span>; 
-</span><span id="763" class="l"><a class="l" href="#763">763: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_file</span>(<span class="php-var">$filename</span>)) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> Wire404Exception(<span class="php-var">$err</span>);
-</span><span id="764" class="l"><a class="l" href="#764">764: </a>
-</span><span id="765" class="l"><a class="l" href="#765">765: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;isPublic()) {
-</span><span id="766" class="l"><a class="l" href="#766">766: </a>            <span class="php-comment">// deprecated, only necessary for method 2 in checkRequestFile</span>
-</span><span id="767" class="l"><a class="l" href="#767">767: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;redirect(<span class="php-var">$page</span>-&gt;filesManager-&gt;url() . <span class="php-var">$basename</span>); 
-</span><span id="768" class="l"><a class="l" href="#768">768: </a>
-</span><span id="769" class="l"><a class="l" href="#769">769: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="770" class="l"><a class="l" href="#770">770: </a>            <span class="php-var">$options</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'exit'</span> =&gt; <span class="php-keyword1">false</span>);
-</span><span id="771" class="l"><a class="l" href="#771">771: </a>            wireSendFile(<span class="php-var">$filename</span>, <span class="php-var">$options</span>);
-</span><span id="772" class="l"><a class="l" href="#772">772: </a>        }
-</span><span id="773" class="l"><a class="l" href="#773">773: </a>    }
-</span><span id="774" class="l"><a class="l" href="#774">774: </a>
-</span><span id="775" class="l"><a class="l" href="#775">775: </a>    <span class="php-comment">/**
-</span></span><span id="776" class="l"><a class="l" href="#776">776: </a><span class="php-comment">     * Called when a page is not found, sends 404 header, and displays the configured 404 page instead.
-</span></span><span id="777" class="l"><a class="l" href="#777">777: </a><span class="php-comment">     *
-</span></span><span id="778" class="l"><a class="l" href="#778">778: </a><span class="php-comment">     * Method is hookable, for instance if you wanted to log 404s.
-</span></span><span id="779" class="l"><a class="l" href="#779">779: </a><span class="php-comment">     *
-</span></span><span id="780" class="l"><a class="l" href="#780">780: </a><span class="php-comment">     * @param Page|null $page Page that was found if applicable (like if user didn't have permission or $page's template threw the 404). If not applicable then NULL will be given instead.
-</span></span><span id="781" class="l"><a class="l" href="#781">781: </a><span class="php-comment">     * @param string $url The URL that the request originated from (like $_SERVER['REQUEST_URI'] but already sanitized)
-</span></span><span id="782" class="l"><a class="l" href="#782">782: </a><span class="php-comment">     * @param bool $triggerReady Whether or not the ready() hook should be triggered (default=false)
-</span></span><span id="783" class="l"><a class="l" href="#783">783: </a><span class="php-comment">     * @param string $reason Reason why 404 occurred, for debugging purposes (en text)
-</span></span><span id="784" class="l"><a class="l" href="#784">784: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="785" class="l"><a class="l" href="#785">785: </a><span class="php-comment">     * @return string
-</span></span><span id="786" class="l"><a class="l" href="#786">786: </a><span class="php-comment">     */</span>
-</span><span id="787" class="l"><a class="l" href="#787">787: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____pageNotFound" href="#____pageNotFound">___pageNotFound</a>(<span class="php-var">$page</span>, <span class="php-var">$url</span>, <span class="php-var">$triggerReady</span> = <span class="php-keyword1">false</span>, <span class="php-var">$reason</span> = <span class="php-quote">''</span>) {
-</span><span id="788" class="l"><a class="l" href="#788">788: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span> || <span class="php-var">$url</span> || <span class="php-var">$reason</span>) {} <span class="php-comment">// variables provided for hooks only</span>
-</span><span id="789" class="l"><a class="l" href="#789">789: </a>
-</span><span id="790" class="l"><a class="l" href="#790">790: </a>        <span class="php-var">$this</span>-&gt;responseType = self::responseTypeError; 
-</span><span id="791" class="l"><a class="l" href="#791">791: </a>        <span class="php-var">$config</span> = <span class="php-var">$this</span>-&gt;config;
-</span><span id="792" class="l"><a class="l" href="#792">792: </a>        <span class="php-var">$this</span>-&gt;header404();
-</span><span id="793" class="l"><a class="l" href="#793">793: </a>
-</span><span id="794" class="l"><a class="l" href="#794">794: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$config</span>-&gt;http404PageID) {
-</span><span id="795" class="l"><a class="l" href="#795">795: </a>            <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;pages-&gt;get(<span class="php-var">$config</span>-&gt;http404PageID); 
-</span><span id="796" class="l"><a class="l" href="#796">796: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;config::http404PageID does not exist - please check your config&quot;</span>); 
-</span><span id="797" class="l"><a class="l" href="#797">797: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'page'</span>, <span class="php-var">$page</span>); 
-</span><span id="798" class="l"><a class="l" href="#798">798: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$triggerReady</span>) <span class="php-var">$this</span>-&gt;ready();
-</span><span id="799" class="l"><a class="l" href="#799">799: </a>            <span class="php-keyword1">return</span> <span class="php-var">$page</span>-&gt;render();
-</span><span id="800" class="l"><a class="l" href="#800">800: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="801" class="l"><a class="l" href="#801">801: </a>            <span class="php-keyword1">return</span> <span class="php-quote">&quot;404 page not found&quot;</span>;
-</span><span id="802" class="l"><a class="l" href="#802">802: </a>        }
-</span><span id="803" class="l"><a class="l" href="#803">803: </a>    }
-</span><span id="804" class="l"><a class="l" href="#804">804: </a>
-</span><span id="805" class="l"><a class="l" href="#805">805: </a>    <span class="php-comment">/**
-</span></span><span id="806" class="l"><a class="l" href="#806">806: </a><span class="php-comment">     * Send a 404 header, but not more than once per request
-</span></span><span id="807" class="l"><a class="l" href="#807">807: </a><span class="php-comment">     * 
-</span></span><span id="808" class="l"><a class="l" href="#808">808: </a><span class="php-comment">     */</span>
-</span><span id="809" class="l"><a class="l" href="#809">809: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_header404" href="#_header404">header404</a>() {
-</span><span id="810" class="l"><a class="l" href="#810">810: </a>        <span class="php-keyword1">static</span> <span class="php-var"><a id="$n" href="#$n">$n</a></span> = <span class="php-num">0</span>;
-</span><span id="811" class="l"><a class="l" href="#811">811: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$n</span>) <span class="php-keyword2">header</span>(<span class="php-quote">&quot;HTTP/1.1 404 Page Not Found&quot;</span>); 
-</span><span id="812" class="l"><a class="l" href="#812">812: </a>        <span class="php-var">$n</span>++;
-</span><span id="813" class="l"><a class="l" href="#813">813: </a>    }
-</span><span id="814" class="l"><a class="l" href="#814">814: </a>
-</span><span id="815" class="l"><a class="l" href="#815">815: </a>    <span class="php-comment">/**
-</span></span><span id="816" class="l"><a class="l" href="#816">816: </a><span class="php-comment">     * Return the response type for this request, as one of the responseType constants
-</span></span><span id="817" class="l"><a class="l" href="#817">817: </a><span class="php-comment">     *
-</span></span><span id="818" class="l"><a class="l" href="#818">818: </a><span class="php-comment">     * @return int
-</span></span><span id="819" class="l"><a class="l" href="#819">819: </a><span class="php-comment">     *
-</span></span><span id="820" class="l"><a class="l" href="#820">820: </a><span class="php-comment">     */</span>
-</span><span id="821" class="l"><a class="l" href="#821">821: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getResponseType" href="#_getResponseType">getResponseType</a>() {
-</span><span id="822" class="l"><a class="l" href="#822">822: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;responseType; 
-</span><span id="823" class="l"><a class="l" href="#823">823: </a>    }
-</span><span id="824" class="l"><a class="l" href="#824">824: </a>
-</span><span id="825" class="l"><a class="l" href="#825">825: </a>    <span class="php-comment">/**
-</span></span><span id="826" class="l"><a class="l" href="#826">826: </a><span class="php-comment">     * Set the response type for this request, see responseType constants in this class
-</span></span><span id="827" class="l"><a class="l" href="#827">827: </a><span class="php-comment">     *
-</span></span><span id="828" class="l"><a class="l" href="#828">828: </a><span class="php-comment">     * @param int $responseType
-</span></span><span id="829" class="l"><a class="l" href="#829">829: </a><span class="php-comment">     *
-</span></span><span id="830" class="l"><a class="l" href="#830">830: </a><span class="php-comment">     */</span>
-</span><span id="831" class="l"><a class="l" href="#831">831: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setResponseType" href="#_setResponseType">setResponseType</a>(<span class="php-var">$responseType</span>) {
-</span><span id="832" class="l"><a class="l" href="#832">832: </a>        <span class="php-var">$this</span>-&gt;responseType = (int) <span class="php-var">$responseType</span>; 
-</span><span id="833" class="l"><a class="l" href="#833">833: </a>    }
-</span><span id="834" class="l"><a class="l" href="#834">834: </a>
-</span><span id="835" class="l"><a class="l" href="#835">835: </a>    <span class="php-comment">/**
-</span></span><span id="836" class="l"><a class="l" href="#836">836: </a><span class="php-comment">     * Set whether any redirects should be performed after the API ready() call
-</span></span><span id="837" class="l"><a class="l" href="#837">837: </a><span class="php-comment">     * 
-</span></span><span id="838" class="l"><a class="l" href="#838">838: </a><span class="php-comment">     * This is used by LanguageSupportPageNames to delay redirects until after http/https schema is determined. 
-</span></span><span id="839" class="l"><a class="l" href="#839">839: </a><span class="php-comment">     *
-</span></span><span id="840" class="l"><a class="l" href="#840">840: </a><span class="php-comment">     * @param bool $delayRedirects
-</span></span><span id="841" class="l"><a class="l" href="#841">841: </a><span class="php-comment">     *
-</span></span><span id="842" class="l"><a class="l" href="#842">842: </a><span class="php-comment">     */</span>
-</span><span id="843" class="l"><a class="l" href="#843">843: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setDelayRedirects" href="#_setDelayRedirects">setDelayRedirects</a>(<span class="php-var">$delayRedirects</span>) {
-</span><span id="844" class="l"><a class="l" href="#844">844: </a>        <span class="php-var">$this</span>-&gt;delayRedirects = <span class="php-var">$delayRedirects</span> ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>;
-</span><span id="845" class="l"><a class="l" href="#845">845: </a>    }
-</span><span id="846" class="l"><a class="l" href="#846">846: </a>
-</span><span id="847" class="l"><a class="l" href="#847">847: </a>}
-</span><span id="848" class="l"><a class="l" href="#848">848: </a>
-</span><span id="849" class="l"><a class="l" href="#849">849: </a></span></code></pre>
+</span><span id="680" class="l"><a class="l" href="#680">680: </a>    
+</span><span id="681" class="l"><a class="l" href="#681">681: </a>        <span class="php-comment">/** @var Config $config */</span>
+</span><span id="682" class="l"><a class="l" href="#682">682: </a>        <span class="php-var">$config</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>);
+</span><span id="683" class="l"><a class="l" href="#683">683: </a>        <span class="php-var">$requireHTTPS</span> = <span class="php-var">$page</span>-&gt;template-&gt;https;
+</span><span id="684" class="l"><a class="l" href="#684">684: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$requireHTTPS</span> == <span class="php-num">0</span> || <span class="php-var">$config</span>-&gt;noHTTPS) <span class="php-keyword1">return</span>; <span class="php-comment">// neither HTTP or HTTPS required</span>
+</span><span id="685" class="l"><a class="l" href="#685">685: </a>        
+</span><span id="686" class="l"><a class="l" href="#686">686: </a>        <span class="php-var">$isHTTPS</span> = <span class="php-var">$config</span>-&gt;https; 
+</span><span id="687" class="l"><a class="l" href="#687">687: </a>        <span class="php-var">$scheme</span> = <span class="php-quote">''</span>;
+</span><span id="688" class="l"><a class="l" href="#688">688: </a>
+</span><span id="689" class="l"><a class="l" href="#689">689: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$requireHTTPS</span> == -<span class="php-num">1</span> &amp;&amp; <span class="php-var">$isHTTPS</span>) {
+</span><span id="690" class="l"><a class="l" href="#690">690: </a>            <span class="php-comment">// HTTP required: redirect to HTTP non-secure version</span>
+</span><span id="691" class="l"><a class="l" href="#691">691: </a>            <span class="php-var">$scheme</span> = <span class="php-quote">&quot;http&quot;</span>;
+</span><span id="692" class="l"><a class="l" href="#692">692: </a>
+</span><span id="693" class="l"><a class="l" href="#693">693: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$requireHTTPS</span> == <span class="php-num">1</span> &amp;&amp; !<span class="php-var">$isHTTPS</span>) {
+</span><span id="694" class="l"><a class="l" href="#694">694: </a>            <span class="php-comment">// HTTPS required: redirect to HTTPS secure version</span>
+</span><span id="695" class="l"><a class="l" href="#695">695: </a>            <span class="php-var">$scheme</span> = <span class="php-quote">&quot;https&quot;</span>;
+</span><span id="696" class="l"><a class="l" href="#696">696: </a>        }
+</span><span id="697" class="l"><a class="l" href="#697">697: </a>        
+</span><span id="698" class="l"><a class="l" href="#698">698: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$scheme</span>) <span class="php-keyword1">return</span>;
+</span><span id="699" class="l"><a class="l" href="#699">699: </a>        
+</span><span id="700" class="l"><a class="l" href="#700">700: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;redirectURL) {
+</span><span id="701" class="l"><a class="l" href="#701">701: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$this</span>-&gt;redirectURL, <span class="php-quote">'://'</span>) !== <span class="php-keyword1">false</span>) {
+</span><span id="702" class="l"><a class="l" href="#702">702: </a>                <span class="php-var">$url</span> = <span class="php-keyword2">str_replace</span>(<span class="php-keyword1">array</span>(<span class="php-quote">'http://'</span>, <span class="php-quote">'https://'</span>), <span class="php-quote">&quot;</span><span class="php-var">$scheme</span><span class="php-quote">://&quot;</span>, <span class="php-var">$this</span>-&gt;redirectURL);
+</span><span id="703" class="l"><a class="l" href="#703">703: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="704" class="l"><a class="l" href="#704">704: </a>                <span class="php-var">$url</span> = <span class="php-quote">&quot;</span><span class="php-var">$scheme</span><span class="php-quote">://</span><span class="php-var">$config</span><span class="php-quote">-&gt;httpHost</span><span class="php-var">$this</span><span class="php-quote">-&gt;redirectURL&quot;</span>;
+</span><span id="705" class="l"><a class="l" href="#705">705: </a>            }
+</span><span id="706" class="l"><a class="l" href="#706">706: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="707" class="l"><a class="l" href="#707">707: </a>            <span class="php-var">$url</span> = <span class="php-quote">&quot;</span><span class="php-var">$scheme</span><span class="php-quote">://</span><span class="php-var">$config</span><span class="php-quote">-&gt;httpHost</span><span class="php-var">$page</span><span class="php-quote">-&gt;url&quot;</span>;
+</span><span id="708" class="l"><a class="l" href="#708">708: </a>        }
+</span><span id="709" class="l"><a class="l" href="#709">709: </a>        <span class="php-var">$input</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>); 
+</span><span id="710" class="l"><a class="l" href="#710">710: </a>    
+</span><span id="711" class="l"><a class="l" href="#711">711: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;redirectURL) {
+</span><span id="712" class="l"><a class="l" href="#712">712: </a>            <span class="php-comment">// existing redirectURL will already have segments/page numbers as needed</span>
+</span><span id="713" class="l"><a class="l" href="#713">713: </a>            
+</span><span id="714" class="l"><a class="l" href="#714">714: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="715" class="l"><a class="l" href="#715">715: </a>            <span class="php-var">$urlSegmentStr</span> = <span class="php-var">$input</span>-&gt;urlSegmentStr;
+</span><span id="716" class="l"><a class="l" href="#716">716: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strlen</span>(<span class="php-var">$urlSegmentStr</span>) &amp;&amp; <span class="php-var">$page</span>-&gt;template-&gt;urlSegments) {
+</span><span id="717" class="l"><a class="l" href="#717">717: </a>                <span class="php-var">$url</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$url</span>, <span class="php-quote">'/'</span>) . <span class="php-quote">'/'</span> . <span class="php-var">$urlSegmentStr</span>;
+</span><span id="718" class="l"><a class="l" href="#718">718: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;template-&gt;slashUrlSegments) {
+</span><span id="719" class="l"><a class="l" href="#719">719: </a>                    <span class="php-comment">// use defined setting for trailing slash</span>
+</span><span id="720" class="l"><a class="l" href="#720">720: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;template-&gt;slashUrlSegments == <span class="php-num">1</span>) <span class="php-var">$url</span> .= <span class="php-quote">'/'</span>;
+</span><span id="721" class="l"><a class="l" href="#721">721: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="722" class="l"><a class="l" href="#722">722: </a>                    <span class="php-comment">// use whatever the request came with   </span>
+</span><span id="723" class="l"><a class="l" href="#723">723: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">substr</span>(<span class="php-var">$this</span>-&gt;requestURL, -<span class="php-num">1</span>) == <span class="php-quote">'/'</span>) <span class="php-var">$url</span> .= <span class="php-quote">'/'</span>;
+</span><span id="724" class="l"><a class="l" href="#724">724: </a>                }
+</span><span id="725" class="l"><a class="l" href="#725">725: </a>            }
+</span><span id="726" class="l"><a class="l" href="#726">726: </a>
+</span><span id="727" class="l"><a class="l" href="#727">727: </a>            <span class="php-var">$pageNum</span> = <span class="php-var">$input</span>-&gt;pageNum;
+</span><span id="728" class="l"><a class="l" href="#728">728: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$pageNum</span> &gt; <span class="php-num">1</span> &amp;&amp; <span class="php-var">$page</span>-&gt;template-&gt;allowPageNum) {
+</span><span id="729" class="l"><a class="l" href="#729">729: </a>                <span class="php-var">$prefix</span> = <span class="php-var">$this</span>-&gt;pageNumPrefix ? <span class="php-var">$this</span>-&gt;pageNumPrefix : <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;pageNumUrlPrefix;
+</span><span id="730" class="l"><a class="l" href="#730">730: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$prefix</span>) <span class="php-var">$prefix</span> = <span class="php-quote">'page'</span>;
+</span><span id="731" class="l"><a class="l" href="#731">731: </a>                <span class="php-var">$url</span> .= <span class="php-quote">&quot;</span><span class="php-var">$prefix$pageNum</span><span class="php-quote">&quot;</span>;
+</span><span id="732" class="l"><a class="l" href="#732">732: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;template-&gt;slashPageNum) {
+</span><span id="733" class="l"><a class="l" href="#733">733: </a>                    <span class="php-comment">// defined setting for trailing slash   </span>
+</span><span id="734" class="l"><a class="l" href="#734">734: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;template-&gt;slashPageNum == <span class="php-num">1</span>) <span class="php-var">$url</span> .= <span class="php-quote">'/'</span>;
+</span><span id="735" class="l"><a class="l" href="#735">735: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="736" class="l"><a class="l" href="#736">736: </a>                    <span class="php-comment">// use whatever setting the URL came with</span>
+</span><span id="737" class="l"><a class="l" href="#737">737: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">substr</span>(<span class="php-var">$this</span>-&gt;requestURL, <span class="php-quote">'-1'</span>) == <span class="php-quote">'/'</span>) <span class="php-var">$url</span> .= <span class="php-quote">'/'</span>;
+</span><span id="738" class="l"><a class="l" href="#738">738: </a>                }
+</span><span id="739" class="l"><a class="l" href="#739">739: </a>            }
+</span><span id="740" class="l"><a class="l" href="#740">740: </a>        }
+</span><span id="741" class="l"><a class="l" href="#741">741: </a>        
+</span><span id="742" class="l"><a class="l" href="#742">742: </a>        <span class="php-var">$this</span>-&gt;redirectURL = <span class="php-var">$url</span>;
+</span><span id="743" class="l"><a class="l" href="#743">743: </a>    }
+</span><span id="744" class="l"><a class="l" href="#744">744: </a>    
+</span><span id="745" class="l"><a class="l" href="#745">745: </a>    <span class="php-comment">/**
+</span></span><span id="746" class="l"><a class="l" href="#746">746: </a><span class="php-comment">     * Passthru a file for a non-public page
+</span></span><span id="747" class="l"><a class="l" href="#747">747: </a><span class="php-comment">     *
+</span></span><span id="748" class="l"><a class="l" href="#748">748: </a><span class="php-comment">     * If the page is public, then it just does a 301 redirect to the file.
+</span></span><span id="749" class="l"><a class="l" href="#749">749: </a><span class="php-comment">     * 
+</span></span><span id="750" class="l"><a class="l" href="#750">750: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="751" class="l"><a class="l" href="#751">751: </a><span class="php-comment">     * @param string $basename
+</span></span><span id="752" class="l"><a class="l" href="#752">752: </a><span class="php-comment">     * @throws Wire404Exception
+</span></span><span id="753" class="l"><a class="l" href="#753">753: </a><span class="php-comment">     *
+</span></span><span id="754" class="l"><a class="l" href="#754">754: </a><span class="php-comment">     */</span>
+</span><span id="755" class="l"><a class="l" href="#755">755: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____sendFile" href="#____sendFile">___sendFile</a>(<span class="php-var">$page</span>, <span class="php-var">$basename</span>) {
+</span><span id="756" class="l"><a class="l" href="#756">756: </a>
+</span><span id="757" class="l"><a class="l" href="#757">757: </a>        <span class="php-var">$err</span> = <span class="php-quote">'File not found'</span>;
+</span><span id="758" class="l"><a class="l" href="#758">758: </a>
+</span><span id="759" class="l"><a class="l" href="#759">759: </a>        <span class="php-comment">// use the static hasPath first to make sure this page actually has a files directory</span>
+</span><span id="760" class="l"><a class="l" href="#760">760: </a>        <span class="php-comment">// this ensures one isn't automatically created when we call $page-&gt;filesManager-&gt;path below</span>
+</span><span id="761" class="l"><a class="l" href="#761">761: </a>        <span class="php-keyword1">if</span>(!PagefilesManager::hasPath(<span class="php-var">$page</span>)) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> Wire404Exception(<span class="php-var">$err</span>);
+</span><span id="762" class="l"><a class="l" href="#762">762: </a>
+</span><span id="763" class="l"><a class="l" href="#763">763: </a>        <span class="php-var">$filename</span> = <span class="php-var">$page</span>-&gt;filesManager-&gt;path() . <span class="php-var">$basename</span>; 
+</span><span id="764" class="l"><a class="l" href="#764">764: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_file</span>(<span class="php-var">$filename</span>)) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> Wire404Exception(<span class="php-var">$err</span>);
+</span><span id="765" class="l"><a class="l" href="#765">765: </a>
+</span><span id="766" class="l"><a class="l" href="#766">766: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;isPublic()) {
+</span><span id="767" class="l"><a class="l" href="#767">767: </a>            <span class="php-comment">// deprecated, only necessary for method 2 in checkRequestFile</span>
+</span><span id="768" class="l"><a class="l" href="#768">768: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;redirect(<span class="php-var">$page</span>-&gt;filesManager-&gt;url() . <span class="php-var">$basename</span>); 
+</span><span id="769" class="l"><a class="l" href="#769">769: </a>
+</span><span id="770" class="l"><a class="l" href="#770">770: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="771" class="l"><a class="l" href="#771">771: </a>            <span class="php-var">$options</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'exit'</span> =&gt; <span class="php-keyword1">false</span>);
+</span><span id="772" class="l"><a class="l" href="#772">772: </a>            wireSendFile(<span class="php-var">$filename</span>, <span class="php-var">$options</span>);
+</span><span id="773" class="l"><a class="l" href="#773">773: </a>        }
+</span><span id="774" class="l"><a class="l" href="#774">774: </a>    }
+</span><span id="775" class="l"><a class="l" href="#775">775: </a>
+</span><span id="776" class="l"><a class="l" href="#776">776: </a>    <span class="php-comment">/**
+</span></span><span id="777" class="l"><a class="l" href="#777">777: </a><span class="php-comment">     * Called when a page is not found, sends 404 header, and displays the configured 404 page instead.
+</span></span><span id="778" class="l"><a class="l" href="#778">778: </a><span class="php-comment">     *
+</span></span><span id="779" class="l"><a class="l" href="#779">779: </a><span class="php-comment">     * Method is hookable, for instance if you wanted to log 404s.
+</span></span><span id="780" class="l"><a class="l" href="#780">780: </a><span class="php-comment">     *
+</span></span><span id="781" class="l"><a class="l" href="#781">781: </a><span class="php-comment">     * @param Page|null $page Page that was found if applicable (like if user didn't have permission or $page's template threw the 404). If not applicable then NULL will be given instead.
+</span></span><span id="782" class="l"><a class="l" href="#782">782: </a><span class="php-comment">     * @param string $url The URL that the request originated from (like $_SERVER['REQUEST_URI'] but already sanitized)
+</span></span><span id="783" class="l"><a class="l" href="#783">783: </a><span class="php-comment">     * @param bool $triggerReady Whether or not the ready() hook should be triggered (default=false)
+</span></span><span id="784" class="l"><a class="l" href="#784">784: </a><span class="php-comment">     * @param string $reason Reason why 404 occurred, for debugging purposes (en text)
+</span></span><span id="785" class="l"><a class="l" href="#785">785: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="786" class="l"><a class="l" href="#786">786: </a><span class="php-comment">     * @return string
+</span></span><span id="787" class="l"><a class="l" href="#787">787: </a><span class="php-comment">     */</span>
+</span><span id="788" class="l"><a class="l" href="#788">788: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____pageNotFound" href="#____pageNotFound">___pageNotFound</a>(<span class="php-var">$page</span>, <span class="php-var">$url</span>, <span class="php-var">$triggerReady</span> = <span class="php-keyword1">false</span>, <span class="php-var">$reason</span> = <span class="php-quote">''</span>) {
+</span><span id="789" class="l"><a class="l" href="#789">789: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span> || <span class="php-var">$url</span> || <span class="php-var">$reason</span>) {} <span class="php-comment">// variables provided for hooks only</span>
+</span><span id="790" class="l"><a class="l" href="#790">790: </a>
+</span><span id="791" class="l"><a class="l" href="#791">791: </a>        <span class="php-var">$this</span>-&gt;responseType = self::responseTypeError; 
+</span><span id="792" class="l"><a class="l" href="#792">792: </a>        <span class="php-var">$config</span> = <span class="php-var">$this</span>-&gt;config;
+</span><span id="793" class="l"><a class="l" href="#793">793: </a>        <span class="php-var">$this</span>-&gt;header404();
+</span><span id="794" class="l"><a class="l" href="#794">794: </a>
+</span><span id="795" class="l"><a class="l" href="#795">795: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$config</span>-&gt;http404PageID) {
+</span><span id="796" class="l"><a class="l" href="#796">796: </a>            <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;pages-&gt;get(<span class="php-var">$config</span>-&gt;http404PageID); 
+</span><span id="797" class="l"><a class="l" href="#797">797: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;config::http404PageID does not exist - please check your config&quot;</span>); 
+</span><span id="798" class="l"><a class="l" href="#798">798: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'page'</span>, <span class="php-var">$page</span>); 
+</span><span id="799" class="l"><a class="l" href="#799">799: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$triggerReady</span>) <span class="php-var">$this</span>-&gt;ready();
+</span><span id="800" class="l"><a class="l" href="#800">800: </a>            <span class="php-keyword1">return</span> <span class="php-var">$page</span>-&gt;render();
+</span><span id="801" class="l"><a class="l" href="#801">801: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="802" class="l"><a class="l" href="#802">802: </a>            <span class="php-keyword1">return</span> <span class="php-quote">&quot;404 page not found&quot;</span>;
+</span><span id="803" class="l"><a class="l" href="#803">803: </a>        }
+</span><span id="804" class="l"><a class="l" href="#804">804: </a>    }
+</span><span id="805" class="l"><a class="l" href="#805">805: </a>
+</span><span id="806" class="l"><a class="l" href="#806">806: </a>    <span class="php-comment">/**
+</span></span><span id="807" class="l"><a class="l" href="#807">807: </a><span class="php-comment">     * Send a 404 header, but not more than once per request
+</span></span><span id="808" class="l"><a class="l" href="#808">808: </a><span class="php-comment">     * 
+</span></span><span id="809" class="l"><a class="l" href="#809">809: </a><span class="php-comment">     */</span>
+</span><span id="810" class="l"><a class="l" href="#810">810: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_header404" href="#_header404">header404</a>() {
+</span><span id="811" class="l"><a class="l" href="#811">811: </a>        <span class="php-keyword1">static</span> <span class="php-var"><a id="$n" href="#$n">$n</a></span> = <span class="php-num">0</span>;
+</span><span id="812" class="l"><a class="l" href="#812">812: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$n</span>) <span class="php-keyword2">header</span>(<span class="php-quote">&quot;HTTP/1.1 404 Page Not Found&quot;</span>); 
+</span><span id="813" class="l"><a class="l" href="#813">813: </a>        <span class="php-var">$n</span>++;
+</span><span id="814" class="l"><a class="l" href="#814">814: </a>    }
+</span><span id="815" class="l"><a class="l" href="#815">815: </a>
+</span><span id="816" class="l"><a class="l" href="#816">816: </a>    <span class="php-comment">/**
+</span></span><span id="817" class="l"><a class="l" href="#817">817: </a><span class="php-comment">     * Return the response type for this request, as one of the responseType constants
+</span></span><span id="818" class="l"><a class="l" href="#818">818: </a><span class="php-comment">     *
+</span></span><span id="819" class="l"><a class="l" href="#819">819: </a><span class="php-comment">     * @return int
+</span></span><span id="820" class="l"><a class="l" href="#820">820: </a><span class="php-comment">     *
+</span></span><span id="821" class="l"><a class="l" href="#821">821: </a><span class="php-comment">     */</span>
+</span><span id="822" class="l"><a class="l" href="#822">822: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getResponseType" href="#_getResponseType">getResponseType</a>() {
+</span><span id="823" class="l"><a class="l" href="#823">823: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;responseType; 
+</span><span id="824" class="l"><a class="l" href="#824">824: </a>    }
+</span><span id="825" class="l"><a class="l" href="#825">825: </a>
+</span><span id="826" class="l"><a class="l" href="#826">826: </a>    <span class="php-comment">/**
+</span></span><span id="827" class="l"><a class="l" href="#827">827: </a><span class="php-comment">     * Set the response type for this request, see responseType constants in this class
+</span></span><span id="828" class="l"><a class="l" href="#828">828: </a><span class="php-comment">     *
+</span></span><span id="829" class="l"><a class="l" href="#829">829: </a><span class="php-comment">     * @param int $responseType
+</span></span><span id="830" class="l"><a class="l" href="#830">830: </a><span class="php-comment">     *
+</span></span><span id="831" class="l"><a class="l" href="#831">831: </a><span class="php-comment">     */</span>
+</span><span id="832" class="l"><a class="l" href="#832">832: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setResponseType" href="#_setResponseType">setResponseType</a>(<span class="php-var">$responseType</span>) {
+</span><span id="833" class="l"><a class="l" href="#833">833: </a>        <span class="php-var">$this</span>-&gt;responseType = (int) <span class="php-var">$responseType</span>; 
+</span><span id="834" class="l"><a class="l" href="#834">834: </a>    }
+</span><span id="835" class="l"><a class="l" href="#835">835: </a>
+</span><span id="836" class="l"><a class="l" href="#836">836: </a>    <span class="php-comment">/**
+</span></span><span id="837" class="l"><a class="l" href="#837">837: </a><span class="php-comment">     * Set whether any redirects should be performed after the API ready() call
+</span></span><span id="838" class="l"><a class="l" href="#838">838: </a><span class="php-comment">     * 
+</span></span><span id="839" class="l"><a class="l" href="#839">839: </a><span class="php-comment">     * This is used by LanguageSupportPageNames to delay redirects until after http/https schema is determined. 
+</span></span><span id="840" class="l"><a class="l" href="#840">840: </a><span class="php-comment">     *
+</span></span><span id="841" class="l"><a class="l" href="#841">841: </a><span class="php-comment">     * @param bool $delayRedirects
+</span></span><span id="842" class="l"><a class="l" href="#842">842: </a><span class="php-comment">     *
+</span></span><span id="843" class="l"><a class="l" href="#843">843: </a><span class="php-comment">     */</span>
+</span><span id="844" class="l"><a class="l" href="#844">844: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setDelayRedirects" href="#_setDelayRedirects">setDelayRedirects</a>(<span class="php-var">$delayRedirects</span>) {
+</span><span id="845" class="l"><a class="l" href="#845">845: </a>        <span class="php-var">$this</span>-&gt;delayRedirects = <span class="php-var">$delayRedirects</span> ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>;
+</span><span id="846" class="l"><a class="l" href="#846">846: </a>    }
+</span><span id="847" class="l"><a class="l" href="#847">847: </a>
+</span><span id="848" class="l"><a class="l" href="#848">848: </a>}
+</span><span id="849" class="l"><a class="l" href="#849">849: </a>
+</span><span id="850" class="l"><a class="l" href="#850">850: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
