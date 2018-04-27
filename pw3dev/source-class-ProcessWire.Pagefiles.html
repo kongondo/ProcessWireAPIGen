@@ -8,7 +8,7 @@
 	<title>File core/Pagefiles.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?417986044"></script>
+	<script type="text/javascript" src="elementlist.js?768203357"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.99 dev</span>
+			<span>Overview version 3.0.100 dev</span>
 		</a>
 
 
@@ -604,7 +604,7 @@
 </span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment"> * Typically a Pagefiles object will be associated with a specific field attached to a Page. 
 </span></span><span id="39" class="l"><a class="l" href="#39"> 39: </a><span class="php-comment"> * There may be multiple instances of Pagefiles attached to a given Page (depending on what fields are in it's fieldgroup).
 </span></span><span id="40" class="l"><a class="l" href="#40"> 40: </a><span class="php-comment"> * 
-</span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment"> * ProcessWire 3.x, Copyright 2016 by Ryan Cramer
+</span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment"> * ProcessWire 3.x, Copyright 2018 by Ryan Cramer
 </span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment"> * https://processwire.com
 </span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment"> *
 </span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment"> *
@@ -1471,9 +1471,33 @@
 </span><span id="905" class="l"><a class="l" href="#905">905: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;formatted;
 </span><span id="906" class="l"><a class="l" href="#906">906: </a>    }
 </span><span id="907" class="l"><a class="l" href="#907">907: </a>
-</span><span id="908" class="l"><a class="l" href="#908">908: </a>
-</span><span id="909" class="l"><a class="l" href="#909">909: </a>}
-</span><span id="910" class="l"><a class="l" href="#910">910: </a></span></code></pre>
+</span><span id="908" class="l"><a class="l" href="#908">908: </a>    <span class="php-comment">/**
+</span></span><span id="909" class="l"><a class="l" href="#909">909: </a><span class="php-comment">     * Debug info
+</span></span><span id="910" class="l"><a class="l" href="#910">910: </a><span class="php-comment">     * 
+</span></span><span id="911" class="l"><a class="l" href="#911">911: </a><span class="php-comment">     * @return array
+</span></span><span id="912" class="l"><a class="l" href="#912">912: </a><span class="php-comment">     * 
+</span></span><span id="913" class="l"><a class="l" href="#913">913: </a><span class="php-comment">     */</span>
+</span><span id="914" class="l"><a class="l" href="#914">914: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___debugInfo" href="#___debugInfo">__debugInfo</a>() {
+</span><span id="915" class="l"><a class="l" href="#915">915: </a>        
+</span><span id="916" class="l"><a class="l" href="#916">916: </a>        <span class="php-var">$info</span> = <span class="php-keyword1">array</span>(
+</span><span id="917" class="l"><a class="l" href="#917">917: </a>            <span class="php-quote">'count'</span> =&gt; <span class="php-var">$this</span>-&gt;<span class="php-keyword2">count</span>(), 
+</span><span id="918" class="l"><a class="l" href="#918">918: </a>            <span class="php-quote">'page'</span> =&gt; <span class="php-var">$this</span>-&gt;page ? <span class="php-var">$this</span>-&gt;page-&gt;path() : <span class="php-quote">'?'</span>,
+</span><span id="919" class="l"><a class="l" href="#919">919: </a>            <span class="php-quote">'field'</span> =&gt; <span class="php-var">$this</span>-&gt;field ? <span class="php-var">$this</span>-&gt;field-&gt;name : <span class="php-quote">'?'</span>, 
+</span><span id="920" class="l"><a class="l" href="#920">920: </a>            <span class="php-quote">'url'</span> =&gt; <span class="php-var">$this</span>-&gt;url(),
+</span><span id="921" class="l"><a class="l" href="#921">921: </a>            <span class="php-quote">'path'</span> =&gt; <span class="php-var">$this</span>-&gt;path(), 
+</span><span id="922" class="l"><a class="l" href="#922">922: </a>            <span class="php-quote">'items'</span> =&gt; <span class="php-keyword1">array</span>(),
+</span><span id="923" class="l"><a class="l" href="#923">923: </a>        );
+</span><span id="924" class="l"><a class="l" href="#924">924: </a>        
+</span><span id="925" class="l"><a class="l" href="#925">925: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$pagefile</span>) {
+</span><span id="926" class="l"><a class="l" href="#926">926: </a>            <span class="php-comment">/** @var Pagefile $pagefile */</span>
+</span><span id="927" class="l"><a class="l" href="#927">927: </a>            <span class="php-var">$info</span>[<span class="php-quote">'items'</span>][<span class="php-var">$key</span>] = <span class="php-var">$pagefile</span>-&gt;__debugInfo();
+</span><span id="928" class="l"><a class="l" href="#928">928: </a>        }
+</span><span id="929" class="l"><a class="l" href="#929">929: </a>        
+</span><span id="930" class="l"><a class="l" href="#930">930: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>;
+</span><span id="931" class="l"><a class="l" href="#931">931: </a>    }
+</span><span id="932" class="l"><a class="l" href="#932">932: </a>
+</span><span id="933" class="l"><a class="l" href="#933">933: </a>}
+</span><span id="934" class="l"><a class="l" href="#934">934: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
