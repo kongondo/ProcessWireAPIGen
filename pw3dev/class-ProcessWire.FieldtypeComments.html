@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypeComments | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2968827815"></script>
+	<script type="text/javascript" src="elementlist.js?3202659361"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.102 dev</span>
+			<span>Overview version 3.0.103 dev</span>
 		</a>
 
 
@@ -636,7 +636,7 @@
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.FieldtypeComments.html#25-1710" title="Go to source code">modules/Fieldtype/FieldtypeComments/FieldtypeComments.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.FieldtypeComments.html#25-1906" title="Go to source code">modules/Fieldtype/FieldtypeComments/FieldtypeComments.module</a><br>
 	</div>
 
 
@@ -1376,31 +1376,52 @@ auto-joinable</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_find">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#992-1097" title="Go to source code">find</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string <var>$field</var></span>, <span>string <var>$selectorString</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#992-1274" title="Go to source code">find</a>( <span>string|null <var>$selectorString</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string <var>$field</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Given a field and a selector, find all comments matching the selector
-(non-static version)</p>
+<p>Given a field and a selector, find all comments matching the selector</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Given a field and a selector, find all comments matching the selector
-(non-static version)</p>
+<p>Given a field and a selector, find all comments matching the selector</p>
 
-<p>Note that if you don't specify a limit=n, it will default to a limit of 10 If
-you don't specify a sort, it will default to sort=-created</p>
+<ul>
+	<li>If you don’t specify a “limit=n”, it will default to a limit of
+	10.</li>
+
+	<li>If you don’t specify a sort, it will default to “sort=-created”.</li>
+
+	<li>Arguments may be optionally reversed (for backwards compatibility).</li>
+</ul>
+
+<p>Unlike $pages-&gt;find(), pagination of comments is not automatically tied to
+$input-&gt;pageNum(). As a result, if you paginate, you should specify both
+“start=n” and “limit=n” in your selector:</p>
+
+<p>~~~~~~ $limit = 20; $start = ($input-&gt;pageNum() - 1) * $limit; $comments =
+$field-&gt;type-&gt;find("text%=something, start=$start, limit=$limit");
+~~~~~~</p>
+
+<p>Please also note that this function returns comments without taking anything
+about the page they live on into account. As a result, it can return comments
+from unpublished or non-viewable pages. If you need this, check the returned
+results:</p>
+
+<p>~~~~ $comments = $field-&gt;type-&gt;find('text%=something');
+foreach($comments as $comment) { $p = $comment-&gt;getPage();
+if(!$p-&gt;viewable()) $comments-&gt;remove($comment); } ~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$field</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string</code><br>Field object or name of field</dd>
 					<dt><var>$selectorString</var></dt>
-					<dd><code>string</code><br>$selectorString Selector string with query</dd>
+					<dd><code>string|null</code><br>$selectorString Selector string with query</dd>
+					<dt><var>$field</var></dt>
+					<dd><code><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|string</code><br>Optional Field object. If omitted, then it will be determined automatically.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1412,6 +1433,53 @@ you don't specify a sort, it will default to sort=-created</p>
 				<div class="list">
 					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
 				</div>
+
+				<h4>Todo</h4>
+				<div class="list">
+						add an 'include=' property for matching based on page status<br>
+						add support for page.native properties<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCommentsFields" id="_getCommentsFields">
+
+		<td class="attributes"><code>
+			 public 
+			array|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCommentsFields">#</a>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1276-1293" title="Go to source code">getCommentsFields</a>( <span>boolean <var>$one</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Return comments field(s)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return comments field(s)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$one</var></dt>
+					<dd><code>boolean</code><br>$one Return only the first one found? (default=false)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null</code><br>
+				</div>
+
 
 
 
@@ -1429,7 +1497,7 @@ you don't specify a sort, it will default to sort=-created</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCommentByCode">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1099-1124" title="Go to source code">getCommentByCode</a>( <span>mixed <var>$page</var></span>, <span>mixed <var>$field</var></span>, <span>mixed <var>$code</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1295-1320" title="Go to source code">getCommentByCode</a>( <span>mixed <var>$page</var></span>, <span>mixed <var>$field</var></span>, <span>mixed <var>$code</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1477,7 +1545,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCommentByID">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1126-1150" title="Go to source code">getCommentByID</a>( <span>mixed <var>$page</var></span>, <span>mixed <var>$field</var></span>, <span>mixed <var>$id</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1322-1346" title="Go to source code">getCommentByID</a>( <span>mixed <var>$page</var></span>, <span>mixed <var>$field</var></span>, <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1523,7 +1591,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeComment">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1152-1172" title="Go to source code">makeComment</a>( <span>mixed <var>$page</var></span>, <span>mixed <var>$field</var></span>, <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1348-1368" title="Go to source code">makeComment</a>( <span>mixed <var>$page</var></span>, <span>mixed <var>$field</var></span>, <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1569,7 +1637,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____updateComment">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1174-1225" title="Go to source code">___updateComment</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>array <var>$properties</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1370-1421" title="Go to source code">___updateComment</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>array <var>$properties</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1621,7 +1689,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteComment">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1227-1265" title="Go to source code">deleteComment</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>string <var>$notes</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1423-1461" title="Go to source code">deleteComment</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>string <var>$notes</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1669,7 +1737,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____commentDeleted">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1267-1279" title="Go to source code">___commentDeleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>string <var>$notes</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1463-1475" title="Go to source code">___commentDeleted</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>string <var>$notes</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1715,7 +1783,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____commentApproved">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1281-1330" title="Go to source code">___commentApproved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>string <var>$notes</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1477-1526" title="Go to source code">___commentApproved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>string <var>$notes</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1761,7 +1829,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____commentUnapproved">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1333-1345" title="Go to source code">___commentUnapproved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>string <var>$notes</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1529-1541" title="Go to source code">___commentUnapproved</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>string <var>$notes</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1807,7 +1875,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_voteComment">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1347-1399" title="Go to source code">voteComment</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>boolean <var>$up</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1543-1595" title="Go to source code">voteComment</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code> <var>$comment</var></span>, <span>boolean <var>$up</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1855,7 +1923,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_checkVoteAction">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1401-1459" title="Go to source code">checkVoteAction</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1597-1655" title="Go to source code">checkVoteAction</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1901,7 +1969,7 @@ doesn't exist</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleteField">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1461-1485" title="Go to source code">___deleteField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1657-1681" title="Go to source code">___deleteField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1948,7 +2016,7 @@ lookup entries must be deleted before this method is called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____renamedField">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1487-1514" title="Go to source code">___renamedField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$prevName</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1683-1710" title="Go to source code">___renamedField</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$prevName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1997,7 +2065,7 @@ Fieldtypes don't need to do anything here, but this exists just in case.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_exportComment">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1516-1531" title="Go to source code">exportComment</a>( <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code>|array <var>$comment</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1712-1727" title="Go to source code">exportComment</a>( <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code>|array <var>$comment</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2039,7 +2107,7 @@ Fieldtypes don't need to do anything here, but this exists just in case.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_exportComments">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1533-1565" title="Go to source code">exportComments</a>( <span><code><a href="class-ProcessWire.CommentArray.html">ProcessWire\CommentArray</a></code>|array <var>$comments</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1729-1761" title="Go to source code">exportComments</a>( <span><code><a href="class-ProcessWire.CommentArray.html">ProcessWire\CommentArray</a></code>|array <var>$comments</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2081,7 +2149,7 @@ Fieldtypes don't need to do anything here, but this exists just in case.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCommentExportKey">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1567-1576" title="Go to source code">getCommentExportKey</a>( <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code>|array <var>$comment</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1763-1772" title="Go to source code">getCommentExportKey</a>( <span><code><a href="class-ProcessWire.Comment.html">ProcessWire\Comment</a></code>|array <var>$comment</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2123,7 +2191,7 @@ Fieldtypes don't need to do anything here, but this exists just in case.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____exportValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1578-1590" title="Go to source code">___exportValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|integer|object|string <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1774-1786" title="Go to source code">___exportValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array|integer|object|string <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2173,7 +2241,7 @@ Fieldtypes don't need to do anything here, but this exists just in case.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____importValue">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1592-1693" title="Go to source code">___importValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1788-1889" title="Go to source code">___importValue</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2225,7 +2293,7 @@ Fieldtypes don't need to do anything here, but this exists just in case.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getImportValueOptions">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1695-1708" title="Go to source code">getImportValueOptions</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypeComments.html#1891-1904" title="Go to source code">getImportValueOptions</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2304,12 +2372,14 @@ for importValue</p>
 			<a href="class-ProcessWire.Fieldtype.html#_get">get()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_getDatabaseSchemaVerbose">getDatabaseSchemaVerbose()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_getDefaultValue">getDefaultValue()</a>, 
+			<a href="class-ProcessWire.Fieldtype.html#_getLastAccessField">getLastAccessField()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_getLoadPageFieldFilters">getLoadPageFieldFilters()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_init">init()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_isAdvanced">isAdvanced()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_isAutoload">isAutoload()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_isEmptyValue">isEmptyValue()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_isSingular">isSingular()</a>, 
+			<a href="class-ProcessWire.Fieldtype.html#_setLastAccessField">setLastAccessField()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_setLoadPageFieldFilters">setLoadPageFieldFilters()</a>, 
 			<a href="class-ProcessWire.Fieldtype.html#_trimDatabaseSchema">trimDatabaseSchema()</a>
 		</code></td>
@@ -2661,6 +2731,7 @@ the same comment</p>
 	<caption>Properties inherited from <a href="class-ProcessWire.Fieldtype.html#properties">ProcessWire\Fieldtype</a></caption>
 	<tr>
 		<td><code>
+			<a href="class-ProcessWire.Fieldtype.html#$lastAccessField"><var>$lastAccessField</var></a>, 
 			<a href="class-ProcessWire.Fieldtype.html#$loadPageFieldFilters"><var>$loadPageFieldFilters</var></a>
 		</code></td>
 	</tr>

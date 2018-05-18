@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireLog | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2968827815"></script>
+	<script type="text/javascript" src="elementlist.js?3202659361"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.102 dev</span>
+			<span>Overview version 3.0.103 dev</span>
 		</a>
 
 
@@ -620,7 +620,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 				option to avoid saving same log entry text back-to-back<br>
 				<b>Todo:</b>
 				option to disable logs by name<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.WireLog.html#4-448" title="Go to source code">core/WireLog.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireLog.html#4-457" title="Go to source code">core/WireLog.php</a><br>
 	</div>
 
 
@@ -792,7 +792,7 @@ only).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____save">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#81-149" title="Go to source code">___save</a>( <span>string <var>$name</var></span>, <span>string <var>$text</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#81-158" title="Go to source code">___save</a>( <span>string <var>$name</var></span>, <span>string <var>$text</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -828,9 +828,10 @@ and no extension)</dd>
 					<dd><code>array</code><br>$options Options to modify default behavior: - <code>showUser</code> (bool):
 Include the username in the log entry? (default=true) - <code>showURL</code>
 (bool): Include the current URL in the log entry? (default=true) -
-<code>url</code> (bool): URL to record with the log entry (default=auto
-determine) - <code>delimiter</code> (string): Log entry delimiter (default="\t"
-aka tab)</dd>
+<code>user</code> (User|string|null): User instance, user name, or null to use
+current User. (default=null) - <code>url</code> (bool): URL to record with the
+log entry (default=auto determine) - <code>delimiter</code> (string): Log entry
+delimiter (default="\t" aka tab)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -859,7 +860,7 @@ aka tab)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deprecatedCall">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#151-173" title="Go to source code">deprecatedCall</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#160-182" title="Go to source code">deprecatedCall</a>( )</code>
 
 		<div class="description short">
 			
@@ -896,7 +897,7 @@ aka tab)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLogs">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#175-209" title="Go to source code">getLogs</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#184-218" title="Go to source code">getLogs</a>( )</code>
 
 		<div class="description short">
 			
@@ -940,7 +941,7 @@ Full path and filename of log file. - <code>size</code> (int): Size in bytes -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFilename">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#211-226" title="Go to source code">getFilename</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#220-235" title="Go to source code">getFilename</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -988,7 +989,7 @@ Full path and filename of log file. - <code>size</code> (int): Size in bytes -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLines">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#228-253" title="Go to source code">getLines</a>( <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#237-262" title="Go to source code">getLines</a>( <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1045,7 +1046,7 @@ number of lines (default=100) - <code>text</code> (string): Text to find. -
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getEntries">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#255-293" title="Go to source code">getEntries</a>( <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#264-302" title="Go to source code">getEntries</a>( <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1109,7 +1110,7 @@ boolean false if unknown - <code>text</code> (string) text of the log entry<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lineToEntry">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#295-341" title="Go to source code">lineToEntry</a>( <span>mixed <var>$line</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#304-350" title="Go to source code">lineToEntry</a>( <span>mixed <var>$line</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1153,7 +1154,7 @@ boolean false if unknown - <code>text</code> (string) text of the log entry<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTotalEntries">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#343-355" title="Go to source code">getTotalEntries</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#352-364" title="Go to source code">getTotalEntries</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1197,7 +1198,7 @@ boolean false if unknown - <code>text</code> (string) text of the log entry<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#399-411" title="Go to source code">delete</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#408-420" title="Go to source code">delete</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1241,7 +1242,7 @@ boolean false if unknown - <code>text</code> (string) text of the log entry<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prune">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#413-429" title="Go to source code">prune</a>( <span>string <var>$name</var></span>, <span>integer <var>$days</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#422-438" title="Go to source code">prune</a>( <span>string <var>$name</var></span>, <span>integer <var>$days</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1291,7 +1292,7 @@ boolean false if unknown - <code>text</code> (string) text of the log entry<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFileLog">#</a>
-		<code><a href="source-class-ProcessWire.WireLog.html#431-446" title="Go to source code">getFileLog</a>( <span>mixed <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireLog.html#440-455" title="Go to source code">getFileLog</a>( <span>mixed <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
