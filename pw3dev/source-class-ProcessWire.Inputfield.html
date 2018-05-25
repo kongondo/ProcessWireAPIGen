@@ -8,7 +8,7 @@
 	<title>File core/Inputfield.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3202659361"></script>
+	<script type="text/javascript" src="elementlist.js?512856907"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.103 dev</span>
+			<span>Overview version 3.0.104 dev</span>
 		</a>
 
 
@@ -2025,238 +2025,240 @@
 </span><span id="1458" class="l"><a class="l" href="#1458">1458: </a>            <span class="php-var">$errors</span>[] = <span class="php-var">$text</span>; 
 </span><span id="1459" class="l"><a class="l" href="#1459">1459: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;set(<span class="php-var">$key</span>, <span class="php-var">$errors</span>); 
 </span><span id="1460" class="l"><a class="l" href="#1460">1460: </a>        }
-</span><span id="1461" class="l"><a class="l" href="#1461">1461: </a>        <span class="php-var">$text</span> .= <span class="php-var">$this</span>-&gt;name ? <span class="php-quote">&quot; (</span><span class="php-var">$this</span><span class="php-quote">-&gt;name)&quot;</span> : <span class="php-quote">&quot;&quot;</span>;
-</span><span id="1462" class="l"><a class="l" href="#1462">1462: </a>        <span class="php-keyword1">return</span> parent::error(<span class="php-var">$text</span>, <span class="php-var">$flags</span>); 
-</span><span id="1463" class="l"><a class="l" href="#1463">1463: </a>    }
-</span><span id="1464" class="l"><a class="l" href="#1464">1464: </a>
-</span><span id="1465" class="l"><a class="l" href="#1465">1465: </a>    <span class="php-comment">/**
-</span></span><span id="1466" class="l"><a class="l" href="#1466">1466: </a><span class="php-comment">     * Return array of strings containing errors that occurred during input processing
-</span></span><span id="1467" class="l"><a class="l" href="#1467">1467: </a><span class="php-comment">     * 
-</span></span><span id="1468" class="l"><a class="l" href="#1468">1468: </a><span class="php-comment">     * Note that this is different from `Wire::errors()` in that it retrieves errors from the session
-</span></span><span id="1469" class="l"><a class="l" href="#1469">1469: </a><span class="php-comment">     * rather than just the current run. 
-</span></span><span id="1470" class="l"><a class="l" href="#1470">1470: </a><span class="php-comment">     * 
-</span></span><span id="1471" class="l"><a class="l" href="#1471">1471: </a><span class="php-comment">     * #pw-group-states
-</span></span><span id="1472" class="l"><a class="l" href="#1472">1472: </a><span class="php-comment">     *
-</span></span><span id="1473" class="l"><a class="l" href="#1473">1473: </a><span class="php-comment">     * @param bool $clear Optionally clear the errors after getting them (Default=false).
-</span></span><span id="1474" class="l"><a class="l" href="#1474">1474: </a><span class="php-comment">     * @return array
-</span></span><span id="1475" class="l"><a class="l" href="#1475">1475: </a><span class="php-comment">     *
-</span></span><span id="1476" class="l"><a class="l" href="#1476">1476: </a><span class="php-comment">     */</span>
-</span><span id="1477" class="l"><a class="l" href="#1477">1477: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getErrors" href="#_getErrors">getErrors</a>(<span class="php-var">$clear</span> = <span class="php-keyword1">false</span>) {
-</span><span id="1478" class="l"><a class="l" href="#1478">1478: </a>        <span class="php-var">$key</span> = <span class="php-var">$this</span>-&gt;getErrorSessionKey();
-</span><span id="1479" class="l"><a class="l" href="#1479">1479: </a>        <span class="php-var">$errors</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;get(<span class="php-var">$key</span>);
-</span><span id="1480" class="l"><a class="l" href="#1480">1480: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$errors</span>)) <span class="php-var">$errors</span> = <span class="php-keyword1">array</span>();
-</span><span id="1481" class="l"><a class="l" href="#1481">1481: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$clear</span>) {
-</span><span id="1482" class="l"><a class="l" href="#1482">1482: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;remove(<span class="php-var">$key</span>); 
-</span><span id="1483" class="l"><a class="l" href="#1483">1483: </a>            parent::errors(<span class="php-quote">&quot;clear&quot;</span>); 
-</span><span id="1484" class="l"><a class="l" href="#1484">1484: </a>        }
-</span><span id="1485" class="l"><a class="l" href="#1485">1485: </a>        <span class="php-keyword1">return</span> <span class="php-var">$errors</span>; 
-</span><span id="1486" class="l"><a class="l" href="#1486">1486: </a>    }
-</span><span id="1487" class="l"><a class="l" href="#1487">1487: </a>    
-</span><span id="1488" class="l"><a class="l" href="#1488">1488: </a>    <span class="php-comment">/**
-</span></span><span id="1489" class="l"><a class="l" href="#1489">1489: </a><span class="php-comment">     * Does this Inputfield have the requested property or attribute?
-</span></span><span id="1490" class="l"><a class="l" href="#1490">1490: </a><span class="php-comment">     * 
-</span></span><span id="1491" class="l"><a class="l" href="#1491">1491: </a><span class="php-comment">     * #pw-group-attribute-methods
-</span></span><span id="1492" class="l"><a class="l" href="#1492">1492: </a><span class="php-comment">     * #pw-group-settings
-</span></span><span id="1493" class="l"><a class="l" href="#1493">1493: </a><span class="php-comment">     *
-</span></span><span id="1494" class="l"><a class="l" href="#1494">1494: </a><span class="php-comment">     * @param string $key Requested property or attribute.
-</span></span><span id="1495" class="l"><a class="l" href="#1495">1495: </a><span class="php-comment">     * @return bool True if it has it, false if it doesn't 
-</span></span><span id="1496" class="l"><a class="l" href="#1496">1496: </a><span class="php-comment">     *
-</span></span><span id="1497" class="l"><a class="l" href="#1497">1497: </a><span class="php-comment">     */</span>
-</span><span id="1498" class="l"><a class="l" href="#1498">1498: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_has" href="#_has">has</a>(<span class="php-var">$key</span>) {
-</span><span id="1499" class="l"><a class="l" href="#1499">1499: </a>        <span class="php-var">$has</span> = parent::has(<span class="php-var">$key</span>); 
-</span><span id="1500" class="l"><a class="l" href="#1500">1500: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$has</span>) <span class="php-var">$has</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;attributes[<span class="php-var">$key</span>]); 
-</span><span id="1501" class="l"><a class="l" href="#1501">1501: </a>        <span class="php-keyword1">return</span> <span class="php-var">$has</span>; 
-</span><span id="1502" class="l"><a class="l" href="#1502">1502: </a>    }
-</span><span id="1503" class="l"><a class="l" href="#1503">1503: </a>
-</span><span id="1504" class="l"><a class="l" href="#1504">1504: </a>    <span class="php-comment">/**
-</span></span><span id="1505" class="l"><a class="l" href="#1505">1505: </a><span class="php-comment">     * Does this Inputfield have the given setting?
-</span></span><span id="1506" class="l"><a class="l" href="#1506">1506: </a><span class="php-comment">     * 
-</span></span><span id="1507" class="l"><a class="l" href="#1507">1507: </a><span class="php-comment">     * Return value does not indicate that it is non-empty, only that the setting is available. 
+</span><span id="1461" class="l"><a class="l" href="#1461">1461: </a>        <span class="php-var">$label</span> = <span class="php-var">$this</span>-&gt;getSetting(<span class="php-quote">'label'</span>);
+</span><span id="1462" class="l"><a class="l" href="#1462">1462: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$label</span>)) <span class="php-var">$label</span>= <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'name'</span>);
+</span><span id="1463" class="l"><a class="l" href="#1463">1463: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strlen</span>(<span class="php-var">$label</span>)) <span class="php-var">$text</span> .= <span class="php-quote">&quot; - </span><span class="php-var">$label</span><span class="php-quote">&quot;</span>; 
+</span><span id="1464" class="l"><a class="l" href="#1464">1464: </a>        <span class="php-keyword1">return</span> parent::error(<span class="php-var">$text</span>, <span class="php-var">$flags</span>); 
+</span><span id="1465" class="l"><a class="l" href="#1465">1465: </a>    }
+</span><span id="1466" class="l"><a class="l" href="#1466">1466: </a>
+</span><span id="1467" class="l"><a class="l" href="#1467">1467: </a>    <span class="php-comment">/**
+</span></span><span id="1468" class="l"><a class="l" href="#1468">1468: </a><span class="php-comment">     * Return array of strings containing errors that occurred during input processing
+</span></span><span id="1469" class="l"><a class="l" href="#1469">1469: </a><span class="php-comment">     * 
+</span></span><span id="1470" class="l"><a class="l" href="#1470">1470: </a><span class="php-comment">     * Note that this is different from `Wire::errors()` in that it retrieves errors from the session
+</span></span><span id="1471" class="l"><a class="l" href="#1471">1471: </a><span class="php-comment">     * rather than just the current run. 
+</span></span><span id="1472" class="l"><a class="l" href="#1472">1472: </a><span class="php-comment">     * 
+</span></span><span id="1473" class="l"><a class="l" href="#1473">1473: </a><span class="php-comment">     * #pw-group-states
+</span></span><span id="1474" class="l"><a class="l" href="#1474">1474: </a><span class="php-comment">     *
+</span></span><span id="1475" class="l"><a class="l" href="#1475">1475: </a><span class="php-comment">     * @param bool $clear Optionally clear the errors after getting them (Default=false).
+</span></span><span id="1476" class="l"><a class="l" href="#1476">1476: </a><span class="php-comment">     * @return array
+</span></span><span id="1477" class="l"><a class="l" href="#1477">1477: </a><span class="php-comment">     *
+</span></span><span id="1478" class="l"><a class="l" href="#1478">1478: </a><span class="php-comment">     */</span>
+</span><span id="1479" class="l"><a class="l" href="#1479">1479: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getErrors" href="#_getErrors">getErrors</a>(<span class="php-var">$clear</span> = <span class="php-keyword1">false</span>) {
+</span><span id="1480" class="l"><a class="l" href="#1480">1480: </a>        <span class="php-var">$key</span> = <span class="php-var">$this</span>-&gt;getErrorSessionKey();
+</span><span id="1481" class="l"><a class="l" href="#1481">1481: </a>        <span class="php-var">$errors</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;get(<span class="php-var">$key</span>);
+</span><span id="1482" class="l"><a class="l" href="#1482">1482: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$errors</span>)) <span class="php-var">$errors</span> = <span class="php-keyword1">array</span>();
+</span><span id="1483" class="l"><a class="l" href="#1483">1483: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$clear</span>) {
+</span><span id="1484" class="l"><a class="l" href="#1484">1484: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;remove(<span class="php-var">$key</span>); 
+</span><span id="1485" class="l"><a class="l" href="#1485">1485: </a>            parent::errors(<span class="php-quote">&quot;clear&quot;</span>); 
+</span><span id="1486" class="l"><a class="l" href="#1486">1486: </a>        }
+</span><span id="1487" class="l"><a class="l" href="#1487">1487: </a>        <span class="php-keyword1">return</span> <span class="php-var">$errors</span>; 
+</span><span id="1488" class="l"><a class="l" href="#1488">1488: </a>    }
+</span><span id="1489" class="l"><a class="l" href="#1489">1489: </a>    
+</span><span id="1490" class="l"><a class="l" href="#1490">1490: </a>    <span class="php-comment">/**
+</span></span><span id="1491" class="l"><a class="l" href="#1491">1491: </a><span class="php-comment">     * Does this Inputfield have the requested property or attribute?
+</span></span><span id="1492" class="l"><a class="l" href="#1492">1492: </a><span class="php-comment">     * 
+</span></span><span id="1493" class="l"><a class="l" href="#1493">1493: </a><span class="php-comment">     * #pw-group-attribute-methods
+</span></span><span id="1494" class="l"><a class="l" href="#1494">1494: </a><span class="php-comment">     * #pw-group-settings
+</span></span><span id="1495" class="l"><a class="l" href="#1495">1495: </a><span class="php-comment">     *
+</span></span><span id="1496" class="l"><a class="l" href="#1496">1496: </a><span class="php-comment">     * @param string $key Requested property or attribute.
+</span></span><span id="1497" class="l"><a class="l" href="#1497">1497: </a><span class="php-comment">     * @return bool True if it has it, false if it doesn't 
+</span></span><span id="1498" class="l"><a class="l" href="#1498">1498: </a><span class="php-comment">     *
+</span></span><span id="1499" class="l"><a class="l" href="#1499">1499: </a><span class="php-comment">     */</span>
+</span><span id="1500" class="l"><a class="l" href="#1500">1500: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_has" href="#_has">has</a>(<span class="php-var">$key</span>) {
+</span><span id="1501" class="l"><a class="l" href="#1501">1501: </a>        <span class="php-var">$has</span> = parent::has(<span class="php-var">$key</span>); 
+</span><span id="1502" class="l"><a class="l" href="#1502">1502: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$has</span>) <span class="php-var">$has</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;attributes[<span class="php-var">$key</span>]); 
+</span><span id="1503" class="l"><a class="l" href="#1503">1503: </a>        <span class="php-keyword1">return</span> <span class="php-var">$has</span>; 
+</span><span id="1504" class="l"><a class="l" href="#1504">1504: </a>    }
+</span><span id="1505" class="l"><a class="l" href="#1505">1505: </a>
+</span><span id="1506" class="l"><a class="l" href="#1506">1506: </a>    <span class="php-comment">/**
+</span></span><span id="1507" class="l"><a class="l" href="#1507">1507: </a><span class="php-comment">     * Does this Inputfield have the given setting?
 </span></span><span id="1508" class="l"><a class="l" href="#1508">1508: </a><span class="php-comment">     * 
-</span></span><span id="1509" class="l"><a class="l" href="#1509">1509: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="1509" class="l"><a class="l" href="#1509">1509: </a><span class="php-comment">     * Return value does not indicate that it is non-empty, only that the setting is available. 
 </span></span><span id="1510" class="l"><a class="l" href="#1510">1510: </a><span class="php-comment">     * 
-</span></span><span id="1511" class="l"><a class="l" href="#1511">1511: </a><span class="php-comment">     * @param string $key Setting name
-</span></span><span id="1512" class="l"><a class="l" href="#1512">1512: </a><span class="php-comment">     * @return bool
-</span></span><span id="1513" class="l"><a class="l" href="#1513">1513: </a><span class="php-comment">     * 
-</span></span><span id="1514" class="l"><a class="l" href="#1514">1514: </a><span class="php-comment">     */</span>
-</span><span id="1515" class="l"><a class="l" href="#1515">1515: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hasSetting" href="#_hasSetting">hasSetting</a>(<span class="php-var">$key</span>) {
-</span><span id="1516" class="l"><a class="l" href="#1516">1516: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;data[<span class="php-var">$key</span>]);
-</span><span id="1517" class="l"><a class="l" href="#1517">1517: </a>    }
-</span><span id="1518" class="l"><a class="l" href="#1518">1518: </a>
-</span><span id="1519" class="l"><a class="l" href="#1519">1519: </a>    <span class="php-comment">/**
-</span></span><span id="1520" class="l"><a class="l" href="#1520">1520: </a><span class="php-comment">     * Does this Inputfield have the given attribute?
-</span></span><span id="1521" class="l"><a class="l" href="#1521">1521: </a><span class="php-comment">     * 
-</span></span><span id="1522" class="l"><a class="l" href="#1522">1522: </a><span class="php-comment">     * Return value does not indicate that it is non-empty, only that the setting is available. 
+</span></span><span id="1511" class="l"><a class="l" href="#1511">1511: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="1512" class="l"><a class="l" href="#1512">1512: </a><span class="php-comment">     * 
+</span></span><span id="1513" class="l"><a class="l" href="#1513">1513: </a><span class="php-comment">     * @param string $key Setting name
+</span></span><span id="1514" class="l"><a class="l" href="#1514">1514: </a><span class="php-comment">     * @return bool
+</span></span><span id="1515" class="l"><a class="l" href="#1515">1515: </a><span class="php-comment">     * 
+</span></span><span id="1516" class="l"><a class="l" href="#1516">1516: </a><span class="php-comment">     */</span>
+</span><span id="1517" class="l"><a class="l" href="#1517">1517: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hasSetting" href="#_hasSetting">hasSetting</a>(<span class="php-var">$key</span>) {
+</span><span id="1518" class="l"><a class="l" href="#1518">1518: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;data[<span class="php-var">$key</span>]);
+</span><span id="1519" class="l"><a class="l" href="#1519">1519: </a>    }
+</span><span id="1520" class="l"><a class="l" href="#1520">1520: </a>
+</span><span id="1521" class="l"><a class="l" href="#1521">1521: </a>    <span class="php-comment">/**
+</span></span><span id="1522" class="l"><a class="l" href="#1522">1522: </a><span class="php-comment">     * Does this Inputfield have the given attribute?
 </span></span><span id="1523" class="l"><a class="l" href="#1523">1523: </a><span class="php-comment">     * 
-</span></span><span id="1524" class="l"><a class="l" href="#1524">1524: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="1524" class="l"><a class="l" href="#1524">1524: </a><span class="php-comment">     * Return value does not indicate that it is non-empty, only that the setting is available. 
 </span></span><span id="1525" class="l"><a class="l" href="#1525">1525: </a><span class="php-comment">     * 
-</span></span><span id="1526" class="l"><a class="l" href="#1526">1526: </a><span class="php-comment">     * @param string $key Attribute name
-</span></span><span id="1527" class="l"><a class="l" href="#1527">1527: </a><span class="php-comment">     * @return bool
-</span></span><span id="1528" class="l"><a class="l" href="#1528">1528: </a><span class="php-comment">     * 
-</span></span><span id="1529" class="l"><a class="l" href="#1529">1529: </a><span class="php-comment">     */</span>
-</span><span id="1530" class="l"><a class="l" href="#1530">1530: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hasAttribute" href="#_hasAttribute">hasAttribute</a>(<span class="php-var">$key</span>) {
-</span><span id="1531" class="l"><a class="l" href="#1531">1531: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;attributes[<span class="php-var">$key</span>]);
-</span><span id="1532" class="l"><a class="l" href="#1532">1532: </a>    }
-</span><span id="1533" class="l"><a class="l" href="#1533">1533: </a>
-</span><span id="1534" class="l"><a class="l" href="#1534">1534: </a>    <span class="php-comment">/**
-</span></span><span id="1535" class="l"><a class="l" href="#1535">1535: </a><span class="php-comment">     * Track the change, but only if it was to the 'value' attribute.
-</span></span><span id="1536" class="l"><a class="l" href="#1536">1536: </a><span class="php-comment">     *
-</span></span><span id="1537" class="l"><a class="l" href="#1537">1537: </a><span class="php-comment">     * We don't track changes to any other properties of Inputfields. 
-</span></span><span id="1538" class="l"><a class="l" href="#1538">1538: </a><span class="php-comment">     * 
-</span></span><span id="1539" class="l"><a class="l" href="#1539">1539: </a><span class="php-comment">     * #pw-internal
-</span></span><span id="1540" class="l"><a class="l" href="#1540">1540: </a><span class="php-comment">     *
-</span></span><span id="1541" class="l"><a class="l" href="#1541">1541: </a><span class="php-comment">     * @param string $what Name of property that changed
-</span></span><span id="1542" class="l"><a class="l" href="#1542">1542: </a><span class="php-comment">     * @param mixed $old Previous value before change
-</span></span><span id="1543" class="l"><a class="l" href="#1543">1543: </a><span class="php-comment">     * @param mixed $new New value
-</span></span><span id="1544" class="l"><a class="l" href="#1544">1544: </a><span class="php-comment">     * @return Inputfield|WireData $this
-</span></span><span id="1545" class="l"><a class="l" href="#1545">1545: </a><span class="php-comment">     *
-</span></span><span id="1546" class="l"><a class="l" href="#1546">1546: </a><span class="php-comment">     */</span>
-</span><span id="1547" class="l"><a class="l" href="#1547">1547: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_trackChange" href="#_trackChange">trackChange</a>(<span class="php-var">$what</span>, <span class="php-var">$old</span> = <span class="php-keyword1">null</span>, <span class="php-var">$new</span> = <span class="php-keyword1">null</span>) {
-</span><span id="1548" class="l"><a class="l" href="#1548">1548: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$what</span> != <span class="php-quote">'value'</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="1549" class="l"><a class="l" href="#1549">1549: </a>        <span class="php-keyword1">return</span> parent::trackChange(<span class="php-var">$what</span>, <span class="php-var">$old</span>, <span class="php-var">$new</span>); 
-</span><span id="1550" class="l"><a class="l" href="#1550">1550: </a>    }
-</span><span id="1551" class="l"><a class="l" href="#1551">1551: </a>
-</span><span id="1552" class="l"><a class="l" href="#1552">1552: </a>    <span class="php-comment">/**
-</span></span><span id="1553" class="l"><a class="l" href="#1553">1553: </a><span class="php-comment">     * Entity encode a string with optional Markdown support.
-</span></span><span id="1554" class="l"><a class="l" href="#1554">1554: </a><span class="php-comment">     *
-</span></span><span id="1555" class="l"><a class="l" href="#1555">1555: </a><span class="php-comment">     * - Markdown support provided with second argument. 
-</span></span><span id="1556" class="l"><a class="l" href="#1556">1556: </a><span class="php-comment">     * - If string is already entity-encoded it will first be decoded. 
-</span></span><span id="1557" class="l"><a class="l" href="#1557">1557: </a><span class="php-comment">     * 
-</span></span><span id="1558" class="l"><a class="l" href="#1558">1558: </a><span class="php-comment">     * #pw-group-output
-</span></span><span id="1559" class="l"><a class="l" href="#1559">1559: </a><span class="php-comment">     *
-</span></span><span id="1560" class="l"><a class="l" href="#1560">1560: </a><span class="php-comment">     * @param string $str String to encode 
-</span></span><span id="1561" class="l"><a class="l" href="#1561">1561: </a><span class="php-comment">     * @param bool|int $markdown Optionally specify one of the following: 
-</span></span><span id="1562" class="l"><a class="l" href="#1562">1562: </a><span class="php-comment">     *   - `true` (boolean): To allow Markdown using default &quot;textFormat&quot; setting (which is basic Markdown by default). 
-</span></span><span id="1563" class="l"><a class="l" href="#1563">1563: </a><span class="php-comment">     *   - `false` (boolean): To disallow Markdown support (this is the default when $markdown argument omitted). 
-</span></span><span id="1564" class="l"><a class="l" href="#1564">1564: </a><span class="php-comment">     *   - `Inputfield::textFormatNone` (constant): Disallow Markdown support (default). 
-</span></span><span id="1565" class="l"><a class="l" href="#1565">1565: </a><span class="php-comment">     *   - `Inputfield::textFormatBasic` (constant): To support basic/inline Markdown.
-</span></span><span id="1566" class="l"><a class="l" href="#1566">1566: </a><span class="php-comment">     *   - `Inputfield::textFormatMarkdown` (constant): To support full Markdown and HTML.
-</span></span><span id="1567" class="l"><a class="l" href="#1567">1567: </a><span class="php-comment">     * @return string Entity encoded string or HTML string
-</span></span><span id="1568" class="l"><a class="l" href="#1568">1568: </a><span class="php-comment">     *
-</span></span><span id="1569" class="l"><a class="l" href="#1569">1569: </a><span class="php-comment">     */</span>
-</span><span id="1570" class="l"><a class="l" href="#1570">1570: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_entityEncode" href="#_entityEncode">entityEncode</a>(<span class="php-var">$str</span>, <span class="php-var">$markdown</span> = <span class="php-keyword1">false</span>) {
-</span><span id="1571" class="l"><a class="l" href="#1571">1571: </a>        
-</span><span id="1572" class="l"><a class="l" href="#1572">1572: </a>        <span class="php-comment">// if already encoded, then un-encode it</span>
-</span><span id="1573" class="l"><a class="l" href="#1573">1573: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$str</span>, <span class="php-quote">'&amp;'</span>) !== <span class="php-keyword1">false</span> &amp;&amp; <span class="php-keyword2">preg_match</span>(<span class="php-quote">'/&amp;(#\d+|[a-zA-Z]+);/'</span>, <span class="php-var">$str</span>)) {
-</span><span id="1574" class="l"><a class="l" href="#1574">1574: </a>            <span class="php-var">$str</span> = <span class="php-keyword2">html_entity_decode</span>(<span class="php-var">$str</span>, ENT_QUOTES, <span class="php-quote">&quot;UTF-8&quot;</span>);
-</span><span id="1575" class="l"><a class="l" href="#1575">1575: </a>        }
-</span><span id="1576" class="l"><a class="l" href="#1576">1576: </a>        
-</span><span id="1577" class="l"><a class="l" href="#1577">1577: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$markdown</span> &amp;&amp; <span class="php-var">$markdown</span> !== self::textFormatNone) {
-</span><span id="1578" class="l"><a class="l" href="#1578">1578: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_int</span>(<span class="php-var">$markdown</span>)) {
-</span><span id="1579" class="l"><a class="l" href="#1579">1579: </a>                <span class="php-var">$textFormat</span> = <span class="php-var">$markdown</span>;
-</span><span id="1580" class="l"><a class="l" href="#1580">1580: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="1581" class="l"><a class="l" href="#1581">1581: </a>                <span class="php-var">$textFormat</span> = <span class="php-var">$this</span>-&gt;getSetting(<span class="php-quote">'textFormat'</span>);
-</span><span id="1582" class="l"><a class="l" href="#1582">1582: </a>            }
-</span><span id="1583" class="l"><a class="l" href="#1583">1583: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$textFormat</span>) <span class="php-var">$textFormat</span> = self::textFormatBasic;
-</span><span id="1584" class="l"><a class="l" href="#1584">1584: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$textFormat</span> &amp; self::textFormatBasic) {
-</span><span id="1585" class="l"><a class="l" href="#1585">1585: </a>                <span class="php-comment">// only basic markdown allowed (default behavior)</span>
-</span><span id="1586" class="l"><a class="l" href="#1586">1586: </a>                <span class="php-var">$str</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entitiesMarkdown(<span class="php-var">$str</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'allowBrackets'</span> =&gt; <span class="php-keyword1">true</span>));
-</span><span id="1587" class="l"><a class="l" href="#1587">1587: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$textFormat</span> &amp; self::textFormatMarkdown) {
-</span><span id="1588" class="l"><a class="l" href="#1588">1588: </a>                <span class="php-comment">// full markdown, plus HTML is also allowed</span>
-</span><span id="1589" class="l"><a class="l" href="#1589">1589: </a>                <span class="php-var">$str</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entitiesMarkdown(<span class="php-var">$str</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'fullMarkdown'</span> =&gt; <span class="php-keyword1">true</span>));
-</span><span id="1590" class="l"><a class="l" href="#1590">1590: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="1591" class="l"><a class="l" href="#1591">1591: </a>                <span class="php-comment">// nothing allowed, text fully entity encoded regardless of $markdown request</span>
-</span><span id="1592" class="l"><a class="l" href="#1592">1592: </a>                <span class="php-var">$str</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$str</span>);
-</span><span id="1593" class="l"><a class="l" href="#1593">1593: </a>            }
-</span><span id="1594" class="l"><a class="l" href="#1594">1594: </a>            
-</span><span id="1595" class="l"><a class="l" href="#1595">1595: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="1596" class="l"><a class="l" href="#1596">1596: </a>            <span class="php-var">$str</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$str</span>);
-</span><span id="1597" class="l"><a class="l" href="#1597">1597: </a>        }
-</span><span id="1598" class="l"><a class="l" href="#1598">1598: </a>        
-</span><span id="1599" class="l"><a class="l" href="#1599">1599: </a>        <span class="php-keyword1">return</span> <span class="php-var">$str</span>;
-</span><span id="1600" class="l"><a class="l" href="#1600">1600: </a>    }
-</span><span id="1601" class="l"><a class="l" href="#1601">1601: </a>
-</span><span id="1602" class="l"><a class="l" href="#1602">1602: </a>    <span class="php-comment">/**
-</span></span><span id="1603" class="l"><a class="l" href="#1603">1603: </a><span class="php-comment">     * Get or set editable state for this Inputfield
-</span></span><span id="1604" class="l"><a class="l" href="#1604">1604: </a><span class="php-comment">     * 
-</span></span><span id="1605" class="l"><a class="l" href="#1605">1605: </a><span class="php-comment">     * When set to false, the `Inputfield::processInput()` method won't be called by parent InputfieldWrapper,
-</span></span><span id="1606" class="l"><a class="l" href="#1606">1606: </a><span class="php-comment">     * effectively skipping over input processing entirely for this Inputfield. 
-</span></span><span id="1607" class="l"><a class="l" href="#1607">1607: </a><span class="php-comment">     * 
-</span></span><span id="1608" class="l"><a class="l" href="#1608">1608: </a><span class="php-comment">     * #pw-group-states
+</span></span><span id="1526" class="l"><a class="l" href="#1526">1526: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="1527" class="l"><a class="l" href="#1527">1527: </a><span class="php-comment">     * 
+</span></span><span id="1528" class="l"><a class="l" href="#1528">1528: </a><span class="php-comment">     * @param string $key Attribute name
+</span></span><span id="1529" class="l"><a class="l" href="#1529">1529: </a><span class="php-comment">     * @return bool
+</span></span><span id="1530" class="l"><a class="l" href="#1530">1530: </a><span class="php-comment">     * 
+</span></span><span id="1531" class="l"><a class="l" href="#1531">1531: </a><span class="php-comment">     */</span>
+</span><span id="1532" class="l"><a class="l" href="#1532">1532: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hasAttribute" href="#_hasAttribute">hasAttribute</a>(<span class="php-var">$key</span>) {
+</span><span id="1533" class="l"><a class="l" href="#1533">1533: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;attributes[<span class="php-var">$key</span>]);
+</span><span id="1534" class="l"><a class="l" href="#1534">1534: </a>    }
+</span><span id="1535" class="l"><a class="l" href="#1535">1535: </a>
+</span><span id="1536" class="l"><a class="l" href="#1536">1536: </a>    <span class="php-comment">/**
+</span></span><span id="1537" class="l"><a class="l" href="#1537">1537: </a><span class="php-comment">     * Track the change, but only if it was to the 'value' attribute.
+</span></span><span id="1538" class="l"><a class="l" href="#1538">1538: </a><span class="php-comment">     *
+</span></span><span id="1539" class="l"><a class="l" href="#1539">1539: </a><span class="php-comment">     * We don't track changes to any other properties of Inputfields. 
+</span></span><span id="1540" class="l"><a class="l" href="#1540">1540: </a><span class="php-comment">     * 
+</span></span><span id="1541" class="l"><a class="l" href="#1541">1541: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="1542" class="l"><a class="l" href="#1542">1542: </a><span class="php-comment">     *
+</span></span><span id="1543" class="l"><a class="l" href="#1543">1543: </a><span class="php-comment">     * @param string $what Name of property that changed
+</span></span><span id="1544" class="l"><a class="l" href="#1544">1544: </a><span class="php-comment">     * @param mixed $old Previous value before change
+</span></span><span id="1545" class="l"><a class="l" href="#1545">1545: </a><span class="php-comment">     * @param mixed $new New value
+</span></span><span id="1546" class="l"><a class="l" href="#1546">1546: </a><span class="php-comment">     * @return Inputfield|WireData $this
+</span></span><span id="1547" class="l"><a class="l" href="#1547">1547: </a><span class="php-comment">     *
+</span></span><span id="1548" class="l"><a class="l" href="#1548">1548: </a><span class="php-comment">     */</span>
+</span><span id="1549" class="l"><a class="l" href="#1549">1549: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_trackChange" href="#_trackChange">trackChange</a>(<span class="php-var">$what</span>, <span class="php-var">$old</span> = <span class="php-keyword1">null</span>, <span class="php-var">$new</span> = <span class="php-keyword1">null</span>) {
+</span><span id="1550" class="l"><a class="l" href="#1550">1550: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$what</span> != <span class="php-quote">'value'</span>) <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="1551" class="l"><a class="l" href="#1551">1551: </a>        <span class="php-keyword1">return</span> parent::trackChange(<span class="php-var">$what</span>, <span class="php-var">$old</span>, <span class="php-var">$new</span>); 
+</span><span id="1552" class="l"><a class="l" href="#1552">1552: </a>    }
+</span><span id="1553" class="l"><a class="l" href="#1553">1553: </a>
+</span><span id="1554" class="l"><a class="l" href="#1554">1554: </a>    <span class="php-comment">/**
+</span></span><span id="1555" class="l"><a class="l" href="#1555">1555: </a><span class="php-comment">     * Entity encode a string with optional Markdown support.
+</span></span><span id="1556" class="l"><a class="l" href="#1556">1556: </a><span class="php-comment">     *
+</span></span><span id="1557" class="l"><a class="l" href="#1557">1557: </a><span class="php-comment">     * - Markdown support provided with second argument. 
+</span></span><span id="1558" class="l"><a class="l" href="#1558">1558: </a><span class="php-comment">     * - If string is already entity-encoded it will first be decoded. 
+</span></span><span id="1559" class="l"><a class="l" href="#1559">1559: </a><span class="php-comment">     * 
+</span></span><span id="1560" class="l"><a class="l" href="#1560">1560: </a><span class="php-comment">     * #pw-group-output
+</span></span><span id="1561" class="l"><a class="l" href="#1561">1561: </a><span class="php-comment">     *
+</span></span><span id="1562" class="l"><a class="l" href="#1562">1562: </a><span class="php-comment">     * @param string $str String to encode 
+</span></span><span id="1563" class="l"><a class="l" href="#1563">1563: </a><span class="php-comment">     * @param bool|int $markdown Optionally specify one of the following: 
+</span></span><span id="1564" class="l"><a class="l" href="#1564">1564: </a><span class="php-comment">     *   - `true` (boolean): To allow Markdown using default &quot;textFormat&quot; setting (which is basic Markdown by default). 
+</span></span><span id="1565" class="l"><a class="l" href="#1565">1565: </a><span class="php-comment">     *   - `false` (boolean): To disallow Markdown support (this is the default when $markdown argument omitted). 
+</span></span><span id="1566" class="l"><a class="l" href="#1566">1566: </a><span class="php-comment">     *   - `Inputfield::textFormatNone` (constant): Disallow Markdown support (default). 
+</span></span><span id="1567" class="l"><a class="l" href="#1567">1567: </a><span class="php-comment">     *   - `Inputfield::textFormatBasic` (constant): To support basic/inline Markdown.
+</span></span><span id="1568" class="l"><a class="l" href="#1568">1568: </a><span class="php-comment">     *   - `Inputfield::textFormatMarkdown` (constant): To support full Markdown and HTML.
+</span></span><span id="1569" class="l"><a class="l" href="#1569">1569: </a><span class="php-comment">     * @return string Entity encoded string or HTML string
+</span></span><span id="1570" class="l"><a class="l" href="#1570">1570: </a><span class="php-comment">     *
+</span></span><span id="1571" class="l"><a class="l" href="#1571">1571: </a><span class="php-comment">     */</span>
+</span><span id="1572" class="l"><a class="l" href="#1572">1572: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_entityEncode" href="#_entityEncode">entityEncode</a>(<span class="php-var">$str</span>, <span class="php-var">$markdown</span> = <span class="php-keyword1">false</span>) {
+</span><span id="1573" class="l"><a class="l" href="#1573">1573: </a>        
+</span><span id="1574" class="l"><a class="l" href="#1574">1574: </a>        <span class="php-comment">// if already encoded, then un-encode it</span>
+</span><span id="1575" class="l"><a class="l" href="#1575">1575: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$str</span>, <span class="php-quote">'&amp;'</span>) !== <span class="php-keyword1">false</span> &amp;&amp; <span class="php-keyword2">preg_match</span>(<span class="php-quote">'/&amp;(#\d+|[a-zA-Z]+);/'</span>, <span class="php-var">$str</span>)) {
+</span><span id="1576" class="l"><a class="l" href="#1576">1576: </a>            <span class="php-var">$str</span> = <span class="php-keyword2">html_entity_decode</span>(<span class="php-var">$str</span>, ENT_QUOTES, <span class="php-quote">&quot;UTF-8&quot;</span>);
+</span><span id="1577" class="l"><a class="l" href="#1577">1577: </a>        }
+</span><span id="1578" class="l"><a class="l" href="#1578">1578: </a>        
+</span><span id="1579" class="l"><a class="l" href="#1579">1579: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$markdown</span> &amp;&amp; <span class="php-var">$markdown</span> !== self::textFormatNone) {
+</span><span id="1580" class="l"><a class="l" href="#1580">1580: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_int</span>(<span class="php-var">$markdown</span>)) {
+</span><span id="1581" class="l"><a class="l" href="#1581">1581: </a>                <span class="php-var">$textFormat</span> = <span class="php-var">$markdown</span>;
+</span><span id="1582" class="l"><a class="l" href="#1582">1582: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1583" class="l"><a class="l" href="#1583">1583: </a>                <span class="php-var">$textFormat</span> = <span class="php-var">$this</span>-&gt;getSetting(<span class="php-quote">'textFormat'</span>);
+</span><span id="1584" class="l"><a class="l" href="#1584">1584: </a>            }
+</span><span id="1585" class="l"><a class="l" href="#1585">1585: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$textFormat</span>) <span class="php-var">$textFormat</span> = self::textFormatBasic;
+</span><span id="1586" class="l"><a class="l" href="#1586">1586: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$textFormat</span> &amp; self::textFormatBasic) {
+</span><span id="1587" class="l"><a class="l" href="#1587">1587: </a>                <span class="php-comment">// only basic markdown allowed (default behavior)</span>
+</span><span id="1588" class="l"><a class="l" href="#1588">1588: </a>                <span class="php-var">$str</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entitiesMarkdown(<span class="php-var">$str</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'allowBrackets'</span> =&gt; <span class="php-keyword1">true</span>));
+</span><span id="1589" class="l"><a class="l" href="#1589">1589: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$textFormat</span> &amp; self::textFormatMarkdown) {
+</span><span id="1590" class="l"><a class="l" href="#1590">1590: </a>                <span class="php-comment">// full markdown, plus HTML is also allowed</span>
+</span><span id="1591" class="l"><a class="l" href="#1591">1591: </a>                <span class="php-var">$str</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entitiesMarkdown(<span class="php-var">$str</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'fullMarkdown'</span> =&gt; <span class="php-keyword1">true</span>));
+</span><span id="1592" class="l"><a class="l" href="#1592">1592: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1593" class="l"><a class="l" href="#1593">1593: </a>                <span class="php-comment">// nothing allowed, text fully entity encoded regardless of $markdown request</span>
+</span><span id="1594" class="l"><a class="l" href="#1594">1594: </a>                <span class="php-var">$str</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$str</span>);
+</span><span id="1595" class="l"><a class="l" href="#1595">1595: </a>            }
+</span><span id="1596" class="l"><a class="l" href="#1596">1596: </a>            
+</span><span id="1597" class="l"><a class="l" href="#1597">1597: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="1598" class="l"><a class="l" href="#1598">1598: </a>            <span class="php-var">$str</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$str</span>);
+</span><span id="1599" class="l"><a class="l" href="#1599">1599: </a>        }
+</span><span id="1600" class="l"><a class="l" href="#1600">1600: </a>        
+</span><span id="1601" class="l"><a class="l" href="#1601">1601: </a>        <span class="php-keyword1">return</span> <span class="php-var">$str</span>;
+</span><span id="1602" class="l"><a class="l" href="#1602">1602: </a>    }
+</span><span id="1603" class="l"><a class="l" href="#1603">1603: </a>
+</span><span id="1604" class="l"><a class="l" href="#1604">1604: </a>    <span class="php-comment">/**
+</span></span><span id="1605" class="l"><a class="l" href="#1605">1605: </a><span class="php-comment">     * Get or set editable state for this Inputfield
+</span></span><span id="1606" class="l"><a class="l" href="#1606">1606: </a><span class="php-comment">     * 
+</span></span><span id="1607" class="l"><a class="l" href="#1607">1607: </a><span class="php-comment">     * When set to false, the `Inputfield::processInput()` method won't be called by parent InputfieldWrapper,
+</span></span><span id="1608" class="l"><a class="l" href="#1608">1608: </a><span class="php-comment">     * effectively skipping over input processing entirely for this Inputfield. 
 </span></span><span id="1609" class="l"><a class="l" href="#1609">1609: </a><span class="php-comment">     * 
-</span></span><span id="1610" class="l"><a class="l" href="#1610">1610: </a><span class="php-comment">     * @param bool|null $setEditable Specify true or false to set the editable state, or omit just to get the editable state.
-</span></span><span id="1611" class="l"><a class="l" href="#1611">1611: </a><span class="php-comment">     * @return bool Returns the current editable state.
-</span></span><span id="1612" class="l"><a class="l" href="#1612">1612: </a><span class="php-comment">     * 
-</span></span><span id="1613" class="l"><a class="l" href="#1613">1613: </a><span class="php-comment">     */</span>
-</span><span id="1614" class="l"><a class="l" href="#1614">1614: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_editable" href="#_editable">editable</a>(<span class="php-var">$setEditable</span> = <span class="php-keyword1">null</span>) {
-</span><span id="1615" class="l"><a class="l" href="#1615">1615: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$setEditable</span>)) <span class="php-var">$this</span>-&gt;editable = <span class="php-var">$setEditable</span> ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>;
-</span><span id="1616" class="l"><a class="l" href="#1616">1616: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;editable;
-</span><span id="1617" class="l"><a class="l" href="#1617">1617: </a>    }
-</span><span id="1618" class="l"><a class="l" href="#1618">1618: </a>    
-</span><span id="1619" class="l"><a class="l" href="#1619">1619: </a>    <span class="php-comment">/**
-</span></span><span id="1620" class="l"><a class="l" href="#1620">1620: </a><span class="php-comment">     * Set custom html render, see $this-&gt;html at top for reference.
-</span></span><span id="1621" class="l"><a class="l" href="#1621">1621: </a><span class="php-comment">     *
-</span></span><span id="1622" class="l"><a class="l" href="#1622">1622: </a><span class="php-comment">     * @param string $html
+</span></span><span id="1610" class="l"><a class="l" href="#1610">1610: </a><span class="php-comment">     * #pw-group-states
+</span></span><span id="1611" class="l"><a class="l" href="#1611">1611: </a><span class="php-comment">     * 
+</span></span><span id="1612" class="l"><a class="l" href="#1612">1612: </a><span class="php-comment">     * @param bool|null $setEditable Specify true or false to set the editable state, or omit just to get the editable state.
+</span></span><span id="1613" class="l"><a class="l" href="#1613">1613: </a><span class="php-comment">     * @return bool Returns the current editable state.
+</span></span><span id="1614" class="l"><a class="l" href="#1614">1614: </a><span class="php-comment">     * 
+</span></span><span id="1615" class="l"><a class="l" href="#1615">1615: </a><span class="php-comment">     */</span>
+</span><span id="1616" class="l"><a class="l" href="#1616">1616: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_editable" href="#_editable">editable</a>(<span class="php-var">$setEditable</span> = <span class="php-keyword1">null</span>) {
+</span><span id="1617" class="l"><a class="l" href="#1617">1617: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$setEditable</span>)) <span class="php-var">$this</span>-&gt;editable = <span class="php-var">$setEditable</span> ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>;
+</span><span id="1618" class="l"><a class="l" href="#1618">1618: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;editable;
+</span><span id="1619" class="l"><a class="l" href="#1619">1619: </a>    }
+</span><span id="1620" class="l"><a class="l" href="#1620">1620: </a>    
+</span><span id="1621" class="l"><a class="l" href="#1621">1621: </a>    <span class="php-comment">/**
+</span></span><span id="1622" class="l"><a class="l" href="#1622">1622: </a><span class="php-comment">     * Set custom html render, see $this-&gt;html at top for reference.
 </span></span><span id="1623" class="l"><a class="l" href="#1623">1623: </a><span class="php-comment">     *
-</span></span><span id="1624" class="l"><a class="l" href="#1624">1624: </a><span class="php-comment">    public function setHTML($html) { 
-</span></span><span id="1625" class="l"><a class="l" href="#1625">1625: </a><span class="php-comment">        $this-&gt;html = $html;
-</span></span><span id="1626" class="l"><a class="l" href="#1626">1626: </a><span class="php-comment">    }
-</span></span><span id="1627" class="l"><a class="l" href="#1627">1627: </a><span class="php-comment">     */</span>
-</span><span id="1628" class="l"><a class="l" href="#1628">1628: </a>
-</span><span id="1629" class="l"><a class="l" href="#1629">1629: </a>    <span class="php-comment">/**
-</span></span><span id="1630" class="l"><a class="l" href="#1630">1630: </a><span class="php-comment">     * Get default or custom HTML for render
-</span></span><span id="1631" class="l"><a class="l" href="#1631">1631: </a><span class="php-comment">     * 
-</span></span><span id="1632" class="l"><a class="l" href="#1632">1632: </a><span class="php-comment">     * If $this-&gt;html is populated, it gets returned. 
-</span></span><span id="1633" class="l"><a class="l" href="#1633">1633: </a><span class="php-comment">     * If not, then this should return the default HTML for the Inputfield,
-</span></span><span id="1634" class="l"><a class="l" href="#1634">1634: </a><span class="php-comment">     * where supported. 
-</span></span><span id="1635" class="l"><a class="l" href="#1635">1635: </a><span class="php-comment">     * 
-</span></span><span id="1636" class="l"><a class="l" href="#1636">1636: </a><span class="php-comment">     * If this returns blank, then it means custom HTML is not supported.
-</span></span><span id="1637" class="l"><a class="l" href="#1637">1637: </a><span class="php-comment">     *
-</span></span><span id="1638" class="l"><a class="l" href="#1638">1638: </a><span class="php-comment">     * @param array $attr When populated with key=value, tags will be replaced. 
-</span></span><span id="1639" class="l"><a class="l" href="#1639">1639: </a><span class="php-comment">     * @return array
-</span></span><span id="1640" class="l"><a class="l" href="#1640">1640: </a><span class="php-comment">     *
-</span></span><span id="1641" class="l"><a class="l" href="#1641">1641: </a><span class="php-comment">    public function getHTML($attr = array()) { 
-</span></span><span id="1642" class="l"><a class="l" href="#1642">1642: </a><span class="php-comment">        if(!strlen($this-&gt;html) || empty($attr) || strpos($this-&gt;html, '{') === false) return $this-&gt;html;
-</span></span><span id="1643" class="l"><a class="l" href="#1643">1643: </a><span class="php-comment">        $html = $this-&gt;html;
-</span></span><span id="1644" class="l"><a class="l" href="#1644">1644: </a><span class="php-comment">        
-</span></span><span id="1645" class="l"><a class="l" href="#1645">1645: </a><span class="php-comment">        if(strpos($html, '{attr}')) {
-</span></span><span id="1646" class="l"><a class="l" href="#1646">1646: </a><span class="php-comment">            
-</span></span><span id="1647" class="l"><a class="l" href="#1647">1647: </a><span class="php-comment">            $html = str_replace('{attr}', $this-&gt;getAttributesString($attr), $html);    
+</span></span><span id="1624" class="l"><a class="l" href="#1624">1624: </a><span class="php-comment">     * @param string $html
+</span></span><span id="1625" class="l"><a class="l" href="#1625">1625: </a><span class="php-comment">     *
+</span></span><span id="1626" class="l"><a class="l" href="#1626">1626: </a><span class="php-comment">    public function setHTML($html) { 
+</span></span><span id="1627" class="l"><a class="l" href="#1627">1627: </a><span class="php-comment">        $this-&gt;html = $html;
+</span></span><span id="1628" class="l"><a class="l" href="#1628">1628: </a><span class="php-comment">    }
+</span></span><span id="1629" class="l"><a class="l" href="#1629">1629: </a><span class="php-comment">     */</span>
+</span><span id="1630" class="l"><a class="l" href="#1630">1630: </a>
+</span><span id="1631" class="l"><a class="l" href="#1631">1631: </a>    <span class="php-comment">/**
+</span></span><span id="1632" class="l"><a class="l" href="#1632">1632: </a><span class="php-comment">     * Get default or custom HTML for render
+</span></span><span id="1633" class="l"><a class="l" href="#1633">1633: </a><span class="php-comment">     * 
+</span></span><span id="1634" class="l"><a class="l" href="#1634">1634: </a><span class="php-comment">     * If $this-&gt;html is populated, it gets returned. 
+</span></span><span id="1635" class="l"><a class="l" href="#1635">1635: </a><span class="php-comment">     * If not, then this should return the default HTML for the Inputfield,
+</span></span><span id="1636" class="l"><a class="l" href="#1636">1636: </a><span class="php-comment">     * where supported. 
+</span></span><span id="1637" class="l"><a class="l" href="#1637">1637: </a><span class="php-comment">     * 
+</span></span><span id="1638" class="l"><a class="l" href="#1638">1638: </a><span class="php-comment">     * If this returns blank, then it means custom HTML is not supported.
+</span></span><span id="1639" class="l"><a class="l" href="#1639">1639: </a><span class="php-comment">     *
+</span></span><span id="1640" class="l"><a class="l" href="#1640">1640: </a><span class="php-comment">     * @param array $attr When populated with key=value, tags will be replaced. 
+</span></span><span id="1641" class="l"><a class="l" href="#1641">1641: </a><span class="php-comment">     * @return array
+</span></span><span id="1642" class="l"><a class="l" href="#1642">1642: </a><span class="php-comment">     *
+</span></span><span id="1643" class="l"><a class="l" href="#1643">1643: </a><span class="php-comment">    public function getHTML($attr = array()) { 
+</span></span><span id="1644" class="l"><a class="l" href="#1644">1644: </a><span class="php-comment">        if(!strlen($this-&gt;html) || empty($attr) || strpos($this-&gt;html, '{') === false) return $this-&gt;html;
+</span></span><span id="1645" class="l"><a class="l" href="#1645">1645: </a><span class="php-comment">        $html = $this-&gt;html;
+</span></span><span id="1646" class="l"><a class="l" href="#1646">1646: </a><span class="php-comment">        
+</span></span><span id="1647" class="l"><a class="l" href="#1647">1647: </a><span class="php-comment">        if(strpos($html, '{attr}')) {
 </span></span><span id="1648" class="l"><a class="l" href="#1648">1648: </a><span class="php-comment">            
-</span></span><span id="1649" class="l"><a class="l" href="#1649">1649: </a><span class="php-comment">            // @todo remove any other {tags} that might be present
+</span></span><span id="1649" class="l"><a class="l" href="#1649">1649: </a><span class="php-comment">            $html = str_replace('{attr}', $this-&gt;getAttributesString($attr), $html);    
 </span></span><span id="1650" class="l"><a class="l" href="#1650">1650: </a><span class="php-comment">            
-</span></span><span id="1651" class="l"><a class="l" href="#1651">1651: </a><span class="php-comment">        } else {
+</span></span><span id="1651" class="l"><a class="l" href="#1651">1651: </a><span class="php-comment">            // @todo remove any other {tags} that might be present
 </span></span><span id="1652" class="l"><a class="l" href="#1652">1652: </a><span class="php-comment">            
-</span></span><span id="1653" class="l"><a class="l" href="#1653">1653: </a><span class="php-comment">            // a version of html where the {tags} get replaced with blanks
-</span></span><span id="1654" class="l"><a class="l" href="#1654">1654: </a><span class="php-comment">            // used for testing if more attributes present without possibility
-</span></span><span id="1655" class="l"><a class="l" href="#1655">1655: </a><span class="php-comment">            // of those attributes being injected
-</span></span><span id="1656" class="l"><a class="l" href="#1656">1656: </a><span class="php-comment">            // $_html = $html;
-</span></span><span id="1657" class="l"><a class="l" href="#1657">1657: </a><span class="php-comment">            
-</span></span><span id="1658" class="l"><a class="l" href="#1658">1658: </a><span class="php-comment">            // extract value so that a substitution can't result in input-injected tags
-</span></span><span id="1659" class="l"><a class="l" href="#1659">1659: </a><span class="php-comment">            if(isset($attr['value'])) {
-</span></span><span id="1660" class="l"><a class="l" href="#1660">1660: </a><span class="php-comment">                $value = $attr['value'];
-</span></span><span id="1661" class="l"><a class="l" href="#1661">1661: </a><span class="php-comment">                unset($attr['value']); 
-</span></span><span id="1662" class="l"><a class="l" href="#1662">1662: </a><span class="php-comment">            } else {
-</span></span><span id="1663" class="l"><a class="l" href="#1663">1663: </a><span class="php-comment">                $value = null;
-</span></span><span id="1664" class="l"><a class="l" href="#1664">1664: </a><span class="php-comment">            }
-</span></span><span id="1665" class="l"><a class="l" href="#1665">1665: </a><span class="php-comment">            // populate attributes
-</span></span><span id="1666" class="l"><a class="l" href="#1666">1666: </a><span class="php-comment">            foreach($attr as $name =&gt; $v) {
-</span></span><span id="1667" class="l"><a class="l" href="#1667">1667: </a><span class="php-comment">                $tag = '{' . $name . '}';
-</span></span><span id="1668" class="l"><a class="l" href="#1668">1668: </a><span class="php-comment">                if(strpos($html, $tag) === false) continue; 
-</span></span><span id="1669" class="l"><a class="l" href="#1669">1669: </a><span class="php-comment">                $v = htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); 
-</span></span><span id="1670" class="l"><a class="l" href="#1670">1670: </a><span class="php-comment">                $html = str_replace($tag, $v, $html);
-</span></span><span id="1671" class="l"><a class="l" href="#1671">1671: </a><span class="php-comment">                //$_html = str_replace($tag, '', $html); 
-</span></span><span id="1672" class="l"><a class="l" href="#1672">1672: </a><span class="php-comment">            }
-</span></span><span id="1673" class="l"><a class="l" href="#1673">1673: </a><span class="php-comment">            // see if any non-value attributes are left
-</span></span><span id="1674" class="l"><a class="l" href="#1674">1674: </a><span class="php-comment">            $pos = strpos($html, '{'); 
-</span></span><span id="1675" class="l"><a class="l" href="#1675">1675: </a><span class="php-comment">            if($pos !== false &amp;&amp; $pos != strpos($html, '{value}')) {
-</span></span><span id="1676" class="l"><a class="l" href="#1676">1676: </a><span class="php-comment">                // there are unpopulated tags that need to be removed
-</span></span><span id="1677" class="l"><a class="l" href="#1677">1677: </a><span class="php-comment">                preg_match_all('/\{[-_a-zA-Z0-9]+\}/', $html, $matches); 
-</span></span><span id="1678" class="l"><a class="l" href="#1678">1678: </a><span class="php-comment">            }
-</span></span><span id="1679" class="l"><a class="l" href="#1679">1679: </a><span class="php-comment">            // once all other attributes populated, we can populate {value}
-</span></span><span id="1680" class="l"><a class="l" href="#1680">1680: </a><span class="php-comment">            if($value !== null) {
-</span></span><span id="1681" class="l"><a class="l" href="#1681">1681: </a><span class="php-comment">                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-</span></span><span id="1682" class="l"><a class="l" href="#1682">1682: </a><span class="php-comment">                $html = str_replace('{value}', $value, $html);
-</span></span><span id="1683" class="l"><a class="l" href="#1683">1683: </a><span class="php-comment">                $_html = str_replace('{value}', '', $html);
-</span></span><span id="1684" class="l"><a class="l" href="#1684">1684: </a><span class="php-comment">            }
-</span></span><span id="1685" class="l"><a class="l" href="#1685">1685: </a><span class="php-comment">            // if ther
-</span></span><span id="1686" class="l"><a class="l" href="#1686">1686: </a><span class="php-comment">        }
-</span></span><span id="1687" class="l"><a class="l" href="#1687">1687: </a><span class="php-comment">        return $html;   
-</span></span><span id="1688" class="l"><a class="l" href="#1688">1688: </a><span class="php-comment">    }
-</span></span><span id="1689" class="l"><a class="l" href="#1689">1689: </a><span class="php-comment">     */</span> 
-</span><span id="1690" class="l"><a class="l" href="#1690">1690: </a>
-</span><span id="1691" class="l"><a class="l" href="#1691">1691: </a>}
-</span><span id="1692" class="l"><a class="l" href="#1692">1692: </a></span></code></pre>
+</span></span><span id="1653" class="l"><a class="l" href="#1653">1653: </a><span class="php-comment">        } else {
+</span></span><span id="1654" class="l"><a class="l" href="#1654">1654: </a><span class="php-comment">            
+</span></span><span id="1655" class="l"><a class="l" href="#1655">1655: </a><span class="php-comment">            // a version of html where the {tags} get replaced with blanks
+</span></span><span id="1656" class="l"><a class="l" href="#1656">1656: </a><span class="php-comment">            // used for testing if more attributes present without possibility
+</span></span><span id="1657" class="l"><a class="l" href="#1657">1657: </a><span class="php-comment">            // of those attributes being injected
+</span></span><span id="1658" class="l"><a class="l" href="#1658">1658: </a><span class="php-comment">            // $_html = $html;
+</span></span><span id="1659" class="l"><a class="l" href="#1659">1659: </a><span class="php-comment">            
+</span></span><span id="1660" class="l"><a class="l" href="#1660">1660: </a><span class="php-comment">            // extract value so that a substitution can't result in input-injected tags
+</span></span><span id="1661" class="l"><a class="l" href="#1661">1661: </a><span class="php-comment">            if(isset($attr['value'])) {
+</span></span><span id="1662" class="l"><a class="l" href="#1662">1662: </a><span class="php-comment">                $value = $attr['value'];
+</span></span><span id="1663" class="l"><a class="l" href="#1663">1663: </a><span class="php-comment">                unset($attr['value']); 
+</span></span><span id="1664" class="l"><a class="l" href="#1664">1664: </a><span class="php-comment">            } else {
+</span></span><span id="1665" class="l"><a class="l" href="#1665">1665: </a><span class="php-comment">                $value = null;
+</span></span><span id="1666" class="l"><a class="l" href="#1666">1666: </a><span class="php-comment">            }
+</span></span><span id="1667" class="l"><a class="l" href="#1667">1667: </a><span class="php-comment">            // populate attributes
+</span></span><span id="1668" class="l"><a class="l" href="#1668">1668: </a><span class="php-comment">            foreach($attr as $name =&gt; $v) {
+</span></span><span id="1669" class="l"><a class="l" href="#1669">1669: </a><span class="php-comment">                $tag = '{' . $name . '}';
+</span></span><span id="1670" class="l"><a class="l" href="#1670">1670: </a><span class="php-comment">                if(strpos($html, $tag) === false) continue; 
+</span></span><span id="1671" class="l"><a class="l" href="#1671">1671: </a><span class="php-comment">                $v = htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); 
+</span></span><span id="1672" class="l"><a class="l" href="#1672">1672: </a><span class="php-comment">                $html = str_replace($tag, $v, $html);
+</span></span><span id="1673" class="l"><a class="l" href="#1673">1673: </a><span class="php-comment">                //$_html = str_replace($tag, '', $html); 
+</span></span><span id="1674" class="l"><a class="l" href="#1674">1674: </a><span class="php-comment">            }
+</span></span><span id="1675" class="l"><a class="l" href="#1675">1675: </a><span class="php-comment">            // see if any non-value attributes are left
+</span></span><span id="1676" class="l"><a class="l" href="#1676">1676: </a><span class="php-comment">            $pos = strpos($html, '{'); 
+</span></span><span id="1677" class="l"><a class="l" href="#1677">1677: </a><span class="php-comment">            if($pos !== false &amp;&amp; $pos != strpos($html, '{value}')) {
+</span></span><span id="1678" class="l"><a class="l" href="#1678">1678: </a><span class="php-comment">                // there are unpopulated tags that need to be removed
+</span></span><span id="1679" class="l"><a class="l" href="#1679">1679: </a><span class="php-comment">                preg_match_all('/\{[-_a-zA-Z0-9]+\}/', $html, $matches); 
+</span></span><span id="1680" class="l"><a class="l" href="#1680">1680: </a><span class="php-comment">            }
+</span></span><span id="1681" class="l"><a class="l" href="#1681">1681: </a><span class="php-comment">            // once all other attributes populated, we can populate {value}
+</span></span><span id="1682" class="l"><a class="l" href="#1682">1682: </a><span class="php-comment">            if($value !== null) {
+</span></span><span id="1683" class="l"><a class="l" href="#1683">1683: </a><span class="php-comment">                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+</span></span><span id="1684" class="l"><a class="l" href="#1684">1684: </a><span class="php-comment">                $html = str_replace('{value}', $value, $html);
+</span></span><span id="1685" class="l"><a class="l" href="#1685">1685: </a><span class="php-comment">                $_html = str_replace('{value}', '', $html);
+</span></span><span id="1686" class="l"><a class="l" href="#1686">1686: </a><span class="php-comment">            }
+</span></span><span id="1687" class="l"><a class="l" href="#1687">1687: </a><span class="php-comment">            // if ther
+</span></span><span id="1688" class="l"><a class="l" href="#1688">1688: </a><span class="php-comment">        }
+</span></span><span id="1689" class="l"><a class="l" href="#1689">1689: </a><span class="php-comment">        return $html;   
+</span></span><span id="1690" class="l"><a class="l" href="#1690">1690: </a><span class="php-comment">    }
+</span></span><span id="1691" class="l"><a class="l" href="#1691">1691: </a><span class="php-comment">     */</span> 
+</span><span id="1692" class="l"><a class="l" href="#1692">1692: </a>
+</span><span id="1693" class="l"><a class="l" href="#1693">1693: </a>}
+</span><span id="1694" class="l"><a class="l" href="#1694">1694: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

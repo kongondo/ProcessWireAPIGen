@@ -8,7 +8,7 @@
 	<title>File modules/LanguageSupport/LanguagesPageFieldValue.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3202659361"></script>
+	<script type="text/javascript" src="elementlist.js?512856907"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.103 dev</span>
+			<span>Overview version 3.0.104 dev</span>
 		</a>
 
 
@@ -791,29 +791,37 @@
 </span><span id="224" class="l"><a class="l" href="#224">224: </a>        <span class="php-var">$this</span>-&gt;page = <span class="php-var">$page</span>; 
 </span><span id="225" class="l"><a class="l" href="#225">225: </a>    }
 </span><span id="226" class="l"><a class="l" href="#226">226: </a>    
-</span><span id="227" class="l"><a class="l" href="#227">227: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___debugInfo" href="#___debugInfo">__debugInfo</a>() {
-</span><span id="228" class="l"><a class="l" href="#228">228: </a>        <span class="php-var">$info</span> = parent::__debugInfo();
-</span><span id="229" class="l"><a class="l" href="#229">229: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>) <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
-</span><span id="230" class="l"><a class="l" href="#230">230: </a>            <span class="php-var">$info</span>[<span class="php-var">$language</span>-&gt;name] = <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;data[<span class="php-var">$language</span>-&gt;id]) ? <span class="php-var">$this</span>-&gt;data[<span class="php-var">$language</span>-&gt;id] : <span class="php-quote">''</span>;
-</span><span id="231" class="l"><a class="l" href="#231">231: </a>        }
-</span><span id="232" class="l"><a class="l" href="#232">232: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>;   
+</span><span id="227" class="l"><a class="l" href="#227">227: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getPage" href="#_getPage">getPage</a>() {
+</span><span id="228" class="l"><a class="l" href="#228">228: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;page; 
+</span><span id="229" class="l"><a class="l" href="#229">229: </a>    }
+</span><span id="230" class="l"><a class="l" href="#230">230: </a>    
+</span><span id="231" class="l"><a class="l" href="#231">231: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getField" href="#_getField">getField</a>() {
+</span><span id="232" class="l"><a class="l" href="#232">232: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;field;
 </span><span id="233" class="l"><a class="l" href="#233">233: </a>    }
-</span><span id="234" class="l"><a class="l" href="#234">234: </a>
-</span><span id="235" class="l"><a class="l" href="#235">235: </a>    <span class="php-comment">/**
-</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     * Allows iteration of the languages values
-</span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">     *
-</span></span><span id="238" class="l"><a class="l" href="#238">238: </a><span class="php-comment">     * Fulfills \IteratorAggregate interface.
-</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">     *
-</span></span><span id="240" class="l"><a class="l" href="#240">240: </a><span class="php-comment">     * @return ArrayObject
-</span></span><span id="241" class="l"><a class="l" href="#241">241: </a><span class="php-comment">     *
-</span></span><span id="242" class="l"><a class="l" href="#242">242: </a><span class="php-comment">     */</span>
-</span><span id="243" class="l"><a class="l" href="#243">243: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getIterator" href="#_getIterator">getIterator</a>() {
-</span><span id="244" class="l"><a class="l" href="#244">244: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> \ArrayObject(<span class="php-var">$this</span>-&gt;data);
-</span><span id="245" class="l"><a class="l" href="#245">245: </a>    }
-</span><span id="246" class="l"><a class="l" href="#246">246: </a>}
-</span><span id="247" class="l"><a class="l" href="#247">247: </a>
-</span><span id="248" class="l"><a class="l" href="#248">248: </a>
-</span><span id="249" class="l"><a class="l" href="#249">249: </a></span></code></pre>
+</span><span id="234" class="l"><a class="l" href="#234">234: </a>    
+</span><span id="235" class="l"><a class="l" href="#235">235: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___debugInfo" href="#___debugInfo">__debugInfo</a>() {
+</span><span id="236" class="l"><a class="l" href="#236">236: </a>        <span class="php-var">$info</span> = parent::__debugInfo();
+</span><span id="237" class="l"><a class="l" href="#237">237: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>) <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
+</span><span id="238" class="l"><a class="l" href="#238">238: </a>            <span class="php-var">$info</span>[<span class="php-var">$language</span>-&gt;name] = <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;data[<span class="php-var">$language</span>-&gt;id]) ? <span class="php-var">$this</span>-&gt;data[<span class="php-var">$language</span>-&gt;id] : <span class="php-quote">''</span>;
+</span><span id="239" class="l"><a class="l" href="#239">239: </a>        }
+</span><span id="240" class="l"><a class="l" href="#240">240: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>;   
+</span><span id="241" class="l"><a class="l" href="#241">241: </a>    }
+</span><span id="242" class="l"><a class="l" href="#242">242: </a>
+</span><span id="243" class="l"><a class="l" href="#243">243: </a>    <span class="php-comment">/**
+</span></span><span id="244" class="l"><a class="l" href="#244">244: </a><span class="php-comment">     * Allows iteration of the languages values
+</span></span><span id="245" class="l"><a class="l" href="#245">245: </a><span class="php-comment">     *
+</span></span><span id="246" class="l"><a class="l" href="#246">246: </a><span class="php-comment">     * Fulfills \IteratorAggregate interface.
+</span></span><span id="247" class="l"><a class="l" href="#247">247: </a><span class="php-comment">     *
+</span></span><span id="248" class="l"><a class="l" href="#248">248: </a><span class="php-comment">     * @return ArrayObject
+</span></span><span id="249" class="l"><a class="l" href="#249">249: </a><span class="php-comment">     *
+</span></span><span id="250" class="l"><a class="l" href="#250">250: </a><span class="php-comment">     */</span>
+</span><span id="251" class="l"><a class="l" href="#251">251: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getIterator" href="#_getIterator">getIterator</a>() {
+</span><span id="252" class="l"><a class="l" href="#252">252: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> \ArrayObject(<span class="php-var">$this</span>-&gt;data);
+</span><span id="253" class="l"><a class="l" href="#253">253: </a>    }
+</span><span id="254" class="l"><a class="l" href="#254">254: </a>}
+</span><span id="255" class="l"><a class="l" href="#255">255: </a>
+</span><span id="256" class="l"><a class="l" href="#256">256: </a>
+</span><span id="257" class="l"><a class="l" href="#257">257: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

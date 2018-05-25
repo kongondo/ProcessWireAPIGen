@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessPageLister/ProcessPageLister.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3202659361"></script>
+	<script type="text/javascript" src="elementlist.js?512856907"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.103 dev</span>
+			<span>Overview version 3.0.104 dev</span>
 		</a>
 
 
@@ -1732,7 +1732,7 @@
 </span></span><span id="1165" class="l"><a class="l" href="#1165">1165: </a><span class="php-comment">     * @param Page $p
 </span></span><span id="1166" class="l"><a class="l" href="#1166">1166: </a><span class="php-comment">     * @param array $fields
 </span></span><span id="1167" class="l"><a class="l" href="#1167">1167: </a><span class="php-comment">     * @param string $name
-</span></span><span id="1168" class="l"><a class="l" href="#1168">1168: </a><span class="php-comment">     * @param mixed $value
+</span></span><span id="1168" class="l"><a class="l" href="#1168">1168: </a><span class="php-comment">     * @param mixed $value Not used at present 
 </span></span><span id="1169" class="l"><a class="l" href="#1169">1169: </a><span class="php-comment">     * @return string
 </span></span><span id="1170" class="l"><a class="l" href="#1170">1170: </a><span class="php-comment">     *
 </span></span><span id="1171" class="l"><a class="l" href="#1171">1171: </a><span class="php-comment">     */</span>
@@ -1745,17 +1745,17 @@
 </span><span id="1178" class="l"><a class="l" href="#1178">1178: </a>        
 </span><span id="1179" class="l"><a class="l" href="#1179">1179: </a>        <span class="php-keyword2">reset</span>(<span class="php-var">$fields</span>); 
 </span><span id="1180" class="l"><a class="l" href="#1180">1180: </a>        <span class="php-var">$isFirstCol</span> = <span class="php-keyword2">key</span>(<span class="php-var">$fields</span>) == <span class="php-var">$name</span>; 
-</span><span id="1181" class="l"><a class="l" href="#1181">1181: </a>        
-</span><span id="1182" class="l"><a class="l" href="#1182">1182: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$subname</span> &amp;&amp; <span class="php-var">$name</span> == <span class="php-quote">'parent'</span>) {
-</span><span id="1183" class="l"><a class="l" href="#1183">1183: </a>            <span class="php-comment">// if parent and subname present, focus on just the subname value</span>
-</span><span id="1184" class="l"><a class="l" href="#1184">1184: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> Page) <span class="php-var">$value</span> = <span class="php-var">$value</span>-&gt;getUnformatted(<span class="php-var">$subname</span>);
-</span><span id="1185" class="l"><a class="l" href="#1185">1185: </a>            <span class="php-var">$name</span> = <span class="php-var">$subname</span>;
-</span><span id="1186" class="l"><a class="l" href="#1186">1186: </a>            <span class="php-var">$subname</span> = <span class="php-quote">''</span>;
-</span><span id="1187" class="l"><a class="l" href="#1187">1187: </a>        }
-</span><span id="1188" class="l"><a class="l" href="#1188">1188: </a>
-</span><span id="1189" class="l"><a class="l" href="#1189">1189: </a>        <span class="php-comment">/** @var Field $field */</span>
-</span><span id="1190" class="l"><a class="l" href="#1190">1190: </a>        <span class="php-var">$field</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$fields</span>[<span class="php-var">$name</span>]) ? <span class="php-var">$fields</span>[<span class="php-var">$name</span>] : <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$name</span>);
-</span><span id="1191" class="l"><a class="l" href="#1191">1191: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-var">$p</span>-&gt;getUnformatted(<span class="php-var">$name</span>);
+</span><span id="1181" class="l"><a class="l" href="#1181">1181: </a>        <span class="php-var">$value</span> = <span class="php-var">$p</span>-&gt;getFormatted(<span class="php-var">$name</span>); 
+</span><span id="1182" class="l"><a class="l" href="#1182">1182: </a>        
+</span><span id="1183" class="l"><a class="l" href="#1183">1183: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$subname</span> &amp;&amp; <span class="php-var">$name</span> == <span class="php-quote">'parent'</span>) {
+</span><span id="1184" class="l"><a class="l" href="#1184">1184: </a>            <span class="php-comment">// if parent and subname present, focus on just the subname value</span>
+</span><span id="1185" class="l"><a class="l" href="#1185">1185: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> Page) <span class="php-var">$value</span> = <span class="php-var">$value</span>-&gt;getFormatted(<span class="php-var">$subname</span>);
+</span><span id="1186" class="l"><a class="l" href="#1186">1186: </a>            <span class="php-var">$name</span> = <span class="php-var">$subname</span>;
+</span><span id="1187" class="l"><a class="l" href="#1187">1187: </a>            <span class="php-var">$subname</span> = <span class="php-quote">''</span>;
+</span><span id="1188" class="l"><a class="l" href="#1188">1188: </a>        }
+</span><span id="1189" class="l"><a class="l" href="#1189">1189: </a>
+</span><span id="1190" class="l"><a class="l" href="#1190">1190: </a>        <span class="php-comment">/** @var Field $field */</span>
+</span><span id="1191" class="l"><a class="l" href="#1191">1191: </a>        <span class="php-var">$field</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$fields</span>[<span class="php-var">$name</span>]) ? <span class="php-var">$fields</span>[<span class="php-var">$name</span>] : <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$name</span>);
 </span><span id="1192" class="l"><a class="l" href="#1192">1192: </a>        <span class="php-var">$delimiter</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;delimiters[<span class="php-var">$fullname</span>]) ? <span class="php-var">$this</span>-&gt;delimiters[<span class="php-var">$fullname</span>] : <span class="php-quote">&quot;&lt;br /&gt;&quot;</span>;
 </span><span id="1193" class="l"><a class="l" href="#1193">1193: </a>        
 </span><span id="1194" class="l"><a class="l" href="#1194">1194: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$subname</span> &amp;&amp; (<span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> Page || <span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> PageArray)) {
@@ -1863,7 +1863,7 @@
 </span><span id="1296" class="l"><a class="l" href="#1296">1296: </a>
 </span><span id="1297" class="l"><a class="l" href="#1297">1297: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$field</span> &amp;&amp; <span class="php-var">$field</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeDatetime) {
 </span><span id="1298" class="l"><a class="l" href="#1298">1298: </a>            <span class="php-comment">// datetime field</span>
-</span><span id="1299" class="l"><a class="l" href="#1299">1299: </a>            <span class="php-var">$value</span> = <span class="php-var">$field</span>-&gt;type-&gt;formatValue(<span class="php-var">$p</span>, <span class="php-var">$field</span>, <span class="php-var">$value</span>); 
+</span><span id="1299" class="l"><a class="l" href="#1299">1299: </a>            <span class="php-comment">// $value = $field-&gt;type-&gt;formatValue($p, $field, $value); </span>
 </span><span id="1300" class="l"><a class="l" href="#1300">1300: </a>            <span class="php-var">$value</span> = <span class="php-quote">&quot;&lt;span class='datetime'&gt;</span><span class="php-var">$value</span><span class="php-quote">&lt;/span&gt;&quot;</span>;
 </span><span id="1301" class="l"><a class="l" href="#1301">1301: </a>
 </span><span id="1302" class="l"><a class="l" href="#1302">1302: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$field</span> &amp;&amp; <span class="php-var">$field</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeCheckbox) {
