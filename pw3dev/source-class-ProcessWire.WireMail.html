@@ -8,7 +8,7 @@
 	<title>File core/WireMail.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?19402227"></script>
+	<script type="text/javascript" src="elementlist.js?2355310455"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.105 dev</span>
+			<span>Overview version 3.0.106 dev</span>
 		</a>
 
 
@@ -885,7 +885,7 @@
 </span><span id="318" class="l"><a class="l" href="#318">318: </a>        }
 </span><span id="319" class="l"><a class="l" href="#319">319: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$name</span>) <span class="php-var">$this</span>-&gt;<span class="php-keyword2">mail</span>[<span class="php-quote">'replyToName'</span>] = <span class="php-var">$this</span>-&gt;sanitizeHeader(<span class="php-var">$name</span>); 
 </span><span id="320" class="l"><a class="l" href="#320">320: </a>        <span class="php-var">$this</span>-&gt;<span class="php-keyword2">mail</span>[<span class="php-quote">'replyTo'</span>] = <span class="php-var">$email</span>;
-</span><span id="321" class="l"><a class="l" href="#321">321: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$name</span>)) <span class="php-var">$name</span> = <span class="php-var">$this</span>-&gt;<span class="php-keyword2">mail</span>[<span class="php-quote">'replyToName'</span>]; 
+</span><span id="321" class="l"><a class="l" href="#321">321: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$name</span>) &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;<span class="php-keyword2">mail</span>[<span class="php-quote">'replyToName'</span>])) <span class="php-var">$name</span> = <span class="php-var">$this</span>-&gt;<span class="php-keyword2">mail</span>[<span class="php-quote">'replyToName'</span>]; 
 </span><span id="322" class="l"><a class="l" href="#322">322: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strlen</span>(<span class="php-var">$name</span>)) <span class="php-var">$email</span> = <span class="php-var">$this</span>-&gt;bundleEmailAndName(<span class="php-var">$email</span>, <span class="php-var">$name</span>); 
 </span><span id="323" class="l"><a class="l" href="#323">323: </a>        <span class="php-var">$this</span>-&gt;<span class="php-keyword2">header</span>(<span class="php-quote">'Reply-To'</span>, <span class="php-var">$email</span>); 
 </span><span id="324" class="l"><a class="l" href="#324">324: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>; 

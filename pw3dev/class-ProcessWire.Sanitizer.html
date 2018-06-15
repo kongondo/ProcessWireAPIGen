@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Sanitizer | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?19402227"></script>
+	<script type="text/javascript" src="elementlist.js?2355310455"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.105 dev</span>
+			<span>Overview version 3.0.106 dev</span>
 		</a>
 
 
@@ -622,7 +622,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<b>Link:</b>
 				<a href="http://processwire.com/api/variables/sanitizer/">Offical $sanitizer API variable Documentation</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Sanitizer.html#4-2846" title="Go to source code">core/Sanitizer.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Sanitizer.html#4-2850" title="Go to source code">core/Sanitizer.php</a><br>
 	</div>
 
 
@@ -1923,22 +1923,22 @@ maximum characters allowed, or 0=no max (default=255). - <code>maxBytes</code>
 (default=false). - <code>stripQuotes</code> (bool): strip out any "quote" or
 'quote' characters? Specify true, or character to replace with. (default=false)
 - <code>stripSpace</code> (bool|string): strip whitespace? Specify true or
-character to replace whitespace with (default=false). - <code>reduceSpace</code>
-(bool|string): reduce consecutive whitespace to single? Specify true or
-character to reduce to (default=false). Note that the reduceSpace option is an
-alternative to the stripSpace option, they should not be used together. -
-<code>allowableTags</code> (string): markup tags that are allowed, if stripTags
-is true (use same format as for PHP's <code>strip_tags()</code> function. -
-<code>multiLine</code> (bool): allow multiple lines? if false, then
-$newlineReplacement below is applicable (default=false). -
-<code>convertEntities</code> (bool): convert HTML entities to equivalent
-character(s)? (default=false). - <code>newlineReplacement</code> (string):
-character to replace newlines with, OR specify boolean true to remove extra
-lines (default=" "). - <code>truncateTail</code> (bool): if truncate necessary
-for maxLength, truncate from end/tail? Use false to truncate head
-(default=true). - <code>inCharset</code> (string): input character set
-(default="UTF-8"). - <code>outCharset</code> (string): output character set
-(default="UTF-8").</dd>
+character to replace whitespace with (default=false). Since 3.0.105 -
+<code>reduceSpace</code> (bool|string): reduce consecutive whitespace to single?
+Specify true or character to reduce to (default=false). Note that the
+reduceSpace option is an alternative to the stripSpace option, they should not
+be used together. Since 3.0.105 - <code>allowableTags</code> (string): markup
+tags that are allowed, if stripTags is true (use same format as for PHP's
+<code>strip_tags()</code> function. - <code>multiLine</code> (bool): allow
+multiple lines? if false, then $newlineReplacement below is applicable
+(default=false). - <code>convertEntities</code> (bool): convert HTML entities to
+equivalent character(s)? (default=false). Since 3.0.105 -
+<code>newlineReplacement</code> (string): character to replace newlines with, OR
+specify boolean true to remove extra lines (default=" "). -
+<code>truncateTail</code> (bool): if truncate necessary for maxLength, truncate
+from end/tail? Use false to truncate head (default=true). Since 3.0.105 -
+<code>inCharset</code> (string): input character set (default="UTF-8"). -
+<code>outCharset</code> (string): output character set (default="UTF-8").</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2007,18 +2007,19 @@ maximum characters allowed, or 0=no max (default=16384 or 16kb). -
 maxLength*3 or 48kb). - <code>stripTags</code> (bool): strip markup tags?
 (default=true). - <code>stripMB4</code> (bool): strip emoji and other 4-byte
 UTF-8? (default=false). - <code>stripIndents</code> (bool): Remove indents
-(space/tabs) at the beginning of lines? (default=false) -
+(space/tabs) at the beginning of lines? (default=false). Since 3.0.105 -
 <code>reduceSpace</code> (bool|string): reduce consecutive whitespace to single?
-Specify true or character to reduce to (default=false). -
+Specify true or character to reduce to (default=false). Since 3.0.105 -
 <code>allowableTags</code> (string): markup tags that are allowed, if stripTags
 is true (use same format as for PHP's <code>strip_tags()</code> function. -
 <code>convertEntities</code> (bool): convert HTML entities to equivalent
-character(s)? (default=false). - <code>truncateTail</code> (bool): if truncate
-necessary for maxLength, truncate from end/tail? Use false to truncate head
-(default=true). - <code>allowCRLF</code> (bool): allow CR+LF newlines (i.e.
-"\r\n")? (default=false, which means "\r\n" is replaced with "\n"). -
-<code>inCharset</code> (string): input character set (default="UTF-8"). -
-<code>outCharset</code> (string): output character set (default="UTF-8").</dd>
+character(s)? (default=false). Since 3.0.105 - <code>truncateTail</code> (bool):
+if truncate necessary for maxLength, truncate from end/tail? Use false to
+truncate head (default=true). Since 3.0.105 - <code>allowCRLF</code> (bool):
+allow CR+LF newlines (i.e. "\r\n")? (default=false, which means "\r\n" is
+replaced with "\n"). - <code>inCharset</code> (string): input character set
+(default="UTF-8"). - <code>outCharset</code> (string): output character set
+(default="UTF-8").</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2635,7 +2636,7 @@ converted, ensuring there are no entities possible in returned value.</p>
 					<dd><code>string</code><br>$str String to remove entities from</dd>
 					<dt><var>$flags</var></dt>
 					<dd><code>integer|boolean</code><br>$flags See PHP html_entity_decode function for flags, OR specify boolean true to
-convert all entities and remove any that cannot be converted.</dd>
+convert all entities and remove any that cannot be converted (since 3.0.105).</dd>
 					<dt><var>$encoding</var></dt>
 					<dd><code>string</code><br>$encoding Encoding (default="UTF-8").</dd>
 				</dl></div>
@@ -2814,7 +2815,7 @@ href="http://htmlpurifier.org/live/configdoc/plain.html">http://htmlpurifier.org
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeWhitespace">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#1982-2034" title="Go to source code">removeWhitespace</a>( <span>string <var>$str</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#1982-2035" title="Go to source code">removeWhitespace</a>( <span>string <var>$str</var></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2851,6 +2852,10 @@ may remain. (default=[])</dd>
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.105<br>
+				</div>
 
 
 		</div>
@@ -2867,7 +2872,7 @@ may remain. (default=[])</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getWhitespaceArray">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2036-2069" title="Go to source code">getWhitespaceArray</a>( <span>boolean|integer <var>$html</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2037-2071" title="Go to source code">getWhitespaceArray</a>( <span>boolean|integer <var>$html</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2898,6 +2903,10 @@ in strings</p>
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.105<br>
+				</div>
 
 
 		</div>
@@ -2914,7 +2923,7 @@ in strings</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_truncate">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2071-2130" title="Go to source code">truncate</a>( <span>string <var>$str</var></span>, <span>integer|array <var>$maxLength</var> = <span class="php-num">300</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2073-2133" title="Go to source code">truncate</a>( <span>string <var>$str</var></span>, <span>integer|array <var>$maxLength</var> = <span class="php-num">300</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3001,6 +3010,10 @@ sentence may not end with, space-separated values (default='Mr. Mrs. …')</dd>
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.101<br>
+				</div>
 
 
 		</div>
@@ -3017,7 +3030,7 @@ sentence may not end with, space-separated values (default='Mr. Mrs. …')</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeMB4">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2132-2167" title="Go to source code">removeMB4</a>( <span>string|array <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2135-2170" title="Go to source code">removeMB4</a>( <span>string|array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3066,7 +3079,7 @@ string or array, it just returns it without modification.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_string">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2169-2203" title="Go to source code">string</a>( <span>string|integer|array|object|boolean|float <var>$value</var></span>, <span>string|null <var>$sanitizer</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2172-2206" title="Go to source code">string</a>( <span>string|integer|array|object|boolean|float <var>$value</var></span>, <span>string|null <var>$sanitizer</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3116,7 +3129,7 @@ returning</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_date">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2205-2267" title="Go to source code">date</a>( <span>string|integer <var>$value</var></span>, <span>string|null <var>$format</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2208-2270" title="Go to source code">date</a>( <span>string|integer <var>$value</var></span>, <span>string|null <var>$format</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3189,7 +3202,7 @@ Requires $format. (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_match">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2269-2284" title="Go to source code">match</a>( <span>string <var>$value</var></span>, <span>string <var>$regex</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2272-2287" title="Go to source code">match</a>( <span>string <var>$value</var></span>, <span>string <var>$regex</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3238,7 +3251,7 @@ Requires $format. (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_int">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2291-2320" title="Go to source code">int</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2294-2323" title="Go to source code">int</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3291,7 +3304,7 @@ an integer)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_intUnsigned">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2322-2340" title="Go to source code">intUnsigned</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2325-2343" title="Go to source code">intUnsigned</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3345,7 +3358,7 @@ an integer)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_intSigned">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2342-2358" title="Go to source code">intSigned</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2345-2361" title="Go to source code">intSigned</a>( <span>mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3395,7 +3408,7 @@ use when provided value is null or blank string (default=0)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_float">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2360-2449" title="Go to source code">float</a>( <span>float|string|integer <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2363-2452" title="Go to source code">float</a>( <span>float|string|integer <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3448,7 +3461,7 @@ allowed value, excluding blankValue (default=null)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____array">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2456-2527" title="Go to source code">___array</a>( <span>array|string|mixed <var>$value</var></span>, <span>string <var>$sanitizer</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2459-2530" title="Go to source code">___array</a>( <span>array|string|mixed <var>$value</var></span>, <span>string <var>$sanitizer</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3512,7 +3525,7 @@ delimiter will be used, default=array("|", ",") - <code>enclosure</code>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_intArray">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2529-2553" title="Go to source code">intArray</a>( <span>array|string|mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2532-2556" title="Go to source code">intArray</a>( <span>array|string|mixed <var>$value</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3567,7 +3580,7 @@ value in array.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minArray">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2555-2630" title="Go to source code">minArray</a>( <span>array <var>$data</var></span>, <span>boolean|array <var>$allowEmpty</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$convert</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2558-2633" title="Go to source code">minArray</a>( <span>array <var>$data</var></span>, <span>boolean|array <var>$allowEmpty</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$convert</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3623,7 +3636,7 @@ string to integer (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_option">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2632-2646" title="Go to source code">option</a>( <span>string|integer <var>$value</var></span>, <span>array <var>$allowedValues</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2635-2649" title="Go to source code">option</a>( <span>string|integer <var>$value</var></span>, <span>array <var>$allowedValues</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3669,7 +3682,7 @@ string to integer (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_options">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2648-2665" title="Go to source code">options</a>( <span>array <var>$values</var></span>, <span>array <var>$allowedValues</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2651-2668" title="Go to source code">options</a>( <span>array <var>$values</var></span>, <span>array <var>$allowedValues</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3715,7 +3728,7 @@ string to integer (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bool">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2672-2703" title="Go to source code">bool</a>( <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2675-2706" title="Go to source code">bool</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3771,7 +3784,7 @@ string to integer (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_testAll">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2705-2764" title="Go to source code">testAll</a>( <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2708-2767" title="Go to source code">testAll</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3819,7 +3832,7 @@ resulting value</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTextTools">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2766-2778" title="Go to source code">getTextTools</a>( )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2769-2782" title="Go to source code">getTextTools</a>( )</code>
 
 		<div class="description short">
 			
@@ -3840,6 +3853,10 @@ resulting value</p>
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.101<br>
+				</div>
 
 
 		</div>
@@ -3856,7 +3873,7 @@ resulting value</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_validateFile">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2785-2839" title="Go to source code">validateFile</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2789-2843" title="Go to source code">validateFile</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3912,7 +3929,7 @@ file type.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-ProcessWire.Sanitizer.html#2842-2844" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-ProcessWire.Sanitizer.html#2846-2848" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			

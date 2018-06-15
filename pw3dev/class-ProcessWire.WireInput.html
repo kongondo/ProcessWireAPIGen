@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireInput | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?19402227"></script>
+	<script type="text/javascript" src="elementlist.js?2355310455"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.105 dev</span>
+			<span>Overview version 3.0.106 dev</span>
 		</a>
 
 
@@ -613,7 +613,7 @@ COOKIE variables and more.</p>
 
 				<b>Link:</b>
 				<a href="http://processwire.com/api/variables/input/">Offical $input API variable Documentation</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.WireInput.html#14-672" title="Go to source code">core/WireInput.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireInput.html#14-748" title="Go to source code">core/WireInput.php</a><br>
 	</div>
 
 
@@ -1067,7 +1067,7 @@ display main page } ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_urlSegmentStr">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#304-341" title="Go to source code">urlSegmentStr</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#304-380" title="Go to source code">urlSegmentStr</a>( <span>boolean <var>$verbose</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1108,6 +1108,22 @@ segments present, do some default behavior echo $page-&gt;body; } ~~~~~</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$verbose</var></dt>
+					<dd><code>boolean</code><br>$verbose Include pagination number (pageNum) and trailing slashes, when
+appropriate? (default=false) - Use this option for a more link-ready version of
+the URL segment string (since 3.0.106).</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Options to adjust behavior (since 3.0.106): - <code>segments</code>
+(array|null): Optionally specify URL segments to use, rather than those from
+current request. (default=null) - <code>pageNum</code> (int): Optionally specify
+page number to use rather than current. (default=current page number) -
+<code>page</code> (Page): Optionally specify Page to use for context.
+(default=current page) - <em>NOTE</em> the <code>pageNum</code> and
+<code>page</code> options are not applicable unless the $verbose argument is
+true.</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
@@ -1136,7 +1152,7 @@ none<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pageNum">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#344-367" title="Go to source code">pageNum</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#382-405" title="Go to source code">pageNum</a>( )</code>
 
 		<div class="description short">
 			
@@ -1177,6 +1193,64 @@ page</a>"; } ~~~~~</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="pageNumStr" id="_pageNumStr">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pageNumStr">#</a>
+		<code><a href="source-class-ProcessWire.WireInput.html#407-429" title="Go to source code">pageNumStr</a>( <span>integer <var>$pageNum</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Return the string that represents the page number URL segment</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return the string that represents the page number URL segment</p>
+
+<p>Returns blank when page number is 1, since page 1 is assumed when no
+pagination number present in URL.</p>
+
+<p>This is the string that gets appended to the URL and typically looks like
+<code>page123</code>, but can be changed by modifying the
+<code>$config-&gt;pageNumUrlPrefix</code> setting, or specifying
+language-specific page number settings in the LanguageSupportPageNames
+module.</p>
+
+<p>#pw-group-URL-segments</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pageNum</var></dt>
+					<dd><code>integer</code><br>$pageNum Optionally specify page number to use (default=0, which means use
+current page number)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						3.0.106<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setPageNum" id="_setPageNum">
 
 		<td class="attributes"><code>
@@ -1188,7 +1262,7 @@ page</a>"; } ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPageNum">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#369-382" title="Go to source code">setPageNum</a>( <span>integer <var>$num</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#431-444" title="Go to source code">setPageNum</a>( <span>integer <var>$num</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1234,7 +1308,7 @@ page</a>"; } ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#384-430" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#446-492" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1284,7 +1358,7 @@ $input-&gt;pageNum.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___isset">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#432-434" title="Go to source code">__isset</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#494-496" title="Go to source code">__isset</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1313,7 +1387,7 @@ $input-&gt;pageNum.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#436-516" title="Go to source code">url</a>( <span>boolean <var>$withQueryString</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#498-578" title="Go to source code">url</a>( <span>boolean <var>$withQueryString</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1378,7 +1452,7 @@ entity encode for output echo "You accessed this page at: $url"; ~~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_httpUrl">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#518-543" title="Go to source code">httpUrl</a>( <span>boolean <var>$withQueryString</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#580-605" title="Go to source code">httpUrl</a>( <span>boolean <var>$withQueryString</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1432,6 +1506,47 @@ entity encode for output echo "You accessed this page at: $url"; ~~~~~~</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="httpHostUrl" id="_httpHostUrl">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_httpHostUrl">#</a>
+		<code><a href="source-class-ProcessWire.WireInput.html#607-619" title="Go to source code">httpHostUrl</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get current scheme and URL for hostname without any path or query string</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get current scheme and URL for hostname without any path or query string</p>
+
+<p>For example: <code>https://www.domain.com</code></p>
+
+<p>#pw-group-URLs</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="fragment" id="_fragment">
 
 		<td class="attributes"><code>
@@ -1443,7 +1558,7 @@ entity encode for output echo "You accessed this page at: $url"; ~~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fragment">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#545-560" title="Go to source code">fragment</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#621-636" title="Go to source code">fragment</a>( )</code>
 
 		<div class="description short">
 			
@@ -1485,7 +1600,7 @@ server, so this function may be useless.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_queryString">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#562-577" title="Go to source code">queryString</a>( <span>array <var>$overrides</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#638-653" title="Go to source code">queryString</a>( <span>array <var>$overrides</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1536,7 +1651,7 @@ existing ones.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_scheme">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#579-591" title="Go to source code">scheme</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#655-667" title="Go to source code">scheme</a>( )</code>
 
 		<div class="description short">
 			
@@ -1578,7 +1693,7 @@ schemes.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_requestMethod">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#593-619" title="Go to source code">requestMethod</a>( <span>string <var>$method</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#669-695" title="Go to source code">requestMethod</a>( <span>string <var>$method</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1645,7 +1760,7 @@ matches</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unregisterGLOBALS">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#621-652" title="Go to source code">unregisterGLOBALS</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#697-728" title="Go to source code">unregisterGLOBALS</a>( )</code>
 
 		<div class="description short">
 			
@@ -1685,7 +1800,7 @@ href="http://www.php.net/manual/en/faq.misc.php#faq.misc.registerglobals">http:/
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.WireInput.html#654-671" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireInput.html#730-747" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
