@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\User | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2355310455"></script>
+	<script type="text/javascript" src="elementlist.js?1998316032"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.106 dev</span>
+			<span>Overview version 3.0.107 dev</span>
 		</a>
 
 
@@ -639,7 +639,7 @@ user, and the User class is Page type used for all users.</p>
 
 				<b>Link:</b>
 				<a href="http://processwire.com/api/variables/user/">Offical $user API variable Documentation</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.User.html#4-481" title="Go to source code">core/User.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.User.html#4-488" title="Go to source code">core/User.php</a><br>
 	</div>
 
 
@@ -838,7 +838,7 @@ $user-&gt;removeRole('editor'); $user-&gt;save(); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasPermission">#</a>
-		<code><a href="source-class-ProcessWire.User.html#139-179" title="Go to source code">hasPermission</a>( <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#139-187" title="Go to source code">hasPermission</a>( <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|boolean|string <var>$context</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -869,7 +869,9 @@ permission for $page } ~~~~~</p>
 					<dt><var>$name</var></dt>
 					<dd><code>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code></code><br>$name Permission name, object or id.</dd>
 					<dt><var>$context</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code></code><br>$context Page or Template</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|boolean|string</code><br>$context Page or Template... - or specify boolean true to return if user has
+permission OR if it was added at any template - or specify string "templates" to
+return array of Template objects where user has permission</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -894,7 +896,7 @@ permission for $page } ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____hasPagePermission">#</a>
-		<code><a href="source-class-ProcessWire.User.html#181-269" title="Go to source code">___hasPagePermission</a>( <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#189-277" title="Go to source code">___hasPagePermission</a>( <span>string|<code><a href="class-ProcessWire.Permission.html">ProcessWire\Permission</a></code> <var>$name</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -945,7 +947,7 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____hasTemplatePermission">#</a>
-		<code><a href="source-class-ProcessWire.User.html#272-340" title="Go to source code">___hasTemplatePermission</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|integer|string <var>$template</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#280-347" title="Go to source code">___hasTemplatePermission</a>( <span>string <var>$name</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code>|integer|string <var>$template</var></span> )</code>
 
 		<div class="description short">
 			
@@ -995,7 +997,7 @@ PagePermissions does use this function for some of it's checking.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPermissions">#</a>
-		<code><a href="source-class-ProcessWire.User.html#342-375" title="Go to source code">getPermissions</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#349-382" title="Go to source code">getPermissions</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1043,7 +1045,7 @@ $user-&gt;getPermissions($page); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSuperuser">#</a>
-		<code><a href="source-class-ProcessWire.User.html#377-398" title="Go to source code">isSuperuser</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#384-405" title="Go to source code">isSuperuser</a>( )</code>
 
 		<div class="description short">
 			
@@ -1083,7 +1085,7 @@ potentially faster.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isGuest">#</a>
-		<code><a href="source-class-ProcessWire.User.html#400-408" title="Go to source code">isGuest</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#407-415" title="Go to source code">isGuest</a>( )</code>
 
 		<div class="description short">
 			
@@ -1120,7 +1122,7 @@ potentially faster.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isLoggedin">#</a>
-		<code><a href="source-class-ProcessWire.User.html#410-418" title="Go to source code">isLoggedin</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#417-425" title="Go to source code">isLoggedin</a>( )</code>
 
 		<div class="description short">
 			
@@ -1157,7 +1159,7 @@ potentially faster.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFieldValue">#</a>
-		<code><a href="source-class-ProcessWire.User.html#420-435" title="Go to source code">getFieldValue</a>( <span>string <var>$key</var></span>, <span>string|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|array <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#427-442" title="Go to source code">getFieldValue</a>( <span>string <var>$key</var></span>, <span>string|<code><a href="class-ProcessWire.Selectors.html">ProcessWire\Selectors</a></code>|array <var>$selector</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1203,7 +1205,7 @@ potentially faster.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editUrl">#</a>
-		<code><a href="source-class-ProcessWire.User.html#437-452" title="Go to source code">editUrl</a>( <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#444-459" title="Go to source code">editUrl</a>( <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1254,7 +1256,7 @@ hostname in URL (default=auto detect).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____setEditor">#</a>
-		<code><a href="source-class-ProcessWire.User.html#454-467" title="Go to source code">___setEditor</a>( <span><code><a href="class-ProcessWire.WirePageEditor.html">ProcessWire\WirePageEditor</a></code> <var>$editor</var></span> )</code>
+		<code><a href="source-class-ProcessWire.User.html#461-474" title="Go to source code">___setEditor</a>( <span><code><a href="class-ProcessWire.WirePageEditor.html">ProcessWire\WirePageEditor</a></code> <var>$editor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1299,7 +1301,7 @@ hostname in URL (default=auto detect).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPagesManager">#</a>
-		<code><a href="source-class-ProcessWire.User.html#469-479" title="Go to source code">getPagesManager</a>( )</code>
+		<code><a href="source-class-ProcessWire.User.html#476-486" title="Go to source code">getPagesManager</a>( )</code>
 
 		<div class="description short">
 			
@@ -1340,8 +1342,10 @@ hostname in URL (default=auto detect).</dd>
 			<a href="class-ProcessWire.Page.html#____getMarkup">___getMarkup()</a>, 
 			<a href="class-ProcessWire.Page.html#____getUnknown">___getUnknown()</a>, 
 			<a href="class-ProcessWire.Page.html#____isPublic">___isPublic()</a>, 
+			<a href="class-ProcessWire.Page.html#____links">___links()</a>, 
 			<a href="class-ProcessWire.Page.html#____loaded">___loaded()</a>, 
 			<a href="class-ProcessWire.Page.html#____path">___path()</a>, 
+			<a href="class-ProcessWire.Page.html#____references">___references()</a>, 
 			<a href="class-ProcessWire.Page.html#____renderField">___renderField()</a>, 
 			<a href="class-ProcessWire.Page.html#____renderValue">___renderValue()</a>, 
 			<a href="class-ProcessWire.Page.html#____rootParent">___rootParent()</a>, 
@@ -1436,7 +1440,8 @@ hostname in URL (default=auto detect).</dd>
 			<a href="class-ProcessWire.Page.html#_trash">trash()</a>, 
 			<a href="class-ProcessWire.Page.html#_traversal">traversal()</a>, 
 			<a href="class-ProcessWire.Page.html#_uncache">uncache()</a>, 
-			<a href="class-ProcessWire.Page.html#_url">url()</a>
+			<a href="class-ProcessWire.Page.html#_url">url()</a>, 
+			<a href="class-ProcessWire.Page.html#_urls">urls()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -1532,6 +1537,7 @@ hostname in URL (default=auto detect).</dd>
 			<a href="class-ProcessWire.Page.html#statusSystemOverride"><b>statusSystemOverride</b></a>, 
 			<a href="class-ProcessWire.Page.html#statusTemp"><b>statusTemp</b></a>, 
 			<a href="class-ProcessWire.Page.html#statusTrash"><b>statusTrash</b></a>, 
+			<a href="class-ProcessWire.Page.html#statusUnique"><b>statusUnique</b></a>, 
 			<a href="class-ProcessWire.Page.html#statusUnpublished"><b>statusUnpublished</b></a>, 
 			<a href="class-ProcessWire.Page.html#statusVersions"><b>statusVersions</b></a>
 		</code></td>

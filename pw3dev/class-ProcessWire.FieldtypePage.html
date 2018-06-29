@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\FieldtypePage | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2355310455"></script>
+	<script type="text/javascript" src="elementlist.js?1998316032"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.106 dev</span>
+			<span>Overview version 3.0.107 dev</span>
 		</a>
 
 
@@ -576,7 +576,7 @@
 <p>For documentation about the fields used in this class, please see:
 /wire/core/Fieldtype.php /wire/core/FieldtypeMulti.php</p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2018 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -646,7 +646,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.FieldtypePage.html#4-1527" title="Go to source code">modules/Fieldtype/FieldtypePage.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.FieldtypePage.html#4-1560" title="Go to source code">modules/Fieldtype/FieldtypePage.module</a><br>
 	</div>
 
 
@@ -2067,7 +2067,7 @@ means.</p>
 	<tr data-order="findReferences" id="_findReferences">
 
 		<td class="attributes"><code>
-			 private 
+			 public 
 			<code><a href="class-ProcessWire.PageArray.html">ProcessWire\PageArray</a></code>|array|integer
 			
 			</code>
@@ -2075,7 +2075,7 @@ means.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findReferences">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypePage.html#1367-1459" title="Go to source code">findReferences</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|boolean <var>$selector</var> = <span class="php-quote">''</span></span>, <span>boolean|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null <var>$field</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypePage.html#1367-1492" title="Go to source code">findReferences</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|boolean <var>$selector</var> = <span class="php-quote">''</span></span>, <span>boolean|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null <var>$field</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$getCount</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2088,8 +2088,6 @@ name</p>
 			
 <p>Return pages referencing the given $page, optionally indexed by field
 name</p>
-
-<p>Not currently applicable, for future use.</p>
 
 <p>The default behavior when no arguments are provided (except $page) is to
 simply return a PageArray of all pages referencing the given one (excluding
@@ -2106,10 +2104,13 @@ limit). This method supports pagination when specifying a limit.</p>
 					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page to get references for</dd>
 					<dt><var>$selector</var></dt>
 					<dd><code>string|boolean</code><br>$selector Optionally filter/modify returned result, i.e. "limit=10,
-include=all", etc. Or specify boolean TRUE to get a count.</dd>
+include=all", etc. Or boolean TRUE as shortcut for "include=all".</dd>
 					<dt><var>$field</var></dt>
 					<dd><code>boolean|<code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|null</code><br>$field Optionally specify Field to limit results to (default includes all fields
 of this type), Or boolean TRUE to return array indexed by field name.</dd>
+					<dt><var>$getCount</var></dt>
+					<dd><code>boolean</code><br>$getCount Specify true to get a count (int) rather than a PageArray
+(default=false)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2138,7 +2139,7 @@ option (boolean true) specified for $selector.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTemplateIDs">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypePage.html#1461-1495" title="Go to source code">getTemplateIDs</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|array <var>$field</var></span>, <span>boolean <var>$getString</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypePage.html#1494-1528" title="Go to source code">getTemplateIDs</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code>|array <var>$field</var></span>, <span>boolean <var>$getString</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2191,7 +2192,7 @@ included.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModuleConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.FieldtypePage.html#1497-1525" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.FieldtypePage.html#1530-1558" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
