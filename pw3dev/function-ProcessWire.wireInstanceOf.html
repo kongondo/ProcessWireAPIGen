@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireInstanceOf | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1998316032"></script>
+	<script type="text/javascript" src="elementlist.js?2238420684"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.107 dev</span>
+			<span>Overview version 3.0.108 dev</span>
 		</a>
 
 
@@ -268,6 +268,7 @@
 				<li><a href="class-ProcessWire.ProcessPageListRender.html">ProcessPageListRender</a></li>
 				<li><a href="class-ProcessWire.ProcessPageListRenderJSON.html">ProcessPageListRenderJSON</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSearch.html">ProcessPageSearch</a></li>
+				<li><a href="class-ProcessWire.ProcessPageSearchLive.html">ProcessPageSearchLive</a></li>
 				<li><a href="class-ProcessWire.ProcessPagesExportImport.html">ProcessPagesExportImport</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSort.html">ProcessPageSort</a></li>
 				<li><a href="class-ProcessWire.ProcessPageTrash.html">ProcessPageTrash</a></li>
@@ -397,6 +398,7 @@
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
 				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
+				<li><a href="class-ProcessWire.SearchableModule.html">SearchableModule</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
 				<li><a href="class-ProcessWire.WireMailInterface.html">WireMailInterface</a></li>
@@ -572,12 +574,17 @@
 <p>Does given instance (or class) represent an instance of the given className
 (or class names)?</p>
 
+<p>Since version 3.0.108 the $className argument may also represent an
+interface, array of interfaces, or mixed array of interfaces and class names.
+Previous versions did not support interfaces unless the $instance argument was
+an object.</p>
+
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireInstanceOf.html#843-884" title="Go to source code">core/Functions.php</a><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireInstanceOf.html#843-917" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -594,7 +601,7 @@
 		<td class="name"><code>string|array</code></td>
 		<td class="value"><code><var>$className</var></code></td>
 		<td>
-			 Class name or array of class names to test against.
+			 Class/interface name or array of class/interface names to test against.
 		</td>
 	</tr>
 	<tr id="$autoload">
@@ -616,7 +623,7 @@
 			Returns one of the following: - boolean false if not an instance (whether
 $className argument is string or array). - boolean true if given a single
 $className (string) and $instance is an instance of it. - string of first
-matching class name if $className was an array of classes to test.
+matching class/interface name if $className was an array of classes to test.
 		</td>
 	</tr>
 	</table>

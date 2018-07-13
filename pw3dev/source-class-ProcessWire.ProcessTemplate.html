@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessTemplate/ProcessTemplate.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1998316032"></script>
+	<script type="text/javascript" src="elementlist.js?2238420684"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.107 dev</span>
+			<span>Overview version 3.0.108 dev</span>
 		</a>
 
 
@@ -269,6 +269,7 @@
 				<li><a href="class-ProcessWire.ProcessPageListRender.html">ProcessPageListRender</a></li>
 				<li><a href="class-ProcessWire.ProcessPageListRenderJSON.html">ProcessPageListRenderJSON</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSearch.html">ProcessPageSearch</a></li>
+				<li><a href="class-ProcessWire.ProcessPageSearchLive.html">ProcessPageSearchLive</a></li>
 				<li><a href="class-ProcessWire.ProcessPagesExportImport.html">ProcessPagesExportImport</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSort.html">ProcessPageSort</a></li>
 				<li><a href="class-ProcessWire.ProcessPageTrash.html">ProcessPageTrash</a></li>
@@ -398,6 +399,7 @@
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
 				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
+				<li><a href="class-ProcessWire.SearchableModule.html">SearchableModule</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
 				<li><a href="class-ProcessWire.WireMailInterface.html">WireMailInterface</a></li>
@@ -624,7 +626,7 @@
 </span><span id="57" class="l"><a class="l" href="#57">  57: </a>            <span class="php-quote">'permanent'</span> =&gt; <span class="php-keyword1">true</span>, 
 </span><span id="58" class="l"><a class="l" href="#58">  58: </a>            <span class="php-quote">'icon'</span> =&gt; <span class="php-quote">'cubes'</span>, 
 </span><span id="59" class="l"><a class="l" href="#59">  59: </a>            <span class="php-quote">'useNavJSON'</span> =&gt; <span class="php-keyword1">true</span>, 
-</span><span id="60" class="l"><a class="l" href="#60">  60: </a>    
+</span><span id="60" class="l"><a class="l" href="#60">  60: </a>            <span class="php-quote">'searchable'</span> =&gt; <span class="php-quote">'templates'</span>, 
 </span><span id="61" class="l"><a class="l" href="#61">  61: </a>            <span class="php-comment">// add this permission if you want this Process available for roles other than Superuser</span>
 </span><span id="62" class="l"><a class="l" href="#62">  62: </a>            <span class="php-quote">'permission'</span> =&gt; <span class="php-quote">'template-admin'</span>, 
 </span><span id="63" class="l"><a class="l" href="#63">  63: </a>            );
@@ -3564,10 +3566,109 @@
 </span><span id="2997" class="l"><a class="l" href="#2997">2997: </a>        <span class="php-keyword1">return</span> <span class="php-var">$form</span>-&gt;render();
 </span><span id="2998" class="l"><a class="l" href="#2998">2998: </a>    }
 </span><span id="2999" class="l"><a class="l" href="#2999">2999: </a>
-</span><span id="3000" class="l"><a class="l" href="#3000">3000: </a>
-</span><span id="3001" class="l"><a class="l" href="#3001">3001: </a>}
-</span><span id="3002" class="l"><a class="l" href="#3002">3002: </a>
-</span><span id="3003" class="l"><a class="l" href="#3003">3003: </a></span></code></pre>
+</span><span id="3000" class="l"><a class="l" href="#3000">3000: </a>    <span class="php-comment">/**
+</span></span><span id="3001" class="l"><a class="l" href="#3001">3001: </a><span class="php-comment">     * Search for items containing $text and return an array representation of them
+</span></span><span id="3002" class="l"><a class="l" href="#3002">3002: </a><span class="php-comment">     *
+</span></span><span id="3003" class="l"><a class="l" href="#3003">3003: </a><span class="php-comment">     * Implementation for SearchableModule interface
+</span></span><span id="3004" class="l"><a class="l" href="#3004">3004: </a><span class="php-comment">     *
+</span></span><span id="3005" class="l"><a class="l" href="#3005">3005: </a><span class="php-comment">     * @param string $text Text to search for
+</span></span><span id="3006" class="l"><a class="l" href="#3006">3006: </a><span class="php-comment">     * @param array $options Options to modify behavior:
+</span></span><span id="3007" class="l"><a class="l" href="#3007">3007: </a><span class="php-comment">     *  - `edit` (bool): True if any 'url' returned should be to edit items rather than view them
+</span></span><span id="3008" class="l"><a class="l" href="#3008">3008: </a><span class="php-comment">     *  - `multilang` (bool): If true, search all languages rather than just current (default=true).
+</span></span><span id="3009" class="l"><a class="l" href="#3009">3009: </a><span class="php-comment">     *  - `start` (int): Start index (0-based), if pagination active (default=0).
+</span></span><span id="3010" class="l"><a class="l" href="#3010">3010: </a><span class="php-comment">     *  - `limit` (int): Limit to this many items, if pagination active (default=0, disabled).
+</span></span><span id="3011" class="l"><a class="l" href="#3011">3011: </a><span class="php-comment">     * @return array
+</span></span><span id="3012" class="l"><a class="l" href="#3012">3012: </a><span class="php-comment">     *
+</span></span><span id="3013" class="l"><a class="l" href="#3013">3013: </a><span class="php-comment">     */</span>
+</span><span id="3014" class="l"><a class="l" href="#3014">3014: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_search" href="#_search">search</a>(<span class="php-var">$text</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="3015" class="l"><a class="l" href="#3015">3015: </a>
+</span><span id="3016" class="l"><a class="l" href="#3016">3016: </a>        <span class="php-comment">/** @var Languages $languages */</span>
+</span><span id="3017" class="l"><a class="l" href="#3017">3017: </a>        <span class="php-var">$languages</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'langauges'</span>);
+</span><span id="3018" class="l"><a class="l" href="#3018">3018: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;getProcessPage();
+</span><span id="3019" class="l"><a class="l" href="#3019">3019: </a>        <span class="php-var">$property</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$options</span>[<span class="php-quote">'property'</span>]) ? <span class="php-var">$options</span>[<span class="php-quote">'property'</span>] : <span class="php-quote">''</span>;
+</span><span id="3020" class="l"><a class="l" href="#3020">3020: </a>
+</span><span id="3021" class="l"><a class="l" href="#3021">3021: </a>        <span class="php-var">$result</span> = <span class="php-keyword1">array</span>(
+</span><span id="3022" class="l"><a class="l" href="#3022">3022: </a>            <span class="php-quote">'title'</span> =&gt; <span class="php-var">$page</span>-&gt;id ? <span class="php-var">$page</span>-&gt;title : <span class="php-var">$this</span>-&gt;className(),
+</span><span id="3023" class="l"><a class="l" href="#3023">3023: </a>            <span class="php-quote">'items'</span> =&gt; <span class="php-keyword1">array</span>(),
+</span><span id="3024" class="l"><a class="l" href="#3024">3024: </a>            <span class="php-quote">'total'</span> =&gt; <span class="php-num">0</span>, 
+</span><span id="3025" class="l"><a class="l" href="#3025">3025: </a>            <span class="php-quote">'properties'</span> =&gt; <span class="php-keyword1">array</span>(
+</span><span id="3026" class="l"><a class="l" href="#3026">3026: </a>                <span class="php-quote">'name'</span>,
+</span><span id="3027" class="l"><a class="l" href="#3027">3027: </a>                <span class="php-quote">'label'</span>, 
+</span><span id="3028" class="l"><a class="l" href="#3028">3028: </a>                <span class="php-quote">'tags'</span>,
+</span><span id="3029" class="l"><a class="l" href="#3029">3029: </a>                <span class="php-quote">'fields'</span>,
+</span><span id="3030" class="l"><a class="l" href="#3030">3030: </a>            )
+</span><span id="3031" class="l"><a class="l" href="#3031">3031: </a>        );
+</span><span id="3032" class="l"><a class="l" href="#3032">3032: </a>        
+</span><span id="3033" class="l"><a class="l" href="#3033">3033: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'help'</span>])) <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="3034" class="l"><a class="l" href="#3034">3034: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$property</span>) &amp;&amp; !<span class="php-keyword2">in_array</span>(<span class="php-var">$property</span>, <span class="php-var">$result</span>[<span class="php-quote">'properties'</span>])) <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="3035" class="l"><a class="l" href="#3035">3035: </a>
+</span><span id="3036" class="l"><a class="l" href="#3036">3036: </a>        <span class="php-var">$looseItems</span> = <span class="php-keyword1">array</span>();
+</span><span id="3037" class="l"><a class="l" href="#3037">3037: </a>        <span class="php-var">$exactItems</span> = <span class="php-keyword1">array</span>();
+</span><span id="3038" class="l"><a class="l" href="#3038">3038: </a>        <span class="php-var">$cnt</span> = <span class="php-num">0</span>;
+</span><span id="3039" class="l"><a class="l" href="#3039">3039: </a>
+</span><span id="3040" class="l"><a class="l" href="#3040">3040: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>) <span class="php-keyword1">as</span> <span class="php-var">$item</span>) {
+</span><span id="3041" class="l"><a class="l" href="#3041">3041: </a>            <span class="php-comment">/** @var Template $item */</span>
+</span><span id="3042" class="l"><a class="l" href="#3042">3042: </a>            <span class="php-var">$search</span> = <span class="php-keyword1">array</span>(<span class="php-quote">' '</span>);
+</span><span id="3043" class="l"><a class="l" href="#3043">3043: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$property</span> || <span class="php-var">$property</span> == <span class="php-quote">'name'</span> ) <span class="php-var">$search</span>[] = <span class="php-var">$item</span>-&gt;name;
+</span><span id="3044" class="l"><a class="l" href="#3044">3044: </a>
+</span><span id="3045" class="l"><a class="l" href="#3045">3045: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$property</span> || <span class="php-var">$property</span> == <span class="php-quote">'label'</span>) {
+</span><span id="3046" class="l"><a class="l" href="#3046">3046: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'multilang'</span>]) &amp;&amp; <span class="php-var">$languages</span>) {
+</span><span id="3047" class="l"><a class="l" href="#3047">3047: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$languages</span> <span class="php-keyword1">as</span> <span class="php-var">$lang</span>) {
+</span><span id="3048" class="l"><a class="l" href="#3048">3048: </a>                        <span class="php-var">$search</span>[] = <span class="php-var">$item</span>-&gt;getLabel(<span class="php-var">$lang</span>);
+</span><span id="3049" class="l"><a class="l" href="#3049">3049: </a>                    }
+</span><span id="3050" class="l"><a class="l" href="#3050">3050: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="3051" class="l"><a class="l" href="#3051">3051: </a>                    <span class="php-var">$search</span>[] = <span class="php-var">$item</span>-&gt;getLabel();
+</span><span id="3052" class="l"><a class="l" href="#3052">3052: </a>                }
+</span><span id="3053" class="l"><a class="l" href="#3053">3053: </a>            }
+</span><span id="3054" class="l"><a class="l" href="#3054">3054: </a>
+</span><span id="3055" class="l"><a class="l" href="#3055">3055: </a>            <span class="php-comment">// when search matches field name exactly (that template has), allow template to be matched</span>
+</span><span id="3056" class="l"><a class="l" href="#3056">3056: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$property</span> == <span class="php-quote">'fields'</span>) {
+</span><span id="3057" class="l"><a class="l" href="#3057">3057: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$item</span>-&gt;fieldgroup <span class="php-keyword1">as</span> <span class="php-var">$field</span>) {
+</span><span id="3058" class="l"><a class="l" href="#3058">3058: </a>                    <span class="php-keyword1">if</span>(<span class="php-keyword2">strtolower</span>(<span class="php-var">$text</span>) == <span class="php-keyword2">strtolower</span>(<span class="php-var">$field</span>-&gt;name)) <span class="php-var">$search</span>[] = <span class="php-var">$field</span>-&gt;name;
+</span><span id="3059" class="l"><a class="l" href="#3059">3059: </a>                }
+</span><span id="3060" class="l"><a class="l" href="#3060">3060: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$property</span> == <span class="php-quote">'tags'</span>) {
+</span><span id="3061" class="l"><a class="l" href="#3061">3061: </a>                <span class="php-var">$search</span>[] = <span class="php-var">$item</span>-&gt;tags;
+</span><span id="3062" class="l"><a class="l" href="#3062">3062: </a>            }
+</span><span id="3063" class="l"><a class="l" href="#3063">3063: </a>
+</span><span id="3064" class="l"><a class="l" href="#3064">3064: </a>            <span class="php-var">$search</span> = <span class="php-keyword2">implode</span>(<span class="php-quote">' '</span>, <span class="php-var">$search</span>);
+</span><span id="3065" class="l"><a class="l" href="#3065">3065: </a>            <span class="php-var">$pos</span> = <span class="php-keyword2">stripos</span>(<span class="php-var">$search</span>, <span class="php-var">$text</span>);
+</span><span id="3066" class="l"><a class="l" href="#3066">3066: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$pos</span> === <span class="php-keyword1">false</span>) <span class="php-keyword1">continue</span>;
+</span><span id="3067" class="l"><a class="l" href="#3067">3067: </a>            <span class="php-var">$exact</span> = <span class="php-keyword2">stripos</span>(<span class="php-var">$search</span>, <span class="php-quote">&quot; </span><span class="php-var">$text</span><span class="php-quote">&quot;</span>);
+</span><span id="3068" class="l"><a class="l" href="#3068">3068: </a>            <span class="php-var">$numFields</span> = <span class="php-var">$item</span>-&gt;fieldgroup-&gt;<span class="php-keyword2">count</span>();
+</span><span id="3069" class="l"><a class="l" href="#3069">3069: </a>            <span class="php-var">$labelFields</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_n(<span class="php-quote">'%d field'</span>, <span class="php-quote">'%d fields'</span>, <span class="php-var">$numFields</span>), <span class="php-var">$numFields</span>);
+</span><span id="3070" class="l"><a class="l" href="#3070">3070: </a>            <span class="php-var">$label</span> = <span class="php-var">$item</span>-&gt;getLabel();
+</span><span id="3071" class="l"><a class="l" href="#3071">3071: </a>            <span class="php-var">$subtitle</span> = <span class="php-var">$label</span> == <span class="php-var">$item</span>-&gt;name ? <span class="php-var">$labelFields</span> : <span class="php-quote">&quot;</span><span class="php-var">$label</span><span class="php-quote"> (</span><span class="php-var">$labelFields</span><span class="php-quote">)&quot;</span>;
+</span><span id="3072" class="l"><a class="l" href="#3072">3072: </a>            
+</span><span id="3073" class="l"><a class="l" href="#3073">3073: </a>            <span class="php-var">$result</span>[<span class="php-quote">'total'</span>]++;
+</span><span id="3074" class="l"><a class="l" href="#3074">3074: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'limit'</span>]) &amp;&amp; <span class="php-var">$cnt</span> &gt;= <span class="php-var">$options</span>[<span class="php-quote">'limit'</span>]) <span class="php-keyword1">continue</span>;
+</span><span id="3075" class="l"><a class="l" href="#3075">3075: </a>
+</span><span id="3076" class="l"><a class="l" href="#3076">3076: </a>            <span class="php-var">$item</span> = <span class="php-keyword1">array</span>(
+</span><span id="3077" class="l"><a class="l" href="#3077">3077: </a>                <span class="php-quote">'id'</span> =&gt; <span class="php-var">$item</span>-&gt;id,
+</span><span id="3078" class="l"><a class="l" href="#3078">3078: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-var">$item</span>-&gt;name,
+</span><span id="3079" class="l"><a class="l" href="#3079">3079: </a>                <span class="php-quote">'title'</span> =&gt; <span class="php-var">$item</span>-&gt;name,
+</span><span id="3080" class="l"><a class="l" href="#3080">3080: </a>                <span class="php-quote">'subtitle'</span> =&gt; <span class="php-keyword2">trim</span>(<span class="php-var">$subtitle</span>), 
+</span><span id="3081" class="l"><a class="l" href="#3081">3081: </a>                <span class="php-quote">'summary'</span> =&gt; <span class="php-var">$item</span>-&gt;fieldgroup-&gt;<span class="php-keyword2">implode</span>(<span class="php-quote">', '</span>, <span class="php-quote">'name'</span>),
+</span><span id="3082" class="l"><a class="l" href="#3082">3082: </a>                <span class="php-quote">'icon'</span> =&gt; <span class="php-var">$item</span>-&gt;getIcon(),
+</span><span id="3083" class="l"><a class="l" href="#3083">3083: </a>                <span class="php-quote">'url'</span> =&gt; <span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'edit'</span>]) ? <span class="php-quote">''</span> : <span class="php-var">$page</span>-&gt;url() . <span class="php-quote">&quot;edit?id=</span><span class="php-var">$item</span><span class="php-quote">-&gt;id&quot;</span>,
+</span><span id="3084" class="l"><a class="l" href="#3084">3084: </a>            );
+</span><span id="3085" class="l"><a class="l" href="#3085">3085: </a>
+</span><span id="3086" class="l"><a class="l" href="#3086">3086: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$exact</span>) {
+</span><span id="3087" class="l"><a class="l" href="#3087">3087: </a>                <span class="php-var">$exactItems</span>[] = <span class="php-var">$item</span>;
+</span><span id="3088" class="l"><a class="l" href="#3088">3088: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="3089" class="l"><a class="l" href="#3089">3089: </a>                <span class="php-var">$looseItems</span>[] = <span class="php-var">$item</span>;
+</span><span id="3090" class="l"><a class="l" href="#3090">3090: </a>            }
+</span><span id="3091" class="l"><a class="l" href="#3091">3091: </a>
+</span><span id="3092" class="l"><a class="l" href="#3092">3092: </a>            <span class="php-var">$cnt</span>++;
+</span><span id="3093" class="l"><a class="l" href="#3093">3093: </a>        }
+</span><span id="3094" class="l"><a class="l" href="#3094">3094: </a>
+</span><span id="3095" class="l"><a class="l" href="#3095">3095: </a>        <span class="php-var">$result</span>[<span class="php-quote">'items'</span>] = <span class="php-keyword2">array_merge</span>(<span class="php-var">$exactItems</span>, <span class="php-var">$looseItems</span>);
+</span><span id="3096" class="l"><a class="l" href="#3096">3096: </a>
+</span><span id="3097" class="l"><a class="l" href="#3097">3097: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="3098" class="l"><a class="l" href="#3098">3098: </a>    }
+</span><span id="3099" class="l"><a class="l" href="#3099">3099: </a>
+</span><span id="3100" class="l"><a class="l" href="#3100">3100: </a>}
+</span><span id="3101" class="l"><a class="l" href="#3101">3101: </a>
+</span><span id="3102" class="l"><a class="l" href="#3102">3102: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

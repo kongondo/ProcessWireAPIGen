@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\MarkupPageArray | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1998316032"></script>
+	<script type="text/javascript" src="elementlist.js?2238420684"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.107 dev</span>
+			<span>Overview version 3.0.108 dev</span>
 		</a>
 
 
@@ -268,6 +268,7 @@
 				<li><a href="class-ProcessWire.ProcessPageListRender.html">ProcessPageListRender</a></li>
 				<li><a href="class-ProcessWire.ProcessPageListRenderJSON.html">ProcessPageListRenderJSON</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSearch.html">ProcessPageSearch</a></li>
+				<li><a href="class-ProcessWire.ProcessPageSearchLive.html">ProcessPageSearchLive</a></li>
 				<li><a href="class-ProcessWire.ProcessPagesExportImport.html">ProcessPagesExportImport</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSort.html">ProcessPageSort</a></li>
 				<li><a href="class-ProcessWire.ProcessPageTrash.html">ProcessPageTrash</a></li>
@@ -397,6 +398,7 @@
 				<li><a href="class-ProcessWire.Module.html">Module</a></li>
 				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
+				<li><a href="class-ProcessWire.SearchableModule.html">SearchableModule</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
 				<li><a href="class-ProcessWire.WireMailInterface.html">WireMailInterface</a></li>
@@ -583,11 +585,11 @@ selector echo $items-&gt;render(); // renders a basic list of linked pages</p>
 (i.e. "limit=10"), and there are more pages left to render, and the page's
 template supports page numbers.</p>
 
-<p>Also adds a PageArray::renderPager() method, which is convenient when you are
-generating your own page list markup, but just want to use the automatic
+<p>Also adds a PaginatedArray::renderPager() method, which is convenient when
+you are generating your own page list markup, but just want to use the automatic
 pagination generator.</p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2018 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -639,7 +641,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.MarkupPageArray.html#4-153" title="Go to source code">modules/Markup/MarkupPageArray.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.MarkupPageArray.html#4-169" title="Go to source code">modules/Markup/MarkupPageArray.module</a><br>
 	</div>
 
 
@@ -708,14 +710,14 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="attributes"><code>
 			 public 
-			string
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderPageArray">#</a>
-		<code><a href="source-class-ProcessWire.MarkupPageArray.html#45-125" title="Go to source code">renderPageArray</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.MarkupPageArray.html#45-137" title="Go to source code">renderPageArray</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -738,13 +740,10 @@ behavior or output.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$event</var></dt>
-					<dd><code>array</code><br>$options Optional list of options to modify the behavior and output.</dd>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event #param array $options Optional list of options to modify the behavior and
+output. #return string</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>
-				</div>
 
 
 
@@ -756,14 +755,14 @@ behavior or output.</p>
 
 		<td class="attributes"><code>
 			 public 
-			string
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderPager">#</a>
-		<code><a href="source-class-ProcessWire.MarkupPageArray.html#127-150" title="Go to source code">renderPager</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
+		<code><a href="source-class-ProcessWire.MarkupPageArray.html#139-166" title="Go to source code">renderPager</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -783,14 +782,10 @@ instance</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$event</var></dt>
-					<dd><code>array</code><br>$options Optional options to provide to MarkupPagerNav - see
-MarkupPagerNav::$options</dd>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event #param array $options Optional options to provide to MarkupPagerNav - see
+MarkupPagerNav::$options #return string</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>
-				</div>
 
 
 

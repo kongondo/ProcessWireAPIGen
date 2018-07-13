@@ -7,7 +7,7 @@
 	<title>Interface ProcessWire\Module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1998316032"></script>
+	<script type="text/javascript" src="elementlist.js?2238420684"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.107 dev</span>
+			<span>Overview version 3.0.108 dev</span>
 		</a>
 
 
@@ -268,6 +268,7 @@
 				<li><a href="class-ProcessWire.ProcessPageListRender.html">ProcessPageListRender</a></li>
 				<li><a href="class-ProcessWire.ProcessPageListRenderJSON.html">ProcessPageListRenderJSON</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSearch.html">ProcessPageSearch</a></li>
+				<li><a href="class-ProcessWire.ProcessPageSearchLive.html">ProcessPageSearchLive</a></li>
 				<li><a href="class-ProcessWire.ProcessPagesExportImport.html">ProcessPagesExportImport</a></li>
 				<li><a href="class-ProcessWire.ProcessPageSort.html">ProcessPageSort</a></li>
 				<li><a href="class-ProcessWire.ProcessPageTrash.html">ProcessPageTrash</a></li>
@@ -397,6 +398,7 @@
 				<li class="active"><a href="class-ProcessWire.Module.html">Module</a></li>
 				<li><a href="class-ProcessWire.PageFieldValueInterface.html">PageFieldValueInterface</a></li>
 				<li><a href="class-ProcessWire.Saveable.html">Saveable</a></li>
+				<li><a href="class-ProcessWire.SearchableModule.html">SearchableModule</a></li>
 				<li><a href="class-ProcessWire.WireDatabase.html">WireDatabase</a></li>
 				<li><a href="class-ProcessWire.WireFuelable.html">WireFuelable</a></li>
 				<li><a href="class-ProcessWire.WireMailInterface.html">WireMailInterface</a></li>
@@ -573,7 +575,7 @@
 
 <p>Provides the base interfaces required by modules.</p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2018 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <p>#pw-summary Module is the primary PHP interface for module types in
@@ -802,6 +804,12 @@ contain nothing but an object/map of the module info:</p>
 			if the given callable function returns true.</li>
 		</ul>
 	</li>
+
+	<li><code>searchable</code> (string): When present, indicates that module
+	implements a search() method consistent with the SearchableModule interface. The
+	value of the 'searchable' property should be the name that the search results
+	are referred to, using ascii characters of a-z, 0-9, and underscore. See the
+	SearchableModule interface in this file for more details.</li>
 </ul>
 
 <hr />
@@ -1138,7 +1146,7 @@ method to receive config data from ProcessWire. #pw-method bool isSingular()
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Module.html#4-448" title="Go to source code">core/Module.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Module.html#4-453" title="Go to source code">core/Module.php</a><br>
 	</div>
 
 
@@ -1156,7 +1164,7 @@ method to receive config data from ProcessWire. #pw-method bool isSingular()
 
 		<td class="name"><div>
 		<a class="anchor" href="#_className">#</a>
-		<code><a href="source-class-ProcessWire.Module.html#382-396" title="Go to source code">className</a>( <span>array|boolean|null <var>$options</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Module.html#387-401" title="Go to source code">className</a>( <span>array|boolean|null <var>$options</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
