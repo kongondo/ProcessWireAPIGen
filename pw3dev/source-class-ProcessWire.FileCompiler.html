@@ -8,7 +8,7 @@
 	<title>File core/FileCompiler.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2238420684"></script>
+	<script type="text/javascript" src="elementlist.js?703217621"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -957,7 +957,7 @@
 </span><span id="388" class="l"><a class="l" href="#388"> 388: </a>            <span class="php-var">$targetData</span> = <span class="php-var">$this</span>-&gt;compileData(<span class="php-var">$targetData</span>, <span class="php-var">$sourcePathname</span>);
 </span><span id="389" class="l"><a class="l" href="#389"> 389: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">false</span> !== <span class="php-keyword2">file_put_contents</span>(<span class="php-var">$targetPathname</span>, <span class="php-var">$targetData</span>, LOCK_EX)) {
 </span><span id="390" class="l"><a class="l" href="#390"> 390: </a>                <span class="php-var">$this</span>-&gt;<span class="php-keyword2">chmod</span>(<span class="php-var">$targetPathname</span>); 
-</span><span id="391" class="l"><a class="l" href="#391"> 391: </a>                <span class="php-keyword2">touch</span>(<span class="php-var">$targetPathname</span>, <span class="php-keyword2">filemtime</span>(<span class="php-var">$sourcePathname</span>));
+</span><span id="391" class="l"><a class="l" href="#391"> 391: </a>                <span class="php-var">$this</span>-&gt;<span class="php-keyword2">touch</span>(<span class="php-var">$targetPathname</span>, <span class="php-keyword2">filemtime</span>(<span class="php-var">$sourcePathname</span>));
 </span><span id="392" class="l"><a class="l" href="#392"> 392: </a>                <span class="php-var">$targetHash</span> = <span class="php-keyword2">md5_file</span>(<span class="php-var">$targetPathname</span>);
 </span><span id="393" class="l"><a class="l" href="#393"> 393: </a>                <span class="php-var">$cacheData</span> = <span class="php-keyword1">array</span>(
 </span><span id="394" class="l"><a class="l" href="#394"> 394: </a>                    <span class="php-quote">'source'</span> =&gt; <span class="php-keyword1">array</span>(
@@ -1546,7 +1546,7 @@
 </span><span id="977" class="l"><a class="l" href="#977"> 977: </a>            
 </span><span id="978" class="l"><a class="l" href="#978"> 978: </a>            <span class="php-keyword2">copy</span>(<span class="php-var">$sourceFile</span>, <span class="php-var">$targetFile</span>);
 </span><span id="979" class="l"><a class="l" href="#979"> 979: </a>            <span class="php-var">$this</span>-&gt;<span class="php-keyword2">chmod</span>(<span class="php-var">$targetFile</span>);
-</span><span id="980" class="l"><a class="l" href="#980"> 980: </a>            <span class="php-keyword2">touch</span>(<span class="php-var">$targetFile</span>, <span class="php-keyword2">filemtime</span>(<span class="php-var">$sourceFile</span>));
+</span><span id="980" class="l"><a class="l" href="#980"> 980: </a>            <span class="php-var">$this</span>-&gt;<span class="php-keyword2">touch</span>(<span class="php-var">$targetFile</span>, <span class="php-keyword2">filemtime</span>(<span class="php-var">$sourceFile</span>));
 </span><span id="981" class="l"><a class="l" href="#981"> 981: </a>            <span class="php-var">$numCopied</span>++;
 </span><span id="982" class="l"><a class="l" href="#982"> 982: </a>        }
 </span><span id="983" class="l"><a class="l" href="#983"> 983: </a>        
@@ -1629,7 +1629,7 @@
 </span><span id="1060" class="l"><a class="l" href="#1060">1060: </a>            <span class="php-comment">// maintenance already run today</span>
 </span><span id="1061" class="l"><a class="l" href="#1061">1061: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
 </span><span id="1062" class="l"><a class="l" href="#1062">1062: </a>        }
-</span><span id="1063" class="l"><a class="l" href="#1063">1063: </a>        <span class="php-keyword2">touch</span>(<span class="php-var">$lastRunFile</span>);
+</span><span id="1063" class="l"><a class="l" href="#1063">1063: </a>        <span class="php-var">$this</span>-&gt;<span class="php-keyword2">touch</span>(<span class="php-var">$lastRunFile</span>);
 </span><span id="1064" class="l"><a class="l" href="#1064">1064: </a>        <span class="php-var">$this</span>-&gt;<span class="php-keyword2">chmod</span>(<span class="php-var">$lastRunFile</span>);
 </span><span id="1065" class="l"><a class="l" href="#1065">1065: </a>        <span class="php-keyword2">clearstatcache</span>();
 </span><span id="1066" class="l"><a class="l" href="#1066">1066: </a>
@@ -1682,11 +1682,11 @@
 </span><span id="1113" class="l"><a class="l" href="#1113">1113: </a>                <span class="php-keyword2">unlink</span>(<span class="php-var">$targetFile</span>);
 </span><span id="1114" class="l"><a class="l" href="#1114">1114: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$useLog</span>) <span class="php-var">$this</span>-&gt;<span class="php-keyword2">log</span>(<span class="php-quote">&quot;Maintenance/Remove target file: </span><span class="php-var">$targetURL$basename</span><span class="php-quote">&quot;</span>);
 </span><span id="1115" class="l"><a class="l" href="#1115">1115: </a>                
-</span><span id="1116" class="l"><a class="l" href="#1116">1116: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">filemtime</span>(<span class="php-var">$sourceFile</span>) != <span class="php-keyword2">filemtime</span>(<span class="php-var">$targetFile</span>)) {
+</span><span id="1116" class="l"><a class="l" href="#1116">1116: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">filemtime</span>(<span class="php-var">$sourceFile</span>) &gt; <span class="php-keyword2">filemtime</span>(<span class="php-var">$targetFile</span>)) {
 </span><span id="1117" class="l"><a class="l" href="#1117">1117: </a>                <span class="php-comment">// source file has changed</span>
 </span><span id="1118" class="l"><a class="l" href="#1118">1118: </a>                <span class="php-keyword2">copy</span>(<span class="php-var">$sourceFile</span>, <span class="php-var">$targetFile</span>);
 </span><span id="1119" class="l"><a class="l" href="#1119">1119: </a>                <span class="php-var">$this</span>-&gt;<span class="php-keyword2">chmod</span>(<span class="php-var">$targetFile</span>);
-</span><span id="1120" class="l"><a class="l" href="#1120">1120: </a>                <span class="php-keyword2">touch</span>(<span class="php-var">$targetFile</span>, <span class="php-keyword2">filemtime</span>(<span class="php-var">$sourceFile</span>));
+</span><span id="1120" class="l"><a class="l" href="#1120">1120: </a>                <span class="php-var">$this</span>-&gt;<span class="php-keyword2">touch</span>(<span class="php-var">$targetFile</span>, <span class="php-keyword2">filemtime</span>(<span class="php-var">$sourceFile</span>));
 </span><span id="1121" class="l"><a class="l" href="#1121">1121: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$useLog</span>) <span class="php-var">$this</span>-&gt;<span class="php-keyword2">log</span>(<span class="php-quote">&quot;Maintenance/Copy new version of source file to target file: </span><span class="php-var">$sourceURL$basename</span><span class="php-quote"> =&gt; </span><span class="php-var">$targetURL$basename</span><span class="php-quote">&quot;</span>);
 </span><span id="1122" class="l"><a class="l" href="#1122">1122: </a>            }
 </span><span id="1123" class="l"><a class="l" href="#1123">1123: </a>        }
@@ -1731,9 +1731,33 @@
 </span><span id="1162" class="l"><a class="l" href="#1162">1162: </a>        <span class="php-var">$this</span>-&gt;exclusions[] = <span class="php-var">$pathname</span>;
 </span><span id="1163" class="l"><a class="l" href="#1163">1163: </a>    }
 </span><span id="1164" class="l"><a class="l" href="#1164">1164: </a>
-</span><span id="1165" class="l"><a class="l" href="#1165">1165: </a>}
-</span><span id="1166" class="l"><a class="l" href="#1166">1166: </a>
-</span><span id="1167" class="l"><a class="l" href="#1167">1167: </a></span></code></pre>
+</span><span id="1165" class="l"><a class="l" href="#1165">1165: </a>    <span class="php-comment">/**
+</span></span><span id="1166" class="l"><a class="l" href="#1166">1166: </a><span class="php-comment">     * Same as PHP touch() but with fallbacks for cases where touch() does not work
+</span></span><span id="1167" class="l"><a class="l" href="#1167">1167: </a><span class="php-comment">     * 
+</span></span><span id="1168" class="l"><a class="l" href="#1168">1168: </a><span class="php-comment">     * @param string $filename
+</span></span><span id="1169" class="l"><a class="l" href="#1169">1169: </a><span class="php-comment">     * @param null|int $time
+</span></span><span id="1170" class="l"><a class="l" href="#1170">1170: </a><span class="php-comment">     * @return bool
+</span></span><span id="1171" class="l"><a class="l" href="#1171">1171: </a><span class="php-comment">     * 
+</span></span><span id="1172" class="l"><a class="l" href="#1172">1172: </a><span class="php-comment">     */</span>
+</span><span id="1173" class="l"><a class="l" href="#1173">1173: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <span class="php-keyword2">touch</span>(<span class="php-var">$filename</span>, <span class="php-var">$time</span> = <span class="php-keyword1">null</span>) {
+</span><span id="1174" class="l"><a class="l" href="#1174">1174: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$time</span> === <span class="php-keyword1">null</span>) {
+</span><span id="1175" class="l"><a class="l" href="#1175">1175: </a>            <span class="php-var">$result</span> = @<span class="php-keyword2">touch</span>(<span class="php-var">$filename</span>); 
+</span><span id="1176" class="l"><a class="l" href="#1176">1176: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="1177" class="l"><a class="l" href="#1177">1177: </a>            <span class="php-var">$result</span> = @<span class="php-keyword2">touch</span>(<span class="php-var">$filename</span>, <span class="php-var">$time</span>);
+</span><span id="1178" class="l"><a class="l" href="#1178">1178: </a>            <span class="php-comment">// try again, but without time</span>
+</span><span id="1179" class="l"><a class="l" href="#1179">1179: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$result</span>) <span class="php-var">$result</span> = @<span class="php-keyword2">touch</span>(<span class="php-var">$filename</span>); 
+</span><span id="1180" class="l"><a class="l" href="#1180">1180: </a>        }
+</span><span id="1181" class="l"><a class="l" href="#1181">1181: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$result</span>) {
+</span><span id="1182" class="l"><a class="l" href="#1182">1182: </a>            <span class="php-comment">// lastly try alternative method which should have same affect as touch without $time</span>
+</span><span id="1183" class="l"><a class="l" href="#1183">1183: </a>            <span class="php-var">$fp</span> = <span class="php-keyword2">fopen</span>(<span class="php-var">$filename</span>, <span class="php-quote">'a'</span>);
+</span><span id="1184" class="l"><a class="l" href="#1184">1184: </a>            <span class="php-var">$result</span> = <span class="php-var">$fp</span> !== <span class="php-keyword1">false</span> ? <span class="php-keyword2">fclose</span>(<span class="php-var">$fp</span>) : <span class="php-keyword1">false</span>;
+</span><span id="1185" class="l"><a class="l" href="#1185">1185: </a>        }
+</span><span id="1186" class="l"><a class="l" href="#1186">1186: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="1187" class="l"><a class="l" href="#1187">1187: </a>    }
+</span><span id="1188" class="l"><a class="l" href="#1188">1188: </a>
+</span><span id="1189" class="l"><a class="l" href="#1189">1189: </a>}
+</span><span id="1190" class="l"><a class="l" href="#1190">1190: </a>
+</span><span id="1191" class="l"><a class="l" href="#1191">1191: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
