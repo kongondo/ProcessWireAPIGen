@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireMailTools | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3398040958"></script>
+	<script type="text/javascript" src="elementlist.js?1552697999"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.112 dev</span>
+			<span>Overview version 3.0.113 dev</span>
 		</a>
 
 
@@ -583,7 +583,13 @@ href="https://processwire.com">https://processwire.com</a></p>
 // Simple usage example $message = $mail-&gt;new(); $message-&gt;subject('Hello
 world') -&gt;to('user@domain.com') -&gt;from('you@company.com') -&gt;body('Hello
 there big world') -&gt;bodyHTML('&lt;h2&gt;Hello there big world&lt;/h2&gt;');
-$numSent = $message-&gt;send(); ~~~~~ #pw-body</p>
+$numSent = $message-&gt;send();</p>
+
+<p>// ProcessWire 3.0.113 lets you skip the $mail-&gt;new() call if you want:
+$numSent = $mail-&gt;subject('Hello world') -&gt;to('user@domain.com')
+-&gt;from('you@company.com') -&gt;body('Hello there big world')
+-&gt;bodyHTML('&lt;h2&gt;Hello there big world&lt;/h2&gt;') -&gt;send(); ~~~~~
+#pw-body</p>
 
 	</div>
 
@@ -621,7 +627,7 @@ $numSent = $message-&gt;send(); ~~~~~ #pw-body</p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireMailTools.html#4-324" title="Go to source code">core/WireMailTools.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireMailTools.html#4-377" title="Go to source code">core/WireMailTools.php</a><br>
 	</div>
 
 
@@ -639,7 +645,7 @@ $numSent = $message-&gt;send(); ~~~~~ #pw-body</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____new">#</a>
-		<code><a href="source-class-ProcessWire.WireMailTools.html#31-92" title="Go to source code">___new</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#39-100" title="Go to source code">___new</a>( )</code>
 
 		<div class="description short">
 			
@@ -681,7 +687,7 @@ Text')-&gt;bodyHTML('Body HTML'); $numSent = $message-&gt;send(); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_send">#</a>
-		<code><a href="source-class-ProcessWire.WireMailTools.html#94-185" title="Go to source code">send</a>( <span>string|array <var>$to</var> = <span class="php-quote">''</span></span>, <span>string <var>$from</var> = <span class="php-quote">''</span></span>, <span>string <var>$subject</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$body</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#102-193" title="Go to source code">send</a>( <span>string|array <var>$to</var> = <span class="php-quote">''</span></span>, <span>string <var>$from</var> = <span class="php-quote">''</span></span>, <span>string <var>$subject</var> = <span class="php-quote">''</span></span>, <span>string|array <var>$body</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -764,7 +770,7 @@ class, in tact.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sendHTML">#</a>
-		<code><a href="source-class-ProcessWire.WireMailTools.html#187-210" title="Go to source code">sendHTML</a>( <span>string|array <var>$to</var> = <span class="php-quote">''</span></span>, <span>string <var>$from</var> = <span class="php-quote">''</span></span>, <span>string <var>$subject</var> = <span class="php-quote">''</span></span>, <span>string <var>$bodyHTML</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#195-218" title="Go to source code">sendHTML</a>( <span>string|array <var>$to</var> = <span class="php-quote">''</span></span>, <span>string <var>$from</var> = <span class="php-quote">''</span></span>, <span>string <var>$subject</var> = <span class="php-quote">''</span></span>, <span>string <var>$bodyHTML</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -825,7 +831,7 @@ the WireMail module or class, in tact.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_mail">#</a>
-		<code><a href="source-class-ProcessWire.WireMailTools.html#212-289" title="Go to source code">mail</a>( <span>string|array <var>$to</var></span>, <span>string <var>$subject</var></span>, <span>string|array <var>$message</var></span>, <span>array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#220-297" title="Go to source code">mail</a>( <span>string|array <var>$to</var></span>, <span>string <var>$subject</var></span>, <span>string|array <var>$message</var></span>, <span>array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -908,7 +914,7 @@ arguments. No need to use if you used $options array for the $message argument.<
 
 		<td class="name"><div>
 		<a class="anchor" href="#_mailHTML">#</a>
-		<code><a href="source-class-ProcessWire.WireMailTools.html#291-317" title="Go to source code">mailHTML</a>( <span>string|array <var>$to</var></span>, <span>string <var>$subject</var></span>, <span>string|array <var>$messageHTML</var></span>, <span>array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#299-326" title="Go to source code">mailHTML</a>( <span>string|array <var>$to</var></span>, <span>string <var>$subject</var></span>, <span>string|array <var>$messageHTML</var></span>, <span>array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -946,6 +952,162 @@ arguments. No need to use if you used $options array for the $message argument.<
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.109<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="to" id="_to">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.WireMail.html">ProcessWire\WireMail</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_to">#</a>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#328-345" title="Go to source code">to</a>( <span>string|array <var>$email</var></span>, <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Return new WireMail instance populated with “to” email</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return new WireMail instance populated with “to” email</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string|array</code><br>$email Email to send to–specify any one of the following: - Single email
+address - String like: "John Smith &lt;<a
+href="mailto:user&#64;example.com">user&#64;<!-- -->example.com</a>&gt;" - CSV
+string of either of the above. - Regular PHP array of email addresses. -
+Associative array of ['user@xample.com' =&gt; 'John Smith'].</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name An optional TO name, applies only if your $email argument was just an
+email address.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireMail.html">ProcessWire\WireMail</a></code></code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>if given invalid email address<br>
+				</div>
+
+				<h4>Since</h4>
+				<div class="list">
+						3.0.113<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="from" id="_from">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.WireMail.html">ProcessWire\WireMail</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_from">#</a>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#347-358" title="Go to source code">from</a>( <span>string <var>$email</var></span>, <span>string|null <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Return new WireMail instance populated with “from” email</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return new WireMail instance populated with “from” email</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email Must be a single email address or "User Name &lt;<a
+href="mailto:user&#64;example.com">user&#64;<!-- -->example.com</a>&gt;" string.</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string|null</code><br>An optional FROM name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireMail.html">ProcessWire\WireMail</a></code></code><br>
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						3.0.113<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="subject" id="_subject">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ProcessWire.WireMail.html">ProcessWire\WireMail</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_subject">#</a>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#360-370" title="Go to source code">subject</a>( <span>string <var>$subject</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Return new WireMail instance populated with subject</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return new WireMail instance populated with subject</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$subject</var></dt>
+					<dd><code>string</code><br>$subject</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireMail.html">ProcessWire\WireMail</a></code></code><br>
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						3.0.113<br>
+				</div>
 
 
 		</div>
@@ -962,7 +1124,7 @@ arguments. No need to use if you used $options array for the $message argument.<
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireMailTools.html#319-322" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireMailTools.html#372-375" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			

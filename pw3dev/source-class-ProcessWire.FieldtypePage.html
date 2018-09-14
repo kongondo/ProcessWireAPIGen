@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypePage.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3398040958"></script>
+	<script type="text/javascript" src="elementlist.js?1552697999"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.112 dev</span>
+			<span>Overview version 3.0.113 dev</span>
 		</a>
 
 
@@ -2026,112 +2026,113 @@
 </span><span id="1454" class="l"><a class="l" href="#1454">1454: </a>
 </span><span id="1455" class="l"><a class="l" href="#1455">1455: </a>        <span class="php-comment">// if there was nothing found, finish early</span>
 </span><span id="1456" class="l"><a class="l" href="#1456">1456: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$total</span>) {
-</span><span id="1457" class="l"><a class="l" href="#1457">1457: </a>            <span class="php-comment">// no references found and PageArray requested, return blank PageArray</span>
-</span><span id="1458" class="l"><a class="l" href="#1458">1458: </a>            <span class="php-keyword1">return</span> <span class="php-var">$byField</span> ? <span class="php-keyword1">array</span>() : <span class="php-var">$pages</span>-&gt;newPageArray();
-</span><span id="1459" class="l"><a class="l" href="#1459">1459: </a>        }
-</span><span id="1460" class="l"><a class="l" href="#1460">1460: </a>    
-</span><span id="1461" class="l"><a class="l" href="#1461">1461: </a>        <span class="php-comment">// perform another find() to filter results, and return requested result type</span>
-</span><span id="1462" class="l"><a class="l" href="#1462">1462: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$byField</span>) {
-</span><span id="1463" class="l"><a class="l" href="#1463">1463: </a>            <span class="php-comment">// return array of PageArrays indexed by fieldName</span>
-</span><span id="1464" class="l"><a class="l" href="#1464">1464: </a>            <span class="php-var">$result</span> = <span class="php-keyword1">array</span>();
-</span><span id="1465" class="l"><a class="l" href="#1465">1465: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$fieldNames</span> <span class="php-keyword1">as</span> <span class="php-var">$fieldName</span>) {
-</span><span id="1466" class="l"><a class="l" href="#1466">1466: </a>                <span class="php-var">$s</span> = <span class="php-keyword2">rtrim</span>(<span class="php-quote">&quot;</span><span class="php-var">$fieldName</span><span class="php-quote">=</span><span class="php-var">$page</span><span class="php-quote">-&gt;id, </span><span class="php-var">$selector</span><span class="php-quote">&quot;</span>, <span class="php-quote">', '</span>);
-</span><span id="1467" class="l"><a class="l" href="#1467">1467: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$getCount</span>) {
-</span><span id="1468" class="l"><a class="l" href="#1468">1468: </a>                    <span class="php-var">$cnt</span> = <span class="php-var">$pages</span>-&gt;<span class="php-keyword2">count</span>(<span class="php-var">$s</span>);
-</span><span id="1469" class="l"><a class="l" href="#1469">1469: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$cnt</span>) <span class="php-var">$result</span>[<span class="php-var">$fieldName</span>] = <span class="php-var">$cnt</span>;
-</span><span id="1470" class="l"><a class="l" href="#1470">1470: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="1471" class="l"><a class="l" href="#1471">1471: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$total</span> &gt; <span class="php-var">$findLimit</span>) {
-</span><span id="1472" class="l"><a class="l" href="#1472">1472: </a>                        <span class="php-var">$items</span> = <span class="php-var">$pages</span>-&gt;findMany(<span class="php-var">$s</span>);
-</span><span id="1473" class="l"><a class="l" href="#1473">1473: </a>                    } <span class="php-keyword1">else</span> {
-</span><span id="1474" class="l"><a class="l" href="#1474">1474: </a>                        <span class="php-var">$items</span> = <span class="php-var">$pages</span>-&gt;find(<span class="php-var">$s</span>);
-</span><span id="1475" class="l"><a class="l" href="#1475">1475: </a>                    }
-</span><span id="1476" class="l"><a class="l" href="#1476">1476: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$items</span>-&gt;<span class="php-keyword2">count</span>()) <span class="php-var">$result</span>[<span class="php-var">$fieldName</span>] = <span class="php-var">$items</span>;
-</span><span id="1477" class="l"><a class="l" href="#1477">1477: </a>                }
-</span><span id="1478" class="l"><a class="l" href="#1478">1478: </a>            }
-</span><span id="1479" class="l"><a class="l" href="#1479">1479: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="1480" class="l"><a class="l" href="#1480">1480: </a>            <span class="php-comment">// return PageArray of all references</span>
-</span><span id="1481" class="l"><a class="l" href="#1481">1481: </a>            <span class="php-var">$selector</span> = <span class="php-keyword2">rtrim</span>(<span class="php-keyword2">implode</span>(<span class="php-quote">'|'</span>, <span class="php-var">$fieldNames</span>) . <span class="php-quote">&quot;=</span><span class="php-var">$page</span><span class="php-quote">-&gt;id, </span><span class="php-var">$selector</span><span class="php-quote">&quot;</span>, <span class="php-quote">', '</span>);
-</span><span id="1482" class="l"><a class="l" href="#1482">1482: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$getCount</span>) {
-</span><span id="1483" class="l"><a class="l" href="#1483">1483: </a>                <span class="php-var">$result</span> = <span class="php-var">$pages</span>-&gt;<span class="php-keyword2">count</span>(<span class="php-var">$selector</span>);
-</span><span id="1484" class="l"><a class="l" href="#1484">1484: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$total</span> &gt; <span class="php-var">$findLimit</span>) {
-</span><span id="1485" class="l"><a class="l" href="#1485">1485: </a>                <span class="php-var">$result</span> = <span class="php-var">$pages</span>-&gt;findMany(<span class="php-var">$selector</span>);
-</span><span id="1486" class="l"><a class="l" href="#1486">1486: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="1487" class="l"><a class="l" href="#1487">1487: </a>                <span class="php-var">$result</span> = <span class="php-var">$pages</span>-&gt;find(<span class="php-var">$selector</span>);
-</span><span id="1488" class="l"><a class="l" href="#1488">1488: </a>            }
-</span><span id="1489" class="l"><a class="l" href="#1489">1489: </a>        }
-</span><span id="1490" class="l"><a class="l" href="#1490">1490: </a>
-</span><span id="1491" class="l"><a class="l" href="#1491">1491: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
-</span><span id="1492" class="l"><a class="l" href="#1492">1492: </a>    }
-</span><span id="1493" class="l"><a class="l" href="#1493">1493: </a>
-</span><span id="1494" class="l"><a class="l" href="#1494">1494: </a>    <span class="php-comment">/**
-</span></span><span id="1495" class="l"><a class="l" href="#1495">1495: </a><span class="php-comment">     * Return array or string of configured template IDs
-</span></span><span id="1496" class="l"><a class="l" href="#1496">1496: </a><span class="php-comment">     * 
-</span></span><span id="1497" class="l"><a class="l" href="#1497">1497: </a><span class="php-comment">     * Accounts for both template_id and template_ids settings, making sure both are included.
-</span></span><span id="1498" class="l"><a class="l" href="#1498">1498: </a><span class="php-comment">     * 
-</span></span><span id="1499" class="l"><a class="l" href="#1499">1499: </a><span class="php-comment">     * #pw-internal
-</span></span><span id="1500" class="l"><a class="l" href="#1500">1500: </a><span class="php-comment">     *
-</span></span><span id="1501" class="l"><a class="l" href="#1501">1501: </a><span class="php-comment">     * @param Field|array $field Field object or array with all possible template IDs
-</span></span><span id="1502" class="l"><a class="l" href="#1502">1502: </a><span class="php-comment">     * @param bool $getString Specify true to return a 1|2|3 style string rather than an array
-</span></span><span id="1503" class="l"><a class="l" href="#1503">1503: </a><span class="php-comment">     * @return array|string
-</span></span><span id="1504" class="l"><a class="l" href="#1504">1504: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="1505" class="l"><a class="l" href="#1505">1505: </a><span class="php-comment">     *
-</span></span><span id="1506" class="l"><a class="l" href="#1506">1506: </a><span class="php-comment">     */</span>
-</span><span id="1507" class="l"><a class="l" href="#1507">1507: </a>    <span class="php-keyword1">static</span> <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getTemplateIDs" href="#_getTemplateIDs">getTemplateIDs</a>(<span class="php-var">$field</span>, <span class="php-var">$getString</span> = <span class="php-keyword1">false</span>) {
-</span><span id="1508" class="l"><a class="l" href="#1508">1508: </a>        
-</span><span id="1509" class="l"><a class="l" href="#1509">1509: </a>        <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
-</span><span id="1510" class="l"><a class="l" href="#1510">1510: </a>        <span class="php-var">$values</span> = <span class="php-keyword1">array</span>();
-</span><span id="1511" class="l"><a class="l" href="#1511">1511: </a>        
-</span><span id="1512" class="l"><a class="l" href="#1512">1512: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span> <span class="php-keyword1">instanceof</span> Field) {
-</span><span id="1513" class="l"><a class="l" href="#1513">1513: </a>            <span class="php-var">$values</span> = <span class="php-keyword1">array</span>(<span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_id'</span>), <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_ids'</span>));
-</span><span id="1514" class="l"><a class="l" href="#1514">1514: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$field</span>)) {
-</span><span id="1515" class="l"><a class="l" href="#1515">1515: </a>            <span class="php-var">$values</span> = <span class="php-var">$field</span>;
-</span><span id="1516" class="l"><a class="l" href="#1516">1516: </a>        }
-</span><span id="1517" class="l"><a class="l" href="#1517">1517: </a>        
-</span><span id="1518" class="l"><a class="l" href="#1518">1518: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$values</span> <span class="php-keyword1">as</span> <span class="php-var">$value</span>) {
-</span><span id="1519" class="l"><a class="l" href="#1519">1519: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>)) <span class="php-keyword1">continue</span>;
-</span><span id="1520" class="l"><a class="l" href="#1520">1520: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-keyword1">array</span>(<span class="php-var">$value</span>);
-</span><span id="1521" class="l"><a class="l" href="#1521">1521: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
-</span><span id="1522" class="l"><a class="l" href="#1522">1522: </a>                <span class="php-var">$id</span> = (int) <span class="php-var">$id</span>;
-</span><span id="1523" class="l"><a class="l" href="#1523">1523: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$id</span>) <span class="php-var">$ids</span>[<span class="php-var">$id</span>] = <span class="php-var">$id</span>;
-</span><span id="1524" class="l"><a class="l" href="#1524">1524: </a>            }
-</span><span id="1525" class="l"><a class="l" href="#1525">1525: </a>        }
-</span><span id="1526" class="l"><a class="l" href="#1526">1526: </a>
-</span><span id="1527" class="l"><a class="l" href="#1527">1527: </a>        <span class="php-keyword1">return</span> <span class="php-var">$getString</span> ? <span class="php-keyword2">implode</span>(<span class="php-quote">'|'</span>, <span class="php-var">$ids</span>) : <span class="php-keyword2">array_values</span>(<span class="php-var">$ids</span>);
-</span><span id="1528" class="l"><a class="l" href="#1528">1528: </a>    }
-</span><span id="1529" class="l"><a class="l" href="#1529">1529: </a>
-</span><span id="1530" class="l"><a class="l" href="#1530">1530: </a>    <span class="php-comment">/**
-</span></span><span id="1531" class="l"><a class="l" href="#1531">1531: </a><span class="php-comment">     * Module configuration screen
-</span></span><span id="1532" class="l"><a class="l" href="#1532">1532: </a><span class="php-comment">     * 
-</span></span><span id="1533" class="l"><a class="l" href="#1533">1533: </a><span class="php-comment">     * @param array $data
-</span></span><span id="1534" class="l"><a class="l" href="#1534">1534: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="1535" class="l"><a class="l" href="#1535">1535: </a><span class="php-comment">     *
-</span></span><span id="1536" class="l"><a class="l" href="#1536">1536: </a><span class="php-comment">     */</span>
-</span><span id="1537" class="l"><a class="l" href="#1537">1537: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="1538" class="l"><a class="l" href="#1538">1538: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$data</span>) {}
-</span><span id="1539" class="l"><a class="l" href="#1539">1539: </a>
-</span><span id="1540" class="l"><a class="l" href="#1540">1540: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
-</span><span id="1541" class="l"><a class="l" href="#1541">1541: </a>        <span class="php-comment">/** @var InputfieldCheckbox $inputfield */</span>
-</span><span id="1542" class="l"><a class="l" href="#1542">1542: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldCheckbox'</span>); 
-</span><span id="1543" class="l"><a class="l" href="#1543">1543: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_clean'</span>); 
-</span><span id="1544" class="l"><a class="l" href="#1544">1544: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-num">1</span>); 
-</span><span id="1545" class="l"><a class="l" href="#1545">1545: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Find and clean orphaned page references'</span>); 
-</span><span id="1546" class="l"><a class="l" href="#1546">1546: </a>        <span class="php-var">$inputfield</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This cleans up for an issue in older versions of ProcessWire that could leave orphaned page references for deleted pages. If you are getting inaccurate results from page finding operations (especially with selectors using pageref.count), then you may want to run this.'</span>); <span class="php-comment">// Find and clean description</span>
-</span><span id="1547" class="l"><a class="l" href="#1547">1547: </a>        <span class="php-var">$inputfield</span>-&gt;icon = <span class="php-quote">'eraser'</span>;
-</span><span id="1548" class="l"><a class="l" href="#1548">1548: </a>        <span class="php-var">$inputfield</span>-&gt;collapsed = Inputfield::collapsedYes; 
-</span><span id="1549" class="l"><a class="l" href="#1549">1549: </a>        <span class="php-var">$inputfield</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Warning: To be safe you should back-up your database before running this.'</span>); <span class="php-comment">// Find and clean notes</span>
-</span><span id="1550" class="l"><a class="l" href="#1550">1550: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$inputfield</span>); 
-</span><span id="1551" class="l"><a class="l" href="#1551">1551: </a>
-</span><span id="1552" class="l"><a class="l" href="#1552">1552: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;post(<span class="php-quote">'_clean'</span>)) {
-</span><span id="1553" class="l"><a class="l" href="#1553">1553: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Finding and cleaning...'</span>)); 
-</span><span id="1554" class="l"><a class="l" href="#1554">1554: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldtypes'</span>)-&gt;get(<span class="php-quote">'FieldtypePage'</span>)-&gt;cleanOrphanedReferences();
-</span><span id="1555" class="l"><a class="l" href="#1555">1555: </a>        }
-</span><span id="1556" class="l"><a class="l" href="#1556">1556: </a>
-</span><span id="1557" class="l"><a class="l" href="#1557">1557: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="1558" class="l"><a class="l" href="#1558">1558: </a>    }
-</span><span id="1559" class="l"><a class="l" href="#1559">1559: </a>
-</span><span id="1560" class="l"><a class="l" href="#1560">1560: </a>}
-</span><span id="1561" class="l"><a class="l" href="#1561">1561: </a>
-</span><span id="1562" class="l"><a class="l" href="#1562">1562: </a></span></code></pre>
+</span><span id="1457" class="l"><a class="l" href="#1457">1457: </a>            <span class="php-comment">// no references found </span>
+</span><span id="1458" class="l"><a class="l" href="#1458">1458: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$getCount</span>) <span class="php-keyword1">return</span> <span class="php-var">$total</span>;
+</span><span id="1459" class="l"><a class="l" href="#1459">1459: </a>            <span class="php-keyword1">return</span> <span class="php-var">$byField</span> ? <span class="php-keyword1">array</span>() : <span class="php-var">$pages</span>-&gt;newPageArray();
+</span><span id="1460" class="l"><a class="l" href="#1460">1460: </a>        }
+</span><span id="1461" class="l"><a class="l" href="#1461">1461: </a>    
+</span><span id="1462" class="l"><a class="l" href="#1462">1462: </a>        <span class="php-comment">// perform another find() to filter results, and return requested result type</span>
+</span><span id="1463" class="l"><a class="l" href="#1463">1463: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$byField</span>) {
+</span><span id="1464" class="l"><a class="l" href="#1464">1464: </a>            <span class="php-comment">// return array of PageArrays indexed by fieldName</span>
+</span><span id="1465" class="l"><a class="l" href="#1465">1465: </a>            <span class="php-var">$result</span> = <span class="php-keyword1">array</span>();
+</span><span id="1466" class="l"><a class="l" href="#1466">1466: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$fieldNames</span> <span class="php-keyword1">as</span> <span class="php-var">$fieldName</span>) {
+</span><span id="1467" class="l"><a class="l" href="#1467">1467: </a>                <span class="php-var">$s</span> = <span class="php-keyword2">rtrim</span>(<span class="php-quote">&quot;</span><span class="php-var">$fieldName</span><span class="php-quote">=</span><span class="php-var">$page</span><span class="php-quote">-&gt;id, </span><span class="php-var">$selector</span><span class="php-quote">&quot;</span>, <span class="php-quote">', '</span>);
+</span><span id="1468" class="l"><a class="l" href="#1468">1468: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$getCount</span>) {
+</span><span id="1469" class="l"><a class="l" href="#1469">1469: </a>                    <span class="php-var">$cnt</span> = <span class="php-var">$pages</span>-&gt;<span class="php-keyword2">count</span>(<span class="php-var">$s</span>);
+</span><span id="1470" class="l"><a class="l" href="#1470">1470: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$cnt</span>) <span class="php-var">$result</span>[<span class="php-var">$fieldName</span>] = <span class="php-var">$cnt</span>;
+</span><span id="1471" class="l"><a class="l" href="#1471">1471: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="1472" class="l"><a class="l" href="#1472">1472: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$total</span> &gt; <span class="php-var">$findLimit</span>) {
+</span><span id="1473" class="l"><a class="l" href="#1473">1473: </a>                        <span class="php-var">$items</span> = <span class="php-var">$pages</span>-&gt;findMany(<span class="php-var">$s</span>);
+</span><span id="1474" class="l"><a class="l" href="#1474">1474: </a>                    } <span class="php-keyword1">else</span> {
+</span><span id="1475" class="l"><a class="l" href="#1475">1475: </a>                        <span class="php-var">$items</span> = <span class="php-var">$pages</span>-&gt;find(<span class="php-var">$s</span>);
+</span><span id="1476" class="l"><a class="l" href="#1476">1476: </a>                    }
+</span><span id="1477" class="l"><a class="l" href="#1477">1477: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$items</span>-&gt;<span class="php-keyword2">count</span>()) <span class="php-var">$result</span>[<span class="php-var">$fieldName</span>] = <span class="php-var">$items</span>;
+</span><span id="1478" class="l"><a class="l" href="#1478">1478: </a>                }
+</span><span id="1479" class="l"><a class="l" href="#1479">1479: </a>            }
+</span><span id="1480" class="l"><a class="l" href="#1480">1480: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="1481" class="l"><a class="l" href="#1481">1481: </a>            <span class="php-comment">// return PageArray of all references</span>
+</span><span id="1482" class="l"><a class="l" href="#1482">1482: </a>            <span class="php-var">$selector</span> = <span class="php-keyword2">rtrim</span>(<span class="php-keyword2">implode</span>(<span class="php-quote">'|'</span>, <span class="php-var">$fieldNames</span>) . <span class="php-quote">&quot;=</span><span class="php-var">$page</span><span class="php-quote">-&gt;id, </span><span class="php-var">$selector</span><span class="php-quote">&quot;</span>, <span class="php-quote">', '</span>);
+</span><span id="1483" class="l"><a class="l" href="#1483">1483: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$getCount</span>) {
+</span><span id="1484" class="l"><a class="l" href="#1484">1484: </a>                <span class="php-var">$result</span> = <span class="php-var">$pages</span>-&gt;<span class="php-keyword2">count</span>(<span class="php-var">$selector</span>);
+</span><span id="1485" class="l"><a class="l" href="#1485">1485: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$total</span> &gt; <span class="php-var">$findLimit</span>) {
+</span><span id="1486" class="l"><a class="l" href="#1486">1486: </a>                <span class="php-var">$result</span> = <span class="php-var">$pages</span>-&gt;findMany(<span class="php-var">$selector</span>);
+</span><span id="1487" class="l"><a class="l" href="#1487">1487: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1488" class="l"><a class="l" href="#1488">1488: </a>                <span class="php-var">$result</span> = <span class="php-var">$pages</span>-&gt;find(<span class="php-var">$selector</span>);
+</span><span id="1489" class="l"><a class="l" href="#1489">1489: </a>            }
+</span><span id="1490" class="l"><a class="l" href="#1490">1490: </a>        }
+</span><span id="1491" class="l"><a class="l" href="#1491">1491: </a>
+</span><span id="1492" class="l"><a class="l" href="#1492">1492: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="1493" class="l"><a class="l" href="#1493">1493: </a>    }
+</span><span id="1494" class="l"><a class="l" href="#1494">1494: </a>
+</span><span id="1495" class="l"><a class="l" href="#1495">1495: </a>    <span class="php-comment">/**
+</span></span><span id="1496" class="l"><a class="l" href="#1496">1496: </a><span class="php-comment">     * Return array or string of configured template IDs
+</span></span><span id="1497" class="l"><a class="l" href="#1497">1497: </a><span class="php-comment">     * 
+</span></span><span id="1498" class="l"><a class="l" href="#1498">1498: </a><span class="php-comment">     * Accounts for both template_id and template_ids settings, making sure both are included.
+</span></span><span id="1499" class="l"><a class="l" href="#1499">1499: </a><span class="php-comment">     * 
+</span></span><span id="1500" class="l"><a class="l" href="#1500">1500: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="1501" class="l"><a class="l" href="#1501">1501: </a><span class="php-comment">     *
+</span></span><span id="1502" class="l"><a class="l" href="#1502">1502: </a><span class="php-comment">     * @param Field|array $field Field object or array with all possible template IDs
+</span></span><span id="1503" class="l"><a class="l" href="#1503">1503: </a><span class="php-comment">     * @param bool $getString Specify true to return a 1|2|3 style string rather than an array
+</span></span><span id="1504" class="l"><a class="l" href="#1504">1504: </a><span class="php-comment">     * @return array|string
+</span></span><span id="1505" class="l"><a class="l" href="#1505">1505: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="1506" class="l"><a class="l" href="#1506">1506: </a><span class="php-comment">     *
+</span></span><span id="1507" class="l"><a class="l" href="#1507">1507: </a><span class="php-comment">     */</span>
+</span><span id="1508" class="l"><a class="l" href="#1508">1508: </a>    <span class="php-keyword1">static</span> <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getTemplateIDs" href="#_getTemplateIDs">getTemplateIDs</a>(<span class="php-var">$field</span>, <span class="php-var">$getString</span> = <span class="php-keyword1">false</span>) {
+</span><span id="1509" class="l"><a class="l" href="#1509">1509: </a>        
+</span><span id="1510" class="l"><a class="l" href="#1510">1510: </a>        <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
+</span><span id="1511" class="l"><a class="l" href="#1511">1511: </a>        <span class="php-var">$values</span> = <span class="php-keyword1">array</span>();
+</span><span id="1512" class="l"><a class="l" href="#1512">1512: </a>        
+</span><span id="1513" class="l"><a class="l" href="#1513">1513: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span> <span class="php-keyword1">instanceof</span> Field) {
+</span><span id="1514" class="l"><a class="l" href="#1514">1514: </a>            <span class="php-var">$values</span> = <span class="php-keyword1">array</span>(<span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_id'</span>), <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_ids'</span>));
+</span><span id="1515" class="l"><a class="l" href="#1515">1515: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$field</span>)) {
+</span><span id="1516" class="l"><a class="l" href="#1516">1516: </a>            <span class="php-var">$values</span> = <span class="php-var">$field</span>;
+</span><span id="1517" class="l"><a class="l" href="#1517">1517: </a>        }
+</span><span id="1518" class="l"><a class="l" href="#1518">1518: </a>        
+</span><span id="1519" class="l"><a class="l" href="#1519">1519: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$values</span> <span class="php-keyword1">as</span> <span class="php-var">$value</span>) {
+</span><span id="1520" class="l"><a class="l" href="#1520">1520: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>)) <span class="php-keyword1">continue</span>;
+</span><span id="1521" class="l"><a class="l" href="#1521">1521: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-keyword1">array</span>(<span class="php-var">$value</span>);
+</span><span id="1522" class="l"><a class="l" href="#1522">1522: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$id</span>) {
+</span><span id="1523" class="l"><a class="l" href="#1523">1523: </a>                <span class="php-var">$id</span> = (int) <span class="php-var">$id</span>;
+</span><span id="1524" class="l"><a class="l" href="#1524">1524: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$id</span>) <span class="php-var">$ids</span>[<span class="php-var">$id</span>] = <span class="php-var">$id</span>;
+</span><span id="1525" class="l"><a class="l" href="#1525">1525: </a>            }
+</span><span id="1526" class="l"><a class="l" href="#1526">1526: </a>        }
+</span><span id="1527" class="l"><a class="l" href="#1527">1527: </a>
+</span><span id="1528" class="l"><a class="l" href="#1528">1528: </a>        <span class="php-keyword1">return</span> <span class="php-var">$getString</span> ? <span class="php-keyword2">implode</span>(<span class="php-quote">'|'</span>, <span class="php-var">$ids</span>) : <span class="php-keyword2">array_values</span>(<span class="php-var">$ids</span>);
+</span><span id="1529" class="l"><a class="l" href="#1529">1529: </a>    }
+</span><span id="1530" class="l"><a class="l" href="#1530">1530: </a>
+</span><span id="1531" class="l"><a class="l" href="#1531">1531: </a>    <span class="php-comment">/**
+</span></span><span id="1532" class="l"><a class="l" href="#1532">1532: </a><span class="php-comment">     * Module configuration screen
+</span></span><span id="1533" class="l"><a class="l" href="#1533">1533: </a><span class="php-comment">     * 
+</span></span><span id="1534" class="l"><a class="l" href="#1534">1534: </a><span class="php-comment">     * @param array $data
+</span></span><span id="1535" class="l"><a class="l" href="#1535">1535: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="1536" class="l"><a class="l" href="#1536">1536: </a><span class="php-comment">     *
+</span></span><span id="1537" class="l"><a class="l" href="#1537">1537: </a><span class="php-comment">     */</span>
+</span><span id="1538" class="l"><a class="l" href="#1538">1538: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="1539" class="l"><a class="l" href="#1539">1539: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$data</span>) {}
+</span><span id="1540" class="l"><a class="l" href="#1540">1540: </a>
+</span><span id="1541" class="l"><a class="l" href="#1541">1541: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
+</span><span id="1542" class="l"><a class="l" href="#1542">1542: </a>        <span class="php-comment">/** @var InputfieldCheckbox $inputfield */</span>
+</span><span id="1543" class="l"><a class="l" href="#1543">1543: </a>        <span class="php-var">$inputfield</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;get(<span class="php-quote">'InputfieldCheckbox'</span>); 
+</span><span id="1544" class="l"><a class="l" href="#1544">1544: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'name'</span>, <span class="php-quote">'_clean'</span>); 
+</span><span id="1545" class="l"><a class="l" href="#1545">1545: </a>        <span class="php-var">$inputfield</span>-&gt;attr(<span class="php-quote">'value'</span>, <span class="php-num">1</span>); 
+</span><span id="1546" class="l"><a class="l" href="#1546">1546: </a>        <span class="php-var">$inputfield</span>-&gt;label = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Find and clean orphaned page references'</span>); 
+</span><span id="1547" class="l"><a class="l" href="#1547">1547: </a>        <span class="php-var">$inputfield</span>-&gt;description = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'This cleans up for an issue in older versions of ProcessWire that could leave orphaned page references for deleted pages. If you are getting inaccurate results from page finding operations (especially with selectors using pageref.count), then you may want to run this.'</span>); <span class="php-comment">// Find and clean description</span>
+</span><span id="1548" class="l"><a class="l" href="#1548">1548: </a>        <span class="php-var">$inputfield</span>-&gt;icon = <span class="php-quote">'eraser'</span>;
+</span><span id="1549" class="l"><a class="l" href="#1549">1549: </a>        <span class="php-var">$inputfield</span>-&gt;collapsed = Inputfield::collapsedYes; 
+</span><span id="1550" class="l"><a class="l" href="#1550">1550: </a>        <span class="php-var">$inputfield</span>-&gt;notes = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Warning: To be safe you should back-up your database before running this.'</span>); <span class="php-comment">// Find and clean notes</span>
+</span><span id="1551" class="l"><a class="l" href="#1551">1551: </a>        <span class="php-var">$inputfields</span>-&gt;add(<span class="php-var">$inputfield</span>); 
+</span><span id="1552" class="l"><a class="l" href="#1552">1552: </a>
+</span><span id="1553" class="l"><a class="l" href="#1553">1553: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;post(<span class="php-quote">'_clean'</span>)) {
+</span><span id="1554" class="l"><a class="l" href="#1554">1554: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Finding and cleaning...'</span>)); 
+</span><span id="1555" class="l"><a class="l" href="#1555">1555: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldtypes'</span>)-&gt;get(<span class="php-quote">'FieldtypePage'</span>)-&gt;cleanOrphanedReferences();
+</span><span id="1556" class="l"><a class="l" href="#1556">1556: </a>        }
+</span><span id="1557" class="l"><a class="l" href="#1557">1557: </a>
+</span><span id="1558" class="l"><a class="l" href="#1558">1558: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="1559" class="l"><a class="l" href="#1559">1559: </a>    }
+</span><span id="1560" class="l"><a class="l" href="#1560">1560: </a>
+</span><span id="1561" class="l"><a class="l" href="#1561">1561: </a>}
+</span><span id="1562" class="l"><a class="l" href="#1562">1562: </a>
+</span><span id="1563" class="l"><a class="l" href="#1563">1563: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

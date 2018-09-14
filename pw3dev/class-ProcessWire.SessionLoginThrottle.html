@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\SessionLoginThrottle | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3398040958"></script>
+	<script type="text/javascript" src="elementlist.js?1552697999"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.112 dev</span>
+			<span>Overview version 3.0.113 dev</span>
 		</a>
 
 
@@ -579,7 +579,7 @@
 <p>Throttles the frequency of logins for a given account, helps to reduce
 dictionary attacks.</p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2018 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -633,7 +633,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.SessionLoginThrottle.html#4-199" title="Go to source code">modules/Session/SessionLoginThrottle/SessionLoginThrottle.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.SessionLoginThrottle.html#4-270" title="Go to source code">modules/Session/SessionLoginThrottle/SessionLoginThrottle.module</a><br>
 	</div>
 
 
@@ -651,7 +651,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModuleInfo">#</a>
-		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#16-27" title="Go to source code">getModuleInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#21-30" title="Go to source code">getModuleInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -680,14 +680,18 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#35-39" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#55-63" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
+<p>Construct</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Construct</p>
+
 
 
 
@@ -711,7 +715,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#41-48" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#65-72" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -733,7 +737,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="sessionAllowLogin" id="_sessionAllowLogin">
+	<tr data-order="hookSessionAllowLoginAttempt" id="_hookSessionAllowLoginAttempt">
 
 		<td class="attributes"><code>
 			 public 
@@ -743,8 +747,8 @@ href="https://processwire.com">https://processwire.com</a></p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_sessionAllowLogin">#</a>
-		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#50-74" title="Go to source code">sessionAllowLogin</a>( <span>mixed <var>$event</var></span> )</code>
+		<a class="anchor" href="#_hookSessionAllowLoginAttempt">#</a>
+		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#74-100" title="Go to source code">hookSessionAllowLoginAttempt</a>( <span><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -762,6 +766,11 @@ already failed a login.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code><code><a href="class-ProcessWire.HookEvent.html">ProcessWire\HookEvent</a></code></code><br>$event</dd>
+				</dl></div>
 
 
 
@@ -774,25 +783,42 @@ already failed a login.</p>
 
 		<td class="attributes"><code>
 			 protected 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_allowLogin">#</a>
-		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#76-134" title="Go to source code">allowLogin</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#102-193" title="Go to source code">allowLogin</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Allow given user name to login?</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Allow given user name to login?</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name User name, may also be IP address</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
+				</div>
 
 
 
@@ -803,14 +829,14 @@ already failed a login.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModuleConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#137-174" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#196-245" title="Go to source code">getModuleConfigInputfields</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -824,7 +850,16 @@ already failed a login.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code></code><br>
+				</div>
 
 
 
@@ -843,7 +878,7 @@ already failed a login.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#176-189" title="Go to source code">___install</a>( )</code>
+		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#247-260" title="Go to source code">___install</a>( )</code>
 
 		<div class="description short">
 			
@@ -876,7 +911,7 @@ already failed a login.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____uninstall">#</a>
-		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#191-197" title="Go to source code">___uninstall</a>( )</code>
+		<code><a href="source-class-ProcessWire.SessionLoginThrottle.html#262-268" title="Go to source code">___uninstall</a>( )</code>
 
 		<div class="description short">
 			
@@ -1011,22 +1046,56 @@ already failed a login.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.SessionLoginThrottle.html#29-33" title="Go to source code"><var>$defaultSettings</var></a>
+				<a href="source-class-ProcessWire.SessionLoginThrottle.html#32-43" title="Go to source code"><var>$defaultSettings</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'checkIP'</span> =&gt; <span class="php-num">0</span>,
 	<span class="php-quote">'seconds'</span> =&gt; <span class="php-num">5</span>,
-	<span class="php-quote">'maxSeconds'</span> =&gt; <span class="php-num">60</span> 
-	)</code></td>
+	<span class="php-quote">'maxSeconds'</span> =&gt; <span class="php-num">60</span>,
+	<span class="php-quote">'logFails'</span> =&gt; <span class="php-num">0</span>,
+)</code></td>
 		<td class="description"><div>
 			<a href="#$defaultSettings" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>Default module settings</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Default module settings</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="allowLoginResults" id="$allowLoginResults">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.SessionLoginThrottle.html#45-53" title="Go to source code"><var>$allowLoginResults</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$allowLoginResults" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Cached results of allowLogin() in case there are multiple calls</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Cached results of allowLogin() in case there are multiple calls</p>
+
+<p>This ensures that only one attempt can be recorded per request.</p>
+
 
 			</div>
 		</div></td>
