@@ -8,7 +8,7 @@
 	<title>File core/Session.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4112997138"></script>
+	<script type="text/javascript" src="elementlist.js?651564272"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.114 dev</span>
+			<span>Overview version 3.0.115 dev</span>
 		</a>
 
 
@@ -434,6 +434,7 @@
 			<ul>
 				<li><a href="function-ProcessWire.__.html">__</a></li>
 				<li><a href="function-ProcessWire._checkForHttpHostError.html">_checkForHttpHostError</a></li>
+				<li><a href="function-ProcessWire._checkForTwoFactorAuth.html">_checkForTwoFactorAuth</a></li>
 				<li><a href="function-ProcessWire._hookSessionRedirectModal.html">_hookSessionRedirectModal</a></li>
 				<li><a href="function-ProcessWire._n.html">_n</a></li>
 				<li><a href="function-ProcessWire._wireDataAPI.html">_wireDataAPI</a></li>
@@ -1771,95 +1772,101 @@
 </span><span id="1199" class="l"><a class="l" href="#1199">1199: </a>                <span class="php-keyword2">end</span>(<span class="php-var">$history</span>);
 </span><span id="1200" class="l"><a class="l" href="#1200">1200: </a>                <span class="php-var">$lastKey</span> = <span class="php-keyword2">key</span>(<span class="php-var">$history</span>);
 </span><span id="1201" class="l"><a class="l" href="#1201">1201: </a>                <span class="php-var">$nextKey</span> = <span class="php-var">$lastKey</span>+<span class="php-num">1</span>;
-</span><span id="1202" class="l"><a class="l" href="#1202">1202: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$cnt</span> &gt;= <span class="php-var">$historyCnt</span>) <span class="php-var">$history</span> = <span class="php-keyword2">array_slice</span>(<span class="php-var">$history</span>, -<span class="php-num">1</span> * (<span class="php-var">$historyCnt</span>-<span class="php-num">1</span>), <span class="php-keyword1">null</span>, <span class="php-keyword1">true</span>); 
-</span><span id="1203" class="l"><a class="l" href="#1203">1203: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="1204" class="l"><a class="l" href="#1204">1204: </a>                <span class="php-var">$nextKey</span> = <span class="php-num">0</span>;
-</span><span id="1205" class="l"><a class="l" href="#1205">1205: </a>            }
-</span><span id="1206" class="l"><a class="l" href="#1206">1206: </a>
-</span><span id="1207" class="l"><a class="l" href="#1207">1207: </a>            <span class="php-var">$history</span>[<span class="php-var">$nextKey</span>] = <span class="php-var">$item</span>;
-</span><span id="1208" class="l"><a class="l" href="#1208">1208: </a>            <span class="php-var">$this</span>-&gt;set(<span class="php-quote">'_user'</span>, <span class="php-quote">'history'</span>, <span class="php-var">$history</span>);
-</span><span id="1209" class="l"><a class="l" href="#1209">1209: </a>        }
-</span><span id="1210" class="l"><a class="l" href="#1210">1210: </a>    }
-</span><span id="1211" class="l"><a class="l" href="#1211">1211: </a>
-</span><span id="1212" class="l"><a class="l" href="#1212">1212: </a>    <span class="php-comment">/**
-</span></span><span id="1213" class="l"><a class="l" href="#1213">1213: </a><span class="php-comment">     * Get the session history (if enabled)
-</span></span><span id="1214" class="l"><a class="l" href="#1214">1214: </a><span class="php-comment">     * 
-</span></span><span id="1215" class="l"><a class="l" href="#1215">1215: </a><span class="php-comment">     * Applicable only if `$config-&gt;sessionHistory &gt; 0`.
-</span></span><span id="1216" class="l"><a class="l" href="#1216">1216: </a><span class="php-comment">     * 
-</span></span><span id="1217" class="l"><a class="l" href="#1217">1217: </a><span class="php-comment">     * ~~~~~
-</span></span><span id="1218" class="l"><a class="l" href="#1218">1218: </a><span class="php-comment">     * $history = $session-&gt;getHistory();
-</span></span><span id="1219" class="l"><a class="l" href="#1219">1219: </a><span class="php-comment">     * print_r($history);
-</span></span><span id="1220" class="l"><a class="l" href="#1220">1220: </a><span class="php-comment">     * // outputs the following:
-</span></span><span id="1221" class="l"><a class="l" href="#1221">1221: </a><span class="php-comment">     * array(
-</span></span><span id="1222" class="l"><a class="l" href="#1222">1222: </a><span class="php-comment">     *   0  =&gt; array(
-</span></span><span id="1223" class="l"><a class="l" href="#1223">1223: </a><span class="php-comment">     *      'url' =&gt; 'http://domain.com/path/to/page/', // URL
-</span></span><span id="1224" class="l"><a class="l" href="#1224">1224: </a><span class="php-comment">     *      'page' =&gt; 1234, // page ID
-</span></span><span id="1225" class="l"><a class="l" href="#1225">1225: </a><span class="php-comment">     *      'time' =&gt; 234993498, // unix timestamp 
-</span></span><span id="1226" class="l"><a class="l" href="#1226">1226: </a><span class="php-comment">     *   ), 
-</span></span><span id="1227" class="l"><a class="l" href="#1227">1227: </a><span class="php-comment">     *   1 =&gt; array(
-</span></span><span id="1228" class="l"><a class="l" href="#1228">1228: </a><span class="php-comment">     *      // ... 
-</span></span><span id="1229" class="l"><a class="l" href="#1229">1229: </a><span class="php-comment">     *   ),
-</span></span><span id="1230" class="l"><a class="l" href="#1230">1230: </a><span class="php-comment">     *   2 =&gt; array(
-</span></span><span id="1231" class="l"><a class="l" href="#1231">1231: </a><span class="php-comment">     *      // ...
+</span><span id="1202" class="l"><a class="l" href="#1202">1202: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$cnt</span> &gt;= <span class="php-var">$historyCnt</span>) { 
+</span><span id="1203" class="l"><a class="l" href="#1203">1203: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$historyCnt</span> &gt; <span class="php-num">1</span>) {
+</span><span id="1204" class="l"><a class="l" href="#1204">1204: </a>                        <span class="php-var">$history</span> = <span class="php-keyword2">array_slice</span>(<span class="php-var">$history</span>, -<span class="php-num">1</span> * (<span class="php-var">$historyCnt</span> - <span class="php-num">1</span>), <span class="php-keyword1">null</span>, <span class="php-keyword1">true</span>);
+</span><span id="1205" class="l"><a class="l" href="#1205">1205: </a>                    } <span class="php-keyword1">else</span> {
+</span><span id="1206" class="l"><a class="l" href="#1206">1206: </a>                        <span class="php-var">$history</span> = <span class="php-keyword1">array</span>();
+</span><span id="1207" class="l"><a class="l" href="#1207">1207: </a>                    }
+</span><span id="1208" class="l"><a class="l" href="#1208">1208: </a>                }
+</span><span id="1209" class="l"><a class="l" href="#1209">1209: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1210" class="l"><a class="l" href="#1210">1210: </a>                <span class="php-var">$nextKey</span> = <span class="php-num">0</span>;
+</span><span id="1211" class="l"><a class="l" href="#1211">1211: </a>            }
+</span><span id="1212" class="l"><a class="l" href="#1212">1212: </a>
+</span><span id="1213" class="l"><a class="l" href="#1213">1213: </a>            <span class="php-var">$history</span>[<span class="php-var">$nextKey</span>] = <span class="php-var">$item</span>;
+</span><span id="1214" class="l"><a class="l" href="#1214">1214: </a>            <span class="php-var">$this</span>-&gt;set(<span class="php-quote">'_user'</span>, <span class="php-quote">'history'</span>, <span class="php-var">$history</span>);
+</span><span id="1215" class="l"><a class="l" href="#1215">1215: </a>        }
+</span><span id="1216" class="l"><a class="l" href="#1216">1216: </a>    }
+</span><span id="1217" class="l"><a class="l" href="#1217">1217: </a>
+</span><span id="1218" class="l"><a class="l" href="#1218">1218: </a>    <span class="php-comment">/**
+</span></span><span id="1219" class="l"><a class="l" href="#1219">1219: </a><span class="php-comment">     * Get the session history (if enabled)
+</span></span><span id="1220" class="l"><a class="l" href="#1220">1220: </a><span class="php-comment">     * 
+</span></span><span id="1221" class="l"><a class="l" href="#1221">1221: </a><span class="php-comment">     * Applicable only if `$config-&gt;sessionHistory &gt; 0`.
+</span></span><span id="1222" class="l"><a class="l" href="#1222">1222: </a><span class="php-comment">     * 
+</span></span><span id="1223" class="l"><a class="l" href="#1223">1223: </a><span class="php-comment">     * ~~~~~
+</span></span><span id="1224" class="l"><a class="l" href="#1224">1224: </a><span class="php-comment">     * $history = $session-&gt;getHistory();
+</span></span><span id="1225" class="l"><a class="l" href="#1225">1225: </a><span class="php-comment">     * print_r($history);
+</span></span><span id="1226" class="l"><a class="l" href="#1226">1226: </a><span class="php-comment">     * // outputs the following:
+</span></span><span id="1227" class="l"><a class="l" href="#1227">1227: </a><span class="php-comment">     * array(
+</span></span><span id="1228" class="l"><a class="l" href="#1228">1228: </a><span class="php-comment">     *   0  =&gt; array(
+</span></span><span id="1229" class="l"><a class="l" href="#1229">1229: </a><span class="php-comment">     *      'url' =&gt; 'http://domain.com/path/to/page/', // URL
+</span></span><span id="1230" class="l"><a class="l" href="#1230">1230: </a><span class="php-comment">     *      'page' =&gt; 1234, // page ID
+</span></span><span id="1231" class="l"><a class="l" href="#1231">1231: </a><span class="php-comment">     *      'time' =&gt; 234993498, // unix timestamp 
 </span></span><span id="1232" class="l"><a class="l" href="#1232">1232: </a><span class="php-comment">     *   ), 
-</span></span><span id="1233" class="l"><a class="l" href="#1233">1233: </a><span class="php-comment">     *   ...
-</span></span><span id="1234" class="l"><a class="l" href="#1234">1234: </a><span class="php-comment">     * );
-</span></span><span id="1235" class="l"><a class="l" href="#1235">1235: </a><span class="php-comment">     * ~~~~~
-</span></span><span id="1236" class="l"><a class="l" href="#1236">1236: </a><span class="php-comment">     * 
-</span></span><span id="1237" class="l"><a class="l" href="#1237">1237: </a><span class="php-comment">     * @return array Array of arrays containing history entries. 
-</span></span><span id="1238" class="l"><a class="l" href="#1238">1238: </a><span class="php-comment">     * 
-</span></span><span id="1239" class="l"><a class="l" href="#1239">1239: </a><span class="php-comment">     */</span>
-</span><span id="1240" class="l"><a class="l" href="#1240">1240: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getHistory" href="#_getHistory">getHistory</a>() {
-</span><span id="1241" class="l"><a class="l" href="#1241">1241: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'_user'</span>, <span class="php-quote">'history'</span>); 
-</span><span id="1242" class="l"><a class="l" href="#1242">1242: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-keyword1">array</span>();
-</span><span id="1243" class="l"><a class="l" href="#1243">1243: </a>        <span class="php-keyword1">return</span> <span class="php-var">$value</span>; 
-</span><span id="1244" class="l"><a class="l" href="#1244">1244: </a>    }
-</span><span id="1245" class="l"><a class="l" href="#1245">1245: </a>
-</span><span id="1246" class="l"><a class="l" href="#1246">1246: </a>    <span class="php-comment">/**
-</span></span><span id="1247" class="l"><a class="l" href="#1247">1247: </a><span class="php-comment">     * Remove queued notices
-</span></span><span id="1248" class="l"><a class="l" href="#1248">1248: </a><span class="php-comment">     * 
-</span></span><span id="1249" class="l"><a class="l" href="#1249">1249: </a><span class="php-comment">     * Call this after displaying queued message, error or warning notices. 
-</span></span><span id="1250" class="l"><a class="l" href="#1250">1250: </a><span class="php-comment">     * This prevents them from re-appearing on the next request.
-</span></span><span id="1251" class="l"><a class="l" href="#1251">1251: </a><span class="php-comment">     * 
-</span></span><span id="1252" class="l"><a class="l" href="#1252">1252: </a><span class="php-comment">     * #pw-group-notices
-</span></span><span id="1253" class="l"><a class="l" href="#1253">1253: </a><span class="php-comment">     * 
-</span></span><span id="1254" class="l"><a class="l" href="#1254">1254: </a><span class="php-comment">     */</span>
-</span><span id="1255" class="l"><a class="l" href="#1255">1255: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_removeNotices" href="#_removeNotices">removeNotices</a>() {
-</span><span id="1256" class="l"><a class="l" href="#1256">1256: </a>        <span class="php-keyword1">foreach</span>(<span class="php-keyword1">array</span>(<span class="php-quote">'message'</span>, <span class="php-quote">'error'</span>, <span class="php-quote">'warning'</span>) <span class="php-keyword1">as</span> <span class="php-var">$type</span>) {
-</span><span id="1257" class="l"><a class="l" href="#1257">1257: </a>            <span class="php-var">$this</span>-&gt;remove(<span class="php-var">$type</span>);
-</span><span id="1258" class="l"><a class="l" href="#1258">1258: </a>        }
-</span><span id="1259" class="l"><a class="l" href="#1259">1259: </a>    }
-</span><span id="1260" class="l"><a class="l" href="#1260">1260: </a>
-</span><span id="1261" class="l"><a class="l" href="#1261">1261: </a>    <span class="php-comment">/**
-</span></span><span id="1262" class="l"><a class="l" href="#1262">1262: </a><span class="php-comment">     * Return an instance of ProcessWire’s CSRF object, which provides an API for cross site request forgery protection.
-</span></span><span id="1263" class="l"><a class="l" href="#1263">1263: </a><span class="php-comment">     * 
-</span></span><span id="1264" class="l"><a class="l" href="#1264">1264: </a><span class="php-comment">     * ~~~~
-</span></span><span id="1265" class="l"><a class="l" href="#1265">1265: </a><span class="php-comment">     * // output somewhere in &lt;form&gt; markup when rendering a form
-</span></span><span id="1266" class="l"><a class="l" href="#1266">1266: </a><span class="php-comment">     * echo $session-&gt;CSRF-&gt;renderInput();
-</span></span><span id="1267" class="l"><a class="l" href="#1267">1267: </a><span class="php-comment">     * ~~~~
-</span></span><span id="1268" class="l"><a class="l" href="#1268">1268: </a><span class="php-comment">     * ~~~~ 
-</span></span><span id="1269" class="l"><a class="l" href="#1269">1269: </a><span class="php-comment">     * // when processing form (POST request), check to see if token is present
-</span></span><span id="1270" class="l"><a class="l" href="#1270">1270: </a><span class="php-comment">     * if($session-&gt;CSRF-&gt;hasValidToken()) {
-</span></span><span id="1271" class="l"><a class="l" href="#1271">1271: </a><span class="php-comment">     *   // form submission is valid
-</span></span><span id="1272" class="l"><a class="l" href="#1272">1272: </a><span class="php-comment">     *   // okay to process
-</span></span><span id="1273" class="l"><a class="l" href="#1273">1273: </a><span class="php-comment">     * } else {
-</span></span><span id="1274" class="l"><a class="l" href="#1274">1274: </a><span class="php-comment">     *   // form submission is NOT valid
-</span></span><span id="1275" class="l"><a class="l" href="#1275">1275: </a><span class="php-comment">     *   throw new WireException('CSRF check failed!');
-</span></span><span id="1276" class="l"><a class="l" href="#1276">1276: </a><span class="php-comment">     * }
-</span></span><span id="1277" class="l"><a class="l" href="#1277">1277: </a><span class="php-comment">     * ~~~~
-</span></span><span id="1278" class="l"><a class="l" href="#1278">1278: </a><span class="php-comment">     * 
-</span></span><span id="1279" class="l"><a class="l" href="#1279">1279: </a><span class="php-comment">     * @return SessionCSRF
-</span></span><span id="1280" class="l"><a class="l" href="#1280">1280: </a><span class="php-comment">     * @see SessionCSRF::renderInput(), SessionCSRF::validate(), SessionCSRF::hasValidToken()
-</span></span><span id="1281" class="l"><a class="l" href="#1281">1281: </a><span class="php-comment">     * 
-</span></span><span id="1282" class="l"><a class="l" href="#1282">1282: </a><span class="php-comment">     */</span>
-</span><span id="1283" class="l"><a class="l" href="#1283">1283: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_CSRF" href="#_CSRF">CSRF</a>() {
-</span><span id="1284" class="l"><a class="l" href="#1284">1284: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;sessionInit) <span class="php-var">$this</span>-&gt;init(); <span class="php-comment">// init required for CSRF</span>
-</span><span id="1285" class="l"><a class="l" href="#1285">1285: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;CSRF)) <span class="php-var">$this</span>-&gt;CSRF = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> SessionCSRF());
-</span><span id="1286" class="l"><a class="l" href="#1286">1286: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;CSRF; 
-</span><span id="1287" class="l"><a class="l" href="#1287">1287: </a>    }
-</span><span id="1288" class="l"><a class="l" href="#1288">1288: </a>
-</span><span id="1289" class="l"><a class="l" href="#1289">1289: </a>}
-</span><span id="1290" class="l"><a class="l" href="#1290">1290: </a></span></code></pre>
+</span></span><span id="1233" class="l"><a class="l" href="#1233">1233: </a><span class="php-comment">     *   1 =&gt; array(
+</span></span><span id="1234" class="l"><a class="l" href="#1234">1234: </a><span class="php-comment">     *      // ... 
+</span></span><span id="1235" class="l"><a class="l" href="#1235">1235: </a><span class="php-comment">     *   ),
+</span></span><span id="1236" class="l"><a class="l" href="#1236">1236: </a><span class="php-comment">     *   2 =&gt; array(
+</span></span><span id="1237" class="l"><a class="l" href="#1237">1237: </a><span class="php-comment">     *      // ...
+</span></span><span id="1238" class="l"><a class="l" href="#1238">1238: </a><span class="php-comment">     *   ), 
+</span></span><span id="1239" class="l"><a class="l" href="#1239">1239: </a><span class="php-comment">     *   ...
+</span></span><span id="1240" class="l"><a class="l" href="#1240">1240: </a><span class="php-comment">     * );
+</span></span><span id="1241" class="l"><a class="l" href="#1241">1241: </a><span class="php-comment">     * ~~~~~
+</span></span><span id="1242" class="l"><a class="l" href="#1242">1242: </a><span class="php-comment">     * 
+</span></span><span id="1243" class="l"><a class="l" href="#1243">1243: </a><span class="php-comment">     * @return array Array of arrays containing history entries. 
+</span></span><span id="1244" class="l"><a class="l" href="#1244">1244: </a><span class="php-comment">     * 
+</span></span><span id="1245" class="l"><a class="l" href="#1245">1245: </a><span class="php-comment">     */</span>
+</span><span id="1246" class="l"><a class="l" href="#1246">1246: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getHistory" href="#_getHistory">getHistory</a>() {
+</span><span id="1247" class="l"><a class="l" href="#1247">1247: </a>        <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;get(<span class="php-quote">'_user'</span>, <span class="php-quote">'history'</span>); 
+</span><span id="1248" class="l"><a class="l" href="#1248">1248: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$value</span>)) <span class="php-var">$value</span> = <span class="php-keyword1">array</span>();
+</span><span id="1249" class="l"><a class="l" href="#1249">1249: </a>        <span class="php-keyword1">return</span> <span class="php-var">$value</span>; 
+</span><span id="1250" class="l"><a class="l" href="#1250">1250: </a>    }
+</span><span id="1251" class="l"><a class="l" href="#1251">1251: </a>
+</span><span id="1252" class="l"><a class="l" href="#1252">1252: </a>    <span class="php-comment">/**
+</span></span><span id="1253" class="l"><a class="l" href="#1253">1253: </a><span class="php-comment">     * Remove queued notices
+</span></span><span id="1254" class="l"><a class="l" href="#1254">1254: </a><span class="php-comment">     * 
+</span></span><span id="1255" class="l"><a class="l" href="#1255">1255: </a><span class="php-comment">     * Call this after displaying queued message, error or warning notices. 
+</span></span><span id="1256" class="l"><a class="l" href="#1256">1256: </a><span class="php-comment">     * This prevents them from re-appearing on the next request.
+</span></span><span id="1257" class="l"><a class="l" href="#1257">1257: </a><span class="php-comment">     * 
+</span></span><span id="1258" class="l"><a class="l" href="#1258">1258: </a><span class="php-comment">     * #pw-group-notices
+</span></span><span id="1259" class="l"><a class="l" href="#1259">1259: </a><span class="php-comment">     * 
+</span></span><span id="1260" class="l"><a class="l" href="#1260">1260: </a><span class="php-comment">     */</span>
+</span><span id="1261" class="l"><a class="l" href="#1261">1261: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_removeNotices" href="#_removeNotices">removeNotices</a>() {
+</span><span id="1262" class="l"><a class="l" href="#1262">1262: </a>        <span class="php-keyword1">foreach</span>(<span class="php-keyword1">array</span>(<span class="php-quote">'message'</span>, <span class="php-quote">'error'</span>, <span class="php-quote">'warning'</span>) <span class="php-keyword1">as</span> <span class="php-var">$type</span>) {
+</span><span id="1263" class="l"><a class="l" href="#1263">1263: </a>            <span class="php-var">$this</span>-&gt;remove(<span class="php-var">$type</span>);
+</span><span id="1264" class="l"><a class="l" href="#1264">1264: </a>        }
+</span><span id="1265" class="l"><a class="l" href="#1265">1265: </a>    }
+</span><span id="1266" class="l"><a class="l" href="#1266">1266: </a>
+</span><span id="1267" class="l"><a class="l" href="#1267">1267: </a>    <span class="php-comment">/**
+</span></span><span id="1268" class="l"><a class="l" href="#1268">1268: </a><span class="php-comment">     * Return an instance of ProcessWire’s CSRF object, which provides an API for cross site request forgery protection.
+</span></span><span id="1269" class="l"><a class="l" href="#1269">1269: </a><span class="php-comment">     * 
+</span></span><span id="1270" class="l"><a class="l" href="#1270">1270: </a><span class="php-comment">     * ~~~~
+</span></span><span id="1271" class="l"><a class="l" href="#1271">1271: </a><span class="php-comment">     * // output somewhere in &lt;form&gt; markup when rendering a form
+</span></span><span id="1272" class="l"><a class="l" href="#1272">1272: </a><span class="php-comment">     * echo $session-&gt;CSRF-&gt;renderInput();
+</span></span><span id="1273" class="l"><a class="l" href="#1273">1273: </a><span class="php-comment">     * ~~~~
+</span></span><span id="1274" class="l"><a class="l" href="#1274">1274: </a><span class="php-comment">     * ~~~~ 
+</span></span><span id="1275" class="l"><a class="l" href="#1275">1275: </a><span class="php-comment">     * // when processing form (POST request), check to see if token is present
+</span></span><span id="1276" class="l"><a class="l" href="#1276">1276: </a><span class="php-comment">     * if($session-&gt;CSRF-&gt;hasValidToken()) {
+</span></span><span id="1277" class="l"><a class="l" href="#1277">1277: </a><span class="php-comment">     *   // form submission is valid
+</span></span><span id="1278" class="l"><a class="l" href="#1278">1278: </a><span class="php-comment">     *   // okay to process
+</span></span><span id="1279" class="l"><a class="l" href="#1279">1279: </a><span class="php-comment">     * } else {
+</span></span><span id="1280" class="l"><a class="l" href="#1280">1280: </a><span class="php-comment">     *   // form submission is NOT valid
+</span></span><span id="1281" class="l"><a class="l" href="#1281">1281: </a><span class="php-comment">     *   throw new WireException('CSRF check failed!');
+</span></span><span id="1282" class="l"><a class="l" href="#1282">1282: </a><span class="php-comment">     * }
+</span></span><span id="1283" class="l"><a class="l" href="#1283">1283: </a><span class="php-comment">     * ~~~~
+</span></span><span id="1284" class="l"><a class="l" href="#1284">1284: </a><span class="php-comment">     * 
+</span></span><span id="1285" class="l"><a class="l" href="#1285">1285: </a><span class="php-comment">     * @return SessionCSRF
+</span></span><span id="1286" class="l"><a class="l" href="#1286">1286: </a><span class="php-comment">     * @see SessionCSRF::renderInput(), SessionCSRF::validate(), SessionCSRF::hasValidToken()
+</span></span><span id="1287" class="l"><a class="l" href="#1287">1287: </a><span class="php-comment">     * 
+</span></span><span id="1288" class="l"><a class="l" href="#1288">1288: </a><span class="php-comment">     */</span>
+</span><span id="1289" class="l"><a class="l" href="#1289">1289: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_CSRF" href="#_CSRF">CSRF</a>() {
+</span><span id="1290" class="l"><a class="l" href="#1290">1290: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;sessionInit) <span class="php-var">$this</span>-&gt;init(); <span class="php-comment">// init required for CSRF</span>
+</span><span id="1291" class="l"><a class="l" href="#1291">1291: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;CSRF)) <span class="php-var">$this</span>-&gt;CSRF = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> SessionCSRF());
+</span><span id="1292" class="l"><a class="l" href="#1292">1292: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;CSRF; 
+</span><span id="1293" class="l"><a class="l" href="#1293">1293: </a>    }
+</span><span id="1294" class="l"><a class="l" href="#1294">1294: </a>
+</span><span id="1295" class="l"><a class="l" href="#1295">1295: </a>}
+</span><span id="1296" class="l"><a class="l" href="#1296">1296: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

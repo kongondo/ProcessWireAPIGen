@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Pageimage | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4112997138"></script>
+	<script type="text/javascript" src="elementlist.js?651564272"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.114 dev</span>
+			<span>Overview version 3.0.115 dev</span>
 		</a>
 
 
@@ -433,6 +433,7 @@
 			<ul>
 				<li><a href="function-ProcessWire.__.html">__</a></li>
 				<li><a href="function-ProcessWire._checkForHttpHostError.html">_checkForHttpHostError</a></li>
+				<li><a href="function-ProcessWire._checkForTwoFactorAuth.html">_checkForTwoFactorAuth</a></li>
 				<li><a href="function-ProcessWire._hookSessionRedirectModal.html">_hookSessionRedirectModal</a></li>
 				<li><a href="function-ProcessWire._n.html">_n</a></li>
 				<li><a href="function-ProcessWire._wireDataAPI.html">_wireDataAPI</a></li>
@@ -649,7 +650,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Pageimage.html#4-1571" title="Go to source code">core/Pageimage.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Pageimage.html#4-1600" title="Go to source code">core/Pageimage.php</a><br>
 	</div>
 
 
@@ -1101,7 +1102,7 @@ this object).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_size">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#447-553" title="Go to source code">size</a>( <span>integer <var>$width</var></span>, <span>integer <var>$height</var></span>, <span>array|string|integer <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#447-554" title="Go to source code">size</a>( <span>integer <var>$width</var></span>, <span>integer <var>$height</var></span>, <span>array|string|integer <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1176,7 +1177,9 @@ typically lower than regular quality setting). - <code>cleanFilename</code>
 Height to use for filename (default is to use specified $height argument). -
 <code>focus</code> (bool): Should resizes that result in crop use focus area if
 available? (default=true). In order for focus to be applicable, resize must
-include both width and height.</p>
+include both width and height. - <code>allowOriginal</code> (bool): Return
+original if already at width/height? May not be combined with other options.
+(default=false)</p>
 
 <p><strong>Possible values for "cropping" option</strong><br />
 - <code>true</code> (bool): Auto detect and allow use of focus (default). -
@@ -1248,7 +1251,7 @@ then the original will be returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____size">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#555-771" title="Go to source code">___size</a>( <span>integer <var>$width</var></span>, <span>integer <var>$height</var></span>, <span>array|string|integer <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#556-780" title="Go to source code">___size</a>( <span>integer <var>$width</var></span>, <span>integer <var>$height</var></span>, <span>array|string|integer <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1298,7 +1301,7 @@ then the original will be returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hidpiSize">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#773-787" title="Go to source code">hidpiSize</a>( <span>mixed <var>$width</var></span>, <span>mixed <var>$height</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#782-796" title="Go to source code">hidpiSize</a>( <span>mixed <var>$width</var></span>, <span>mixed <var>$height</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1346,7 +1349,7 @@ then the original will be returned.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____crop">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#789-831" title="Go to source code">___crop</a>( <span>integer <var>$x</var></span>, <span>integer <var>$y</var></span>, <span>integer <var>$width</var></span>, <span>integer <var>$height</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#798-840" title="Go to source code">___crop</a>( <span>integer <var>$x</var></span>, <span>integer <var>$y</var></span>, <span>integer <var>$width</var></span>, <span>integer <var>$height</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1405,7 +1408,7 @@ setting crop properties in $options since we are overriding them.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_width">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#833-859" title="Go to source code">width</a>( <span>integer <var>$n</var> = <span class="php-num">0</span></span>, <span>array|string|integer|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#842-868" title="Go to source code">width</a>( <span>integer <var>$n</var> = <span class="php-num">0</span></span>, <span>array|string|integer|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1466,7 +1469,7 @@ argument.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_height">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#861-887" title="Go to source code">height</a>( <span>integer <var>$n</var> = <span class="php-num">0</span></span>, <span>array|string|integer|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#870-896" title="Go to source code">height</a>( <span>integer <var>$n</var> = <span class="php-num">0</span></span>, <span>array|string|integer|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1527,7 +1530,7 @@ argument.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hidpiWidth">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#889-931" title="Go to source code">hidpiWidth</a>( <span>integer|float <var>$width</var> = <span class="php-num">0</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#898-940" title="Go to source code">hidpiWidth</a>( <span>integer|float <var>$width</var> = <span class="php-num">0</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1582,7 +1585,7 @@ calculate with that width rather than current image width.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hidpiHeight">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#933-961" title="Go to source code">hidpiHeight</a>( <span>integer|float <var>$height</var> = <span class="php-num">0</span></span>, <span>array|integer <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#942-970" title="Go to source code">hidpiHeight</a>( <span>integer|float <var>$height</var> = <span class="php-num">0</span></span>, <span>array|integer <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1637,7 +1640,7 @@ calculate with that height rather than current image height.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxWidth">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#963-983" title="Go to source code">maxWidth</a>( <span>integer <var>$n</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#972-992" title="Go to source code">maxWidth</a>( <span>integer <var>$n</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1689,7 +1692,7 @@ will be returned at the requested dimension.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxHeight">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#985-1005" title="Go to source code">maxHeight</a>( <span>integer <var>$n</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#994-1014" title="Go to source code">maxHeight</a>( <span>integer <var>$n</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1741,7 +1744,7 @@ will be returned at the requested dimension.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxSize">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1007-1031" title="Go to source code">maxSize</a>( <span>integer <var>$width</var></span>, <span>integer <var>$height</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1016-1060" title="Go to source code">maxSize</a>( <span>integer <var>$width</var></span>, <span>integer <var>$height</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1764,7 +1767,9 @@ will be returned at the requested dimension.</p>
 					<dt><var>$height</var></dt>
 					<dd><code>integer</code><br>$height Max allowed height</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options See <code>Pageimage::size()</code> method for options</dd>
+					<dd><code>array</code><br>$options See <code>Pageimage::size()</code> method for options, or these
+additional options: - <code>allowOriginal</code> (bool): Allow original image to
+be returned if already within max requested dimensions? (default=false)</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1789,7 +1794,7 @@ will be returned at the requested dimension.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getVariations">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1033-1111" title="Go to source code">getVariations</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1062-1140" title="Go to source code">getVariations</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1852,7 +1857,7 @@ provided <code>$options['info']</code> is true.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____rebuildVariations">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1113-1256" title="Go to source code">___rebuildVariations</a>( <span>integer <var>$mode</var> = <span class="php-num">0</span></span>, <span>array <var>$suffix</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1142-1285" title="Go to source code">___rebuildVariations</a>( <span>integer <var>$mode</var> = <span class="php-num">0</span></span>, <span>array <var>$suffix</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1935,7 +1940,7 @@ associative array indexed by file name.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____isVariation">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1258-1436" title="Go to source code">___isVariation</a>( <span>string <var>$basename</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1287-1465" title="Go to source code">___isVariation</a>( <span>string <var>$basename</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2021,7 +2026,7 @@ info if it is.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeVariations">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1438-1456" title="Go to source code">removeVariations</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1467-1485" title="Go to source code">removeVariations</a>( )</code>
 
 		<div class="description short">
 			
@@ -2060,7 +2065,7 @@ info if it is.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOriginal">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1458-1470" title="Go to source code">setOriginal</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$image</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1487-1499" title="Go to source code">setOriginal</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2106,7 +2111,7 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOriginal">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1472-1486" title="Go to source code">getOriginal</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1501-1515" title="Go to source code">getOriginal</a>( )</code>
 
 		<div class="description short">
 			
@@ -2145,7 +2150,7 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unlink">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1488-1498" title="Go to source code">unlink</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1517-1527" title="Go to source code">unlink</a>( )</code>
 
 		<div class="description short">
 			
@@ -2186,7 +2191,7 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_copyToPath">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1500-1520" title="Go to source code">copyToPath</a>( <span>string <var>$path</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1529-1549" title="Go to source code">copyToPath</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2232,7 +2237,7 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1522-1539" title="Go to source code">___install</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1551-1568" title="Go to source code">___install</a>( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2281,7 +2286,7 @@ populating it's name</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1541-1569" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1570-1598" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			

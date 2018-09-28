@@ -8,7 +8,7 @@
 	<title>File core/Wire.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4112997138"></script>
+	<script type="text/javascript" src="elementlist.js?651564272"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.114 dev</span>
+			<span>Overview version 3.0.115 dev</span>
 		</a>
 
 
@@ -434,6 +434,7 @@
 			<ul>
 				<li><a href="function-ProcessWire.__.html">__</a></li>
 				<li><a href="function-ProcessWire._checkForHttpHostError.html">_checkForHttpHostError</a></li>
+				<li><a href="function-ProcessWire._checkForTwoFactorAuth.html">_checkForTwoFactorAuth</a></li>
 				<li><a href="function-ProcessWire._hookSessionRedirectModal.html">_hookSessionRedirectModal</a></li>
 				<li><a href="function-ProcessWire._n.html">_n</a></li>
 				<li><a href="function-ProcessWire._wireDataAPI.html">_wireDataAPI</a></li>
@@ -1658,12 +1659,12 @@
 </span><span id="1086" class="l"><a class="l" href="#1086">1086: </a>    }
 </span><span id="1087" class="l"><a class="l" href="#1087">1087: </a>
 </span><span id="1088" class="l"><a class="l" href="#1088">1088: </a>    <span class="php-comment">/**
-</span></span><span id="1089" class="l"><a class="l" href="#1089">1089: </a><span class="php-comment">     * Returns true if change tracking is on, or false if it is not. 
+</span></span><span id="1089" class="l"><a class="l" href="#1089">1089: </a><span class="php-comment">     * Returns true or 1 if change tracking is on, or false or 0 if it is not, or mode bitmask (int) if requested. 
 </span></span><span id="1090" class="l"><a class="l" href="#1090">1090: </a><span class="php-comment">     * 
 </span></span><span id="1091" class="l"><a class="l" href="#1091">1091: </a><span class="php-comment">     * #pw-group-changes
 </span></span><span id="1092" class="l"><a class="l" href="#1092">1092: </a><span class="php-comment">     *
-</span></span><span id="1093" class="l"><a class="l" href="#1093">1093: </a><span class="php-comment">     * @param bool $getMode When true, the track changes mode bitmask will be returned rather than a boolean
-</span></span><span id="1094" class="l"><a class="l" href="#1094">1094: </a><span class="php-comment">     * @return bool|int 
+</span></span><span id="1093" class="l"><a class="l" href="#1093">1093: </a><span class="php-comment">     * @param bool $getMode When true, the track changes mode bitmask will be returned 
+</span></span><span id="1094" class="l"><a class="l" href="#1094">1094: </a><span class="php-comment">     * @return int|bool 0/false if off, 1/true if On, or mode bitmask if requested 
 </span></span><span id="1095" class="l"><a class="l" href="#1095">1095: </a><span class="php-comment">     * 
 </span></span><span id="1096" class="l"><a class="l" href="#1096">1096: </a><span class="php-comment">     */</span>
 </span><span id="1097" class="l"><a class="l" href="#1097">1097: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_trackChanges" href="#_trackChanges">trackChanges</a>(<span class="php-var">$getMode</span> = <span class="php-keyword1">false</span>) {
