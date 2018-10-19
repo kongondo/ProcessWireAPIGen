@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeComments/CommentList.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?486604745"></script>
+	<script type="text/javascript" src="elementlist.js?537616005"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.116 dev</span>
+			<span>Overview version 3.0.117 dev</span>
 		</a>
 
 
@@ -888,45 +888,66 @@
 </span></span><span id="315" class="l"><a class="l" href="#315">315: </a><span class="php-comment">     * It also populates a session variable 'CommentApprovalMessage' with
 </span></span><span id="316" class="l"><a class="l" href="#316">316: </a><span class="php-comment">     * a text message of what occurred.
 </span></span><span id="317" class="l"><a class="l" href="#317">317: </a><span class="php-comment">     *
-</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-comment">     * @return string
-</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">     *
-</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">     */</span>
-</span><span id="321" class="l"><a class="l" href="#321">321: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_renderCheckActions" href="#_renderCheckActions">renderCheckActions</a>() {
-</span><span id="322" class="l"><a class="l" href="#322">322: </a>
-</span><span id="323" class="l"><a class="l" href="#323">323: </a>        <span class="php-var">$action</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;get(<span class="php-quote">'comment_success'</span>);
-</span><span id="324" class="l"><a class="l" href="#324">324: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$action</span>) || <span class="php-var">$action</span> === <span class="php-quote">&quot;1&quot;</span>) <span class="php-keyword1">return</span> <span class="php-quote">''</span>;
-</span><span id="325" class="l"><a class="l" href="#325">325: </a>
-</span><span id="326" class="l"><a class="l" href="#326">326: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$action</span> === <span class="php-quote">'2'</span> || <span class="php-var">$action</span> === <span class="php-quote">'3'</span>) {
-</span><span id="327" class="l"><a class="l" href="#327">327: </a>            <span class="php-var">$message</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;get(<span class="php-quote">'CommentApprovalMessage'</span>);
-</span><span id="328" class="l"><a class="l" href="#328">328: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$message</span>) {
-</span><span id="329" class="l"><a class="l" href="#329">329: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;remove(<span class="php-quote">'CommentApprovalMessage'</span>);
-</span><span id="330" class="l"><a class="l" href="#330">330: </a>                <span class="php-var">$class</span> = <span class="php-var">$action</span> === <span class="php-quote">'2'</span> ? <span class="php-quote">'success'</span> : <span class="php-quote">'error'</span>;
-</span><span id="331" class="l"><a class="l" href="#331">331: </a>                <span class="php-var">$commentID</span> = (int) <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;get(<span class="php-quote">'comment_id'</span>);
-</span><span id="332" class="l"><a class="l" href="#332">332: </a>                <span class="php-var">$message</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$message</span>);
-</span><span id="333" class="l"><a class="l" href="#333">333: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$commentID</span>) <span class="php-var">$message</span> = <span class="php-keyword2">str_replace</span>(<span class="php-var">$commentID</span>, <span class="php-quote">&quot;&lt;a href='#Comment</span><span class="php-var">$commentID</span><span class="php-quote">'&gt;</span><span class="php-var">$commentID</span><span class="php-quote">&lt;/a&gt;&quot;</span>, <span class="php-var">$message</span>);
-</span><span id="334" class="l"><a class="l" href="#334">334: </a>                <span class="php-keyword1">return</span> <span class="php-quote">&quot;&lt;p id='CommentApprovalMessage' class='</span><span class="php-var">$class</span><span class="php-quote">'&gt;&lt;strong&gt;</span><span class="php-var">$message</span><span class="php-quote">&lt;/strong&gt;&lt;/p&gt;&quot;</span>;
-</span><span id="335" class="l"><a class="l" href="#335">335: </a>            }
-</span><span id="336" class="l"><a class="l" href="#336">336: </a>        }
-</span><span id="337" class="l"><a class="l" href="#337">337: </a>
-</span><span id="338" class="l"><a class="l" href="#338">338: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;field) <span class="php-keyword1">return</span> <span class="php-quote">''</span>;
-</span><span id="339" class="l"><a class="l" href="#339">339: </a>
-</span><span id="340" class="l"><a class="l" href="#340">340: </a>        <span class="php-keyword1">require_once</span>(<span class="php-keyword2">dirname</span>(__FILE__) . <span class="php-quote">'/CommentNotifications.php'</span>);
-</span><span id="341" class="l"><a class="l" href="#341">341: </a>        <span class="php-var">$no</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> CommentNotifications(<span class="php-var">$this</span>-&gt;page, <span class="php-var">$this</span>-&gt;field));
-</span><span id="342" class="l"><a class="l" href="#342">342: </a>        <span class="php-var">$info</span> = <span class="php-var">$no</span>-&gt;checkActions();
-</span><span id="343" class="l"><a class="l" href="#343">343: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$info</span>[<span class="php-quote">'valid'</span>]) { 
-</span><span id="344" class="l"><a class="l" href="#344">344: </a>            <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;page-&gt;url . <span class="php-quote">'?'</span>; 
-</span><span id="345" class="l"><a class="l" href="#345">345: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$info</span>[<span class="php-quote">'commentID'</span>]) <span class="php-var">$url</span> .= <span class="php-quote">&quot;comment_id=</span><span class="php-var">$info</span><span class="php-quote">[commentID]&amp;&quot;</span>;
-</span><span id="346" class="l"><a class="l" href="#346">346: </a>            <span class="php-var">$url</span> .= <span class="php-quote">&quot;comment_success=&quot;</span> . (<span class="php-var">$info</span>[<span class="php-quote">'success'</span>] ? <span class="php-quote">'2'</span> : <span class="php-quote">'3'</span>);
-</span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;set(<span class="php-quote">'CommentApprovalMessage'</span>, <span class="php-var">$info</span>[<span class="php-quote">'message'</span>]);
-</span><span id="348" class="l"><a class="l" href="#348">348: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;redirect(<span class="php-var">$url</span> . <span class="php-quote">'#CommentApprovalMessage'</span>);
-</span><span id="349" class="l"><a class="l" href="#349">349: </a>        }
-</span><span id="350" class="l"><a class="l" href="#350">350: </a>
-</span><span id="351" class="l"><a class="l" href="#351">351: </a>        <span class="php-keyword1">return</span> <span class="php-quote">''</span>;
-</span><span id="352" class="l"><a class="l" href="#352">352: </a>    }
-</span><span id="353" class="l"><a class="l" href="#353">353: </a>
-</span><span id="354" class="l"><a class="l" href="#354">354: </a>}
-</span><span id="355" class="l"><a class="l" href="#355">355: </a>
-</span><span id="356" class="l"><a class="l" href="#356">356: </a></span></code></pre>
+</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-comment">     * @param array $options
+</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">     * @return string
+</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">     *
+</span></span><span id="321" class="l"><a class="l" href="#321">321: </a><span class="php-comment">     */</span>
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_renderCheckActions" href="#_renderCheckActions">renderCheckActions</a>(<span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>        
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>        <span class="php-var">$defaults</span> = <span class="php-keyword1">array</span>(
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>            <span class="php-quote">'messageIdAttr'</span> =&gt; <span class="php-quote">'CommentApprovalMessage'</span>,
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>            <span class="php-quote">'messageMarkup'</span> =&gt; <span class="php-quote">&quot;&lt;p id='{id}' class='{class}'&gt;&lt;strong&gt;{message}&lt;/strong&gt;&lt;/p&gt;&quot;</span>, 
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>            <span class="php-quote">'linkMarkup'</span> =&gt; <span class="php-quote">&quot;&lt;a href='{href}'&gt;{label}&lt;/a&gt;&quot;</span>,
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>            <span class="php-quote">'successClass'</span> =&gt; <span class="php-quote">'success'</span>,
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>            <span class="php-quote">'errorClass'</span> =&gt; <span class="php-quote">'error'</span>,
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>        );
+</span><span id="331" class="l"><a class="l" href="#331">331: </a>        
+</span><span id="332" class="l"><a class="l" href="#332">332: </a>        <span class="php-var">$options</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$defaults</span>, <span class="php-var">$options</span>);
+</span><span id="333" class="l"><a class="l" href="#333">333: </a>        <span class="php-var">$action</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;get(<span class="php-quote">'comment_success'</span>);
+</span><span id="334" class="l"><a class="l" href="#334">334: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$action</span>) || <span class="php-var">$action</span> === <span class="php-quote">&quot;1&quot;</span>) <span class="php-keyword1">return</span> <span class="php-quote">''</span>;
+</span><span id="335" class="l"><a class="l" href="#335">335: </a>
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$action</span> === <span class="php-quote">'2'</span> || <span class="php-var">$action</span> === <span class="php-quote">'3'</span>) {
+</span><span id="337" class="l"><a class="l" href="#337">337: </a>            <span class="php-var">$message</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;get(<span class="php-quote">'CommentApprovalMessage'</span>);
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$message</span>) {
+</span><span id="339" class="l"><a class="l" href="#339">339: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;remove(<span class="php-quote">'CommentApprovalMessage'</span>);
+</span><span id="340" class="l"><a class="l" href="#340">340: </a>                <span class="php-var">$class</span> = <span class="php-var">$action</span> === <span class="php-quote">'2'</span> ? <span class="php-var">$options</span>[<span class="php-quote">'successClass'</span>] : <span class="php-var">$options</span>[<span class="php-quote">'errorClass'</span>];
+</span><span id="341" class="l"><a class="l" href="#341">341: </a>                <span class="php-var">$commentID</span> = (int) <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;get(<span class="php-quote">'comment_id'</span>);
+</span><span id="342" class="l"><a class="l" href="#342">342: </a>                <span class="php-var">$message</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;entities(<span class="php-var">$message</span>);
+</span><span id="343" class="l"><a class="l" href="#343">343: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$commentID</span>) {
+</span><span id="344" class="l"><a class="l" href="#344">344: </a>                    <span class="php-var">$link</span> = <span class="php-keyword2">str_replace</span>(
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>                        <span class="php-keyword1">array</span>(<span class="php-quote">'{href}'</span>, <span class="php-quote">'{label}'</span>), 
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>                        <span class="php-keyword1">array</span>(<span class="php-quote">&quot;#Comment</span><span class="php-var">$commentID</span><span class="php-quote">&quot;</span>, <span class="php-var">$commentID</span>), 
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>                        <span class="php-var">$options</span>[<span class="php-quote">'linkMarkup'</span>]
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>                    );
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>                    <span class="php-var">$message</span> = <span class="php-keyword2">str_replace</span>(<span class="php-var">$commentID</span>, <span class="php-var">$link</span>, <span class="php-var">$message</span>);
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>                }
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>                <span class="php-keyword1">return</span> <span class="php-keyword2">str_replace</span>(
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>                    <span class="php-keyword1">array</span>(<span class="php-quote">'{id}'</span>, <span class="php-quote">'{class}'</span>, <span class="php-quote">'{message}'</span>), 
+</span><span id="353" class="l"><a class="l" href="#353">353: </a>                    <span class="php-keyword1">array</span>(<span class="php-var">$options</span>[<span class="php-quote">'messageIdAttr'</span>], <span class="php-var">$class</span>, <span class="php-var">$message</span>), 
+</span><span id="354" class="l"><a class="l" href="#354">354: </a>                    <span class="php-var">$options</span>[<span class="php-quote">'messageMarkup'</span>]
+</span><span id="355" class="l"><a class="l" href="#355">355: </a>                );
+</span><span id="356" class="l"><a class="l" href="#356">356: </a>            }
+</span><span id="357" class="l"><a class="l" href="#357">357: </a>        }
+</span><span id="358" class="l"><a class="l" href="#358">358: </a>
+</span><span id="359" class="l"><a class="l" href="#359">359: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$this</span>-&gt;field) <span class="php-keyword1">return</span> <span class="php-quote">''</span>;
+</span><span id="360" class="l"><a class="l" href="#360">360: </a>
+</span><span id="361" class="l"><a class="l" href="#361">361: </a>        <span class="php-keyword1">require_once</span>(<span class="php-keyword2">dirname</span>(__FILE__) . <span class="php-quote">'/CommentNotifications.php'</span>);
+</span><span id="362" class="l"><a class="l" href="#362">362: </a>        <span class="php-var">$no</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> CommentNotifications(<span class="php-var">$this</span>-&gt;page, <span class="php-var">$this</span>-&gt;field));
+</span><span id="363" class="l"><a class="l" href="#363">363: </a>        <span class="php-var">$info</span> = <span class="php-var">$no</span>-&gt;checkActions();
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$info</span>[<span class="php-quote">'valid'</span>]) { 
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>            <span class="php-var">$url</span> = <span class="php-var">$this</span>-&gt;page-&gt;url . <span class="php-quote">'?'</span>; 
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$info</span>[<span class="php-quote">'commentID'</span>]) <span class="php-var">$url</span> .= <span class="php-quote">&quot;comment_id=</span><span class="php-var">$info</span><span class="php-quote">[commentID]&amp;&quot;</span>;
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>            <span class="php-var">$url</span> .= <span class="php-quote">&quot;comment_success=&quot;</span> . (<span class="php-var">$info</span>[<span class="php-quote">'success'</span>] ? <span class="php-quote">'2'</span> : <span class="php-quote">'3'</span>);
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;set(<span class="php-quote">'CommentApprovalMessage'</span>, <span class="php-var">$info</span>[<span class="php-quote">'message'</span>]);
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'session'</span>)-&gt;redirect(<span class="php-var">$url</span> . <span class="php-quote">'#'</span> . <span class="php-var">$options</span>[<span class="php-quote">'messageIdAttr'</span>]);
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>        }
+</span><span id="371" class="l"><a class="l" href="#371">371: </a>
+</span><span id="372" class="l"><a class="l" href="#372">372: </a>        <span class="php-keyword1">return</span> <span class="php-quote">''</span>;
+</span><span id="373" class="l"><a class="l" href="#373">373: </a>    }
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>
+</span><span id="375" class="l"><a class="l" href="#375">375: </a>}
+</span><span id="376" class="l"><a class="l" href="#376">376: </a>
+</span><span id="377" class="l"><a class="l" href="#377">377: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
