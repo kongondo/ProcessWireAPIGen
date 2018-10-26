@@ -8,7 +8,7 @@
 	<title>File core/WireArray.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?537616005"></script>
+	<script type="text/javascript" src="elementlist.js?1753655137"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -456,6 +456,7 @@
 				<li><a href="function-ProcessWire.languages.html">languages</a></li>
 				<li><a href="function-ProcessWire.modules.html">modules</a></li>
 				<li><a href="function-ProcessWire.page.html">page</a></li>
+				<li><a href="function-ProcessWire.PageArray.html">PageArray</a></li>
 				<li><a href="function-ProcessWire.pages.html">pages</a></li>
 				<li><a href="function-ProcessWire.paths.html">paths</a></li>
 				<li><a href="function-ProcessWire.permissions.html">permissions</a></li>
@@ -470,6 +471,7 @@
 				<li><a href="function-ProcessWire.user.html">user</a></li>
 				<li><a href="function-ProcessWire.users.html">users</a></li>
 				<li><a href="function-ProcessWire.wire.html">wire</a></li>
+				<li><a href="function-ProcessWire.WireArray.html">WireArray</a></li>
 				<li><a href="function-ProcessWire.wireBytesStr.html">wireBytesStr</a></li>
 				<li><a href="function-ProcessWire.wireCache.html">wireCache</a></li>
 				<li><a href="function-ProcessWire.wireChmod.html">wireChmod</a></li>
@@ -589,7 +591,7 @@
 </span></span><span id="16" class="l"><a class="l" href="#16">  16: </a><span class="php-comment"> * https://processwire.com
 </span></span><span id="17" class="l"><a class="l" href="#17">  17: </a><span class="php-comment"> * 
 </span></span><span id="18" class="l"><a class="l" href="#18">  18: </a><span class="php-comment"> * @method WireArray and($item)
-</span></span><span id="19" class="l"><a class="l" href="#19">  19: </a><span class="php-comment"> * @method WireArray new($items = array()) 
+</span></span><span id="19" class="l"><a class="l" href="#19">  19: </a><span class="php-comment"> * @method static WireArray new($items = array()) 
 </span></span><span id="20" class="l"><a class="l" href="#20">  20: </a><span class="php-comment"> * @property int $count Number of items
 </span></span><span id="21" class="l"><a class="l" href="#21">  21: </a><span class="php-comment"> * @property Wire|null $first First item
 </span></span><span id="22" class="l"><a class="l" href="#22">  22: </a><span class="php-comment"> * @property Wire|null $last Last item
@@ -3019,43 +3021,40 @@
 </span><span id="2446" class="l"><a class="l" href="#2446">2446: </a>                <span class="php-comment">// multiple items specified as arguments</span>
 </span><span id="2447" class="l"><a class="l" href="#2447">2447: </a>                <span class="php-var">$items</span> = <span class="php-var">$arguments</span>;
 </span><span id="2448" class="l"><a class="l" href="#2448">2448: </a>            }
-</span><span id="2449" class="l"><a class="l" href="#2449">2449: </a>            <span class="php-var">$a</span> = <span class="php-keyword1">new</span> <span class="php-var">$class</span>();
-</span><span id="2450" class="l"><a class="l" href="#2450">2450: </a>            <span class="php-keyword1">if</span>(WireArray::iterable(<span class="php-var">$items</span>)) {
-</span><span id="2451" class="l"><a class="l" href="#2451">2451: </a>                <span class="php-var">$a</span>-&gt;import(<span class="php-var">$items</span>);
-</span><span id="2452" class="l"><a class="l" href="#2452">2452: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$items</span> !== <span class="php-keyword1">null</span>) {
-</span><span id="2453" class="l"><a class="l" href="#2453">2453: </a>                <span class="php-var">$a</span>-&gt;add(<span class="php-var">$items</span>);
-</span><span id="2454" class="l"><a class="l" href="#2454">2454: </a>            }
-</span><span id="2455" class="l"><a class="l" href="#2455">2455: </a>            <span class="php-keyword1">return</span> <span class="php-var">$a</span>;
-</span><span id="2456" class="l"><a class="l" href="#2456">2456: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="2457" class="l"><a class="l" href="#2457">2457: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Unrecognized static method: </span><span class="php-var">$class</span><span class="php-quote">::</span><span class="php-var">$name</span><span class="php-quote">()&quot;</span>);
-</span><span id="2458" class="l"><a class="l" href="#2458">2458: </a>        }
-</span><span id="2459" class="l"><a class="l" href="#2459">2459: </a>    }
-</span><span id="2460" class="l"><a class="l" href="#2460">2460: </a>
-</span><span id="2461" class="l"><a class="l" href="#2461">2461: </a>    <span class="php-comment">/**
-</span></span><span id="2462" class="l"><a class="l" href="#2462">2462: </a><span class="php-comment">     * Create a new WireArray instance of this type, optionally adding $items to it
-</span></span><span id="2463" class="l"><a class="l" href="#2463">2463: </a><span class="php-comment">     * 
-</span></span><span id="2464" class="l"><a class="l" href="#2464">2464: </a><span class="php-comment">     * This method call be called statically or non-statically, but is primarily useful as a static method call. 
+</span><span id="2449" class="l"><a class="l" href="#2449">2449: </a>            <span class="php-keyword1">return</span> self::newInstance(<span class="php-var">$items</span>, <span class="php-var">$class</span>);
+</span><span id="2450" class="l"><a class="l" href="#2450">2450: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="2451" class="l"><a class="l" href="#2451">2451: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Unrecognized static method: </span><span class="php-var">$class</span><span class="php-quote">::</span><span class="php-var">$name</span><span class="php-quote">()&quot;</span>);
+</span><span id="2452" class="l"><a class="l" href="#2452">2452: </a>        }
+</span><span id="2453" class="l"><a class="l" href="#2453">2453: </a>    }
+</span><span id="2454" class="l"><a class="l" href="#2454">2454: </a>
+</span><span id="2455" class="l"><a class="l" href="#2455">2455: </a>    <span class="php-comment">/**
+</span></span><span id="2456" class="l"><a class="l" href="#2456">2456: </a><span class="php-comment">     * Create new instance of this class
+</span></span><span id="2457" class="l"><a class="l" href="#2457">2457: </a><span class="php-comment">     * 
+</span></span><span id="2458" class="l"><a class="l" href="#2458">2458: </a><span class="php-comment">     * Method for internal use, use `$a = WireArray::new($items)` or `$a = WireArrray($items)` instead. 
+</span></span><span id="2459" class="l"><a class="l" href="#2459">2459: </a><span class="php-comment">     * 
+</span></span><span id="2460" class="l"><a class="l" href="#2460">2460: </a><span class="php-comment">     * #pw-internal 
+</span></span><span id="2461" class="l"><a class="l" href="#2461">2461: </a><span class="php-comment">     * 
+</span></span><span id="2462" class="l"><a class="l" href="#2462">2462: </a><span class="php-comment">     * @param array|WireArray|null $items Items to add or omit (null) for none
+</span></span><span id="2463" class="l"><a class="l" href="#2463">2463: </a><span class="php-comment">     * @param string $class Class name to instantiate or omit for called class
+</span></span><span id="2464" class="l"><a class="l" href="#2464">2464: </a><span class="php-comment">     * @return WireArray
 </span></span><span id="2465" class="l"><a class="l" href="#2465">2465: </a><span class="php-comment">     * 
-</span></span><span id="2466" class="l"><a class="l" href="#2466">2466: </a><span class="php-comment">     * ~~~~~~
-</span></span><span id="2467" class="l"><a class="l" href="#2467">2467: </a><span class="php-comment">     * // Create new WireArray with a, b and c items
-</span></span><span id="2468" class="l"><a class="l" href="#2468">2468: </a><span class="php-comment">     * $a = WireArray::new([ 'a', 'b', 'c' ]);
-</span></span><span id="2469" class="l"><a class="l" href="#2469">2469: </a><span class="php-comment">     * 
-</span></span><span id="2470" class="l"><a class="l" href="#2470">2470: </a><span class="php-comment">     * // This also works when called statically (array syntax can optionally be omitted)
-</span></span><span id="2471" class="l"><a class="l" href="#2471">2471: </a><span class="php-comment">     * $a = WireArray::new('a', 'b', 'c');
-</span></span><span id="2472" class="l"><a class="l" href="#2472">2472: </a><span class="php-comment">     * ~~~~~~
-</span></span><span id="2473" class="l"><a class="l" href="#2473">2473: </a><span class="php-comment">     * 
-</span></span><span id="2474" class="l"><a class="l" href="#2474">2474: </a><span class="php-comment">     * @param array|WireArray|mixed|null $items Items (or item) to add to new WireArray
-</span></span><span id="2475" class="l"><a class="l" href="#2475">2475: </a><span class="php-comment">     * @return WireArray
-</span></span><span id="2476" class="l"><a class="l" href="#2476">2476: </a><span class="php-comment">     * @since 3.0.117
-</span></span><span id="2477" class="l"><a class="l" href="#2477">2477: </a><span class="php-comment">     * 
-</span></span><span id="2478" class="l"><a class="l" href="#2478">2478: </a><span class="php-comment">     */</span>
-</span><span id="2479" class="l"><a class="l" href="#2479">2479: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____new" href="#____new">___new</a>(<span class="php-var">$items</span> = <span class="php-keyword1">null</span>) {
-</span><span id="2480" class="l"><a class="l" href="#2480">2480: </a>        <span class="php-var">$a</span> = self::<span class="php-keyword1">new</span>(<span class="php-var">$items</span>);
-</span><span id="2481" class="l"><a class="l" href="#2481">2481: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-var">$a</span>);
-</span><span id="2482" class="l"><a class="l" href="#2482">2482: </a>        <span class="php-keyword1">return</span> <span class="php-var">$a</span>;
-</span><span id="2483" class="l"><a class="l" href="#2483">2483: </a>    }
-</span><span id="2484" class="l"><a class="l" href="#2484">2484: </a>}
-</span><span id="2485" class="l"><a class="l" href="#2485">2485: </a></span></code></pre>
+</span></span><span id="2466" class="l"><a class="l" href="#2466">2466: </a><span class="php-comment">     */</span>
+</span><span id="2467" class="l"><a class="l" href="#2467">2467: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_newInstance" href="#_newInstance">newInstance</a>(<span class="php-var">$items</span> = <span class="php-keyword1">null</span>, <span class="php-var">$class</span> = <span class="php-quote">''</span>) {
+</span><span id="2468" class="l"><a class="l" href="#2468">2468: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$class</span>)) <span class="php-var">$class</span> = <span class="php-keyword2">get_called_class</span>();
+</span><span id="2469" class="l"><a class="l" href="#2469">2469: </a>        <span class="php-comment">/** @var WireArray $a */</span>
+</span><span id="2470" class="l"><a class="l" href="#2470">2470: </a>        <span class="php-var">$a</span> = <span class="php-keyword1">new</span> <span class="php-var">$class</span>();
+</span><span id="2471" class="l"><a class="l" href="#2471">2471: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$items</span> <span class="php-keyword1">instanceof</span> WireArray) {
+</span><span id="2472" class="l"><a class="l" href="#2472">2472: </a>            <span class="php-var">$items</span>-&gt;wire(<span class="php-var">$a</span>);
+</span><span id="2473" class="l"><a class="l" href="#2473">2473: </a>            <span class="php-var">$a</span>-&gt;import(<span class="php-var">$items</span>);
+</span><span id="2474" class="l"><a class="l" href="#2474">2474: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$items</span>)) {
+</span><span id="2475" class="l"><a class="l" href="#2475">2475: </a>            <span class="php-var">$a</span>-&gt;import(<span class="php-var">$items</span>);
+</span><span id="2476" class="l"><a class="l" href="#2476">2476: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$items</span> !== <span class="php-keyword1">null</span>) {
+</span><span id="2477" class="l"><a class="l" href="#2477">2477: </a>            <span class="php-var">$a</span>-&gt;add(<span class="php-var">$items</span>);
+</span><span id="2478" class="l"><a class="l" href="#2478">2478: </a>        }
+</span><span id="2479" class="l"><a class="l" href="#2479">2479: </a>        <span class="php-keyword1">return</span> <span class="php-var">$a</span>;
+</span><span id="2480" class="l"><a class="l" href="#2480">2480: </a>    }
+</span><span id="2481" class="l"><a class="l" href="#2481">2481: </a>}
+</span><span id="2482" class="l"><a class="l" href="#2482">2482: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

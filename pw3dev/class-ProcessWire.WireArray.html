@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireArray | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?537616005"></script>
+	<script type="text/javascript" src="elementlist.js?1753655137"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -455,6 +455,7 @@
 				<li><a href="function-ProcessWire.languages.html">languages</a></li>
 				<li><a href="function-ProcessWire.modules.html">modules</a></li>
 				<li><a href="function-ProcessWire.page.html">page</a></li>
+				<li><a href="function-ProcessWire.PageArray.html">PageArray</a></li>
 				<li><a href="function-ProcessWire.pages.html">pages</a></li>
 				<li><a href="function-ProcessWire.paths.html">paths</a></li>
 				<li><a href="function-ProcessWire.permissions.html">permissions</a></li>
@@ -469,6 +470,7 @@
 				<li><a href="function-ProcessWire.user.html">user</a></li>
 				<li><a href="function-ProcessWire.users.html">users</a></li>
 				<li><a href="function-ProcessWire.wire.html">wire</a></li>
+				<li><a href="function-ProcessWire.WireArray.html">WireArray</a></li>
 				<li><a href="function-ProcessWire.wireBytesStr.html">wireBytesStr</a></li>
 				<li><a href="function-ProcessWire.wireCache.html">wireCache</a></li>
 				<li><a href="function-ProcessWire.wireChmod.html">wireChmod</a></li>
@@ -659,7 +661,7 @@ getPrev()?<br>
 				narrow down to one method of addition and removal, especially for removal, i.e.
 make shift() run through remove() ProcessWire 3.x, Copyright 2016 by Ryan Cramer
 <a href="https://processwire.com">https://processwire.com</a><br>
-		<b>Located at</b> <a href="source-class-ProcessWire.WireArray.html#4-2484" title="Go to source code">core/WireArray.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireArray.html#4-2481" title="Go to source code">core/WireArray.php</a><br>
 	</div>
 
 
@@ -4869,7 +4871,7 @@ in arguments).<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___callStatic">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2421-2459" title="Go to source code">__callStatic</a>( <span>string <var>$name</var></span>, <span>array <var>$arguments</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireArray.html#2421-2453" title="Go to source code">__callStatic</a>( <span>string <var>$name</var></span>, <span>array <var>$arguments</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4906,46 +4908,42 @@ in arguments).<br>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="___new" id="____new">
+	<tr data-order="newInstance" id="_newInstance">
 
 		<td class="attributes"><code>
-			 public 
+			 public static
 			<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#____new">#</a>
-		<code><a href="source-class-ProcessWire.WireArray.html#2461-2483" title="Go to source code">___new</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|mixed|null <var>$items</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_newInstance">#</a>
+		<code><a href="source-class-ProcessWire.WireArray.html#2455-2480" title="Go to source code">newInstance</a>( <span>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|null <var>$items</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$class</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Create a new WireArray instance of this type, optionally adding $items to
-it</p>
+<p>Create new instance of this class</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Create a new WireArray instance of this type, optionally adding $items to
-it</p>
+<p>Create new instance of this class</p>
 
-<p>This method call be called statically or non-statically, but is primarily
-useful as a static method call.</p>
+<p>Method for internal use, use <code>$a = WireArray::new($items)</code> or
+<code>$a = WireArrray($items)</code> instead.</p>
 
-<p>~~~~~~ // Create new WireArray with a, b and c items $a = WireArray::new([
-'a', 'b', 'c' ]);</p>
-
-<p>// This also works when called statically (array syntax can optionally be
-omitted) $a = WireArray::new('a', 'b', 'c'); ~~~~~~</p>
+<p>#pw-internal</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$items</var></dt>
-					<dd><code>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|mixed|null</code><br>$items Items (or item) to add to new WireArray</dd>
+					<dd><code>array|<code><a href="class-ProcessWire.WireArray.html">ProcessWire\WireArray</a></code>|null</code><br>$items Items to add or omit (null) for none</dd>
+					<dt><var>$class</var></dt>
+					<dd><code>string</code><br>$class Class name to instantiate or omit for called class</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -4954,10 +4952,6 @@ omitted) $a = WireArray::new('a', 'b', 'c'); ~~~~~~</p>
 				</div>
 
 
-				<h4>Since</h4>
-				<div class="list">
-						3.0.117<br>
-				</div>
 
 
 		</div>

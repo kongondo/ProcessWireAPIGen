@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeComments/FieldtypeComments.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?537616005"></script>
+	<script type="text/javascript" src="elementlist.js?1753655137"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -456,6 +456,7 @@
 				<li><a href="function-ProcessWire.languages.html">languages</a></li>
 				<li><a href="function-ProcessWire.modules.html">modules</a></li>
 				<li><a href="function-ProcessWire.page.html">page</a></li>
+				<li><a href="function-ProcessWire.PageArray.html">PageArray</a></li>
 				<li><a href="function-ProcessWire.pages.html">pages</a></li>
 				<li><a href="function-ProcessWire.paths.html">paths</a></li>
 				<li><a href="function-ProcessWire.permissions.html">permissions</a></li>
@@ -470,6 +471,7 @@
 				<li><a href="function-ProcessWire.user.html">user</a></li>
 				<li><a href="function-ProcessWire.users.html">users</a></li>
 				<li><a href="function-ProcessWire.wire.html">wire</a></li>
+				<li><a href="function-ProcessWire.WireArray.html">WireArray</a></li>
 				<li><a href="function-ProcessWire.wireBytesStr.html">wireBytesStr</a></li>
 				<li><a href="function-ProcessWire.wireCache.html">wireCache</a></li>
 				<li><a href="function-ProcessWire.wireChmod.html">wireChmod</a></li>
@@ -2387,104 +2389,106 @@
 </span><span id="1814" class="l"><a class="l" href="#1814">1814: </a>        <span class="php-var">$updatePropertyCounts</span> = <span class="php-keyword1">array</span>();
 </span><span id="1815" class="l"><a class="l" href="#1815">1815: </a>        <span class="php-var">$skipUpdateProperties</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'id'</span>, <span class="php-quote">'created_user'</span>, <span class="php-quote">'created_users_id'</span>); 
 </span><span id="1816" class="l"><a class="l" href="#1816">1816: </a>        
-</span><span id="1817" class="l"><a class="l" href="#1817">1817: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$comments</span> <span class="php-keyword1">as</span> <span class="php-var">$comment</span>) {
-</span><span id="1818" class="l"><a class="l" href="#1818">1818: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$comment</span>-&gt;status == Comment::statusSpam) <span class="php-keyword1">continue</span>; 
-</span><span id="1819" class="l"><a class="l" href="#1819">1819: </a>            <span class="php-var">$key</span> = <span class="php-var">$this</span>-&gt;getCommentExportKey(<span class="php-var">$comment</span>); 
-</span><span id="1820" class="l"><a class="l" href="#1820">1820: </a>            <span class="php-var">$commentsArray</span>[<span class="php-var">$key</span>] = <span class="php-var">$comment</span>;
-</span><span id="1821" class="l"><a class="l" href="#1821">1821: </a>        }
-</span><span id="1822" class="l"><a class="l" href="#1822">1822: </a>        
-</span><span id="1823" class="l"><a class="l" href="#1823">1823: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$importCommentArray</span>) {
-</span><span id="1824" class="l"><a class="l" href="#1824">1824: </a>            
-</span><span id="1825" class="l"><a class="l" href="#1825">1825: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$importCommentArray</span>[<span class="php-quote">'parent_key'</span>])) {
-</span><span id="1826" class="l"><a class="l" href="#1826">1826: </a>                <span class="php-var">$parentKey</span> = <span class="php-var">$importCommentArray</span>[<span class="php-quote">'parent_key'</span>];
-</span><span id="1827" class="l"><a class="l" href="#1827">1827: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$commentsArray</span>[<span class="php-var">$parentKey</span>])) {
-</span><span id="1828" class="l"><a class="l" href="#1828">1828: </a>                    <span class="php-var">$skipImportComments</span>[<span class="php-var">$key</span>] = <span class="php-var">$importCommentArray</span>;
-</span><span id="1829" class="l"><a class="l" href="#1829">1829: </a>                    <span class="php-keyword1">continue</span>;
-</span><span id="1830" class="l"><a class="l" href="#1830">1830: </a>                }
-</span><span id="1831" class="l"><a class="l" href="#1831">1831: </a>                <span class="php-var">$importCommentArray</span>[<span class="php-quote">'parent_id'</span>] = <span class="php-var">$commentsArray</span>[<span class="php-var">$parentKey</span>][<span class="php-quote">'id'</span>];
-</span><span id="1832" class="l"><a class="l" href="#1832">1832: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$importCommentArray</span>[<span class="php-quote">'parent_key'</span>]); 
-</span><span id="1833" class="l"><a class="l" href="#1833">1833: </a>            }
-</span><span id="1834" class="l"><a class="l" href="#1834">1834: </a>            
-</span><span id="1835" class="l"><a class="l" href="#1835">1835: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$commentsArray</span>[<span class="php-var">$key</span>])) {
-</span><span id="1836" class="l"><a class="l" href="#1836">1836: </a>                <span class="php-var">$addComments</span>[<span class="php-var">$key</span>] = <span class="php-var">$importCommentArray</span>;
-</span><span id="1837" class="l"><a class="l" href="#1837">1837: </a>                <span class="php-keyword1">continue</span>;
-</span><span id="1838" class="l"><a class="l" href="#1838">1838: </a>            }
-</span><span id="1839" class="l"><a class="l" href="#1839">1839: </a>            
-</span><span id="1840" class="l"><a class="l" href="#1840">1840: </a>            <span class="php-var">$comment</span> = <span class="php-var">$commentsArray</span>[<span class="php-var">$key</span>];
-</span><span id="1841" class="l"><a class="l" href="#1841">1841: </a>            <span class="php-var">$commentArray</span> = <span class="php-var">$this</span>-&gt;exportComment(<span class="php-var">$comment</span>); 
-</span><span id="1842" class="l"><a class="l" href="#1842">1842: </a>            
-</span><span id="1843" class="l"><a class="l" href="#1843">1843: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$skipUpdateProperties</span> <span class="php-keyword1">as</span> <span class="php-var">$property</span>) {
-</span><span id="1844" class="l"><a class="l" href="#1844">1844: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$commentArray</span>[<span class="php-var">$property</span>]); 
-</span><span id="1845" class="l"><a class="l" href="#1845">1845: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$importCommentArray</span>[<span class="php-var">$property</span>]); 
-</span><span id="1846" class="l"><a class="l" href="#1846">1846: </a>            }
-</span><span id="1847" class="l"><a class="l" href="#1847">1847: </a>        
-</span><span id="1848" class="l"><a class="l" href="#1848">1848: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$commentArray</span> == <span class="php-var">$importCommentArray</span>) <span class="php-keyword1">continue</span>; <span class="php-comment">// no changes</span>
-</span><span id="1849" class="l"><a class="l" href="#1849">1849: </a>            
-</span><span id="1850" class="l"><a class="l" href="#1850">1850: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$importCommentArray</span> <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$v</span>) {
-</span><span id="1851" class="l"><a class="l" href="#1851">1851: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$commentArray</span>[<span class="php-var">$k</span>]) &amp;&amp; <span class="php-var">$commentArray</span>[<span class="php-var">$k</span>] == <span class="php-var">$v</span>) <span class="php-keyword1">continue</span>;
-</span><span id="1852" class="l"><a class="l" href="#1852">1852: </a>                <span class="php-var">$comment</span>-&gt;set(<span class="php-var">$k</span>, <span class="php-var">$v</span>); 
-</span><span id="1853" class="l"><a class="l" href="#1853">1853: </a>                <span class="php-var">$comment</span>-&gt;quiet(<span class="php-keyword1">true</span>);
-</span><span id="1854" class="l"><a class="l" href="#1854">1854: </a>                <span class="php-var">$updateComments</span>[<span class="php-var">$key</span>] = <span class="php-var">$comment</span>;
-</span><span id="1855" class="l"><a class="l" href="#1855">1855: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$updatePropertyCounts</span>[<span class="php-var">$k</span>])) <span class="php-var">$updatePropertyCounts</span>[<span class="php-var">$k</span>] = <span class="php-num">0</span>;
-</span><span id="1856" class="l"><a class="l" href="#1856">1856: </a>                <span class="php-var">$updatePropertyCounts</span>[<span class="php-var">$k</span>]++;
-</span><span id="1857" class="l"><a class="l" href="#1857">1857: </a>            }
-</span><span id="1858" class="l"><a class="l" href="#1858">1858: </a>        }
-</span><span id="1859" class="l"><a class="l" href="#1859">1859: </a>        
-</span><span id="1860" class="l"><a class="l" href="#1860">1860: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$addComments</span> <span class="php-keyword1">as</span> <span class="php-var">$commentArray</span>) {
-</span><span id="1861" class="l"><a class="l" href="#1861">1861: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$commentArray</span>[<span class="php-quote">'id'</span>]);     
-</span><span id="1862" class="l"><a class="l" href="#1862">1862: </a>            <span class="php-var">$u</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'users'</span>)-&gt;get(<span class="php-quote">&quot;name=&quot;</span> . <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$commentArray</span>[<span class="php-quote">'created_user'</span>]));
-</span><span id="1863" class="l"><a class="l" href="#1863">1863: </a>            <span class="php-var">$commentArray</span>[<span class="php-quote">'created_users_id'</span>] = <span class="php-var">$u</span>-&gt;id; 
-</span><span id="1864" class="l"><a class="l" href="#1864">1864: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$commentArray</span>[<span class="php-quote">'created_user'</span>]); 
-</span><span id="1865" class="l"><a class="l" href="#1865">1865: </a>            <span class="php-var">$comment</span> = <span class="php-var">$this</span>-&gt;makeComment(<span class="php-var">$page</span>, <span class="php-var">$field</span>, <span class="php-var">$commentArray</span>); 
-</span><span id="1866" class="l"><a class="l" href="#1866">1866: </a>            <span class="php-var">$comment</span>-&gt;quiet(<span class="php-keyword1">true</span>);
-</span><span id="1867" class="l"><a class="l" href="#1867">1867: </a>            <span class="php-var">$comments</span>-&gt;add(<span class="php-var">$comment</span>); 
-</span><span id="1868" class="l"><a class="l" href="#1868">1868: </a>        }
-</span><span id="1869" class="l"><a class="l" href="#1869">1869: </a>
-</span><span id="1870" class="l"><a class="l" href="#1870">1870: </a>        <span class="php-var">$numAddComments</span> = <span class="php-keyword2">count</span>(<span class="php-var">$addComments</span>); 
-</span><span id="1871" class="l"><a class="l" href="#1871">1871: </a>        <span class="php-var">$numUpdateComments</span> = <span class="php-keyword2">count</span>(<span class="php-var">$updateComments</span>); 
-</span><span id="1872" class="l"><a class="l" href="#1872">1872: </a>        <span class="php-var">$numSkipComments</span> = <span class="php-keyword2">count</span>(<span class="php-var">$skipImportComments</span>); 
-</span><span id="1873" class="l"><a class="l" href="#1873">1873: </a>        
-</span><span id="1874" class="l"><a class="l" href="#1874">1874: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numAddComments</span>) {
-</span><span id="1875" class="l"><a class="l" href="#1875">1875: </a>            <span class="php-var">$comments</span>-&gt;message(<span class="php-quote">&quot;</span><span class="php-var">$field</span><span class="php-quote">-&gt;name: </span><span class="php-var">$numAddComments</span><span class="php-quote"> new added&quot;</span>); 
-</span><span id="1876" class="l"><a class="l" href="#1876">1876: </a>        }
-</span><span id="1877" class="l"><a class="l" href="#1877">1877: </a>        
-</span><span id="1878" class="l"><a class="l" href="#1878">1878: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numUpdateComments</span>) {
-</span><span id="1879" class="l"><a class="l" href="#1879">1879: </a>            <span class="php-var">$counts</span> = <span class="php-keyword1">array</span>();
-</span><span id="1880" class="l"><a class="l" href="#1880">1880: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$updatePropertyCounts</span> <span class="php-keyword1">as</span> <span class="php-var">$property</span> =&gt; <span class="php-var">$count</span>) {
-</span><span id="1881" class="l"><a class="l" href="#1881">1881: </a>                <span class="php-var">$counts</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$property</span><span class="php-quote"> (</span><span class="php-var">$count</span><span class="php-quote">)&quot;</span>;
-</span><span id="1882" class="l"><a class="l" href="#1882">1882: </a>            }
-</span><span id="1883" class="l"><a class="l" href="#1883">1883: </a>            <span class="php-var">$comments</span>-&gt;message(<span class="php-quote">&quot;</span><span class="php-var">$field</span><span class="php-quote">-&gt;name: </span><span class="php-var">$numUpdateComments</span><span class="php-quote"> updated - &quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">', '</span>, <span class="php-var">$counts</span>));
-</span><span id="1884" class="l"><a class="l" href="#1884">1884: </a>            <span class="php-var">$comments</span>-&gt;trackChange(<span class="php-quote">'value'</span>);
-</span><span id="1885" class="l"><a class="l" href="#1885">1885: </a>        }
-</span><span id="1886" class="l"><a class="l" href="#1886">1886: </a>        
-</span><span id="1887" class="l"><a class="l" href="#1887">1887: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numSkipComments</span>) {
-</span><span id="1888" class="l"><a class="l" href="#1888">1888: </a>            <span class="php-var">$comments</span>-&gt;warning(
-</span><span id="1889" class="l"><a class="l" href="#1889">1889: </a>                <span class="php-quote">&quot;</span><span class="php-var">$field</span><span class="php-quote">-&gt;name: </span><span class="php-var">$numSkipComments</span><span class="php-quote"> skipped because parent comment(s) not yet present (run import again)&quot;</span>
-</span><span id="1890" class="l"><a class="l" href="#1890">1890: </a>            ); 
-</span><span id="1891" class="l"><a class="l" href="#1891">1891: </a>        }
-</span><span id="1892" class="l"><a class="l" href="#1892">1892: </a>        
-</span><span id="1893" class="l"><a class="l" href="#1893">1893: </a>        <span class="php-keyword1">return</span> <span class="php-var">$comments</span>; 
+</span><span id="1817" class="l"><a class="l" href="#1817">1817: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$comments</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
+</span><span id="1818" class="l"><a class="l" href="#1818">1818: </a>        
+</span><span id="1819" class="l"><a class="l" href="#1819">1819: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$comments</span> <span class="php-keyword1">as</span> <span class="php-var">$comment</span>) {
+</span><span id="1820" class="l"><a class="l" href="#1820">1820: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$comment</span>-&gt;status == Comment::statusSpam) <span class="php-keyword1">continue</span>; 
+</span><span id="1821" class="l"><a class="l" href="#1821">1821: </a>            <span class="php-var">$key</span> = <span class="php-var">$this</span>-&gt;getCommentExportKey(<span class="php-var">$comment</span>); 
+</span><span id="1822" class="l"><a class="l" href="#1822">1822: </a>            <span class="php-var">$commentsArray</span>[<span class="php-var">$key</span>] = <span class="php-var">$comment</span>;
+</span><span id="1823" class="l"><a class="l" href="#1823">1823: </a>        }
+</span><span id="1824" class="l"><a class="l" href="#1824">1824: </a>        
+</span><span id="1825" class="l"><a class="l" href="#1825">1825: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$importCommentArray</span>) {
+</span><span id="1826" class="l"><a class="l" href="#1826">1826: </a>            
+</span><span id="1827" class="l"><a class="l" href="#1827">1827: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$importCommentArray</span>[<span class="php-quote">'parent_key'</span>])) {
+</span><span id="1828" class="l"><a class="l" href="#1828">1828: </a>                <span class="php-var">$parentKey</span> = <span class="php-var">$importCommentArray</span>[<span class="php-quote">'parent_key'</span>];
+</span><span id="1829" class="l"><a class="l" href="#1829">1829: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$commentsArray</span>[<span class="php-var">$parentKey</span>])) {
+</span><span id="1830" class="l"><a class="l" href="#1830">1830: </a>                    <span class="php-var">$skipImportComments</span>[<span class="php-var">$key</span>] = <span class="php-var">$importCommentArray</span>;
+</span><span id="1831" class="l"><a class="l" href="#1831">1831: </a>                    <span class="php-keyword1">continue</span>;
+</span><span id="1832" class="l"><a class="l" href="#1832">1832: </a>                }
+</span><span id="1833" class="l"><a class="l" href="#1833">1833: </a>                <span class="php-var">$importCommentArray</span>[<span class="php-quote">'parent_id'</span>] = <span class="php-var">$commentsArray</span>[<span class="php-var">$parentKey</span>][<span class="php-quote">'id'</span>];
+</span><span id="1834" class="l"><a class="l" href="#1834">1834: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$importCommentArray</span>[<span class="php-quote">'parent_key'</span>]); 
+</span><span id="1835" class="l"><a class="l" href="#1835">1835: </a>            }
+</span><span id="1836" class="l"><a class="l" href="#1836">1836: </a>            
+</span><span id="1837" class="l"><a class="l" href="#1837">1837: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$commentsArray</span>[<span class="php-var">$key</span>])) {
+</span><span id="1838" class="l"><a class="l" href="#1838">1838: </a>                <span class="php-var">$addComments</span>[<span class="php-var">$key</span>] = <span class="php-var">$importCommentArray</span>;
+</span><span id="1839" class="l"><a class="l" href="#1839">1839: </a>                <span class="php-keyword1">continue</span>;
+</span><span id="1840" class="l"><a class="l" href="#1840">1840: </a>            }
+</span><span id="1841" class="l"><a class="l" href="#1841">1841: </a>            
+</span><span id="1842" class="l"><a class="l" href="#1842">1842: </a>            <span class="php-var">$comment</span> = <span class="php-var">$commentsArray</span>[<span class="php-var">$key</span>];
+</span><span id="1843" class="l"><a class="l" href="#1843">1843: </a>            <span class="php-var">$commentArray</span> = <span class="php-var">$this</span>-&gt;exportComment(<span class="php-var">$comment</span>); 
+</span><span id="1844" class="l"><a class="l" href="#1844">1844: </a>            
+</span><span id="1845" class="l"><a class="l" href="#1845">1845: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$skipUpdateProperties</span> <span class="php-keyword1">as</span> <span class="php-var">$property</span>) {
+</span><span id="1846" class="l"><a class="l" href="#1846">1846: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$commentArray</span>[<span class="php-var">$property</span>]); 
+</span><span id="1847" class="l"><a class="l" href="#1847">1847: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$importCommentArray</span>[<span class="php-var">$property</span>]); 
+</span><span id="1848" class="l"><a class="l" href="#1848">1848: </a>            }
+</span><span id="1849" class="l"><a class="l" href="#1849">1849: </a>        
+</span><span id="1850" class="l"><a class="l" href="#1850">1850: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$commentArray</span> == <span class="php-var">$importCommentArray</span>) <span class="php-keyword1">continue</span>; <span class="php-comment">// no changes</span>
+</span><span id="1851" class="l"><a class="l" href="#1851">1851: </a>            
+</span><span id="1852" class="l"><a class="l" href="#1852">1852: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$importCommentArray</span> <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$v</span>) {
+</span><span id="1853" class="l"><a class="l" href="#1853">1853: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$commentArray</span>[<span class="php-var">$k</span>]) &amp;&amp; <span class="php-var">$commentArray</span>[<span class="php-var">$k</span>] == <span class="php-var">$v</span>) <span class="php-keyword1">continue</span>;
+</span><span id="1854" class="l"><a class="l" href="#1854">1854: </a>                <span class="php-var">$comment</span>-&gt;set(<span class="php-var">$k</span>, <span class="php-var">$v</span>); 
+</span><span id="1855" class="l"><a class="l" href="#1855">1855: </a>                <span class="php-var">$comment</span>-&gt;quiet(<span class="php-keyword1">true</span>);
+</span><span id="1856" class="l"><a class="l" href="#1856">1856: </a>                <span class="php-var">$updateComments</span>[<span class="php-var">$key</span>] = <span class="php-var">$comment</span>;
+</span><span id="1857" class="l"><a class="l" href="#1857">1857: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$updatePropertyCounts</span>[<span class="php-var">$k</span>])) <span class="php-var">$updatePropertyCounts</span>[<span class="php-var">$k</span>] = <span class="php-num">0</span>;
+</span><span id="1858" class="l"><a class="l" href="#1858">1858: </a>                <span class="php-var">$updatePropertyCounts</span>[<span class="php-var">$k</span>]++;
+</span><span id="1859" class="l"><a class="l" href="#1859">1859: </a>            }
+</span><span id="1860" class="l"><a class="l" href="#1860">1860: </a>        }
+</span><span id="1861" class="l"><a class="l" href="#1861">1861: </a>        
+</span><span id="1862" class="l"><a class="l" href="#1862">1862: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$addComments</span> <span class="php-keyword1">as</span> <span class="php-var">$commentArray</span>) {
+</span><span id="1863" class="l"><a class="l" href="#1863">1863: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$commentArray</span>[<span class="php-quote">'id'</span>]);     
+</span><span id="1864" class="l"><a class="l" href="#1864">1864: </a>            <span class="php-var">$u</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'users'</span>)-&gt;get(<span class="php-quote">&quot;name=&quot;</span> . <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$commentArray</span>[<span class="php-quote">'created_user'</span>]));
+</span><span id="1865" class="l"><a class="l" href="#1865">1865: </a>            <span class="php-var">$commentArray</span>[<span class="php-quote">'created_users_id'</span>] = <span class="php-var">$u</span>-&gt;id; 
+</span><span id="1866" class="l"><a class="l" href="#1866">1866: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$commentArray</span>[<span class="php-quote">'created_user'</span>]); 
+</span><span id="1867" class="l"><a class="l" href="#1867">1867: </a>            <span class="php-var">$comment</span> = <span class="php-var">$this</span>-&gt;makeComment(<span class="php-var">$page</span>, <span class="php-var">$field</span>, <span class="php-var">$commentArray</span>); 
+</span><span id="1868" class="l"><a class="l" href="#1868">1868: </a>            <span class="php-var">$comment</span>-&gt;quiet(<span class="php-keyword1">true</span>);
+</span><span id="1869" class="l"><a class="l" href="#1869">1869: </a>            <span class="php-var">$comments</span>-&gt;add(<span class="php-var">$comment</span>); 
+</span><span id="1870" class="l"><a class="l" href="#1870">1870: </a>        }
+</span><span id="1871" class="l"><a class="l" href="#1871">1871: </a>
+</span><span id="1872" class="l"><a class="l" href="#1872">1872: </a>        <span class="php-var">$numAddComments</span> = <span class="php-keyword2">count</span>(<span class="php-var">$addComments</span>); 
+</span><span id="1873" class="l"><a class="l" href="#1873">1873: </a>        <span class="php-var">$numUpdateComments</span> = <span class="php-keyword2">count</span>(<span class="php-var">$updateComments</span>); 
+</span><span id="1874" class="l"><a class="l" href="#1874">1874: </a>        <span class="php-var">$numSkipComments</span> = <span class="php-keyword2">count</span>(<span class="php-var">$skipImportComments</span>); 
+</span><span id="1875" class="l"><a class="l" href="#1875">1875: </a>        
+</span><span id="1876" class="l"><a class="l" href="#1876">1876: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numAddComments</span>) {
+</span><span id="1877" class="l"><a class="l" href="#1877">1877: </a>            <span class="php-var">$comments</span>-&gt;message(<span class="php-quote">&quot;</span><span class="php-var">$field</span><span class="php-quote">-&gt;name: </span><span class="php-var">$numAddComments</span><span class="php-quote"> new added&quot;</span>); 
+</span><span id="1878" class="l"><a class="l" href="#1878">1878: </a>        }
+</span><span id="1879" class="l"><a class="l" href="#1879">1879: </a>        
+</span><span id="1880" class="l"><a class="l" href="#1880">1880: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numUpdateComments</span>) {
+</span><span id="1881" class="l"><a class="l" href="#1881">1881: </a>            <span class="php-var">$counts</span> = <span class="php-keyword1">array</span>();
+</span><span id="1882" class="l"><a class="l" href="#1882">1882: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$updatePropertyCounts</span> <span class="php-keyword1">as</span> <span class="php-var">$property</span> =&gt; <span class="php-var">$count</span>) {
+</span><span id="1883" class="l"><a class="l" href="#1883">1883: </a>                <span class="php-var">$counts</span>[] = <span class="php-quote">&quot;</span><span class="php-var">$property</span><span class="php-quote"> (</span><span class="php-var">$count</span><span class="php-quote">)&quot;</span>;
+</span><span id="1884" class="l"><a class="l" href="#1884">1884: </a>            }
+</span><span id="1885" class="l"><a class="l" href="#1885">1885: </a>            <span class="php-var">$comments</span>-&gt;message(<span class="php-quote">&quot;</span><span class="php-var">$field</span><span class="php-quote">-&gt;name: </span><span class="php-var">$numUpdateComments</span><span class="php-quote"> updated - &quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">', '</span>, <span class="php-var">$counts</span>));
+</span><span id="1886" class="l"><a class="l" href="#1886">1886: </a>            <span class="php-var">$comments</span>-&gt;trackChange(<span class="php-quote">'value'</span>);
+</span><span id="1887" class="l"><a class="l" href="#1887">1887: </a>        }
+</span><span id="1888" class="l"><a class="l" href="#1888">1888: </a>        
+</span><span id="1889" class="l"><a class="l" href="#1889">1889: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$numSkipComments</span>) {
+</span><span id="1890" class="l"><a class="l" href="#1890">1890: </a>            <span class="php-var">$comments</span>-&gt;warning(
+</span><span id="1891" class="l"><a class="l" href="#1891">1891: </a>                <span class="php-quote">&quot;</span><span class="php-var">$field</span><span class="php-quote">-&gt;name: </span><span class="php-var">$numSkipComments</span><span class="php-quote"> skipped because parent comment(s) not yet present (run import again)&quot;</span>
+</span><span id="1892" class="l"><a class="l" href="#1892">1892: </a>            ); 
+</span><span id="1893" class="l"><a class="l" href="#1893">1893: </a>        }
 </span><span id="1894" class="l"><a class="l" href="#1894">1894: </a>        
-</span><span id="1895" class="l"><a class="l" href="#1895">1895: </a>    }
-</span><span id="1896" class="l"><a class="l" href="#1896">1896: </a>
-</span><span id="1897" class="l"><a class="l" href="#1897">1897: </a>    <span class="php-comment">/**
-</span></span><span id="1898" class="l"><a class="l" href="#1898">1898: </a><span class="php-comment">     * Get associative array of options (name =&gt; default) that Fieldtype supports for importValue
-</span></span><span id="1899" class="l"><a class="l" href="#1899">1899: </a><span class="php-comment">     * 
-</span></span><span id="1900" class="l"><a class="l" href="#1900">1900: </a><span class="php-comment">     * #pw-internal
-</span></span><span id="1901" class="l"><a class="l" href="#1901">1901: </a><span class="php-comment">     *
-</span></span><span id="1902" class="l"><a class="l" href="#1902">1902: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1903" class="l"><a class="l" href="#1903">1903: </a><span class="php-comment">     * @return array
-</span></span><span id="1904" class="l"><a class="l" href="#1904">1904: </a><span class="php-comment">     *
-</span></span><span id="1905" class="l"><a class="l" href="#1905">1905: </a><span class="php-comment">     */</span>
-</span><span id="1906" class="l"><a class="l" href="#1906">1906: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getImportValueOptions" href="#_getImportValueOptions">getImportValueOptions</a>(Field <span class="php-var">$field</span>) {
-</span><span id="1907" class="l"><a class="l" href="#1907">1907: </a>        <span class="php-var">$options</span> = parent::getImportValueOptions(<span class="php-var">$field</span>);
-</span><span id="1908" class="l"><a class="l" href="#1908">1908: </a>        <span class="php-var">$options</span>[<span class="php-quote">'test'</span>] = <span class="php-keyword1">true</span>;
-</span><span id="1909" class="l"><a class="l" href="#1909">1909: </a>        <span class="php-keyword1">return</span> <span class="php-var">$options</span>;
-</span><span id="1910" class="l"><a class="l" href="#1910">1910: </a>    }
-</span><span id="1911" class="l"><a class="l" href="#1911">1911: </a>
-</span><span id="1912" class="l"><a class="l" href="#1912">1912: </a>}
+</span><span id="1895" class="l"><a class="l" href="#1895">1895: </a>        <span class="php-keyword1">return</span> <span class="php-var">$comments</span>; 
+</span><span id="1896" class="l"><a class="l" href="#1896">1896: </a>        
+</span><span id="1897" class="l"><a class="l" href="#1897">1897: </a>    }
+</span><span id="1898" class="l"><a class="l" href="#1898">1898: </a>
+</span><span id="1899" class="l"><a class="l" href="#1899">1899: </a>    <span class="php-comment">/**
+</span></span><span id="1900" class="l"><a class="l" href="#1900">1900: </a><span class="php-comment">     * Get associative array of options (name =&gt; default) that Fieldtype supports for importValue
+</span></span><span id="1901" class="l"><a class="l" href="#1901">1901: </a><span class="php-comment">     * 
+</span></span><span id="1902" class="l"><a class="l" href="#1902">1902: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="1903" class="l"><a class="l" href="#1903">1903: </a><span class="php-comment">     *
+</span></span><span id="1904" class="l"><a class="l" href="#1904">1904: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1905" class="l"><a class="l" href="#1905">1905: </a><span class="php-comment">     * @return array
+</span></span><span id="1906" class="l"><a class="l" href="#1906">1906: </a><span class="php-comment">     *
+</span></span><span id="1907" class="l"><a class="l" href="#1907">1907: </a><span class="php-comment">     */</span>
+</span><span id="1908" class="l"><a class="l" href="#1908">1908: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getImportValueOptions" href="#_getImportValueOptions">getImportValueOptions</a>(Field <span class="php-var">$field</span>) {
+</span><span id="1909" class="l"><a class="l" href="#1909">1909: </a>        <span class="php-var">$options</span> = parent::getImportValueOptions(<span class="php-var">$field</span>);
+</span><span id="1910" class="l"><a class="l" href="#1910">1910: </a>        <span class="php-var">$options</span>[<span class="php-quote">'test'</span>] = <span class="php-keyword1">true</span>;
+</span><span id="1911" class="l"><a class="l" href="#1911">1911: </a>        <span class="php-keyword1">return</span> <span class="php-var">$options</span>;
+</span><span id="1912" class="l"><a class="l" href="#1912">1912: </a>    }
 </span><span id="1913" class="l"><a class="l" href="#1913">1913: </a>
-</span><span id="1914" class="l"><a class="l" href="#1914">1914: </a></span></code></pre>
+</span><span id="1914" class="l"><a class="l" href="#1914">1914: </a>}
+</span><span id="1915" class="l"><a class="l" href="#1915">1915: </a>
+</span><span id="1916" class="l"><a class="l" href="#1916">1916: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
