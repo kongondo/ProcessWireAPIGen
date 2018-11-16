@@ -8,7 +8,7 @@
 	<title>File core/FunctionsAPI.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4163631439"></script>
+	<script type="text/javascript" src="elementlist.js?3504378806"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.118 dev</span>
+			<span>Overview version 3.0.119 dev</span>
 		</a>
 
 
@@ -465,6 +465,7 @@
 				<li><a href="function-ProcessWire.roles.html">roles</a></li>
 				<li><a href="function-ProcessWire.sanitizer.html">sanitizer</a></li>
 				<li><a href="function-ProcessWire.session.html">session</a></li>
+				<li><a href="function-ProcessWire.setting.html">setting</a></li>
 				<li><a href="function-ProcessWire.tabIndent.html">tabIndent</a></li>
 				<li class="active"><a href="function-ProcessWire.templates.html">templates</a></li>
 				<li><a href="function-ProcessWire.urls.html">urls</a></li>
@@ -1005,7 +1006,51 @@
 </span><span id="430" class="l"><a class="l" href="#430">430: </a>    <span class="php-keyword1">return</span> wireRegion(<span class="php-var">$key</span>, <span class="php-var">$value</span>);
 </span><span id="431" class="l"><a class="l" href="#431">431: </a>}
 </span><span id="432" class="l"><a class="l" href="#432">432: </a>
-</span><span id="433" class="l"><a class="l" href="#433">433: </a></span></code></pre>
+</span><span id="433" class="l"><a class="l" href="#433">433: </a><span class="php-comment">/**
+</span></span><span id="434" class="l"><a class="l" href="#434">434: </a><span class="php-comment"> * Get or set a runtime site setting
+</span></span><span id="435" class="l"><a class="l" href="#435">435: </a><span class="php-comment"> *
+</span></span><span id="436" class="l"><a class="l" href="#436">436: </a><span class="php-comment"> * This is a simple helper function for maintaining runtime settings in a site profile.
+</span></span><span id="437" class="l"><a class="l" href="#437">437: </a><span class="php-comment"> * It simply sets and gets settings that you define. It is preferable to using ProcessWire’s
+</span></span><span id="438" class="l"><a class="l" href="#438">438: </a><span class="php-comment"> * `$config` or `config()` API var/function because it is not used to store anything else for
+</span></span><span id="439" class="l"><a class="l" href="#439">439: </a><span class="php-comment"> * ProcessWire. It is also preferable to using a variable (or variables) because it is always
+</span></span><span id="440" class="l"><a class="l" href="#440">440: </a><span class="php-comment"> * in scope and accessible anywhere in your template files, even within existing functions.
+</span></span><span id="441" class="l"><a class="l" href="#441">441: </a><span class="php-comment"> *
+</span></span><span id="442" class="l"><a class="l" href="#442">442: </a><span class="php-comment"> * ~~~~~
+</span></span><span id="443" class="l"><a class="l" href="#443">443: </a><span class="php-comment"> * // set a setting named “foo” to value “bar”
+</span></span><span id="444" class="l"><a class="l" href="#444">444: </a><span class="php-comment"> * setting('foo', 'bar');
+</span></span><span id="445" class="l"><a class="l" href="#445">445: </a><span class="php-comment"> *
+</span></span><span id="446" class="l"><a class="l" href="#446">446: </a><span class="php-comment"> * // get a setting named “foo”
+</span></span><span id="447" class="l"><a class="l" href="#447">447: </a><span class="php-comment"> * $value = setting('foo');
+</span></span><span id="448" class="l"><a class="l" href="#448">448: </a><span class="php-comment"> *
+</span></span><span id="449" class="l"><a class="l" href="#449">449: </a><span class="php-comment"> * // set or replace multiple settings
+</span></span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-comment"> * setting([
+</span></span><span id="451" class="l"><a class="l" href="#451">451: </a><span class="php-comment"> *   'foo' =&gt; 'value',
+</span></span><span id="452" class="l"><a class="l" href="#452">452: </a><span class="php-comment"> *   'bar' =&gt; 123,
+</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment"> *   'baz' =&gt; [ 'foo', 'bar', 'baz' ]
+</span></span><span id="454" class="l"><a class="l" href="#454">454: </a><span class="php-comment"> * ]);
+</span></span><span id="455" class="l"><a class="l" href="#455">455: </a><span class="php-comment"> *
+</span></span><span id="456" class="l"><a class="l" href="#456">456: </a><span class="php-comment"> * // get all settings in associative array
+</span></span><span id="457" class="l"><a class="l" href="#457">457: </a><span class="php-comment"> * $a = setting();
+</span></span><span id="458" class="l"><a class="l" href="#458">458: </a><span class="php-comment"> *
+</span></span><span id="459" class="l"><a class="l" href="#459">459: </a><span class="php-comment"> * // to unset a setting
+</span></span><span id="460" class="l"><a class="l" href="#460">460: </a><span class="php-comment"> * setting(false, 'foo');
+</span></span><span id="461" class="l"><a class="l" href="#461">461: </a><span class="php-comment"> * ~~~~~
+</span></span><span id="462" class="l"><a class="l" href="#462">462: </a><span class="php-comment"> *
+</span></span><span id="463" class="l"><a class="l" href="#463">463: </a><span class="php-comment"> * @param string|array $name Setting name, or array to set multiple
+</span></span><span id="464" class="l"><a class="l" href="#464">464: </a><span class="php-comment"> * @param string|int|array|float|mixed $value Value to set, or omit if getting value of $name (default=null)
+</span></span><span id="465" class="l"><a class="l" href="#465">465: </a><span class="php-comment"> * @return array|string|int|bool|mixed|null
+</span></span><span id="466" class="l"><a class="l" href="#466">466: </a><span class="php-comment"> *
+</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment"> */</span>
+</span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-keyword1">function</span> <a id="_setting" href="#_setting">setting</a>(<span class="php-var">$name</span> = <span class="php-quote">''</span>, <span class="php-var">$value</span> = <span class="php-keyword1">null</span>) {
+</span><span id="469" class="l"><a class="l" href="#469">469: </a>    <span class="php-keyword1">static</span> <span class="php-var"><a id="$settings" href="#$settings">$settings</a></span> = [];
+</span><span id="470" class="l"><a class="l" href="#470">470: </a>    <span class="php-keyword1">if</span>(<span class="php-var">$name</span> === <span class="php-quote">''</span>) <span class="php-keyword1">return</span> <span class="php-var">$settings</span>;
+</span><span id="471" class="l"><a class="l" href="#471">471: </a>    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$name</span>)) <span class="php-keyword1">return</span> <span class="php-var">$settings</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$settings</span>, <span class="php-var">$name</span>);
+</span><span id="472" class="l"><a class="l" href="#472">472: </a>    <span class="php-keyword1">if</span>(<span class="php-var">$name</span> === <span class="php-keyword1">false</span>) { <span class="php-keyword1">unset</span>(<span class="php-var">$settings</span>[(string) <span class="php-var">$value</span>]); <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>; }
+</span><span id="473" class="l"><a class="l" href="#473">473: </a>    <span class="php-keyword1">if</span>(<span class="php-var">$value</span> !== <span class="php-keyword1">null</span>) <span class="php-var">$settings</span>[<span class="php-var">$name</span>] = <span class="php-var">$value</span>;
+</span><span id="474" class="l"><a class="l" href="#474">474: </a>    <span class="php-keyword1">return</span> <span class="php-keyword1">isset</span>(<span class="php-var">$settings</span>[<span class="php-var">$name</span>]) ? <span class="php-var">$settings</span>[<span class="php-var">$name</span>] : <span class="php-keyword1">null</span>;
+</span><span id="475" class="l"><a class="l" href="#475">475: </a>}
+</span><span id="476" class="l"><a class="l" href="#476">476: </a>
+</span><span id="477" class="l"><a class="l" href="#477">477: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

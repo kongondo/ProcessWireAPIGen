@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Pageimage | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4163631439"></script>
+	<script type="text/javascript" src="elementlist.js?3504378806"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.118 dev</span>
+			<span>Overview version 3.0.119 dev</span>
 		</a>
 
 
@@ -464,6 +464,7 @@
 				<li><a href="function-ProcessWire.roles.html">roles</a></li>
 				<li><a href="function-ProcessWire.sanitizer.html">sanitizer</a></li>
 				<li><a href="function-ProcessWire.session.html">session</a></li>
+				<li><a href="function-ProcessWire.setting.html">setting</a></li>
 				<li><a href="function-ProcessWire.tabIndent.html">tabIndent</a></li>
 				<li><a href="function-ProcessWire.templates.html">templates</a></li>
 				<li><a href="function-ProcessWire.urls.html">urls</a></li>
@@ -652,7 +653,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Pageimage.html#4-1600" title="Go to source code">core/Pageimage.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Pageimage.html#4-1666" title="Go to source code">core/Pageimage.php</a><br>
 	</div>
 
 
@@ -1796,7 +1797,7 @@ be returned if already within max requested dimensions? (default=false)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getVariations">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1062-1140" title="Go to source code">getVariations</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1062-1184" title="Go to source code">getVariations</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1833,7 +1834,15 @@ than or equal to given will be returned - <code>width&lt;=</code> (int): only
 variations with width less than or equal to given will be returned -
 <code>height&lt;=</code> (int): only variations with height less than or equal
 to given will be returned - <code>suffix</code> (string): only variations having
-the given suffix will be returned</dd>
+the given suffix will be returned - <code>suffixes</code> (array): only
+variations having one of the given suffixes will be returned -
+<code>noSuffix</code> (string): exclude variations having this suffix -
+<code>noSuffixes</code> (array): exclude variations having any of these suffixes
+- <code>name</code> (string): only variations containing this text in filename
+will be returned (case insensitive) - <code>noName</code> (string): only
+variations NOT containing this text in filename will be returned (case
+insensitive) - <code>regexName</code> (string): only variations that match this
+PCRE regex will be returned</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1859,7 +1868,7 @@ provided <code>$options['info']</code> is true.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____rebuildVariations">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1142-1285" title="Go to source code">___rebuildVariations</a>( <span>integer <var>$mode</var> = <span class="php-num">0</span></span>, <span>array <var>$suffix</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1186-1329" title="Go to source code">___rebuildVariations</a>( <span>integer <var>$mode</var> = <span class="php-num">0</span></span>, <span>array <var>$suffix</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1942,7 +1951,7 @@ associative array indexed by file name.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____isVariation">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1287-1465" title="Go to source code">___isVariation</a>( <span>string <var>$basename</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1331-1509" title="Go to source code">___isVariation</a>( <span>string <var>$basename</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2028,7 +2037,7 @@ info if it is.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeVariations">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1467-1485" title="Go to source code">removeVariations</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1511-1551" title="Go to source code">removeVariations</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2044,10 +2053,20 @@ info if it is.<br>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options See options for getVariations() method to limit what variations are
+removed, plus these: - <code>dryRun</code> (bool): Do not remove now and instead
+only return the filenames of variations that would be deleted (default=false). -
+<code>getFiles</code> (bool): Return deleted filenames? Also assumed if the test
+option is used (default=false).</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>$this<br>
+					<code>mixed</code><br>$this|array Returns $this by default, or array of deleted filenames if the
+<code>returnFiles</code> option is specified<br>
 				</div>
 
 
@@ -2067,7 +2086,7 @@ info if it is.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOriginal">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1487-1499" title="Go to source code">setOriginal</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$image</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1553-1565" title="Go to source code">setOriginal</a>( <span><code><a href="class-ProcessWire.Pageimage.html">ProcessWire\Pageimage</a></code> <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2113,7 +2132,7 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOriginal">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1501-1515" title="Go to source code">getOriginal</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1567-1581" title="Go to source code">getOriginal</a>( )</code>
 
 		<div class="description short">
 			
@@ -2152,7 +2171,7 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unlink">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1517-1527" title="Go to source code">unlink</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1583-1593" title="Go to source code">unlink</a>( )</code>
 
 		<div class="description short">
 			
@@ -2193,7 +2212,7 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_copyToPath">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1529-1549" title="Go to source code">copyToPath</a>( <span>string <var>$path</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1595-1615" title="Go to source code">copyToPath</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2239,7 +2258,7 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1551-1568" title="Go to source code">___install</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1617-1634" title="Go to source code">___install</a>( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2288,7 +2307,7 @@ populating it's name</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1570-1598" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1636-1664" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
