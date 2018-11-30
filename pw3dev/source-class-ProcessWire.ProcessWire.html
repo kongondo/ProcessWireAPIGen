@@ -8,7 +8,7 @@
 	<title>File core/ProcessWire.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4053758680"></script>
+	<script type="text/javascript" src="elementlist.js?2828809549"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.119 dev</span>
+			<span>Overview version 3.0.120 dev</span>
 		</a>
 
 
@@ -620,7 +620,7 @@
 </span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     * Reversion revision number
 </span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment">     * 
 </span></span><span id="46" class="l"><a class="l" href="#46"> 46: </a><span class="php-comment">     */</span>
-</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>    <span class="php-keyword1">const</span> versionRevision = <span class="php-num">119</span>;
+</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>    <span class="php-keyword1">const</span> versionRevision = <span class="php-num">120</span>;
 </span><span id="48" class="l"><a class="l" href="#48"> 48: </a>
 </span><span id="49" class="l"><a class="l" href="#49"> 49: </a>    <span class="php-comment">/**
 </span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment">     * Version suffix string (when applicable)
@@ -1360,160 +1360,159 @@
 </span></span><span id="784" class="l"><a class="l" href="#784">784: </a><span class="php-comment">     * @param array $options Options to modify default behaviors (experimental): 
 </span></span><span id="785" class="l"><a class="l" href="#785">785: </a><span class="php-comment">     *  - `siteDir` (string): Name of &quot;site&quot; directory in $rootPath that contains site's config.php, no slashes (default=&quot;site&quot;).
 </span></span><span id="786" class="l"><a class="l" href="#786">786: </a><span class="php-comment">     * @return Config
-</span></span><span id="787" class="l"><a class="l" href="#787">787: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="788" class="l"><a class="l" href="#788">788: </a><span class="php-comment">     * 
-</span></span><span id="789" class="l"><a class="l" href="#789">789: </a><span class="php-comment">     */</span>
-</span><span id="790" class="l"><a class="l" href="#790">790: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_buildConfig" href="#_buildConfig">buildConfig</a>(<span class="php-var">$rootPath</span> = <span class="php-quote">''</span>, <span class="php-var">$rootURL</span> = <span class="php-keyword1">null</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
-</span><span id="791" class="l"><a class="l" href="#791">791: </a>    
-</span><span id="792" class="l"><a class="l" href="#792">792: </a>        <span class="php-var">$rootPath</span> = self::getRootPath(<span class="php-var">$rootPath</span>);
-</span><span id="793" class="l"><a class="l" href="#793">793: </a>        <span class="php-var">$httpHost</span> = <span class="php-quote">''</span>;
-</span><span id="794" class="l"><a class="l" href="#794">794: </a>        <span class="php-var">$scheme</span> = <span class="php-quote">''</span>;
-</span><span id="795" class="l"><a class="l" href="#795">795: </a>        <span class="php-var">$siteDir</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$options</span>[<span class="php-quote">'siteDir'</span>]) ? <span class="php-var">$options</span>[<span class="php-quote">'siteDir'</span>] : <span class="php-quote">'site'</span>;
-</span><span id="796" class="l"><a class="l" href="#796">796: </a>        <span class="php-var">$cfg</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'dbName'</span> =&gt; <span class="php-quote">''</span>);
-</span><span id="797" class="l"><a class="l" href="#797">797: </a>        
-</span><span id="798" class="l"><a class="l" href="#798">798: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$rootURL</span> &amp;&amp; <span class="php-keyword2">strpos</span>(<span class="php-var">$rootURL</span>, <span class="php-quote">'://'</span>)) {
-</span><span id="799" class="l"><a class="l" href="#799">799: </a>            <span class="php-comment">// rootURL is specifying scheme and hostname</span>
-</span><span id="800" class="l"><a class="l" href="#800">800: </a>            <span class="php-keyword1">list</span>(<span class="php-var">$scheme</span>, <span class="php-var">$httpHost</span>) = <span class="php-keyword2">explode</span>(<span class="php-quote">'://'</span>, <span class="php-var">$rootURL</span>);
-</span><span id="801" class="l"><a class="l" href="#801">801: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$httpHost</span>, <span class="php-quote">'/'</span>)) {
-</span><span id="802" class="l"><a class="l" href="#802">802: </a>                <span class="php-keyword1">list</span>(<span class="php-var">$httpHost</span>, <span class="php-var">$rootURL</span>) = <span class="php-keyword2">explode</span>(<span class="php-quote">'/'</span>, <span class="php-var">$httpHost</span>, <span class="php-num">2</span>); 
-</span><span id="803" class="l"><a class="l" href="#803">803: </a>                <span class="php-var">$rootURL</span> = <span class="php-quote">&quot;/</span><span class="php-var">$rootURL</span><span class="php-quote">&quot;</span>;
-</span><span id="804" class="l"><a class="l" href="#804">804: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="805" class="l"><a class="l" href="#805">805: </a>                <span class="php-var">$rootURL</span> = <span class="php-quote">'/'</span>;
-</span><span id="806" class="l"><a class="l" href="#806">806: </a>            }
-</span><span id="807" class="l"><a class="l" href="#807">807: </a>            <span class="php-var">$scheme</span> = <span class="php-keyword2">strtolower</span>(<span class="php-var">$scheme</span>);
-</span><span id="808" class="l"><a class="l" href="#808">808: </a>            <span class="php-var">$httpHost</span> = <span class="php-keyword2">strtolower</span>(<span class="php-var">$httpHost</span>);
-</span><span id="809" class="l"><a class="l" href="#809">809: </a>        }
-</span><span id="810" class="l"><a class="l" href="#810">810: </a>        
-</span><span id="811" class="l"><a class="l" href="#811">811: </a>        <span class="php-var">$rootPath</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$rootPath</span>, <span class="php-quote">'/'</span>);
-</span><span id="812" class="l"><a class="l" href="#812">812: </a>        <span class="php-var">$_rootURL</span> = <span class="php-var">$rootURL</span>;
-</span><span id="813" class="l"><a class="l" href="#813">813: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$rootURL</span>)) <span class="php-var">$rootURL</span> = <span class="php-quote">'/'</span>;
-</span><span id="814" class="l"><a class="l" href="#814">814: </a>        
-</span><span id="815" class="l"><a class="l" href="#815">815: </a>        <span class="php-comment">// check what rootPath is referring to</span>
-</span><span id="816" class="l"><a class="l" href="#816">816: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$rootPath</span>, <span class="php-quote">&quot;/</span><span class="php-var">$siteDir</span><span class="php-quote">&quot;</span>)) {
-</span><span id="817" class="l"><a class="l" href="#817">817: </a>            <span class="php-var">$parts</span> = <span class="php-keyword2">explode</span>(<span class="php-quote">'/'</span>, <span class="php-var">$rootPath</span>);
-</span><span id="818" class="l"><a class="l" href="#818">818: </a>            <span class="php-var">$testDir</span> = <span class="php-keyword2">array_pop</span>(<span class="php-var">$parts</span>);
-</span><span id="819" class="l"><a class="l" href="#819">819: </a>            <span class="php-keyword1">if</span>((<span class="php-var">$testDir</span> === <span class="php-var">$siteDir</span> || <span class="php-keyword2">strpos</span>(<span class="php-var">$testDir</span>, <span class="php-quote">'site-'</span>) === <span class="php-num">0</span>) &amp;&amp; <span class="php-keyword2">is_file</span>(<span class="php-quote">&quot;</span><span class="php-var">$rootPath</span><span class="php-quote">/config.php&quot;</span>)) {
-</span><span id="820" class="l"><a class="l" href="#820">820: </a>                <span class="php-comment">// rootPath was given as a /site/ directory rather than root directory</span>
-</span><span id="821" class="l"><a class="l" href="#821">821: </a>                <span class="php-var">$rootPath</span> = <span class="php-keyword2">implode</span>(<span class="php-quote">'/'</span>, <span class="php-var">$parts</span>); <span class="php-comment">// remove siteDir from rootPath</span>
-</span><span id="822" class="l"><a class="l" href="#822">822: </a>                <span class="php-var">$siteDir</span> = <span class="php-var">$testDir</span>; <span class="php-comment">// set proper siteDir</span>
-</span><span id="823" class="l"><a class="l" href="#823">823: </a>            }
-</span><span id="824" class="l"><a class="l" href="#824">824: </a>        } 
-</span><span id="825" class="l"><a class="l" href="#825">825: </a>
-</span><span id="826" class="l"><a class="l" href="#826">826: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'HTTP_HOST'</span>])) {
-</span><span id="827" class="l"><a class="l" href="#827">827: </a>            <span class="php-var">$host</span> = <span class="php-var">$httpHost</span> ? <span class="php-var">$httpHost</span> : <span class="php-keyword2">strtolower</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'HTTP_HOST'</span>]);
-</span><span id="828" class="l"><a class="l" href="#828">828: </a>
-</span><span id="829" class="l"><a class="l" href="#829">829: </a>            <span class="php-comment">// when serving pages from a web server</span>
-</span><span id="830" class="l"><a class="l" href="#830">830: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$_rootURL</span>)) <span class="php-var">$rootURL</span> = <span class="php-keyword2">rtrim</span>(<span class="php-keyword2">dirname</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'SCRIPT_NAME'</span>]), <span class="php-quote">&quot;/\\&quot;</span>) . <span class="php-quote">'/'</span>;
-</span><span id="831" class="l"><a class="l" href="#831">831: </a>            <span class="php-var">$realScriptFile</span> = <span class="php-keyword1">empty</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'SCRIPT_FILENAME'</span>]) ? <span class="php-quote">''</span> : <span class="php-keyword2">realpath</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'SCRIPT_FILENAME'</span>]);
-</span><span id="832" class="l"><a class="l" href="#832">832: </a>            <span class="php-var">$realIndexFile</span> = <span class="php-keyword2">realpath</span>(<span class="php-var">$rootPath</span> . <span class="php-quote">&quot;/index.php&quot;</span>);
-</span><span id="833" class="l"><a class="l" href="#833">833: </a>
-</span><span id="834" class="l"><a class="l" href="#834">834: </a>            <span class="php-comment">// check if we're being included from another script and adjust the rootPath accordingly</span>
-</span><span id="835" class="l"><a class="l" href="#835">835: </a>            <span class="php-var">$sf</span> = <span class="php-keyword1">empty</span>(<span class="php-var">$realScriptFile</span>) ? <span class="php-quote">''</span> : <span class="php-keyword2">dirname</span>(<span class="php-var">$realScriptFile</span>);
-</span><span id="836" class="l"><a class="l" href="#836">836: </a>            <span class="php-var">$f</span> = <span class="php-keyword2">dirname</span>(<span class="php-var">$realIndexFile</span>);
-</span><span id="837" class="l"><a class="l" href="#837">837: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$sf</span> &amp;&amp; <span class="php-var">$sf</span> != <span class="php-var">$f</span> &amp;&amp; <span class="php-keyword2">strpos</span>(<span class="php-var">$sf</span>, <span class="php-var">$f</span>) === <span class="php-num">0</span>) {
-</span><span id="838" class="l"><a class="l" href="#838">838: </a>                <span class="php-var">$x</span> = <span class="php-keyword2">rtrim</span>(<span class="php-keyword2">substr</span>(<span class="php-var">$sf</span>, <span class="php-keyword2">strlen</span>(<span class="php-var">$f</span>)), <span class="php-quote">'/'</span>);
-</span><span id="839" class="l"><a class="l" href="#839">839: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$_rootURL</span>)) <span class="php-var">$rootURL</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$rootURL</span>, <span class="php-num">0</span>, <span class="php-keyword2">strlen</span>(<span class="php-var">$rootURL</span>) - <span class="php-keyword2">strlen</span>(<span class="php-var">$x</span>));
-</span><span id="840" class="l"><a class="l" href="#840">840: </a>            }
-</span><span id="841" class="l"><a class="l" href="#841">841: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$sf</span>, <span class="php-var">$f</span>, <span class="php-var">$x</span>);
-</span><span id="842" class="l"><a class="l" href="#842">842: </a>        
-</span><span id="843" class="l"><a class="l" href="#843">843: </a>            <span class="php-comment">// when internal is true, we are not being called by an external script</span>
-</span><span id="844" class="l"><a class="l" href="#844">844: </a>            <span class="php-var">$cfg</span>[<span class="php-quote">'internal'</span>] = <span class="php-keyword2">strtolower</span>(<span class="php-var">$realIndexFile</span>) == <span class="php-keyword2">strtolower</span>(<span class="php-var">$realScriptFile</span>);
-</span><span id="845" class="l"><a class="l" href="#845">845: </a>
-</span><span id="846" class="l"><a class="l" href="#846">846: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="847" class="l"><a class="l" href="#847">847: </a>            <span class="php-comment">// when included from another app or command line script</span>
-</span><span id="848" class="l"><a class="l" href="#848">848: </a>            <span class="php-var">$cfg</span>[<span class="php-quote">'internal'</span>] = <span class="php-keyword1">false</span>;
-</span><span id="849" class="l"><a class="l" href="#849">849: </a>            <span class="php-var">$host</span> = <span class="php-quote">''</span>;
-</span><span id="850" class="l"><a class="l" href="#850">850: </a>        }
-</span><span id="851" class="l"><a class="l" href="#851">851: </a>        
-</span><span id="852" class="l"><a class="l" href="#852">852: </a>        <span class="php-comment">// Allow for an optional /index.config.php file that can point to a different site configuration per domain/host.</span>
-</span><span id="853" class="l"><a class="l" href="#853">853: </a>        <span class="php-var">$indexConfigFile</span> = <span class="php-var">$rootPath</span> . <span class="php-quote">&quot;/index.config.php&quot;</span>;
-</span><span id="854" class="l"><a class="l" href="#854">854: </a>
-</span><span id="855" class="l"><a class="l" href="#855">855: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_file</span>(<span class="php-var">$indexConfigFile</span>) 
-</span><span id="856" class="l"><a class="l" href="#856">856: </a>            &amp;&amp; !<span class="php-keyword2">function_exists</span>(<span class="php-quote">&quot;\\ProcessWire\\ProcessWireHostSiteConfig&quot;</span>)
-</span><span id="857" class="l"><a class="l" href="#857">857: </a>            &amp;&amp; !<span class="php-keyword2">function_exists</span>(<span class="php-quote">&quot;\\ProcessWireHostSiteConfig&quot;</span>)) {
-</span><span id="858" class="l"><a class="l" href="#858">858: </a>            <span class="php-comment">// optional config file is present in root</span>
-</span><span id="859" class="l"><a class="l" href="#859">859: </a>            <span class="php-var">$hostConfig</span> = <span class="php-keyword1">array</span>();
-</span><span id="860" class="l"><a class="l" href="#860">860: </a>            <span class="php-comment">/** @noinspection PhpIncludeInspection */</span>
-</span><span id="861" class="l"><a class="l" href="#861">861: </a>            @<span class="php-keyword1">include</span>(<span class="php-var">$indexConfigFile</span>);
-</span><span id="862" class="l"><a class="l" href="#862">862: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">function_exists</span>(<span class="php-quote">&quot;\\ProcessWire\\ProcessWireHostSiteConfig&quot;</span>)) {
-</span><span id="863" class="l"><a class="l" href="#863">863: </a>                <span class="php-var">$hostConfig</span> = ProcessWireHostSiteConfig();
-</span><span id="864" class="l"><a class="l" href="#864">864: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">function_exists</span>(<span class="php-quote">&quot;\\ProcessWireHostSiteConfig&quot;</span>)) {
-</span><span id="865" class="l"><a class="l" href="#865">865: </a>                <span class="php-var">$hostConfig</span> = \ProcessWireHostSiteConfig();
-</span><span id="866" class="l"><a class="l" href="#866">866: </a>            }
-</span><span id="867" class="l"><a class="l" href="#867">867: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$host</span> &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$hostConfig</span>[<span class="php-var">$host</span>])) {
-</span><span id="868" class="l"><a class="l" href="#868">868: </a>                <span class="php-var">$siteDir</span> = <span class="php-var">$hostConfig</span>[<span class="php-var">$host</span>];
-</span><span id="869" class="l"><a class="l" href="#869">869: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$hostConfig</span>[<span class="php-quote">'*'</span>])) {
-</span><span id="870" class="l"><a class="l" href="#870">870: </a>                <span class="php-var">$siteDir</span> = <span class="php-var">$hostConfig</span>[<span class="php-quote">'*'</span>]; <span class="php-comment">// default override</span>
-</span><span id="871" class="l"><a class="l" href="#871">871: </a>            }
-</span><span id="872" class="l"><a class="l" href="#872">872: </a>        }
-</span><span id="873" class="l"><a class="l" href="#873">873: </a>
-</span><span id="874" class="l"><a class="l" href="#874">874: </a>        <span class="php-comment">// other default directories</span>
-</span><span id="875" class="l"><a class="l" href="#875">875: </a>        <span class="php-var">$sitePath</span> = <span class="php-var">$rootPath</span> . <span class="php-quote">&quot;/</span><span class="php-var">$siteDir</span><span class="php-quote">/&quot;</span>;
-</span><span id="876" class="l"><a class="l" href="#876">876: </a>        <span class="php-var">$wireDir</span> = <span class="php-quote">&quot;wire&quot;</span>;
-</span><span id="877" class="l"><a class="l" href="#877">877: </a>        <span class="php-var">$coreDir</span> = <span class="php-quote">&quot;</span><span class="php-var">$wireDir</span><span class="php-quote">/core&quot;</span>;
-</span><span id="878" class="l"><a class="l" href="#878">878: </a>        <span class="php-var">$assetsDir</span> = <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/assets&quot;</span>;
-</span><span id="879" class="l"><a class="l" href="#879">879: </a>        <span class="php-var">$adminTplDir</span> = <span class="php-quote">'templates-admin'</span>;
-</span><span id="880" class="l"><a class="l" href="#880">880: </a>    
-</span><span id="881" class="l"><a class="l" href="#881">881: </a>        <span class="php-comment">// create new Config instance</span>
-</span><span id="882" class="l"><a class="l" href="#882">882: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'urls'</span>] = <span class="php-keyword1">new</span> Paths(<span class="php-var">$rootURL</span>);
-</span><span id="883" class="l"><a class="l" href="#883">883: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'urls'</span>]-&gt;data(<span class="php-keyword1">array</span>(
-</span><span id="884" class="l"><a class="l" href="#884">884: </a>            <span class="php-quote">'wire'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$wireDir</span><span class="php-quote">/&quot;</span>,
-</span><span id="885" class="l"><a class="l" href="#885">885: </a>            <span class="php-quote">'site'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/&quot;</span>,
-</span><span id="886" class="l"><a class="l" href="#886">886: </a>            <span class="php-quote">'modules'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$wireDir</span><span class="php-quote">/modules/&quot;</span>,
-</span><span id="887" class="l"><a class="l" href="#887">887: </a>            <span class="php-quote">'siteModules'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/modules/&quot;</span>,
-</span><span id="888" class="l"><a class="l" href="#888">888: </a>            <span class="php-quote">'core'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$coreDir</span><span class="php-quote">/&quot;</span>,
-</span><span id="889" class="l"><a class="l" href="#889">889: </a>            <span class="php-quote">'assets'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/&quot;</span>,
-</span><span id="890" class="l"><a class="l" href="#890">890: </a>            <span class="php-quote">'cache'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/cache/&quot;</span>,
-</span><span id="891" class="l"><a class="l" href="#891">891: </a>            <span class="php-quote">'logs'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/logs/&quot;</span>,
-</span><span id="892" class="l"><a class="l" href="#892">892: </a>            <span class="php-quote">'files'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/files/&quot;</span>,
-</span><span id="893" class="l"><a class="l" href="#893">893: </a>            <span class="php-quote">'tmp'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/tmp/&quot;</span>,
-</span><span id="894" class="l"><a class="l" href="#894">894: </a>            <span class="php-quote">'templates'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/templates/&quot;</span>,
-</span><span id="895" class="l"><a class="l" href="#895">895: </a>            <span class="php-quote">'fieldTemplates'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/templates/fields/&quot;</span>,
-</span><span id="896" class="l"><a class="l" href="#896">896: </a>            <span class="php-quote">'adminTemplates'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$wireDir</span><span class="php-quote">/</span><span class="php-var">$adminTplDir</span><span class="php-quote">/&quot;</span>,
-</span><span id="897" class="l"><a class="l" href="#897">897: </a>        ), <span class="php-keyword1">true</span>);
-</span><span id="898" class="l"><a class="l" href="#898">898: </a>        
-</span><span id="899" class="l"><a class="l" href="#899">899: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'paths'</span>] = <span class="php-keyword1">clone</span> <span class="php-var">$cfg</span>[<span class="php-quote">'urls'</span>];
-</span><span id="900" class="l"><a class="l" href="#900">900: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'paths'</span>]-&gt;set(<span class="php-quote">'root'</span>, <span class="php-var">$rootPath</span> . <span class="php-quote">'/'</span>);
-</span><span id="901" class="l"><a class="l" href="#901">901: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'paths'</span>]-&gt;data(<span class="php-quote">'sessions'</span>, <span class="php-var">$cfg</span>[<span class="php-quote">'paths'</span>]-&gt;assets . <span class="php-quote">&quot;sessions/&quot;</span>);
-</span><span id="902" class="l"><a class="l" href="#902">902: </a>
-</span><span id="903" class="l"><a class="l" href="#903">903: </a>        <span class="php-comment">// Styles and scripts are CSS and JS files, as used by the admin application.</span>
-</span><span id="904" class="l"><a class="l" href="#904">904: </a>        <span class="php-comment">// But reserved here if needed by other apps and templates.</span>
-</span><span id="905" class="l"><a class="l" href="#905">905: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'styles'</span>] = <span class="php-keyword1">new</span> FilenameArray();
-</span><span id="906" class="l"><a class="l" href="#906">906: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'scripts'</span>] = <span class="php-keyword1">new</span> FilenameArray();
-</span><span id="907" class="l"><a class="l" href="#907">907: </a>        
-</span><span id="908" class="l"><a class="l" href="#908">908: </a>        <span class="php-var">$config</span> = <span class="php-keyword1">new</span> Config();
-</span><span id="909" class="l"><a class="l" href="#909">909: </a>        <span class="php-var">$config</span>-&gt;setTrackChanges(<span class="php-keyword1">false</span>);
-</span><span id="910" class="l"><a class="l" href="#910">910: </a>        <span class="php-var">$config</span>-&gt;data(<span class="php-var">$cfg</span>, <span class="php-keyword1">true</span>);
-</span><span id="911" class="l"><a class="l" href="#911">911: </a>
-</span><span id="912" class="l"><a class="l" href="#912">912: </a>        <span class="php-comment">// Include system config defaults</span>
-</span><span id="913" class="l"><a class="l" href="#913">913: </a>        <span class="php-comment">/** @noinspection PhpIncludeInspection */</span>
-</span><span id="914" class="l"><a class="l" href="#914">914: </a>        <span class="php-keyword1">require</span>(<span class="php-quote">&quot;</span><span class="php-var">$rootPath</span><span class="php-quote">/</span><span class="php-var">$wireDir</span><span class="php-quote">/config.php&quot;</span>);
-</span><span id="915" class="l"><a class="l" href="#915">915: </a>
-</span><span id="916" class="l"><a class="l" href="#916">916: </a>        <span class="php-comment">// Include site-specific config settings</span>
-</span><span id="917" class="l"><a class="l" href="#917">917: </a>        <span class="php-var">$configFile</span> = <span class="php-var">$sitePath</span> . <span class="php-quote">&quot;config.php&quot;</span>;
-</span><span id="918" class="l"><a class="l" href="#918">918: </a>        <span class="php-var">$configFileDev</span> = <span class="php-var">$sitePath</span> . <span class="php-quote">&quot;config-dev.php&quot;</span>;
-</span><span id="919" class="l"><a class="l" href="#919">919: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_file</span>(<span class="php-var">$configFileDev</span>)) {
-</span><span id="920" class="l"><a class="l" href="#920">920: </a>            <span class="php-comment">/** @noinspection PhpIncludeInspection */</span>
-</span><span id="921" class="l"><a class="l" href="#921">921: </a>            @<span class="php-keyword1">require</span>(<span class="php-var">$configFileDev</span>);
-</span><span id="922" class="l"><a class="l" href="#922">922: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_file</span>(<span class="php-var">$configFile</span>)) {
-</span><span id="923" class="l"><a class="l" href="#923">923: </a>            <span class="php-comment">/** @noinspection PhpIncludeInspection */</span>
-</span><span id="924" class="l"><a class="l" href="#924">924: </a>            @<span class="php-keyword1">require</span>(<span class="php-var">$configFile</span>);
-</span><span id="925" class="l"><a class="l" href="#925">925: </a>        }
-</span><span id="926" class="l"><a class="l" href="#926">926: </a>        
-</span><span id="927" class="l"><a class="l" href="#927">927: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$httpHost</span>) {
-</span><span id="928" class="l"><a class="l" href="#928">928: </a>            <span class="php-var">$config</span>-&gt;httpHost = <span class="php-var">$httpHost</span>;
-</span><span id="929" class="l"><a class="l" href="#929">929: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">in_array</span>(<span class="php-var">$httpHost</span>, <span class="php-var">$config</span>-&gt;httpHosts)) <span class="php-var">$config</span>-&gt;httpHosts[] = <span class="php-var">$httpHost</span>;
-</span><span id="930" class="l"><a class="l" href="#930">930: </a>        }
-</span><span id="931" class="l"><a class="l" href="#931">931: </a>        
-</span><span id="932" class="l"><a class="l" href="#932">932: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$scheme</span>) <span class="php-var">$config</span>-&gt;https = (<span class="php-var">$scheme</span> === <span class="php-quote">'https'</span>); 
-</span><span id="933" class="l"><a class="l" href="#933">933: </a>        
-</span><span id="934" class="l"><a class="l" href="#934">934: </a>        <span class="php-keyword1">return</span> <span class="php-var">$config</span>;
-</span><span id="935" class="l"><a class="l" href="#935">935: </a>    }
-</span><span id="936" class="l"><a class="l" href="#936">936: </a>
-</span><span id="937" class="l"><a class="l" href="#937">937: </a>}
+</span></span><span id="787" class="l"><a class="l" href="#787">787: </a><span class="php-comment">     * 
+</span></span><span id="788" class="l"><a class="l" href="#788">788: </a><span class="php-comment">     */</span>
+</span><span id="789" class="l"><a class="l" href="#789">789: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_buildConfig" href="#_buildConfig">buildConfig</a>(<span class="php-var">$rootPath</span> = <span class="php-quote">''</span>, <span class="php-var">$rootURL</span> = <span class="php-keyword1">null</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="790" class="l"><a class="l" href="#790">790: </a>    
+</span><span id="791" class="l"><a class="l" href="#791">791: </a>        <span class="php-var">$rootPath</span> = self::getRootPath(<span class="php-var">$rootPath</span>);
+</span><span id="792" class="l"><a class="l" href="#792">792: </a>        <span class="php-var">$httpHost</span> = <span class="php-quote">''</span>;
+</span><span id="793" class="l"><a class="l" href="#793">793: </a>        <span class="php-var">$scheme</span> = <span class="php-quote">''</span>;
+</span><span id="794" class="l"><a class="l" href="#794">794: </a>        <span class="php-var">$siteDir</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$options</span>[<span class="php-quote">'siteDir'</span>]) ? <span class="php-var">$options</span>[<span class="php-quote">'siteDir'</span>] : <span class="php-quote">'site'</span>;
+</span><span id="795" class="l"><a class="l" href="#795">795: </a>        <span class="php-var">$cfg</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'dbName'</span> =&gt; <span class="php-quote">''</span>);
+</span><span id="796" class="l"><a class="l" href="#796">796: </a>        
+</span><span id="797" class="l"><a class="l" href="#797">797: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$rootURL</span> &amp;&amp; <span class="php-keyword2">strpos</span>(<span class="php-var">$rootURL</span>, <span class="php-quote">'://'</span>)) {
+</span><span id="798" class="l"><a class="l" href="#798">798: </a>            <span class="php-comment">// rootURL is specifying scheme and hostname</span>
+</span><span id="799" class="l"><a class="l" href="#799">799: </a>            <span class="php-keyword1">list</span>(<span class="php-var">$scheme</span>, <span class="php-var">$httpHost</span>) = <span class="php-keyword2">explode</span>(<span class="php-quote">'://'</span>, <span class="php-var">$rootURL</span>);
+</span><span id="800" class="l"><a class="l" href="#800">800: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$httpHost</span>, <span class="php-quote">'/'</span>)) {
+</span><span id="801" class="l"><a class="l" href="#801">801: </a>                <span class="php-keyword1">list</span>(<span class="php-var">$httpHost</span>, <span class="php-var">$rootURL</span>) = <span class="php-keyword2">explode</span>(<span class="php-quote">'/'</span>, <span class="php-var">$httpHost</span>, <span class="php-num">2</span>); 
+</span><span id="802" class="l"><a class="l" href="#802">802: </a>                <span class="php-var">$rootURL</span> = <span class="php-quote">&quot;/</span><span class="php-var">$rootURL</span><span class="php-quote">&quot;</span>;
+</span><span id="803" class="l"><a class="l" href="#803">803: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="804" class="l"><a class="l" href="#804">804: </a>                <span class="php-var">$rootURL</span> = <span class="php-quote">'/'</span>;
+</span><span id="805" class="l"><a class="l" href="#805">805: </a>            }
+</span><span id="806" class="l"><a class="l" href="#806">806: </a>            <span class="php-var">$scheme</span> = <span class="php-keyword2">strtolower</span>(<span class="php-var">$scheme</span>);
+</span><span id="807" class="l"><a class="l" href="#807">807: </a>            <span class="php-var">$httpHost</span> = <span class="php-keyword2">strtolower</span>(<span class="php-var">$httpHost</span>);
+</span><span id="808" class="l"><a class="l" href="#808">808: </a>        }
+</span><span id="809" class="l"><a class="l" href="#809">809: </a>        
+</span><span id="810" class="l"><a class="l" href="#810">810: </a>        <span class="php-var">$rootPath</span> = <span class="php-keyword2">rtrim</span>(<span class="php-var">$rootPath</span>, <span class="php-quote">'/'</span>);
+</span><span id="811" class="l"><a class="l" href="#811">811: </a>        <span class="php-var">$_rootURL</span> = <span class="php-var">$rootURL</span>;
+</span><span id="812" class="l"><a class="l" href="#812">812: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$rootURL</span>)) <span class="php-var">$rootURL</span> = <span class="php-quote">'/'</span>;
+</span><span id="813" class="l"><a class="l" href="#813">813: </a>        
+</span><span id="814" class="l"><a class="l" href="#814">814: </a>        <span class="php-comment">// check what rootPath is referring to</span>
+</span><span id="815" class="l"><a class="l" href="#815">815: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$rootPath</span>, <span class="php-quote">&quot;/</span><span class="php-var">$siteDir</span><span class="php-quote">&quot;</span>)) {
+</span><span id="816" class="l"><a class="l" href="#816">816: </a>            <span class="php-var">$parts</span> = <span class="php-keyword2">explode</span>(<span class="php-quote">'/'</span>, <span class="php-var">$rootPath</span>);
+</span><span id="817" class="l"><a class="l" href="#817">817: </a>            <span class="php-var">$testDir</span> = <span class="php-keyword2">array_pop</span>(<span class="php-var">$parts</span>);
+</span><span id="818" class="l"><a class="l" href="#818">818: </a>            <span class="php-keyword1">if</span>((<span class="php-var">$testDir</span> === <span class="php-var">$siteDir</span> || <span class="php-keyword2">strpos</span>(<span class="php-var">$testDir</span>, <span class="php-quote">'site-'</span>) === <span class="php-num">0</span>) &amp;&amp; <span class="php-keyword2">is_file</span>(<span class="php-quote">&quot;</span><span class="php-var">$rootPath</span><span class="php-quote">/config.php&quot;</span>)) {
+</span><span id="819" class="l"><a class="l" href="#819">819: </a>                <span class="php-comment">// rootPath was given as a /site/ directory rather than root directory</span>
+</span><span id="820" class="l"><a class="l" href="#820">820: </a>                <span class="php-var">$rootPath</span> = <span class="php-keyword2">implode</span>(<span class="php-quote">'/'</span>, <span class="php-var">$parts</span>); <span class="php-comment">// remove siteDir from rootPath</span>
+</span><span id="821" class="l"><a class="l" href="#821">821: </a>                <span class="php-var">$siteDir</span> = <span class="php-var">$testDir</span>; <span class="php-comment">// set proper siteDir</span>
+</span><span id="822" class="l"><a class="l" href="#822">822: </a>            }
+</span><span id="823" class="l"><a class="l" href="#823">823: </a>        } 
+</span><span id="824" class="l"><a class="l" href="#824">824: </a>
+</span><span id="825" class="l"><a class="l" href="#825">825: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'HTTP_HOST'</span>])) {
+</span><span id="826" class="l"><a class="l" href="#826">826: </a>            <span class="php-var">$host</span> = <span class="php-var">$httpHost</span> ? <span class="php-var">$httpHost</span> : <span class="php-keyword2">strtolower</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'HTTP_HOST'</span>]);
+</span><span id="827" class="l"><a class="l" href="#827">827: </a>
+</span><span id="828" class="l"><a class="l" href="#828">828: </a>            <span class="php-comment">// when serving pages from a web server</span>
+</span><span id="829" class="l"><a class="l" href="#829">829: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$_rootURL</span>)) <span class="php-var">$rootURL</span> = <span class="php-keyword2">rtrim</span>(<span class="php-keyword2">dirname</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'SCRIPT_NAME'</span>]), <span class="php-quote">&quot;/\\&quot;</span>) . <span class="php-quote">'/'</span>;
+</span><span id="830" class="l"><a class="l" href="#830">830: </a>            <span class="php-var">$realScriptFile</span> = <span class="php-keyword1">empty</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'SCRIPT_FILENAME'</span>]) ? <span class="php-quote">''</span> : <span class="php-keyword2">realpath</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'SCRIPT_FILENAME'</span>]);
+</span><span id="831" class="l"><a class="l" href="#831">831: </a>            <span class="php-var">$realIndexFile</span> = <span class="php-keyword2">realpath</span>(<span class="php-var">$rootPath</span> . <span class="php-quote">&quot;/index.php&quot;</span>);
+</span><span id="832" class="l"><a class="l" href="#832">832: </a>
+</span><span id="833" class="l"><a class="l" href="#833">833: </a>            <span class="php-comment">// check if we're being included from another script and adjust the rootPath accordingly</span>
+</span><span id="834" class="l"><a class="l" href="#834">834: </a>            <span class="php-var">$sf</span> = <span class="php-keyword1">empty</span>(<span class="php-var">$realScriptFile</span>) ? <span class="php-quote">''</span> : <span class="php-keyword2">dirname</span>(<span class="php-var">$realScriptFile</span>);
+</span><span id="835" class="l"><a class="l" href="#835">835: </a>            <span class="php-var">$f</span> = <span class="php-keyword2">dirname</span>(<span class="php-var">$realIndexFile</span>);
+</span><span id="836" class="l"><a class="l" href="#836">836: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$sf</span> &amp;&amp; <span class="php-var">$sf</span> != <span class="php-var">$f</span> &amp;&amp; <span class="php-keyword2">strpos</span>(<span class="php-var">$sf</span>, <span class="php-var">$f</span>) === <span class="php-num">0</span>) {
+</span><span id="837" class="l"><a class="l" href="#837">837: </a>                <span class="php-var">$x</span> = <span class="php-keyword2">rtrim</span>(<span class="php-keyword2">substr</span>(<span class="php-var">$sf</span>, <span class="php-keyword2">strlen</span>(<span class="php-var">$f</span>)), <span class="php-quote">'/'</span>);
+</span><span id="838" class="l"><a class="l" href="#838">838: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$_rootURL</span>)) <span class="php-var">$rootURL</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$rootURL</span>, <span class="php-num">0</span>, <span class="php-keyword2">strlen</span>(<span class="php-var">$rootURL</span>) - <span class="php-keyword2">strlen</span>(<span class="php-var">$x</span>));
+</span><span id="839" class="l"><a class="l" href="#839">839: </a>            }
+</span><span id="840" class="l"><a class="l" href="#840">840: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$sf</span>, <span class="php-var">$f</span>, <span class="php-var">$x</span>);
+</span><span id="841" class="l"><a class="l" href="#841">841: </a>        
+</span><span id="842" class="l"><a class="l" href="#842">842: </a>            <span class="php-comment">// when internal is true, we are not being called by an external script</span>
+</span><span id="843" class="l"><a class="l" href="#843">843: </a>            <span class="php-var">$cfg</span>[<span class="php-quote">'internal'</span>] = <span class="php-keyword2">strtolower</span>(<span class="php-var">$realIndexFile</span>) == <span class="php-keyword2">strtolower</span>(<span class="php-var">$realScriptFile</span>);
+</span><span id="844" class="l"><a class="l" href="#844">844: </a>
+</span><span id="845" class="l"><a class="l" href="#845">845: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="846" class="l"><a class="l" href="#846">846: </a>            <span class="php-comment">// when included from another app or command line script</span>
+</span><span id="847" class="l"><a class="l" href="#847">847: </a>            <span class="php-var">$cfg</span>[<span class="php-quote">'internal'</span>] = <span class="php-keyword1">false</span>;
+</span><span id="848" class="l"><a class="l" href="#848">848: </a>            <span class="php-var">$host</span> = <span class="php-quote">''</span>;
+</span><span id="849" class="l"><a class="l" href="#849">849: </a>        }
+</span><span id="850" class="l"><a class="l" href="#850">850: </a>        
+</span><span id="851" class="l"><a class="l" href="#851">851: </a>        <span class="php-comment">// Allow for an optional /index.config.php file that can point to a different site configuration per domain/host.</span>
+</span><span id="852" class="l"><a class="l" href="#852">852: </a>        <span class="php-var">$indexConfigFile</span> = <span class="php-var">$rootPath</span> . <span class="php-quote">&quot;/index.config.php&quot;</span>;
+</span><span id="853" class="l"><a class="l" href="#853">853: </a>
+</span><span id="854" class="l"><a class="l" href="#854">854: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_file</span>(<span class="php-var">$indexConfigFile</span>) 
+</span><span id="855" class="l"><a class="l" href="#855">855: </a>            &amp;&amp; !<span class="php-keyword2">function_exists</span>(<span class="php-quote">&quot;\\ProcessWire\\ProcessWireHostSiteConfig&quot;</span>)
+</span><span id="856" class="l"><a class="l" href="#856">856: </a>            &amp;&amp; !<span class="php-keyword2">function_exists</span>(<span class="php-quote">&quot;\\ProcessWireHostSiteConfig&quot;</span>)) {
+</span><span id="857" class="l"><a class="l" href="#857">857: </a>            <span class="php-comment">// optional config file is present in root</span>
+</span><span id="858" class="l"><a class="l" href="#858">858: </a>            <span class="php-var">$hostConfig</span> = <span class="php-keyword1">array</span>();
+</span><span id="859" class="l"><a class="l" href="#859">859: </a>            <span class="php-comment">/** @noinspection PhpIncludeInspection */</span>
+</span><span id="860" class="l"><a class="l" href="#860">860: </a>            @<span class="php-keyword1">include</span>(<span class="php-var">$indexConfigFile</span>);
+</span><span id="861" class="l"><a class="l" href="#861">861: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">function_exists</span>(<span class="php-quote">&quot;\\ProcessWire\\ProcessWireHostSiteConfig&quot;</span>)) {
+</span><span id="862" class="l"><a class="l" href="#862">862: </a>                <span class="php-var">$hostConfig</span> = ProcessWireHostSiteConfig();
+</span><span id="863" class="l"><a class="l" href="#863">863: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">function_exists</span>(<span class="php-quote">&quot;\\ProcessWireHostSiteConfig&quot;</span>)) {
+</span><span id="864" class="l"><a class="l" href="#864">864: </a>                <span class="php-var">$hostConfig</span> = \ProcessWireHostSiteConfig();
+</span><span id="865" class="l"><a class="l" href="#865">865: </a>            }
+</span><span id="866" class="l"><a class="l" href="#866">866: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$host</span> &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$hostConfig</span>[<span class="php-var">$host</span>])) {
+</span><span id="867" class="l"><a class="l" href="#867">867: </a>                <span class="php-var">$siteDir</span> = <span class="php-var">$hostConfig</span>[<span class="php-var">$host</span>];
+</span><span id="868" class="l"><a class="l" href="#868">868: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$hostConfig</span>[<span class="php-quote">'*'</span>])) {
+</span><span id="869" class="l"><a class="l" href="#869">869: </a>                <span class="php-var">$siteDir</span> = <span class="php-var">$hostConfig</span>[<span class="php-quote">'*'</span>]; <span class="php-comment">// default override</span>
+</span><span id="870" class="l"><a class="l" href="#870">870: </a>            }
+</span><span id="871" class="l"><a class="l" href="#871">871: </a>        }
+</span><span id="872" class="l"><a class="l" href="#872">872: </a>
+</span><span id="873" class="l"><a class="l" href="#873">873: </a>        <span class="php-comment">// other default directories</span>
+</span><span id="874" class="l"><a class="l" href="#874">874: </a>        <span class="php-var">$sitePath</span> = <span class="php-var">$rootPath</span> . <span class="php-quote">&quot;/</span><span class="php-var">$siteDir</span><span class="php-quote">/&quot;</span>;
+</span><span id="875" class="l"><a class="l" href="#875">875: </a>        <span class="php-var">$wireDir</span> = <span class="php-quote">&quot;wire&quot;</span>;
+</span><span id="876" class="l"><a class="l" href="#876">876: </a>        <span class="php-var">$coreDir</span> = <span class="php-quote">&quot;</span><span class="php-var">$wireDir</span><span class="php-quote">/core&quot;</span>;
+</span><span id="877" class="l"><a class="l" href="#877">877: </a>        <span class="php-var">$assetsDir</span> = <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/assets&quot;</span>;
+</span><span id="878" class="l"><a class="l" href="#878">878: </a>        <span class="php-var">$adminTplDir</span> = <span class="php-quote">'templates-admin'</span>;
+</span><span id="879" class="l"><a class="l" href="#879">879: </a>    
+</span><span id="880" class="l"><a class="l" href="#880">880: </a>        <span class="php-comment">// create new Config instance</span>
+</span><span id="881" class="l"><a class="l" href="#881">881: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'urls'</span>] = <span class="php-keyword1">new</span> Paths(<span class="php-var">$rootURL</span>);
+</span><span id="882" class="l"><a class="l" href="#882">882: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'urls'</span>]-&gt;data(<span class="php-keyword1">array</span>(
+</span><span id="883" class="l"><a class="l" href="#883">883: </a>            <span class="php-quote">'wire'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$wireDir</span><span class="php-quote">/&quot;</span>,
+</span><span id="884" class="l"><a class="l" href="#884">884: </a>            <span class="php-quote">'site'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/&quot;</span>,
+</span><span id="885" class="l"><a class="l" href="#885">885: </a>            <span class="php-quote">'modules'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$wireDir</span><span class="php-quote">/modules/&quot;</span>,
+</span><span id="886" class="l"><a class="l" href="#886">886: </a>            <span class="php-quote">'siteModules'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/modules/&quot;</span>,
+</span><span id="887" class="l"><a class="l" href="#887">887: </a>            <span class="php-quote">'core'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$coreDir</span><span class="php-quote">/&quot;</span>,
+</span><span id="888" class="l"><a class="l" href="#888">888: </a>            <span class="php-quote">'assets'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/&quot;</span>,
+</span><span id="889" class="l"><a class="l" href="#889">889: </a>            <span class="php-quote">'cache'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/cache/&quot;</span>,
+</span><span id="890" class="l"><a class="l" href="#890">890: </a>            <span class="php-quote">'logs'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/logs/&quot;</span>,
+</span><span id="891" class="l"><a class="l" href="#891">891: </a>            <span class="php-quote">'files'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/files/&quot;</span>,
+</span><span id="892" class="l"><a class="l" href="#892">892: </a>            <span class="php-quote">'tmp'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$assetsDir</span><span class="php-quote">/tmp/&quot;</span>,
+</span><span id="893" class="l"><a class="l" href="#893">893: </a>            <span class="php-quote">'templates'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/templates/&quot;</span>,
+</span><span id="894" class="l"><a class="l" href="#894">894: </a>            <span class="php-quote">'fieldTemplates'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$siteDir</span><span class="php-quote">/templates/fields/&quot;</span>,
+</span><span id="895" class="l"><a class="l" href="#895">895: </a>            <span class="php-quote">'adminTemplates'</span> =&gt; <span class="php-quote">&quot;</span><span class="php-var">$wireDir</span><span class="php-quote">/</span><span class="php-var">$adminTplDir</span><span class="php-quote">/&quot;</span>,
+</span><span id="896" class="l"><a class="l" href="#896">896: </a>        ), <span class="php-keyword1">true</span>);
+</span><span id="897" class="l"><a class="l" href="#897">897: </a>        
+</span><span id="898" class="l"><a class="l" href="#898">898: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'paths'</span>] = <span class="php-keyword1">clone</span> <span class="php-var">$cfg</span>[<span class="php-quote">'urls'</span>];
+</span><span id="899" class="l"><a class="l" href="#899">899: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'paths'</span>]-&gt;set(<span class="php-quote">'root'</span>, <span class="php-var">$rootPath</span> . <span class="php-quote">'/'</span>);
+</span><span id="900" class="l"><a class="l" href="#900">900: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'paths'</span>]-&gt;data(<span class="php-quote">'sessions'</span>, <span class="php-var">$cfg</span>[<span class="php-quote">'paths'</span>]-&gt;assets . <span class="php-quote">&quot;sessions/&quot;</span>);
+</span><span id="901" class="l"><a class="l" href="#901">901: </a>
+</span><span id="902" class="l"><a class="l" href="#902">902: </a>        <span class="php-comment">// Styles and scripts are CSS and JS files, as used by the admin application.</span>
+</span><span id="903" class="l"><a class="l" href="#903">903: </a>        <span class="php-comment">// But reserved here if needed by other apps and templates.</span>
+</span><span id="904" class="l"><a class="l" href="#904">904: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'styles'</span>] = <span class="php-keyword1">new</span> FilenameArray();
+</span><span id="905" class="l"><a class="l" href="#905">905: </a>        <span class="php-var">$cfg</span>[<span class="php-quote">'scripts'</span>] = <span class="php-keyword1">new</span> FilenameArray();
+</span><span id="906" class="l"><a class="l" href="#906">906: </a>        
+</span><span id="907" class="l"><a class="l" href="#907">907: </a>        <span class="php-var">$config</span> = <span class="php-keyword1">new</span> Config();
+</span><span id="908" class="l"><a class="l" href="#908">908: </a>        <span class="php-var">$config</span>-&gt;setTrackChanges(<span class="php-keyword1">false</span>);
+</span><span id="909" class="l"><a class="l" href="#909">909: </a>        <span class="php-var">$config</span>-&gt;data(<span class="php-var">$cfg</span>, <span class="php-keyword1">true</span>);
+</span><span id="910" class="l"><a class="l" href="#910">910: </a>
+</span><span id="911" class="l"><a class="l" href="#911">911: </a>        <span class="php-comment">// Include system config defaults</span>
+</span><span id="912" class="l"><a class="l" href="#912">912: </a>        <span class="php-comment">/** @noinspection PhpIncludeInspection */</span>
+</span><span id="913" class="l"><a class="l" href="#913">913: </a>        <span class="php-keyword1">require</span>(<span class="php-quote">&quot;</span><span class="php-var">$rootPath</span><span class="php-quote">/</span><span class="php-var">$wireDir</span><span class="php-quote">/config.php&quot;</span>);
+</span><span id="914" class="l"><a class="l" href="#914">914: </a>
+</span><span id="915" class="l"><a class="l" href="#915">915: </a>        <span class="php-comment">// Include site-specific config settings</span>
+</span><span id="916" class="l"><a class="l" href="#916">916: </a>        <span class="php-var">$configFile</span> = <span class="php-var">$sitePath</span> . <span class="php-quote">&quot;config.php&quot;</span>;
+</span><span id="917" class="l"><a class="l" href="#917">917: </a>        <span class="php-var">$configFileDev</span> = <span class="php-var">$sitePath</span> . <span class="php-quote">&quot;config-dev.php&quot;</span>;
+</span><span id="918" class="l"><a class="l" href="#918">918: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_file</span>(<span class="php-var">$configFileDev</span>)) {
+</span><span id="919" class="l"><a class="l" href="#919">919: </a>            <span class="php-comment">/** @noinspection PhpIncludeInspection */</span>
+</span><span id="920" class="l"><a class="l" href="#920">920: </a>            @<span class="php-keyword1">require</span>(<span class="php-var">$configFileDev</span>);
+</span><span id="921" class="l"><a class="l" href="#921">921: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">is_file</span>(<span class="php-var">$configFile</span>)) {
+</span><span id="922" class="l"><a class="l" href="#922">922: </a>            <span class="php-comment">/** @noinspection PhpIncludeInspection */</span>
+</span><span id="923" class="l"><a class="l" href="#923">923: </a>            @<span class="php-keyword1">require</span>(<span class="php-var">$configFile</span>);
+</span><span id="924" class="l"><a class="l" href="#924">924: </a>        }
+</span><span id="925" class="l"><a class="l" href="#925">925: </a>        
+</span><span id="926" class="l"><a class="l" href="#926">926: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$httpHost</span>) {
+</span><span id="927" class="l"><a class="l" href="#927">927: </a>            <span class="php-var">$config</span>-&gt;httpHost = <span class="php-var">$httpHost</span>;
+</span><span id="928" class="l"><a class="l" href="#928">928: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">in_array</span>(<span class="php-var">$httpHost</span>, <span class="php-var">$config</span>-&gt;httpHosts)) <span class="php-var">$config</span>-&gt;httpHosts[] = <span class="php-var">$httpHost</span>;
+</span><span id="929" class="l"><a class="l" href="#929">929: </a>        }
+</span><span id="930" class="l"><a class="l" href="#930">930: </a>        
+</span><span id="931" class="l"><a class="l" href="#931">931: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$scheme</span>) <span class="php-var">$config</span>-&gt;https = (<span class="php-var">$scheme</span> === <span class="php-quote">'https'</span>); 
+</span><span id="932" class="l"><a class="l" href="#932">932: </a>        
+</span><span id="933" class="l"><a class="l" href="#933">933: </a>        <span class="php-keyword1">return</span> <span class="php-var">$config</span>;
+</span><span id="934" class="l"><a class="l" href="#934">934: </a>    }
+</span><span id="935" class="l"><a class="l" href="#935">935: </a>
+</span><span id="936" class="l"><a class="l" href="#936">936: </a>}
+</span><span id="937" class="l"><a class="l" href="#937">937: </a>
 </span><span id="938" class="l"><a class="l" href="#938">938: </a>
-</span><span id="939" class="l"><a class="l" href="#939">939: </a>
-</span><span id="940" class="l"><a class="l" href="#940">940: </a></span></code></pre>
+</span><span id="939" class="l"><a class="l" href="#939">939: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

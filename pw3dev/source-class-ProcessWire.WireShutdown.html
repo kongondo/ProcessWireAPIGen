@@ -8,7 +8,7 @@
 	<title>File core/WireShutdown.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4053758680"></script>
+	<script type="text/javascript" src="elementlist.js?2828809549"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.119 dev</span>
+			<span>Overview version 3.0.120 dev</span>
 		</a>
 
 
@@ -906,63 +906,64 @@
 </span><span id="330" class="l"><a class="l" href="#330">330: </a>                -&gt;to(<span class="php-var">$config</span>-&gt;adminEmail)
 </span><span id="331" class="l"><a class="l" href="#331">331: </a>                -&gt;from(<span class="php-var">$config</span>-&gt;adminEmail)
 </span><span id="332" class="l"><a class="l" href="#332">332: </a>                -&gt;subject(<span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'email-subject'</span>])
-</span><span id="333" class="l"><a class="l" href="#333">333: </a>                -&gt;body(<span class="php-quote">&quot;Page: </span><span class="php-var">$url</span><span class="php-quote">\nUser: </span><span class="php-var">$name</span><span class="php-quote">\n\n&quot;</span> . <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;\t&quot;</span>, <span class="php-quote">&quot;\n&quot;</span>, <span class="php-var">$message</span>));
-</span><span id="334" class="l"><a class="l" href="#334">334: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$n</span>) <span class="php-var">$who</span> .= <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'admin-notified'</span>];
-</span><span id="335" class="l"><a class="l" href="#335">335: </a>        }
-</span><span id="336" class="l"><a class="l" href="#336">336: </a>        
-</span><span id="337" class="l"><a class="l" href="#337">337: </a>        <span class="php-comment">// save to errors.txt log file if applicable</span>
-</span><span id="338" class="l"><a class="l" href="#338">338: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$config</span>-&gt;paths-&gt;logs) {
-</span><span id="339" class="l"><a class="l" href="#339">339: </a>            <span class="php-var">$log</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> FileLog(<span class="php-var">$config</span>-&gt;paths-&gt;logs . <span class="php-quote">'errors.txt'</span>));
-</span><span id="340" class="l"><a class="l" href="#340">340: </a>            <span class="php-var">$log</span>-&gt;setDelimeter(<span class="php-quote">&quot;\t&quot;</span>);
-</span><span id="341" class="l"><a class="l" href="#341">341: </a>            <span class="php-var">$log</span>-&gt;save(<span class="php-quote">&quot;</span><span class="php-var">$name</span><span class="php-quote">\t</span><span class="php-var">$url</span><span class="php-quote">\t&quot;</span> . <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;\n&quot;</span>, <span class="php-quote">&quot; &quot;</span>, <span class="php-var">$message</span>));
-</span><span id="342" class="l"><a class="l" href="#342">342: </a>            <span class="php-var">$who</span> .= (<span class="php-var">$who</span> ? <span class="php-quote">' '</span> : <span class="php-quote">''</span>) . <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'error-logged'</span>];
-</span><span id="343" class="l"><a class="l" href="#343">343: </a>        }
-</span><span id="344" class="l"><a class="l" href="#344">344: </a>
-</span><span id="345" class="l"><a class="l" href="#345">345: </a>        <span class="php-comment">// if not allowed to send output, then do nothing further</span>
-</span><span id="346" class="l"><a class="l" href="#346">346: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$sendOutput</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="347" class="l"><a class="l" href="#347">347: </a>
-</span><span id="348" class="l"><a class="l" href="#348">348: </a>        <span class="php-comment">// we populate $why if we're going to show error details for any of the following reasons: </span>
-</span><span id="349" class="l"><a class="l" href="#349">349: </a>        <span class="php-comment">// otherwise $why will NOT be populated with anything</span>
-</span><span id="350" class="l"><a class="l" href="#350">350: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$config</span>-&gt;debug) {
-</span><span id="351" class="l"><a class="l" href="#351">351: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'debug-mode'</span>] . <span class="php-quote">&quot; (\</span><span class="php-var">$config</span><span class="php-quote">-&gt;debug = true; =&gt; /site/config.php).&quot;</span>;
-</span><span id="352" class="l"><a class="l" href="#352">352: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(!<span class="php-var">$useHTML</span>) {
-</span><span id="353" class="l"><a class="l" href="#353">353: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'cli-mode'</span>];
-</span><span id="354" class="l"><a class="l" href="#354">354: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$user</span> &amp;&amp; <span class="php-var">$user</span>-&gt;isSuperuser()) {
-</span><span id="355" class="l"><a class="l" href="#355">355: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'you-superuser'</span>];
-</span><span id="356" class="l"><a class="l" href="#356">356: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$config</span> &amp;&amp; <span class="php-keyword2">is_file</span>(<span class="php-var">$config</span>-&gt;paths-&gt;root . <span class="php-quote">&quot;install.php&quot;</span>)) {
-</span><span id="357" class="l"><a class="l" href="#357">357: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'install-php'</span>];
-</span><span id="358" class="l"><a class="l" href="#358">358: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$config</span> &amp;&amp; <span class="php-var">$config</span>-&gt;paths-&gt;assets &amp;&amp; !<span class="php-keyword2">is_file</span>(<span class="php-var">$config</span>-&gt;paths-&gt;assets . <span class="php-quote">&quot;active.php&quot;</span>)) {
-</span><span id="359" class="l"><a class="l" href="#359">359: </a>            <span class="php-comment">// no login has ever occurred or user hasn't logged in since upgrade before this check was in place</span>
-</span><span id="360" class="l"><a class="l" href="#360">360: </a>            <span class="php-comment">// check the date the site was installed to ensure we're not dealing with an upgrade</span>
-</span><span id="361" class="l"><a class="l" href="#361">361: </a>            <span class="php-var">$installed</span> = <span class="php-var">$config</span>-&gt;paths-&gt;assets . <span class="php-quote">&quot;installed.php&quot;</span>;
-</span><span id="362" class="l"><a class="l" href="#362">362: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_file</span>(<span class="php-var">$installed</span>) || (<span class="php-keyword2">filemtime</span>(<span class="php-var">$installed</span>) &gt; (<span class="php-keyword2">time</span>() - <span class="php-num">21600</span>))) {
-</span><span id="363" class="l"><a class="l" href="#363">363: </a>                <span class="php-comment">// site was installed within the last 6 hours, safe to assume it's a new install</span>
-</span><span id="364" class="l"><a class="l" href="#364">364: </a>                <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'superuser-never'</span>];
-</span><span id="365" class="l"><a class="l" href="#365">365: </a>            }
-</span><span id="366" class="l"><a class="l" href="#366">366: </a>        } 
-</span><span id="367" class="l"><a class="l" href="#367">367: </a>        
-</span><span id="368" class="l"><a class="l" href="#368">368: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$why</span>) {
-</span><span id="369" class="l"><a class="l" href="#369">369: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'shown-because'</span>] . <span class="php-quote">&quot; </span><span class="php-var">$why</span><span class="php-quote"> </span><span class="php-var">$who</span><span class="php-quote">&quot;</span>;
-</span><span id="370" class="l"><a class="l" href="#370">370: </a>            <span class="php-var">$this</span>-&gt;sendErrorMessage(<span class="php-var">$message</span>, <span class="php-var">$why</span>, <span class="php-var">$useHTML</span>);
-</span><span id="371" class="l"><a class="l" href="#371">371: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="372" class="l"><a class="l" href="#372">372: </a>            <span class="php-var">$this</span>-&gt;sendError500(<span class="php-var">$who</span>, <span class="php-var">$useHTML</span>);
-</span><span id="373" class="l"><a class="l" href="#373">373: </a>        }
-</span><span id="374" class="l"><a class="l" href="#374">374: </a>
-</span><span id="375" class="l"><a class="l" href="#375">375: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="376" class="l"><a class="l" href="#376">376: </a>    }
-</span><span id="377" class="l"><a class="l" href="#377">377: </a>
-</span><span id="378" class="l"><a class="l" href="#378">378: </a>    <span class="php-comment">/**
-</span></span><span id="379" class="l"><a class="l" href="#379">379: </a><span class="php-comment">     * Secondary shutdown call when ProcessWire booted externally
-</span></span><span id="380" class="l"><a class="l" href="#380">380: </a><span class="php-comment">     * 
-</span></span><span id="381" class="l"><a class="l" href="#381">381: </a><span class="php-comment">     */</span>
-</span><span id="382" class="l"><a class="l" href="#382">382: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_shutdownExternal" href="#_shutdownExternal">shutdownExternal</a>() {
-</span><span id="383" class="l"><a class="l" href="#383">383: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">error_get_last</span>()) <span class="php-keyword1">return</span>;
-</span><span id="384" class="l"><a class="l" href="#384">384: </a>        <span class="php-var">$process</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'process'</span>);
-</span><span id="385" class="l"><a class="l" href="#385">385: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$process</span> == <span class="php-quote">'ProcessPageView'</span>) <span class="php-var">$process</span>-&gt;finished();
-</span><span id="386" class="l"><a class="l" href="#386">386: </a>    }
-</span><span id="387" class="l"><a class="l" href="#387">387: </a>}
-</span><span id="388" class="l"><a class="l" href="#388">388: </a>
-</span><span id="389" class="l"><a class="l" href="#389">389: </a></span></code></pre>
+</span><span id="333" class="l"><a class="l" href="#333">333: </a>                -&gt;body(<span class="php-quote">&quot;Page: </span><span class="php-var">$url</span><span class="php-quote">\nUser: </span><span class="php-var">$name</span><span class="php-quote">\n\n&quot;</span> . <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;\t&quot;</span>, <span class="php-quote">&quot;\n&quot;</span>, <span class="php-var">$message</span>))
+</span><span id="334" class="l"><a class="l" href="#334">334: </a>                -&gt;send();
+</span><span id="335" class="l"><a class="l" href="#335">335: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$n</span>) <span class="php-var">$who</span> .= <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'admin-notified'</span>];
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>        }
+</span><span id="337" class="l"><a class="l" href="#337">337: </a>        
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>        <span class="php-comment">// save to errors.txt log file if applicable</span>
+</span><span id="339" class="l"><a class="l" href="#339">339: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$config</span>-&gt;paths-&gt;logs) {
+</span><span id="340" class="l"><a class="l" href="#340">340: </a>            <span class="php-var">$log</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> FileLog(<span class="php-var">$config</span>-&gt;paths-&gt;logs . <span class="php-quote">'errors.txt'</span>));
+</span><span id="341" class="l"><a class="l" href="#341">341: </a>            <span class="php-var">$log</span>-&gt;setDelimeter(<span class="php-quote">&quot;\t&quot;</span>);
+</span><span id="342" class="l"><a class="l" href="#342">342: </a>            <span class="php-var">$log</span>-&gt;save(<span class="php-quote">&quot;</span><span class="php-var">$name</span><span class="php-quote">\t</span><span class="php-var">$url</span><span class="php-quote">\t&quot;</span> . <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;\n&quot;</span>, <span class="php-quote">&quot; &quot;</span>, <span class="php-var">$message</span>));
+</span><span id="343" class="l"><a class="l" href="#343">343: </a>            <span class="php-var">$who</span> .= (<span class="php-var">$who</span> ? <span class="php-quote">' '</span> : <span class="php-quote">''</span>) . <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'error-logged'</span>];
+</span><span id="344" class="l"><a class="l" href="#344">344: </a>        }
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>        <span class="php-comment">// if not allowed to send output, then do nothing further</span>
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$sendOutput</span>) <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>        <span class="php-comment">// we populate $why if we're going to show error details for any of the following reasons: </span>
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>        <span class="php-comment">// otherwise $why will NOT be populated with anything</span>
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$config</span>-&gt;debug) {
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'debug-mode'</span>] . <span class="php-quote">&quot; (\</span><span class="php-var">$config</span><span class="php-quote">-&gt;debug = true; =&gt; /site/config.php).&quot;</span>;
+</span><span id="353" class="l"><a class="l" href="#353">353: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(!<span class="php-var">$useHTML</span>) {
+</span><span id="354" class="l"><a class="l" href="#354">354: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'cli-mode'</span>];
+</span><span id="355" class="l"><a class="l" href="#355">355: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$user</span> &amp;&amp; <span class="php-var">$user</span>-&gt;isSuperuser()) {
+</span><span id="356" class="l"><a class="l" href="#356">356: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'you-superuser'</span>];
+</span><span id="357" class="l"><a class="l" href="#357">357: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$config</span> &amp;&amp; <span class="php-keyword2">is_file</span>(<span class="php-var">$config</span>-&gt;paths-&gt;root . <span class="php-quote">&quot;install.php&quot;</span>)) {
+</span><span id="358" class="l"><a class="l" href="#358">358: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'install-php'</span>];
+</span><span id="359" class="l"><a class="l" href="#359">359: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$config</span> &amp;&amp; <span class="php-var">$config</span>-&gt;paths-&gt;assets &amp;&amp; !<span class="php-keyword2">is_file</span>(<span class="php-var">$config</span>-&gt;paths-&gt;assets . <span class="php-quote">&quot;active.php&quot;</span>)) {
+</span><span id="360" class="l"><a class="l" href="#360">360: </a>            <span class="php-comment">// no login has ever occurred or user hasn't logged in since upgrade before this check was in place</span>
+</span><span id="361" class="l"><a class="l" href="#361">361: </a>            <span class="php-comment">// check the date the site was installed to ensure we're not dealing with an upgrade</span>
+</span><span id="362" class="l"><a class="l" href="#362">362: </a>            <span class="php-var">$installed</span> = <span class="php-var">$config</span>-&gt;paths-&gt;assets . <span class="php-quote">&quot;installed.php&quot;</span>;
+</span><span id="363" class="l"><a class="l" href="#363">363: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_file</span>(<span class="php-var">$installed</span>) || (<span class="php-keyword2">filemtime</span>(<span class="php-var">$installed</span>) &gt; (<span class="php-keyword2">time</span>() - <span class="php-num">21600</span>))) {
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>                <span class="php-comment">// site was installed within the last 6 hours, safe to assume it's a new install</span>
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>                <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'superuser-never'</span>];
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>            }
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>        } 
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>        
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$why</span>) {
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>            <span class="php-var">$why</span> = <span class="php-var">$this</span>-&gt;labels[<span class="php-quote">'shown-because'</span>] . <span class="php-quote">&quot; </span><span class="php-var">$why</span><span class="php-quote"> </span><span class="php-var">$who</span><span class="php-quote">&quot;</span>;
+</span><span id="371" class="l"><a class="l" href="#371">371: </a>            <span class="php-var">$this</span>-&gt;sendErrorMessage(<span class="php-var">$message</span>, <span class="php-var">$why</span>, <span class="php-var">$useHTML</span>);
+</span><span id="372" class="l"><a class="l" href="#372">372: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="373" class="l"><a class="l" href="#373">373: </a>            <span class="php-var">$this</span>-&gt;sendError500(<span class="php-var">$who</span>, <span class="php-var">$useHTML</span>);
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>        }
+</span><span id="375" class="l"><a class="l" href="#375">375: </a>
+</span><span id="376" class="l"><a class="l" href="#376">376: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="377" class="l"><a class="l" href="#377">377: </a>    }
+</span><span id="378" class="l"><a class="l" href="#378">378: </a>
+</span><span id="379" class="l"><a class="l" href="#379">379: </a>    <span class="php-comment">/**
+</span></span><span id="380" class="l"><a class="l" href="#380">380: </a><span class="php-comment">     * Secondary shutdown call when ProcessWire booted externally
+</span></span><span id="381" class="l"><a class="l" href="#381">381: </a><span class="php-comment">     * 
+</span></span><span id="382" class="l"><a class="l" href="#382">382: </a><span class="php-comment">     */</span>
+</span><span id="383" class="l"><a class="l" href="#383">383: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_shutdownExternal" href="#_shutdownExternal">shutdownExternal</a>() {
+</span><span id="384" class="l"><a class="l" href="#384">384: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">error_get_last</span>()) <span class="php-keyword1">return</span>;
+</span><span id="385" class="l"><a class="l" href="#385">385: </a>        <span class="php-var">$process</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'process'</span>);
+</span><span id="386" class="l"><a class="l" href="#386">386: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$process</span> == <span class="php-quote">'ProcessPageView'</span>) <span class="php-var">$process</span>-&gt;finished();
+</span><span id="387" class="l"><a class="l" href="#387">387: </a>    }
+</span><span id="388" class="l"><a class="l" href="#388">388: </a>}
+</span><span id="389" class="l"><a class="l" href="#389">389: </a>
+</span><span id="390" class="l"><a class="l" href="#390">390: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
