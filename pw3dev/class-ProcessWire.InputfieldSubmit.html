@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\InputfieldSubmit | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4231966071"></script>
+	<script type="text/javascript" src="elementlist.js?2176782422"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.121 dev</span>
+			<span>Overview version 3.0.122 dev</span>
 		</a>
 
 
@@ -643,7 +643,7 @@ href="https://processwire.com">https://processwire.com</a> License: MPL 2.0</p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.InputfieldSubmit.html#3-266" title="Go to source code">modules/Inputfield/InputfieldSubmit/InputfieldSubmit.module</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.InputfieldSubmit.html#3-289" title="Go to source code">modules/Inputfield/InputfieldSubmit/InputfieldSubmit.module</a><br>
 	</div>
 
 
@@ -690,7 +690,7 @@ href="https://processwire.com">https://processwire.com</a> License: MPL 2.0</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#35-50" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#43-58" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -725,7 +725,7 @@ href="https://processwire.com">https://processwire.com</a> License: MPL 2.0</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#52-59" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#60-67" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -787,7 +787,7 @@ href="https://processwire.com">https://processwire.com</a> License: MPL 2.0</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#61-65" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#69-73" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -835,6 +835,82 @@ href="https://processwire.com">https://processwire.com</a> License: MPL 2.0</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="setAttribute" id="_setAttribute">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setAttribute">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#75-78" title="Go to source code">setAttribute</a>( <span>string|array <var>$key</var></span>, <span>string|integer|array <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set an attribute</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set an attribute</p>
+
+<ul>
+	<li>For most public API use, you might consider using the the shorter
+	<code>Inputfield::attr()</code> method instead.</li>
+
+	<li>When setting the <code>class</code> attribute is is preferable to use the
+	<code>Inputfield::addClass()</code> method.</li>
+
+	<li>The <code>$key</code> argument may contain multiple keys by being specified
+	as an array, or by being a string with multiple keys separated by "+" or "|",
+	for example: <code>$inputfield-&gt;setAttribute("id+name",
+	"template")</code>.</li>
+
+	<li>If the <code>$value</code> argument is an array, it will instruct the
+	attribute to hold multiple values. Future calls to setAttribute() will enforce
+	the array type for that attribute.</li>
+</ul>
+
+<p>~~~~~ // Set the name attribute $inputfield-&gt;setAttribute('name',
+'my_field_name');</p>
+
+<p>// Set the name and id attributes at the same time
+$inputfield-&gt;setAttribute('name+id', 'my_field_name'); ~~~~~</p>
+
+<p>#pw-internal Giving public API preference to the attr() method instead</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string|array</code><br>$key Specify one of the following: - Name of attribute (string) - Names of
+attributes (array) - String with names of attributes split by "+" or "|"</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string|integer|array</code><br>$value Value of attribute to set.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this<br>
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-ProcessWire.Inputfield.html#_attr">ProcessWire\Inputfield::attr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_removeAttr">ProcessWire\Inputfield::removeAttr()</a></code></code>, <code><code><a href="class-ProcessWire.Inputfield.html#_addClass">ProcessWire\Inputfield::addClass()</a></code></code><br>
+				</div>
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.Inputfield.html#_setAttribute">ProcessWire\Inputfield::setAttribute()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="showInHeader" id="_showInHeader">
 
 		<td class="attributes"><code>
@@ -846,7 +922,7 @@ href="https://processwire.com">https://processwire.com</a> License: MPL 2.0</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_showInHeader">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#67-81" title="Go to source code">showInHeader</a>( <span>boolean <var>$show</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#80-94" title="Go to source code">showInHeader</a>( <span>boolean <var>$show</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -888,7 +964,7 @@ href="https://processwire.com">https://processwire.com</a> License: MPL 2.0</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSecondary">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#83-99" title="Go to source code">setSecondary</a>( <span>boolean <var>$secondary</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#96-112" title="Go to source code">setSecondary</a>( <span>boolean <var>$secondary</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -932,7 +1008,7 @@ href="https://processwire.com">https://processwire.com</a> License: MPL 2.0</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSmall">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#101-114" title="Go to source code">setSmall</a>( <span>boolean <var>$small</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#114-127" title="Go to source code">setSmall</a>( <span>boolean <var>$small</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -977,7 +1053,7 @@ for non-dropdown, non-header buttons.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderReady">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#116-135" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#129-148" title="Go to source code">renderReady</a>( <span><code><a href="class-ProcessWire.Inputfield.html">ProcessWire\Inputfield</a></code> <var>$parent</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$renderValueMode</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1025,7 +1101,7 @@ for non-dropdown, non-header buttons.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____render">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#137-152" title="Go to source code">___render</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#150-165" title="Go to source code">___render</a>( )</code>
 
 		<div class="description short">
 			
@@ -1062,7 +1138,7 @@ for non-dropdown, non-header buttons.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderDropdown">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#154-207" title="Go to source code">renderDropdown</a>( )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#167-220" title="Go to source code">renderDropdown</a>( )</code>
 
 		<div class="description short">
 			
@@ -1099,7 +1175,7 @@ for non-dropdown, non-header buttons.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____processInput">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#209-219" title="Go to source code">___processInput</a>( <span><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code> <var>$input</var></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#222-232" title="Go to source code">___processInput</a>( <span><code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code> <var>$input</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1143,7 +1219,7 @@ for non-dropdown, non-header buttons.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addActionItem">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#221-238" title="Go to source code">addActionItem</a>( <span>string <var>$type</var></span>, <span>string|integer <var>$value</var></span>, <span>string <var>$label</var></span>, <span>string <var>$icon</var></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#234-251" title="Go to source code">addActionItem</a>( <span>string <var>$type</var></span>, <span>string|integer <var>$value</var></span>, <span>string <var>$label</var></span>, <span>string <var>$icon</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1187,7 +1263,7 @@ for non-dropdown, non-header buttons.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addActionValue">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#240-252" title="Go to source code">addActionValue</a>( <span>string <var>$value</var></span>, <span>string <var>$label</var></span>, <span>string <var>$icon</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#253-265" title="Go to source code">addActionValue</a>( <span>string <var>$value</var></span>, <span>string <var>$label</var></span>, <span>string <var>$icon</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1233,7 +1309,7 @@ button</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addActionLink">#</a>
-		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#254-264" title="Go to source code">addActionLink</a>( <span>string <var>$url</var></span>, <span>string <var>$label</var></span>, <span>string <var>$icon</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#267-277" title="Go to source code">addActionLink</a>( <span>string <var>$url</var></span>, <span>string <var>$label</var></span>, <span>string <var>$icon</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1257,6 +1333,43 @@ button</p>
 					<dd><code>string</code><br>$icon Icon name (optional)</dd>
 				</dl></div>
 
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSubmitNames" id="_getSubmitNames">
+
+		<td class="attributes"><code>
+			 public static
+			array()
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSubmitNames">#</a>
+		<code><a href="source-class-ProcessWire.InputfieldSubmit.html#279-287" title="Go to source code">getSubmitNames</a>( )</code>
+
+		<div class="description short">
+			
+<p>#pw-internal</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>#pw-internal</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array()</code><br>
+				</div>
 
 
 
@@ -1308,7 +1421,6 @@ button</p>
 			<a href="class-ProcessWire.Inputfield.html#_removeAttr">removeAttr()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_removeAttribute">removeAttribute()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_removeClass">removeClass()</a>, 
-			<a href="class-ProcessWire.Inputfield.html#_setAttribute">setAttribute()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_setAttributes">setAttributes()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_setParent">setParent()</a>, 
 			<a href="class-ProcessWire.Inputfield.html#_trackChange">trackChange()</a>, 
@@ -1444,6 +1556,33 @@ button</p>
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="submitNames" id="$submitNames">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.InputfieldSubmit.html#27-33" title="Go to source code"><var>$submitNames</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$submitNames" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Names of submit buttons created</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Names of submit buttons created</p>
+
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="dropdownItems" id="$dropdownItems">
 		<td class="attributes"><code>
 			protected  
@@ -1451,7 +1590,7 @@ button</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.InputfieldSubmit.html#27-33" title="Go to source code"><var>$dropdownItems</var></a>
+				<a href="source-class-ProcessWire.InputfieldSubmit.html#35-41" title="Go to source code"><var>$dropdownItems</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
