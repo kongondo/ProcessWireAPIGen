@@ -8,7 +8,7 @@
 	<title>File core/FunctionsWireAPI.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4161422296"></script>
+	<script type="text/javascript" src="elementlist.js?3400011624"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.123 dev</span>
+			<span>Overview version 3.0.124 dev</span>
 		</a>
 
 
@@ -438,6 +438,7 @@
 				<li><a href="function-ProcessWire._hookSessionRedirectModal.html">_hookSessionRedirectModal</a></li>
 				<li><a href="function-ProcessWire._n.html">_n</a></li>
 				<li class="active"><a href="function-ProcessWire._wireDataAPI.html">_wireDataAPI</a></li>
+				<li><a href="function-ProcessWire._wireFunctionsAPI.html">_wireFunctionsAPI</a></li>
 				<li><a href="function-ProcessWire._wirePagesAPI.html">_wirePagesAPI</a></li>
 				<li><a href="function-ProcessWire._x.html">_x</a></li>
 				<li><a href="function-ProcessWire.cache.html">cache</a></li>
@@ -1080,7 +1081,47 @@
 </span><span id="504" class="l"><a class="l" href="#504">504: </a>    <span class="php-keyword1">return</span> wire(<span class="php-quote">'config'</span>)-&gt;paths(<span class="php-var">$key</span>);
 </span><span id="505" class="l"><a class="l" href="#505">505: </a>}
 </span><span id="506" class="l"><a class="l" href="#506">506: </a>
-</span><span id="507" class="l"><a class="l" href="#507">507: </a></span></code></pre>
+</span><span id="507" class="l"><a class="l" href="#507">507: </a><span class="php-comment">/**
+</span></span><span id="508" class="l"><a class="l" href="#508">508: </a><span class="php-comment"> * Return array of functions available from the functions API
+</span></span><span id="509" class="l"><a class="l" href="#509">509: </a><span class="php-comment"> * 
+</span></span><span id="510" class="l"><a class="l" href="#510">510: </a><span class="php-comment"> * Returned array is shortVersion =&gt; longVersion
+</span></span><span id="511" class="l"><a class="l" href="#511">511: </a><span class="php-comment"> * 
+</span></span><span id="512" class="l"><a class="l" href="#512">512: </a><span class="php-comment"> * @return array
+</span></span><span id="513" class="l"><a class="l" href="#513">513: </a><span class="php-comment"> * 
+</span></span><span id="514" class="l"><a class="l" href="#514">514: </a><span class="php-comment"> */</span>
+</span><span id="515" class="l"><a class="l" href="#515">515: </a><span class="php-keyword1">function</span> <a id="__wireFunctionsAPI" href="#__wireFunctionsAPI">_wireFunctionsAPI</a>() {
+</span><span id="516" class="l"><a class="l" href="#516">516: </a>    <span class="php-var">$names</span> = <span class="php-keyword1">array</span>(
+</span><span id="517" class="l"><a class="l" href="#517">517: </a>        <span class="php-quote">'cache'</span> =&gt; <span class="php-quote">'wireCache'</span>,
+</span><span id="518" class="l"><a class="l" href="#518">518: </a>        <span class="php-quote">'config'</span> =&gt; <span class="php-quote">'wireConfig'</span>,
+</span><span id="519" class="l"><a class="l" href="#519">519: </a>        <span class="php-quote">'database'</span> =&gt; <span class="php-quote">'wireDatabase'</span>, 
+</span><span id="520" class="l"><a class="l" href="#520">520: </a>        <span class="php-quote">'datetime'</span> =&gt; <span class="php-quote">'wireDatetime'</span>,
+</span><span id="521" class="l"><a class="l" href="#521">521: </a>        <span class="php-quote">'fields'</span> =&gt; <span class="php-quote">'wireFields'</span>,
+</span><span id="522" class="l"><a class="l" href="#522">522: </a>        <span class="php-quote">'files'</span> =&gt; <span class="php-quote">'wireFiles'</span>,
+</span><span id="523" class="l"><a class="l" href="#523">523: </a>        <span class="php-quote">'input'</span> =&gt; <span class="php-quote">'wireInput'</span>,
+</span><span id="524" class="l"><a class="l" href="#524">524: </a>        <span class="php-quote">'inputGet'</span> =&gt; <span class="php-quote">'wireInputGet'</span>,
+</span><span id="525" class="l"><a class="l" href="#525">525: </a>        <span class="php-quote">'inputPost'</span> =&gt; <span class="php-quote">'wireInputPost'</span>,
+</span><span id="526" class="l"><a class="l" href="#526">526: </a>        <span class="php-quote">'inputCookie'</span> =&gt; <span class="php-quote">'wireInputCookie'</span>,
+</span><span id="527" class="l"><a class="l" href="#527">527: </a>        <span class="php-quote">'languages'</span> =&gt; <span class="php-quote">'wireLanguages'</span>, 
+</span><span id="528" class="l"><a class="l" href="#528">528: </a>        <span class="php-quote">'modules'</span> =&gt; <span class="php-quote">'wireModules'</span>, 
+</span><span id="529" class="l"><a class="l" href="#529">529: </a>        <span class="php-quote">'page'</span> =&gt; <span class="php-quote">'wirePage'</span>,
+</span><span id="530" class="l"><a class="l" href="#530">530: </a>        <span class="php-quote">'pages'</span> =&gt; <span class="php-quote">'wirePages'</span>, 
+</span><span id="531" class="l"><a class="l" href="#531">531: </a>        <span class="php-quote">'paths'</span> =&gt; <span class="php-quote">'wirePaths'</span>,
+</span><span id="532" class="l"><a class="l" href="#532">532: </a>        <span class="php-quote">'permissions'</span> =&gt; <span class="php-quote">'wirePermissions'</span>,
+</span><span id="533" class="l"><a class="l" href="#533">533: </a>        <span class="php-quote">'profiler'</span> =&gt; <span class="php-quote">'wireProfiler'</span>,
+</span><span id="534" class="l"><a class="l" href="#534">534: </a>        <span class="php-quote">'region'</span> =&gt; <span class="php-quote">'wireRegion'</span>, 
+</span><span id="535" class="l"><a class="l" href="#535">535: </a>        <span class="php-quote">'roles'</span> =&gt; <span class="php-quote">'wireRoles'</span>,
+</span><span id="536" class="l"><a class="l" href="#536">536: </a>        <span class="php-quote">'sanitizer'</span> =&gt; <span class="php-quote">'wireSanitizer'</span>, 
+</span><span id="537" class="l"><a class="l" href="#537">537: </a>        <span class="php-quote">'setting'</span> =&gt; <span class="php-quote">''</span>, <span class="php-comment">// no implemented</span>
+</span><span id="538" class="l"><a class="l" href="#538">538: </a>        <span class="php-quote">'session'</span> =&gt; <span class="php-quote">'wireSession'</span>, 
+</span><span id="539" class="l"><a class="l" href="#539">539: </a>        <span class="php-quote">'templates'</span> =&gt; <span class="php-quote">'wireTemplates'</span>,
+</span><span id="540" class="l"><a class="l" href="#540">540: </a>        <span class="php-quote">'urls'</span> =&gt; <span class="php-quote">'wireUrls'</span>, 
+</span><span id="541" class="l"><a class="l" href="#541">541: </a>        <span class="php-quote">'user'</span> =&gt; <span class="php-quote">'wireUser'</span>, 
+</span><span id="542" class="l"><a class="l" href="#542">542: </a>        <span class="php-quote">'users'</span> =&gt; <span class="php-quote">'wireUsers'</span>, 
+</span><span id="543" class="l"><a class="l" href="#543">543: </a>    );
+</span><span id="544" class="l"><a class="l" href="#544">544: </a>    <span class="php-keyword1">return</span> <span class="php-var">$names</span>;
+</span><span id="545" class="l"><a class="l" href="#545">545: </a>}
+</span><span id="546" class="l"><a class="l" href="#546">546: </a>
+</span><span id="547" class="l"><a class="l" href="#547">547: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

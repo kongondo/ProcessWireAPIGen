@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Fields | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4161422296"></script>
+	<script type="text/javascript" src="elementlist.js?3400011624"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.123 dev</span>
+			<span>Overview version 3.0.124 dev</span>
 		</a>
 
 
@@ -437,6 +437,7 @@
 				<li><a href="function-ProcessWire._hookSessionRedirectModal.html">_hookSessionRedirectModal</a></li>
 				<li><a href="function-ProcessWire._n.html">_n</a></li>
 				<li><a href="function-ProcessWire._wireDataAPI.html">_wireDataAPI</a></li>
+				<li><a href="function-ProcessWire._wireFunctionsAPI.html">_wireFunctionsAPI</a></li>
 				<li><a href="function-ProcessWire._wirePagesAPI.html">_wirePagesAPI</a></li>
 				<li><a href="function-ProcessWire._x.html">_x</a></li>
 				<li><a href="function-ProcessWire.cache.html">cache</a></li>
@@ -585,9 +586,12 @@ Fieldgroup</p>
 
 <p>ProcessWire 3.x, Copyright 2018 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
-
-<p>#pw-summary Manages all custom fields in ProcessWire</p>
-
+#pw-summary Manages all custom fields in ProcessWire, independently of any
+Fieldgroup. #pw-var $fields #pw-body = Each field returned is an object of type
+<code>Field</code>. The $fields API variable is iterable: ~~~~~ foreach($fields
+as $field) { echo "
+<p>Name: $field-&gt;name, Type: $field-&gt;type, Label: $field-&gt;label</p>
+"; } ~~~~~ #pw-body
 	</div>
 
 	<dl class="tree">
@@ -633,7 +637,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Fields.html#4-1004" title="Go to source code">core/Fields.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Fields.html#4-1012" title="Go to source code">core/Fields.php</a><br>
 	</div>
 
 
@@ -651,7 +655,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#105-113" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#114-122" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -686,7 +690,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#115-124" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#124-133" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -721,7 +725,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_makeBlankItem">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#126-134" title="Go to source code">makeBlankItem</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#135-143" title="Go to source code">makeBlankItem</a>( )</code>
 
 		<div class="description short">
 			
@@ -760,7 +764,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAll">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#136-146" title="Go to source code">getAll</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#145-155" title="Go to source code">getAll</a>( )</code>
 
 		<div class="description short">
 			
@@ -799,7 +803,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTable">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#148-156" title="Go to source code">getTable</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#157-165" title="Go to source code">getTable</a>( )</code>
 
 		<div class="description short">
 			
@@ -840,7 +844,7 @@ Fields</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSort">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#158-166" title="Go to source code">getSort</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#167-175" title="Go to source code">getSort</a>( )</code>
 
 		<div class="description short">
 			
@@ -881,7 +885,7 @@ Fields</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____save">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#168-234" title="Go to source code">___save</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#177-243" title="Go to source code">___save</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -932,7 +936,7 @@ $field-&gt;label = 'Title or Headline'; $fields-&gt;save($field); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_checkFieldTable">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#236-256" title="Go to source code">checkFieldTable</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#245-265" title="Go to source code">checkFieldTable</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span> )</code>
 
 		<div class="description short">
 			
@@ -970,7 +974,7 @@ $field-&gt;label = 'Title or Headline'; $fields-&gt;save($field); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_checkFieldTables">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#258-268" title="Go to source code">checkFieldTables</a>( )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#267-277" title="Go to source code">checkFieldTables</a>( )</code>
 
 		<div class="description short">
 			
@@ -1008,7 +1012,7 @@ the Fields table manually (via SQL dumps or the like)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____delete">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#270-303" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#279-312" title="Go to source code">___delete</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1059,7 +1063,7 @@ is currently in use (i.e. assigned to one or more fieldgroups).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____clone">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#306-334" title="Go to source code">___clone</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#315-342" title="Go to source code">___clone</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1086,10 +1090,6 @@ is currently in use (i.e. assigned to one or more fieldgroups).</p>
 					<code>boolean|<code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code></code><br>$item Returns the new clone on success, or false on failure<br>
 				</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					<code><code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code></code><br>
-				</div>
 
 
 				<h4>Overrides</h4>
@@ -1109,7 +1109,7 @@ is currently in use (i.e. assigned to one or more fieldgroups).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveFieldgroupContext">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#336-450" title="Go to source code">___saveFieldgroupContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Fieldgroup.html">ProcessWire\Fieldgroup</a></code> <var>$fieldgroup</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#344-458" title="Go to source code">___saveFieldgroupContext</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Fieldgroup.html">ProcessWire\Fieldgroup</a></code> <var>$fieldgroup</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1161,7 +1161,7 @@ is currently in use (i.e. assigned to one or more fieldgroups).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____changeFieldtype">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#453-556" title="Go to source code">___changeFieldtype</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field1</var></span>, <span>boolean <var>$keepSettings</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#461-564" title="Go to source code">___changeFieldtype</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field1</var></span>, <span>boolean <var>$keepSettings</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1211,7 +1211,7 @@ is currently in use (i.e. assigned to one or more fieldgroups).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____deleteFieldDataByTemplate">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#559-662" title="Go to source code">___deleteFieldDataByTemplate</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#567-670" title="Go to source code">___deleteFieldDataByTemplate</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span><code><a href="class-ProcessWire.Template.html">ProcessWire\Template</a></code> <var>$template</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1270,7 +1270,7 @@ fieldgroup.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNumPages">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#664-679" title="Go to source code">getNumPages</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#672-687" title="Go to source code">getNumPages</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1324,7 +1324,7 @@ a count.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNumRows">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#681-801" title="Go to source code">getNumRows</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#689-809" title="Go to source code">getNumRows</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1381,7 +1381,7 @@ boolean true to make it return an array of matching Page IDs rather than a count
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isNative">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#821-834" title="Go to source code">isNative</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#829-842" title="Go to source code">isNative</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1426,7 +1426,7 @@ use<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setNative">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#836-846" title="Go to source code">setNative</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#844-854" title="Go to source code">setNative</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1466,7 +1466,7 @@ use<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTags">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#848-892" title="Go to source code">getTags</a>( <span>boolean|string <var>$getFieldNames</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#856-900" title="Go to source code">getTags</a>( <span>boolean|string <var>$getFieldNames</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1526,7 +1526,7 @@ reset its cache, forcing it to reload on the next call.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findByTag">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#894-915" title="Go to source code">findByTag</a>( <span>string <var>$tag</var></span>, <span>boolean <var>$getFieldNames</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#902-923" title="Go to source code">findByTag</a>( <span>string <var>$tag</var></span>, <span>boolean <var>$getFieldNames</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1581,7 +1581,7 @@ always field names.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_encodeData">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#917-928" title="Go to source code">encodeData</a>( <span>array <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#925-936" title="Go to source code">encodeData</a>( <span>array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1627,7 +1627,7 @@ defaults we don't need saved</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__hasPermission">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#930-978" title="Go to source code">_hasPermission</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$permission</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#938-986" title="Go to source code">_hasPermission</a>( <span><code><a href="class-ProcessWire.Field.html">ProcessWire\Field</a></code> <var>$field</var></span>, <span>string <var>$permission</var></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code> <var>$user</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1691,7 +1691,7 @@ Field::viewable() or Field::editable() methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____changedType">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#980-990" title="Go to source code">___changedType</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span>, <span><code><a href="class-ProcessWire.Fieldtype.html">ProcessWire\Fieldtype</a></code> <var>$fromType</var></span>, <span><code><a href="class-ProcessWire.Fieldtype.html">ProcessWire\Fieldtype</a></code> <var>$toType</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#988-998" title="Go to source code">___changedType</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span>, <span><code><a href="class-ProcessWire.Fieldtype.html">ProcessWire\Fieldtype</a></code> <var>$fromType</var></span>, <span><code><a href="class-ProcessWire.Fieldtype.html">ProcessWire\Fieldtype</a></code> <var>$toType</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1735,7 +1735,7 @@ Field::viewable() or Field::editable() methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____changeTypeReady">#</a>
-		<code><a href="source-class-ProcessWire.Fields.html#992-1002" title="Go to source code">___changeTypeReady</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span>, <span><code><a href="class-ProcessWire.Fieldtype.html">ProcessWire\Fieldtype</a></code> <var>$fromType</var></span>, <span><code><a href="class-ProcessWire.Fieldtype.html">ProcessWire\Fieldtype</a></code> <var>$toType</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Fields.html#1000-1010" title="Go to source code">___changeTypeReady</a>( <span><code><a href="class-ProcessWire.Saveable.html">ProcessWire\Saveable</a></code> <var>$item</var></span>, <span><code><a href="class-ProcessWire.Fieldtype.html">ProcessWire\Fieldtype</a></code> <var>$fromType</var></span>, <span><code><a href="class-ProcessWire.Fieldtype.html">ProcessWire\Fieldtype</a></code> <var>$toType</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1879,7 +1879,7 @@ Field::viewable() or Field::editable() methods.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Fields.html#25-29" title="Go to source code"><var>$fieldsArray</var></a>
+				<a href="source-class-ProcessWire.Fields.html#34-38" title="Go to source code"><var>$fieldsArray</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1906,7 +1906,7 @@ Field::viewable() or Field::editable() methods.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Fields.html#31-87" title="Go to source code"><var>$nativeNamesSystem</var></a>
+				<a href="source-class-ProcessWire.Fields.html#40-96" title="Go to source code"><var>$nativeNamesSystem</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'child'</span>,
@@ -1987,7 +1987,7 @@ differently in several instances.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Fields.html#89-95" title="Go to source code"><var>$nativeNamesLocal</var></a>
+				<a href="source-class-ProcessWire.Fields.html#98-104" title="Go to source code"><var>$nativeNamesLocal</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2018,7 +2018,7 @@ differently in several instances.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Fields.html#97-103" title="Go to source code"><var>$tagList</var></a>
+				<a href="source-class-ProcessWire.Fields.html#106-112" title="Go to source code"><var>$tagList</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>

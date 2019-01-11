@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeOptions/FieldtypeOptions.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4161422296"></script>
+	<script type="text/javascript" src="elementlist.js?3400011624"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.123 dev</span>
+			<span>Overview version 3.0.124 dev</span>
 		</a>
 
 
@@ -438,6 +438,7 @@
 				<li><a href="function-ProcessWire._hookSessionRedirectModal.html">_hookSessionRedirectModal</a></li>
 				<li><a href="function-ProcessWire._n.html">_n</a></li>
 				<li><a href="function-ProcessWire._wireDataAPI.html">_wireDataAPI</a></li>
+				<li><a href="function-ProcessWire._wireFunctionsAPI.html">_wireFunctionsAPI</a></li>
 				<li><a href="function-ProcessWire._wirePagesAPI.html">_wirePagesAPI</a></li>
 				<li><a href="function-ProcessWire._x.html">_x</a></li>
 				<li><a href="function-ProcessWire.cache.html">cache</a></li>
@@ -676,11 +677,11 @@
 </span><span id="100" class="l"><a class="l" href="#100">100: </a>            <span class="php-var">$inputfield</span>-&gt;addOption((int) <span class="php-var">$option</span>-&gt;id, <span class="php-var">$option</span>-&gt;getTitle()); 
 </span><span id="101" class="l"><a class="l" href="#101">101: </a>        }
 </span><span id="102" class="l"><a class="l" href="#102">102: </a>    
-</span><span id="103" class="l"><a class="l" href="#103">103: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;initValue) {
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;get(<span class="php-quote">'initValue'</span>)) {
 </span><span id="104" class="l"><a class="l" href="#104">104: </a>            <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;getUnformatted(<span class="php-var">$field</span>-&gt;name); 
 </span><span id="105" class="l"><a class="l" href="#105">105: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;required &amp;&amp; !<span class="php-var">$field</span>-&gt;requiredIf) {
 </span><span id="106" class="l"><a class="l" href="#106">106: </a>                <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>) || !wireCount(<span class="php-var">$value</span>)) {
-</span><span id="107" class="l"><a class="l" href="#107">107: </a>                    <span class="php-var">$page</span>-&gt;set(<span class="php-var">$field</span>-&gt;name, <span class="php-var">$field</span>-&gt;initValue);
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>                    <span class="php-var">$page</span>-&gt;set(<span class="php-var">$field</span>-&gt;name, <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'initValue'</span>));
 </span><span id="108" class="l"><a class="l" href="#108">108: </a>                }
 </span><span id="109" class="l"><a class="l" href="#109">109: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'process'</span>) != <span class="php-quote">'ProcessField'</span> &amp;&amp; !wireCount(<span class="php-var">$value</span>)) {
 </span><span id="110" class="l"><a class="l" href="#110">110: </a>                <span class="php-var">$this</span>-&gt;warning(
@@ -806,10 +807,10 @@
 </span><span id="230" class="l"><a class="l" href="#230">230: </a>        <span class="php-var">$sleepValue</span> = <span class="php-keyword1">array</span>();
 </span><span id="231" class="l"><a class="l" href="#231">231: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>) || !<span class="php-keyword2">count</span>(<span class="php-var">$value</span>)) {
 </span><span id="232" class="l"><a class="l" href="#232">232: </a>            <span class="php-comment">// value is empty</span>
-</span><span id="233" class="l"><a class="l" href="#233">233: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;required &amp;&amp; <span class="php-var">$field</span>-&gt;initValue) {
+</span><span id="233" class="l"><a class="l" href="#233">233: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$field</span>-&gt;required &amp;&amp; <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'initValue'</span>)) {
 </span><span id="234" class="l"><a class="l" href="#234">234: </a>                <span class="php-comment">// value is required, and an initial value is supplied</span>
 </span><span id="235" class="l"><a class="l" href="#235">235: </a>                <span class="php-comment">// so populate the initial value</span>
-</span><span id="236" class="l"><a class="l" href="#236">236: </a>                <span class="php-var">$initValue</span> = <span class="php-var">$field</span>-&gt;initValue; 
+</span><span id="236" class="l"><a class="l" href="#236">236: </a>                <span class="php-var">$initValue</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'initValue'</span>);  
 </span><span id="237" class="l"><a class="l" href="#237">237: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_array</span>(<span class="php-var">$initValue</span>)) <span class="php-var">$initValue</span> = <span class="php-keyword1">array</span>(<span class="php-var">$initValue</span>);
 </span><span id="238" class="l"><a class="l" href="#238">238: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$initValue</span> <span class="php-keyword1">as</span> <span class="php-var">$v</span>) {
 </span><span id="239" class="l"><a class="l" href="#239">239: </a>                    <span class="php-var">$sleepValue</span>[] = (int) <span class="php-var">$v</span>;
@@ -882,258 +883,273 @@
 </span><span id="306" class="l"><a class="l" href="#306">306: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$subfield</span> == <span class="php-quote">'data'</span> &amp;&amp; (<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>) || <span class="php-keyword1">empty</span>(<span class="php-var">$value</span>))) {
 </span><span id="307" class="l"><a class="l" href="#307">307: </a>            <span class="php-comment">// this is fine (presumed to be an option_id)</span>
 </span><span id="308" class="l"><a class="l" href="#308">308: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="309" class="l"><a class="l" href="#309">309: </a>            <span class="php-comment">// some other subfield</span>
-</span><span id="310" class="l"><a class="l" href="#310">310: </a>            
-</span><span id="311" class="l"><a class="l" href="#311">311: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$subfield</span> || !SelectableOption::isProperty(<span class="php-var">$subfield</span>)) {
-</span><span id="312" class="l"><a class="l" href="#312">312: </a>                <span class="php-comment">// if empty subfield or not a subfield we recognize, just assume title</span>
-</span><span id="313" class="l"><a class="l" href="#313">313: </a>                <span class="php-var">$subfield</span> = <span class="php-quote">'title'</span>;
-</span><span id="314" class="l"><a class="l" href="#314">314: </a>            }
-</span><span id="315" class="l"><a class="l" href="#315">315: </a>            <span class="php-var">$options</span> = <span class="php-var">$this</span>-&gt;manager-&gt;findOptionsByProperty(<span class="php-var">$query</span>-&gt;field, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>);
-</span><span id="316" class="l"><a class="l" href="#316">316: </a>            <span class="php-var">$option</span> = <span class="php-var">$options</span>-&gt;first();
-</span><span id="317" class="l"><a class="l" href="#317">317: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> != <span class="php-quote">'='</span> &amp;&amp; <span class="php-var">$operator</span> != <span class="php-quote">'!='</span>) {
-</span><span id="318" class="l"><a class="l" href="#318">318: </a>                <span class="php-comment">// for fulltext operations...</span>
-</span><span id="319" class="l"><a class="l" href="#319">319: </a>                <span class="php-comment">// since we are now just matching IDs of already found options</span>
-</span><span id="320" class="l"><a class="l" href="#320">320: </a>                <span class="php-var">$operator</span> = <span class="php-quote">'='</span>; 
-</span><span id="321" class="l"><a class="l" href="#321">321: </a>            }
-</span><span id="322" class="l"><a class="l" href="#322">322: </a>            <span class="php-var">$subfield</span> = <span class="php-quote">'data'</span>;
-</span><span id="323" class="l"><a class="l" href="#323">323: </a>            <span class="php-var">$value</span> = <span class="php-var">$option</span> ? <span class="php-var">$option</span>-&gt;id : <span class="php-keyword1">null</span>;
-</span><span id="324" class="l"><a class="l" href="#324">324: </a>        }
-</span><span id="325" class="l"><a class="l" href="#325">325: </a>        
-</span><span id="326" class="l"><a class="l" href="#326">326: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> == <span class="php-quote">'!='</span>) {
-</span><span id="327" class="l"><a class="l" href="#327">327: </a>            <span class="php-comment">// force a != for one value to prevent matching, even if more than one value</span>
-</span><span id="328" class="l"><a class="l" href="#328">328: </a>            <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>); 
-</span><span id="329" class="l"><a class="l" href="#329">329: </a>            <span class="php-var">$t</span> = <span class="php-var">$database</span>-&gt;escapeTable(<span class="php-var">$query</span>-&gt;field-&gt;getTable());
-</span><span id="330" class="l"><a class="l" href="#330">330: </a>            <span class="php-var">$s</span> = <span class="php-var">$database</span>-&gt;escapeCol(<span class="php-var">$subfield</span>); 
-</span><span id="331" class="l"><a class="l" href="#331">331: </a>            <span class="php-var">$v</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$value</span>); 
-</span><span id="332" class="l"><a class="l" href="#332">332: </a>            <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;(SELECT COUNT(*) FROM </span><span class="php-var">$t</span><span class="php-quote"> WHERE </span><span class="php-var">$t</span><span class="php-quote">.pages_id=pages.id AND </span><span class="php-var">$t</span><span class="php-quote">.</span><span class="php-var">$s</span><span class="php-quote">='</span><span class="php-var">$v</span><span class="php-quote">')=0&quot;</span>);
-</span><span id="333" class="l"><a class="l" href="#333">333: </a>            <span class="php-var">$query</span>-&gt;parentQuery-&gt;where(<span class="php-quote">&quot;(</span><span class="php-var">$table</span><span class="php-quote">.data IS NULL OR </span><span class="php-var">$table</span><span class="php-quote">.</span><span class="php-var">$s</span><span class="php-quote">!='</span><span class="php-var">$v</span><span class="php-quote">')&quot;</span>);
-</span><span id="334" class="l"><a class="l" href="#334">334: </a>            <span class="php-keyword1">return</span> <span class="php-var">$query</span>;
-</span><span id="335" class="l"><a class="l" href="#335">335: </a>        }
-</span><span id="336" class="l"><a class="l" href="#336">336: </a>        
-</span><span id="337" class="l"><a class="l" href="#337">337: </a>        <span class="php-keyword1">return</span> parent::getMatchQuery(<span class="php-var">$query</span>, <span class="php-var">$table</span>, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>); 
-</span><span id="338" class="l"><a class="l" href="#338">338: </a>    }
-</span><span id="339" class="l"><a class="l" href="#339">339: </a>
-</span><span id="340" class="l"><a class="l" href="#340">340: </a>    <span class="php-comment">/**
-</span></span><span id="341" class="l"><a class="l" href="#341">341: </a><span class="php-comment">     * Get information used for InputfieldSelector interactive selector builder
-</span></span><span id="342" class="l"><a class="l" href="#342">342: </a><span class="php-comment">     * 
-</span></span><span id="343" class="l"><a class="l" href="#343">343: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="344" class="l"><a class="l" href="#344">344: </a><span class="php-comment">     * @param array $data
-</span></span><span id="345" class="l"><a class="l" href="#345">345: </a><span class="php-comment">     * @return array
-</span></span><span id="346" class="l"><a class="l" href="#346">346: </a><span class="php-comment">     * 
-</span></span><span id="347" class="l"><a class="l" href="#347">347: </a><span class="php-comment">     */</span>
-</span><span id="348" class="l"><a class="l" href="#348">348: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getSelectorInfo" href="#____getSelectorInfo">___getSelectorInfo</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span> = <span class="php-keyword1">array</span>()) {
-</span><span id="349" class="l"><a class="l" href="#349">349: </a>        <span class="php-var">$info</span> = parent::___getSelectorInfo(<span class="php-var">$field</span>, <span class="php-var">$data</span>);
-</span><span id="350" class="l"><a class="l" href="#350">350: </a>        <span class="php-var">$info</span>[<span class="php-quote">'input'</span>] = <span class="php-quote">'select'</span>;
-</span><span id="351" class="l"><a class="l" href="#351">351: </a>        <span class="php-var">$info</span>[<span class="php-quote">'options'</span>] = <span class="php-keyword1">array</span>();
-</span><span id="352" class="l"><a class="l" href="#352">352: </a>        <span class="php-var">$info</span>[<span class="php-quote">'operators'</span>] = <span class="php-keyword1">array</span>(<span class="php-quote">'='</span>, <span class="php-quote">'!='</span>, <span class="php-quote">'@='</span>, <span class="php-quote">'@!='</span>, <span class="php-quote">'=&quot;&quot;'</span>, <span class="php-quote">'!=&quot;&quot;'</span>); 
-</span><span id="353" class="l"><a class="l" href="#353">353: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;manager-&gt;getOptions(<span class="php-var">$field</span>) <span class="php-keyword1">as</span> <span class="php-var">$option</span>) {
-</span><span id="354" class="l"><a class="l" href="#354">354: </a>            <span class="php-var">$info</span>[<span class="php-quote">'options'</span>][<span class="php-var">$option</span>-&gt;id] = <span class="php-var">$option</span>-&gt;title;
-</span><span id="355" class="l"><a class="l" href="#355">355: </a>        }
-</span><span id="356" class="l"><a class="l" href="#356">356: </a>        <span class="php-var">$subfields</span> = <span class="php-keyword1">array</span>(
-</span><span id="357" class="l"><a class="l" href="#357">357: </a>            <span class="php-quote">'title'</span> =&gt; <span class="php-keyword1">array</span>(
-</span><span id="358" class="l"><a class="l" href="#358">358: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'title'</span>, 
-</span><span id="359" class="l"><a class="l" href="#359">359: </a>                <span class="php-quote">'input'</span> =&gt; <span class="php-quote">'text'</span>,
-</span><span id="360" class="l"><a class="l" href="#360">360: </a>                <span class="php-quote">'operators'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'%='</span>, <span class="php-quote">'='</span>, <span class="php-quote">'!='</span>, <span class="php-quote">'^='</span>, <span class="php-quote">'$='</span>, <span class="php-quote">'*='</span>, <span class="php-quote">'~='</span>), 
-</span><span id="361" class="l"><a class="l" href="#361">361: </a>            ),
-</span><span id="362" class="l"><a class="l" href="#362">362: </a>            <span class="php-quote">'value'</span> =&gt; <span class="php-keyword1">array</span>(
-</span><span id="363" class="l"><a class="l" href="#363">363: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'value'</span>,
-</span><span id="364" class="l"><a class="l" href="#364">364: </a>                <span class="php-quote">'input'</span> =&gt; <span class="php-quote">'text'</span>,
-</span><span id="365" class="l"><a class="l" href="#365">365: </a>                <span class="php-quote">'operators'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'%='</span>, <span class="php-quote">'='</span>, <span class="php-quote">'!='</span>, <span class="php-quote">'^='</span>, <span class="php-quote">'$='</span>, <span class="php-quote">'*='</span>, <span class="php-quote">'~='</span>),
-</span><span id="366" class="l"><a class="l" href="#366">366: </a>            ),
-</span><span id="367" class="l"><a class="l" href="#367">367: </a>            <span class="php-quote">'id'</span> =&gt; <span class="php-keyword1">array</span>(
-</span><span id="368" class="l"><a class="l" href="#368">368: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'id'</span>,
-</span><span id="369" class="l"><a class="l" href="#369">369: </a>                <span class="php-quote">'input'</span> =&gt; <span class="php-quote">'integer'</span>,
-</span><span id="370" class="l"><a class="l" href="#370">370: </a>                <span class="php-quote">'operators'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'='</span>, <span class="php-quote">'!='</span>, <span class="php-quote">'&gt;'</span>, <span class="php-quote">'&gt;='</span> ,<span class="php-quote">'&lt;'</span>, <span class="php-quote">'&lt;='</span>), 
-</span><span id="371" class="l"><a class="l" href="#371">371: </a>            ), 
-</span><span id="372" class="l"><a class="l" href="#372">372: </a>        );
-</span><span id="373" class="l"><a class="l" href="#373">373: </a>        
-</span><span id="374" class="l"><a class="l" href="#374">374: </a>        <span class="php-var">$info</span>[<span class="php-quote">'subfields'</span>] = <span class="php-keyword2">array_merge</span>(<span class="php-var">$info</span>[<span class="php-quote">'subfields'</span>], <span class="php-var">$subfields</span>); 
-</span><span id="375" class="l"><a class="l" href="#375">375: </a>        
-</span><span id="376" class="l"><a class="l" href="#376">376: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>; 
-</span><span id="377" class="l"><a class="l" href="#377">377: </a>    }
-</span><span id="378" class="l"><a class="l" href="#378">378: </a>    
-</span><span id="379" class="l"><a class="l" href="#379">379: </a>    <span class="php-comment">/**
-</span></span><span id="380" class="l"><a class="l" href="#380">380: </a><span class="php-comment">     * Export configuration values for external consumption
-</span></span><span id="381" class="l"><a class="l" href="#381">381: </a><span class="php-comment">     *
-</span></span><span id="382" class="l"><a class="l" href="#382">382: </a><span class="php-comment">     * Use this method to externalize any config values when necessary.
-</span></span><span id="383" class="l"><a class="l" href="#383">383: </a><span class="php-comment">     * For example, internal IDs should be converted to GUIDs where possible.
-</span></span><span id="384" class="l"><a class="l" href="#384">384: </a><span class="php-comment">     * 
-</span></span><span id="385" class="l"><a class="l" href="#385">385: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="386" class="l"><a class="l" href="#386">386: </a><span class="php-comment">     * @param array $data
-</span></span><span id="387" class="l"><a class="l" href="#387">387: </a><span class="php-comment">     * @return array
-</span></span><span id="388" class="l"><a class="l" href="#388">388: </a><span class="php-comment">     *
-</span></span><span id="389" class="l"><a class="l" href="#389">389: </a><span class="php-comment">     */</span>
-</span><span id="390" class="l"><a class="l" href="#390">390: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____exportConfigData" href="#____exportConfigData">___exportConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="391" class="l"><a class="l" href="#391">391: </a>        <span class="php-var">$data</span> = parent::___exportConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
-</span><span id="392" class="l"><a class="l" href="#392">392: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'_options'</span>])) {
-</span><span id="393" class="l"><a class="l" href="#393">393: </a>            <span class="php-var">$data</span>[<span class="php-quote">'export_options'</span>] = <span class="php-keyword1">array</span>(<span class="php-quote">'default'</span> =&gt; <span class="php-var">$data</span>[<span class="php-quote">'_options'</span>]); 
-</span><span id="394" class="l"><a class="l" href="#394">394: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-quote">'_options'</span>]); 
-</span><span id="395" class="l"><a class="l" href="#395">395: </a>        }
-</span><span id="396" class="l"><a class="l" href="#396">396: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;manager-&gt;useLanguages()) <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>) <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
-</span><span id="397" class="l"><a class="l" href="#397">397: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$language</span>-&gt;isDefault()) <span class="php-keyword1">continue</span>; 
-</span><span id="398" class="l"><a class="l" href="#398">398: </a>            <span class="php-var">$key</span> = <span class="php-quote">&quot;_options__</span><span class="php-var">$language</span><span class="php-quote">&quot;</span>;
-</span><span id="399" class="l"><a class="l" href="#399">399: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-var">$key</span>])) {
-</span><span id="400" class="l"><a class="l" href="#400">400: </a>                <span class="php-comment">// use language name rather than id for more portability</span>
-</span><span id="401" class="l"><a class="l" href="#401">401: </a>                <span class="php-var">$data</span>[<span class="php-quote">'export_options'</span>][<span class="php-var">$language</span>-&gt;name] = <span class="php-var">$data</span>[<span class="php-var">$key</span>]; 
-</span><span id="402" class="l"><a class="l" href="#402">402: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-var">$key</span>]); 
-</span><span id="403" class="l"><a class="l" href="#403">403: </a>            }
-</span><span id="404" class="l"><a class="l" href="#404">404: </a>        }
-</span><span id="405" class="l"><a class="l" href="#405">405: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
-</span><span id="406" class="l"><a class="l" href="#406">406: </a>    }
-</span><span id="407" class="l"><a class="l" href="#407">407: </a>
-</span><span id="408" class="l"><a class="l" href="#408">408: </a>    <span class="php-comment">/**
-</span></span><span id="409" class="l"><a class="l" href="#409">409: </a><span class="php-comment">     * Convert an array of exported data to a format that will be understood internally (opposite of exportConfigData)
-</span></span><span id="410" class="l"><a class="l" href="#410">410: </a><span class="php-comment">     *
-</span></span><span id="411" class="l"><a class="l" href="#411">411: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="412" class="l"><a class="l" href="#412">412: </a><span class="php-comment">     * @param array $data
-</span></span><span id="413" class="l"><a class="l" href="#413">413: </a><span class="php-comment">     * @return array Data as given and modified as needed. Also included is $data[errors], an associative array
-</span></span><span id="414" class="l"><a class="l" href="#414">414: </a><span class="php-comment">     *  indexed by property name containing errors that occurred during import of config data.
-</span></span><span id="415" class="l"><a class="l" href="#415">415: </a><span class="php-comment">     *
-</span></span><span id="416" class="l"><a class="l" href="#416">416: </a><span class="php-comment">     */</span>
-</span><span id="417" class="l"><a class="l" href="#417">417: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____importConfigData" href="#____importConfigData">___importConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="418" class="l"><a class="l" href="#418">418: </a>        <span class="php-var">$data</span> = parent::___importConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
-</span><span id="419" class="l"><a class="l" href="#419">419: </a>        <span class="php-var">$data</span>[<span class="php-quote">'errors'</span>][<span class="php-quote">'export_options'</span>] = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Import of options is not yet implemented. Though they can easily be imported from one site to another by copy/paste directly from the field edit screen.'</span>); 
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>            <span class="php-comment">// some other subfield, which needs to be mapped to either value or title</span>
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>            <span class="php-var">$options</span> = <span class="php-keyword1">array</span>();
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>            
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$subfield</span> === <span class="php-quote">'data'</span> &amp;&amp; (<span class="php-var">$operator</span> === <span class="php-quote">'='</span> || <span class="php-var">$operator</span> === <span class="php-quote">'!='</span>)) {
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>                <span class="php-comment">// subfield not specified: matching some string value, is it a value or a title? (allow for either)</span>
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>                <span class="php-var">$options</span> = <span class="php-var">$this</span>-&gt;manager-&gt;getOptions(<span class="php-var">$query</span>-&gt;field, <span class="php-keyword1">array</span>(
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>                    <span class="php-quote">'value'</span> =&gt; <span class="php-var">$value</span>, 
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>                    <span class="php-quote">'title'</span> =&gt; <span class="php-var">$value</span>, 
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>                    <span class="php-quote">'or'</span> =&gt; <span class="php-keyword1">true</span>
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>                ));
+</span><span id="319" class="l"><a class="l" href="#319">319: </a>            }
+</span><span id="320" class="l"><a class="l" href="#320">320: </a>        
+</span><span id="321" class="l"><a class="l" href="#321">321: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">count</span>(<span class="php-var">$options</span>)) {
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$subfield</span> || !SelectableOption::isProperty(<span class="php-var">$subfield</span>)) {
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>                    <span class="php-comment">// if empty subfield or not a subfield we recognize, just assume title</span>
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>                    <span class="php-var">$subfield</span> = <span class="php-quote">'title'</span>;
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>                }
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>                <span class="php-var">$options</span> = <span class="php-var">$this</span>-&gt;manager-&gt;findOptionsByProperty(<span class="php-var">$query</span>-&gt;field, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>);
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>            }
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>            
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>            <span class="php-var">$option</span> = <span class="php-var">$options</span>-&gt;first();
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>            
+</span><span id="331" class="l"><a class="l" href="#331">331: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> != <span class="php-quote">'='</span> &amp;&amp; <span class="php-var">$operator</span> != <span class="php-quote">'!='</span>) {
+</span><span id="332" class="l"><a class="l" href="#332">332: </a>                <span class="php-comment">// for fulltext operations...</span>
+</span><span id="333" class="l"><a class="l" href="#333">333: </a>                <span class="php-comment">// since we are now just matching IDs of already found options</span>
+</span><span id="334" class="l"><a class="l" href="#334">334: </a>                <span class="php-var">$operator</span> = <span class="php-quote">'='</span>; 
+</span><span id="335" class="l"><a class="l" href="#335">335: </a>            }
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>            
+</span><span id="337" class="l"><a class="l" href="#337">337: </a>            <span class="php-var">$subfield</span> = <span class="php-quote">'data'</span>;
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>            <span class="php-var">$value</span> = <span class="php-var">$option</span> ? <span class="php-var">$option</span>-&gt;id : <span class="php-keyword1">null</span>;
+</span><span id="339" class="l"><a class="l" href="#339">339: </a>        }
+</span><span id="340" class="l"><a class="l" href="#340">340: </a>        
+</span><span id="341" class="l"><a class="l" href="#341">341: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> == <span class="php-quote">'!='</span>) {
+</span><span id="342" class="l"><a class="l" href="#342">342: </a>            <span class="php-comment">// force a != for one value to prevent matching, even if more than one value</span>
+</span><span id="343" class="l"><a class="l" href="#343">343: </a>            <span class="php-var">$database</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>); 
+</span><span id="344" class="l"><a class="l" href="#344">344: </a>            <span class="php-var">$t</span> = <span class="php-var">$database</span>-&gt;escapeTable(<span class="php-var">$query</span>-&gt;field-&gt;getTable());
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>            <span class="php-var">$s</span> = <span class="php-var">$database</span>-&gt;escapeCol(<span class="php-var">$subfield</span>); 
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>            <span class="php-var">$v</span> = <span class="php-var">$database</span>-&gt;escapeStr(<span class="php-var">$value</span>); 
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;(SELECT COUNT(*) FROM </span><span class="php-var">$t</span><span class="php-quote"> WHERE </span><span class="php-var">$t</span><span class="php-quote">.pages_id=pages.id AND </span><span class="php-var">$t</span><span class="php-quote">.</span><span class="php-var">$s</span><span class="php-quote">='</span><span class="php-var">$v</span><span class="php-quote">')=0&quot;</span>);
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>            <span class="php-var">$query</span>-&gt;parentQuery-&gt;where(<span class="php-quote">&quot;(</span><span class="php-var">$table</span><span class="php-quote">.data IS NULL OR </span><span class="php-var">$table</span><span class="php-quote">.</span><span class="php-var">$s</span><span class="php-quote">!='</span><span class="php-var">$v</span><span class="php-quote">')&quot;</span>);
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>            <span class="php-keyword1">return</span> <span class="php-var">$query</span>;
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>        }
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>        
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>        <span class="php-keyword1">return</span> parent::getMatchQuery(<span class="php-var">$query</span>, <span class="php-var">$table</span>, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>); 
+</span><span id="353" class="l"><a class="l" href="#353">353: </a>    }
+</span><span id="354" class="l"><a class="l" href="#354">354: </a>
+</span><span id="355" class="l"><a class="l" href="#355">355: </a>    <span class="php-comment">/**
+</span></span><span id="356" class="l"><a class="l" href="#356">356: </a><span class="php-comment">     * Get information used for InputfieldSelector interactive selector builder
+</span></span><span id="357" class="l"><a class="l" href="#357">357: </a><span class="php-comment">     * 
+</span></span><span id="358" class="l"><a class="l" href="#358">358: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="359" class="l"><a class="l" href="#359">359: </a><span class="php-comment">     * @param array $data
+</span></span><span id="360" class="l"><a class="l" href="#360">360: </a><span class="php-comment">     * @return array
+</span></span><span id="361" class="l"><a class="l" href="#361">361: </a><span class="php-comment">     * 
+</span></span><span id="362" class="l"><a class="l" href="#362">362: </a><span class="php-comment">     */</span>
+</span><span id="363" class="l"><a class="l" href="#363">363: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getSelectorInfo" href="#____getSelectorInfo">___getSelectorInfo</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>        <span class="php-var">$info</span> = parent::___getSelectorInfo(<span class="php-var">$field</span>, <span class="php-var">$data</span>);
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>        <span class="php-var">$info</span>[<span class="php-quote">'input'</span>] = <span class="php-quote">'select'</span>;
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>        <span class="php-var">$info</span>[<span class="php-quote">'options'</span>] = <span class="php-keyword1">array</span>();
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>        <span class="php-var">$info</span>[<span class="php-quote">'operators'</span>] = <span class="php-keyword1">array</span>(<span class="php-quote">'='</span>, <span class="php-quote">'!='</span>, <span class="php-quote">'@='</span>, <span class="php-quote">'@!='</span>, <span class="php-quote">'=&quot;&quot;'</span>, <span class="php-quote">'!=&quot;&quot;'</span>); 
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;manager-&gt;getOptions(<span class="php-var">$field</span>) <span class="php-keyword1">as</span> <span class="php-var">$option</span>) {
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>            <span class="php-var">$info</span>[<span class="php-quote">'options'</span>][<span class="php-var">$option</span>-&gt;id] = <span class="php-var">$option</span>-&gt;title;
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>        }
+</span><span id="371" class="l"><a class="l" href="#371">371: </a>        <span class="php-var">$subfields</span> = <span class="php-keyword1">array</span>(
+</span><span id="372" class="l"><a class="l" href="#372">372: </a>            <span class="php-quote">'title'</span> =&gt; <span class="php-keyword1">array</span>(
+</span><span id="373" class="l"><a class="l" href="#373">373: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'title'</span>, 
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>                <span class="php-quote">'input'</span> =&gt; <span class="php-quote">'text'</span>,
+</span><span id="375" class="l"><a class="l" href="#375">375: </a>                <span class="php-quote">'operators'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'%='</span>, <span class="php-quote">'='</span>, <span class="php-quote">'!='</span>, <span class="php-quote">'^='</span>, <span class="php-quote">'$='</span>, <span class="php-quote">'*='</span>, <span class="php-quote">'~='</span>), 
+</span><span id="376" class="l"><a class="l" href="#376">376: </a>            ),
+</span><span id="377" class="l"><a class="l" href="#377">377: </a>            <span class="php-quote">'value'</span> =&gt; <span class="php-keyword1">array</span>(
+</span><span id="378" class="l"><a class="l" href="#378">378: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'value'</span>,
+</span><span id="379" class="l"><a class="l" href="#379">379: </a>                <span class="php-quote">'input'</span> =&gt; <span class="php-quote">'text'</span>,
+</span><span id="380" class="l"><a class="l" href="#380">380: </a>                <span class="php-quote">'operators'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'%='</span>, <span class="php-quote">'='</span>, <span class="php-quote">'!='</span>, <span class="php-quote">'^='</span>, <span class="php-quote">'$='</span>, <span class="php-quote">'*='</span>, <span class="php-quote">'~='</span>),
+</span><span id="381" class="l"><a class="l" href="#381">381: </a>            ),
+</span><span id="382" class="l"><a class="l" href="#382">382: </a>            <span class="php-quote">'id'</span> =&gt; <span class="php-keyword1">array</span>(
+</span><span id="383" class="l"><a class="l" href="#383">383: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'id'</span>,
+</span><span id="384" class="l"><a class="l" href="#384">384: </a>                <span class="php-quote">'input'</span> =&gt; <span class="php-quote">'integer'</span>,
+</span><span id="385" class="l"><a class="l" href="#385">385: </a>                <span class="php-quote">'operators'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'='</span>, <span class="php-quote">'!='</span>, <span class="php-quote">'&gt;'</span>, <span class="php-quote">'&gt;='</span> ,<span class="php-quote">'&lt;'</span>, <span class="php-quote">'&lt;='</span>), 
+</span><span id="386" class="l"><a class="l" href="#386">386: </a>            ), 
+</span><span id="387" class="l"><a class="l" href="#387">387: </a>        );
+</span><span id="388" class="l"><a class="l" href="#388">388: </a>        
+</span><span id="389" class="l"><a class="l" href="#389">389: </a>        <span class="php-var">$info</span>[<span class="php-quote">'subfields'</span>] = <span class="php-keyword2">array_merge</span>(<span class="php-var">$info</span>[<span class="php-quote">'subfields'</span>], <span class="php-var">$subfields</span>); 
+</span><span id="390" class="l"><a class="l" href="#390">390: </a>        
+</span><span id="391" class="l"><a class="l" href="#391">391: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>; 
+</span><span id="392" class="l"><a class="l" href="#392">392: </a>    }
+</span><span id="393" class="l"><a class="l" href="#393">393: </a>    
+</span><span id="394" class="l"><a class="l" href="#394">394: </a>    <span class="php-comment">/**
+</span></span><span id="395" class="l"><a class="l" href="#395">395: </a><span class="php-comment">     * Export configuration values for external consumption
+</span></span><span id="396" class="l"><a class="l" href="#396">396: </a><span class="php-comment">     *
+</span></span><span id="397" class="l"><a class="l" href="#397">397: </a><span class="php-comment">     * Use this method to externalize any config values when necessary.
+</span></span><span id="398" class="l"><a class="l" href="#398">398: </a><span class="php-comment">     * For example, internal IDs should be converted to GUIDs where possible.
+</span></span><span id="399" class="l"><a class="l" href="#399">399: </a><span class="php-comment">     * 
+</span></span><span id="400" class="l"><a class="l" href="#400">400: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="401" class="l"><a class="l" href="#401">401: </a><span class="php-comment">     * @param array $data
+</span></span><span id="402" class="l"><a class="l" href="#402">402: </a><span class="php-comment">     * @return array
+</span></span><span id="403" class="l"><a class="l" href="#403">403: </a><span class="php-comment">     *
+</span></span><span id="404" class="l"><a class="l" href="#404">404: </a><span class="php-comment">     */</span>
+</span><span id="405" class="l"><a class="l" href="#405">405: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____exportConfigData" href="#____exportConfigData">___exportConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="406" class="l"><a class="l" href="#406">406: </a>        <span class="php-var">$data</span> = parent::___exportConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
+</span><span id="407" class="l"><a class="l" href="#407">407: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-quote">'_options'</span>])) {
+</span><span id="408" class="l"><a class="l" href="#408">408: </a>            <span class="php-var">$data</span>[<span class="php-quote">'export_options'</span>] = <span class="php-keyword1">array</span>(<span class="php-quote">'default'</span> =&gt; <span class="php-var">$data</span>[<span class="php-quote">'_options'</span>]); 
+</span><span id="409" class="l"><a class="l" href="#409">409: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-quote">'_options'</span>]); 
+</span><span id="410" class="l"><a class="l" href="#410">410: </a>        }
+</span><span id="411" class="l"><a class="l" href="#411">411: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;manager-&gt;useLanguages()) <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'languages'</span>) <span class="php-keyword1">as</span> <span class="php-var">$language</span>) {
+</span><span id="412" class="l"><a class="l" href="#412">412: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$language</span>-&gt;isDefault()) <span class="php-keyword1">continue</span>; 
+</span><span id="413" class="l"><a class="l" href="#413">413: </a>            <span class="php-var">$key</span> = <span class="php-quote">&quot;_options__</span><span class="php-var">$language</span><span class="php-quote">&quot;</span>;
+</span><span id="414" class="l"><a class="l" href="#414">414: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$data</span>[<span class="php-var">$key</span>])) {
+</span><span id="415" class="l"><a class="l" href="#415">415: </a>                <span class="php-comment">// use language name rather than id for more portability</span>
+</span><span id="416" class="l"><a class="l" href="#416">416: </a>                <span class="php-var">$data</span>[<span class="php-quote">'export_options'</span>][<span class="php-var">$language</span>-&gt;name] = <span class="php-var">$data</span>[<span class="php-var">$key</span>]; 
+</span><span id="417" class="l"><a class="l" href="#417">417: </a>                <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-var">$key</span>]); 
+</span><span id="418" class="l"><a class="l" href="#418">418: </a>            }
+</span><span id="419" class="l"><a class="l" href="#419">419: </a>        }
 </span><span id="420" class="l"><a class="l" href="#420">420: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
 </span><span id="421" class="l"><a class="l" href="#421">421: </a>    }
 </span><span id="422" class="l"><a class="l" href="#422">422: </a>
 </span><span id="423" class="l"><a class="l" href="#423">423: </a>    <span class="php-comment">/**
-</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     * Return a cloned copy of $field
+</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     * Convert an array of exported data to a format that will be understood internally (opposite of exportConfigData)
 </span></span><span id="425" class="l"><a class="l" href="#425">425: </a><span class="php-comment">     *
 </span></span><span id="426" class="l"><a class="l" href="#426">426: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="427" class="l"><a class="l" href="#427">427: </a><span class="php-comment">     * @return Field cloned copy
-</span></span><span id="428" class="l"><a class="l" href="#428">428: </a><span class="php-comment">     *
-</span></span><span id="429" class="l"><a class="l" href="#429">429: </a><span class="php-comment">     */</span>
-</span><span id="430" class="l"><a class="l" href="#430">430: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____cloneField" href="#____cloneField">___cloneField</a>(Field <span class="php-var">$field</span>) {
-</span><span id="431" class="l"><a class="l" href="#431">431: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;addHookAfter(<span class="php-quote">'cloned'</span>, <span class="php-var">$this</span>, <span class="php-quote">'hookCloned'</span>);
-</span><span id="432" class="l"><a class="l" href="#432">432: </a>        <span class="php-keyword1">return</span> parent::___cloneField(<span class="php-var">$field</span>);
-</span><span id="433" class="l"><a class="l" href="#433">433: </a>    }
-</span><span id="434" class="l"><a class="l" href="#434">434: </a>
-</span><span id="435" class="l"><a class="l" href="#435">435: </a>    <span class="php-comment">/**
-</span></span><span id="436" class="l"><a class="l" href="#436">436: </a><span class="php-comment">     * Hook called when field is cloned, to clone the selectable options from old field to new field
-</span></span><span id="437" class="l"><a class="l" href="#437">437: </a><span class="php-comment">     * 
-</span></span><span id="438" class="l"><a class="l" href="#438">438: </a><span class="php-comment">     * #pw-internal
-</span></span><span id="439" class="l"><a class="l" href="#439">439: </a><span class="php-comment">     * 
-</span></span><span id="440" class="l"><a class="l" href="#440">440: </a><span class="php-comment">     * @param HookEvent $event
-</span></span><span id="441" class="l"><a class="l" href="#441">441: </a><span class="php-comment">     * 
-</span></span><span id="442" class="l"><a class="l" href="#442">442: </a><span class="php-comment">     */</span>
-</span><span id="443" class="l"><a class="l" href="#443">443: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hookCloned" href="#_hookCloned">hookCloned</a>(HookEvent <span class="php-var">$event</span>) {
-</span><span id="444" class="l"><a class="l" href="#444">444: </a>        <span class="php-comment">/** @var Field $oldField */</span>
-</span><span id="445" class="l"><a class="l" href="#445">445: </a>        <span class="php-var">$oldField</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">0</span>);
-</span><span id="446" class="l"><a class="l" href="#446">446: </a>        <span class="php-comment">/** @var Field $newField */</span>
-</span><span id="447" class="l"><a class="l" href="#447">447: </a>        <span class="php-var">$newField</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">1</span>);
-</span><span id="448" class="l"><a class="l" href="#448">448: </a>        <span class="php-comment">/** @var FieldtypeOptions $fieldtype */</span>
-</span><span id="449" class="l"><a class="l" href="#449">449: </a>        <span class="php-var">$fieldtype</span> = <span class="php-var">$oldField</span>-&gt;type; 
-</span><span id="450" class="l"><a class="l" href="#450">450: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$fieldtype</span> <span class="php-keyword1">instanceof</span> FieldtypeOptions) <span class="php-keyword1">return</span>;
-</span><span id="451" class="l"><a class="l" href="#451">451: </a>        <span class="php-var">$options</span> = <span class="php-var">$fieldtype</span>-&gt;getOptions(<span class="php-var">$oldField</span>);
-</span><span id="452" class="l"><a class="l" href="#452">452: </a>        <span class="php-var">$options</span>-&gt;setField(<span class="php-var">$newField</span>);
-</span><span id="453" class="l"><a class="l" href="#453">453: </a>        <span class="php-var">$fieldtype</span>-&gt;addOptions(<span class="php-var">$newField</span>, <span class="php-var">$options</span>);
-</span><span id="454" class="l"><a class="l" href="#454">454: </a>        <span class="php-var">$event</span>-&gt;removeHook(<span class="php-keyword1">null</span>);
-</span><span id="455" class="l"><a class="l" href="#455">455: </a>    }
-</span><span id="456" class="l"><a class="l" href="#456">456: </a>    
-</span><span id="457" class="l"><a class="l" href="#457">457: </a>    <span class="php-comment">/**
-</span></span><span id="458" class="l"><a class="l" href="#458">458: </a><span class="php-comment">     * Get Inputfields needed to configure this Fieldtype
-</span></span><span id="459" class="l"><a class="l" href="#459">459: </a><span class="php-comment">     * 
-</span></span><span id="460" class="l"><a class="l" href="#460">460: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="461" class="l"><a class="l" href="#461">461: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="462" class="l"><a class="l" href="#462">462: </a><span class="php-comment">     * 
-</span></span><span id="463" class="l"><a class="l" href="#463">463: </a><span class="php-comment">     */</span>
-</span><span id="464" class="l"><a class="l" href="#464">464: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>(Field <span class="php-var">$field</span>) {
-</span><span id="465" class="l"><a class="l" href="#465">465: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields(<span class="php-var">$field</span>); 
-</span><span id="466" class="l"><a class="l" href="#466">466: </a>        <span class="php-keyword1">include_once</span>(<span class="php-keyword2">dirname</span>(__FILE__) . <span class="php-quote">'/SelectableOptionConfig.php'</span>); 
-</span><span id="467" class="l"><a class="l" href="#467">467: </a>        <span class="php-var">$cfg</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> SelectableOptionConfig(<span class="php-var">$field</span>, <span class="php-var">$inputfields</span>)); 
-</span><span id="468" class="l"><a class="l" href="#468">468: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$cfg</span>-&gt;getConfigInputfields();
-</span><span id="469" class="l"><a class="l" href="#469">469: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
+</span></span><span id="427" class="l"><a class="l" href="#427">427: </a><span class="php-comment">     * @param array $data
+</span></span><span id="428" class="l"><a class="l" href="#428">428: </a><span class="php-comment">     * @return array Data as given and modified as needed. Also included is $data[errors], an associative array
+</span></span><span id="429" class="l"><a class="l" href="#429">429: </a><span class="php-comment">     *  indexed by property name containing errors that occurred during import of config data.
+</span></span><span id="430" class="l"><a class="l" href="#430">430: </a><span class="php-comment">     *
+</span></span><span id="431" class="l"><a class="l" href="#431">431: </a><span class="php-comment">     */</span>
+</span><span id="432" class="l"><a class="l" href="#432">432: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____importConfigData" href="#____importConfigData">___importConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="433" class="l"><a class="l" href="#433">433: </a>        <span class="php-var">$data</span> = parent::___importConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
+</span><span id="434" class="l"><a class="l" href="#434">434: </a>        <span class="php-var">$data</span>[<span class="php-quote">'errors'</span>][<span class="php-quote">'export_options'</span>] = <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Import of options is not yet implemented. Though they can easily be imported from one site to another by copy/paste directly from the field edit screen.'</span>); 
+</span><span id="435" class="l"><a class="l" href="#435">435: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
+</span><span id="436" class="l"><a class="l" href="#436">436: </a>    }
+</span><span id="437" class="l"><a class="l" href="#437">437: </a>
+</span><span id="438" class="l"><a class="l" href="#438">438: </a>    <span class="php-comment">/**
+</span></span><span id="439" class="l"><a class="l" href="#439">439: </a><span class="php-comment">     * Return a cloned copy of $field
+</span></span><span id="440" class="l"><a class="l" href="#440">440: </a><span class="php-comment">     *
+</span></span><span id="441" class="l"><a class="l" href="#441">441: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="442" class="l"><a class="l" href="#442">442: </a><span class="php-comment">     * @return Field cloned copy
+</span></span><span id="443" class="l"><a class="l" href="#443">443: </a><span class="php-comment">     *
+</span></span><span id="444" class="l"><a class="l" href="#444">444: </a><span class="php-comment">     */</span>
+</span><span id="445" class="l"><a class="l" href="#445">445: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____cloneField" href="#____cloneField">___cloneField</a>(Field <span class="php-var">$field</span>) {
+</span><span id="446" class="l"><a class="l" href="#446">446: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;addHookAfter(<span class="php-quote">'cloned'</span>, <span class="php-var">$this</span>, <span class="php-quote">'hookCloned'</span>);
+</span><span id="447" class="l"><a class="l" href="#447">447: </a>        <span class="php-keyword1">return</span> parent::___cloneField(<span class="php-var">$field</span>);
+</span><span id="448" class="l"><a class="l" href="#448">448: </a>    }
+</span><span id="449" class="l"><a class="l" href="#449">449: </a>
+</span><span id="450" class="l"><a class="l" href="#450">450: </a>    <span class="php-comment">/**
+</span></span><span id="451" class="l"><a class="l" href="#451">451: </a><span class="php-comment">     * Hook called when field is cloned, to clone the selectable options from old field to new field
+</span></span><span id="452" class="l"><a class="l" href="#452">452: </a><span class="php-comment">     * 
+</span></span><span id="453" class="l"><a class="l" href="#453">453: </a><span class="php-comment">     * #pw-internal
+</span></span><span id="454" class="l"><a class="l" href="#454">454: </a><span class="php-comment">     * 
+</span></span><span id="455" class="l"><a class="l" href="#455">455: </a><span class="php-comment">     * @param HookEvent $event
+</span></span><span id="456" class="l"><a class="l" href="#456">456: </a><span class="php-comment">     * 
+</span></span><span id="457" class="l"><a class="l" href="#457">457: </a><span class="php-comment">     */</span>
+</span><span id="458" class="l"><a class="l" href="#458">458: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hookCloned" href="#_hookCloned">hookCloned</a>(HookEvent <span class="php-var">$event</span>) {
+</span><span id="459" class="l"><a class="l" href="#459">459: </a>        <span class="php-comment">/** @var Field $oldField */</span>
+</span><span id="460" class="l"><a class="l" href="#460">460: </a>        <span class="php-var">$oldField</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">0</span>);
+</span><span id="461" class="l"><a class="l" href="#461">461: </a>        <span class="php-comment">/** @var Field $newField */</span>
+</span><span id="462" class="l"><a class="l" href="#462">462: </a>        <span class="php-var">$newField</span> = <span class="php-var">$event</span>-&gt;arguments(<span class="php-num">1</span>);
+</span><span id="463" class="l"><a class="l" href="#463">463: </a>        <span class="php-comment">/** @var FieldtypeOptions $fieldtype */</span>
+</span><span id="464" class="l"><a class="l" href="#464">464: </a>        <span class="php-var">$fieldtype</span> = <span class="php-var">$oldField</span>-&gt;type; 
+</span><span id="465" class="l"><a class="l" href="#465">465: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$fieldtype</span> <span class="php-keyword1">instanceof</span> FieldtypeOptions) <span class="php-keyword1">return</span>;
+</span><span id="466" class="l"><a class="l" href="#466">466: </a>        <span class="php-var">$options</span> = <span class="php-var">$fieldtype</span>-&gt;getOptions(<span class="php-var">$oldField</span>);
+</span><span id="467" class="l"><a class="l" href="#467">467: </a>        <span class="php-var">$options</span>-&gt;setField(<span class="php-var">$newField</span>);
+</span><span id="468" class="l"><a class="l" href="#468">468: </a>        <span class="php-var">$fieldtype</span>-&gt;addOptions(<span class="php-var">$newField</span>, <span class="php-var">$options</span>);
+</span><span id="469" class="l"><a class="l" href="#469">469: </a>        <span class="php-var">$event</span>-&gt;removeHook(<span class="php-keyword1">null</span>);
 </span><span id="470" class="l"><a class="l" href="#470">470: </a>    }
 </span><span id="471" class="l"><a class="l" href="#471">471: </a>    
 </span><span id="472" class="l"><a class="l" href="#472">472: </a>    <span class="php-comment">/**
-</span></span><span id="473" class="l"><a class="l" href="#473">473: </a><span class="php-comment">     * Given a FieldtypeOptions field id, name or object, return the object
-</span></span><span id="474" class="l"><a class="l" href="#474">474: </a><span class="php-comment">     * @param $field
-</span></span><span id="475" class="l"><a class="l" href="#475">475: </a><span class="php-comment">     * @return Field
-</span></span><span id="476" class="l"><a class="l" href="#476">476: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="477" class="l"><a class="l" href="#477">477: </a><span class="php-comment">     *
+</span></span><span id="473" class="l"><a class="l" href="#473">473: </a><span class="php-comment">     * Get Inputfields needed to configure this Fieldtype
+</span></span><span id="474" class="l"><a class="l" href="#474">474: </a><span class="php-comment">     * 
+</span></span><span id="475" class="l"><a class="l" href="#475">475: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="476" class="l"><a class="l" href="#476">476: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="477" class="l"><a class="l" href="#477">477: </a><span class="php-comment">     * 
 </span></span><span id="478" class="l"><a class="l" href="#478">478: </a><span class="php-comment">     */</span>
-</span><span id="479" class="l"><a class="l" href="#479">479: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="__getField" href="#__getField">_getField</a>(<span class="php-var">$field</span>) {
-</span><span id="480" class="l"><a class="l" href="#480">480: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span> <span class="php-keyword1">instanceof</span> Field) {
-</span><span id="481" class="l"><a class="l" href="#481">481: </a>            <span class="php-var">$_field</span> = <span class="php-var">$field</span>;
-</span><span id="482" class="l"><a class="l" href="#482">482: </a>            <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$field</span>);
-</span><span id="483" class="l"><a class="l" href="#483">483: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Unknown field: </span><span class="php-var">$_field</span><span class="php-quote">&quot;</span>);
-</span><span id="484" class="l"><a class="l" href="#484">484: </a>        }
-</span><span id="485" class="l"><a class="l" href="#485">485: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeOptions) {
-</span><span id="486" class="l"><a class="l" href="#486">486: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Field </span><span class="php-var">$field</span><span class="php-quote">-&gt;name is not of type FieldtypeOptions&quot;</span>);
-</span><span id="487" class="l"><a class="l" href="#487">487: </a>        }
-</span><span id="488" class="l"><a class="l" href="#488">488: </a>        <span class="php-keyword1">return</span> <span class="php-var">$field</span>; 
-</span><span id="489" class="l"><a class="l" href="#489">489: </a>    }
-</span><span id="490" class="l"><a class="l" href="#490">490: </a>
-</span><span id="491" class="l"><a class="l" href="#491">491: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____install" href="#____install">___install</a>() {
-</span><span id="492" class="l"><a class="l" href="#492">492: </a>        <span class="php-var">$this</span>-&gt;manager-&gt;install();
-</span><span id="493" class="l"><a class="l" href="#493">493: </a>    }
-</span><span id="494" class="l"><a class="l" href="#494">494: </a>
-</span><span id="495" class="l"><a class="l" href="#495">495: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() {
-</span><span id="496" class="l"><a class="l" href="#496">496: </a>        <span class="php-var">$this</span>-&gt;manager-&gt;uninstall();
-</span><span id="497" class="l"><a class="l" href="#497">497: </a>    }
-</span><span id="498" class="l"><a class="l" href="#498">498: </a>
-</span><span id="499" class="l"><a class="l" href="#499">499: </a>    <span class="php-comment">/**************************************************************************************
-</span></span><span id="500" class="l"><a class="l" href="#500">500: </a><span class="php-comment">     * Public API methods
-</span></span><span id="501" class="l"><a class="l" href="#501">501: </a><span class="php-comment">     * 
-</span></span><span id="502" class="l"><a class="l" href="#502">502: </a><span class="php-comment">     * These provide a simpler interface to the internally-used SelectableOptionManager.
-</span></span><span id="503" class="l"><a class="l" href="#503">503: </a><span class="php-comment">     * 
-</span></span><span id="504" class="l"><a class="l" href="#504">504: </a><span class="php-comment">     * Accessible from $field-&gt;type-&gt;[get|add|delete|update]Options($field, $options); 
-</span></span><span id="505" class="l"><a class="l" href="#505">505: </a><span class="php-comment">     * 
-</span></span><span id="506" class="l"><a class="l" href="#506">506: </a><span class="php-comment">     */</span>
-</span><span id="507" class="l"><a class="l" href="#507">507: </a>
-</span><span id="508" class="l"><a class="l" href="#508">508: </a>    <span class="php-comment">/**
-</span></span><span id="509" class="l"><a class="l" href="#509">509: </a><span class="php-comment">     * Get all options available for the given field
-</span></span><span id="510" class="l"><a class="l" href="#510">510: </a><span class="php-comment">     * 
-</span></span><span id="511" class="l"><a class="l" href="#511">511: </a><span class="php-comment">     * @param int|string|Field $field Field name, id or object
-</span></span><span id="512" class="l"><a class="l" href="#512">512: </a><span class="php-comment">     * @return SelectableOptionArray
-</span></span><span id="513" class="l"><a class="l" href="#513">513: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="514" class="l"><a class="l" href="#514">514: </a><span class="php-comment">     * 
-</span></span><span id="515" class="l"><a class="l" href="#515">515: </a><span class="php-comment">     */</span>
-</span><span id="516" class="l"><a class="l" href="#516">516: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getOptions" href="#_getOptions">getOptions</a>(<span class="php-var">$field</span>) {
-</span><span id="517" class="l"><a class="l" href="#517">517: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;manager-&gt;getOptions(<span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;_getField(<span class="php-var">$field</span>)); 
-</span><span id="518" class="l"><a class="l" href="#518">518: </a>    }
-</span><span id="519" class="l"><a class="l" href="#519">519: </a>
-</span><span id="520" class="l"><a class="l" href="#520">520: </a>    <span class="php-comment">/**
-</span></span><span id="521" class="l"><a class="l" href="#521">521: </a><span class="php-comment">     * Update, add, delete as needed to match the given $options
-</span></span><span id="522" class="l"><a class="l" href="#522">522: </a><span class="php-comment">     *
-</span></span><span id="523" class="l"><a class="l" href="#523">523: </a><span class="php-comment">     * @param int|string|Field $field Field name, id or object
-</span></span><span id="524" class="l"><a class="l" href="#524">524: </a><span class="php-comment">     * @param SelectableOptionArray $options Options to save
-</span></span><span id="525" class="l"><a class="l" href="#525">525: </a><span class="php-comment">     * @return array Summary of what occurred
-</span></span><span id="526" class="l"><a class="l" href="#526">526: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="527" class="l"><a class="l" href="#527">527: </a><span class="php-comment">     *
-</span></span><span id="528" class="l"><a class="l" href="#528">528: </a><span class="php-comment">     */</span>
-</span><span id="529" class="l"><a class="l" href="#529">529: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setOptions" href="#_setOptions">setOptions</a>(<span class="php-var">$field</span>, SelectableOptionArray <span class="php-var">$options</span>) {
-</span><span id="530" class="l"><a class="l" href="#530">530: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;manager-&gt;setOptions(<span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;_getField(<span class="php-var">$field</span>), <span class="php-var">$options</span>, <span class="php-keyword1">true</span>); 
-</span><span id="531" class="l"><a class="l" href="#531">531: </a>    }
-</span><span id="532" class="l"><a class="l" href="#532">532: </a>
-</span><span id="533" class="l"><a class="l" href="#533">533: </a>    <span class="php-comment">/**
-</span></span><span id="534" class="l"><a class="l" href="#534">534: </a><span class="php-comment">     * Add the given new options
-</span></span><span id="535" class="l"><a class="l" href="#535">535: </a><span class="php-comment">     * 
-</span></span><span id="536" class="l"><a class="l" href="#536">536: </a><span class="php-comment">     * @param $field
-</span></span><span id="537" class="l"><a class="l" href="#537">537: </a><span class="php-comment">     * @param SelectableOptionArray $options
-</span></span><span id="538" class="l"><a class="l" href="#538">538: </a><span class="php-comment">     * @return int Number of options added
-</span></span><span id="539" class="l"><a class="l" href="#539">539: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="540" class="l"><a class="l" href="#540">540: </a><span class="php-comment">     * 
-</span></span><span id="541" class="l"><a class="l" href="#541">541: </a><span class="php-comment">     */</span>
-</span><span id="542" class="l"><a class="l" href="#542">542: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_addOptions" href="#_addOptions">addOptions</a>(<span class="php-var">$field</span>, SelectableOptionArray <span class="php-var">$options</span>) {
-</span><span id="543" class="l"><a class="l" href="#543">543: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;manager-&gt;addOptions(<span class="php-var">$this</span>-&gt;_getField(<span class="php-var">$field</span>), <span class="php-var">$options</span>); 
-</span><span id="544" class="l"><a class="l" href="#544">544: </a>    }
-</span><span id="545" class="l"><a class="l" href="#545">545: </a>
-</span><span id="546" class="l"><a class="l" href="#546">546: </a>    <span class="php-comment">/**
-</span></span><span id="547" class="l"><a class="l" href="#547">547: </a><span class="php-comment">     * Delete the given options
-</span></span><span id="548" class="l"><a class="l" href="#548">548: </a><span class="php-comment">     *
-</span></span><span id="549" class="l"><a class="l" href="#549">549: </a><span class="php-comment">     * @param $field
-</span></span><span id="550" class="l"><a class="l" href="#550">550: </a><span class="php-comment">     * @param SelectableOptionArray $options
-</span></span><span id="551" class="l"><a class="l" href="#551">551: </a><span class="php-comment">     * @return int Number of options added
-</span></span><span id="552" class="l"><a class="l" href="#552">552: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="553" class="l"><a class="l" href="#553">553: </a><span class="php-comment">     *
-</span></span><span id="554" class="l"><a class="l" href="#554">554: </a><span class="php-comment">     */</span>
-</span><span id="555" class="l"><a class="l" href="#555">555: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_deleteOptions" href="#_deleteOptions">deleteOptions</a>(<span class="php-var">$field</span>, SelectableOptionArray <span class="php-var">$options</span>) {
-</span><span id="556" class="l"><a class="l" href="#556">556: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;manager-&gt;deleteOptions(<span class="php-var">$this</span>-&gt;_getField(<span class="php-var">$field</span>), <span class="php-var">$options</span>);
-</span><span id="557" class="l"><a class="l" href="#557">557: </a>    }
-</span><span id="558" class="l"><a class="l" href="#558">558: </a>
-</span><span id="559" class="l"><a class="l" href="#559">559: </a>}
-</span><span id="560" class="l"><a class="l" href="#560">560: </a></span></code></pre>
+</span><span id="479" class="l"><a class="l" href="#479">479: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>(Field <span class="php-var">$field</span>) {
+</span><span id="480" class="l"><a class="l" href="#480">480: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields(<span class="php-var">$field</span>); 
+</span><span id="481" class="l"><a class="l" href="#481">481: </a>        <span class="php-keyword1">include_once</span>(<span class="php-keyword2">dirname</span>(__FILE__) . <span class="php-quote">'/SelectableOptionConfig.php'</span>); 
+</span><span id="482" class="l"><a class="l" href="#482">482: </a>        <span class="php-var">$cfg</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> SelectableOptionConfig(<span class="php-var">$field</span>, <span class="php-var">$inputfields</span>)); 
+</span><span id="483" class="l"><a class="l" href="#483">483: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$cfg</span>-&gt;getConfigInputfields();
+</span><span id="484" class="l"><a class="l" href="#484">484: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
+</span><span id="485" class="l"><a class="l" href="#485">485: </a>    }
+</span><span id="486" class="l"><a class="l" href="#486">486: </a>    
+</span><span id="487" class="l"><a class="l" href="#487">487: </a>    <span class="php-comment">/**
+</span></span><span id="488" class="l"><a class="l" href="#488">488: </a><span class="php-comment">     * Given a FieldtypeOptions field id, name or object, return the object
+</span></span><span id="489" class="l"><a class="l" href="#489">489: </a><span class="php-comment">     * @param $field
+</span></span><span id="490" class="l"><a class="l" href="#490">490: </a><span class="php-comment">     * @return Field
+</span></span><span id="491" class="l"><a class="l" href="#491">491: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="492" class="l"><a class="l" href="#492">492: </a><span class="php-comment">     *
+</span></span><span id="493" class="l"><a class="l" href="#493">493: </a><span class="php-comment">     */</span>
+</span><span id="494" class="l"><a class="l" href="#494">494: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="__getField" href="#__getField">_getField</a>(<span class="php-var">$field</span>) {
+</span><span id="495" class="l"><a class="l" href="#495">495: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span> <span class="php-keyword1">instanceof</span> Field) {
+</span><span id="496" class="l"><a class="l" href="#496">496: </a>            <span class="php-var">$_field</span> = <span class="php-var">$field</span>;
+</span><span id="497" class="l"><a class="l" href="#497">497: </a>            <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$field</span>);
+</span><span id="498" class="l"><a class="l" href="#498">498: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Unknown field: </span><span class="php-var">$_field</span><span class="php-quote">&quot;</span>);
+</span><span id="499" class="l"><a class="l" href="#499">499: </a>        }
+</span><span id="500" class="l"><a class="l" href="#500">500: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeOptions) {
+</span><span id="501" class="l"><a class="l" href="#501">501: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Field </span><span class="php-var">$field</span><span class="php-quote">-&gt;name is not of type FieldtypeOptions&quot;</span>);
+</span><span id="502" class="l"><a class="l" href="#502">502: </a>        }
+</span><span id="503" class="l"><a class="l" href="#503">503: </a>        <span class="php-keyword1">return</span> <span class="php-var">$field</span>; 
+</span><span id="504" class="l"><a class="l" href="#504">504: </a>    }
+</span><span id="505" class="l"><a class="l" href="#505">505: </a>
+</span><span id="506" class="l"><a class="l" href="#506">506: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____install" href="#____install">___install</a>() {
+</span><span id="507" class="l"><a class="l" href="#507">507: </a>        <span class="php-var">$this</span>-&gt;manager-&gt;install();
+</span><span id="508" class="l"><a class="l" href="#508">508: </a>    }
+</span><span id="509" class="l"><a class="l" href="#509">509: </a>
+</span><span id="510" class="l"><a class="l" href="#510">510: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() {
+</span><span id="511" class="l"><a class="l" href="#511">511: </a>        <span class="php-var">$this</span>-&gt;manager-&gt;uninstall();
+</span><span id="512" class="l"><a class="l" href="#512">512: </a>    }
+</span><span id="513" class="l"><a class="l" href="#513">513: </a>
+</span><span id="514" class="l"><a class="l" href="#514">514: </a>    <span class="php-comment">/**************************************************************************************
+</span></span><span id="515" class="l"><a class="l" href="#515">515: </a><span class="php-comment">     * Public API methods
+</span></span><span id="516" class="l"><a class="l" href="#516">516: </a><span class="php-comment">     * 
+</span></span><span id="517" class="l"><a class="l" href="#517">517: </a><span class="php-comment">     * These provide a simpler interface to the internally-used SelectableOptionManager.
+</span></span><span id="518" class="l"><a class="l" href="#518">518: </a><span class="php-comment">     * 
+</span></span><span id="519" class="l"><a class="l" href="#519">519: </a><span class="php-comment">     * Accessible from $field-&gt;type-&gt;[get|add|delete|update]Options($field, $options); 
+</span></span><span id="520" class="l"><a class="l" href="#520">520: </a><span class="php-comment">     * 
+</span></span><span id="521" class="l"><a class="l" href="#521">521: </a><span class="php-comment">     */</span>
+</span><span id="522" class="l"><a class="l" href="#522">522: </a>
+</span><span id="523" class="l"><a class="l" href="#523">523: </a>    <span class="php-comment">/**
+</span></span><span id="524" class="l"><a class="l" href="#524">524: </a><span class="php-comment">     * Get all options available for the given field
+</span></span><span id="525" class="l"><a class="l" href="#525">525: </a><span class="php-comment">     * 
+</span></span><span id="526" class="l"><a class="l" href="#526">526: </a><span class="php-comment">     * @param int|string|Field $field Field name, id or object
+</span></span><span id="527" class="l"><a class="l" href="#527">527: </a><span class="php-comment">     * @return SelectableOptionArray
+</span></span><span id="528" class="l"><a class="l" href="#528">528: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="529" class="l"><a class="l" href="#529">529: </a><span class="php-comment">     * 
+</span></span><span id="530" class="l"><a class="l" href="#530">530: </a><span class="php-comment">     */</span>
+</span><span id="531" class="l"><a class="l" href="#531">531: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getOptions" href="#_getOptions">getOptions</a>(<span class="php-var">$field</span>) {
+</span><span id="532" class="l"><a class="l" href="#532">532: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;manager-&gt;getOptions(<span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;_getField(<span class="php-var">$field</span>)); 
+</span><span id="533" class="l"><a class="l" href="#533">533: </a>    }
+</span><span id="534" class="l"><a class="l" href="#534">534: </a>
+</span><span id="535" class="l"><a class="l" href="#535">535: </a>    <span class="php-comment">/**
+</span></span><span id="536" class="l"><a class="l" href="#536">536: </a><span class="php-comment">     * Update, add, delete as needed to match the given $options
+</span></span><span id="537" class="l"><a class="l" href="#537">537: </a><span class="php-comment">     *
+</span></span><span id="538" class="l"><a class="l" href="#538">538: </a><span class="php-comment">     * @param int|string|Field $field Field name, id or object
+</span></span><span id="539" class="l"><a class="l" href="#539">539: </a><span class="php-comment">     * @param SelectableOptionArray $options Options to save
+</span></span><span id="540" class="l"><a class="l" href="#540">540: </a><span class="php-comment">     * @return array Summary of what occurred
+</span></span><span id="541" class="l"><a class="l" href="#541">541: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="542" class="l"><a class="l" href="#542">542: </a><span class="php-comment">     *
+</span></span><span id="543" class="l"><a class="l" href="#543">543: </a><span class="php-comment">     */</span>
+</span><span id="544" class="l"><a class="l" href="#544">544: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setOptions" href="#_setOptions">setOptions</a>(<span class="php-var">$field</span>, SelectableOptionArray <span class="php-var">$options</span>) {
+</span><span id="545" class="l"><a class="l" href="#545">545: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;manager-&gt;setOptions(<span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;_getField(<span class="php-var">$field</span>), <span class="php-var">$options</span>, <span class="php-keyword1">true</span>); 
+</span><span id="546" class="l"><a class="l" href="#546">546: </a>    }
+</span><span id="547" class="l"><a class="l" href="#547">547: </a>
+</span><span id="548" class="l"><a class="l" href="#548">548: </a>    <span class="php-comment">/**
+</span></span><span id="549" class="l"><a class="l" href="#549">549: </a><span class="php-comment">     * Add the given new options
+</span></span><span id="550" class="l"><a class="l" href="#550">550: </a><span class="php-comment">     * 
+</span></span><span id="551" class="l"><a class="l" href="#551">551: </a><span class="php-comment">     * @param $field
+</span></span><span id="552" class="l"><a class="l" href="#552">552: </a><span class="php-comment">     * @param SelectableOptionArray $options
+</span></span><span id="553" class="l"><a class="l" href="#553">553: </a><span class="php-comment">     * @return int Number of options added
+</span></span><span id="554" class="l"><a class="l" href="#554">554: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="555" class="l"><a class="l" href="#555">555: </a><span class="php-comment">     * 
+</span></span><span id="556" class="l"><a class="l" href="#556">556: </a><span class="php-comment">     */</span>
+</span><span id="557" class="l"><a class="l" href="#557">557: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_addOptions" href="#_addOptions">addOptions</a>(<span class="php-var">$field</span>, SelectableOptionArray <span class="php-var">$options</span>) {
+</span><span id="558" class="l"><a class="l" href="#558">558: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;manager-&gt;addOptions(<span class="php-var">$this</span>-&gt;_getField(<span class="php-var">$field</span>), <span class="php-var">$options</span>); 
+</span><span id="559" class="l"><a class="l" href="#559">559: </a>    }
+</span><span id="560" class="l"><a class="l" href="#560">560: </a>
+</span><span id="561" class="l"><a class="l" href="#561">561: </a>    <span class="php-comment">/**
+</span></span><span id="562" class="l"><a class="l" href="#562">562: </a><span class="php-comment">     * Delete the given options
+</span></span><span id="563" class="l"><a class="l" href="#563">563: </a><span class="php-comment">     *
+</span></span><span id="564" class="l"><a class="l" href="#564">564: </a><span class="php-comment">     * @param $field
+</span></span><span id="565" class="l"><a class="l" href="#565">565: </a><span class="php-comment">     * @param SelectableOptionArray $options
+</span></span><span id="566" class="l"><a class="l" href="#566">566: </a><span class="php-comment">     * @return int Number of options added
+</span></span><span id="567" class="l"><a class="l" href="#567">567: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="568" class="l"><a class="l" href="#568">568: </a><span class="php-comment">     *
+</span></span><span id="569" class="l"><a class="l" href="#569">569: </a><span class="php-comment">     */</span>
+</span><span id="570" class="l"><a class="l" href="#570">570: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_deleteOptions" href="#_deleteOptions">deleteOptions</a>(<span class="php-var">$field</span>, SelectableOptionArray <span class="php-var">$options</span>) {
+</span><span id="571" class="l"><a class="l" href="#571">571: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;manager-&gt;deleteOptions(<span class="php-var">$this</span>-&gt;_getField(<span class="php-var">$field</span>), <span class="php-var">$options</span>);
+</span><span id="572" class="l"><a class="l" href="#572">572: </a>    }
+</span><span id="573" class="l"><a class="l" href="#573">573: </a>
+</span><span id="574" class="l"><a class="l" href="#574">574: </a>}
+</span><span id="575" class="l"><a class="l" href="#575">575: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

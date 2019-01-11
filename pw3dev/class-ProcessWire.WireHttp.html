@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireHttp | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4161422296"></script>
+	<script type="text/javascript" src="elementlist.js?3400011624"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.123 dev</span>
+			<span>Overview version 3.0.124 dev</span>
 		</a>
 
 
@@ -437,6 +437,7 @@
 				<li><a href="function-ProcessWire._hookSessionRedirectModal.html">_hookSessionRedirectModal</a></li>
 				<li><a href="function-ProcessWire._n.html">_n</a></li>
 				<li><a href="function-ProcessWire._wireDataAPI.html">_wireDataAPI</a></li>
+				<li><a href="function-ProcessWire._wireFunctionsAPI.html">_wireFunctionsAPI</a></li>
 				<li><a href="function-ProcessWire._wirePagesAPI.html">_wirePagesAPI</a></li>
 				<li><a href="function-ProcessWire._x.html">_x</a></li>
 				<li><a href="function-ProcessWire.cache.html">cache</a></li>
@@ -591,7 +592,7 @@ $http-&gt;get("http://domain.com/path/"); if($response !== false) { echo
 
 <p>Thanks to @horst for his assistance with several methods in this class.</p>
 
-<p>ProcessWire 3.x, Copyright 2018 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2019 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 	</div>
@@ -630,7 +631,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.WireHttp.html#4-1270" title="Go to source code">core/WireHttp.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireHttp.html#4-1472" title="Go to source code">core/WireHttp.php</a><br>
 	</div>
 
 
@@ -648,7 +649,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#262-271" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#271-280" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -683,7 +684,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_post">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#273-296" title="Go to source code">post</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#282-307" title="Go to source code">post</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -709,6 +710,9 @@ $http-&gt;post("http://domain.com/path/", [ 'foo' =&gt; 'bar', ]); if($response
 					<dt><var>$data</var></dt>
 					<dd><code>mixed</code><br>$data Associative array of data to send (if not already set before), or raw data
 to send.</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Optional options to modify default behavior, see the send() method for
+details.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -717,6 +721,10 @@ to send.</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						WireHttp::send(), <code><code><a href="class-ProcessWire.WireHttp.html#_get">ProcessWire\WireHttp::get()</a></code></code>, <code><code><a href="class-ProcessWire.WireHttp.html#_head">ProcessWire\WireHttp::head()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -733,7 +741,7 @@ to send.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#298-320" title="Go to source code">get</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#309-333" title="Go to source code">get</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -758,6 +766,9 @@ $http-&gt;get("http://domain.com/path/", [ 'foo' =&gt; 'bar', ]); if($response
 					<dd><code>string</code><br>$url URL to send request to (including http:// or https://)</dd>
 					<dt><var>$data</var></dt>
 					<dd><code>mixed</code><br>$data Array of data to send (if not already set before) or raw data to send.</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Optional options to modify default behavior, see the send() method for
+details.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -766,6 +777,10 @@ $http-&gt;get("http://domain.com/path/", [ 'foo' =&gt; 'bar', ]); if($response
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						WireHttp::send(), <code><code><a href="class-ProcessWire.WireHttp.html#_post">ProcessWire\WireHttp::post()</a></code></code>, <code><code><a href="class-ProcessWire.WireHttp.html#_head">ProcessWire\WireHttp::head()</a></code></code>, <code><code><a href="class-ProcessWire.WireHttp.html#_getJSON">ProcessWire\WireHttp::getJSON()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -782,7 +797,7 @@ $http-&gt;get("http://domain.com/path/", [ 'foo' =&gt; 'bar', ]); if($response
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getJSON">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#322-333" title="Go to source code">getJSON</a>( <span>string <var>$url</var></span>, <span>boolean <var>$assoc</var> = <span class="php-keyword1">true</span></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#335-348" title="Go to source code">getJSON</a>( <span>string <var>$url</var></span>, <span>boolean <var>$assoc</var> = <span class="php-keyword1">true</span></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -807,6 +822,9 @@ resulting array or object.</p>
 instead, specify FALSE.</dd>
 					<dt><var>$data</var></dt>
 					<dd><code>mixed</code><br>$data Array of data to send (if not already set before) or raw data to send</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Optional options to modify default behavior, see the send() method for
+details.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -815,6 +833,10 @@ instead, specify FALSE.</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						WireHttp::send(), <code><code><a href="class-ProcessWire.WireHttp.html#_get">ProcessWire\WireHttp::get()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -831,7 +853,7 @@ instead, specify FALSE.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_head">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#335-347" title="Go to source code">head</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#350-364" title="Go to source code">head</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -851,6 +873,9 @@ instead, specify FALSE.</dd>
 					<dd><code>string</code><br>$url URL to request (including http:// or https://)</dd>
 					<dt><var>$data</var></dt>
 					<dd><code>mixed</code><br>$data Array of data to send (if not already set before) or raw data to send</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Optional options to modify default behavior, see the send() method for
+details.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -859,6 +884,10 @@ instead, specify FALSE.</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						WireHttp::send(), <code><code><a href="class-ProcessWire.WireHttp.html#_post">ProcessWire\WireHttp::post()</a></code></code>, <code><code><a href="class-ProcessWire.WireHttp.html#_get">ProcessWire\WireHttp::get()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -875,7 +904,7 @@ instead, specify FALSE.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_status">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#349-361" title="Go to source code">status</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>boolean <var>$textMode</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#366-380" title="Go to source code">status</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>boolean <var>$textMode</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -898,6 +927,9 @@ instead, specify FALSE.</dd>
 					<dt><var>$textMode</var></dt>
 					<dd><code>boolean</code><br>$textMode When true function will return a string rather than integer, see the
 statusText() method.</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Optional options to modify default behavior, see the send() method for
+details.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -906,6 +938,10 @@ statusText() method.</dd>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						WireHttp::send(), <code><code><a href="class-ProcessWire.WireHttp.html#_statusText">ProcessWire\WireHttp::statusText()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -922,7 +958,7 @@ statusText() method.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statusText">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#363-374" title="Go to source code">statusText</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#382-395" title="Go to source code">statusText</a>( <span>string <var>$url</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -944,6 +980,9 @@ OK"</p>
 					<dd><code>string</code><br>$url URL to request (including http:// or https://)</dd>
 					<dt><var>$data</var></dt>
 					<dd><code>mixed</code><br>$data Array of data to send (if not already set before) or raw data</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Optional options to modify default behavior, see the send() method for
+details.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -953,6 +992,10 @@ OK"</p>
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						WireHttp::send(), <code><code><a href="class-ProcessWire.WireHttp.html#_status">ProcessWire\WireHttp::status()</a></code></code><br>
+				</div>
 
 
 		</div>
@@ -969,7 +1012,7 @@ OK"</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setHeaders">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#376-388" title="Go to source code">setHeaders</a>( <span>array <var>$headers</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#397-409" title="Go to source code">setHeaders</a>( <span>array <var>$headers</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1011,7 +1054,7 @@ OK"</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setHeader">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#390-402" title="Go to source code">setHeader</a>( <span>string <var>$key</var></span>, <span>string <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#411-423" title="Go to source code">setHeader</a>( <span>string <var>$key</var></span>, <span>string <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1055,7 +1098,7 @@ OK"</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setData">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#404-415" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#425-436" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1097,7 +1140,7 @@ OK"</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#417-428" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>string|integer <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#438-449" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>string|integer <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1141,7 +1184,7 @@ OK"</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#430-439" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#451-460" title="Go to source code">__set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1181,7 +1224,7 @@ OK"</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#441-450" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#462-471" title="Go to source code">__get</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1225,7 +1268,7 @@ OK"</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____send">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#452-535" title="Go to source code">___send</a>( <span>string <var>$url</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$method</var> = <span class="php-quote">'POST'</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#473-542" title="Go to source code">___send</a>( <span>string <var>$url</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$method</var> = <span class="php-quote">'POST'</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1249,11 +1292,111 @@ DELETE, etc.)</p>
 					<dd><code>array</code><br>$data Array of data to send (if not already set before).</dd>
 					<dt><var>$method</var></dt>
 					<dd><code>string</code><br>$method Method to use (either POST, GET, PUT, DELETE or others as needed).</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array|string</code><br>$options Options to modify behavior (this argument added in 3.0.124): -
+<code>use</code> (string): What handler to use, one of 'auto', 'fopen', 'curl'
+or 'socket' (default='auto') If the 'auto' option is used, the method will first
+try fopen and then fallback to curl and sockets unless 'fallback' is disabled. -
+<code>fallback</code> (bool|string): Allow fallback to other methods? Applies
+only if 'use' option is 'auto'. (default=true) For a specific fallback method
+specify 'socket' or 'curl'</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
 					<code>boolean|string</code><br>False on failure or string of contents received on success.<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sendFopen" id="_sendFopen">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean|string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sendFopen">#</a>
+		<code><a href="source-class-ProcessWire.WireHttp.html#544-615" title="Go to source code">sendFopen</a>( <span>string <var>$url</var></span>, <span>string <var>$method</var> = <span class="php-quote">'POST'</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Send using fopen</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Send using fopen</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd><code>string</code><br>$url</dd>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean|string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sendCURL" id="_sendCURL">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean|string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sendCURL">#</a>
+		<code><a href="source-class-ProcessWire.WireHttp.html#617-705" title="Go to source code">sendCURL</a>( <span>string <var>$url</var></span>, <span>string <var>$method</var> = <span class="php-quote">'POST'</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Send using CURL</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Send using CURL</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd><code>string</code><br>$url</dd>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean|string</code><br>
 				</div>
 
 
@@ -1273,7 +1416,7 @@ DELETE, etc.)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sendSocket">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#575-663" title="Go to source code">sendSocket</a>( <span>string <var>$url</var></span>, <span>string <var>$method</var> = <span class="php-quote">'POST'</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#707-796" title="Go to source code">sendSocket</a>( <span>string <var>$url</var></span>, <span>string <var>$method</var> = <span class="php-quote">'POST'</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1319,7 +1462,7 @@ DELETE, etc.)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_download">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#665-758" title="Go to source code">download</a>( <span>string <var>$fromURL</var></span>, <span>string <var>$toFile</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#798-896" title="Go to source code">download</a>( <span>string <var>$fromURL</var></span>, <span>string <var>$toFile</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1345,8 +1488,8 @@ DELETE, etc.)</p>
 					<dd><code>string</code><br>$toFile Filename you want to save it to (including full path).</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options Optional aptions array for PHP's stream_context_create(), plus these
-optional options: - <code>useMethod</code> (string): Specify "curl", "fopen" or
-"socket" to force a specific method (default=auto-detect). -
+optional options: - <code>use</code> or <code>useMethod</code> (string): Specify
+"curl", "fopen" or "socket" to force a specific method (default=auto-detect). -
 <code>timeout</code> (float): Number of seconds till timeout.</dd>
 				</dl></div>
 
@@ -1376,7 +1519,7 @@ optional options: - <code>useMethod</code> (string): Specify "curl", "fopen" or
 
 		<td class="name"><div>
 		<a class="anchor" href="#_downloadCURL">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#760-795" title="Go to source code">downloadCURL</a>( <span>string <var>$fromURL</var></span>, <span>resource <var>$fp</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#898-933" title="Go to source code">downloadCURL</a>( <span>string <var>$fromURL</var></span>, <span>resource <var>$fp</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1422,7 +1565,7 @@ optional options: - <code>useMethod</code> (string): Specify "curl", "fopen" or
 
 		<td class="name"><div>
 		<a class="anchor" href="#_downloadFopen">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#797-833" title="Go to source code">downloadFopen</a>( <span>string <var>$fromURL</var></span>, <span>resource <var>$fp</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#935-971" title="Go to source code">downloadFopen</a>( <span>string <var>$fromURL</var></span>, <span>resource <var>$fp</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1468,7 +1611,7 @@ optional options: - <code>useMethod</code> (string): Specify "curl", "fopen" or
 
 		<td class="name"><div>
 		<a class="anchor" href="#_downloadSocket">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#835-853" title="Go to source code">downloadSocket</a>( <span>string <var>$fromURL</var></span>, <span>resource <var>$fp</var></span>, <span>array <var>$options</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#973-991" title="Go to source code">downloadSocket</a>( <span>string <var>$fromURL</var></span>, <span>resource <var>$fp</var></span>, <span>array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1514,7 +1657,7 @@ optional options: - <code>useMethod</code> (string): Specify "curl", "fopen" or
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getResponseHeader">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#855-871" title="Go to source code">getResponseHeader</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#993-1009" title="Go to source code">getResponseHeader</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1562,7 +1705,7 @@ this one is kept primarily for backwards compatibility.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getResponseHeaders">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#873-895" title="Go to source code">getResponseHeaders</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1011-1033" title="Go to source code">getResponseHeaders</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1618,7 +1761,7 @@ NULL if the header is not present.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getResponseHeaderValues">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#897-926" title="Go to source code">getResponseHeaderValues</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$forceArrays</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1035-1064" title="Go to source code">getResponseHeaderValues</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$forceArrays</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1671,7 +1814,7 @@ string, or NULL if the header is not present.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setResponseHeader">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#928-982" title="Go to source code">setResponseHeader</a>( <span>array <var>$responseHeader</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1066-1120" title="Go to source code">setResponseHeader</a>( <span>array <var>$responseHeader</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1698,6 +1841,46 @@ string, or NULL if the header is not present.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="setResponseHeaderValues" id="_setResponseHeaderValues">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setResponseHeaderValues">#</a>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1122-1154" title="Go to source code">setResponseHeaderValues</a>( <span>array <var>$responseHeader</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set response headers where they are provided as an associative array and
+values can be strings or arrays</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set response headers where they are provided as an associative array and
+values can be strings or arrays</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$responseHeader</var></dt>
+					<dd><code>array</code><br>$responseHeader headers in an associative array</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="sendFile" id="_sendFile">
 
 		<td class="attributes"><code>
@@ -1709,7 +1892,7 @@ string, or NULL if the header is not present.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sendFile">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#984-1057" title="Go to source code">sendFile</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1156-1229" title="Go to source code">sendFile</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1770,7 +1953,7 @@ remove a header completely, make its value NULL and it won't be sent.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_validateURL">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1059-1082" title="Go to source code">validateURL</a>( <span>string <var>$url</var></span>, <span>boolean <var>$throw</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1231-1254" title="Go to source code">validateURL</a>( <span>string <var>$url</var></span>, <span>boolean <var>$throw</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1818,7 +2001,7 @@ remove a header completely, make its value NULL and it won't be sent.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetResponse">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1084-1093" title="Go to source code">resetResponse</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1256-1265" title="Go to source code">resetResponse</a>( )</code>
 
 		<div class="description short">
 			
@@ -1851,7 +2034,7 @@ remove a header completely, make its value NULL and it won't be sent.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetRequest">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1095-1103" title="Go to source code">resetRequest</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1267-1275" title="Go to source code">resetRequest</a>( )</code>
 
 		<div class="description short">
 			
@@ -1884,7 +2067,7 @@ remove a header completely, make its value NULL and it won't be sent.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getError">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1105-1123" title="Go to source code">getError</a>( <span>boolean <var>$getArray</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1277-1295" title="Go to source code">getError</a>( <span>boolean <var>$getArray</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1927,7 +2110,7 @@ string.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getHttpCode">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1125-1135" title="Go to source code">getHttpCode</a>( <span>boolean <var>$withText</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1297-1307" title="Go to source code">getHttpCode</a>( <span>boolean <var>$withText</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1969,7 +2152,7 @@ string.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getHttpCodes">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1137-1145" title="Go to source code">getHttpCodes</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1309-1317" title="Go to source code">getHttpCodes</a>( )</code>
 
 		<div class="description short">
 			
@@ -2006,7 +2189,7 @@ string.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSuccessCodes">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1147-1159" title="Go to source code">getSuccessCodes</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1319-1331" title="Go to source code">getSuccessCodes</a>( )</code>
 
 		<div class="description short">
 			
@@ -2045,7 +2228,7 @@ description)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getErrorCodes">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1161-1173" title="Go to source code">getErrorCodes</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1333-1345" title="Go to source code">getErrorCodes</a>( )</code>
 
 		<div class="description short">
 			
@@ -2082,7 +2265,7 @@ description)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAllowSchemes">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1175-1200" title="Go to source code">setAllowSchemes</a>( <span>array|string <var>$schemes</var></span>, <span>boolean <var>$replace</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1347-1372" title="Go to source code">setAllowSchemes</a>( <span>array|string <var>$schemes</var></span>, <span>boolean <var>$replace</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2127,7 +2310,7 @@ description)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setValidateURLOptions">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1202-1218" title="Go to source code">setValidateURLOptions</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1374-1390" title="Go to source code">setValidateURLOptions</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2177,7 +2360,7 @@ options.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAllowSchemes">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1220-1228" title="Go to source code">getAllowSchemes</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1392-1400" title="Go to source code">getAllowSchemes</a>( )</code>
 
 		<div class="description short">
 			
@@ -2203,6 +2386,46 @@ options.</dd>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getUserAgent" id="_getUserAgent">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUserAgent">#</a>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1402-1418" title="Go to source code">getUserAgent</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the current user-agent header</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the current user-agent header</p>
+
+<p>To set the user agent header, use <code>$http-&gt;setHeader('user-agent',
+'...');</code></p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setTimeout" id="_setTimeout">
 
 		<td class="attributes"><code>
@@ -2214,7 +2437,7 @@ options.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTimeout">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1230-1240" title="Go to source code">setTimeout</a>( <span>integer|float <var>$seconds</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1420-1430" title="Go to source code">setTimeout</a>( <span>integer|float <var>$seconds</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2256,7 +2479,7 @@ options.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTimeout">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1242-1252" title="Go to source code">getTimeout</a>( )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1432-1442" title="Go to source code">getTimeout</a>( )</code>
 
 		<div class="description short">
 			
@@ -2284,6 +2507,45 @@ options.</dd>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getLastSendType" id="_getLastSendType">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLastSendType">#</a>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1444-1454" title="Go to source code">getLastSendType</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the last used internal sending type: fopen, curl or socket</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the last used internal sending type: fopen, curl or socket</p>
+
+<p>#pw-internal</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="_errorHandler" id="__errorHandler">
 
 		<td class="attributes"><code>
@@ -2295,7 +2557,7 @@ options.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__errorHandler">#</a>
-		<code><a href="source-class-ProcessWire.WireHttp.html#1254-1267" title="Go to source code">_errorHandler</a>( <span>mixed <var>$errno</var></span>, <span>mixed <var>$errstr</var></span>, <span>mixed <var>$errfile</var></span>, <span>mixed <var>$errline</var></span>, <span>mixed <var>$errcontext</var></span> )</code>
+		<code><a href="source-class-ProcessWire.WireHttp.html#1456-1469" title="Go to source code">_errorHandler</a>( <span>mixed <var>$errno</var></span>, <span>mixed <var>$errstr</var></span>, <span>mixed <var>$errfile</var></span>, <span>mixed <var>$errline</var></span>, <span>mixed <var>$errcontext</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2398,7 +2660,7 @@ options.</dd>
 
 		<td class="attributes"><code>boolean</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.WireHttp.html#34" title="Go to source code"><b>debug</b></a>
+				<a href="source-class-ProcessWire.WireHttp.html#35" title="Go to source code"><b>debug</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -2418,7 +2680,7 @@ options.</dd>
 
 		<td class="attributes"><code>float</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.WireHttp.html#36-42" title="Go to source code"><b>defaultTimeout</b></a>
+				<a href="source-class-ProcessWire.WireHttp.html#37-43" title="Go to source code"><b>defaultTimeout</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4.5</span></code></td>
 		<td class="description"><div>
@@ -2444,7 +2706,7 @@ options.</dd>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.WireHttp.html#44-50" title="Go to source code"><b>defaultDownloadTimeout</b></a>
+				<a href="source-class-ProcessWire.WireHttp.html#45-51" title="Go to source code"><b>defaultDownloadTimeout</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">50</span></code></td>
 		<td class="description"><div>
@@ -2489,7 +2751,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#52-58" title="Go to source code"><var>$defaultHeaders</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#53-59" title="Go to source code"><var>$defaultHeaders</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'charset'</span> =&gt; <span class="php-quote">'utf-8'</span>,
@@ -2518,7 +2780,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#60-64" title="Go to source code"><var>$allowSchemes</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#61-65" title="Go to source code"><var>$allowSchemes</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'http'</span>, <span class="php-quote">'https'</span>)</code></td>
 		<td class="description"><div>
@@ -2545,7 +2807,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#66-70" title="Go to source code"><var>$allowHttpMethods</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#67-71" title="Go to source code"><var>$allowHttpMethods</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'GET'</span>, <span class="php-quote">'POST'</span>, <span class="php-quote">'PUT'</span>, <span class="php-quote">'DELETE'</span>, <span class="php-quote">'HEAD'</span>, <span class="php-quote">'PATCH'</span>)</code></td>
 		<td class="description"><div>
@@ -2572,7 +2834,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#72-76" title="Go to source code"><var>$headers</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#73-77" title="Go to source code"><var>$headers</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2599,7 +2861,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#78-164" title="Go to source code"><var>$httpCodes</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#79-165" title="Go to source code"><var>$httpCodes</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-num">100</span> =&gt; <span class="php-quote">'Continue'</span>,
@@ -2706,7 +2968,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#166-172" title="Go to source code"><var>$timeout</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#167-173" title="Go to source code"><var>$timeout</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -2733,7 +2995,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#174-180" title="Go to source code"><var>$httpCode</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#175-181" title="Go to source code"><var>$httpCode</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -2760,7 +3022,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#182-188" title="Go to source code"><var>$httpCodeText</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#183-189" title="Go to source code"><var>$httpCodeText</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">''</span></code></td>
 		<td class="description"><div>
@@ -2787,7 +3049,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#190-194" title="Go to source code"><var>$data</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#191-195" title="Go to source code"><var>$data</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2814,7 +3076,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#196-200" title="Go to source code"><var>$rawData</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#197-201" title="Go to source code"><var>$rawData</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -2841,7 +3103,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#202-206" title="Go to source code"><var>$responseHeader</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#203-207" title="Go to source code"><var>$responseHeader</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2868,7 +3130,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#208-214" title="Go to source code"><var>$responseHeaders</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#209-215" title="Go to source code"><var>$responseHeaders</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2897,7 +3159,7 @@ options.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#216-222" title="Go to source code"><var>$responseHeaderArrays</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#217-223" title="Go to source code"><var>$responseHeaderArrays</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2928,7 +3190,7 @@ always array</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#224-228" title="Go to source code"><var>$error</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#225-229" title="Go to source code"><var>$error</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -2955,7 +3217,7 @@ always array</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#230-236" title="Go to source code"><var>$hasCURL</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#231-237" title="Go to source code"><var>$hasCURL</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -2982,7 +3244,7 @@ always array</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#238-244" title="Go to source code"><var>$hasFopen</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#239-245" title="Go to source code"><var>$hasFopen</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -3002,6 +3264,33 @@ always array</p>
 			</div>
 		</div></td>
 	</tr>
+	<tr data-order="lastSendType" id="$lastSendType">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ProcessWire.WireHttp.html#247-253" title="Go to source code"><var>$lastSendType</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">''</span></code></td>
+		<td class="description"><div>
+			<a href="#$lastSendType" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Last type used for send (fopen, socket, curl)</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Last type used for send (fopen, socket, curl)</p>
+
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="validateURLOptions" id="$validateURLOptions">
 		<td class="attributes"><code>
 			protected  
@@ -3009,7 +3298,7 @@ always array</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.WireHttp.html#246-260" title="Go to source code"><var>$validateURLOptions</var></a>
+				<a href="source-class-ProcessWire.WireHttp.html#255-269" title="Go to source code"><var>$validateURLOptions</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'allowRelative'</span> =&gt; <span class="php-keyword1">false</span>,
