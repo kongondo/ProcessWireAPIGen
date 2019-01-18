@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireRelativeTimeStr | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -582,17 +583,24 @@
 <p>Given a unix timestamp (or date string), returns a formatted string
 indicating the time relative to now</p>
 
-<p>Example: 1 day ago, 30 seconds ago, etc.</p>
+<p>Examples: “1 day ago”, “30 seconds ago”, “just now”, etc.</p>
+
+<p>This is the procedural version of
+<code>$datetime-&gt;relativeTimeStr()</code>.</p>
 
 <p>Based upon: <a
 href="http://www.php.net/manual/en/function.time.php#89415">http://www.php.net/manual/en/function.time.php#89415</a></p>
+
+<p>#pw-group-strings</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireRelativeTimeStr.html#262-288" title="Go to source code">core/Functions.php</a><br>
+				<b>See:</b>
+				<code><code><a href="class-ProcessWire.WireDateTime.html#_relativeTimeStr">ProcessWire\WireDateTime::relativeTimeStr()</a></code></code><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireRelativeTimeStr.html#330-360" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -609,23 +617,24 @@ href="http://www.php.net/manual/en/function.time.php#89415">http://www.php.net/m
 		<td class="name"><code>boolean|integer|array</code></td>
 		<td class="value"><code><var>$abbreviate</var> = <span class="php-keyword1">false</span></code></td>
 		<td>
-			 Whether to use abbreviations for shorter strings. Specify boolean TRUE for
+			 Whether to use abbreviations for shorter strings. - Specify boolean TRUE for
 abbreviations (abbreviated where common, not always different from
-non-abbreviated) Specify integer 1 for extra short abbreviations (all terms
-abbreviated into shortest possible string) Specify boolean FALSE or omit for no
-abbreviations. Specify associative array of key=value pairs of terms to use for
-abbreviations. The possible keys are: just now, ago, from now, never second,
-minute, hour, day, week, month, year, decade seconds, minutes, hours, days,
-weeks, months, years, decades
+non-abbreviated) - Specify integer 1 for extra short abbreviations (all terms
+abbreviated into shortest possible string) - Specify boolean FALSE or omit for
+no abbreviations. - Specify associative array of key=value pairs of terms to use
+for abbreviations. The possible keys are: just now, ago, from now, never,
+second, minute, hour, day, week, month, year, decade, seconds, minutes, hours,
+days, weeks, months, years, decades
 		</td>
 	</tr>
 	<tr id="$useTense">
 		<td class="name"><code>boolean</code></td>
 		<td class="value"><code><var>$useTense</var> = <span class="php-keyword1">true</span></code></td>
 		<td>
-			 Whether to append a tense like "ago" or "from now", May be ok to disable in
-situations where all times are assumed in future or past. In abbreviate=1
-(shortest) mode, this removes the leading "+" or "-" from the string.
+			 Whether to append a tense like “ago” or “from now”, May be ok to
+disable in situations where all times are assumed in future or past. In
+abbreviate=1 (shortest) mode, this removes the leading "+" or "-" from the
+string.
 		</td>
 	</tr>
 	</table>

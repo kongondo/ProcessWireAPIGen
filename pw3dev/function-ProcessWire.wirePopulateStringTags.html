@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wirePopulateStringTags | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -579,26 +580,38 @@
 
 	<div class="description">
 	
-<p>Given a string $str and values $vars, replace tags in the string with the
-values</p>
+<p>Given a string ($str) and values ($vars), replace “{tags}” in the string
+with the values</p>
 
-<p>The $vars may also be an object, in which case values will be pulled as
-properties of the object.</p>
+<ul>
+	<li>The <code>$vars</code> should be an associative array of <code>[ 'tag' =&gt;
+	'value' ]</code>.</li>
+
+	<li>The <code>$vars</code> may also be an object, in which case values will be
+	pulled as properties of the object.</li>
+</ul>
 
 <p>By default, tags are specified in the format: {first_name} where first_name
-is the name of the variable to pull from $vars, '{' is the opening tag
-character, and '}' is the closing tag char.</p>
+is the name of the variable to pull from $vars, <code>{</code> is the opening
+tag character, and <code>}</code> is the closing tag char.</p>
 
-<p>The tag parser can also handle subfields and OR tags, if $vars is an object
-that supports that. For instance {products.title} is a subfield, and
-{first_name|title|name} is an OR tag.</p>
+<p>The tag parser can also handle subfields and OR tags, if <code>$vars</code>
+is an object that supports that. For instance <code>{products.title}</code> is a
+subfield, and <code>{first_name|title|name}</code> is an OR tag.</p>
+
+<p>~~~~~ $vars = [ 'foo' =&gt; 'FOO!', 'bar' =&gt; 'BAR!' ]; $str = 'This is a
+test: {foo}, and this is another test: {bar}'; echo wirePopulateStringTags($str,
+$vars); // outputs: This is a test: FOO!, and this is another test: BAR!
+~~~~~</p>
+
+<p>#pw-group-strings</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wirePopulateStringTags.html#347-443" title="Go to source code">core/Functions.php</a><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wirePopulateStringTags.html#413-519" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -615,20 +628,22 @@ that supports that. For instance {products.title} is a subfield, and
 		<td class="name"><code><code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|object|array</code></td>
 		<td class="value"><code><var>$vars</var></code></td>
 		<td>
-			Object or associative array to pull replacement values from.
+			 Object or associative array to pull replacement values from.
 		</td>
 	</tr>
 	<tr id="$options">
 		<td class="name"><code>array</code></td>
 		<td class="value"><code><var>$options</var> = <span class="php-keyword1">array</span>()</code></td>
 		<td>
-			 Array of optional changes to default behavior, including: - tagOpen: The
-required opening tag character(s), default is '{' - tagClose: The optional
-closing tag character(s), default is '}' - recursive: If replacement value
-contains tags, populate those too? Default=false. - removeNullTags: If a tag
-resolves to a NULL, remove it? If false, tag will remain. Default=true. -
-entityEncode: Entity encode the values pulled from $vars? Default=false. -
-entityDecode: Entity decode the values pulled from $vars? Default=false.
+			 Array of optional changes to default behavior, including: -
+<code>tagOpen</code> (string): The required opening tag character(s), default is
+'{' - <code>tagClose</code> (string): The optional closing tag character(s),
+default is '}' - <code>recursive</code> (bool): If replacement value contains
+tags, populate those too? (default=false) - <code>removeNullTags</code> (bool):
+If a tag resolves to a NULL, remove it? If false, tag will remain.
+(default=true) - <code>entityEncode</code> (bool): Entity encode the values
+pulled from $vars? (default=false) - <code>entityDecode</code> (bool): Entity
+decode the values pulled from $vars? (default=false)
 		</td>
 	</tr>
 	</table>

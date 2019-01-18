@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireMail | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li class="active"><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -579,42 +580,49 @@
 
 	<div class="description">
 	
-<p>Send an email or retrieve the mailer object</p>
+<p>Send an email or get a WireMail object to populate before send</p>
 
-<p>Note 1: The order of arguments is different from PHP's mail() function. Note
-2: If no arguments are specified it simply returns a WireMail object (see #4
-below).</p>
+<ul>
+	<li>Please note that the order of arguments is different from PHP’s mail()
+	function.</li>
 
-<p>This function will attempt to use an installed module that extends WireMail.
-If no module is installed, WireMail (which uses PHP mail) will be used
-instead.</p>
+	<li>If no arguments are specified it simply returns a WireMail object (see #4
+	below).</li>
 
-<p>This function can be called in these ways:</p>
+	<li>This is a procedural version of functions provided by the <code>$mail</code>
+	API variable (see that for more options).</li>
 
-<p>1. Default usage:<br />
-wireMail($to, $from, $subject, $body, $options);</p>
+	<li>This function will attempt to use an installed module that extends
+	WireMail.</li>
 
-<p>2. Specify body and/or bodyHTML in $options array (perhaps with other
-options):<br />
+	<li>If no other WireMail module is installed, the default <code>WireMail</code>
+	(which uses PHP mail) will be used instead.</li>
+</ul>
+
+<p>~~~~~~ // Default usage: wireMail($to, $from, $subject, $body, $options);</p>
+
+<p>// Specify body and/or bodyHTML in $options array (perhaps with other
+options): $options = [ 'body' =&gt; $body, 'bodyHTML' =&gt; $bodyHTML ];
 wireMail($to, $from, $subject, $options);</p>
 
-<p>3. Specify both $body and $bodyHTML as arguments, but no $options:<br />
+<p>// Specify both $body and $bodyHTML as arguments, but no $options:
 wireMail($to, $from, $subject, $body, $bodyHTML);</p>
 
-<p>4. Specify a blank call to wireMail() to get the WireMail sending object.
-This can be either WireMail() or a class descending from it. If a WireMail
-descending module is installed, it will be returned rather than WireMail():<br
-/>
+<p>// Specify a blank call to wireMail() to get the WireMail sending object.
+This can // be either WireMail() or a class descending from it. If a WireMail
+descending // module is installed, it will be returned rather than WireMail():
 $mail = wireMail(); $mail-&gt;to('user@domain.com')-&gt;from('you@company.com');
 $mail-&gt;subject('Mail Subject')-&gt;body('Mail Body Text')-&gt;bodyHTML('Body
 HTML'); $numSent = $mail-&gt;send();</p>
+
+<p>#pw-group-common</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireMail.html#291-344" title="Go to source code">core/Functions.php</a><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireMail.html#363-410" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -632,8 +640,8 @@ HTML'); $numSent = $mail-&gt;send();</p>
 		<td class="value"><code><var>$from</var> = <span class="php-quote">''</span></code></td>
 		<td>
 			 Email address FROM. This may be an email address, or a combined name and email
-address. Example of combined name and email: Karen Cramer &lt;<a
-href="mailto:karen&#64;processwire.com">karen&#64;<!-- -->processwire.com</a>&gt;
+address. Example of combined name and email: <code>Karen Cramer
+&lt;karen@processwire.com&gt;</code>
 		</td>
 	</tr>
 	<tr id="$subject">
@@ -647,17 +655,19 @@ href="mailto:karen&#64;processwire.com">karen&#64;<!-- -->processwire.com</a>&gt
 		<td class="name"><code>string|array</code></td>
 		<td class="value"><code><var>$body</var> = <span class="php-quote">''</span></code></td>
 		<td>
-			 Email body or omit to move straight to $options
+			 Email body or omit to move straight to $options array
 		</td>
 	</tr>
 	<tr id="$options">
 		<td class="name"><code>array|string</code></td>
 		<td class="value"><code><var>$options</var> = <span class="php-keyword1">array</span>()</code></td>
 		<td>
-			 Array of options OR the $bodyHTML string. Array $options are: body: string
-bodyHTML: string headers: associative array of header name =&gt; header value
-Any additional options will be sent along to the WireMail module or class, in
-tact.
+			 Array of options OR the $bodyHTML string. Array $options are: -
+<code>bodyHTML</code> (string): Email body as HTML. - <code>body</code>
+(string): Email body as plain text. This is created automatically if you only
+provide $bodyHTML. - <code>headers</code> (array): Associative array of ['header
+name' =&gt; 'header value'] - Any additional options you provide will be sent
+along to the WireMail module or class, in tact.
 		</td>
 	</tr>
 	</table>

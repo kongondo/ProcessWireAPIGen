@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireInstanceOf | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li class="active"><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -587,12 +588,14 @@ interface, array of interfaces, or mixed array of interfaces and class names.
 Previous versions did not support interfaces unless the $instance argument was
 an object.</p>
 
+<p>#pw-group-class-helpers</p>
+
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireInstanceOf.html#843-917" title="Go to source code">core/Functions.php</a><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireInstanceOf.html#995-1071" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -616,7 +619,7 @@ an object.</p>
 		<td class="name"><code>boolean</code></td>
 		<td class="value"><code><var>$autoload</var> = <span class="php-keyword1">true</span></code></td>
 		<td>
-			
+			 Allow PHP to autoload the class? (default=true)
 		</td>
 	</tr>
 	</table>
@@ -628,10 +631,11 @@ an object.</p>
 			boolean|string
 		</code></td>
 		<td>
-			Returns one of the following: - boolean false if not an instance (whether
-$className argument is string or array). - boolean true if given a single
-$className (string) and $instance is an instance of it. - string of first
-matching class/interface name if $className was an array of classes to test.
+			Returns one of the following: - <code>false</code> (bool): if not an instance
+(whether $className argument is string or array). - <code>true</code> (bool): if
+given a single $className (string) and $instance is an instance of it. -
+<code>ClassName</code> (string): first matching class/interface name if
+$className was an array of classes to test.
 		</td>
 	</tr>
 	</table>

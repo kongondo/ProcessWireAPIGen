@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireClassName | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -579,16 +580,19 @@
 
 	<div class="description">
 	
-<p>Normalize a class name with or without namespace</p>
+<p>Normalize a class name with or without namespace, or get namespace of
+class</p>
 
-<p>Can also be used in an equivalent way to PHP's get_class() function.</p>
+<p>Default behavior is to return class name without namespace.</p>
+
+<p>#pw-group-class-helpers</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireClassName.html#722-758" title="Go to source code">core/Functions.php</a><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireClassName.html#849-889" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -598,15 +602,17 @@
 		<td class="name"><code>string|object</code></td>
 		<td class="value"><code><var>$className</var></code></td>
 		<td>
-			
+			 Class name or object instance
 		</td>
 	</tr>
 	<tr id="$withNamespace">
 		<td class="name"><code>boolean|integer|string</code></td>
 		<td class="value"><code><var>$withNamespace</var> = <span class="php-keyword1">false</span></code></td>
 		<td>
-			 Should return value include namespace? (default=false) or specify integer 1 to
-return only namespace (i.e. "ProcessWire", no leading or trailing backslashes)
+			 Should return value include namespace? (default=false) - <code>false</code>
+(bool): Return only class name without namespace (default). - <code>true</code>
+(bool): Yes include namespace in returned value. - <code>1</code> (int): Return
+only namespace (i.e. “ProcessWire”, with no leading or trailing backslashes)
 		</td>
 	</tr>
 	</table>

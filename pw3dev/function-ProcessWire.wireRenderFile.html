@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireRenderFile | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -581,21 +582,36 @@
 	
 <p>Given a filename, render it as a ProcessWire template file</p>
 
-<p>This is a shortcut to using the TemplateFile class.</p>
+<p>This is a shortcut to using the <code>TemplateFile</code> class, as well as
+the procedural version of <code>$files-&gt;render()</code>.</p>
 
-<p>File is assumed relative to /site/templates/ (or a directory within there)
-unless you specify a full path. If you specify a full path, it will accept files
-in or below site/templates/, site/modules/, wire/modules/.</p>
+<p>File is assumed relative to <code>/site/templates/</code> (or a directory
+within there) unless you specify a full path. If you specify a full path, it
+will accept files in or below any of the following:</p>
 
-<p>Note this function returns the output for you to output wherever you want
-(delayed output). For direct output, use the wireInclude() function instead.</p>
+<ul>
+	<li>/site/templates/</li>
+
+	<li>/site/modules/</li>
+
+	<li>/wire/modules/</li>
+</ul>
+
+<p>Note this function returns the output to you, so that you can send the output
+wherever you want (delayed output). For direct output, use the
+<code>wireIncludeFile()</code> or <code>$files-&gt;include()</code> function
+instead.</p>
+
+<p>#pw-group-files</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireRenderFile.html#463-492" title="Go to source code">core/Functions.php</a><br>
+				<b>See:</b>
+				<code><code><a href="function-ProcessWire.wireIncludeFile.html">ProcessWire\wireIncludeFile()</a></code></code>, <code><code><a href="class-ProcessWire.WireFileTools.html#_render">ProcessWire\WireFileTools::render()</a></code></code>, WireFileTools::include()<br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireRenderFile.html#551-587" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -616,20 +632,22 @@ site/templates/, site/modules/ or wire/modules/.
 		<td>
 			 Optional associative array of variables to send to template file. Please note
 that all template files automatically receive all API variables already (you
-don't have to provide them)
+don't have to provide them).
 		</td>
 	</tr>
 	<tr id="$options">
 		<td class="name"><code>array</code></td>
 		<td class="value"><code><var>$options</var> = <span class="php-keyword1">array</span>()</code></td>
 		<td>
-			 Associative array of options to modify behavior: - defaultPath: Path where
-files are assumed to be when only filename or relative filename is specified
-(default=/site/templates/) - autoExtension: Extension to assume when no ext in
-filename, make blank for no auto assumption (default=php) - allowedPaths: Array
-of paths that are allowed (default is templates, core modules and site modules)
-- allowDotDot: Allow use of ".." in paths? (default=false) - throwExceptions:
-Throw exceptions when fatal error occurs? (default=true)
+			 Associative array of options to modify behavior: - <code>defaultPath</code>
+(string): Path where files are assumed to be when only filename or relative
+filename is specified (default=/site/templates/) - <code>autoExtension</code>
+(string): Extension to assume when no ext in filename, make blank for no auto
+assumption (default=php) - <code>allowedPaths</code> (array): Array of paths
+that are allowed (default is templates, core modules and site modules) -
+<code>allowDotDot</code> (bool): Allow use of ".." in paths? (default=false) -
+<code>throwExceptions</code> (bool): Throw exceptions when fatal error occurs?
+(default=true)
 		</td>
 	</tr>
 	</table>
@@ -654,7 +672,7 @@ disabled)
 			<code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code>
 		</code></td>
 		<td>
-			if template file doesn't exist
+			if template file doesn’t exist
 		</td>
 	</tr>
 	</table>

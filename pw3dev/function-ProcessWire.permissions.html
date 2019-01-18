@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\permissions | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -579,26 +580,40 @@
 
 	<div class="description">
 	
-<p>Access the $permissions API varaible as a function</p>
+<p>Get, find or save permissions ($permissions API variable as a function)</p>
 
-<p>See the pages() function for usage details.</p>
+<p>Accessing <code>permissions()</code> is exactly the same as accessing
+<code>$permissions</code>. Though there are a couple of optional shortcuts
+available by providing an argument to this function.</p>
+
+<p>~~~~~ // Get a permission $p = permissions()-&gt;get('page-edit'); // regular
+syntax $p = permissions('page-edit'); // shortcut syntax</p>
+
+<p>// Find permissions $ps = permissions()-&gt;find('name^=page'); // regular
+syntax $ps = permissions('name^=page'); // shortcut syntax ~~~~~</p>
+
+<p>#pw-group-Functions-API</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.permissions.html#181-192" title="Go to source code">core/FunctionsAPI.php</a><br>
+				<b>See:</b>
+				<code><code><a href="class-ProcessWire.Permissions.html">ProcessWire\Permissions</a></code></code><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.permissions.html#286-313" title="Go to source code">core/FunctionsAPI.php</a><br>
 	</div>
 
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$selector">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>string|integer</code></td>
 		<td class="value"><code><var>$selector</var> = <span class="php-quote">''</span></code></td>
 		<td>
-			
+			 - Specify permission name or ID to retrieve that Permission (Permission) -
+Specify a selector string to return all permissions matching selector
+(PageArray)
 		</td>
 	</tr>
 	</table>

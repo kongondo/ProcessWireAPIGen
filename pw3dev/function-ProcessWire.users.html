@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\users | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -579,9 +580,20 @@
 
 	<div class="description">
 	
-<p>Access the $users API variable as a function</p>
+<p>Get, find or save users ($users API variable as a function)</p>
 
-<p>See the pages() function for full usage details.</p>
+<p>This function behaves the same as the <code>$users</code> API variable,
+though does support an optional shortcut argument for getting a single user or
+finding multiple users.</p>
+
+<p>~~~~~~ // Get a single user (regular and shortcut syntax) $u =
+users()-&gt;get('karen'); $u = users('karen');</p>
+
+<p>// Find multiple users (regular and shortcut syntax) $us =
+users()-&gt;find('roles.name=editor'); $us = users('roles.name=editor');
+~~~~~~</p>
+
+<p>#pw-group-Functions-API</p>
 
 	</div>
 
@@ -589,18 +601,20 @@
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 				<b>See:</b>
-				<code><code><a href="function-ProcessWire.pages.html">ProcessWire\pages()</a></code></code><br>
-		<b>Located at</b> <a href="source-function-ProcessWire.users.html#123-135" title="Go to source code">core/FunctionsAPI.php</a><br>
+				<code><code><a href="function-ProcessWire.pages.html">ProcessWire\pages()</a></code></code>, <code><code><a href="class-ProcessWire.Users.html">ProcessWire\Users</a></code></code><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.users.html#170-197" title="Go to source code">core/FunctionsAPI.php</a><br>
 	</div>
 
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$selector">
-		<td class="name"><code>string|array</code></td>
+		<td class="name"><code>string|array|integer</code></td>
 		<td class="value"><code><var>$selector</var> = <span class="php-quote">''</span></code></td>
 		<td>
-			 Optional selector to send to find() or get()
+			 Optional selector to send to find() or get() - Specify user name or ID to get
+and return that User - Specify a selector string to find all users matching
+selector (PageArray)
 		</td>
 	</tr>
 	</table>

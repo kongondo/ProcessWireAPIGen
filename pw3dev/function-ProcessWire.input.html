@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\input | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -579,32 +580,56 @@
 
 	<div class="description">
 	
-<p>Access the $input API variable as a function</p>
+<p>Access GET, POST or COOKIE input variables and more ($input API variable as a
+function)</p>
 
 <ul>
-	<li>Default behavior is to return the $input API var.</li>
+	<li>Default behavior with no arguments is to return the <code>$input</code> API
+	variable.</li>
 
-	<li>If given just a $type (like "get" or "post"), it will return a WireInputData
-	object for that type.</li>
+	<li>If given just a <code>$type</code> argument (like “get” or “post”),
+	it will return a <code>WireInputData</code> object for that type.</li>
 
-	<li>If given a $type and $key it will return the input variable.</li>
+	<li>If given a <code>$type</code> and <code>$key</code> arguments, it will
+	return the value, or null if not present.</li>
 
-	<li>If all arguments given, the returned value will also be run through the
-	given sanitizer.</li>
+	<li>If <code>$sanitizer</code> argument given, the returned value will also be
+	run through the given sanitizer.</li>
+
+	<li>If the <code>$sanitizer</code> argument is an array, the returned input
+	value must be within the given list, or null if not (3.0.125+).</li>
+
+	<li>If <code>$fallback</code> argument given, it will return the fallback value
+	if input value was not present or not valid (3.0.125+).</li>
+
+	<li>See the <code>WireInput::get()</code> method for all options.</li>
 </ul>
 
-<p>~~~~~ // Examples $input = input(); // Returns $input API var (WireInput)
-$post = input('post'); // Returns $input-&gt;post (WireInputData) $value =
-input('get', 'sort'); // Returns $input-&gt;get('sort'); $value = input('get',
-'sort', 'fieldName'); // Returns $input-&gt;get('sort') run through
-$sanitizer-&gt;fieldName(). ~~~~~</p>
+<p>~~~~~ // Can be used the same way as the $input API variable // In examples
+below the “post” can also be “get” or “cookie” $input = input(); //
+Returns $input API var (WireInput) $post = input()-&gt;post(); // Returns
+$input-&gt;post (WireInputData instance) $foo = input()-&gt;post('foo'); //
+Returns POST variable “foo” $bar = input()-&gt;post('bar', 'text'); //
+Returns “bar” after text sanitizer (3.0.125+) $s = input()-&gt;post('s',
+['foo', 'bar', 'baz']); // POST var “s” must match given list (3.0.125+)</p>
+
+<p>// You can also move the arguments all to the function call if you prefer: $s
+= input('get', 'sort'); // Returns GET var “sort” $s = input('get', 'sort',
+'fieldName'); // Returns “sort” after “fieldName” sanitizer $s =
+input('get', 'sort', ['title', 'created']); // Require sort to be one in given
+array (3.0.125+) $s = input('get', 'sort', ['title', 'created'], 'title'); //
+Same as above, fallback to 'title' (3.0.125+) ~~~~~</p>
+
+<p>#pw-group-Functions-API</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.input.html#291-315" title="Go to source code">core/FunctionsAPI.php</a><br>
+				<b>See:</b>
+				<code><code><a href="class-ProcessWire.WireInput.html">ProcessWire\WireInput</a></code></code><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.input.html#440-479" title="Go to source code">core/FunctionsAPI.php</a><br>
 	</div>
 
 
@@ -621,14 +646,22 @@ $sanitizer-&gt;fieldName(). ~~~~~</p>
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$key</var> = <span class="php-quote">''</span></code></td>
 		<td>
-			 If getting a value, specify name of property containing value
+			 If getting a value, specify name of input property containing value
 		</td>
 	</tr>
 	<tr id="$sanitizer">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$sanitizer</var> = <span class="php-quote">''</span></code></td>
+		<td class="value"><code><var>$sanitizer</var> = <span class="php-keyword1">null</span></code></td>
 		<td>
-			 Optionally specify sanitizer name to run value through
+			 Optionally specify sanitizer name to run value through, or in 3.0.125+ may also
+be an array of allowed values.
+		</td>
+	</tr>
+	<tr id="$fallback">
+		<td class="name"><code>string|integer|null</code></td>
+		<td class="value"><code><var>$fallback</var> = <span class="php-keyword1">null</span></code></td>
+		<td>
+			 Value to fallback to if input not present or invalid
 		</td>
 	</tr>
 	</table>
@@ -637,10 +670,10 @@ $sanitizer-&gt;fieldName(). ~~~~~</p>
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			<code><a href="class-ProcessWire.WireInput.html">ProcessWire\WireInput</a></code>|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code>
+			<code><a href="class-ProcessWire.WireInput.html">ProcessWire\WireInput</a></code>|<code><a href="class-ProcessWire.WireInputData.html">ProcessWire\WireInputData</a></code>|array|string|integer|null
 		</code></td>
 		<td>
-			array|string|int|null
+			
 		</td>
 	</tr>
 	</table>

@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wire | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -579,19 +580,31 @@
 
 	<div class="description">
 	
-<p>Return a ProcessWire API variable, or NULL if it doesn't exist</p>
+<p>Return an API variable, or return current ProcessWire instance if given no
+arguments</p>
 
-<p>And the wire() function is the recommended way to access the API when
-included from other PHP scripts. Like the fuel() function, except that ommitting
-$name returns the current ProcessWire instance rather than the fuel. The
-distinction may not matter in most cases.</p>
+<ul>
+	<li>Call <code>wire()</code> with no arguments returns the current ProcessWire
+	instance.</li>
+
+	<li>Call <code>wire('var')</code> to return the API variable represented by
+	'var', or null if not present.</li>
+
+	<li>Call <code>wire('all')</code> or <code>wire('*')</code> to return an
+	iterable object of all API variables.</li>
+
+	<li>Call <code>wire($object)</code> to attach $object to the current instance
+	($object must be Wire-derived object).</li>
+</ul>
+
+<p>#pw-group-common #pw-group-Functions-API</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wire.html#13-26" title="Go to source code">core/Functions.php</a><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wire.html#16-33" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -601,7 +614,7 @@ distinction may not matter in most cases.</p>
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$name</var> = <span class="php-quote">'wire'</span></code></td>
 		<td>
-			 If omitted, returns a Fuel object with references to all the fuel.
+			 If omitted, returns current ProcessWire instance.
 		</td>
 	</tr>
 	</table>
@@ -613,7 +626,7 @@ distinction may not matter in most cases.</p>
 			null|<code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code>|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|<code><a href="class-ProcessWire.Session.html">ProcessWire\Session</a></code>|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|<code><a href="class-ProcessWire.Pages.html">ProcessWire\Pages</a></code>|<code><a href="class-ProcessWire.Modules.html">ProcessWire\Modules</a></code>|<code><a href="class-ProcessWire.User.html">ProcessWire\User</a></code>|<code><a href="class-ProcessWire.Users.html">ProcessWire\Users</a></code>|<code><a href="class-ProcessWire.Roles.html">ProcessWire\Roles</a></code>|<code><a href="class-ProcessWire.Permissions.html">ProcessWire\Permissions</a></code>|<code><a href="class-ProcessWire.Templates.html">ProcessWire\Templates</a></code>|<code><a href="class-ProcessWire.Fields.html">ProcessWire\Fields</a></code>|<code><a href="class-ProcessWire.Fieldtypes.html">ProcessWire\Fieldtypes</a></code>|<code><a href="class-ProcessWire.Sanitizer.html">ProcessWire\Sanitizer</a></code>|<code><a href="class-ProcessWire.Config.html">ProcessWire\Config</a></code>|<code><a href="class-ProcessWire.Notices.html">ProcessWire\Notices</a></code>|<code><a href="class-ProcessWire.WireDatabasePDO.html">ProcessWire\WireDatabasePDO</a></code>|<code><a href="class-ProcessWire.WireHooks.html">ProcessWire\WireHooks</a></code>|<code><a href="class-ProcessWire.WireDateTime.html">ProcessWire\WireDateTime</a></code>|<code><a href="class-ProcessWire.WireFileTools.html">ProcessWire\WireFileTools</a></code>|<code><a href="class-ProcessWire.WireMailTools.html">ProcessWire\WireMailTools</a></code>|<code><a href="class-ProcessWire.WireInput.html">ProcessWire\WireInput</a></code>|string|mixed
 		</code></td>
 		<td>
-			
+			Requested API variable or null if it does not exist
 		</td>
 	</tr>
 	</table>

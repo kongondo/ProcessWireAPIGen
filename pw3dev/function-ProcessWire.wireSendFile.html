@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireSendFile | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li class="active"><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -581,18 +582,25 @@
 	
 <p>Send the contents of the given filename via http</p>
 
-<p>This function utilizes the $content-&gt;fileContentTypes to match file
-extension to content type headers and force-download state.</p>
+<p>This function utilizes the <code>$config-&gt;fileContentTypes</code> to match
+file extension to content type headers and force-download state.</p>
 
-<p>This function throws a WireException if the file can't be sent for some
+<p>This function throws a WireException if the file can’t be sent for some
 reason.</p>
+
+<p>This is procedural version of the <code>$files-&gt;send()</code> method. See
+that method for all options.</p>
+
+<p>#pw-group-files</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireSendFile.html#242-260" title="Go to source code">core/Functions.php</a><br>
+				<b>See:</b>
+				<code><code><a href="class-ProcessWire.WireHttp.html#_sendFile">ProcessWire\WireHttp::sendFile()</a></code></code>, <code><code><a href="class-ProcessWire.WireFileTools.html#_send">ProcessWire\WireFileTools::send()</a></code></code><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireSendFile.html#305-328" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
@@ -602,22 +610,23 @@ reason.</p>
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$filename</var></code></td>
 		<td>
-			 Filename to send
+			 Full path and filename to send
 		</td>
 	</tr>
 	<tr id="$options">
 		<td class="name"><code>array</code></td>
 		<td class="value"><code><var>$options</var> = <span class="php-keyword1">array</span>()</code></td>
 		<td>
-			 Options that you may pass in, see $_options in function for details.
+			 Optional options that you may pass in (see <code>WireHttp::sendFile()</code>
+for details)
 		</td>
 	</tr>
 	<tr id="$headers">
 		<td class="name"><code>array</code></td>
 		<td class="value"><code><var>$headers</var> = <span class="php-keyword1">array</span>()</code></td>
 		<td>
-			 Headers that are sent, see $_headers in function for details. To remove a
-header completely, make its value NULL and it won't be sent.
+			 Optional headers that are sent (see <code>WireHttp::sendFile()</code> for
+details)
 		</td>
 	</tr>
 	</table>

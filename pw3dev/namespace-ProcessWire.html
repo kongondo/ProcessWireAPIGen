@@ -7,7 +7,7 @@
 	<title>Namespace ProcessWire | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -2172,23 +2173,24 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.cache.html">cache</a></td>
-	<td>Access the $cache API variable as a function</td>
+	<td>Get and save caches ($cache API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.config.html">config</a></td>
-	<td>Access the $config API variable as a function</td>
+	<td>Access a ProcessWire configuration setting ($config API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.database.html">database</a></td>
-	<td>Access the $database API variable as a function</td>
+	<td>Create and execute PDO database queries ($database API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.datetime.html">datetime</a></td>
-	<td>Access the $datetime API variable as a function</td>
+	<td>Access date and time related tools ($datetime API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.fields.html">fields</a></td>
-	<td>Access the $fields API variable as a function</td>
+	<td>Get or save fields independent of templates ($fields API variable as as
+function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.FieldsetPageInstructions.html">FieldsetPageInstructions</a></td>
@@ -2196,7 +2198,7 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.files.html">files</a></td>
-	<td>Access the $files API variable as a function</td>
+	<td>Access tools for working on the file system ($files API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.hookMarkupPagerNavRender.html">hookMarkupPagerNavRender</a></td>
@@ -2204,7 +2206,8 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.input.html">input</a></td>
-	<td>Access the $input API variable as a function</td>
+	<td>Access GET, POST or COOKIE input variables and more ($input API variable as a
+function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.inputCookie.html">inputCookie</a></td>
@@ -2224,15 +2227,17 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.languages.html">languages</a></td>
-	<td>Access the $languages API variable as a function</td>
+	<td>Access all installed languages in multi-language environment ($languages API
+variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.modules.html">modules</a></td>
-	<td>Access the $modules API variable as a function</td>
+	<td>Get a module, get module information, and much more ($modules API variable as a
+function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.page.html">page</a></td>
-	<td>Access the $page API variable as a function</td>
+	<td>Returns the current Page being viewed ($page API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.PageArray.html">PageArray</a></td>
@@ -2240,15 +2245,16 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.pages.html">pages</a></td>
-	<td>Access the $pages API variable as a function</td>
+	<td>Retrieve or save pages ($pages API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.paths.html">paths</a></td>
-	<td>Function that returns a $config-&gt;paths-&gt;[name] value o</td>
+	<td>Get one of any named server disk paths (shortcut to the $config API variable
+“paths” property)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.permissions.html">permissions</a></td>
-	<td>Access the $permissions API varaible as a function</td>
+	<td>Get, find or save permissions ($permissions API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.profiler.html">profiler</a></td>
@@ -2256,19 +2262,21 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.region.html">region</a></td>
-	<td>Get or set a region for front-end output</td>
+	<td>Get or set an output region (primarily for front-end output usage)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.roles.html">roles</a></td>
-	<td>Access the $roles API varaible as a function</td>
+	<td>Get, find or save roles ($roles API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.sanitizer.html">sanitizer</a></td>
-	<td>Access the $sanitizer API variable as a function</td>
+	<td>Sanitize variables and related string functions ($sanitizer API variable as a
+function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.session.html">session</a></td>
-	<td>Access the $session API variable as a function</td>
+	<td>Get or set values in the current user session ($session API variable as a
+function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.setting.html">setting</a></td>
@@ -2280,23 +2288,25 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.templates.html">templates</a></td>
-	<td>Access the $templates API variable as a function</td>
+	<td>Get or save templates ($templates API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.urls.html">urls</a></td>
-	<td>Function that returns a $config-&gt;urls-&gt;[name] value o</td>
+	<td>Get one of any named system URLs (shortcut to the $config API variable
+“urls” property)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.user.html">user</a></td>
-	<td>Access the $user API variable as a function</td>
+	<td>Get the currently logged in user ($user API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.users.html">users</a></td>
-	<td>Access the $users API variable as a function</td>
+	<td>Get, find or save users ($users API variable as a function)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wire.html">wire</a></td>
-	<td>Return a ProcessWire API variable, or NULL if it doesn't exist</td>
+	<td>Return an API variable, or return current ProcessWire instance if given no
+arguments</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.WireArray.html">WireArray</a></td>
@@ -2304,7 +2314,8 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireBytesStr.html">wireBytesStr</a></td>
-	<td>Given a quantity of bytes, return a more readable size string</td>
+	<td>Given a quantity of bytes (int), return readable string that refers to quantity
+in bytes, kB, MB, GB, etc.</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireCache.html">wireCache</a></td>
@@ -2312,24 +2323,23 @@ link to configure</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireChmod.html">wireChmod</a></td>
-	<td>Change the mode of a file or directory, consistent with PW's chmodFile/chmodDir
-settings</td>
+	<td>Change the mode of a file or directory (optionally recursive)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireClassExists.html">wireClassExists</a></td>
-	<td>ProcessWire namespace aware version of PHP's class_exists() function</td>
+	<td>Does the given class name exist?</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireClassImplements.html">wireClassImplements</a></td>
-	<td>ProcessWire namespace aware version of PHP's class_implements() function</td>
+	<td>Get an array of all the interfaces that the given class implements</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireClassName.html">wireClassName</a></td>
-	<td>Normalize a class name with or without namespace</td>
+	<td>Normalize a class name with or without namespace, or get namespace of class</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireClassParents.html">wireClassParents</a></td>
-	<td>ProcessWire namespace aware version of PHP's class_parents() function</td>
+	<td>Return array of all parent classes for given class/object</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireConfig.html">wireConfig</a></td>
@@ -2337,7 +2347,7 @@ settings</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireCopy.html">wireCopy</a></td>
-	<td>Copy all files in directory $src to directory $dst</td>
+	<td>Copy all files recursively from one directory to another</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireCount.html">wireCount</a></td>
@@ -2374,7 +2384,7 @@ arguments).</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireIconMarkup.html">wireIconMarkup</a></td>
-	<td>Render markup for an icon</td>
+	<td>Render markup for a system icon</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireIconMarkupFile.html">wireIconMarkupFile</a></td>
@@ -2402,13 +2412,17 @@ specified variables</td>
 	<td>Access the $input-&gt;post API variable as a function</td>
 </tr>
 <tr>
+	<td class="name"><a href="function-ProcessWire.wireInstance.html">wireInstance</a></td>
+	<td>Get or set the current ProcessWire instance</td>
+</tr>
+<tr>
 	<td class="name"><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></td>
 	<td>Does given instance (or class) represent an instance of the given className (or
 class names)?</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></td>
-	<td>ProcessWire namespace aware version of PHP's is_callable() function</td>
+	<td>Is the given $var callable as a function?</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></td>
@@ -2420,20 +2434,16 @@ class names)?</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireMail.html">wireMail</a></td>
-	<td>Send an email or retrieve the mailer object</td>
+	<td>Send an email or get a WireMail object to populate before send</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></td>
-	<td>ProcessWire namespace aware version of PHP's method_exists() function</td>
-</tr>
-<tr>
-	<td class="name"><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></td>
-	<td>Minimize an array to remove empty values</td>
+	<td>Does the given class have the given method?</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></td>
-	<td>Create a directory that is writable to ProcessWire and uses the $config chmod
-settings</td>
+	<td>Create a directory (optionally recursively) that is writable to ProcessWire and
+uses the $config chmod settings</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireModules.html">wireModules</a></td>
@@ -2457,7 +2467,8 @@ settings</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wirePopulateStringTags.html">wirePopulateStringTags</a></td>
-	<td>Given a string $str and values $vars, replace tags in the string with the values</td>
+	<td>Given a string ($str) and values ($vars), replace “{tags}” in the string
+with the values</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireProfiler.html">wireProfiler</a></td>
@@ -2478,7 +2489,7 @@ the time relative to now</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireRmdir.html">wireRmdir</a></td>
-	<td>Remove a directory</td>
+	<td>Remove a directory (optionally recursively)</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireRoles.html">wireRoles</a></td>
@@ -2495,6 +2506,10 @@ the time relative to now</td>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireSession.html">wireSession</a></td>
 	<td>Access the $session API variable as a function</td>
+</tr>
+<tr>
+	<td class="name"><a href="function-ProcessWire.wireSetting.html">wireSetting</a></td>
+	<td>Get or set a runtime site setting</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></td>
@@ -2522,7 +2537,7 @@ the time relative to now</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-ProcessWire.wireZipFile.html">wireZipFile</a></td>
-	<td>Creates a ZIP file</td>
+	<td>Create a ZIP file from given files</td>
 </tr>
 </table>
 </div>

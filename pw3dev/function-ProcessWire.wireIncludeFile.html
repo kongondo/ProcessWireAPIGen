@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\wireIncludeFile | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -582,39 +583,48 @@
 <p>Include a PHP file passing it all API variables and optionally your own
 specified variables</p>
 
-<p>This is the same as PHP's include() function except for the following:</p>
+<p>This is the procedural version of the <code>$files-&gt;include()</code>
+method.</p>
+
+<p>This is the same as PHP’s <code>include()</code> function except for the
+following:</p>
 
 <ul>
 	<li>It receives all API variables and optionally your custom variables</li>
 
-	<li>If your filename is not absolute, it doesn't look in PHP's include path,
+	<li>If your filename is not absolute, it doesn’t look in PHP’s include path,
 	only in the current dir.</li>
 
 	<li>It only allows including files that are part of the PW installation:
 	templates, core modules or site modules</li>
 
-	<li>It will assume a ".php" extension if filename has no extension.</li>
+	<li>It will assume a “.php” extension if filename has no extension.</li>
 </ul>
 
-<p>Note this function produced direct output. To retrieve output as a return
-value, use the <code>wireRenderFile()</code> function instead.</p>
+<p>Note this function produces direct output. To retrieve output as a return
+value, use the <code>wireRenderFile()</code> or <code>$files-&gt;render()</code>
+function instead.</p>
+
+<p>#pw-group-files</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.wireIncludeFile.html#494-520" title="Go to source code">core/Functions.php</a><br>
+				<b>See:</b>
+				<code><code><a href="function-ProcessWire.wireRenderFile.html">ProcessWire\wireRenderFile()</a></code></code>, WireFileTools::include(), <code><code><a href="class-ProcessWire.WireFileTools.html#_render">ProcessWire\WireFileTools::render()</a></code></code><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.wireIncludeFile.html#589-622" title="Go to source code">core/Functions.php</a><br>
 	</div>
 
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$filename">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$filename</var></code></td>
 		<td>
-			
+			 Filename to include
 		</td>
 	</tr>
 	<tr id="$vars">
@@ -628,11 +638,12 @@ value, use the <code>wireRenderFile()</code> function instead.</p>
 		<td class="name"><code>array</code></td>
 		<td class="value"><code><var>$options</var> = <span class="php-keyword1">array</span>()</code></td>
 		<td>
-			 Array of options to modify behavior: - func: Function to use: include,
-include_once, require or require_once (default=include) - autoExtension:
-Extension to assume when no ext in filename, make blank for no auto assumption
-(default=php) - allowedPaths: Array of paths include files are allowed from.
-Note current dir is always allowed.
+			 Array of options to modify behavior: - <code>func</code> (string): Function to
+use: include, include_once, require or require_once (default=include) -
+<code>autoExtension</code> (string): Extension to assume when no ext in
+filename, make blank for no auto assumption (default=php) -
+<code>allowedPaths</code> (array): Array of start paths include files are
+allowed from. Note current dir is always allowed.
 		</td>
 	</tr>
 	</table>
@@ -644,7 +655,7 @@ Note current dir is always allowed.
 			boolean
 		</code></td>
 		<td>
-			Returns true
+			Always returns true
 		</td>
 	</tr>
 	</table>
@@ -656,7 +667,7 @@ Note current dir is always allowed.
 			<code><a href="class-ProcessWire.WireException.html">ProcessWire\WireException</a></code>
 		</code></td>
 		<td>
-			if file doesn't exist or is not allowed
+			if file doesn’t exist or is not allowed
 		</td>
 	</tr>
 	</table>

@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\page | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3400011624"></script>
+	<script type="text/javascript" src="elementlist.js?1094401221"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -497,13 +497,13 @@
 				<li><a href="function-ProcessWire.wireInputCookie.html">wireInputCookie</a></li>
 				<li><a href="function-ProcessWire.wireInputGet.html">wireInputGet</a></li>
 				<li><a href="function-ProcessWire.wireInputPost.html">wireInputPost</a></li>
+				<li><a href="function-ProcessWire.wireInstance.html">wireInstance</a></li>
 				<li><a href="function-ProcessWire.wireInstanceOf.html">wireInstanceOf</a></li>
 				<li><a href="function-ProcessWire.wireIsCallable.html">wireIsCallable</a></li>
 				<li><a href="function-ProcessWire.wireLanguages.html">wireLanguages</a></li>
 				<li><a href="function-ProcessWire.wireLog.html">wireLog</a></li>
 				<li><a href="function-ProcessWire.wireMail.html">wireMail</a></li>
 				<li><a href="function-ProcessWire.wireMethodExists.html">wireMethodExists</a></li>
-				<li><a href="function-ProcessWire.wireMinArray.html">wireMinArray</a></li>
 				<li><a href="function-ProcessWire.wireMkdir.html">wireMkdir</a></li>
 				<li><a href="function-ProcessWire.wireModules.html">wireModules</a></li>
 				<li><a href="function-ProcessWire.wirePage.html">wirePage</a></li>
@@ -520,6 +520,7 @@
 				<li><a href="function-ProcessWire.wireSanitizer.html">wireSanitizer</a></li>
 				<li><a href="function-ProcessWire.wireSendFile.html">wireSendFile</a></li>
 				<li><a href="function-ProcessWire.wireSession.html">wireSession</a></li>
+				<li><a href="function-ProcessWire.wireSetting.html">wireSetting</a></li>
 				<li><a href="function-ProcessWire.wireTempDir.html">wireTempDir</a></li>
 				<li><a href="function-ProcessWire.wireTemplates.html">wireTemplates</a></li>
 				<li><a href="function-ProcessWire.wireUnzipFile.html">wireUnzipFile</a></li>
@@ -579,19 +580,36 @@
 
 	<div class="description">
 	
-<p>Access the $page API variable as a function</p>
+<p>Returns the current Page being viewed ($page API variable as a function)</p>
 
-<p>~~~~ $page = page(); // Simply get $page API var $body = page()-&gt;body; //
-Get body field value $body = page('body'); // Same as above $headline =
-page('headline|title'); // Get headline or title page('headline', 'Setting
-headline value'); // Set headline ~~~~</p>
+<p>This function behaves the same as the <code>$page</code> API variable, though
+does support optional arguments as shortcuts for getting from the page or
+setting values to it.</p>
+
+<p>~~~~ $page = page(); // Simply get $page API var</p>
+
+<p>// Get the “body” field $body = page()-&gt;body; // direct syntax $body =
+page()-&gt;get('body'); // regular syntax $body = page('body'); // shortcut
+syntax</p>
+
+<p>// Get the “headline” field or fallback to “title’ $headline =
+page()-&gt;get('headline|title'); // regular syntax $headline =
+page('headline|title'); // shortcut syntax</p>
+
+<p>// Set the “headline” field page()-&gt;headline = 'My headline'; //
+direct syntax page()-&gt;set('headline', 'My headline'); // regular syntax
+page('headline', 'My headline'); // shortcut syntax ~~~~</p>
+
+<p>#pw-group-Functions-API</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.page.html#54-72" title="Go to source code">core/FunctionsAPI.php</a><br>
+				<b>See:</b>
+				<code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.page.html#67-101" title="Go to source code">core/FunctionsAPI.php</a><br>
 	</div>
 
 
