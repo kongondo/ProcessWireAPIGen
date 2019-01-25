@@ -8,7 +8,7 @@
 	<title>File core/WireInputData.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1094401221"></script>
+	<script type="text/javascript" src="elementlist.js?4172165332"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.124 dev</span>
+			<span>Overview version 3.0.125 dev</span>
 		</a>
 
 
@@ -863,29 +863,34 @@
 </span></span><span id="285" class="l"><a class="l" href="#285">285: </a><span class="php-comment">     * @throws WireException
 </span></span><span id="286" class="l"><a class="l" href="#286">286: </a><span class="php-comment">     *
 </span></span><span id="287" class="l"><a class="l" href="#287">287: </a><span class="php-comment">     */</span>
-</span><span id="288" class="l"><a class="l" href="#288">288: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___call" href="#___call">__call</a>(<span class="php-var">$method</span>, <span class="php-var">$arguments</span>) {
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____callUnknown" href="#____callUnknown">___callUnknown</a>(<span class="php-var">$method</span>, <span class="php-var">$arguments</span>) {
 </span><span id="289" class="l"><a class="l" href="#289">289: </a>        <span class="php-var">$sanitizer</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>);
-</span><span id="290" class="l"><a class="l" href="#290">290: </a>        <span class="php-var">$method</span> = <span class="php-keyword2">ltrim</span>(<span class="php-var">$method</span>, <span class="php-quote">'_'</span>);
-</span><span id="291" class="l"><a class="l" href="#291">291: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">method_exists</span>(<span class="php-var">$sanitizer</span>, <span class="php-var">$method</span>)) {
-</span><span id="292" class="l"><a class="l" href="#292">292: </a>            <span class="php-var">$method</span> = <span class="php-quote">&quot;___</span><span class="php-var">$method</span><span class="php-quote">&quot;</span>;
-</span><span id="293" class="l"><a class="l" href="#293">293: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">method_exists</span>(<span class="php-var">$sanitizer</span>, <span class="php-var">$method</span>)) {
-</span><span id="294" class="l"><a class="l" href="#294">294: </a>                <span class="php-var">$method</span> = <span class="php-keyword2">ltrim</span>(<span class="php-var">$method</span>, <span class="php-quote">&quot;_&quot;</span>);
-</span><span id="295" class="l"><a class="l" href="#295">295: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Unknown method '</span><span class="php-var">$method</span><span class="php-quote">' - Specify a valid Sanitizer or WireInputData method.&quot;</span>);
-</span><span id="296" class="l"><a class="l" href="#296">296: </a>            }
-</span><span id="297" class="l"><a class="l" href="#297">297: </a>        }
-</span><span id="298" class="l"><a class="l" href="#298">298: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$arguments</span>[<span class="php-num">0</span>])) {
-</span><span id="299" class="l"><a class="l" href="#299">299: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;For method '</span><span class="php-var">$method</span><span class="php-quote">' specify an input variable name for first argument&quot;</span>);
-</span><span id="300" class="l"><a class="l" href="#300">300: </a>        }
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$sanitizer</span>-&gt;methodExists(<span class="php-var">$method</span>)) {
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>            <span class="php-keyword1">try</span> {
+</span><span id="292" class="l"><a class="l" href="#292">292: </a>                <span class="php-keyword1">return</span> parent::___callUnknown(<span class="php-var">$method</span>, <span class="php-var">$arguments</span>);
+</span><span id="293" class="l"><a class="l" href="#293">293: </a>            } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
+</span><span id="294" class="l"><a class="l" href="#294">294: </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Unknown method '</span><span class="php-var">$method</span><span class="php-quote">' - specify a valid Sanitizer name or WireInputData method&quot;</span>); 
+</span><span id="295" class="l"><a class="l" href="#295">295: </a>            }
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>        }
+</span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">isset</span>(<span class="php-var">$arguments</span>[<span class="php-num">0</span>])) {
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;For method '</span><span class="php-var">$method</span><span class="php-quote">' specify an input variable name for first argument&quot;</span>);
+</span><span id="299" class="l"><a class="l" href="#299">299: </a>        }
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>        <span class="php-comment">// swap input name with input value in arguments array</span>
 </span><span id="301" class="l"><a class="l" href="#301">301: </a>        <span class="php-var">$arguments</span>[<span class="php-num">0</span>] = <span class="php-var">$this</span>-&gt;__get(<span class="php-var">$arguments</span>[<span class="php-num">0</span>]);
-</span><span id="302" class="l"><a class="l" href="#302">302: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_null</span>(<span class="php-var">$arguments</span>[<span class="php-num">0</span>])) {
-</span><span id="303" class="l"><a class="l" href="#303">303: </a>            <span class="php-comment">// value is not present in input at all</span>
-</span><span id="304" class="l"><a class="l" href="#304">304: </a>            <span class="php-comment">// @todo do you want to provide an alternate means of handling this situation?</span>
-</span><span id="305" class="l"><a class="l" href="#305">305: </a>        }
-</span><span id="306" class="l"><a class="l" href="#306">306: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">call_user_func_array</span>(<span class="php-keyword1">array</span>(<span class="php-var">$sanitizer</span>, <span class="php-var">$method</span>), <span class="php-var">$arguments</span>);
-</span><span id="307" class="l"><a class="l" href="#307">307: </a>    }
-</span><span id="308" class="l"><a class="l" href="#308">308: </a>}
-</span><span id="309" class="l"><a class="l" href="#309">309: </a>
-</span><span id="310" class="l"><a class="l" href="#310">310: </a></span></code></pre>
+</span><span id="302" class="l"><a class="l" href="#302">302: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$arguments</span>[<span class="php-num">0</span>] === <span class="php-keyword1">null</span>) {
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>            <span class="php-comment">// value is not present in input at all, accommodate potential fallback value?</span>
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>        }
+</span><span id="305" class="l"><a class="l" href="#305">305: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$arguments</span>) &gt; <span class="php-num">1</span>) {
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>            <span class="php-comment">// more than one argument to sanitizer method</span>
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>            <span class="php-keyword1">return</span> <span class="php-keyword2">call_user_func_array</span>(<span class="php-keyword1">array</span>(<span class="php-var">$sanitizer</span>, <span class="php-var">$method</span>), <span class="php-var">$arguments</span>);
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>            <span class="php-comment">// single argument, pass along to sanitize method</span>
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>            <span class="php-keyword1">return</span> <span class="php-var">$sanitizer</span>-&gt;sanitize(<span class="php-var">$arguments</span>[<span class="php-num">0</span>], <span class="php-var">$method</span>); 
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>        }
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>    }
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>}
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>
+</span><span id="315" class="l"><a class="l" href="#315">315: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

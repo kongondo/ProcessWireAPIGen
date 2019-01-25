@@ -7,7 +7,7 @@
 	<title>Function ProcessWire\__ | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1094401221"></script>
+	<script type="text/javascript" src="elementlist.js?4172165332"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.124 dev</span>
+			<span>Overview version 3.0.125 dev</span>
 		</a>
 
 
@@ -582,30 +582,139 @@
 	
 <p>Perform a language translation</p>
 
-<p>~~~~~~ echo __('This is translatable text'); echo __('Translatable with
-current file as textdomain', __FILE__); echo __('Translatable with other file as
-textdomain', '/site/templates/_init.php'); ~~~~~~</p>
+<p>This function enables you to specify static text as the argument, and that
+text becomes translatable (for each language) with ProcessWire’s built-in
+language translation tools. This function also works just fine if you do not
+have multi-language support installed, though in that case it just returns the
+text that it is given.</p>
+
+<p>For full documentation, please see the [Code Internationalization (i18n)](<a
+href="https://processwire.com/docs/multi-language-support/code-i18n/">https://processwire.com/docs/multi-language-support/code-i18n/</a>)
+documentation page at ProcessWire.com.</p>
+
+<p>This function is very similar to the GNU gettext <code>_('text');</code>
+function and essentially does the same thing, except that it is native to
+ProcessWire and not using GNU gettext.</p>
+
+<p>Use this <code>__('text')</code> function for common translations, use the
+<code>_x('text', 'context')</code> function for translations that also require
+additional context, and use the <code>_n('singular', 'plural', $n)</code>
+function for translations that should changed based on whether a value
+<code>$n</code> would require a singular or plural tense.</p>
+
+<h1>Additional behaviors</h1>
+
+<ul>
+	<li>You can optionally specify a “textdomain” as the second argument. The
+	textdomain represents the source file of the translation. Most often it would be
+	the current file, so the argument can be omitted, or you can specify
+	<code>__FILE__</code>. But in some cases you may want to use a translation from
+	another file, and the textdomain argument enables you to.</li>
+
+	<li>When in a class (or module) it is preferable to use
+	<code>$this-&gt;_('text');</code> rather than <code>__('text');</code>, as it is
+	slightly more efficient to do so.</li>
+
+	<li>A PHP comment, i.e. <code>// comment</code> that appears somewhere after a
+	translation call (on the same line) is used as an additional description for the
+	person translating text. Another comment after that, i.e. <code>// comment1 //
+	comment2</code> is used as an additional secondary note for the person
+	translating the text.</li>
+</ul>
+
+<h1>Limitations</h1>
+
+<ul>
+	<li>The function call (and translatable text within it) cannot span more than
+	one line. If your translatable text is long enough to require multiple lines,
+	split them into multiple calls (like one per sentence).</li>
+
+	<li>There cannot be more than one <code>__('text')</code> function call per line
+	in the PHP code.</li>
+
+	<li>The provided text argument must be one string of static text. It cannot
+	contain PHP variables or concatenation. To populate dynamic values you should
+	use PHP’s <code>sprintf()</code> (see examples below).</li>
+</ul>
+
+<h1>Advanced features</h1>
+
+<p><em>The following features are for specific cases and supported in
+ProcessWire 3.0.125+ only.</em></p>
+
+<p>You can use this function to get or set specific options that affect future
+calls by specifying boolean true for the first argument, option name for the
+second argument, and option value for the third argument. Currently there are
+just two options, “entityEncode” and “translations”. The
+“entityEncode” option enables you to control whether future calls return
+entity encoded text or not (see advanced examples).</p>
+
+<p>If given an array for the second argument then it is assumed that it is a
+list of predefined fallback translations you want to define. These translations
+will be used if the text is not translated in the admin. The translations are
+not specific to any textdomain and thus can serve as a fallback for any file.
+These are intended for front-end site usage and not recommended for use in
+modules. As such, they are not supported by the
+<code>$this-&gt;_('text');</code> function either. The array you provide should
+be associative, where the keys contain the text to translate, and the values
+contain the translation (see advanced examples).</p>
+
+<p>~~~~~~ // COMMON USAGE EXAMPLES
+--------------------------------------------------------------</p>
+
+<p>echo __('This is translatable text'); echo __('Translatable with current file
+as textdomain (optional)', __FILE__); echo __('Translatable with other file as
+textdomain', '/site/templates/_init.php');</p>
+
+<p>// using placeholders to populate dynamic values in translatable text: echo
+sprintf(__('You are reading the %s page'), $page-&gt;title); echo sprintf(__('%d
+is the current page ID'), $page-&gt;id); echo sprintf(__('Today is %1$s and the
+time is %2$s'), date('l'), date('g:i a'));</p>
+
+<p>// providing a note via PHP comment to the person doing translation echo
+__('Welcome friend!'); // A friendly welcome message for new users</p>
+
+<p>// ADVANCED EXAMPLES (3.0.125+)
+-------------------------------------------------------</p>
+
+<p>// using the entityEncode option // true=always encode, 1=encode only if not
+already, false=never encode, null=undefined __(true, 'entityEncode', true);</p>
+
+<p>// get current entityEncode option value $val = __(true, 'entityEncode');</p>
+
+<p>// Setting predefined translations if($user-&gt;language-&gt;name == 'es') {
+__(true, [ 'Hello' =&gt; 'Hola', 'World' =&gt; 'Mundo' ]); }</p>
+
+<p>// Setting predefined translations with context __(true, [ // would apply
+only to a _x('Search', 'nav'); call (context) 'Search' =&gt; [ 'Buscar', 'nav' ]
+]); ~~~~~~</p>
+
+<p>#pw-group-translation</p>
 
 	</div>
 
 	<div class="info">
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
-		<b>Located at</b> <a href="source-function-ProcessWire.__.html#13-68" title="Go to source code">core/LanguageFunctions.php</a><br>
+				<b>See:</b>
+				<code><code><a href="function-ProcessWire._x.html">ProcessWire\_x()</a></code></code>, <code><code><a href="function-ProcessWire._n.html">ProcessWire\_n()</a></code></code><br>
+				<b>Link:</b>
+				<a href="https://processwire.com/docs/multi-language-support/code-i18n/">https://processwire.com/docs/multi-language-support/code-i18n/</a><br>
+		<b>Located at</b> <a href="source-function-ProcessWire.__.html#13-190" title="Go to source code">core/LanguageFunctions.php</a><br>
 	</div>
 
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$text">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>string|boolean</code></td>
 		<td class="value"><code><var>$text</var></code></td>
 		<td>
 			 Text for translation.
 		</td>
 	</tr>
 	<tr id="$textdomain">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>string|array</code></td>
 		<td class="value"><code><var>$textdomain</var> = <span class="php-keyword1">null</span></code></td>
 		<td>
 			 Textdomain for the text, may be class name, filename, or something made up by
@@ -613,11 +722,12 @@ you. If omitted, a debug backtrace will attempt to determine it automatically.
 		</td>
 	</tr>
 	<tr id="$context">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>string|boolean|array</code></td>
 		<td class="value"><code><var>$context</var> = <span class="php-quote">''</span></code></td>
 		<td>
-			 Name of context - DO NOT USE with this function for translation as it won't be
-parsed for translation. Use only with the _x() function, which will be parsed.
+			 Name of context - DO NOT USE with this function for translation as it will not
+be parsed for translation. Use only with the <code>_x()</code> function, which
+will be parsed.
 		</td>
 	</tr>
 	</table>
@@ -626,10 +736,11 @@ parsed for translation. Use only with the _x() function, which will be parsed.
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			string
+			string|array
 		</code></td>
 		<td>
-			Translated text or original text if translation not available.
+			Translated text or original text if translation not available. Returns array
+only if getting/setting options.
 		</td>
 	</tr>
 	</table>
