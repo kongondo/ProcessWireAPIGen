@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\WireTextTools | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3631695060"></script>
+	<script type="text/javascript" src="elementlist.js?2343404681"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.125 dev</span>
+			<span>Overview version 3.0.126 dev</span>
 		</a>
 
 
@@ -483,6 +483,7 @@
 				<li><a href="function-ProcessWire.wireConfig.html">wireConfig</a></li>
 				<li><a href="function-ProcessWire.wireCopy.html">wireCopy</a></li>
 				<li><a href="function-ProcessWire.wireCount.html">wireCount</a></li>
+				<li><a href="function-ProcessWire.WireData.html">WireData</a></li>
 				<li><a href="function-ProcessWire.wireDatabase.html">wireDatabase</a></li>
 				<li><a href="function-ProcessWire.wireDate.html">wireDate</a></li>
 				<li><a href="function-ProcessWire.wireDatetime.html">wireDatetime</a></li>
@@ -626,7 +627,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 				<b>Since:</b>
 				3.0.101<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.WireTextTools.html#4-607" title="Go to source code">core/WireTextTools.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.WireTextTools.html#4-759" title="Go to source code">core/WireTextTools.php</a><br>
 	</div>
 
 
@@ -1032,6 +1033,189 @@ entities</p>
 				</div>
 
 
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="findPlaceholders" id="_findPlaceholders">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_findPlaceholders">#</a>
+		<code><a href="source-class-ProcessWire.WireTextTools.html#607-648" title="Go to source code">findPlaceholders</a>( <span>string <var>$str</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Find and return all {placeholder} tags found in given string</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find and return all {placeholder} tags found in given string</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$str</var></dt>
+					<dd><code>string</code><br>$str String that might contain field {tags}</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options - <code>has</code> (bool): Specify true to only return true or false if
+it has tags (default=false). - <code>tagOpen</code> (string): The required
+opening tag character(s), default is '{' - <code>tagClose</code> (string): The
+required closing tag character(s), default is '}'</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br>
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						3.0.126<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasPlaceholders" id="_hasPlaceholders">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasPlaceholders">#</a>
+		<code><a href="source-class-ProcessWire.WireTextTools.html#650-664" title="Go to source code">hasPlaceholders</a>( <span>string <var>$str</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Does the string have any {placeholder} tags in it?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Does the string have any {placeholder} tags in it?</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$str</var></dt>
+					<dd><code>string</code><br>$str</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options - <code>tagOpen</code> (string): The required opening tag character(s),
+default is '{' - <code>tagClose</code> (string): The required closing tag
+character(s), default is '}'</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						3.0.126<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="populatePlaceholders" id="_populatePlaceholders">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_populatePlaceholders">#</a>
+		<code><a href="source-class-ProcessWire.WireTextTools.html#666-756" title="Go to source code">populatePlaceholders</a>( <span>string <var>$str</var></span>, <span><code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|object|array <var>$vars</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Given a string ($str) and values ($vars), populate placeholder “{tags}”
+in the string with the values</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Given a string ($str) and values ($vars), populate placeholder “{tags}”
+in the string with the values</p>
+
+<ul>
+	<li>The <code>$vars</code> should be an associative array of <code>[ 'tag' =&gt;
+	'value' ]</code>.</li>
+
+	<li>The <code>$vars</code> may also be an object, in which case values will be
+	pulled as properties of the object.</li>
+</ul>
+
+<p>By default, tags are specified in the format: {first_name} where first_name
+is the name of the variable to pull from $vars, <code>{</code> is the opening
+tag character, and <code>}</code> is the closing tag char.</p>
+
+<p>The tag parser can also handle subfields and OR tags, if <code>$vars</code>
+is an object that supports that. For instance <code>{products.title}</code> is a
+subfield, and <code>{first_name|title|name}</code> is an OR tag.</p>
+
+<p>~~~~~ $vars = [ 'foo' =&gt; 'FOO!', 'bar' =&gt; 'BAR!' ]; $str = 'This is a
+test: {foo}, and this is another test: {bar}'; echo
+$sanitizer-&gt;getTextTools()-&gt;populatePlaceholders($str, $vars); // outputs:
+This is a test: FOO!, and this is another test: BAR! ~~~~~</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$str</var></dt>
+					<dd><code>string</code><br>$str The string to operate on (where the {tags} might be found)</dd>
+					<dt><var>$vars</var></dt>
+					<dd><code><code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>|object|array</code><br>$vars Object or associative array to pull replacement values from.</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Array of optional changes to default behavior, including: -
+<code>tagOpen</code> (string): The required opening tag character(s), default is
+'{' - <code>tagClose</code> (string): The optional closing tag character(s),
+default is '}' - <code>recursive</code> (bool): If replacement value contains
+tags, populate those too? (default=false) - <code>removeNullTags</code> (bool):
+If a tag resolves to a NULL, remove it? If false, tag will remain.
+(default=true) - <code>entityEncode</code> (bool): Entity encode the values
+pulled from $vars? (default=false) - <code>entityDecode</code> (bool): Entity
+decode the values pulled from $vars? (default=false) - <code>allowMarkup</code>
+(bool): Allow markup to appear in populated variables? (default=true)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>String with tags populated.<br>
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						3.0.126 Use wirePopulateStringTags() function for older versions<br>
+				</div>
 
 
 		</div>

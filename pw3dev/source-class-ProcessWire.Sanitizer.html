@@ -8,7 +8,7 @@
 	<title>File core/Sanitizer.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3631695060"></script>
+	<script type="text/javascript" src="elementlist.js?2343404681"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.125 dev</span>
+			<span>Overview version 3.0.126 dev</span>
 		</a>
 
 
@@ -484,6 +484,7 @@
 				<li><a href="function-ProcessWire.wireConfig.html">wireConfig</a></li>
 				<li><a href="function-ProcessWire.wireCopy.html">wireCopy</a></li>
 				<li><a href="function-ProcessWire.wireCount.html">wireCount</a></li>
+				<li><a href="function-ProcessWire.WireData.html">WireData</a></li>
 				<li><a href="function-ProcessWire.wireDatabase.html">wireDatabase</a></li>
 				<li><a href="function-ProcessWire.wireDate.html">wireDate</a></li>
 				<li><a href="function-ProcessWire.wireDatetime.html">wireDatetime</a></li>
@@ -599,7 +600,7 @@
 </span></span><span id="21" class="l"><a class="l" href="#21">  21: </a><span class="php-comment"> * 
 </span></span><span id="22" class="l"><a class="l" href="#22">  22: </a><span class="php-comment"> * Sanitizer methods are most commonly used with user input. As a result, the methods in this class are also accessible
 </span></span><span id="23" class="l"><a class="l" href="#23">  23: </a><span class="php-comment"> * from the `$input-&gt;get`, `$input-&gt;post` and `$input-&gt;cookie` API variables, in the same manner that they are here. 
-</span></span><span id="24" class="l"><a class="l" href="#24">  24: </a><span class="php-comment"> * This is a useful shortcut for intances where you don’t need to provide additional arguments to the sanitizer method.
+</span></span><span id="24" class="l"><a class="l" href="#24">  24: </a><span class="php-comment"> * This is a useful shortcut for instances where you don’t need to provide additional arguments to the sanitizer method.
 </span></span><span id="25" class="l"><a class="l" href="#25">  25: </a><span class="php-comment"> * Below are a few examples of this usage:
 </span></span><span id="26" class="l"><a class="l" href="#26">  26: </a><span class="php-comment"> * ~~~~~
 </span></span><span id="27" class="l"><a class="l" href="#27">  27: </a><span class="php-comment"> * // get GET variable 'id' as integer
@@ -650,7 +651,7 @@
 </span></span><span id="72" class="l"><a class="l" href="#72">  72: </a><span class="php-comment"> * $cleanValue = $sanitizer-&gt;text_entities($dirtyValue);
 </span></span><span id="73" class="l"><a class="l" href="#73">  73: </a><span class="php-comment"> * ~~~~~
 </span></span><span id="74" class="l"><a class="l" href="#74">  74: </a><span class="php-comment"> * If you append a number to any sanitizer call that returns a string, it is assumed to be maximum allowed length. For 
-</span></span><span id="75" class="l"><a class="l" href="#75">  75: </a><span class="php-comment"> * example the following would sanitize the value to be text of no more than 20 characters:
+</span></span><span id="75" class="l"><a class="l" href="#75">  75: </a><span class="php-comment"> * example, the following would sanitize the value to be text of no more than 20 characters:
 </span></span><span id="76" class="l"><a class="l" href="#76">  76: </a><span class="php-comment"> * ~~~~~
 </span></span><span id="77" class="l"><a class="l" href="#77">  77: </a><span class="php-comment"> * $cleanValue = $sanitizer-&gt;text20($dirtyValue); 
 </span></span><span id="78" class="l"><a class="l" href="#78">  78: </a><span class="php-comment"> * ~~~~~
@@ -661,7 +662,7 @@
 </span></span><span id="83" class="l"><a class="l" href="#83">  83: </a><span class="php-comment"> * with multiple sanitizer calls. 
 </span></span><span id="84" class="l"><a class="l" href="#84">  84: </a><span class="php-comment"> * 
 </span></span><span id="85" class="l"><a class="l" href="#85">  85: </a><span class="php-comment"> * Most methods in the Sanitizer class focus on sanitization rather than validation, with a few exceptions. You can 
-</span></span><span id="86" class="l"><a class="l" href="#86">  86: </a><span class="php-comment"> * convert ta sanitizer call to validation call by calling the `validate()` method with the name of the sanitizer and the
+</span></span><span id="86" class="l"><a class="l" href="#86">  86: </a><span class="php-comment"> * convert a sanitizer call to validation call by calling the `validate()` method with the name of the sanitizer and the
 </span></span><span id="87" class="l"><a class="l" href="#87">  87: </a><span class="php-comment"> * value. A validation call simply implies that if the value is modified by sanitization then it is considered invalid
 </span></span><span id="88" class="l"><a class="l" href="#88">  88: </a><span class="php-comment"> * and thus it’ll return a non-value rather than a sanitized value. See the `Sanitizer::validate()` and 
 </span></span><span id="89" class="l"><a class="l" href="#89">  89: </a><span class="php-comment"> * `Sanitizer::valid()` methods for usage details. 

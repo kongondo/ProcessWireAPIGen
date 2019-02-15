@@ -8,7 +8,7 @@
 	<title>File core/ImageInspector.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3631695060"></script>
+	<script type="text/javascript" src="elementlist.js?2343404681"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -17,7 +17,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.125 dev</span>
+			<span>Overview version 3.0.126 dev</span>
 		</a>
 
 
@@ -484,6 +484,7 @@
 				<li><a href="function-ProcessWire.wireConfig.html">wireConfig</a></li>
 				<li><a href="function-ProcessWire.wireCopy.html">wireCopy</a></li>
 				<li><a href="function-ProcessWire.wireCount.html">wireCount</a></li>
+				<li><a href="function-ProcessWire.WireData.html">WireData</a></li>
 				<li><a href="function-ProcessWire.wireDatabase.html">wireDatabase</a></li>
 				<li><a href="function-ProcessWire.wireDate.html">wireDate</a></li>
 				<li><a href="function-ProcessWire.wireDatetime.html">wireDatetime</a></li>
@@ -713,7 +714,7 @@
 </span><span id="135" class="l"><a class="l" href="#135">135: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$additionalInfo</span>) &amp;&amp; <span class="php-var">$parseAppmarker</span>) {
 </span><span id="136" class="l"><a class="l" href="#136">136: </a>            <span class="php-var">$appmarker</span> = <span class="php-keyword1">array</span>();
 </span><span id="137" class="l"><a class="l" href="#137">137: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$additionalInfo</span> <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$v</span>) {
-</span><span id="138" class="l"><a class="l" href="#138">138: </a>                <span class="php-var">$appmarker</span>[<span class="php-var">$k</span>] = <span class="php-keyword2">substr</span>(<span class="php-var">$v</span>, <span class="php-num">0</span>, <span class="php-keyword2">strpos</span>(<span class="php-var">$v</span>, <span class="php-keyword2">chr</span>(<span class="php-keyword1">null</span>)));
+</span><span id="138" class="l"><a class="l" href="#138">138: </a>                <span class="php-var">$appmarker</span>[<span class="php-var">$k</span>] = <span class="php-keyword2">substr</span>(<span class="php-var">$v</span>, <span class="php-num">0</span>, <span class="php-keyword2">strpos</span>(<span class="php-var">$v</span>, <span class="php-keyword2">chr</span>(<span class="php-num">0</span>)));
 </span><span id="139" class="l"><a class="l" href="#139">139: </a>            }
 </span><span id="140" class="l"><a class="l" href="#140">140: </a>            <span class="php-var">$this</span>-&gt;info[<span class="php-quote">'appmarker'</span>] = <span class="php-var">$appmarker</span>;
 </span><span id="141" class="l"><a class="l" href="#141">141: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$additionalInfo</span>[<span class="php-quote">'APP13'</span>])) {
@@ -736,7 +737,7 @@
 </span></span><span id="158" class="l"><a class="l" href="#158">158: </a><span class="php-comment">     * Check orientation (@horst)
 </span></span><span id="159" class="l"><a class="l" href="#159">159: </a><span class="php-comment">     *
 </span></span><span id="160" class="l"><a class="l" href="#160">160: </a><span class="php-comment">     * @param array
-</span></span><span id="161" class="l"><a class="l" href="#161">161: </a><span class="php-comment">     * @return bool
+</span></span><span id="161" class="l"><a class="l" href="#161">161: </a><span class="php-comment">     * @return array
 </span></span><span id="162" class="l"><a class="l" href="#162">162: </a><span class="php-comment">     * @todo there is already a checkOrientation method in ImageSizerEngine - do we need both?
 </span></span><span id="163" class="l"><a class="l" href="#163">163: </a><span class="php-comment">     *
 </span></span><span id="164" class="l"><a class="l" href="#164">164: </a><span class="php-comment">     */</span>
@@ -851,13 +852,11 @@
 </span><span id="273" class="l"><a class="l" href="#273">273: </a>    <span class="php-comment">/**
 </span></span><span id="274" class="l"><a class="l" href="#274">274: </a><span class="php-comment">     * parse JPEG Image and collect information into $this-&gt;info
 </span></span><span id="275" class="l"><a class="l" href="#275">275: </a><span class="php-comment">     *
-</span></span><span id="276" class="l"><a class="l" href="#276">276: </a><span class="php-comment">     * @return bool
-</span></span><span id="277" class="l"><a class="l" href="#277">277: </a><span class="php-comment">     *
-</span></span><span id="278" class="l"><a class="l" href="#278">278: </a><span class="php-comment">     */</span>
-</span><span id="279" class="l"><a class="l" href="#279">279: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_loadImageInfoJpg" href="#_loadImageInfoJpg">loadImageInfoJpg</a>() {
-</span><span id="280" class="l"><a class="l" href="#280">280: </a>    }
-</span><span id="281" class="l"><a class="l" href="#281">281: </a>
-</span><span id="282" class="l"><a class="l" href="#282">282: </a></span>}</code></pre>
+</span></span><span id="276" class="l"><a class="l" href="#276">276: </a><span class="php-comment">     */</span>
+</span><span id="277" class="l"><a class="l" href="#277">277: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_loadImageInfoJpg" href="#_loadImageInfoJpg">loadImageInfoJpg</a>() {
+</span><span id="278" class="l"><a class="l" href="#278">278: </a>    }
+</span><span id="279" class="l"><a class="l" href="#279">279: </a>
+</span><span id="280" class="l"><a class="l" href="#280">280: </a></span>}</code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

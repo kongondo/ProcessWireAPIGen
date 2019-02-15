@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Pageimage | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3631695060"></script>
+	<script type="text/javascript" src="elementlist.js?2343404681"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.125 dev</span>
+			<span>Overview version 3.0.126 dev</span>
 		</a>
 
 
@@ -483,6 +483,7 @@
 				<li><a href="function-ProcessWire.wireConfig.html">wireConfig</a></li>
 				<li><a href="function-ProcessWire.wireCopy.html">wireCopy</a></li>
 				<li><a href="function-ProcessWire.wireCount.html">wireCount</a></li>
+				<li><a href="function-ProcessWire.WireData.html">WireData</a></li>
 				<li><a href="function-ProcessWire.wireDatabase.html">wireDatabase</a></li>
 				<li><a href="function-ProcessWire.wireDate.html">wireDate</a></li>
 				<li><a href="function-ProcessWire.wireDatetime.html">wireDatetime</a></li>
@@ -655,7 +656,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Pageimage.html#4-1770" title="Go to source code">core/Pageimage.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Pageimage.html#4-1827" title="Go to source code">core/Pageimage.php</a><br>
 	</div>
 
 
@@ -2260,19 +2261,19 @@ resized from.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____render">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1656-1719" title="Go to source code">___render</a>( <span>string <var>$tpl</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1656-1776" title="Go to source code">___render</a>( <span>string|array <var>$markup</var> = <span class="php-quote">''</span></span>, <span>array|string <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Render markup for this image (optionally using a provided template
-string)</p>
+<p>Render markup for this image (optionally using a provided markup template
+string and/or image size options)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Render markup for this image (optionally using a provided template
-string)</p>
+<p>Render markup for this image (optionally using a provided markup template
+string and/or image size options)</p>
 
 <p>Given template string can contain any of the placeholders, which will be
 replaced: - <code>{url}</code> or <code>{src}</code> Image URL (typically used
@@ -2289,17 +2290,39 @@ the properties above to refer to original image. If there is no original image
 then these just refer back to the current image.</p>
 
 <p>~~~~~ $image = $page-&gt;images-&gt;first(); if($image) { // default output
-echo $image-&gt;render(); // custom output echo $image-&gt;render("&lt;img
-class='pw-image' src='{url}' alt='{alt}'&gt;"); // custom output with link to
-original/full-size echo $image-&gt;render("<a href="{original.url}">&lt;img
-src='{url}' alt='{alt}'&gt;</a>"); } ~~~~~</p>
+echo $image-&gt;render();<br />
+// custom output echo $image-&gt;render("&lt;img class='pw-image' src='{url}'
+alt='{alt}'&gt;");<br />
+// custom output with options echo $image-&gt;render("&lt;img src='{url}'
+alt='{alt}'&gt;", [ 'width' =&gt; 300 ]);<br />
+// options can go in first argument if you prefer echo $image-&gt;render([
+'width' =&gt; 300, 'height' =&gt; 200 ]);<br />
+// if only width/height are needed, they can also be specified as a string (1st
+or 2nd arg) echo $image-&gt;render('300x200');<br />
+// custom output with link to original/full-size and square crop of 300x300 for
+thumbnail echo $image-&gt;render([ 'markup' =&gt; "<a
+href="{original.url}">&lt;img src='{url}' alt='{alt}'&gt;</a>", 'width' =&gt;
+300, 'height' =&gt; 300 ]); } ~~~~~</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$tpl</var></dt>
-					<dd><code>string</code><br>$tpl</dd>
+					<dt><var>$markup</var></dt>
+					<dd><code>string|array</code><br>$markup Markup template string or optional $options array if you do not want the
+template string here.</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array|string</code><br>$options Optionally resize image with these options sent to size() method: -
+<code>width</code> (int): Target width or 0 for current image size (or
+proportional if height specified). - <code>height</code> (int): Target height or
+0 for current image size (or proportional if width specified). -
+<code>markup</code> (string): Markup template string (same as $markup argument),
+or omit for default (same as $markup argument). - <code>link</code> (bool): Link
+image to original size? Though you may prefer to do this with your own $markup
+(see examples). (default=false) - Plus any option available to the $options
+argument on the <code>Pageimage::size()</code> method. - If you only need width
+and/or height, you can specify a width x height string, i.e. 123x456 (use 0 for
+proportional).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -2308,6 +2331,14 @@ src='{url}' alt='{alt}'&gt;</a>"); } ~~~~~</p>
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.126<br>
+				</div>
+				<h4>See</h4>
+				<div class="list">
+						Pageimages::render()<br>
+				</div>
 
 
 		</div>
@@ -2324,7 +2355,7 @@ src='{url}' alt='{alt}'&gt;</a>"); } ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____install">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1721-1738" title="Go to source code">___install</a>( <span>string <var>$filename</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1778-1795" title="Go to source code">___install</a>( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2373,7 +2404,7 @@ populating it's name</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.Pageimage.html#1740-1768" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.Pageimage.html#1797-1825" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
