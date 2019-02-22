@@ -8,7 +8,7 @@
 	<title>File core/Selectors.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2343404681"></script>
+	<script type="text/javascript" src="elementlist.js?2217945483"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -1868,34 +1868,45 @@
 </span><span id="1289" class="l"><a class="l" href="#1289">1289: </a>        
 </span><span id="1290" class="l"><a class="l" href="#1290">1290: </a>        <span class="php-keyword1">return</span> <span class="php-var">$all</span> ? <span class="php-var">$matches</span> : <span class="php-var">$selector</span>;
 </span><span id="1291" class="l"><a class="l" href="#1291">1291: </a>    }
-</span><span id="1292" class="l"><a class="l" href="#1292">1292: </a>
-</span><span id="1293" class="l"><a class="l" href="#1293">1293: </a>    <span class="php-comment">/**
-</span></span><span id="1294" class="l"><a class="l" href="#1294">1294: </a><span class="php-comment">     * See if the given $selector specifies the given $field somewhere
-</span></span><span id="1295" class="l"><a class="l" href="#1295">1295: </a><span class="php-comment">     * 
-</span></span><span id="1296" class="l"><a class="l" href="#1296">1296: </a><span class="php-comment">     * @param array|string|Selectors $selector
-</span></span><span id="1297" class="l"><a class="l" href="#1297">1297: </a><span class="php-comment">     * @param string $field
-</span></span><span id="1298" class="l"><a class="l" href="#1298">1298: </a><span class="php-comment">     * @return bool
-</span></span><span id="1299" class="l"><a class="l" href="#1299">1299: </a><span class="php-comment">     * 
-</span></span><span id="1300" class="l"><a class="l" href="#1300">1300: </a><span class="php-comment">    public static function selectorHasField($selector, $field) {
-</span></span><span id="1301" class="l"><a class="l" href="#1301">1301: </a><span class="php-comment">        
-</span></span><span id="1302" class="l"><a class="l" href="#1302">1302: </a><span class="php-comment">        if(is_object($selector)) $selector = (string) $selector;
-</span></span><span id="1303" class="l"><a class="l" href="#1303">1303: </a><span class="php-comment">        
-</span></span><span id="1304" class="l"><a class="l" href="#1304">1304: </a><span class="php-comment">        if(is_array($selector)) {
-</span></span><span id="1305" class="l"><a class="l" href="#1305">1305: </a><span class="php-comment">            if(array_key_exists($field, $selector)) return true;
-</span></span><span id="1306" class="l"><a class="l" href="#1306">1306: </a><span class="php-comment">            $test = print_r($selector, true);
-</span></span><span id="1307" class="l"><a class="l" href="#1307">1307: </a><span class="php-comment">            if(strpos($test, $field) === false) return false; 
-</span></span><span id="1308" class="l"><a class="l" href="#1308">1308: </a><span class="php-comment">            
-</span></span><span id="1309" class="l"><a class="l" href="#1309">1309: </a><span class="php-comment">            
-</span></span><span id="1310" class="l"><a class="l" href="#1310">1310: </a><span class="php-comment">        } else if(is_string($selector)) {
-</span></span><span id="1311" class="l"><a class="l" href="#1311">1311: </a><span class="php-comment">            if(strpos($selector, $field) === false) return false; // quick exit
-</span></span><span id="1312" class="l"><a class="l" href="#1312">1312: </a><span class="php-comment">        }
-</span></span><span id="1313" class="l"><a class="l" href="#1313">1313: </a><span class="php-comment">    }
-</span></span><span id="1314" class="l"><a class="l" href="#1314">1314: </a><span class="php-comment">     */</span>
-</span><span id="1315" class="l"><a class="l" href="#1315">1315: </a>
-</span><span id="1316" class="l"><a class="l" href="#1316">1316: </a>}
-</span><span id="1317" class="l"><a class="l" href="#1317">1317: </a>
-</span><span id="1318" class="l"><a class="l" href="#1318">1318: </a>Selector::loadSelectorTypes();
-</span><span id="1319" class="l"><a class="l" href="#1319">1319: </a></span></code></pre>
+</span><span id="1292" class="l"><a class="l" href="#1292">1292: </a>    
+</span><span id="1293" class="l"><a class="l" href="#1293">1293: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___debugInfo" href="#___debugInfo">__debugInfo</a>() {
+</span><span id="1294" class="l"><a class="l" href="#1294">1294: </a>        <span class="php-var">$info</span> = parent::__debugInfo();
+</span><span id="1295" class="l"><a class="l" href="#1295">1295: </a>        <span class="php-var">$info</span>[<span class="php-quote">'string'</span>] = <span class="php-var">$this</span>-&gt;__toString();
+</span><span id="1296" class="l"><a class="l" href="#1296">1296: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>;
+</span><span id="1297" class="l"><a class="l" href="#1297">1297: </a>    }
+</span><span id="1298" class="l"><a class="l" href="#1298">1298: </a>    
+</span><span id="1299" class="l"><a class="l" href="#1299">1299: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_debugInfoItem" href="#_debugInfoItem">debugInfoItem</a>(<span class="php-var">$item</span>) {
+</span><span id="1300" class="l"><a class="l" href="#1300">1300: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$item</span> <span class="php-keyword1">instanceof</span> Selector) <span class="php-keyword1">return</span> <span class="php-var">$item</span>-&gt;__debugInfo();
+</span><span id="1301" class="l"><a class="l" href="#1301">1301: </a>        <span class="php-keyword1">return</span> parent::debugInfoItem(<span class="php-var">$item</span>);
+</span><span id="1302" class="l"><a class="l" href="#1302">1302: </a>    }
+</span><span id="1303" class="l"><a class="l" href="#1303">1303: </a>
+</span><span id="1304" class="l"><a class="l" href="#1304">1304: </a>    <span class="php-comment">/**
+</span></span><span id="1305" class="l"><a class="l" href="#1305">1305: </a><span class="php-comment">     * See if the given $selector specifies the given $field somewhere
+</span></span><span id="1306" class="l"><a class="l" href="#1306">1306: </a><span class="php-comment">     * 
+</span></span><span id="1307" class="l"><a class="l" href="#1307">1307: </a><span class="php-comment">     * @param array|string|Selectors $selector
+</span></span><span id="1308" class="l"><a class="l" href="#1308">1308: </a><span class="php-comment">     * @param string $field
+</span></span><span id="1309" class="l"><a class="l" href="#1309">1309: </a><span class="php-comment">     * @return bool
+</span></span><span id="1310" class="l"><a class="l" href="#1310">1310: </a><span class="php-comment">     * 
+</span></span><span id="1311" class="l"><a class="l" href="#1311">1311: </a><span class="php-comment">    public static function selectorHasField($selector, $field) {
+</span></span><span id="1312" class="l"><a class="l" href="#1312">1312: </a><span class="php-comment">        
+</span></span><span id="1313" class="l"><a class="l" href="#1313">1313: </a><span class="php-comment">        if(is_object($selector)) $selector = (string) $selector;
+</span></span><span id="1314" class="l"><a class="l" href="#1314">1314: </a><span class="php-comment">        
+</span></span><span id="1315" class="l"><a class="l" href="#1315">1315: </a><span class="php-comment">        if(is_array($selector)) {
+</span></span><span id="1316" class="l"><a class="l" href="#1316">1316: </a><span class="php-comment">            if(array_key_exists($field, $selector)) return true;
+</span></span><span id="1317" class="l"><a class="l" href="#1317">1317: </a><span class="php-comment">            $test = print_r($selector, true);
+</span></span><span id="1318" class="l"><a class="l" href="#1318">1318: </a><span class="php-comment">            if(strpos($test, $field) === false) return false; 
+</span></span><span id="1319" class="l"><a class="l" href="#1319">1319: </a><span class="php-comment">            
+</span></span><span id="1320" class="l"><a class="l" href="#1320">1320: </a><span class="php-comment">            
+</span></span><span id="1321" class="l"><a class="l" href="#1321">1321: </a><span class="php-comment">        } else if(is_string($selector)) {
+</span></span><span id="1322" class="l"><a class="l" href="#1322">1322: </a><span class="php-comment">            if(strpos($selector, $field) === false) return false; // quick exit
+</span></span><span id="1323" class="l"><a class="l" href="#1323">1323: </a><span class="php-comment">        }
+</span></span><span id="1324" class="l"><a class="l" href="#1324">1324: </a><span class="php-comment">    }
+</span></span><span id="1325" class="l"><a class="l" href="#1325">1325: </a><span class="php-comment">     */</span>
+</span><span id="1326" class="l"><a class="l" href="#1326">1326: </a>
+</span><span id="1327" class="l"><a class="l" href="#1327">1327: </a>}
+</span><span id="1328" class="l"><a class="l" href="#1328">1328: </a>
+</span><span id="1329" class="l"><a class="l" href="#1329">1329: </a>Selector::loadSelectorTypes();
+</span><span id="1330" class="l"><a class="l" href="#1330">1330: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

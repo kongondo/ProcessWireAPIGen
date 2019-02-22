@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PaginatedArray | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2343404681"></script>
+	<script type="text/javascript" src="elementlist.js?2217945483"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -658,7 +658,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PaginatedArray.html#4-304" title="Go to source code">core/PaginatedArray.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PaginatedArray.html#4-318" title="Go to source code">core/PaginatedArray.php</a><br>
 	</div>
 
 
@@ -1141,7 +1141,7 @@ WireArray. - <code>first</code> (mixed): First item in the WireArray.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPaginationString">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#214-287" title="Go to source code">getPaginationString</a>( <span>string|array <var>$label</var> = <span class="php-quote">''</span></span>, <span>boolean|array <var>$usePageNum</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#214-301" title="Go to source code">getPaginationString</a>( <span>string|array <var>$label</var> = <span class="php-quote">''</span></span>, <span>boolean|array <var>$usePageNum</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1156,9 +1156,18 @@ WireArray. - <code>first</code> (mixed): First item in the WireArray.</dd>
 <p>This returns a string of <code>1 to 10 of 30</code> (items) or <code>1 of
 10</code> (pages) for example.</p>
 
-<p>You can optionally replace either of the arguments with an $options array
-instead. See the third example below for all options you can specify. (since
-3.0.108)</p>
+<p>Since 3.0.108 you can optionally replace either of the arguments with an
+$options o array instead, and you can specify any of these options:<br />
+- <code>label</code> (string): Label to use for items, same as $label argument
+(default=). - `zeroLabel` (string): Alternate label to use if there are zero
+items, since 3.0.127 (default=). - <code>usePageNum</code> (bool): Specify true
+to show page numbers rather than item numbers (default=false). -
+<code>count</code> (int): Use this count rather than count in this
+PaginatedArray (default=-1, disabled). - <code>start</code> (int): Use this
+start rather than start in this PaginatedArray (default=-1, disabled). -
+<code>limit</code> (int): Use this limit rather than limit in this
+PaginatedArray (default=-1, disabled). - <code>total</code> (int): Use this
+total rather than total in this PaginatedArray (default=-1, disabled).</p>
 
 <p>~~~~~ // Get string like "Items 1 to 25 of 500" echo
 $items-&gt;getPaginationString('Items');</p>
@@ -1167,9 +1176,9 @@ $items-&gt;getPaginationString('Items');</p>
 true);</p>
 
 <p>// Get string where you specify all options echo
-$items-&gt;getPaginationString(array( 'label' =&gt; 'Items', 'usePageNum' =&gt;
-false, 'count' =&gt; 10, 'start' =&gt; 0, 'limit' =&gt; 10, 'total' =&gt; 100
-)); ~~~~~</p>
+$items-&gt;getPaginationString(array( 'label' =&gt; 'Items', 'zeroLabel' =&gt;
+'No items found', // 3.0.127+ only 'usePageNum' =&gt; false, 'count' =&gt; 10,
+'start' =&gt; 0, 'limit' =&gt; 10, 'total' =&gt; 100 )); ~~~~~</p>
 
 <p>#pw-group-other</p>
 
@@ -1207,7 +1216,7 @@ false, 'count' =&gt; 10, 'start' =&gt; 0, 'limit' =&gt; 10, 'total' =&gt; 100
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.PaginatedArray.html#290-303" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.PaginatedArray.html#304-317" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -1257,6 +1266,7 @@ false, 'count' =&gt; 10, 'start' =&gt; 0, 'limit' =&gt; 10, 'total' =&gt; 100
 			<a href="class-ProcessWire.WireArray.html#_append">append()</a>, 
 			<a href="class-ProcessWire.WireArray.html#_count">count()</a>, 
 			<a href="class-ProcessWire.WireArray.html#_data">data()</a>, 
+			<a href="class-ProcessWire.WireArray.html#_debugInfoItem">debugInfoItem()</a>, 
 			<a href="class-ProcessWire.WireArray.html#_each">each()</a>, 
 			<a href="class-ProcessWire.WireArray.html#_eq">eq()</a>, 
 			<a href="class-ProcessWire.WireArray.html#_explode">explode()</a>, 

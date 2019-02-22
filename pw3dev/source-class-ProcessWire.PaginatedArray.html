@@ -8,7 +8,7 @@
 	<title>File core/PaginatedArray.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2343404681"></script>
+	<script type="text/javascript" src="elementlist.js?2217945483"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -795,92 +795,106 @@
 </span></span><span id="216" class="l"><a class="l" href="#216">216: </a><span class="php-comment">     * 
 </span></span><span id="217" class="l"><a class="l" href="#217">217: </a><span class="php-comment">     * This returns a string of `1 to 10 of 30` (items) or `1 of 10` (pages) for example.
 </span></span><span id="218" class="l"><a class="l" href="#218">218: </a><span class="php-comment">     * 
-</span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">     * You can optionally replace either of the arguments with an $options array instead. 
-</span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">     * See the third example below for all options you can specify. (since 3.0.108)
+</span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">     * Since 3.0.108 you can optionally replace either of the arguments with an $options o
+</span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">     * array instead, and you can specify any of these options: 
 </span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">     * 
-</span></span><span id="222" class="l"><a class="l" href="#222">222: </a><span class="php-comment">     * ~~~~~
-</span></span><span id="223" class="l"><a class="l" href="#223">223: </a><span class="php-comment">     * // Get string like &quot;Items 1 to 25 of 500&quot;
-</span></span><span id="224" class="l"><a class="l" href="#224">224: </a><span class="php-comment">     * echo $items-&gt;getPaginationString('Items');
-</span></span><span id="225" class="l"><a class="l" href="#225">225: </a><span class="php-comment">     * 
-</span></span><span id="226" class="l"><a class="l" href="#226">226: </a><span class="php-comment">     * // Get string like &quot;Page 1 of 10&quot;
-</span></span><span id="227" class="l"><a class="l" href="#227">227: </a><span class="php-comment">     * echo $items-&gt;getPaginationString('Page', true);
-</span></span><span id="228" class="l"><a class="l" href="#228">228: </a><span class="php-comment">     * 
-</span></span><span id="229" class="l"><a class="l" href="#229">229: </a><span class="php-comment">     * // Get string where you specify all options
-</span></span><span id="230" class="l"><a class="l" href="#230">230: </a><span class="php-comment">     * echo $items-&gt;getPaginationString(array(
-</span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">     *   'label' =&gt; 'Items',
-</span></span><span id="232" class="l"><a class="l" href="#232">232: </a><span class="php-comment">     *   'usePageNum' =&gt; false,
-</span></span><span id="233" class="l"><a class="l" href="#233">233: </a><span class="php-comment">     *   'count' =&gt; 10, 
-</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">     *   'start' =&gt; 0, 
-</span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">     *   'limit' =&gt; 10, 
-</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     *   'total' =&gt; 100
-</span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">     * ));
-</span></span><span id="238" class="l"><a class="l" href="#238">238: </a><span class="php-comment">     * ~~~~~
-</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">     * 
-</span></span><span id="240" class="l"><a class="l" href="#240">240: </a><span class="php-comment">     * #pw-group-other
-</span></span><span id="241" class="l"><a class="l" href="#241">241: </a><span class="php-comment">     * 
-</span></span><span id="242" class="l"><a class="l" href="#242">242: </a><span class="php-comment">     * @param string|array $label Label to identify item type, i.e. &quot;Items&quot; or &quot;Page&quot;, etc. (default=empty).
-</span></span><span id="243" class="l"><a class="l" href="#243">243: </a><span class="php-comment">     * @param bool|array $usePageNum Specify true to show page numbers rather than item numbers (default=false). 
-</span></span><span id="244" class="l"><a class="l" href="#244">244: </a><span class="php-comment">     * @return string Formatted string
-</span></span><span id="245" class="l"><a class="l" href="#245">245: </a><span class="php-comment">     * 
-</span></span><span id="246" class="l"><a class="l" href="#246">246: </a><span class="php-comment">     */</span>
-</span><span id="247" class="l"><a class="l" href="#247">247: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getPaginationString" href="#_getPaginationString">getPaginationString</a>(<span class="php-var">$label</span> = <span class="php-quote">''</span>, <span class="php-var">$usePageNum</span> = <span class="php-keyword1">false</span>) {
-</span><span id="248" class="l"><a class="l" href="#248">248: </a>        
-</span><span id="249" class="l"><a class="l" href="#249">249: </a>        <span class="php-var">$options</span> = <span class="php-keyword1">array</span>(
-</span><span id="250" class="l"><a class="l" href="#250">250: </a>            <span class="php-quote">'label'</span> =&gt; <span class="php-keyword2">is_string</span>(<span class="php-var">$label</span>) ? <span class="php-var">$label</span> : <span class="php-quote">''</span>,
-</span><span id="251" class="l"><a class="l" href="#251">251: </a>            <span class="php-quote">'usePageNum'</span> =&gt; <span class="php-keyword2">is_bool</span>(<span class="php-var">$usePageNum</span>) ? <span class="php-var">$usePageNum</span> : <span class="php-keyword1">false</span>,
-</span><span id="252" class="l"><a class="l" href="#252">252: </a>            <span class="php-quote">'count'</span> =&gt; -<span class="php-num">1</span>,
-</span><span id="253" class="l"><a class="l" href="#253">253: </a>            <span class="php-quote">'start'</span> =&gt; -<span class="php-num">1</span>,
-</span><span id="254" class="l"><a class="l" href="#254">254: </a>            <span class="php-quote">'limit'</span> =&gt; -<span class="php-num">1</span>, 
-</span><span id="255" class="l"><a class="l" href="#255">255: </a>            <span class="php-quote">'total'</span> =&gt; -<span class="php-num">1</span>
-</span><span id="256" class="l"><a class="l" href="#256">256: </a>        );
+</span></span><span id="222" class="l"><a class="l" href="#222">222: </a><span class="php-comment">     *  - `label` (string): Label to use for items, same as $label argument (default='').
+</span></span><span id="223" class="l"><a class="l" href="#223">223: </a><span class="php-comment">     *  - `zeroLabel` (string): Alternate label to use if there are zero items, since 3.0.127 (default='').
+</span></span><span id="224" class="l"><a class="l" href="#224">224: </a><span class="php-comment">     *  - `usePageNum` (bool): Specify true to show page numbers rather than item numbers (default=false). 
+</span></span><span id="225" class="l"><a class="l" href="#225">225: </a><span class="php-comment">     *  - `count` (int): Use this count rather than count in this PaginatedArray (default=-1, disabled).
+</span></span><span id="226" class="l"><a class="l" href="#226">226: </a><span class="php-comment">     *  - `start` (int): Use this start rather than start in this PaginatedArray (default=-1, disabled).
+</span></span><span id="227" class="l"><a class="l" href="#227">227: </a><span class="php-comment">     *  - `limit` (int): Use this limit rather than limit in this PaginatedArray (default=-1, disabled).
+</span></span><span id="228" class="l"><a class="l" href="#228">228: </a><span class="php-comment">     *  - `total` (int): Use this total rather than total in this PaginatedArray (default=-1, disabled). 
+</span></span><span id="229" class="l"><a class="l" href="#229">229: </a><span class="php-comment">     * 
+</span></span><span id="230" class="l"><a class="l" href="#230">230: </a><span class="php-comment">     * ~~~~~
+</span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">     * // Get string like &quot;Items 1 to 25 of 500&quot;
+</span></span><span id="232" class="l"><a class="l" href="#232">232: </a><span class="php-comment">     * echo $items-&gt;getPaginationString('Items');
+</span></span><span id="233" class="l"><a class="l" href="#233">233: </a><span class="php-comment">     * 
+</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">     * // Get string like &quot;Page 1 of 10&quot;
+</span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">     * echo $items-&gt;getPaginationString('Page', true);
+</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     * 
+</span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">     * // Get string where you specify all options
+</span></span><span id="238" class="l"><a class="l" href="#238">238: </a><span class="php-comment">     * echo $items-&gt;getPaginationString(array(
+</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">     *   'label' =&gt; 'Items',
+</span></span><span id="240" class="l"><a class="l" href="#240">240: </a><span class="php-comment">     *   'zeroLabel' =&gt; 'No items found', // 3.0.127+ only
+</span></span><span id="241" class="l"><a class="l" href="#241">241: </a><span class="php-comment">     *   'usePageNum' =&gt; false,
+</span></span><span id="242" class="l"><a class="l" href="#242">242: </a><span class="php-comment">     *   'count' =&gt; 10, 
+</span></span><span id="243" class="l"><a class="l" href="#243">243: </a><span class="php-comment">     *   'start' =&gt; 0, 
+</span></span><span id="244" class="l"><a class="l" href="#244">244: </a><span class="php-comment">     *   'limit' =&gt; 10, 
+</span></span><span id="245" class="l"><a class="l" href="#245">245: </a><span class="php-comment">     *   'total' =&gt; 100
+</span></span><span id="246" class="l"><a class="l" href="#246">246: </a><span class="php-comment">     * ));
+</span></span><span id="247" class="l"><a class="l" href="#247">247: </a><span class="php-comment">     * ~~~~~
+</span></span><span id="248" class="l"><a class="l" href="#248">248: </a><span class="php-comment">     * 
+</span></span><span id="249" class="l"><a class="l" href="#249">249: </a><span class="php-comment">     * #pw-group-other
+</span></span><span id="250" class="l"><a class="l" href="#250">250: </a><span class="php-comment">     * 
+</span></span><span id="251" class="l"><a class="l" href="#251">251: </a><span class="php-comment">     * @param string|array $label Label to identify item type, i.e. &quot;Items&quot; or &quot;Page&quot;, etc. (default=empty).
+</span></span><span id="252" class="l"><a class="l" href="#252">252: </a><span class="php-comment">     * @param bool|array $usePageNum Specify true to show page numbers rather than item numbers (default=false). 
+</span></span><span id="253" class="l"><a class="l" href="#253">253: </a><span class="php-comment">     * @return string Formatted string
+</span></span><span id="254" class="l"><a class="l" href="#254">254: </a><span class="php-comment">     * 
+</span></span><span id="255" class="l"><a class="l" href="#255">255: </a><span class="php-comment">     */</span>
+</span><span id="256" class="l"><a class="l" href="#256">256: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getPaginationString" href="#_getPaginationString">getPaginationString</a>(<span class="php-var">$label</span> = <span class="php-quote">''</span>, <span class="php-var">$usePageNum</span> = <span class="php-keyword1">false</span>) {
 </span><span id="257" class="l"><a class="l" href="#257">257: </a>        
-</span><span id="258" class="l"><a class="l" href="#258">258: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$label</span>)) <span class="php-var">$options</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$options</span>, <span class="php-var">$label</span>);
-</span><span id="259" class="l"><a class="l" href="#259">259: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$usePageNum</span>)) <span class="php-var">$options</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$options</span>, <span class="php-var">$usePageNum</span>);
-</span><span id="260" class="l"><a class="l" href="#260">260: </a>        
-</span><span id="261" class="l"><a class="l" href="#261">261: </a>        <span class="php-var">$label</span> = <span class="php-var">$options</span>[<span class="php-quote">'label'</span>];
-</span><span id="262" class="l"><a class="l" href="#262">262: </a>        <span class="php-var">$usePageNum</span> = <span class="php-var">$options</span>[<span class="php-quote">'usePageNum'</span>];
-</span><span id="263" class="l"><a class="l" href="#263">263: </a>        
-</span><span id="264" class="l"><a class="l" href="#264">264: </a>        <span class="php-var">$count</span> = <span class="php-var">$options</span>[<span class="php-quote">'count'</span>] &gt; -<span class="php-num">1</span> ? <span class="php-var">$options</span>[<span class="php-quote">'count'</span>] : <span class="php-var">$this</span>-&gt;<span class="php-keyword2">count</span>();
-</span><span id="265" class="l"><a class="l" href="#265">265: </a>        <span class="php-var">$start</span> = <span class="php-var">$options</span>[<span class="php-quote">'start'</span>] &gt; -<span class="php-num">1</span> ? <span class="php-var">$options</span>[<span class="php-quote">'start'</span>] : <span class="php-var">$this</span>-&gt;getStart();
-</span><span id="266" class="l"><a class="l" href="#266">266: </a>        <span class="php-var">$limit</span> = <span class="php-var">$options</span>[<span class="php-quote">'limit'</span>] &gt; -<span class="php-num">1</span> ? <span class="php-var">$options</span>[<span class="php-quote">'limit'</span>] : <span class="php-var">$this</span>-&gt;getLimit();
-</span><span id="267" class="l"><a class="l" href="#267">267: </a>        <span class="php-var">$total</span> = <span class="php-var">$options</span>[<span class="php-quote">'total'</span>] &gt; -<span class="php-num">1</span> ? <span class="php-var">$options</span>[<span class="php-quote">'total'</span>] : <span class="php-var">$this</span>-&gt;getTotal();
-</span><span id="268" class="l"><a class="l" href="#268">268: </a>        
-</span><span id="269" class="l"><a class="l" href="#269">269: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$usePageNum</span>) {
-</span><span id="270" class="l"><a class="l" href="#270">270: </a>            
-</span><span id="271" class="l"><a class="l" href="#271">271: </a>            <span class="php-var">$pageNum</span> = <span class="php-var">$start</span> ? (<span class="php-var">$start</span> / <span class="php-var">$limit</span>) + <span class="php-num">1</span> : <span class="php-num">1</span>;
-</span><span id="272" class="l"><a class="l" href="#272">272: </a>            <span class="php-var">$totalPages</span> = <span class="php-keyword2">ceil</span>(<span class="php-var">$total</span> / <span class="php-var">$limit</span>); 
-</span><span id="273" class="l"><a class="l" href="#273">273: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$totalPages</span>) <span class="php-var">$pageNum</span> = <span class="php-num">0</span>;
-</span><span id="274" class="l"><a class="l" href="#274">274: </a>            <span class="php-var">$str</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'%1$s %2$d of %3$d'</span>), <span class="php-var">$label</span>, <span class="php-var">$pageNum</span>, <span class="php-var">$totalPages</span>); <span class="php-comment">// Page quantity, i.e. Page 1 of 3</span>
-</span><span id="275" class="l"><a class="l" href="#275">275: </a>            
-</span><span id="276" class="l"><a class="l" href="#276">276: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="277" class="l"><a class="l" href="#277">277: </a>
-</span><span id="278" class="l"><a class="l" href="#278">278: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$count</span> &gt; <span class="php-var">$limit</span>) <span class="php-var">$count</span> = <span class="php-var">$limit</span>;
-</span><span id="279" class="l"><a class="l" href="#279">279: </a>            <span class="php-var">$end</span> = <span class="php-var">$start</span> + <span class="php-var">$count</span>;
-</span><span id="280" class="l"><a class="l" href="#280">280: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$end</span> &gt; <span class="php-var">$total</span>) <span class="php-var">$total</span> = <span class="php-var">$end</span>;
-</span><span id="281" class="l"><a class="l" href="#281">281: </a>            <span class="php-var">$start</span>++; <span class="php-comment">// make 1 based rather than 0 based...</span>
-</span><span id="282" class="l"><a class="l" href="#282">282: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$end</span> == <span class="php-num">0</span>) <span class="php-var">$start</span> = <span class="php-num">0</span>; <span class="php-comment">// ...unless there are no items</span>
-</span><span id="283" class="l"><a class="l" href="#283">283: </a>            <span class="php-var">$str</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'%1$s %2$d to %3$d of %4$d'</span>), <span class="php-var">$label</span>, <span class="php-var">$start</span>, <span class="php-var">$end</span>, <span class="php-var">$total</span>); <span class="php-comment">// Pagination item quantity, i.e. Items 1 to 10 of 50</span>
-</span><span id="284" class="l"><a class="l" href="#284">284: </a>        }
-</span><span id="285" class="l"><a class="l" href="#285">285: </a>        
-</span><span id="286" class="l"><a class="l" href="#286">286: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">trim</span>(<span class="php-var">$str</span>); 
-</span><span id="287" class="l"><a class="l" href="#287">287: </a>    }
-</span><span id="288" class="l"><a class="l" href="#288">288: </a>
-</span><span id="289" class="l"><a class="l" href="#289">289: </a>
-</span><span id="290" class="l"><a class="l" href="#290">290: </a>    <span class="php-comment">/**
-</span></span><span id="291" class="l"><a class="l" href="#291">291: </a><span class="php-comment">     * debugInfo PHP 5.6+ magic method
-</span></span><span id="292" class="l"><a class="l" href="#292">292: </a><span class="php-comment">     *
-</span></span><span id="293" class="l"><a class="l" href="#293">293: </a><span class="php-comment">     * @return array
-</span></span><span id="294" class="l"><a class="l" href="#294">294: </a><span class="php-comment">     *
-</span></span><span id="295" class="l"><a class="l" href="#295">295: </a><span class="php-comment">     */</span>
-</span><span id="296" class="l"><a class="l" href="#296">296: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___debugInfo" href="#___debugInfo">__debugInfo</a>() {
-</span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-var">$info</span> = parent::__debugInfo();
-</span><span id="298" class="l"><a class="l" href="#298">298: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;getLimit()) <span class="php-var">$info</span>[<span class="php-quote">'pager'</span>] = <span class="php-var">$this</span>-&gt;getPaginationString();
-</span><span id="299" class="l"><a class="l" href="#299">299: </a>        <span class="php-var">$info</span>[<span class="php-quote">'total'</span>] = <span class="php-var">$this</span>-&gt;getTotal();
-</span><span id="300" class="l"><a class="l" href="#300">300: </a>        <span class="php-var">$info</span>[<span class="php-quote">'start'</span>] = <span class="php-var">$this</span>-&gt;getStart();
-</span><span id="301" class="l"><a class="l" href="#301">301: </a>        <span class="php-var">$info</span>[<span class="php-quote">'limit'</span>] = <span class="php-var">$this</span>-&gt;getLimit();
-</span><span id="302" class="l"><a class="l" href="#302">302: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>;
-</span><span id="303" class="l"><a class="l" href="#303">303: </a>    }
-</span><span id="304" class="l"><a class="l" href="#304">304: </a></span>}</code></pre>
+</span><span id="258" class="l"><a class="l" href="#258">258: </a>        <span class="php-var">$options</span> = <span class="php-keyword1">array</span>(
+</span><span id="259" class="l"><a class="l" href="#259">259: </a>            <span class="php-quote">'label'</span> =&gt; <span class="php-keyword2">is_string</span>(<span class="php-var">$label</span>) ? <span class="php-var">$label</span> : <span class="php-quote">''</span>,
+</span><span id="260" class="l"><a class="l" href="#260">260: </a>            <span class="php-quote">'zeroLabel'</span> =&gt; <span class="php-quote">''</span>,
+</span><span id="261" class="l"><a class="l" href="#261">261: </a>            <span class="php-quote">'usePageNum'</span> =&gt; <span class="php-keyword2">is_bool</span>(<span class="php-var">$usePageNum</span>) ? <span class="php-var">$usePageNum</span> : <span class="php-keyword1">false</span>,
+</span><span id="262" class="l"><a class="l" href="#262">262: </a>            <span class="php-quote">'count'</span> =&gt; -<span class="php-num">1</span>,
+</span><span id="263" class="l"><a class="l" href="#263">263: </a>            <span class="php-quote">'start'</span> =&gt; -<span class="php-num">1</span>,
+</span><span id="264" class="l"><a class="l" href="#264">264: </a>            <span class="php-quote">'limit'</span> =&gt; -<span class="php-num">1</span>, 
+</span><span id="265" class="l"><a class="l" href="#265">265: </a>            <span class="php-quote">'total'</span> =&gt; -<span class="php-num">1</span>
+</span><span id="266" class="l"><a class="l" href="#266">266: </a>        );
+</span><span id="267" class="l"><a class="l" href="#267">267: </a>        
+</span><span id="268" class="l"><a class="l" href="#268">268: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$label</span>)) <span class="php-var">$options</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$options</span>, <span class="php-var">$label</span>);
+</span><span id="269" class="l"><a class="l" href="#269">269: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$usePageNum</span>)) <span class="php-var">$options</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$options</span>, <span class="php-var">$usePageNum</span>);
+</span><span id="270" class="l"><a class="l" href="#270">270: </a>        
+</span><span id="271" class="l"><a class="l" href="#271">271: </a>        <span class="php-var">$label</span> = <span class="php-var">$options</span>[<span class="php-quote">'label'</span>];
+</span><span id="272" class="l"><a class="l" href="#272">272: </a>        <span class="php-var">$usePageNum</span> = <span class="php-var">$options</span>[<span class="php-quote">'usePageNum'</span>];
+</span><span id="273" class="l"><a class="l" href="#273">273: </a>        
+</span><span id="274" class="l"><a class="l" href="#274">274: </a>        <span class="php-var">$count</span> = <span class="php-var">$options</span>[<span class="php-quote">'count'</span>] &gt; -<span class="php-num">1</span> ? <span class="php-var">$options</span>[<span class="php-quote">'count'</span>] : <span class="php-var">$this</span>-&gt;<span class="php-keyword2">count</span>();
+</span><span id="275" class="l"><a class="l" href="#275">275: </a>        <span class="php-var">$start</span> = <span class="php-var">$options</span>[<span class="php-quote">'start'</span>] &gt; -<span class="php-num">1</span> ? <span class="php-var">$options</span>[<span class="php-quote">'start'</span>] : <span class="php-var">$this</span>-&gt;getStart();
+</span><span id="276" class="l"><a class="l" href="#276">276: </a>        <span class="php-var">$limit</span> = <span class="php-var">$options</span>[<span class="php-quote">'limit'</span>] &gt; -<span class="php-num">1</span> ? <span class="php-var">$options</span>[<span class="php-quote">'limit'</span>] : <span class="php-var">$this</span>-&gt;getLimit();
+</span><span id="277" class="l"><a class="l" href="#277">277: </a>        <span class="php-var">$total</span> = <span class="php-var">$options</span>[<span class="php-quote">'total'</span>] &gt; -<span class="php-num">1</span> ? <span class="php-var">$options</span>[<span class="php-quote">'total'</span>] : <span class="php-var">$this</span>-&gt;getTotal();
+</span><span id="278" class="l"><a class="l" href="#278">278: </a>        
+</span><span id="279" class="l"><a class="l" href="#279">279: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$total</span>) &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$options</span>[<span class="php-quote">'zeroLabel'</span>])) {
+</span><span id="280" class="l"><a class="l" href="#280">280: </a>            
+</span><span id="281" class="l"><a class="l" href="#281">281: </a>            <span class="php-var">$str</span> = <span class="php-var">$options</span>[<span class="php-quote">'zeroLabel'</span>];
+</span><span id="282" class="l"><a class="l" href="#282">282: </a>
+</span><span id="283" class="l"><a class="l" href="#283">283: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$usePageNum</span>) {
+</span><span id="284" class="l"><a class="l" href="#284">284: </a>            
+</span><span id="285" class="l"><a class="l" href="#285">285: </a>            <span class="php-var">$pageNum</span> = <span class="php-var">$start</span> ? (<span class="php-var">$start</span> / <span class="php-var">$limit</span>) + <span class="php-num">1</span> : <span class="php-num">1</span>;
+</span><span id="286" class="l"><a class="l" href="#286">286: </a>            <span class="php-var">$totalPages</span> = <span class="php-keyword2">ceil</span>(<span class="php-var">$total</span> / <span class="php-var">$limit</span>); 
+</span><span id="287" class="l"><a class="l" href="#287">287: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$totalPages</span>) <span class="php-var">$pageNum</span> = <span class="php-num">0</span>;
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>            <span class="php-var">$str</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'%1$s %2$d of %3$d'</span>), <span class="php-var">$label</span>, <span class="php-var">$pageNum</span>, <span class="php-var">$totalPages</span>); <span class="php-comment">// Page quantity, i.e. Page 1 of 3</span>
+</span><span id="289" class="l"><a class="l" href="#289">289: </a>            
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>
+</span><span id="292" class="l"><a class="l" href="#292">292: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$count</span> &gt; <span class="php-var">$limit</span>) <span class="php-var">$count</span> = <span class="php-var">$limit</span>;
+</span><span id="293" class="l"><a class="l" href="#293">293: </a>            <span class="php-var">$end</span> = <span class="php-var">$start</span> + <span class="php-var">$count</span>;
+</span><span id="294" class="l"><a class="l" href="#294">294: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$end</span> &gt; <span class="php-var">$total</span>) <span class="php-var">$total</span> = <span class="php-var">$end</span>;
+</span><span id="295" class="l"><a class="l" href="#295">295: </a>            <span class="php-var">$start</span>++; <span class="php-comment">// make 1 based rather than 0 based...</span>
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$end</span> == <span class="php-num">0</span>) <span class="php-var">$start</span> = <span class="php-num">0</span>; <span class="php-comment">// ...unless there are no items</span>
+</span><span id="297" class="l"><a class="l" href="#297">297: </a>            <span class="php-var">$str</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'%1$s %2$d to %3$d of %4$d'</span>), <span class="php-var">$label</span>, <span class="php-var">$start</span>, <span class="php-var">$end</span>, <span class="php-var">$total</span>); <span class="php-comment">// Pagination item quantity, i.e. Items 1 to 10 of 50</span>
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>        }
+</span><span id="299" class="l"><a class="l" href="#299">299: </a>        
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">trim</span>(<span class="php-var">$str</span>); 
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>    }
+</span><span id="302" class="l"><a class="l" href="#302">302: </a>
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>    <span class="php-comment">/**
+</span></span><span id="305" class="l"><a class="l" href="#305">305: </a><span class="php-comment">     * debugInfo PHP 5.6+ magic method
+</span></span><span id="306" class="l"><a class="l" href="#306">306: </a><span class="php-comment">     *
+</span></span><span id="307" class="l"><a class="l" href="#307">307: </a><span class="php-comment">     * @return array
+</span></span><span id="308" class="l"><a class="l" href="#308">308: </a><span class="php-comment">     *
+</span></span><span id="309" class="l"><a class="l" href="#309">309: </a><span class="php-comment">     */</span>
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___debugInfo" href="#___debugInfo">__debugInfo</a>() {
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>        <span class="php-var">$info</span> = parent::__debugInfo();
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;getLimit()) <span class="php-var">$info</span>[<span class="php-quote">'pager'</span>] = <span class="php-var">$this</span>-&gt;getPaginationString();
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>        <span class="php-var">$info</span>[<span class="php-quote">'total'</span>] = <span class="php-var">$this</span>-&gt;getTotal();
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>        <span class="php-var">$info</span>[<span class="php-quote">'start'</span>] = <span class="php-var">$this</span>-&gt;getStart();
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>        <span class="php-var">$info</span>[<span class="php-quote">'limit'</span>] = <span class="php-var">$this</span>-&gt;getLimit();
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>;
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>    }
+</span><span id="318" class="l"><a class="l" href="#318">318: </a></span>}</code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

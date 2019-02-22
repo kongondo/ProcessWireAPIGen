@@ -8,7 +8,7 @@
 	<title>File core/Pagefiles.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2343404681"></script>
+	<script type="text/javascript" src="elementlist.js?2217945483"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -1144,7 +1144,7 @@
 </span></span><span id="565" class="l"><a class="l" href="#565">565: </a><span class="php-comment">     */</span> 
 </span><span id="566" class="l"><a class="l" href="#566">566: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_cleanBasename" href="#_cleanBasename">cleanBasename</a>(<span class="php-var">$basename</span>, <span class="php-var">$originalize</span> = <span class="php-keyword1">false</span>, <span class="php-var">$allowDots</span> = <span class="php-keyword1">true</span>, <span class="php-var">$translate</span> = <span class="php-keyword1">false</span>) {
 </span><span id="567" class="l"><a class="l" href="#567">567: </a>
-</span><span id="568" class="l"><a class="l" href="#568">568: </a>        <span class="php-var">$basename</span> = <span class="php-keyword2">strtolower</span>(<span class="php-var">$basename</span>); 
+</span><span id="568" class="l"><a class="l" href="#568">568: </a>        <span class="php-var">$basename</span> = <span class="php-keyword2">function_exists</span>(<span class="php-quote">'mb_strtolower'</span>) ? <span class="php-keyword2">mb_strtolower</span>(<span class="php-var">$basename</span>) : <span class="php-keyword2">strtolower</span>(<span class="php-var">$basename</span>);
 </span><span id="569" class="l"><a class="l" href="#569">569: </a>        <span class="php-var">$dot</span> = <span class="php-keyword2">strrpos</span>(<span class="php-var">$basename</span>, <span class="php-quote">'.'</span>); 
 </span><span id="570" class="l"><a class="l" href="#570">570: </a>        <span class="php-var">$ext</span> = <span class="php-var">$dot</span> ? <span class="php-keyword2">substr</span>(<span class="php-var">$basename</span>, <span class="php-var">$dot</span>) : <span class="php-quote">''</span>; 
 </span><span id="571" class="l"><a class="l" href="#571">571: </a>        <span class="php-var">$basename</span> = <span class="php-keyword2">basename</span>(<span class="php-var">$basename</span>, <span class="php-var">$ext</span>);
