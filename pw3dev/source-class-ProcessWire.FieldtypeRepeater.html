@@ -8,7 +8,7 @@
 	<title>File modules/Fieldtype/FieldtypeRepeater/FieldtypeRepeater.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1703940170"></script>
+	<script type="text/javascript" src="elementlist.js?3302779862"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -1972,580 +1972,584 @@
 </span><span id="1393" class="l"><a class="l" href="#1393">1393: </a>
 </span><span id="1394" class="l"><a class="l" href="#1394">1394: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$subfield</span> == <span class="php-quote">'data'</span> || <span class="php-var">$subfield</span> == <span class="php-quote">'id'</span> || !<span class="php-var">$subfield</span>) {
 </span><span id="1395" class="l"><a class="l" href="#1395">1395: </a>            
-</span><span id="1396" class="l"><a class="l" href="#1396">1396: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$subfield</span> == <span class="php-quote">'id'</span>) <span class="php-var">$subfield</span> = <span class="php-quote">''</span>;
-</span><span id="1397" class="l"><a class="l" href="#1397">1397: </a>        
-</span><span id="1398" class="l"><a class="l" href="#1398">1398: </a>            <span class="php-comment">// support matching of IDs via word matching fulltext index</span>
-</span><span id="1399" class="l"><a class="l" href="#1399">1399: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>) &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>)) {
-</span><span id="1400" class="l"><a class="l" href="#1400">1400: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> === <span class="php-quote">'='</span>) { 
-</span><span id="1401" class="l"><a class="l" href="#1401">1401: </a>                    <span class="php-var">$operator</span> = <span class="php-quote">'~='</span>;
-</span><span id="1402" class="l"><a class="l" href="#1402">1402: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> === <span class="php-quote">'!='</span>) {
-</span><span id="1403" class="l"><a class="l" href="#1403">1403: </a>                    <span class="php-comment">// @todo specify NOT</span>
-</span><span id="1404" class="l"><a class="l" href="#1404">1404: </a>                    <span class="php-var">$operator</span> = <span class="php-quote">'~='</span>;
-</span><span id="1405" class="l"><a class="l" href="#1405">1405: </a>                }
-</span><span id="1406" class="l"><a class="l" href="#1406">1406: </a>            }
-</span><span id="1407" class="l"><a class="l" href="#1407">1407: </a>
-</span><span id="1408" class="l"><a class="l" href="#1408">1408: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$operator</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'*='</span>, <span class="php-quote">'~='</span>, <span class="php-quote">'^='</span>, <span class="php-quote">'$='</span>, <span class="php-quote">'%='</span>))) {
-</span><span id="1409" class="l"><a class="l" href="#1409">1409: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$singlePageMode</span>) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Operator </span><span class="php-var">$operator</span><span class="php-quote"> not supported for </span><span class="php-var">$field</span><span class="php-quote">.data&quot;</span>); 
-</span><span id="1410" class="l"><a class="l" href="#1410">1410: </a>                <span class="php-comment">/** @var DatabaseQuerySelectFulltext $ft */</span>
-</span><span id="1411" class="l"><a class="l" href="#1411">1411: </a>                <span class="php-var">$ft</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> DatabaseQuerySelectFulltext(<span class="php-var">$query</span>));
-</span><span id="1412" class="l"><a class="l" href="#1412">1412: </a>                <span class="php-var">$ft</span>-&gt;match(<span class="php-var">$table</span>, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>);
-</span><span id="1413" class="l"><a class="l" href="#1413">1413: </a>
-</span><span id="1414" class="l"><a class="l" href="#1414">1414: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>) &amp;&amp; !<span class="php-var">$singlePageMode</span>) { 
-</span><span id="1415" class="l"><a class="l" href="#1415">1415: </a>                <span class="php-comment">// match where count is 0</span>
-</span><span id="1416" class="l"><a class="l" href="#1416">1416: </a>                <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote">.count</span><span class="php-var">{$operator}</span><span class="php-quote">0&quot;</span>); 
-</span><span id="1417" class="l"><a class="l" href="#1417">1417: </a>
-</span><span id="1418" class="l"><a class="l" href="#1418">1418: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="1419" class="l"><a class="l" href="#1419">1419: </a>                <span class="php-comment">// match /path/to/page or other, not implemented</span>
-</span><span id="1420" class="l"><a class="l" href="#1420">1420: </a>            }
-</span><span id="1421" class="l"><a class="l" href="#1421">1421: </a>            
-</span><span id="1422" class="l"><a class="l" href="#1422">1422: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="1423" class="l"><a class="l" href="#1423">1423: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$subfield</span>);
-</span><span id="1424" class="l"><a class="l" href="#1424">1424: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$f</span>) <span class="php-keyword1">return</span> <span class="php-var">$query</span>; <span class="php-comment">// unknown subfield</span>
+</span><span id="1396" class="l"><a class="l" href="#1396">1396: </a>            <span class="php-comment">// support matching of IDs via word matching fulltext index</span>
+</span><span id="1397" class="l"><a class="l" href="#1397">1397: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">ctype_digit</span>(<span class="php-quote">&quot;</span><span class="php-var">$value</span><span class="php-quote">&quot;</span>) &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>)) {
+</span><span id="1398" class="l"><a class="l" href="#1398">1398: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$subfield</span> === <span class="php-quote">'id'</span>) <span class="php-var">$subfield</span> = <span class="php-quote">'data'</span>;
+</span><span id="1399" class="l"><a class="l" href="#1399">1399: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> === <span class="php-quote">'='</span>) { 
+</span><span id="1400" class="l"><a class="l" href="#1400">1400: </a>                    <span class="php-var">$operator</span> = <span class="php-quote">'~='</span>;
+</span><span id="1401" class="l"><a class="l" href="#1401">1401: </a>                } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> === <span class="php-quote">'!='</span>) {
+</span><span id="1402" class="l"><a class="l" href="#1402">1402: </a>                    <span class="php-comment">// @todo specify NOT</span>
+</span><span id="1403" class="l"><a class="l" href="#1403">1403: </a>                    <span class="php-var">$operator</span> = <span class="php-quote">'~='</span>;
+</span><span id="1404" class="l"><a class="l" href="#1404">1404: </a>                }
+</span><span id="1405" class="l"><a class="l" href="#1405">1405: </a>            }
+</span><span id="1406" class="l"><a class="l" href="#1406">1406: </a>
+</span><span id="1407" class="l"><a class="l" href="#1407">1407: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">in_array</span>(<span class="php-var">$operator</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'*='</span>, <span class="php-quote">'~='</span>, <span class="php-quote">'^='</span>, <span class="php-quote">'$='</span>, <span class="php-quote">'%='</span>))) {
+</span><span id="1408" class="l"><a class="l" href="#1408">1408: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$singlePageMode</span>) <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-quote">&quot;Operator </span><span class="php-var">$operator</span><span class="php-quote"> not supported for </span><span class="php-var">$field</span><span class="php-quote">.data&quot;</span>); 
+</span><span id="1409" class="l"><a class="l" href="#1409">1409: </a>                <span class="php-comment">/** @var DatabaseQuerySelectFulltext $ft */</span>
+</span><span id="1410" class="l"><a class="l" href="#1410">1410: </a>                <span class="php-var">$ft</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> DatabaseQuerySelectFulltext(<span class="php-var">$query</span>));
+</span><span id="1411" class="l"><a class="l" href="#1411">1411: </a>                <span class="php-var">$ft</span>-&gt;match(<span class="php-var">$table</span>, <span class="php-var">$subfield</span>, <span class="php-var">$operator</span>, <span class="php-var">$value</span>);
+</span><span id="1412" class="l"><a class="l" href="#1412">1412: </a>
+</span><span id="1413" class="l"><a class="l" href="#1413">1413: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$value</span>) &amp;&amp; !<span class="php-var">$singlePageMode</span>) { 
+</span><span id="1414" class="l"><a class="l" href="#1414">1414: </a>                <span class="php-comment">// empty/0 value</span>
+</span><span id="1415" class="l"><a class="l" href="#1415">1415: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$operator</span> === <span class="php-quote">'='</span> &amp;&amp; <span class="php-var">$subfield</span> === <span class="php-quote">'id'</span>) {
+</span><span id="1416" class="l"><a class="l" href="#1416">1416: </a>                    <span class="php-var">$query</span>-&gt;where(<span class="php-quote">'1&gt;2'</span>); <span class="php-comment">// force non-match</span>
+</span><span id="1417" class="l"><a class="l" href="#1417">1417: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="1418" class="l"><a class="l" href="#1418">1418: </a>                    <span class="php-comment">// match where count is 0</span>
+</span><span id="1419" class="l"><a class="l" href="#1419">1419: </a>                    <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote">.count</span><span class="php-var">{$operator}</span><span class="php-quote">0&quot;</span>);
+</span><span id="1420" class="l"><a class="l" href="#1420">1420: </a>                }
+</span><span id="1421" class="l"><a class="l" href="#1421">1421: </a>
+</span><span id="1422" class="l"><a class="l" href="#1422">1422: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1423" class="l"><a class="l" href="#1423">1423: </a>                <span class="php-comment">// match /path/to/page or other, not implemented</span>
+</span><span id="1424" class="l"><a class="l" href="#1424">1424: </a>            }
 </span><span id="1425" class="l"><a class="l" href="#1425">1425: </a>            
-</span><span id="1426" class="l"><a class="l" href="#1426">1426: </a>            <span class="php-comment">// match fields from the repeater template</span>
-</span><span id="1427" class="l"><a class="l" href="#1427">1427: </a>            <span class="php-comment">// perform a separate find() operation for the subfield</span>
-</span><span id="1428" class="l"><a class="l" href="#1428">1428: </a>            <span class="php-var">$pageFinder</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> PageFinder());
-</span><span id="1429" class="l"><a class="l" href="#1429">1429: </a>            <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;selectorValue(<span class="php-var">$value</span>);
-</span><span id="1430" class="l"><a class="l" href="#1430">1430: </a>            <span class="php-var">$templateID</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_id'</span>);
-</span><span id="1431" class="l"><a class="l" href="#1431">1431: </a>            <span class="php-var">$includeMode</span> = <span class="php-var">$singlePageMode</span> ? <span class="php-quote">&quot;include=all&quot;</span> : <span class="php-quote">&quot;check_access=0&quot;</span>;
-</span><span id="1432" class="l"><a class="l" href="#1432">1432: </a>            <span class="php-var">$selectors</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> Selectors(<span class="php-quote">&quot;templates_id=</span><span class="php-var">$templateID</span><span class="php-quote">, </span><span class="php-var">$includeMode</span><span class="php-quote">, </span><span class="php-var">$f</span><span class="php-quote">-&gt;name</span><span class="php-var">$operator$value</span><span class="php-quote">&quot;</span>));
-</span><span id="1433" class="l"><a class="l" href="#1433">1433: </a>            <span class="php-var">$matches</span> = <span class="php-var">$pageFinder</span>-&gt;find(<span class="php-var">$selectors</span>);
-</span><span id="1434" class="l"><a class="l" href="#1434">1434: </a>
-</span><span id="1435" class="l"><a class="l" href="#1435">1435: </a>            <span class="php-comment">// use the IDs found from the separate find() as our getMatchQuery</span>
-</span><span id="1436" class="l"><a class="l" href="#1436">1436: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$matches</span>)) {
-</span><span id="1437" class="l"><a class="l" href="#1437">1437: </a>                <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
-</span><span id="1438" class="l"><a class="l" href="#1438">1438: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$singlePageMode</span>) {
-</span><span id="1439" class="l"><a class="l" href="#1439">1439: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$matches</span> <span class="php-keyword1">as</span> <span class="php-var">$match</span>) {
-</span><span id="1440" class="l"><a class="l" href="#1440">1440: </a>                        <span class="php-var">$id</span> = (int) <span class="php-var">$match</span>[<span class="php-quote">'id'</span>];
-</span><span id="1441" class="l"><a class="l" href="#1441">1441: </a>                        <span class="php-var">$ids</span>[<span class="php-var">$id</span>] = <span class="php-var">$id</span>;
-</span><span id="1442" class="l"><a class="l" href="#1442">1442: </a>                    }
-</span><span id="1443" class="l"><a class="l" href="#1443">1443: </a>                    <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote">.data IN(&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$ids</span>) . <span class="php-quote">&quot;)&quot;</span>);
-</span><span id="1444" class="l"><a class="l" href="#1444">1444: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="1445" class="l"><a class="l" href="#1445">1445: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$matches</span> <span class="php-keyword1">as</span> <span class="php-var">$match</span>) {
-</span><span id="1446" class="l"><a class="l" href="#1446">1446: </a>                        <span class="php-var">$parentID</span> = (int) <span class="php-var">$match</span>[<span class="php-quote">'parent_id'</span>];
-</span><span id="1447" class="l"><a class="l" href="#1447">1447: </a>                        <span class="php-var">$ids</span>[<span class="php-var">$parentID</span>] = <span class="php-var">$parentID</span>;
-</span><span id="1448" class="l"><a class="l" href="#1448">1448: </a>                    }
-</span><span id="1449" class="l"><a class="l" href="#1449">1449: </a>                    <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote">.parent_id IN(&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$ids</span>) . <span class="php-quote">&quot;)&quot;</span>);
-</span><span id="1450" class="l"><a class="l" href="#1450">1450: </a>                }
-</span><span id="1451" class="l"><a class="l" href="#1451">1451: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="1452" class="l"><a class="l" href="#1452">1452: </a>                <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;1&gt;2&quot;</span>);  <span class="php-comment">// force a non-match</span>
-</span><span id="1453" class="l"><a class="l" href="#1453">1453: </a>            }
-</span><span id="1454" class="l"><a class="l" href="#1454">1454: </a>        }
-</span><span id="1455" class="l"><a class="l" href="#1455">1455: </a>
-</span><span id="1456" class="l"><a class="l" href="#1456">1456: </a>        <span class="php-keyword1">return</span> <span class="php-var">$query</span>; 
-</span><span id="1457" class="l"><a class="l" href="#1457">1457: </a>    }
-</span><span id="1458" class="l"><a class="l" href="#1458">1458: </a>
-</span><span id="1459" class="l"><a class="l" href="#1459">1459: </a>    <span class="php-comment">/**
-</span></span><span id="1460" class="l"><a class="l" href="#1460">1460: </a><span class="php-comment">     * Return the database schema in predefined format 
-</span></span><span id="1461" class="l"><a class="l" href="#1461">1461: </a><span class="php-comment">     * 
-</span></span><span id="1462" class="l"><a class="l" href="#1462">1462: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1463" class="l"><a class="l" href="#1463">1463: </a><span class="php-comment">     * @return array
-</span></span><span id="1464" class="l"><a class="l" href="#1464">1464: </a><span class="php-comment">     *
-</span></span><span id="1465" class="l"><a class="l" href="#1465">1465: </a><span class="php-comment">     */</span>
-</span><span id="1466" class="l"><a class="l" href="#1466">1466: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getDatabaseSchema" href="#_getDatabaseSchema">getDatabaseSchema</a>(Field <span class="php-var">$field</span>) {
-</span><span id="1467" class="l"><a class="l" href="#1467">1467: </a>
-</span><span id="1468" class="l"><a class="l" href="#1468">1468: </a>        <span class="php-var">$schema</span> = parent::getDatabaseSchema(<span class="php-var">$field</span>); 
-</span><span id="1469" class="l"><a class="l" href="#1469">1469: </a>
-</span><span id="1470" class="l"><a class="l" href="#1470">1470: </a>        <span class="php-comment">// fields</span>
-</span><span id="1471" class="l"><a class="l" href="#1471">1471: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'data'</span>] = <span class="php-quote">'text NOT NULL'</span>;
-</span><span id="1472" class="l"><a class="l" href="#1472">1472: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'count'</span>] = <span class="php-quote">'int NOT NULL'</span>;
-</span><span id="1473" class="l"><a class="l" href="#1473">1473: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'parent_id'</span>] = <span class="php-quote">'int NOT NULL'</span>;
-</span><span id="1474" class="l"><a class="l" href="#1474">1474: </a>
-</span><span id="1475" class="l"><a class="l" href="#1475">1475: </a>        <span class="php-comment">// indexes</span>
-</span><span id="1476" class="l"><a class="l" href="#1476">1476: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'keys'</span>][<span class="php-quote">'data'</span>] = <span class="php-quote">'FULLTEXT KEY `data` (`data`)'</span>; <span class="php-comment">// just a cache of CSV page IDs for portability</span>
-</span><span id="1477" class="l"><a class="l" href="#1477">1477: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'keys'</span>][<span class="php-quote">'data_exact'</span>] = <span class="php-quote">'KEY `data_exact` (`data`(1))'</span>; <span class="php-comment">// just for checking if the field has a value</span>
-</span><span id="1478" class="l"><a class="l" href="#1478">1478: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'keys'</span>][<span class="php-quote">'count'</span>] = <span class="php-quote">'KEY `count` (`count`, `pages_id`)'</span>; 
-</span><span id="1479" class="l"><a class="l" href="#1479">1479: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'keys'</span>][<span class="php-quote">'parent_id'</span>] = <span class="php-quote">'KEY parent_id (`parent_id`, `pages_id`)'</span>;
-</span><span id="1480" class="l"><a class="l" href="#1480">1480: </a>    
-</span><span id="1481" class="l"><a class="l" href="#1481">1481: </a>        <span class="php-comment">// indicate that this schema does not hold all data managed by this fieldtype</span>
-</span><span id="1482" class="l"><a class="l" href="#1482">1482: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'xtra'</span>][<span class="php-quote">'all'</span>] = <span class="php-keyword1">false</span>; 
-</span><span id="1483" class="l"><a class="l" href="#1483">1483: </a>
-</span><span id="1484" class="l"><a class="l" href="#1484">1484: </a>        <span class="php-keyword1">return</span> <span class="php-var">$schema</span>;
-</span><span id="1485" class="l"><a class="l" href="#1485">1485: </a>    }
-</span><span id="1486" class="l"><a class="l" href="#1486">1486: </a>
-</span><span id="1487" class="l"><a class="l" href="#1487">1487: </a>    <span class="php-comment">/**
-</span></span><span id="1488" class="l"><a class="l" href="#1488">1488: </a><span class="php-comment">     * Save the given field from page 
-</span></span><span id="1489" class="l"><a class="l" href="#1489">1489: </a><span class="php-comment">     *
-</span></span><span id="1490" class="l"><a class="l" href="#1490">1490: </a><span class="php-comment">     * @param Page $page Page object to save. 
-</span></span><span id="1491" class="l"><a class="l" href="#1491">1491: </a><span class="php-comment">     * @param Field $field Field to retrieve from the page. 
-</span></span><span id="1492" class="l"><a class="l" href="#1492">1492: </a><span class="php-comment">     * @return bool True on success, false on DB save failure.
+</span><span id="1426" class="l"><a class="l" href="#1426">1426: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="1427" class="l"><a class="l" href="#1427">1427: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$subfield</span>);
+</span><span id="1428" class="l"><a class="l" href="#1428">1428: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$f</span>) <span class="php-keyword1">return</span> <span class="php-var">$query</span>; <span class="php-comment">// unknown subfield</span>
+</span><span id="1429" class="l"><a class="l" href="#1429">1429: </a>            
+</span><span id="1430" class="l"><a class="l" href="#1430">1430: </a>            <span class="php-comment">// match fields from the repeater template</span>
+</span><span id="1431" class="l"><a class="l" href="#1431">1431: </a>            <span class="php-comment">// perform a separate find() operation for the subfield</span>
+</span><span id="1432" class="l"><a class="l" href="#1432">1432: </a>            <span class="php-var">$pageFinder</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> PageFinder());
+</span><span id="1433" class="l"><a class="l" href="#1433">1433: </a>            <span class="php-var">$value</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;selectorValue(<span class="php-var">$value</span>);
+</span><span id="1434" class="l"><a class="l" href="#1434">1434: </a>            <span class="php-var">$templateID</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_id'</span>);
+</span><span id="1435" class="l"><a class="l" href="#1435">1435: </a>            <span class="php-var">$includeMode</span> = <span class="php-var">$singlePageMode</span> ? <span class="php-quote">&quot;include=all&quot;</span> : <span class="php-quote">&quot;check_access=0&quot;</span>;
+</span><span id="1436" class="l"><a class="l" href="#1436">1436: </a>            <span class="php-var">$selectors</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> Selectors(<span class="php-quote">&quot;templates_id=</span><span class="php-var">$templateID</span><span class="php-quote">, </span><span class="php-var">$includeMode</span><span class="php-quote">, </span><span class="php-var">$f</span><span class="php-quote">-&gt;name</span><span class="php-var">$operator$value</span><span class="php-quote">&quot;</span>));
+</span><span id="1437" class="l"><a class="l" href="#1437">1437: </a>            <span class="php-var">$matches</span> = <span class="php-var">$pageFinder</span>-&gt;find(<span class="php-var">$selectors</span>);
+</span><span id="1438" class="l"><a class="l" href="#1438">1438: </a>
+</span><span id="1439" class="l"><a class="l" href="#1439">1439: </a>            <span class="php-comment">// use the IDs found from the separate find() as our getMatchQuery</span>
+</span><span id="1440" class="l"><a class="l" href="#1440">1440: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$matches</span>)) {
+</span><span id="1441" class="l"><a class="l" href="#1441">1441: </a>                <span class="php-var">$ids</span> = <span class="php-keyword1">array</span>();
+</span><span id="1442" class="l"><a class="l" href="#1442">1442: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$singlePageMode</span>) {
+</span><span id="1443" class="l"><a class="l" href="#1443">1443: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$matches</span> <span class="php-keyword1">as</span> <span class="php-var">$match</span>) {
+</span><span id="1444" class="l"><a class="l" href="#1444">1444: </a>                        <span class="php-var">$id</span> = (int) <span class="php-var">$match</span>[<span class="php-quote">'id'</span>];
+</span><span id="1445" class="l"><a class="l" href="#1445">1445: </a>                        <span class="php-var">$ids</span>[<span class="php-var">$id</span>] = <span class="php-var">$id</span>;
+</span><span id="1446" class="l"><a class="l" href="#1446">1446: </a>                    }
+</span><span id="1447" class="l"><a class="l" href="#1447">1447: </a>                    <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote">.data IN(&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$ids</span>) . <span class="php-quote">&quot;)&quot;</span>);
+</span><span id="1448" class="l"><a class="l" href="#1448">1448: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="1449" class="l"><a class="l" href="#1449">1449: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$matches</span> <span class="php-keyword1">as</span> <span class="php-var">$match</span>) {
+</span><span id="1450" class="l"><a class="l" href="#1450">1450: </a>                        <span class="php-var">$parentID</span> = (int) <span class="php-var">$match</span>[<span class="php-quote">'parent_id'</span>];
+</span><span id="1451" class="l"><a class="l" href="#1451">1451: </a>                        <span class="php-var">$ids</span>[<span class="php-var">$parentID</span>] = <span class="php-var">$parentID</span>;
+</span><span id="1452" class="l"><a class="l" href="#1452">1452: </a>                    }
+</span><span id="1453" class="l"><a class="l" href="#1453">1453: </a>                    <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;</span><span class="php-var">$table</span><span class="php-quote">.parent_id IN(&quot;</span> . <span class="php-keyword2">implode</span>(<span class="php-quote">','</span>, <span class="php-var">$ids</span>) . <span class="php-quote">&quot;)&quot;</span>);
+</span><span id="1454" class="l"><a class="l" href="#1454">1454: </a>                }
+</span><span id="1455" class="l"><a class="l" href="#1455">1455: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1456" class="l"><a class="l" href="#1456">1456: </a>                <span class="php-var">$query</span>-&gt;where(<span class="php-quote">&quot;1&gt;2&quot;</span>);  <span class="php-comment">// force a non-match</span>
+</span><span id="1457" class="l"><a class="l" href="#1457">1457: </a>            }
+</span><span id="1458" class="l"><a class="l" href="#1458">1458: </a>        }
+</span><span id="1459" class="l"><a class="l" href="#1459">1459: </a>
+</span><span id="1460" class="l"><a class="l" href="#1460">1460: </a>        <span class="php-keyword1">return</span> <span class="php-var">$query</span>; 
+</span><span id="1461" class="l"><a class="l" href="#1461">1461: </a>    }
+</span><span id="1462" class="l"><a class="l" href="#1462">1462: </a>
+</span><span id="1463" class="l"><a class="l" href="#1463">1463: </a>    <span class="php-comment">/**
+</span></span><span id="1464" class="l"><a class="l" href="#1464">1464: </a><span class="php-comment">     * Return the database schema in predefined format 
+</span></span><span id="1465" class="l"><a class="l" href="#1465">1465: </a><span class="php-comment">     * 
+</span></span><span id="1466" class="l"><a class="l" href="#1466">1466: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1467" class="l"><a class="l" href="#1467">1467: </a><span class="php-comment">     * @return array
+</span></span><span id="1468" class="l"><a class="l" href="#1468">1468: </a><span class="php-comment">     *
+</span></span><span id="1469" class="l"><a class="l" href="#1469">1469: </a><span class="php-comment">     */</span>
+</span><span id="1470" class="l"><a class="l" href="#1470">1470: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getDatabaseSchema" href="#_getDatabaseSchema">getDatabaseSchema</a>(Field <span class="php-var">$field</span>) {
+</span><span id="1471" class="l"><a class="l" href="#1471">1471: </a>
+</span><span id="1472" class="l"><a class="l" href="#1472">1472: </a>        <span class="php-var">$schema</span> = parent::getDatabaseSchema(<span class="php-var">$field</span>); 
+</span><span id="1473" class="l"><a class="l" href="#1473">1473: </a>
+</span><span id="1474" class="l"><a class="l" href="#1474">1474: </a>        <span class="php-comment">// fields</span>
+</span><span id="1475" class="l"><a class="l" href="#1475">1475: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'data'</span>] = <span class="php-quote">'text NOT NULL'</span>;
+</span><span id="1476" class="l"><a class="l" href="#1476">1476: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'count'</span>] = <span class="php-quote">'int NOT NULL'</span>;
+</span><span id="1477" class="l"><a class="l" href="#1477">1477: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'parent_id'</span>] = <span class="php-quote">'int NOT NULL'</span>;
+</span><span id="1478" class="l"><a class="l" href="#1478">1478: </a>
+</span><span id="1479" class="l"><a class="l" href="#1479">1479: </a>        <span class="php-comment">// indexes</span>
+</span><span id="1480" class="l"><a class="l" href="#1480">1480: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'keys'</span>][<span class="php-quote">'data'</span>] = <span class="php-quote">'FULLTEXT KEY `data` (`data`)'</span>; <span class="php-comment">// just a cache of CSV page IDs for portability</span>
+</span><span id="1481" class="l"><a class="l" href="#1481">1481: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'keys'</span>][<span class="php-quote">'data_exact'</span>] = <span class="php-quote">'KEY `data_exact` (`data`(1))'</span>; <span class="php-comment">// just for checking if the field has a value</span>
+</span><span id="1482" class="l"><a class="l" href="#1482">1482: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'keys'</span>][<span class="php-quote">'count'</span>] = <span class="php-quote">'KEY `count` (`count`, `pages_id`)'</span>; 
+</span><span id="1483" class="l"><a class="l" href="#1483">1483: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'keys'</span>][<span class="php-quote">'parent_id'</span>] = <span class="php-quote">'KEY parent_id (`parent_id`, `pages_id`)'</span>;
+</span><span id="1484" class="l"><a class="l" href="#1484">1484: </a>    
+</span><span id="1485" class="l"><a class="l" href="#1485">1485: </a>        <span class="php-comment">// indicate that this schema does not hold all data managed by this fieldtype</span>
+</span><span id="1486" class="l"><a class="l" href="#1486">1486: </a>        <span class="php-var">$schema</span>[<span class="php-quote">'xtra'</span>][<span class="php-quote">'all'</span>] = <span class="php-keyword1">false</span>; 
+</span><span id="1487" class="l"><a class="l" href="#1487">1487: </a>
+</span><span id="1488" class="l"><a class="l" href="#1488">1488: </a>        <span class="php-keyword1">return</span> <span class="php-var">$schema</span>;
+</span><span id="1489" class="l"><a class="l" href="#1489">1489: </a>    }
+</span><span id="1490" class="l"><a class="l" href="#1490">1490: </a>
+</span><span id="1491" class="l"><a class="l" href="#1491">1491: </a>    <span class="php-comment">/**
+</span></span><span id="1492" class="l"><a class="l" href="#1492">1492: </a><span class="php-comment">     * Save the given field from page 
 </span></span><span id="1493" class="l"><a class="l" href="#1493">1493: </a><span class="php-comment">     *
-</span></span><span id="1494" class="l"><a class="l" href="#1494">1494: </a><span class="php-comment">     */</span>
-</span><span id="1495" class="l"><a class="l" href="#1495">1495: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____savePageField" href="#____savePageField">___savePageField</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>) {
-</span><span id="1496" class="l"><a class="l" href="#1496">1496: </a>
-</span><span id="1497" class="l"><a class="l" href="#1497">1497: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;id || !<span class="php-var">$field</span>-&gt;id) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="1498" class="l"><a class="l" href="#1498">1498: </a>        <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name); 
-</span><span id="1499" class="l"><a class="l" href="#1499">1499: </a>        
-</span><span id="1500" class="l"><a class="l" href="#1500">1500: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> RepeaterPage) {
-</span><span id="1501" class="l"><a class="l" href="#1501">1501: </a>            <span class="php-comment">// for FieldsetPage compatibility</span>
-</span><span id="1502" class="l"><a class="l" href="#1502">1502: </a>            <span class="php-var">$pageArrayClass</span> = <span class="php-var">$this</span>-&gt;getPageArrayClass();
-</span><span id="1503" class="l"><a class="l" href="#1503">1503: </a>            <span class="php-comment">/** @var RepeaterPageArray $pageArray */</span>
-</span><span id="1504" class="l"><a class="l" href="#1504">1504: </a>            <span class="php-var">$pageArray</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> <span class="php-var">$pageArrayClass</span>(<span class="php-var">$page</span>, <span class="php-var">$field</span>));
-</span><span id="1505" class="l"><a class="l" href="#1505">1505: </a>            <span class="php-var">$pageArray</span>-&gt;add(<span class="php-var">$value</span>);
-</span><span id="1506" class="l"><a class="l" href="#1506">1506: </a>            <span class="php-var">$pageArray</span>-&gt;resetTrackChanges();
-</span><span id="1507" class="l"><a class="l" href="#1507">1507: </a>            <span class="php-var">$value</span> = <span class="php-var">$pageArray</span>;
-</span><span id="1508" class="l"><a class="l" href="#1508">1508: </a>        }
-</span><span id="1509" class="l"><a class="l" href="#1509">1509: </a>
-</span><span id="1510" class="l"><a class="l" href="#1510">1510: </a>        <span class="php-comment">// pages that will be saved</span>
-</span><span id="1511" class="l"><a class="l" href="#1511">1511: </a>        <span class="php-var">$savePages</span> = <span class="php-keyword1">array</span>();
-</span><span id="1512" class="l"><a class="l" href="#1512">1512: </a>
-</span><span id="1513" class="l"><a class="l" href="#1513">1513: </a>        <span class="php-comment">// options to pass to save() or clone()</span>
-</span><span id="1514" class="l"><a class="l" href="#1514">1514: </a>        <span class="php-var">$saveOptions</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'uncacheAll'</span> =&gt; <span class="php-keyword1">false</span>); 
-</span><span id="1515" class="l"><a class="l" href="#1515">1515: </a>
-</span><span id="1516" class="l"><a class="l" href="#1516">1516: </a>        <span class="php-comment">// pages that will be deleted</span>
-</span><span id="1517" class="l"><a class="l" href="#1517">1517: </a>        <span class="php-var">$deletePages</span> = <span class="php-var">$value</span>-&gt;getItemsRemoved();
-</span><span id="1518" class="l"><a class="l" href="#1518">1518: </a>
-</span><span id="1519" class="l"><a class="l" href="#1519">1519: </a>        <span class="php-var">$repeaterParent</span> = <span class="php-var">$this</span>-&gt;getRepeaterPageParent(<span class="php-var">$page</span>, <span class="php-var">$field</span>);
-</span><span id="1520" class="l"><a class="l" href="#1520">1520: </a>        <span class="php-var">$parent_id</span> = <span class="php-var">$repeaterParent</span>-&gt;id;
-</span><span id="1521" class="l"><a class="l" href="#1521">1521: </a>        <span class="php-var">$template_id</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_id'</span>); 
+</span></span><span id="1494" class="l"><a class="l" href="#1494">1494: </a><span class="php-comment">     * @param Page $page Page object to save. 
+</span></span><span id="1495" class="l"><a class="l" href="#1495">1495: </a><span class="php-comment">     * @param Field $field Field to retrieve from the page. 
+</span></span><span id="1496" class="l"><a class="l" href="#1496">1496: </a><span class="php-comment">     * @return bool True on success, false on DB save failure.
+</span></span><span id="1497" class="l"><a class="l" href="#1497">1497: </a><span class="php-comment">     *
+</span></span><span id="1498" class="l"><a class="l" href="#1498">1498: </a><span class="php-comment">     */</span>
+</span><span id="1499" class="l"><a class="l" href="#1499">1499: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____savePageField" href="#____savePageField">___savePageField</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>) {
+</span><span id="1500" class="l"><a class="l" href="#1500">1500: </a>
+</span><span id="1501" class="l"><a class="l" href="#1501">1501: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;id || !<span class="php-var">$field</span>-&gt;id) <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="1502" class="l"><a class="l" href="#1502">1502: </a>        <span class="php-var">$value</span> = <span class="php-var">$page</span>-&gt;get(<span class="php-var">$field</span>-&gt;name); 
+</span><span id="1503" class="l"><a class="l" href="#1503">1503: </a>        
+</span><span id="1504" class="l"><a class="l" href="#1504">1504: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$value</span> <span class="php-keyword1">instanceof</span> RepeaterPage) {
+</span><span id="1505" class="l"><a class="l" href="#1505">1505: </a>            <span class="php-comment">// for FieldsetPage compatibility</span>
+</span><span id="1506" class="l"><a class="l" href="#1506">1506: </a>            <span class="php-var">$pageArrayClass</span> = <span class="php-var">$this</span>-&gt;getPageArrayClass();
+</span><span id="1507" class="l"><a class="l" href="#1507">1507: </a>            <span class="php-comment">/** @var RepeaterPageArray $pageArray */</span>
+</span><span id="1508" class="l"><a class="l" href="#1508">1508: </a>            <span class="php-var">$pageArray</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> <span class="php-var">$pageArrayClass</span>(<span class="php-var">$page</span>, <span class="php-var">$field</span>));
+</span><span id="1509" class="l"><a class="l" href="#1509">1509: </a>            <span class="php-var">$pageArray</span>-&gt;add(<span class="php-var">$value</span>);
+</span><span id="1510" class="l"><a class="l" href="#1510">1510: </a>            <span class="php-var">$pageArray</span>-&gt;resetTrackChanges();
+</span><span id="1511" class="l"><a class="l" href="#1511">1511: </a>            <span class="php-var">$value</span> = <span class="php-var">$pageArray</span>;
+</span><span id="1512" class="l"><a class="l" href="#1512">1512: </a>        }
+</span><span id="1513" class="l"><a class="l" href="#1513">1513: </a>
+</span><span id="1514" class="l"><a class="l" href="#1514">1514: </a>        <span class="php-comment">// pages that will be saved</span>
+</span><span id="1515" class="l"><a class="l" href="#1515">1515: </a>        <span class="php-var">$savePages</span> = <span class="php-keyword1">array</span>();
+</span><span id="1516" class="l"><a class="l" href="#1516">1516: </a>
+</span><span id="1517" class="l"><a class="l" href="#1517">1517: </a>        <span class="php-comment">// options to pass to save() or clone()</span>
+</span><span id="1518" class="l"><a class="l" href="#1518">1518: </a>        <span class="php-var">$saveOptions</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'uncacheAll'</span> =&gt; <span class="php-keyword1">false</span>); 
+</span><span id="1519" class="l"><a class="l" href="#1519">1519: </a>
+</span><span id="1520" class="l"><a class="l" href="#1520">1520: </a>        <span class="php-comment">// pages that will be deleted</span>
+</span><span id="1521" class="l"><a class="l" href="#1521">1521: </a>        <span class="php-var">$deletePages</span> = <span class="php-var">$value</span>-&gt;getItemsRemoved();
 </span><span id="1522" class="l"><a class="l" href="#1522">1522: </a>
-</span><span id="1523" class="l"><a class="l" href="#1523">1523: </a>        <span class="php-comment">// iterate through each page in the pageArray value</span>
-</span><span id="1524" class="l"><a class="l" href="#1524">1524: </a>        <span class="php-comment">// and determine which need to be saved </span>
-</span><span id="1525" class="l"><a class="l" href="#1525">1525: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$p</span>) {
-</span><span id="1526" class="l"><a class="l" href="#1526">1526: </a>            
-</span><span id="1527" class="l"><a class="l" href="#1527">1527: </a>            <span class="php-comment">/** @var Page $p */</span>
-</span><span id="1528" class="l"><a class="l" href="#1528">1528: </a>
-</span><span id="1529" class="l"><a class="l" href="#1529">1529: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;template-&gt;id != <span class="php-var">$template_id</span>) {
-</span><span id="1530" class="l"><a class="l" href="#1530">1530: </a>                <span class="php-var">$value</span>-&gt;remove(<span class="php-var">$p</span>);
-</span><span id="1531" class="l"><a class="l" href="#1531">1531: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Removed invalid template (</span><span class="php-var">{$p-&gt;template-&gt;name}</span><span class="php-quote">) page </span><span class="php-var">{$p-&gt;path}</span><span class="php-quote"> from field </span><span class="php-var">$field</span><span class="php-quote">&quot;</span>, Notice::debug); 
-</span><span id="1532" class="l"><a class="l" href="#1532">1532: </a>                <span class="php-keyword1">continue</span>; 
-</span><span id="1533" class="l"><a class="l" href="#1533">1533: </a>            }
-</span><span id="1534" class="l"><a class="l" href="#1534">1534: </a>
-</span><span id="1535" class="l"><a class="l" href="#1535">1535: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;parent-&gt;id != <span class="php-var">$parent_id</span>) {
-</span><span id="1536" class="l"><a class="l" href="#1536">1536: </a>                <span class="php-comment">// clone the individual repeater pages</span>
-</span><span id="1537" class="l"><a class="l" href="#1537">1537: </a>                <span class="php-var">$value</span>-&gt;remove(<span class="php-var">$p</span>); 
-</span><span id="1538" class="l"><a class="l" href="#1538">1538: </a>                <span class="php-var">$p</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword1">clone</span>(<span class="php-var">$p</span>, <span class="php-var">$repeaterParent</span>, <span class="php-keyword1">false</span>, <span class="php-var">$saveOptions</span>);
-</span><span id="1539" class="l"><a class="l" href="#1539">1539: </a>                <span class="php-var">$value</span>-&gt;add(<span class="php-var">$p</span>);
-</span><span id="1540" class="l"><a class="l" href="#1540">1540: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Cloned to </span><span class="php-var">{$p-&gt;path}</span><span class="php-quote"> from field </span><span class="php-var">$field</span><span class="php-quote">&quot;</span>, Notice::debug); 
-</span><span id="1541" class="l"><a class="l" href="#1541">1541: </a>                <span class="php-keyword1">continue</span>; 
-</span><span id="1542" class="l"><a class="l" href="#1542">1542: </a>            }
-</span><span id="1543" class="l"><a class="l" href="#1543">1543: </a>
-</span><span id="1544" class="l"><a class="l" href="#1544">1544: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;isNew() &amp;&amp; !<span class="php-var">$p</span>-&gt;name &amp;&amp; !<span class="php-var">$p</span>-&gt;title) {
-</span><span id="1545" class="l"><a class="l" href="#1545">1545: </a>                <span class="php-comment">// if we've got a new repeater page without a name or title</span>
-</span><span id="1546" class="l"><a class="l" href="#1546">1546: </a>                <span class="php-comment">// then it's not going to save because it has no way of generating a name</span>
-</span><span id="1547" class="l"><a class="l" href="#1547">1547: </a>                <span class="php-comment">// so we will generate one for it</span>
-</span><span id="1548" class="l"><a class="l" href="#1548">1548: </a>                <span class="php-var">$p</span>-&gt;name = <span class="php-var">$this</span>-&gt;getUniqueRepeaterPageName();
-</span><span id="1549" class="l"><a class="l" href="#1549">1549: </a>            }
-</span><span id="1550" class="l"><a class="l" href="#1550">1550: </a>
-</span><span id="1551" class="l"><a class="l" href="#1551">1551: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;isChanged() || <span class="php-var">$p</span>-&gt;isNew()) {
-</span><span id="1552" class="l"><a class="l" href="#1552">1552: </a>                <span class="php-comment">// if the page has changed or is new, then we will queue it to be saved</span>
-</span><span id="1553" class="l"><a class="l" href="#1553">1553: </a>                <span class="php-var">$savePages</span>[] = <span class="php-var">$p</span>; 
+</span><span id="1523" class="l"><a class="l" href="#1523">1523: </a>        <span class="php-var">$repeaterParent</span> = <span class="php-var">$this</span>-&gt;getRepeaterPageParent(<span class="php-var">$page</span>, <span class="php-var">$field</span>);
+</span><span id="1524" class="l"><a class="l" href="#1524">1524: </a>        <span class="php-var">$parent_id</span> = <span class="php-var">$repeaterParent</span>-&gt;id;
+</span><span id="1525" class="l"><a class="l" href="#1525">1525: </a>        <span class="php-var">$template_id</span> = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_id'</span>); 
+</span><span id="1526" class="l"><a class="l" href="#1526">1526: </a>
+</span><span id="1527" class="l"><a class="l" href="#1527">1527: </a>        <span class="php-comment">// iterate through each page in the pageArray value</span>
+</span><span id="1528" class="l"><a class="l" href="#1528">1528: </a>        <span class="php-comment">// and determine which need to be saved </span>
+</span><span id="1529" class="l"><a class="l" href="#1529">1529: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$value</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$p</span>) {
+</span><span id="1530" class="l"><a class="l" href="#1530">1530: </a>            
+</span><span id="1531" class="l"><a class="l" href="#1531">1531: </a>            <span class="php-comment">/** @var Page $p */</span>
+</span><span id="1532" class="l"><a class="l" href="#1532">1532: </a>
+</span><span id="1533" class="l"><a class="l" href="#1533">1533: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;template-&gt;id != <span class="php-var">$template_id</span>) {
+</span><span id="1534" class="l"><a class="l" href="#1534">1534: </a>                <span class="php-var">$value</span>-&gt;remove(<span class="php-var">$p</span>);
+</span><span id="1535" class="l"><a class="l" href="#1535">1535: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Removed invalid template (</span><span class="php-var">{$p-&gt;template-&gt;name}</span><span class="php-quote">) page </span><span class="php-var">{$p-&gt;path}</span><span class="php-quote"> from field </span><span class="php-var">$field</span><span class="php-quote">&quot;</span>, Notice::debug); 
+</span><span id="1536" class="l"><a class="l" href="#1536">1536: </a>                <span class="php-keyword1">continue</span>; 
+</span><span id="1537" class="l"><a class="l" href="#1537">1537: </a>            }
+</span><span id="1538" class="l"><a class="l" href="#1538">1538: </a>
+</span><span id="1539" class="l"><a class="l" href="#1539">1539: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;parent-&gt;id != <span class="php-var">$parent_id</span>) {
+</span><span id="1540" class="l"><a class="l" href="#1540">1540: </a>                <span class="php-comment">// clone the individual repeater pages</span>
+</span><span id="1541" class="l"><a class="l" href="#1541">1541: </a>                <span class="php-var">$value</span>-&gt;remove(<span class="php-var">$p</span>); 
+</span><span id="1542" class="l"><a class="l" href="#1542">1542: </a>                <span class="php-var">$p</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword1">clone</span>(<span class="php-var">$p</span>, <span class="php-var">$repeaterParent</span>, <span class="php-keyword1">false</span>, <span class="php-var">$saveOptions</span>);
+</span><span id="1543" class="l"><a class="l" href="#1543">1543: </a>                <span class="php-var">$value</span>-&gt;add(<span class="php-var">$p</span>);
+</span><span id="1544" class="l"><a class="l" href="#1544">1544: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Cloned to </span><span class="php-var">{$p-&gt;path}</span><span class="php-quote"> from field </span><span class="php-var">$field</span><span class="php-quote">&quot;</span>, Notice::debug); 
+</span><span id="1545" class="l"><a class="l" href="#1545">1545: </a>                <span class="php-keyword1">continue</span>; 
+</span><span id="1546" class="l"><a class="l" href="#1546">1546: </a>            }
+</span><span id="1547" class="l"><a class="l" href="#1547">1547: </a>
+</span><span id="1548" class="l"><a class="l" href="#1548">1548: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;isNew() &amp;&amp; !<span class="php-var">$p</span>-&gt;name &amp;&amp; !<span class="php-var">$p</span>-&gt;title) {
+</span><span id="1549" class="l"><a class="l" href="#1549">1549: </a>                <span class="php-comment">// if we've got a new repeater page without a name or title</span>
+</span><span id="1550" class="l"><a class="l" href="#1550">1550: </a>                <span class="php-comment">// then it's not going to save because it has no way of generating a name</span>
+</span><span id="1551" class="l"><a class="l" href="#1551">1551: </a>                <span class="php-comment">// so we will generate one for it</span>
+</span><span id="1552" class="l"><a class="l" href="#1552">1552: </a>                <span class="php-var">$p</span>-&gt;name = <span class="php-var">$this</span>-&gt;getUniqueRepeaterPageName();
+</span><span id="1553" class="l"><a class="l" href="#1553">1553: </a>            }
 </span><span id="1554" class="l"><a class="l" href="#1554">1554: </a>
-</span><span id="1555" class="l"><a class="l" href="#1555">1555: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;id &amp;&amp; <span class="php-var">$p</span>-&gt;isUnpublished() &amp;&amp; !<span class="php-var">$p</span>-&gt;isHidden()) {
-</span><span id="1556" class="l"><a class="l" href="#1556">1556: </a>                <span class="php-comment">// if the page has an ID, but is still unpublished, though not hidden, then we queue it to be saved (and published)</span>
+</span><span id="1555" class="l"><a class="l" href="#1555">1555: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;isChanged() || <span class="php-var">$p</span>-&gt;isNew()) {
+</span><span id="1556" class="l"><a class="l" href="#1556">1556: </a>                <span class="php-comment">// if the page has changed or is new, then we will queue it to be saved</span>
 </span><span id="1557" class="l"><a class="l" href="#1557">1557: </a>                <span class="php-var">$savePages</span>[] = <span class="php-var">$p</span>; 
-</span><span id="1558" class="l"><a class="l" href="#1558">1558: </a>            }
-</span><span id="1559" class="l"><a class="l" href="#1559">1559: </a>        }
-</span><span id="1560" class="l"><a class="l" href="#1560">1560: </a>
-</span><span id="1561" class="l"><a class="l" href="#1561">1561: </a>        <span class="php-comment">// iterate the pages that had changes and need to be saved</span>
-</span><span id="1562" class="l"><a class="l" href="#1562">1562: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$savePages</span> <span class="php-keyword1">as</span> <span class="php-var">$p</span>) {
-</span><span id="1563" class="l"><a class="l" href="#1563">1563: </a>            
-</span><span id="1564" class="l"><a class="l" href="#1564">1564: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;id) {
-</span><span id="1565" class="l"><a class="l" href="#1565">1565: </a>                <span class="php-comment">// existing page</span>
-</span><span id="1566" class="l"><a class="l" href="#1566">1566: </a>                <span class="php-var">$isHidden</span> = <span class="php-var">$p</span>-&gt;isHidden();
-</span><span id="1567" class="l"><a class="l" href="#1567">1567: </a>                <span class="php-var">$isUnpublished</span> = <span class="php-var">$p</span>-&gt;isUnpublished();
-</span><span id="1568" class="l"><a class="l" href="#1568">1568: </a>                <span class="php-var">$isOn</span> = <span class="php-var">$p</span>-&gt;hasStatus(Page::statusOn);
-</span><span id="1569" class="l"><a class="l" href="#1569">1569: </a>                <span class="php-var">$isProcessed</span> = <span class="php-var">$p</span>-&gt;get(<span class="php-quote">'_repeater_processed'</span>) === <span class="php-keyword1">true</span>;
-</span><span id="1570" class="l"><a class="l" href="#1570">1570: </a>                <span class="php-var">$hasErrors</span> = <span class="php-var">$p</span>-&gt;get(<span class="php-quote">'_repeater_errors'</span>) ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>;
-</span><span id="1571" class="l"><a class="l" href="#1571">1571: </a>                
-</span><span id="1572" class="l"><a class="l" href="#1572">1572: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$isHidden</span> &amp;&amp; <span class="php-var">$isUnpublished</span>) <span class="php-keyword1">continue</span>; <span class="php-comment">// this is a 'ready' page, we can ignore</span>
-</span><span id="1573" class="l"><a class="l" href="#1573">1573: </a>                
-</span><span id="1574" class="l"><a class="l" href="#1574">1574: </a>                <span class="php-var">$changes</span> = <span class="php-keyword2">implode</span>(<span class="php-quote">', '</span>, <span class="php-var">$p</span>-&gt;getChanges());
-</span><span id="1575" class="l"><a class="l" href="#1575">1575: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Saved '</span><span class="php-var">$field</span><span class="php-quote">' page: </span><span class="php-var">{$p-&gt;path}</span><span class="php-quote"> &quot;</span> . (<span class="php-var">$changes</span> ? <span class="php-quote">&quot;(</span><span class="php-var">$changes</span><span class="php-quote">)&quot;</span> : <span class="php-quote">''</span>), Notice::debug); 
-</span><span id="1576" class="l"><a class="l" href="#1576">1576: </a>
-</span><span id="1577" class="l"><a class="l" href="#1577">1577: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$isUnpublished</span> &amp;&amp; <span class="php-var">$isOn</span> &amp;&amp; <span class="php-var">$isProcessed</span> &amp;&amp; !<span class="php-var">$hasErrors</span>) {
-</span><span id="1578" class="l"><a class="l" href="#1578">1578: </a>                    <span class="php-comment">// publish requested and allowed</span>
-</span><span id="1579" class="l"><a class="l" href="#1579">1579: </a>                    <span class="php-var">$p</span>-&gt;removeStatus(Page::statusUnpublished);
-</span><span id="1580" class="l"><a class="l" href="#1580">1580: </a>                }
-</span><span id="1581" class="l"><a class="l" href="#1581">1581: </a>
-</span><span id="1582" class="l"><a class="l" href="#1582">1582: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="1583" class="l"><a class="l" href="#1583">1583: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Added new '</span><span class="php-var">$field</span><span class="php-quote">' page&quot;</span>, Notice::debug); 
-</span><span id="1584" class="l"><a class="l" href="#1584">1584: </a>            }
+</span><span id="1558" class="l"><a class="l" href="#1558">1558: </a>
+</span><span id="1559" class="l"><a class="l" href="#1559">1559: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;id &amp;&amp; <span class="php-var">$p</span>-&gt;isUnpublished() &amp;&amp; !<span class="php-var">$p</span>-&gt;isHidden()) {
+</span><span id="1560" class="l"><a class="l" href="#1560">1560: </a>                <span class="php-comment">// if the page has an ID, but is still unpublished, though not hidden, then we queue it to be saved (and published)</span>
+</span><span id="1561" class="l"><a class="l" href="#1561">1561: </a>                <span class="php-var">$savePages</span>[] = <span class="php-var">$p</span>; 
+</span><span id="1562" class="l"><a class="l" href="#1562">1562: </a>            }
+</span><span id="1563" class="l"><a class="l" href="#1563">1563: </a>        }
+</span><span id="1564" class="l"><a class="l" href="#1564">1564: </a>
+</span><span id="1565" class="l"><a class="l" href="#1565">1565: </a>        <span class="php-comment">// iterate the pages that had changes and need to be saved</span>
+</span><span id="1566" class="l"><a class="l" href="#1566">1566: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$savePages</span> <span class="php-keyword1">as</span> <span class="php-var">$p</span>) {
+</span><span id="1567" class="l"><a class="l" href="#1567">1567: </a>            
+</span><span id="1568" class="l"><a class="l" href="#1568">1568: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$p</span>-&gt;id) {
+</span><span id="1569" class="l"><a class="l" href="#1569">1569: </a>                <span class="php-comment">// existing page</span>
+</span><span id="1570" class="l"><a class="l" href="#1570">1570: </a>                <span class="php-var">$isHidden</span> = <span class="php-var">$p</span>-&gt;isHidden();
+</span><span id="1571" class="l"><a class="l" href="#1571">1571: </a>                <span class="php-var">$isUnpublished</span> = <span class="php-var">$p</span>-&gt;isUnpublished();
+</span><span id="1572" class="l"><a class="l" href="#1572">1572: </a>                <span class="php-var">$isOn</span> = <span class="php-var">$p</span>-&gt;hasStatus(Page::statusOn);
+</span><span id="1573" class="l"><a class="l" href="#1573">1573: </a>                <span class="php-var">$isProcessed</span> = <span class="php-var">$p</span>-&gt;get(<span class="php-quote">'_repeater_processed'</span>) === <span class="php-keyword1">true</span>;
+</span><span id="1574" class="l"><a class="l" href="#1574">1574: </a>                <span class="php-var">$hasErrors</span> = <span class="php-var">$p</span>-&gt;get(<span class="php-quote">'_repeater_errors'</span>) ? <span class="php-keyword1">true</span> : <span class="php-keyword1">false</span>;
+</span><span id="1575" class="l"><a class="l" href="#1575">1575: </a>                
+</span><span id="1576" class="l"><a class="l" href="#1576">1576: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$isHidden</span> &amp;&amp; <span class="php-var">$isUnpublished</span>) <span class="php-keyword1">continue</span>; <span class="php-comment">// this is a 'ready' page, we can ignore</span>
+</span><span id="1577" class="l"><a class="l" href="#1577">1577: </a>                
+</span><span id="1578" class="l"><a class="l" href="#1578">1578: </a>                <span class="php-var">$changes</span> = <span class="php-keyword2">implode</span>(<span class="php-quote">', '</span>, <span class="php-var">$p</span>-&gt;getChanges());
+</span><span id="1579" class="l"><a class="l" href="#1579">1579: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Saved '</span><span class="php-var">$field</span><span class="php-quote">' page: </span><span class="php-var">{$p-&gt;path}</span><span class="php-quote"> &quot;</span> . (<span class="php-var">$changes</span> ? <span class="php-quote">&quot;(</span><span class="php-var">$changes</span><span class="php-quote">)&quot;</span> : <span class="php-quote">''</span>), Notice::debug); 
+</span><span id="1580" class="l"><a class="l" href="#1580">1580: </a>
+</span><span id="1581" class="l"><a class="l" href="#1581">1581: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$isUnpublished</span> &amp;&amp; <span class="php-var">$isOn</span> &amp;&amp; <span class="php-var">$isProcessed</span> &amp;&amp; !<span class="php-var">$hasErrors</span>) {
+</span><span id="1582" class="l"><a class="l" href="#1582">1582: </a>                    <span class="php-comment">// publish requested and allowed</span>
+</span><span id="1583" class="l"><a class="l" href="#1583">1583: </a>                    <span class="php-var">$p</span>-&gt;removeStatus(Page::statusUnpublished);
+</span><span id="1584" class="l"><a class="l" href="#1584">1584: </a>                }
 </span><span id="1585" class="l"><a class="l" href="#1585">1585: </a>
-</span><span id="1586" class="l"><a class="l" href="#1586">1586: </a>            <span class="php-comment">// save the repeater page</span>
-</span><span id="1587" class="l"><a class="l" href="#1587">1587: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;save(<span class="php-var">$p</span>, <span class="php-var">$saveOptions</span>);               
-</span><span id="1588" class="l"><a class="l" href="#1588">1588: </a>        }
+</span><span id="1586" class="l"><a class="l" href="#1586">1586: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="1587" class="l"><a class="l" href="#1587">1587: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Added new '</span><span class="php-var">$field</span><span class="php-quote">' page&quot;</span>, Notice::debug); 
+</span><span id="1588" class="l"><a class="l" href="#1588">1588: </a>            }
 </span><span id="1589" class="l"><a class="l" href="#1589">1589: </a>
-</span><span id="1590" class="l"><a class="l" href="#1590">1590: </a>        <span class="php-comment">// iterate through the pages that were removed</span>
-</span><span id="1591" class="l"><a class="l" href="#1591">1591: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$deletePages</span> <span class="php-keyword1">as</span> <span class="php-var">$p</span>) {
-</span><span id="1592" class="l"><a class="l" href="#1592">1592: </a>            <span class="php-comment">// if the deleted value is still present in the pageArray, then don't delete it</span>
-</span><span id="1593" class="l"><a class="l" href="#1593">1593: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span>-&gt;has(<span class="php-var">$p</span>)) <span class="php-keyword1">continue</span>; 
-</span><span id="1594" class="l"><a class="l" href="#1594">1594: </a>            <span class="php-comment">// $this-&gt;message(&quot;Deleted Repeater&quot;, Notice::debug); </span>
-</span><span id="1595" class="l"><a class="l" href="#1595">1595: </a>            <span class="php-comment">// delete the repeater page</span>
-</span><span id="1596" class="l"><a class="l" href="#1596">1596: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$p</span>, <span class="php-var">$saveOptions</span>);
-</span><span id="1597" class="l"><a class="l" href="#1597">1597: </a>        }
-</span><span id="1598" class="l"><a class="l" href="#1598">1598: </a>
-</span><span id="1599" class="l"><a class="l" href="#1599">1599: </a>        <span class="php-var">$result</span> = parent::___savePageField(<span class="php-var">$page</span>, <span class="php-var">$field</span>);
-</span><span id="1600" class="l"><a class="l" href="#1600">1600: </a>        <span class="php-comment">// ensure that any of our cloned page replacements (removes) don't get recorded any follow-up saves</span>
-</span><span id="1601" class="l"><a class="l" href="#1601">1601: </a>        <span class="php-var">$value</span>-&gt;resetTrackChanges();
-</span><span id="1602" class="l"><a class="l" href="#1602">1602: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
-</span><span id="1603" class="l"><a class="l" href="#1603">1603: </a>    }
-</span><span id="1604" class="l"><a class="l" href="#1604">1604: </a>
-</span><span id="1605" class="l"><a class="l" href="#1605">1605: </a>    <span class="php-comment">/**
-</span></span><span id="1606" class="l"><a class="l" href="#1606">1606: </a><span class="php-comment">     * Delete the given field, which implies: drop the table $field-&gt;table
-</span></span><span id="1607" class="l"><a class="l" href="#1607">1607: </a><span class="php-comment">     *
-</span></span><span id="1608" class="l"><a class="l" href="#1608">1608: </a><span class="php-comment">     * This should only be called by the Fields class since fieldgroups_fields lookup entries must be deleted before this method is called. 
-</span></span><span id="1609" class="l"><a class="l" href="#1609">1609: </a><span class="php-comment">     *
-</span></span><span id="1610" class="l"><a class="l" href="#1610">1610: </a><span class="php-comment">     * With the repeater, we must delete the associated fieldgroup, template and parent as well
+</span><span id="1590" class="l"><a class="l" href="#1590">1590: </a>            <span class="php-comment">// save the repeater page</span>
+</span><span id="1591" class="l"><a class="l" href="#1591">1591: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;save(<span class="php-var">$p</span>, <span class="php-var">$saveOptions</span>);               
+</span><span id="1592" class="l"><a class="l" href="#1592">1592: </a>        }
+</span><span id="1593" class="l"><a class="l" href="#1593">1593: </a>
+</span><span id="1594" class="l"><a class="l" href="#1594">1594: </a>        <span class="php-comment">// iterate through the pages that were removed</span>
+</span><span id="1595" class="l"><a class="l" href="#1595">1595: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$deletePages</span> <span class="php-keyword1">as</span> <span class="php-var">$p</span>) {
+</span><span id="1596" class="l"><a class="l" href="#1596">1596: </a>            <span class="php-comment">// if the deleted value is still present in the pageArray, then don't delete it</span>
+</span><span id="1597" class="l"><a class="l" href="#1597">1597: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$value</span>-&gt;has(<span class="php-var">$p</span>)) <span class="php-keyword1">continue</span>; 
+</span><span id="1598" class="l"><a class="l" href="#1598">1598: </a>            <span class="php-comment">// $this-&gt;message(&quot;Deleted Repeater&quot;, Notice::debug); </span>
+</span><span id="1599" class="l"><a class="l" href="#1599">1599: </a>            <span class="php-comment">// delete the repeater page</span>
+</span><span id="1600" class="l"><a class="l" href="#1600">1600: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$p</span>, <span class="php-var">$saveOptions</span>);
+</span><span id="1601" class="l"><a class="l" href="#1601">1601: </a>        }
+</span><span id="1602" class="l"><a class="l" href="#1602">1602: </a>
+</span><span id="1603" class="l"><a class="l" href="#1603">1603: </a>        <span class="php-var">$result</span> = parent::___savePageField(<span class="php-var">$page</span>, <span class="php-var">$field</span>);
+</span><span id="1604" class="l"><a class="l" href="#1604">1604: </a>        <span class="php-comment">// ensure that any of our cloned page replacements (removes) don't get recorded any follow-up saves</span>
+</span><span id="1605" class="l"><a class="l" href="#1605">1605: </a>        <span class="php-var">$value</span>-&gt;resetTrackChanges();
+</span><span id="1606" class="l"><a class="l" href="#1606">1606: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="1607" class="l"><a class="l" href="#1607">1607: </a>    }
+</span><span id="1608" class="l"><a class="l" href="#1608">1608: </a>
+</span><span id="1609" class="l"><a class="l" href="#1609">1609: </a>    <span class="php-comment">/**
+</span></span><span id="1610" class="l"><a class="l" href="#1610">1610: </a><span class="php-comment">     * Delete the given field, which implies: drop the table $field-&gt;table
 </span></span><span id="1611" class="l"><a class="l" href="#1611">1611: </a><span class="php-comment">     *
-</span></span><span id="1612" class="l"><a class="l" href="#1612">1612: </a><span class="php-comment">     * @param Field $field Field object
-</span></span><span id="1613" class="l"><a class="l" href="#1613">1613: </a><span class="php-comment">     * @return bool True on success, false on DB delete failure.
-</span></span><span id="1614" class="l"><a class="l" href="#1614">1614: </a><span class="php-comment">     *
-</span></span><span id="1615" class="l"><a class="l" href="#1615">1615: </a><span class="php-comment">     */</span>
-</span><span id="1616" class="l"><a class="l" href="#1616">1616: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____deleteField" href="#____deleteField">___deleteField</a>(Field <span class="php-var">$field</span>) {
-</span><span id="1617" class="l"><a class="l" href="#1617">1617: </a>
-</span><span id="1618" class="l"><a class="l" href="#1618">1618: </a>        <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get((int) <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_id'</span>)); 
-</span><span id="1619" class="l"><a class="l" href="#1619">1619: </a>        <span class="php-var">$parent</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get((int) <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'parent_id'</span>)); 
-</span><span id="1620" class="l"><a class="l" href="#1620">1620: </a>
-</span><span id="1621" class="l"><a class="l" href="#1621">1621: </a>        <span class="php-comment">// delete the pages used by this field</span>
-</span><span id="1622" class="l"><a class="l" href="#1622">1622: </a>        <span class="php-comment">// check that the parent really is still in our repeaters structure before deleting anything</span>
-</span><span id="1623" class="l"><a class="l" href="#1623">1623: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$parent</span>-&gt;id &amp;&amp; <span class="php-var">$parent</span>-&gt;parent_id == <span class="php-var">$this</span>-&gt;repeatersRootPageID) {
+</span></span><span id="1612" class="l"><a class="l" href="#1612">1612: </a><span class="php-comment">     * This should only be called by the Fields class since fieldgroups_fields lookup entries must be deleted before this method is called. 
+</span></span><span id="1613" class="l"><a class="l" href="#1613">1613: </a><span class="php-comment">     *
+</span></span><span id="1614" class="l"><a class="l" href="#1614">1614: </a><span class="php-comment">     * With the repeater, we must delete the associated fieldgroup, template and parent as well
+</span></span><span id="1615" class="l"><a class="l" href="#1615">1615: </a><span class="php-comment">     *
+</span></span><span id="1616" class="l"><a class="l" href="#1616">1616: </a><span class="php-comment">     * @param Field $field Field object
+</span></span><span id="1617" class="l"><a class="l" href="#1617">1617: </a><span class="php-comment">     * @return bool True on success, false on DB delete failure.
+</span></span><span id="1618" class="l"><a class="l" href="#1618">1618: </a><span class="php-comment">     *
+</span></span><span id="1619" class="l"><a class="l" href="#1619">1619: </a><span class="php-comment">     */</span>
+</span><span id="1620" class="l"><a class="l" href="#1620">1620: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____deleteField" href="#____deleteField">___deleteField</a>(Field <span class="php-var">$field</span>) {
+</span><span id="1621" class="l"><a class="l" href="#1621">1621: </a>
+</span><span id="1622" class="l"><a class="l" href="#1622">1622: </a>        <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get((int) <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'template_id'</span>)); 
+</span><span id="1623" class="l"><a class="l" href="#1623">1623: </a>        <span class="php-var">$parent</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get((int) <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'parent_id'</span>)); 
 </span><span id="1624" class="l"><a class="l" href="#1624">1624: </a>
-</span><span id="1625" class="l"><a class="l" href="#1625">1625: </a>            <span class="php-var">$parentPath</span> = <span class="php-var">$parent</span>-&gt;path;
-</span><span id="1626" class="l"><a class="l" href="#1626">1626: </a>
-</span><span id="1627" class="l"><a class="l" href="#1627">1627: </a>            <span class="php-comment">// remove system status from repeater field parent</span>
-</span><span id="1628" class="l"><a class="l" href="#1628">1628: </a>            <span class="php-var">$parent</span>-&gt;addStatus(Page::statusSystemOverride); 
-</span><span id="1629" class="l"><a class="l" href="#1629">1629: </a>            <span class="php-var">$parent</span>-&gt;removeStatus(Page::statusSystem); 
+</span><span id="1625" class="l"><a class="l" href="#1625">1625: </a>        <span class="php-comment">// delete the pages used by this field</span>
+</span><span id="1626" class="l"><a class="l" href="#1626">1626: </a>        <span class="php-comment">// check that the parent really is still in our repeaters structure before deleting anything</span>
+</span><span id="1627" class="l"><a class="l" href="#1627">1627: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$parent</span>-&gt;id &amp;&amp; <span class="php-var">$parent</span>-&gt;parent_id == <span class="php-var">$this</span>-&gt;repeatersRootPageID) {
+</span><span id="1628" class="l"><a class="l" href="#1628">1628: </a>
+</span><span id="1629" class="l"><a class="l" href="#1629">1629: </a>            <span class="php-var">$parentPath</span> = <span class="php-var">$parent</span>-&gt;path;
 </span><span id="1630" class="l"><a class="l" href="#1630">1630: </a>
-</span><span id="1631" class="l"><a class="l" href="#1631">1631: </a>            <span class="php-comment">// remove system status from repeater page parents</span>
-</span><span id="1632" class="l"><a class="l" href="#1632">1632: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$parent</span>-&gt;children <span class="php-keyword1">as</span> <span class="php-var">$child</span>) {
-</span><span id="1633" class="l"><a class="l" href="#1633">1633: </a>                <span class="php-var">$child</span>-&gt;addStatus(Page::statusSystemOverride);
-</span><span id="1634" class="l"><a class="l" href="#1634">1634: </a>                <span class="php-var">$child</span>-&gt;removeStatus(Page::statusSystem); 
-</span><span id="1635" class="l"><a class="l" href="#1635">1635: </a>            }
-</span><span id="1636" class="l"><a class="l" href="#1636">1636: </a>
-</span><span id="1637" class="l"><a class="l" href="#1637">1637: </a>            <span class="php-comment">// resursively delete the field parent and everything below it </span>
-</span><span id="1638" class="l"><a class="l" href="#1638">1638: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$parent</span>, <span class="php-keyword1">true</span>); 
-</span><span id="1639" class="l"><a class="l" href="#1639">1639: </a>
-</span><span id="1640" class="l"><a class="l" href="#1640">1640: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Deleted '</span><span class="php-var">$field</span><span class="php-quote">' parent: </span><span class="php-var">$parentPath</span><span class="php-quote">&quot;</span>, Notice::debug); 
-</span><span id="1641" class="l"><a class="l" href="#1641">1641: </a>        }
-</span><span id="1642" class="l"><a class="l" href="#1642">1642: </a>
-</span><span id="1643" class="l"><a class="l" href="#1643">1643: </a>        <span class="php-comment">// delete the template used by this field</span>
-</span><span id="1644" class="l"><a class="l" href="#1644">1644: </a>        <span class="php-comment">// check that the template still has system flag before deleting it</span>
-</span><span id="1645" class="l"><a class="l" href="#1645">1645: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$template</span> &amp;&amp; (<span class="php-var">$template</span>-&gt;flags &amp; Template::flagSystem)) {
+</span><span id="1631" class="l"><a class="l" href="#1631">1631: </a>            <span class="php-comment">// remove system status from repeater field parent</span>
+</span><span id="1632" class="l"><a class="l" href="#1632">1632: </a>            <span class="php-var">$parent</span>-&gt;addStatus(Page::statusSystemOverride); 
+</span><span id="1633" class="l"><a class="l" href="#1633">1633: </a>            <span class="php-var">$parent</span>-&gt;removeStatus(Page::statusSystem); 
+</span><span id="1634" class="l"><a class="l" href="#1634">1634: </a>
+</span><span id="1635" class="l"><a class="l" href="#1635">1635: </a>            <span class="php-comment">// remove system status from repeater page parents</span>
+</span><span id="1636" class="l"><a class="l" href="#1636">1636: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$parent</span>-&gt;children <span class="php-keyword1">as</span> <span class="php-var">$child</span>) {
+</span><span id="1637" class="l"><a class="l" href="#1637">1637: </a>                <span class="php-var">$child</span>-&gt;addStatus(Page::statusSystemOverride);
+</span><span id="1638" class="l"><a class="l" href="#1638">1638: </a>                <span class="php-var">$child</span>-&gt;removeStatus(Page::statusSystem); 
+</span><span id="1639" class="l"><a class="l" href="#1639">1639: </a>            }
+</span><span id="1640" class="l"><a class="l" href="#1640">1640: </a>
+</span><span id="1641" class="l"><a class="l" href="#1641">1641: </a>            <span class="php-comment">// resursively delete the field parent and everything below it </span>
+</span><span id="1642" class="l"><a class="l" href="#1642">1642: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$parent</span>, <span class="php-keyword1">true</span>); 
+</span><span id="1643" class="l"><a class="l" href="#1643">1643: </a>
+</span><span id="1644" class="l"><a class="l" href="#1644">1644: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Deleted '</span><span class="php-var">$field</span><span class="php-quote">' parent: </span><span class="php-var">$parentPath</span><span class="php-quote">&quot;</span>, Notice::debug); 
+</span><span id="1645" class="l"><a class="l" href="#1645">1645: </a>        }
 </span><span id="1646" class="l"><a class="l" href="#1646">1646: </a>
-</span><span id="1647" class="l"><a class="l" href="#1647">1647: </a>            <span class="php-var">$templateName</span> = <span class="php-var">$template</span>-&gt;name; 
-</span><span id="1648" class="l"><a class="l" href="#1648">1648: </a>
-</span><span id="1649" class="l"><a class="l" href="#1649">1649: </a>            <span class="php-comment">// remove system flag from the template</span>
-</span><span id="1650" class="l"><a class="l" href="#1650">1650: </a>            <span class="php-var">$template</span>-&gt;flags = Template::flagSystemOverride; 
-</span><span id="1651" class="l"><a class="l" href="#1651">1651: </a>            <span class="php-var">$template</span>-&gt;flags = <span class="php-num">0</span>;
+</span><span id="1647" class="l"><a class="l" href="#1647">1647: </a>        <span class="php-comment">// delete the template used by this field</span>
+</span><span id="1648" class="l"><a class="l" href="#1648">1648: </a>        <span class="php-comment">// check that the template still has system flag before deleting it</span>
+</span><span id="1649" class="l"><a class="l" href="#1649">1649: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$template</span> &amp;&amp; (<span class="php-var">$template</span>-&gt;flags &amp; Template::flagSystem)) {
+</span><span id="1650" class="l"><a class="l" href="#1650">1650: </a>
+</span><span id="1651" class="l"><a class="l" href="#1651">1651: </a>            <span class="php-var">$templateName</span> = <span class="php-var">$template</span>-&gt;name; 
 </span><span id="1652" class="l"><a class="l" href="#1652">1652: </a>
-</span><span id="1653" class="l"><a class="l" href="#1653">1653: </a>            <span class="php-comment">// delete the template</span>
-</span><span id="1654" class="l"><a class="l" href="#1654">1654: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$template</span>);    
-</span><span id="1655" class="l"><a class="l" href="#1655">1655: </a>
-</span><span id="1656" class="l"><a class="l" href="#1656">1656: </a>            <span class="php-comment">// delete the fieldgroup</span>
-</span><span id="1657" class="l"><a class="l" href="#1657">1657: </a>            <span class="php-var">$fieldgroup</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldgroups'</span>)-&gt;get(<span class="php-var">$templateName</span>); 
-</span><span id="1658" class="l"><a class="l" href="#1658">1658: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$fieldgroup</span>) <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldgroups'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$fieldgroup</span>); 
+</span><span id="1653" class="l"><a class="l" href="#1653">1653: </a>            <span class="php-comment">// remove system flag from the template</span>
+</span><span id="1654" class="l"><a class="l" href="#1654">1654: </a>            <span class="php-var">$template</span>-&gt;flags = Template::flagSystemOverride; 
+</span><span id="1655" class="l"><a class="l" href="#1655">1655: </a>            <span class="php-var">$template</span>-&gt;flags = <span class="php-num">0</span>;
+</span><span id="1656" class="l"><a class="l" href="#1656">1656: </a>
+</span><span id="1657" class="l"><a class="l" href="#1657">1657: </a>            <span class="php-comment">// delete the template</span>
+</span><span id="1658" class="l"><a class="l" href="#1658">1658: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$template</span>);    
 </span><span id="1659" class="l"><a class="l" href="#1659">1659: </a>
-</span><span id="1660" class="l"><a class="l" href="#1660">1660: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Deleted '</span><span class="php-var">$field</span><span class="php-quote">' template: </span><span class="php-var">$templateName</span><span class="php-quote">&quot;</span>, Notice::debug); 
-</span><span id="1661" class="l"><a class="l" href="#1661">1661: </a>        }
-</span><span id="1662" class="l"><a class="l" href="#1662">1662: </a>
-</span><span id="1663" class="l"><a class="l" href="#1663">1663: </a>        <span class="php-keyword1">return</span> parent::___deleteField(<span class="php-var">$field</span>); 
-</span><span id="1664" class="l"><a class="l" href="#1664">1664: </a>    }
-</span><span id="1665" class="l"><a class="l" href="#1665">1665: </a>
-</span><span id="1666" class="l"><a class="l" href="#1666">1666: </a>    <span class="php-comment">/**
-</span></span><span id="1667" class="l"><a class="l" href="#1667">1667: </a><span class="php-comment">     * Delete the given Field from the given Page
-</span></span><span id="1668" class="l"><a class="l" href="#1668">1668: </a><span class="php-comment">     *
-</span></span><span id="1669" class="l"><a class="l" href="#1669">1669: </a><span class="php-comment">     * @param Page $page 
-</span></span><span id="1670" class="l"><a class="l" href="#1670">1670: </a><span class="php-comment">     * @param Field $field Field object
-</span></span><span id="1671" class="l"><a class="l" href="#1671">1671: </a><span class="php-comment">     * @return bool True on success, false on DB delete failure.
+</span><span id="1660" class="l"><a class="l" href="#1660">1660: </a>            <span class="php-comment">// delete the fieldgroup</span>
+</span><span id="1661" class="l"><a class="l" href="#1661">1661: </a>            <span class="php-var">$fieldgroup</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldgroups'</span>)-&gt;get(<span class="php-var">$templateName</span>); 
+</span><span id="1662" class="l"><a class="l" href="#1662">1662: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$fieldgroup</span>) <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fieldgroups'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$fieldgroup</span>); 
+</span><span id="1663" class="l"><a class="l" href="#1663">1663: </a>
+</span><span id="1664" class="l"><a class="l" href="#1664">1664: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Deleted '</span><span class="php-var">$field</span><span class="php-quote">' template: </span><span class="php-var">$templateName</span><span class="php-quote">&quot;</span>, Notice::debug); 
+</span><span id="1665" class="l"><a class="l" href="#1665">1665: </a>        }
+</span><span id="1666" class="l"><a class="l" href="#1666">1666: </a>
+</span><span id="1667" class="l"><a class="l" href="#1667">1667: </a>        <span class="php-keyword1">return</span> parent::___deleteField(<span class="php-var">$field</span>); 
+</span><span id="1668" class="l"><a class="l" href="#1668">1668: </a>    }
+</span><span id="1669" class="l"><a class="l" href="#1669">1669: </a>
+</span><span id="1670" class="l"><a class="l" href="#1670">1670: </a>    <span class="php-comment">/**
+</span></span><span id="1671" class="l"><a class="l" href="#1671">1671: </a><span class="php-comment">     * Delete the given Field from the given Page
 </span></span><span id="1672" class="l"><a class="l" href="#1672">1672: </a><span class="php-comment">     *
-</span></span><span id="1673" class="l"><a class="l" href="#1673">1673: </a><span class="php-comment">     */</span>
-</span><span id="1674" class="l"><a class="l" href="#1674">1674: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____deletePageField" href="#____deletePageField">___deletePageField</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>) {
-</span><span id="1675" class="l"><a class="l" href="#1675">1675: </a>
-</span><span id="1676" class="l"><a class="l" href="#1676">1676: </a>        <span class="php-var">$result</span> = parent::___deletePageField(<span class="php-var">$page</span>, <span class="php-var">$field</span>); 
-</span><span id="1677" class="l"><a class="l" href="#1677">1677: </a>        <span class="php-var">$this</span>-&gt;deletePageField = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'parent_id'</span>);
-</span><span id="1678" class="l"><a class="l" href="#1678">1678: </a>        <span class="php-var">$fieldParent</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get((int) <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'parent_id'</span>));
+</span></span><span id="1673" class="l"><a class="l" href="#1673">1673: </a><span class="php-comment">     * @param Page $page 
+</span></span><span id="1674" class="l"><a class="l" href="#1674">1674: </a><span class="php-comment">     * @param Field $field Field object
+</span></span><span id="1675" class="l"><a class="l" href="#1675">1675: </a><span class="php-comment">     * @return bool True on success, false on DB delete failure.
+</span></span><span id="1676" class="l"><a class="l" href="#1676">1676: </a><span class="php-comment">     *
+</span></span><span id="1677" class="l"><a class="l" href="#1677">1677: </a><span class="php-comment">     */</span>
+</span><span id="1678" class="l"><a class="l" href="#1678">1678: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____deletePageField" href="#____deletePageField">___deletePageField</a>(Page <span class="php-var">$page</span>, Field <span class="php-var">$field</span>) {
 </span><span id="1679" class="l"><a class="l" href="#1679">1679: </a>
-</span><span id="1680" class="l"><a class="l" href="#1680">1680: </a>        <span class="php-comment">// confirm that this field parent page is still part of the pages we manage</span>
-</span><span id="1681" class="l"><a class="l" href="#1681">1681: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$fieldParent</span>-&gt;parent_id == <span class="php-var">$this</span>-&gt;repeatersRootPageID) {
-</span><span id="1682" class="l"><a class="l" href="#1682">1682: </a>            <span class="php-comment">// locate the repeater page parent</span>
-</span><span id="1683" class="l"><a class="l" href="#1683">1683: </a>            <span class="php-var">$parent</span> = <span class="php-var">$fieldParent</span>-&gt;child(<span class="php-quote">'name='</span> . self::repeaterPageNamePrefix . <span class="php-var">$page</span>-&gt;id . <span class="php-quote">', include=all'</span>); 
-</span><span id="1684" class="l"><a class="l" href="#1684">1684: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$parent</span>-&gt;id) { 
-</span><span id="1685" class="l"><a class="l" href="#1685">1685: </a>                <span class="php-comment">// remove system status from repeater page parent</span>
-</span><span id="1686" class="l"><a class="l" href="#1686">1686: </a>                <span class="php-var">$parent</span>-&gt;addStatus(Page::statusSystemOverride);
-</span><span id="1687" class="l"><a class="l" href="#1687">1687: </a>                <span class="php-var">$parent</span>-&gt;removeStatus(Page::statusSystem);
-</span><span id="1688" class="l"><a class="l" href="#1688">1688: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Deleted </span><span class="php-var">{$parent-&gt;path}</span><span class="php-quote">&quot;</span>, Notice::debug); 
-</span><span id="1689" class="l"><a class="l" href="#1689">1689: </a>                <span class="php-comment">// delete the repeater page parent and all the repeater pages in it</span>
-</span><span id="1690" class="l"><a class="l" href="#1690">1690: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$parent</span>, <span class="php-keyword1">true</span>); 
-</span><span id="1691" class="l"><a class="l" href="#1691">1691: </a>            }
-</span><span id="1692" class="l"><a class="l" href="#1692">1692: </a>        }
-</span><span id="1693" class="l"><a class="l" href="#1693">1693: </a>
-</span><span id="1694" class="l"><a class="l" href="#1694">1694: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
-</span><span id="1695" class="l"><a class="l" href="#1695">1695: </a>    }
-</span><span id="1696" class="l"><a class="l" href="#1696">1696: </a>
-</span><span id="1697" class="l"><a class="l" href="#1697">1697: </a>    <span class="php-comment">/**
-</span></span><span id="1698" class="l"><a class="l" href="#1698">1698: </a><span class="php-comment">     * Delete old ready pages that are just taking up space
-</span></span><span id="1699" class="l"><a class="l" href="#1699">1699: </a><span class="php-comment">     * 
-</span></span><span id="1700" class="l"><a class="l" href="#1700">1700: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1701" class="l"><a class="l" href="#1701">1701: </a><span class="php-comment">     * @param bool $delete Specify true to delete the old ready pages
-</span></span><span id="1702" class="l"><a class="l" href="#1702">1702: </a><span class="php-comment">     * @param int $secondsOld Number of seconds old that the page has to be to be considered &quot;old&quot; (default=259200 or 3 days)
-</span></span><span id="1703" class="l"><a class="l" href="#1703">1703: </a><span class="php-comment">     * @return int Count of old ready pages, or if $delete===true, then number that was deleted
-</span></span><span id="1704" class="l"><a class="l" href="#1704">1704: </a><span class="php-comment">     * 
-</span></span><span id="1705" class="l"><a class="l" href="#1705">1705: </a><span class="php-comment">     */</span>
-</span><span id="1706" class="l"><a class="l" href="#1706">1706: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_countOldReadyPages" href="#_countOldReadyPages">countOldReadyPages</a>(Field <span class="php-var">$field</span>, <span class="php-var">$delete</span> = <span class="php-keyword1">false</span>, <span class="php-var">$secondsOld</span> = <span class="php-num">259200</span>) {
-</span><span id="1707" class="l"><a class="l" href="#1707">1707: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeRepeater) <span class="php-keyword1">return</span> <span class="php-num">0</span>;
-</span><span id="1708" class="l"><a class="l" href="#1708">1708: </a>        <span class="php-var">$cnt</span> = <span class="php-num">0</span>;
-</span><span id="1709" class="l"><a class="l" href="#1709">1709: </a>        <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;getRepeaterTemplate(<span class="php-var">$field</span>);
-</span><span id="1710" class="l"><a class="l" href="#1710">1710: </a>        <span class="php-var">$parent</span> = <span class="php-var">$this</span>-&gt;getRepeaterParent(<span class="php-var">$field</span>);
-</span><span id="1711" class="l"><a class="l" href="#1711">1711: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$template</span> || !<span class="php-var">$parent</span>) <span class="php-keyword1">return</span> <span class="php-num">0</span>;
-</span><span id="1712" class="l"><a class="l" href="#1712">1712: </a>        <span class="php-var">$status</span> = Page::statusHidden + Page::statusUnpublished;
-</span><span id="1713" class="l"><a class="l" href="#1713">1713: </a>        <span class="php-var">$modified</span> = <span class="php-keyword2">time</span>() - <span class="php-var">$secondsOld</span>;
-</span><span id="1714" class="l"><a class="l" href="#1714">1714: </a>        <span class="php-var">$selector</span> = <span class="php-quote">&quot;has_parent=</span><span class="php-var">$parent</span><span class="php-quote">, template=</span><span class="php-var">$template</span><span class="php-quote">, status&gt;=</span><span class="php-var">$status</span><span class="php-quote">, modified&lt;=</span><span class="php-var">$modified</span><span class="php-quote">, include=all&quot;</span>;
-</span><span id="1715" class="l"><a class="l" href="#1715">1715: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$delete</span>) {
-</span><span id="1716" class="l"><a class="l" href="#1716">1716: </a>            <span class="php-var">$items</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;find(<span class="php-var">$selector</span>);
-</span><span id="1717" class="l"><a class="l" href="#1717">1717: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$items</span> <span class="php-keyword1">as</span> <span class="php-var">$item</span>) {
-</span><span id="1718" class="l"><a class="l" href="#1718">1718: </a>                <span class="php-keyword1">try</span> {
-</span><span id="1719" class="l"><a class="l" href="#1719">1719: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$item</span>-&gt;<span class="php-keyword2">delete</span>()) <span class="php-var">$cnt</span>++;
-</span><span id="1720" class="l"><a class="l" href="#1720">1720: </a>                } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
-</span><span id="1721" class="l"><a class="l" href="#1721">1721: </a>                    <span class="php-var">$this</span>-&gt;error(<span class="php-quote">&quot;Error deleting old repeater item </span><span class="php-var">$item</span><span class="php-quote">-&gt;path - &quot;</span> . <span class="php-var">$e</span>-&gt;getMessage());
-</span><span id="1722" class="l"><a class="l" href="#1722">1722: </a>                }
-</span><span id="1723" class="l"><a class="l" href="#1723">1723: </a>            }
-</span><span id="1724" class="l"><a class="l" href="#1724">1724: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="1725" class="l"><a class="l" href="#1725">1725: </a>            <span class="php-var">$cnt</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">count</span>(<span class="php-var">$selector</span>);
-</span><span id="1726" class="l"><a class="l" href="#1726">1726: </a>        }
-</span><span id="1727" class="l"><a class="l" href="#1727">1727: </a>        <span class="php-keyword1">return</span> <span class="php-var">$cnt</span>;
-</span><span id="1728" class="l"><a class="l" href="#1728">1728: </a>    }
-</span><span id="1729" class="l"><a class="l" href="#1729">1729: </a>
-</span><span id="1730" class="l"><a class="l" href="#1730">1730: </a>    <span class="php-comment">/**
-</span></span><span id="1731" class="l"><a class="l" href="#1731">1731: </a><span class="php-comment">     * Create a cloned copy of Field
-</span></span><span id="1732" class="l"><a class="l" href="#1732">1732: </a><span class="php-comment">     * 
-</span></span><span id="1733" class="l"><a class="l" href="#1733">1733: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1734" class="l"><a class="l" href="#1734">1734: </a><span class="php-comment">     * @throws WireException
-</span></span><span id="1735" class="l"><a class="l" href="#1735">1735: </a><span class="php-comment">     * @return Field
-</span></span><span id="1736" class="l"><a class="l" href="#1736">1736: </a><span class="php-comment">     *
-</span></span><span id="1737" class="l"><a class="l" href="#1737">1737: </a><span class="php-comment">     */</span>
-</span><span id="1738" class="l"><a class="l" href="#1738">1738: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____cloneField" href="#____cloneField">___cloneField</a>(Field <span class="php-var">$field</span>) {
-</span><span id="1739" class="l"><a class="l" href="#1739">1739: </a>        <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-var">$this</span>-&gt;className() . <span class="php-quote">&quot; does not currently support field cloning.&quot;</span>);     
-</span><span id="1740" class="l"><a class="l" href="#1740">1740: </a>        <span class="php-comment">/*  
-</span></span><span id="1741" class="l"><a class="l" href="#1741">1741: </a><span class="php-comment">        $field = parent::___cloneField($field); 
-</span></span><span id="1742" class="l"><a class="l" href="#1742">1742: </a><span class="php-comment">        $field-&gt;parent_id = null;
-</span></span><span id="1743" class="l"><a class="l" href="#1743">1743: </a><span class="php-comment">        $field-&gt;template_id = null;
-</span></span><span id="1744" class="l"><a class="l" href="#1744">1744: </a><span class="php-comment">        return $field; 
-</span></span><span id="1745" class="l"><a class="l" href="#1745">1745: </a><span class="php-comment">        */</span>
-</span><span id="1746" class="l"><a class="l" href="#1746">1746: </a>    }
-</span><span id="1747" class="l"><a class="l" href="#1747">1747: </a>    
-</span><span id="1748" class="l"><a class="l" href="#1748">1748: </a>    <span class="php-comment">/**
-</span></span><span id="1749" class="l"><a class="l" href="#1749">1749: </a><span class="php-comment">     * Export configuration values for external consumption
-</span></span><span id="1750" class="l"><a class="l" href="#1750">1750: </a><span class="php-comment">     *
-</span></span><span id="1751" class="l"><a class="l" href="#1751">1751: </a><span class="php-comment">     * Use this method to externalize any config values when necessary.
-</span></span><span id="1752" class="l"><a class="l" href="#1752">1752: </a><span class="php-comment">     * For example, internal IDs should be converted to GUIDs where possible.
-</span></span><span id="1753" class="l"><a class="l" href="#1753">1753: </a><span class="php-comment">     * Most Fieldtype modules can use the default implementation already provided here.
+</span><span id="1680" class="l"><a class="l" href="#1680">1680: </a>        <span class="php-var">$result</span> = parent::___deletePageField(<span class="php-var">$page</span>, <span class="php-var">$field</span>); 
+</span><span id="1681" class="l"><a class="l" href="#1681">1681: </a>        <span class="php-var">$this</span>-&gt;deletePageField = <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'parent_id'</span>);
+</span><span id="1682" class="l"><a class="l" href="#1682">1682: </a>        <span class="php-var">$fieldParent</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get((int) <span class="php-var">$field</span>-&gt;get(<span class="php-quote">'parent_id'</span>));
+</span><span id="1683" class="l"><a class="l" href="#1683">1683: </a>
+</span><span id="1684" class="l"><a class="l" href="#1684">1684: </a>        <span class="php-comment">// confirm that this field parent page is still part of the pages we manage</span>
+</span><span id="1685" class="l"><a class="l" href="#1685">1685: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$fieldParent</span>-&gt;parent_id == <span class="php-var">$this</span>-&gt;repeatersRootPageID) {
+</span><span id="1686" class="l"><a class="l" href="#1686">1686: </a>            <span class="php-comment">// locate the repeater page parent</span>
+</span><span id="1687" class="l"><a class="l" href="#1687">1687: </a>            <span class="php-var">$parent</span> = <span class="php-var">$fieldParent</span>-&gt;child(<span class="php-quote">'name='</span> . self::repeaterPageNamePrefix . <span class="php-var">$page</span>-&gt;id . <span class="php-quote">', include=all'</span>); 
+</span><span id="1688" class="l"><a class="l" href="#1688">1688: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$parent</span>-&gt;id) { 
+</span><span id="1689" class="l"><a class="l" href="#1689">1689: </a>                <span class="php-comment">// remove system status from repeater page parent</span>
+</span><span id="1690" class="l"><a class="l" href="#1690">1690: </a>                <span class="php-var">$parent</span>-&gt;addStatus(Page::statusSystemOverride);
+</span><span id="1691" class="l"><a class="l" href="#1691">1691: </a>                <span class="php-var">$parent</span>-&gt;removeStatus(Page::statusSystem);
+</span><span id="1692" class="l"><a class="l" href="#1692">1692: </a>                <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Deleted </span><span class="php-var">{$parent-&gt;path}</span><span class="php-quote">&quot;</span>, Notice::debug); 
+</span><span id="1693" class="l"><a class="l" href="#1693">1693: </a>                <span class="php-comment">// delete the repeater page parent and all the repeater pages in it</span>
+</span><span id="1694" class="l"><a class="l" href="#1694">1694: </a>                <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$parent</span>, <span class="php-keyword1">true</span>); 
+</span><span id="1695" class="l"><a class="l" href="#1695">1695: </a>            }
+</span><span id="1696" class="l"><a class="l" href="#1696">1696: </a>        }
+</span><span id="1697" class="l"><a class="l" href="#1697">1697: </a>
+</span><span id="1698" class="l"><a class="l" href="#1698">1698: </a>        <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="1699" class="l"><a class="l" href="#1699">1699: </a>    }
+</span><span id="1700" class="l"><a class="l" href="#1700">1700: </a>
+</span><span id="1701" class="l"><a class="l" href="#1701">1701: </a>    <span class="php-comment">/**
+</span></span><span id="1702" class="l"><a class="l" href="#1702">1702: </a><span class="php-comment">     * Delete old ready pages that are just taking up space
+</span></span><span id="1703" class="l"><a class="l" href="#1703">1703: </a><span class="php-comment">     * 
+</span></span><span id="1704" class="l"><a class="l" href="#1704">1704: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1705" class="l"><a class="l" href="#1705">1705: </a><span class="php-comment">     * @param bool $delete Specify true to delete the old ready pages
+</span></span><span id="1706" class="l"><a class="l" href="#1706">1706: </a><span class="php-comment">     * @param int $secondsOld Number of seconds old that the page has to be to be considered &quot;old&quot; (default=259200 or 3 days)
+</span></span><span id="1707" class="l"><a class="l" href="#1707">1707: </a><span class="php-comment">     * @return int Count of old ready pages, or if $delete===true, then number that was deleted
+</span></span><span id="1708" class="l"><a class="l" href="#1708">1708: </a><span class="php-comment">     * 
+</span></span><span id="1709" class="l"><a class="l" href="#1709">1709: </a><span class="php-comment">     */</span>
+</span><span id="1710" class="l"><a class="l" href="#1710">1710: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_countOldReadyPages" href="#_countOldReadyPages">countOldReadyPages</a>(Field <span class="php-var">$field</span>, <span class="php-var">$delete</span> = <span class="php-keyword1">false</span>, <span class="php-var">$secondsOld</span> = <span class="php-num">259200</span>) {
+</span><span id="1711" class="l"><a class="l" href="#1711">1711: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeRepeater) <span class="php-keyword1">return</span> <span class="php-num">0</span>;
+</span><span id="1712" class="l"><a class="l" href="#1712">1712: </a>        <span class="php-var">$cnt</span> = <span class="php-num">0</span>;
+</span><span id="1713" class="l"><a class="l" href="#1713">1713: </a>        <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;getRepeaterTemplate(<span class="php-var">$field</span>);
+</span><span id="1714" class="l"><a class="l" href="#1714">1714: </a>        <span class="php-var">$parent</span> = <span class="php-var">$this</span>-&gt;getRepeaterParent(<span class="php-var">$field</span>);
+</span><span id="1715" class="l"><a class="l" href="#1715">1715: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$template</span> || !<span class="php-var">$parent</span>) <span class="php-keyword1">return</span> <span class="php-num">0</span>;
+</span><span id="1716" class="l"><a class="l" href="#1716">1716: </a>        <span class="php-var">$status</span> = Page::statusHidden + Page::statusUnpublished;
+</span><span id="1717" class="l"><a class="l" href="#1717">1717: </a>        <span class="php-var">$modified</span> = <span class="php-keyword2">time</span>() - <span class="php-var">$secondsOld</span>;
+</span><span id="1718" class="l"><a class="l" href="#1718">1718: </a>        <span class="php-var">$selector</span> = <span class="php-quote">&quot;has_parent=</span><span class="php-var">$parent</span><span class="php-quote">, template=</span><span class="php-var">$template</span><span class="php-quote">, status&gt;=</span><span class="php-var">$status</span><span class="php-quote">, modified&lt;=</span><span class="php-var">$modified</span><span class="php-quote">, include=all&quot;</span>;
+</span><span id="1719" class="l"><a class="l" href="#1719">1719: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$delete</span>) {
+</span><span id="1720" class="l"><a class="l" href="#1720">1720: </a>            <span class="php-var">$items</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;find(<span class="php-var">$selector</span>);
+</span><span id="1721" class="l"><a class="l" href="#1721">1721: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$items</span> <span class="php-keyword1">as</span> <span class="php-var">$item</span>) {
+</span><span id="1722" class="l"><a class="l" href="#1722">1722: </a>                <span class="php-keyword1">try</span> {
+</span><span id="1723" class="l"><a class="l" href="#1723">1723: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$item</span>-&gt;<span class="php-keyword2">delete</span>()) <span class="php-var">$cnt</span>++;
+</span><span id="1724" class="l"><a class="l" href="#1724">1724: </a>                } <span class="php-keyword1">catch</span>(\Exception <span class="php-var">$e</span>) {
+</span><span id="1725" class="l"><a class="l" href="#1725">1725: </a>                    <span class="php-var">$this</span>-&gt;error(<span class="php-quote">&quot;Error deleting old repeater item </span><span class="php-var">$item</span><span class="php-quote">-&gt;path - &quot;</span> . <span class="php-var">$e</span>-&gt;getMessage());
+</span><span id="1726" class="l"><a class="l" href="#1726">1726: </a>                }
+</span><span id="1727" class="l"><a class="l" href="#1727">1727: </a>            }
+</span><span id="1728" class="l"><a class="l" href="#1728">1728: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="1729" class="l"><a class="l" href="#1729">1729: </a>            <span class="php-var">$cnt</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">count</span>(<span class="php-var">$selector</span>);
+</span><span id="1730" class="l"><a class="l" href="#1730">1730: </a>        }
+</span><span id="1731" class="l"><a class="l" href="#1731">1731: </a>        <span class="php-keyword1">return</span> <span class="php-var">$cnt</span>;
+</span><span id="1732" class="l"><a class="l" href="#1732">1732: </a>    }
+</span><span id="1733" class="l"><a class="l" href="#1733">1733: </a>
+</span><span id="1734" class="l"><a class="l" href="#1734">1734: </a>    <span class="php-comment">/**
+</span></span><span id="1735" class="l"><a class="l" href="#1735">1735: </a><span class="php-comment">     * Create a cloned copy of Field
+</span></span><span id="1736" class="l"><a class="l" href="#1736">1736: </a><span class="php-comment">     * 
+</span></span><span id="1737" class="l"><a class="l" href="#1737">1737: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1738" class="l"><a class="l" href="#1738">1738: </a><span class="php-comment">     * @throws WireException
+</span></span><span id="1739" class="l"><a class="l" href="#1739">1739: </a><span class="php-comment">     * @return Field
+</span></span><span id="1740" class="l"><a class="l" href="#1740">1740: </a><span class="php-comment">     *
+</span></span><span id="1741" class="l"><a class="l" href="#1741">1741: </a><span class="php-comment">     */</span>
+</span><span id="1742" class="l"><a class="l" href="#1742">1742: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____cloneField" href="#____cloneField">___cloneField</a>(Field <span class="php-var">$field</span>) {
+</span><span id="1743" class="l"><a class="l" href="#1743">1743: </a>        <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> WireException(<span class="php-var">$this</span>-&gt;className() . <span class="php-quote">&quot; does not currently support field cloning.&quot;</span>);     
+</span><span id="1744" class="l"><a class="l" href="#1744">1744: </a>        <span class="php-comment">/*  
+</span></span><span id="1745" class="l"><a class="l" href="#1745">1745: </a><span class="php-comment">        $field = parent::___cloneField($field); 
+</span></span><span id="1746" class="l"><a class="l" href="#1746">1746: </a><span class="php-comment">        $field-&gt;parent_id = null;
+</span></span><span id="1747" class="l"><a class="l" href="#1747">1747: </a><span class="php-comment">        $field-&gt;template_id = null;
+</span></span><span id="1748" class="l"><a class="l" href="#1748">1748: </a><span class="php-comment">        return $field; 
+</span></span><span id="1749" class="l"><a class="l" href="#1749">1749: </a><span class="php-comment">        */</span>
+</span><span id="1750" class="l"><a class="l" href="#1750">1750: </a>    }
+</span><span id="1751" class="l"><a class="l" href="#1751">1751: </a>    
+</span><span id="1752" class="l"><a class="l" href="#1752">1752: </a>    <span class="php-comment">/**
+</span></span><span id="1753" class="l"><a class="l" href="#1753">1753: </a><span class="php-comment">     * Export configuration values for external consumption
 </span></span><span id="1754" class="l"><a class="l" href="#1754">1754: </a><span class="php-comment">     *
-</span></span><span id="1755" class="l"><a class="l" href="#1755">1755: </a><span class="php-comment">     * #pw-group-configuration
-</span></span><span id="1756" class="l"><a class="l" href="#1756">1756: </a><span class="php-comment">     *
-</span></span><span id="1757" class="l"><a class="l" href="#1757">1757: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1758" class="l"><a class="l" href="#1758">1758: </a><span class="php-comment">     * @param array $data
-</span></span><span id="1759" class="l"><a class="l" href="#1759">1759: </a><span class="php-comment">     * @return array
+</span></span><span id="1755" class="l"><a class="l" href="#1755">1755: </a><span class="php-comment">     * Use this method to externalize any config values when necessary.
+</span></span><span id="1756" class="l"><a class="l" href="#1756">1756: </a><span class="php-comment">     * For example, internal IDs should be converted to GUIDs where possible.
+</span></span><span id="1757" class="l"><a class="l" href="#1757">1757: </a><span class="php-comment">     * Most Fieldtype modules can use the default implementation already provided here.
+</span></span><span id="1758" class="l"><a class="l" href="#1758">1758: </a><span class="php-comment">     *
+</span></span><span id="1759" class="l"><a class="l" href="#1759">1759: </a><span class="php-comment">     * #pw-group-configuration
 </span></span><span id="1760" class="l"><a class="l" href="#1760">1760: </a><span class="php-comment">     *
-</span></span><span id="1761" class="l"><a class="l" href="#1761">1761: </a><span class="php-comment">     */</span>
-</span><span id="1762" class="l"><a class="l" href="#1762">1762: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____exportConfigData" href="#____exportConfigData">___exportConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="1763" class="l"><a class="l" href="#1763">1763: </a>        
-</span><span id="1764" class="l"><a class="l" href="#1764">1764: </a>        <span class="php-var">$data</span> = parent::___exportConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
-</span><span id="1765" class="l"><a class="l" href="#1765">1765: </a>        
-</span><span id="1766" class="l"><a class="l" href="#1766">1766: </a>        <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get((int) <span class="php-var">$data</span>[<span class="php-quote">'template_id'</span>]); 
+</span></span><span id="1761" class="l"><a class="l" href="#1761">1761: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1762" class="l"><a class="l" href="#1762">1762: </a><span class="php-comment">     * @param array $data
+</span></span><span id="1763" class="l"><a class="l" href="#1763">1763: </a><span class="php-comment">     * @return array
+</span></span><span id="1764" class="l"><a class="l" href="#1764">1764: </a><span class="php-comment">     *
+</span></span><span id="1765" class="l"><a class="l" href="#1765">1765: </a><span class="php-comment">     */</span>
+</span><span id="1766" class="l"><a class="l" href="#1766">1766: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____exportConfigData" href="#____exportConfigData">___exportConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
 </span><span id="1767" class="l"><a class="l" href="#1767">1767: </a>        
-</span><span id="1768" class="l"><a class="l" href="#1768">1768: </a>        <span class="php-var">$data</span>[<span class="php-quote">'template_id'</span>] = <span class="php-num">0</span>;
-</span><span id="1769" class="l"><a class="l" href="#1769">1769: </a>        <span class="php-var">$data</span>[<span class="php-quote">'parent_id'</span>] = <span class="php-num">0</span>;
-</span><span id="1770" class="l"><a class="l" href="#1770">1770: </a>        <span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>] = <span class="php-keyword1">array</span>();
-</span><span id="1771" class="l"><a class="l" href="#1771">1771: </a>        <span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>] = <span class="php-keyword1">array</span>();
-</span><span id="1772" class="l"><a class="l" href="#1772">1772: </a>        
-</span><span id="1773" class="l"><a class="l" href="#1773">1773: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$field</span>-&gt;get(<span class="php-quote">'repeaterFields'</span>) <span class="php-keyword1">as</span> <span class="php-var">$fid</span>) {
-</span><span id="1774" class="l"><a class="l" href="#1774">1774: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get((int) <span class="php-var">$fid</span>); 
-</span><span id="1775" class="l"><a class="l" href="#1775">1775: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$f</span>) <span class="php-keyword1">continue</span>;
-</span><span id="1776" class="l"><a class="l" href="#1776">1776: </a>            <span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>][] = <span class="php-var">$f</span>-&gt;name;
-</span><span id="1777" class="l"><a class="l" href="#1777">1777: </a>            <span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>][<span class="php-var">$f</span>-&gt;name] = <span class="php-var">$template</span>-&gt;fieldgroup-&gt;getFieldContextArray(<span class="php-var">$f</span>-&gt;id);
-</span><span id="1778" class="l"><a class="l" href="#1778">1778: </a>        }
-</span><span id="1779" class="l"><a class="l" href="#1779">1779: </a>        
-</span><span id="1780" class="l"><a class="l" href="#1780">1780: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
-</span><span id="1781" class="l"><a class="l" href="#1781">1781: </a>    }
-</span><span id="1782" class="l"><a class="l" href="#1782">1782: </a>    
-</span><span id="1783" class="l"><a class="l" href="#1783">1783: </a>    <span class="php-comment">/**
-</span></span><span id="1784" class="l"><a class="l" href="#1784">1784: </a><span class="php-comment">     * Convert an array of exported data to a format that will be understood internally
-</span></span><span id="1785" class="l"><a class="l" href="#1785">1785: </a><span class="php-comment">     *
-</span></span><span id="1786" class="l"><a class="l" href="#1786">1786: </a><span class="php-comment">     * This is the opposite of the exportConfigData() method.
-</span></span><span id="1787" class="l"><a class="l" href="#1787">1787: </a><span class="php-comment">     * Most modules can use the default implementation provided here.
-</span></span><span id="1788" class="l"><a class="l" href="#1788">1788: </a><span class="php-comment">     *
-</span></span><span id="1789" class="l"><a class="l" href="#1789">1789: </a><span class="php-comment">     * #pw-group-configuration
-</span></span><span id="1790" class="l"><a class="l" href="#1790">1790: </a><span class="php-comment">     *
-</span></span><span id="1791" class="l"><a class="l" href="#1791">1791: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1792" class="l"><a class="l" href="#1792">1792: </a><span class="php-comment">     * @param array $data
-</span></span><span id="1793" class="l"><a class="l" href="#1793">1793: </a><span class="php-comment">     * @return array Data as given and modified as needed. Also included is $data[errors], an associative array
-</span></span><span id="1794" class="l"><a class="l" href="#1794">1794: </a><span class="php-comment">     *  indexed by property name containing errors that occurred during import of config data.
-</span></span><span id="1795" class="l"><a class="l" href="#1795">1795: </a><span class="php-comment">     *
-</span></span><span id="1796" class="l"><a class="l" href="#1796">1796: </a><span class="php-comment">     */</span>
-</span><span id="1797" class="l"><a class="l" href="#1797">1797: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____importConfigData" href="#____importConfigData">___importConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="1798" class="l"><a class="l" href="#1798">1798: </a>        
-</span><span id="1799" class="l"><a class="l" href="#1799">1799: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeRepeater) <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
-</span><span id="1800" class="l"><a class="l" href="#1800">1800: </a>    
-</span><span id="1801" class="l"><a class="l" href="#1801">1801: </a>        <span class="php-var">$errors</span> = <span class="php-keyword1">array</span>();
-</span><span id="1802" class="l"><a class="l" href="#1802">1802: </a>        <span class="php-var">$repeaterFields</span> = <span class="php-keyword1">array</span>();
-</span><span id="1803" class="l"><a class="l" href="#1803">1803: </a>        <span class="php-var">$saveFieldgroup</span> = <span class="php-keyword1">false</span>;
-</span><span id="1804" class="l"><a class="l" href="#1804">1804: </a>        <span class="php-var">$saveFieldgroupContext</span> = <span class="php-keyword1">false</span>;
-</span><span id="1805" class="l"><a class="l" href="#1805">1805: </a>        <span class="php-var">$template</span> = <span class="php-var">$field</span>-&gt;id ? <span class="php-var">$this</span>-&gt;getRepeaterTemplate(<span class="php-var">$field</span>) : <span class="php-keyword1">null</span>;
-</span><span id="1806" class="l"><a class="l" href="#1806">1806: </a>    
-</span><span id="1807" class="l"><a class="l" href="#1807">1807: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>])) {
-</span><span id="1808" class="l"><a class="l" href="#1808">1808: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>] <span class="php-keyword1">as</span> <span class="php-var">$name</span>) {
-</span><span id="1809" class="l"><a class="l" href="#1809">1809: </a>                <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$name</span>);
-</span><span id="1810" class="l"><a class="l" href="#1810">1810: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$f</span> || !<span class="php-var">$f</span> <span class="php-keyword1">instanceof</span> Field) {
-</span><span id="1811" class="l"><a class="l" href="#1811">1811: </a>                    <span class="php-var">$errors</span>[] = <span class="php-quote">&quot;Unable to locate field to add to repeater: </span><span class="php-var">$name</span><span class="php-quote">&quot;</span>;
-</span><span id="1812" class="l"><a class="l" href="#1812">1812: </a>                    <span class="php-keyword1">continue</span>;
-</span><span id="1813" class="l"><a class="l" href="#1813">1813: </a>                }
-</span><span id="1814" class="l"><a class="l" href="#1814">1814: </a>                <span class="php-var">$repeaterFields</span>[] = <span class="php-var">$f</span>-&gt;id;
-</span><span id="1815" class="l"><a class="l" href="#1815">1815: </a>            }
-</span><span id="1816" class="l"><a class="l" href="#1816">1816: </a>            <span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>] = <span class="php-var">$repeaterFields</span>;
-</span><span id="1817" class="l"><a class="l" href="#1817">1817: </a>        }
-</span><span id="1818" class="l"><a class="l" href="#1818">1818: </a>        
-</span><span id="1819" class="l"><a class="l" href="#1819">1819: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$template</span> &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>])) {
-</span><span id="1820" class="l"><a class="l" href="#1820">1820: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>] <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$contextData</span>) {
-</span><span id="1821" class="l"><a class="l" href="#1821">1821: </a>                <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$name</span>);
-</span><span id="1822" class="l"><a class="l" href="#1822">1822: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$f</span> || !<span class="php-var">$f</span> <span class="php-keyword1">instanceof</span> Field) <span class="php-keyword1">continue</span>;
-</span><span id="1823" class="l"><a class="l" href="#1823">1823: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$template</span>-&gt;fieldgroup-&gt;hasField(<span class="php-var">$f</span>)) {
-</span><span id="1824" class="l"><a class="l" href="#1824">1824: </a>                    <span class="php-var">$f</span> = <span class="php-var">$template</span>-&gt;fieldgroup-&gt;getFieldContext(<span class="php-var">$f</span>-&gt;name);
-</span><span id="1825" class="l"><a class="l" href="#1825">1825: </a>                }
-</span><span id="1826" class="l"><a class="l" href="#1826">1826: </a>                <span class="php-var">$template</span>-&gt;fieldgroup-&gt;add(<span class="php-var">$f</span>);
-</span><span id="1827" class="l"><a class="l" href="#1827">1827: </a>                <span class="php-var">$saveFieldgroup</span> = <span class="php-keyword1">true</span>;
-</span><span id="1828" class="l"><a class="l" href="#1828">1828: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$contextData</span>)) {
-</span><span id="1829" class="l"><a class="l" href="#1829">1829: </a>                    <span class="php-var">$template</span>-&gt;fieldgroup-&gt;setFieldContextArray(<span class="php-var">$f</span>-&gt;id, <span class="php-var">$contextData</span>);
-</span><span id="1830" class="l"><a class="l" href="#1830">1830: </a>                    <span class="php-var">$saveFieldgroupContext</span> = <span class="php-keyword1">true</span>;
-</span><span id="1831" class="l"><a class="l" href="#1831">1831: </a>                }
-</span><span id="1832" class="l"><a class="l" href="#1832">1832: </a>            }
-</span><span id="1833" class="l"><a class="l" href="#1833">1833: </a>        }
-</span><span id="1834" class="l"><a class="l" href="#1834">1834: </a>        
-</span><span id="1835" class="l"><a class="l" href="#1835">1835: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$template</span>) {
-</span><span id="1836" class="l"><a class="l" href="#1836">1836: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$saveFieldgroupContext</span>) {
-</span><span id="1837" class="l"><a class="l" href="#1837">1837: </a>                <span class="php-var">$template</span>-&gt;fieldgroup-&gt;saveContext();
-</span><span id="1838" class="l"><a class="l" href="#1838">1838: </a>            }
-</span><span id="1839" class="l"><a class="l" href="#1839">1839: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$saveFieldgroup</span>) {
-</span><span id="1840" class="l"><a class="l" href="#1840">1840: </a>                <span class="php-var">$template</span>-&gt;fieldgroup-&gt;save();
-</span><span id="1841" class="l"><a class="l" href="#1841">1841: </a>            }
-</span><span id="1842" class="l"><a class="l" href="#1842">1842: </a>        }
-</span><span id="1843" class="l"><a class="l" href="#1843">1843: </a>        
-</span><span id="1844" class="l"><a class="l" href="#1844">1844: </a>        <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>]); 
-</span><span id="1845" class="l"><a class="l" href="#1845">1845: </a>        
-</span><span id="1846" class="l"><a class="l" href="#1846">1846: </a>        <span class="php-var">$data</span> = parent::___importConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>);
+</span><span id="1768" class="l"><a class="l" href="#1768">1768: </a>        <span class="php-var">$data</span> = parent::___exportConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>); 
+</span><span id="1769" class="l"><a class="l" href="#1769">1769: </a>        
+</span><span id="1770" class="l"><a class="l" href="#1770">1770: </a>        <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'templates'</span>)-&gt;get((int) <span class="php-var">$data</span>[<span class="php-quote">'template_id'</span>]); 
+</span><span id="1771" class="l"><a class="l" href="#1771">1771: </a>        
+</span><span id="1772" class="l"><a class="l" href="#1772">1772: </a>        <span class="php-var">$data</span>[<span class="php-quote">'template_id'</span>] = <span class="php-num">0</span>;
+</span><span id="1773" class="l"><a class="l" href="#1773">1773: </a>        <span class="php-var">$data</span>[<span class="php-quote">'parent_id'</span>] = <span class="php-num">0</span>;
+</span><span id="1774" class="l"><a class="l" href="#1774">1774: </a>        <span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>] = <span class="php-keyword1">array</span>();
+</span><span id="1775" class="l"><a class="l" href="#1775">1775: </a>        <span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>] = <span class="php-keyword1">array</span>();
+</span><span id="1776" class="l"><a class="l" href="#1776">1776: </a>        
+</span><span id="1777" class="l"><a class="l" href="#1777">1777: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$field</span>-&gt;get(<span class="php-quote">'repeaterFields'</span>) <span class="php-keyword1">as</span> <span class="php-var">$fid</span>) {
+</span><span id="1778" class="l"><a class="l" href="#1778">1778: </a>            <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get((int) <span class="php-var">$fid</span>); 
+</span><span id="1779" class="l"><a class="l" href="#1779">1779: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$f</span>) <span class="php-keyword1">continue</span>;
+</span><span id="1780" class="l"><a class="l" href="#1780">1780: </a>            <span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>][] = <span class="php-var">$f</span>-&gt;name;
+</span><span id="1781" class="l"><a class="l" href="#1781">1781: </a>            <span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>][<span class="php-var">$f</span>-&gt;name] = <span class="php-var">$template</span>-&gt;fieldgroup-&gt;getFieldContextArray(<span class="php-var">$f</span>-&gt;id);
+</span><span id="1782" class="l"><a class="l" href="#1782">1782: </a>        }
+</span><span id="1783" class="l"><a class="l" href="#1783">1783: </a>        
+</span><span id="1784" class="l"><a class="l" href="#1784">1784: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
+</span><span id="1785" class="l"><a class="l" href="#1785">1785: </a>    }
+</span><span id="1786" class="l"><a class="l" href="#1786">1786: </a>    
+</span><span id="1787" class="l"><a class="l" href="#1787">1787: </a>    <span class="php-comment">/**
+</span></span><span id="1788" class="l"><a class="l" href="#1788">1788: </a><span class="php-comment">     * Convert an array of exported data to a format that will be understood internally
+</span></span><span id="1789" class="l"><a class="l" href="#1789">1789: </a><span class="php-comment">     *
+</span></span><span id="1790" class="l"><a class="l" href="#1790">1790: </a><span class="php-comment">     * This is the opposite of the exportConfigData() method.
+</span></span><span id="1791" class="l"><a class="l" href="#1791">1791: </a><span class="php-comment">     * Most modules can use the default implementation provided here.
+</span></span><span id="1792" class="l"><a class="l" href="#1792">1792: </a><span class="php-comment">     *
+</span></span><span id="1793" class="l"><a class="l" href="#1793">1793: </a><span class="php-comment">     * #pw-group-configuration
+</span></span><span id="1794" class="l"><a class="l" href="#1794">1794: </a><span class="php-comment">     *
+</span></span><span id="1795" class="l"><a class="l" href="#1795">1795: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1796" class="l"><a class="l" href="#1796">1796: </a><span class="php-comment">     * @param array $data
+</span></span><span id="1797" class="l"><a class="l" href="#1797">1797: </a><span class="php-comment">     * @return array Data as given and modified as needed. Also included is $data[errors], an associative array
+</span></span><span id="1798" class="l"><a class="l" href="#1798">1798: </a><span class="php-comment">     *  indexed by property name containing errors that occurred during import of config data.
+</span></span><span id="1799" class="l"><a class="l" href="#1799">1799: </a><span class="php-comment">     *
+</span></span><span id="1800" class="l"><a class="l" href="#1800">1800: </a><span class="php-comment">     */</span>
+</span><span id="1801" class="l"><a class="l" href="#1801">1801: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____importConfigData" href="#____importConfigData">___importConfigData</a>(Field <span class="php-var">$field</span>, <span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="1802" class="l"><a class="l" href="#1802">1802: </a>        
+</span><span id="1803" class="l"><a class="l" href="#1803">1803: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$field</span>-&gt;type <span class="php-keyword1">instanceof</span> FieldtypeRepeater) <span class="php-keyword1">return</span> <span class="php-var">$data</span>;
+</span><span id="1804" class="l"><a class="l" href="#1804">1804: </a>    
+</span><span id="1805" class="l"><a class="l" href="#1805">1805: </a>        <span class="php-var">$errors</span> = <span class="php-keyword1">array</span>();
+</span><span id="1806" class="l"><a class="l" href="#1806">1806: </a>        <span class="php-var">$repeaterFields</span> = <span class="php-keyword1">array</span>();
+</span><span id="1807" class="l"><a class="l" href="#1807">1807: </a>        <span class="php-var">$saveFieldgroup</span> = <span class="php-keyword1">false</span>;
+</span><span id="1808" class="l"><a class="l" href="#1808">1808: </a>        <span class="php-var">$saveFieldgroupContext</span> = <span class="php-keyword1">false</span>;
+</span><span id="1809" class="l"><a class="l" href="#1809">1809: </a>        <span class="php-var">$template</span> = <span class="php-var">$field</span>-&gt;id ? <span class="php-var">$this</span>-&gt;getRepeaterTemplate(<span class="php-var">$field</span>) : <span class="php-keyword1">null</span>;
+</span><span id="1810" class="l"><a class="l" href="#1810">1810: </a>    
+</span><span id="1811" class="l"><a class="l" href="#1811">1811: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>])) {
+</span><span id="1812" class="l"><a class="l" href="#1812">1812: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>] <span class="php-keyword1">as</span> <span class="php-var">$name</span>) {
+</span><span id="1813" class="l"><a class="l" href="#1813">1813: </a>                <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$name</span>);
+</span><span id="1814" class="l"><a class="l" href="#1814">1814: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$f</span> || !<span class="php-var">$f</span> <span class="php-keyword1">instanceof</span> Field) {
+</span><span id="1815" class="l"><a class="l" href="#1815">1815: </a>                    <span class="php-var">$errors</span>[] = <span class="php-quote">&quot;Unable to locate field to add to repeater: </span><span class="php-var">$name</span><span class="php-quote">&quot;</span>;
+</span><span id="1816" class="l"><a class="l" href="#1816">1816: </a>                    <span class="php-keyword1">continue</span>;
+</span><span id="1817" class="l"><a class="l" href="#1817">1817: </a>                }
+</span><span id="1818" class="l"><a class="l" href="#1818">1818: </a>                <span class="php-var">$repeaterFields</span>[] = <span class="php-var">$f</span>-&gt;id;
+</span><span id="1819" class="l"><a class="l" href="#1819">1819: </a>            }
+</span><span id="1820" class="l"><a class="l" href="#1820">1820: </a>            <span class="php-var">$data</span>[<span class="php-quote">'repeaterFields'</span>] = <span class="php-var">$repeaterFields</span>;
+</span><span id="1821" class="l"><a class="l" href="#1821">1821: </a>        }
+</span><span id="1822" class="l"><a class="l" href="#1822">1822: </a>        
+</span><span id="1823" class="l"><a class="l" href="#1823">1823: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$template</span> &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>])) {
+</span><span id="1824" class="l"><a class="l" href="#1824">1824: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>] <span class="php-keyword1">as</span> <span class="php-var">$name</span> =&gt; <span class="php-var">$contextData</span>) {
+</span><span id="1825" class="l"><a class="l" href="#1825">1825: </a>                <span class="php-var">$f</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'fields'</span>)-&gt;get(<span class="php-var">$name</span>);
+</span><span id="1826" class="l"><a class="l" href="#1826">1826: </a>                <span class="php-keyword1">if</span>(!<span class="php-var">$f</span> || !<span class="php-var">$f</span> <span class="php-keyword1">instanceof</span> Field) <span class="php-keyword1">continue</span>;
+</span><span id="1827" class="l"><a class="l" href="#1827">1827: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$template</span>-&gt;fieldgroup-&gt;hasField(<span class="php-var">$f</span>)) {
+</span><span id="1828" class="l"><a class="l" href="#1828">1828: </a>                    <span class="php-var">$f</span> = <span class="php-var">$template</span>-&gt;fieldgroup-&gt;getFieldContext(<span class="php-var">$f</span>-&gt;name);
+</span><span id="1829" class="l"><a class="l" href="#1829">1829: </a>                }
+</span><span id="1830" class="l"><a class="l" href="#1830">1830: </a>                <span class="php-var">$template</span>-&gt;fieldgroup-&gt;add(<span class="php-var">$f</span>);
+</span><span id="1831" class="l"><a class="l" href="#1831">1831: </a>                <span class="php-var">$saveFieldgroup</span> = <span class="php-keyword1">true</span>;
+</span><span id="1832" class="l"><a class="l" href="#1832">1832: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$contextData</span>)) {
+</span><span id="1833" class="l"><a class="l" href="#1833">1833: </a>                    <span class="php-var">$template</span>-&gt;fieldgroup-&gt;setFieldContextArray(<span class="php-var">$f</span>-&gt;id, <span class="php-var">$contextData</span>);
+</span><span id="1834" class="l"><a class="l" href="#1834">1834: </a>                    <span class="php-var">$saveFieldgroupContext</span> = <span class="php-keyword1">true</span>;
+</span><span id="1835" class="l"><a class="l" href="#1835">1835: </a>                }
+</span><span id="1836" class="l"><a class="l" href="#1836">1836: </a>            }
+</span><span id="1837" class="l"><a class="l" href="#1837">1837: </a>        }
+</span><span id="1838" class="l"><a class="l" href="#1838">1838: </a>        
+</span><span id="1839" class="l"><a class="l" href="#1839">1839: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$template</span>) {
+</span><span id="1840" class="l"><a class="l" href="#1840">1840: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$saveFieldgroupContext</span>) {
+</span><span id="1841" class="l"><a class="l" href="#1841">1841: </a>                <span class="php-var">$template</span>-&gt;fieldgroup-&gt;saveContext();
+</span><span id="1842" class="l"><a class="l" href="#1842">1842: </a>            }
+</span><span id="1843" class="l"><a class="l" href="#1843">1843: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$saveFieldgroup</span>) {
+</span><span id="1844" class="l"><a class="l" href="#1844">1844: </a>                <span class="php-var">$template</span>-&gt;fieldgroup-&gt;save();
+</span><span id="1845" class="l"><a class="l" href="#1845">1845: </a>            }
+</span><span id="1846" class="l"><a class="l" href="#1846">1846: </a>        }
 </span><span id="1847" class="l"><a class="l" href="#1847">1847: </a>        
-</span><span id="1848" class="l"><a class="l" href="#1848">1848: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$errors</span>)) {
-</span><span id="1849" class="l"><a class="l" href="#1849">1849: </a>            <span class="php-var">$data</span>[<span class="php-quote">'errors'</span>] = <span class="php-keyword2">array_merge</span>(<span class="php-var">$data</span>[<span class="php-quote">'errors'</span>], <span class="php-keyword1">array</span>(<span class="php-quote">'repeaterFields'</span> =&gt; <span class="php-var">$errors</span>)); 
-</span><span id="1850" class="l"><a class="l" href="#1850">1850: </a>        }
+</span><span id="1848" class="l"><a class="l" href="#1848">1848: </a>        <span class="php-keyword1">unset</span>(<span class="php-var">$data</span>[<span class="php-quote">'fieldContexts'</span>]); 
+</span><span id="1849" class="l"><a class="l" href="#1849">1849: </a>        
+</span><span id="1850" class="l"><a class="l" href="#1850">1850: </a>        <span class="php-var">$data</span> = parent::___importConfigData(<span class="php-var">$field</span>, <span class="php-var">$data</span>);
 </span><span id="1851" class="l"><a class="l" href="#1851">1851: </a>        
-</span><span id="1852" class="l"><a class="l" href="#1852">1852: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>; 
-</span><span id="1853" class="l"><a class="l" href="#1853">1853: </a>    }
-</span><span id="1854" class="l"><a class="l" href="#1854">1854: </a>
-</span><span id="1855" class="l"><a class="l" href="#1855">1855: </a>    <span class="php-comment">/**
-</span></span><span id="1856" class="l"><a class="l" href="#1856">1856: </a><span class="php-comment">     * Return configuration fields definable for each FieldtypePage
-</span></span><span id="1857" class="l"><a class="l" href="#1857">1857: </a><span class="php-comment">     * 
-</span></span><span id="1858" class="l"><a class="l" href="#1858">1858: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1859" class="l"><a class="l" href="#1859">1859: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="1860" class="l"><a class="l" href="#1860">1860: </a><span class="php-comment">     *
-</span></span><span id="1861" class="l"><a class="l" href="#1861">1861: </a><span class="php-comment">     */</span>
-</span><span id="1862" class="l"><a class="l" href="#1862">1862: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>(Field <span class="php-var">$field</span>) {
-</span><span id="1863" class="l"><a class="l" href="#1863">1863: </a>
-</span><span id="1864" class="l"><a class="l" href="#1864">1864: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields(<span class="php-var">$field</span>);
-</span><span id="1865" class="l"><a class="l" href="#1865">1865: </a>        <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;getRepeaterTemplate(<span class="php-var">$field</span>); 
-</span><span id="1866" class="l"><a class="l" href="#1866">1866: </a>        <span class="php-var">$parent</span> = <span class="php-var">$this</span>-&gt;getRepeaterParent(<span class="php-var">$field</span>); 
+</span><span id="1852" class="l"><a class="l" href="#1852">1852: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$errors</span>)) {
+</span><span id="1853" class="l"><a class="l" href="#1853">1853: </a>            <span class="php-var">$data</span>[<span class="php-quote">'errors'</span>] = <span class="php-keyword2">array_merge</span>(<span class="php-var">$data</span>[<span class="php-quote">'errors'</span>], <span class="php-keyword1">array</span>(<span class="php-quote">'repeaterFields'</span> =&gt; <span class="php-var">$errors</span>)); 
+</span><span id="1854" class="l"><a class="l" href="#1854">1854: </a>        }
+</span><span id="1855" class="l"><a class="l" href="#1855">1855: </a>        
+</span><span id="1856" class="l"><a class="l" href="#1856">1856: </a>        <span class="php-keyword1">return</span> <span class="php-var">$data</span>; 
+</span><span id="1857" class="l"><a class="l" href="#1857">1857: </a>    }
+</span><span id="1858" class="l"><a class="l" href="#1858">1858: </a>
+</span><span id="1859" class="l"><a class="l" href="#1859">1859: </a>    <span class="php-comment">/**
+</span></span><span id="1860" class="l"><a class="l" href="#1860">1860: </a><span class="php-comment">     * Return configuration fields definable for each FieldtypePage
+</span></span><span id="1861" class="l"><a class="l" href="#1861">1861: </a><span class="php-comment">     * 
+</span></span><span id="1862" class="l"><a class="l" href="#1862">1862: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1863" class="l"><a class="l" href="#1863">1863: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="1864" class="l"><a class="l" href="#1864">1864: </a><span class="php-comment">     *
+</span></span><span id="1865" class="l"><a class="l" href="#1865">1865: </a><span class="php-comment">     */</span>
+</span><span id="1866" class="l"><a class="l" href="#1866">1866: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigInputfields" href="#____getConfigInputfields">___getConfigInputfields</a>(Field <span class="php-var">$field</span>) {
 </span><span id="1867" class="l"><a class="l" href="#1867">1867: </a>
-</span><span id="1868" class="l"><a class="l" href="#1868">1868: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;post-&gt;repeaterFields) {
-</span><span id="1869" class="l"><a class="l" href="#1869">1869: </a>            <span class="php-var">$this</span>-&gt;saveConfigInputfields(<span class="php-var">$field</span>, <span class="php-var">$template</span>, <span class="php-var">$parent</span>);
-</span><span id="1870" class="l"><a class="l" href="#1870">1870: </a>        }
-</span><span id="1871" class="l"><a class="l" href="#1871">1871: </a>        
-</span><span id="1872" class="l"><a class="l" href="#1872">1872: </a>        <span class="php-keyword1">require_once</span>(__DIR__ . <span class="php-quote">'/config.php'</span>);
-</span><span id="1873" class="l"><a class="l" href="#1873">1873: </a>        <span class="php-var">$helper</span> = <span class="php-keyword1">new</span> FieldtypeRepeaterConfigHelper(<span class="php-var">$field</span>);
-</span><span id="1874" class="l"><a class="l" href="#1874">1874: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$helper</span>-&gt;getConfigInputfields(<span class="php-var">$inputfields</span>, <span class="php-var">$template</span>, <span class="php-var">$parent</span>);
-</span><span id="1875" class="l"><a class="l" href="#1875">1875: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
-</span><span id="1876" class="l"><a class="l" href="#1876">1876: </a>    }
-</span><span id="1877" class="l"><a class="l" href="#1877">1877: </a>
-</span><span id="1878" class="l"><a class="l" href="#1878">1878: </a>    <span class="php-comment">/**
-</span></span><span id="1879" class="l"><a class="l" href="#1879">1879: </a><span class="php-comment">     * Helper to getConfigInputfields, handles adding and removing of repeater fields
-</span></span><span id="1880" class="l"><a class="l" href="#1880">1880: </a><span class="php-comment">     * 
-</span></span><span id="1881" class="l"><a class="l" href="#1881">1881: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1882" class="l"><a class="l" href="#1882">1882: </a><span class="php-comment">     * @param Template $template
-</span></span><span id="1883" class="l"><a class="l" href="#1883">1883: </a><span class="php-comment">     * @param Page $parent
+</span><span id="1868" class="l"><a class="l" href="#1868">1868: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigInputfields(<span class="php-var">$field</span>);
+</span><span id="1869" class="l"><a class="l" href="#1869">1869: </a>        <span class="php-var">$template</span> = <span class="php-var">$this</span>-&gt;getRepeaterTemplate(<span class="php-var">$field</span>); 
+</span><span id="1870" class="l"><a class="l" href="#1870">1870: </a>        <span class="php-var">$parent</span> = <span class="php-var">$this</span>-&gt;getRepeaterParent(<span class="php-var">$field</span>); 
+</span><span id="1871" class="l"><a class="l" href="#1871">1871: </a>
+</span><span id="1872" class="l"><a class="l" href="#1872">1872: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'input'</span>)-&gt;post-&gt;repeaterFields) {
+</span><span id="1873" class="l"><a class="l" href="#1873">1873: </a>            <span class="php-var">$this</span>-&gt;saveConfigInputfields(<span class="php-var">$field</span>, <span class="php-var">$template</span>, <span class="php-var">$parent</span>);
+</span><span id="1874" class="l"><a class="l" href="#1874">1874: </a>        }
+</span><span id="1875" class="l"><a class="l" href="#1875">1875: </a>        
+</span><span id="1876" class="l"><a class="l" href="#1876">1876: </a>        <span class="php-keyword1">require_once</span>(__DIR__ . <span class="php-quote">'/config.php'</span>);
+</span><span id="1877" class="l"><a class="l" href="#1877">1877: </a>        <span class="php-var">$helper</span> = <span class="php-keyword1">new</span> FieldtypeRepeaterConfigHelper(<span class="php-var">$field</span>);
+</span><span id="1878" class="l"><a class="l" href="#1878">1878: </a>        <span class="php-var">$inputfields</span> = <span class="php-var">$helper</span>-&gt;getConfigInputfields(<span class="php-var">$inputfields</span>, <span class="php-var">$template</span>, <span class="php-var">$parent</span>);
+</span><span id="1879" class="l"><a class="l" href="#1879">1879: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>; 
+</span><span id="1880" class="l"><a class="l" href="#1880">1880: </a>    }
+</span><span id="1881" class="l"><a class="l" href="#1881">1881: </a>
+</span><span id="1882" class="l"><a class="l" href="#1882">1882: </a>    <span class="php-comment">/**
+</span></span><span id="1883" class="l"><a class="l" href="#1883">1883: </a><span class="php-comment">     * Helper to getConfigInputfields, handles adding and removing of repeater fields
 </span></span><span id="1884" class="l"><a class="l" href="#1884">1884: </a><span class="php-comment">     * 
-</span></span><span id="1885" class="l"><a class="l" href="#1885">1885: </a><span class="php-comment">     */</span>
-</span><span id="1886" class="l"><a class="l" href="#1886">1886: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____saveConfigInputfields" href="#____saveConfigInputfields">___saveConfigInputfields</a>(Field <span class="php-var">$field</span>, Template <span class="php-var">$template</span>, Page <span class="php-var">$parent</span>) {
-</span><span id="1887" class="l"><a class="l" href="#1887">1887: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$parent</span>) {} <span class="php-comment">// ignore</span>
-</span><span id="1888" class="l"><a class="l" href="#1888">1888: </a>        <span class="php-keyword1">require_once</span>(__DIR__ . <span class="php-quote">'/config.php'</span>);
-</span><span id="1889" class="l"><a class="l" href="#1889">1889: </a>        <span class="php-var">$helper</span> = <span class="php-keyword1">new</span> FieldtypeRepeaterConfigHelper(<span class="php-var">$field</span>);
-</span><span id="1890" class="l"><a class="l" href="#1890">1890: </a>        <span class="php-var">$helper</span>-&gt;saveConfigInputfields(<span class="php-var">$template</span>);
-</span><span id="1891" class="l"><a class="l" href="#1891">1891: </a>    }
-</span><span id="1892" class="l"><a class="l" href="#1892">1892: </a>
-</span><span id="1893" class="l"><a class="l" href="#1893">1893: </a>    <span class="php-comment">/**
-</span></span><span id="1894" class="l"><a class="l" href="#1894">1894: </a><span class="php-comment">     * Just here to fulfill ConfigurableModule interface
-</span></span><span id="1895" class="l"><a class="l" href="#1895">1895: </a><span class="php-comment">     * 
-</span></span><span id="1896" class="l"><a class="l" href="#1896">1896: </a><span class="php-comment">     * @param array $data
-</span></span><span id="1897" class="l"><a class="l" href="#1897">1897: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="1898" class="l"><a class="l" href="#1898">1898: </a><span class="php-comment">     *
-</span></span><span id="1899" class="l"><a class="l" href="#1899">1899: </a><span class="php-comment">     */</span>
-</span><span id="1900" class="l"><a class="l" href="#1900">1900: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
-</span><span id="1901" class="l"><a class="l" href="#1901">1901: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$data</span>) {} <span class="php-comment">// ignore</span>
-</span><span id="1902" class="l"><a class="l" href="#1902">1902: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
-</span><span id="1903" class="l"><a class="l" href="#1903">1903: </a>    }
-</span><span id="1904" class="l"><a class="l" href="#1904">1904: </a>
-</span><span id="1905" class="l"><a class="l" href="#1905">1905: </a>    <span class="php-comment">/**
-</span></span><span id="1906" class="l"><a class="l" href="#1906">1906: </a><span class="php-comment">     * Remove advanced options that aren't supposed with repeaters
-</span></span><span id="1907" class="l"><a class="l" href="#1907">1907: </a><span class="php-comment">     * 
-</span></span><span id="1908" class="l"><a class="l" href="#1908">1908: </a><span class="php-comment">     * @param Field $field
-</span></span><span id="1909" class="l"><a class="l" href="#1909">1909: </a><span class="php-comment">     * @return InputfieldWrapper
-</span></span><span id="1910" class="l"><a class="l" href="#1910">1910: </a><span class="php-comment">     *
-</span></span><span id="1911" class="l"><a class="l" href="#1911">1911: </a><span class="php-comment">     */</span>
-</span><span id="1912" class="l"><a class="l" href="#1912">1912: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigAdvancedInputfields" href="#____getConfigAdvancedInputfields">___getConfigAdvancedInputfields</a>(Field <span class="php-var">$field</span>) {
-</span><span id="1913" class="l"><a class="l" href="#1913">1913: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigAdvancedInputfields(<span class="php-var">$field</span>);
-</span><span id="1914" class="l"><a class="l" href="#1914">1914: </a>        <span class="php-comment">// these two are potential troublemakers when it comes to repeaters</span>
-</span><span id="1915" class="l"><a class="l" href="#1915">1915: </a>        <span class="php-var">$inputfields</span>-&gt;remove(<span class="php-var">$inputfields</span>-&gt;get(<span class="php-quote">'autojoin'</span>));
-</span><span id="1916" class="l"><a class="l" href="#1916">1916: </a>        <span class="php-var">$inputfields</span>-&gt;remove(<span class="php-var">$inputfields</span>-&gt;get(<span class="php-quote">'global'</span>));
-</span><span id="1917" class="l"><a class="l" href="#1917">1917: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
-</span><span id="1918" class="l"><a class="l" href="#1918">1918: </a>    }
-</span><span id="1919" class="l"><a class="l" href="#1919">1919: </a>
-</span><span id="1920" class="l"><a class="l" href="#1920">1920: </a>    <span class="php-comment">/**
-</span></span><span id="1921" class="l"><a class="l" href="#1921">1921: </a><span class="php-comment">     * Install the module
-</span></span><span id="1922" class="l"><a class="l" href="#1922">1922: </a><span class="php-comment">     *
-</span></span><span id="1923" class="l"><a class="l" href="#1923">1923: </a><span class="php-comment">     */</span>
-</span><span id="1924" class="l"><a class="l" href="#1924">1924: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____install" href="#____install">___install</a>() {
-</span><span id="1925" class="l"><a class="l" href="#1925">1925: </a>    
-</span><span id="1926" class="l"><a class="l" href="#1926">1926: </a>        <span class="php-comment">/** @var Pages $pages */</span>
-</span><span id="1927" class="l"><a class="l" href="#1927">1927: </a>        <span class="php-var">$pages</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>);
-</span><span id="1928" class="l"><a class="l" href="#1928">1928: </a>
-</span><span id="1929" class="l"><a class="l" href="#1929">1929: </a>        <span class="php-var">$adminRoot</span> = <span class="php-var">$pages</span>-&gt;get(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;adminRootPageID); 
-</span><span id="1930" class="l"><a class="l" href="#1930">1930: </a>        <span class="php-var">$page</span> = <span class="php-var">$adminRoot</span>-&gt;child(<span class="php-quote">&quot;name=repeaters, template=admin, include=all&quot;</span>); 
-</span><span id="1931" class="l"><a class="l" href="#1931">1931: </a>        
-</span><span id="1932" class="l"><a class="l" href="#1932">1932: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;id) {
-</span><span id="1933" class="l"><a class="l" href="#1933">1933: </a>            <span class="php-var">$page</span> = <span class="php-var">$pages</span>-&gt;newPage(<span class="php-keyword1">array</span>(<span class="php-quote">'template'</span> =&gt; <span class="php-quote">'admin'</span>));
-</span><span id="1934" class="l"><a class="l" href="#1934">1934: </a>            <span class="php-var">$page</span>-&gt;parent = <span class="php-var">$adminRoot</span>;
-</span><span id="1935" class="l"><a class="l" href="#1935">1935: </a>            <span class="php-var">$page</span>-&gt;status = Page::statusHidden | Page::statusLocked | Page::statusSystemID;
-</span><span id="1936" class="l"><a class="l" href="#1936">1936: </a>            <span class="php-var">$page</span>-&gt;name = <span class="php-quote">'repeaters'</span>;
-</span><span id="1937" class="l"><a class="l" href="#1937">1937: </a>            <span class="php-var">$page</span>-&gt;title = <span class="php-quote">'Repeaters'</span>;
-</span><span id="1938" class="l"><a class="l" href="#1938">1938: </a>            <span class="php-var">$page</span>-&gt;<span class="php-keyword2">sort</span> = <span class="php-var">$adminRoot</span>-&gt;numChildren;
-</span><span id="1939" class="l"><a class="l" href="#1939">1939: </a>            <span class="php-var">$page</span>-&gt;save();
-</span><span id="1940" class="l"><a class="l" href="#1940">1940: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Added page </span><span class="php-var">{$page-&gt;path}</span><span class="php-quote">&quot;</span>, Notice::debug); 
-</span><span id="1941" class="l"><a class="l" href="#1941">1941: </a>        }
-</span><span id="1942" class="l"><a class="l" href="#1942">1942: </a>
-</span><span id="1943" class="l"><a class="l" href="#1943">1943: </a>        <span class="php-var">$configData</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'repeatersRootPageID'</span> =&gt; <span class="php-var">$page</span>-&gt;id); 
-</span><span id="1944" class="l"><a class="l" href="#1944">1944: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;saveModuleConfigData(<span class="php-var">$this</span>, <span class="php-var">$configData</span>);
-</span><span id="1945" class="l"><a class="l" href="#1945">1945: </a>    }
+</span></span><span id="1885" class="l"><a class="l" href="#1885">1885: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1886" class="l"><a class="l" href="#1886">1886: </a><span class="php-comment">     * @param Template $template
+</span></span><span id="1887" class="l"><a class="l" href="#1887">1887: </a><span class="php-comment">     * @param Page $parent
+</span></span><span id="1888" class="l"><a class="l" href="#1888">1888: </a><span class="php-comment">     * 
+</span></span><span id="1889" class="l"><a class="l" href="#1889">1889: </a><span class="php-comment">     */</span>
+</span><span id="1890" class="l"><a class="l" href="#1890">1890: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____saveConfigInputfields" href="#____saveConfigInputfields">___saveConfigInputfields</a>(Field <span class="php-var">$field</span>, Template <span class="php-var">$template</span>, Page <span class="php-var">$parent</span>) {
+</span><span id="1891" class="l"><a class="l" href="#1891">1891: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$parent</span>) {} <span class="php-comment">// ignore</span>
+</span><span id="1892" class="l"><a class="l" href="#1892">1892: </a>        <span class="php-keyword1">require_once</span>(__DIR__ . <span class="php-quote">'/config.php'</span>);
+</span><span id="1893" class="l"><a class="l" href="#1893">1893: </a>        <span class="php-var">$helper</span> = <span class="php-keyword1">new</span> FieldtypeRepeaterConfigHelper(<span class="php-var">$field</span>);
+</span><span id="1894" class="l"><a class="l" href="#1894">1894: </a>        <span class="php-var">$helper</span>-&gt;saveConfigInputfields(<span class="php-var">$template</span>);
+</span><span id="1895" class="l"><a class="l" href="#1895">1895: </a>    }
+</span><span id="1896" class="l"><a class="l" href="#1896">1896: </a>
+</span><span id="1897" class="l"><a class="l" href="#1897">1897: </a>    <span class="php-comment">/**
+</span></span><span id="1898" class="l"><a class="l" href="#1898">1898: </a><span class="php-comment">     * Just here to fulfill ConfigurableModule interface
+</span></span><span id="1899" class="l"><a class="l" href="#1899">1899: </a><span class="php-comment">     * 
+</span></span><span id="1900" class="l"><a class="l" href="#1900">1900: </a><span class="php-comment">     * @param array $data
+</span></span><span id="1901" class="l"><a class="l" href="#1901">1901: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="1902" class="l"><a class="l" href="#1902">1902: </a><span class="php-comment">     *
+</span></span><span id="1903" class="l"><a class="l" href="#1903">1903: </a><span class="php-comment">     */</span>
+</span><span id="1904" class="l"><a class="l" href="#1904">1904: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getModuleConfigInputfields" href="#_getModuleConfigInputfields">getModuleConfigInputfields</a>(<span class="php-keyword1">array</span> <span class="php-var">$data</span>) {
+</span><span id="1905" class="l"><a class="l" href="#1905">1905: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$data</span>) {} <span class="php-comment">// ignore</span>
+</span><span id="1906" class="l"><a class="l" href="#1906">1906: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;wire(<span class="php-keyword1">new</span> InputfieldWrapper());
+</span><span id="1907" class="l"><a class="l" href="#1907">1907: </a>    }
+</span><span id="1908" class="l"><a class="l" href="#1908">1908: </a>
+</span><span id="1909" class="l"><a class="l" href="#1909">1909: </a>    <span class="php-comment">/**
+</span></span><span id="1910" class="l"><a class="l" href="#1910">1910: </a><span class="php-comment">     * Remove advanced options that aren't supposed with repeaters
+</span></span><span id="1911" class="l"><a class="l" href="#1911">1911: </a><span class="php-comment">     * 
+</span></span><span id="1912" class="l"><a class="l" href="#1912">1912: </a><span class="php-comment">     * @param Field $field
+</span></span><span id="1913" class="l"><a class="l" href="#1913">1913: </a><span class="php-comment">     * @return InputfieldWrapper
+</span></span><span id="1914" class="l"><a class="l" href="#1914">1914: </a><span class="php-comment">     *
+</span></span><span id="1915" class="l"><a class="l" href="#1915">1915: </a><span class="php-comment">     */</span>
+</span><span id="1916" class="l"><a class="l" href="#1916">1916: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____getConfigAdvancedInputfields" href="#____getConfigAdvancedInputfields">___getConfigAdvancedInputfields</a>(Field <span class="php-var">$field</span>) {
+</span><span id="1917" class="l"><a class="l" href="#1917">1917: </a>        <span class="php-var">$inputfields</span> = parent::___getConfigAdvancedInputfields(<span class="php-var">$field</span>);
+</span><span id="1918" class="l"><a class="l" href="#1918">1918: </a>        <span class="php-comment">// these two are potential troublemakers when it comes to repeaters</span>
+</span><span id="1919" class="l"><a class="l" href="#1919">1919: </a>        <span class="php-var">$inputfields</span>-&gt;remove(<span class="php-var">$inputfields</span>-&gt;get(<span class="php-quote">'autojoin'</span>));
+</span><span id="1920" class="l"><a class="l" href="#1920">1920: </a>        <span class="php-var">$inputfields</span>-&gt;remove(<span class="php-var">$inputfields</span>-&gt;get(<span class="php-quote">'global'</span>));
+</span><span id="1921" class="l"><a class="l" href="#1921">1921: </a>        <span class="php-keyword1">return</span> <span class="php-var">$inputfields</span>;
+</span><span id="1922" class="l"><a class="l" href="#1922">1922: </a>    }
+</span><span id="1923" class="l"><a class="l" href="#1923">1923: </a>
+</span><span id="1924" class="l"><a class="l" href="#1924">1924: </a>    <span class="php-comment">/**
+</span></span><span id="1925" class="l"><a class="l" href="#1925">1925: </a><span class="php-comment">     * Install the module
+</span></span><span id="1926" class="l"><a class="l" href="#1926">1926: </a><span class="php-comment">     *
+</span></span><span id="1927" class="l"><a class="l" href="#1927">1927: </a><span class="php-comment">     */</span>
+</span><span id="1928" class="l"><a class="l" href="#1928">1928: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____install" href="#____install">___install</a>() {
+</span><span id="1929" class="l"><a class="l" href="#1929">1929: </a>    
+</span><span id="1930" class="l"><a class="l" href="#1930">1930: </a>        <span class="php-comment">/** @var Pages $pages */</span>
+</span><span id="1931" class="l"><a class="l" href="#1931">1931: </a>        <span class="php-var">$pages</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>);
+</span><span id="1932" class="l"><a class="l" href="#1932">1932: </a>
+</span><span id="1933" class="l"><a class="l" href="#1933">1933: </a>        <span class="php-var">$adminRoot</span> = <span class="php-var">$pages</span>-&gt;get(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;adminRootPageID); 
+</span><span id="1934" class="l"><a class="l" href="#1934">1934: </a>        <span class="php-var">$page</span> = <span class="php-var">$adminRoot</span>-&gt;child(<span class="php-quote">&quot;name=repeaters, template=admin, include=all&quot;</span>); 
+</span><span id="1935" class="l"><a class="l" href="#1935">1935: </a>        
+</span><span id="1936" class="l"><a class="l" href="#1936">1936: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$page</span>-&gt;id) {
+</span><span id="1937" class="l"><a class="l" href="#1937">1937: </a>            <span class="php-var">$page</span> = <span class="php-var">$pages</span>-&gt;newPage(<span class="php-keyword1">array</span>(<span class="php-quote">'template'</span> =&gt; <span class="php-quote">'admin'</span>));
+</span><span id="1938" class="l"><a class="l" href="#1938">1938: </a>            <span class="php-var">$page</span>-&gt;parent = <span class="php-var">$adminRoot</span>;
+</span><span id="1939" class="l"><a class="l" href="#1939">1939: </a>            <span class="php-var">$page</span>-&gt;status = Page::statusHidden | Page::statusLocked | Page::statusSystemID;
+</span><span id="1940" class="l"><a class="l" href="#1940">1940: </a>            <span class="php-var">$page</span>-&gt;name = <span class="php-quote">'repeaters'</span>;
+</span><span id="1941" class="l"><a class="l" href="#1941">1941: </a>            <span class="php-var">$page</span>-&gt;title = <span class="php-quote">'Repeaters'</span>;
+</span><span id="1942" class="l"><a class="l" href="#1942">1942: </a>            <span class="php-var">$page</span>-&gt;<span class="php-keyword2">sort</span> = <span class="php-var">$adminRoot</span>-&gt;numChildren;
+</span><span id="1943" class="l"><a class="l" href="#1943">1943: </a>            <span class="php-var">$page</span>-&gt;save();
+</span><span id="1944" class="l"><a class="l" href="#1944">1944: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Added page </span><span class="php-var">{$page-&gt;path}</span><span class="php-quote">&quot;</span>, Notice::debug); 
+</span><span id="1945" class="l"><a class="l" href="#1945">1945: </a>        }
 </span><span id="1946" class="l"><a class="l" href="#1946">1946: </a>
-</span><span id="1947" class="l"><a class="l" href="#1947">1947: </a>    <span class="php-comment">/**
-</span></span><span id="1948" class="l"><a class="l" href="#1948">1948: </a><span class="php-comment">     * Uninstall the module (delete the repeaters page)
-</span></span><span id="1949" class="l"><a class="l" href="#1949">1949: </a><span class="php-comment">     *
-</span></span><span id="1950" class="l"><a class="l" href="#1950">1950: </a><span class="php-comment">     */</span>
-</span><span id="1951" class="l"><a class="l" href="#1951">1951: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() {
-</span><span id="1952" class="l"><a class="l" href="#1952">1952: </a>
-</span><span id="1953" class="l"><a class="l" href="#1953">1953: </a>        <span class="php-comment">// don't delete repeaters page unless actually for FieldtypeRepeater</span>
-</span><span id="1954" class="l"><a class="l" href="#1954">1954: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;className() != <span class="php-quote">'FieldtypeRepeater'</span>) <span class="php-keyword1">return</span>;
-</span><span id="1955" class="l"><a class="l" href="#1955">1955: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get(<span class="php-var">$this</span>-&gt;repeatersRootPageID); 
-</span><span id="1956" class="l"><a class="l" href="#1956">1956: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id &amp;&amp; <span class="php-var">$page</span>-&gt;name == <span class="php-quote">'repeaters'</span> &amp;&amp; <span class="php-var">$page</span>-&gt;template == <span class="php-quote">'admin'</span>) { 
-</span><span id="1957" class="l"><a class="l" href="#1957">1957: </a>            <span class="php-var">$page</span>-&gt;addStatus(Page::statusSystemOverride); 
-</span><span id="1958" class="l"><a class="l" href="#1958">1958: </a>            <span class="php-var">$page</span>-&gt;removeStatus(Page::statusSystem); 
-</span><span id="1959" class="l"><a class="l" href="#1959">1959: </a>            <span class="php-var">$page</span>-&gt;removeStatus(Page::statusSystemID); 
-</span><span id="1960" class="l"><a class="l" href="#1960">1960: </a>            <span class="php-var">$page</span>-&gt;removeStatus(Page::statusSystemOverride);
-</span><span id="1961" class="l"><a class="l" href="#1961">1961: </a>            <span class="php-var">$page</span>-&gt;removeStatus(Page::statusLocked); 
-</span><span id="1962" class="l"><a class="l" href="#1962">1962: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$page</span>); 
-</span><span id="1963" class="l"><a class="l" href="#1963">1963: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Removed page </span><span class="php-var">{$page-&gt;path}</span><span class="php-quote">&quot;</span>, Notice::debug); 
-</span><span id="1964" class="l"><a class="l" href="#1964">1964: </a>        }
-</span><span id="1965" class="l"><a class="l" href="#1965">1965: </a>    }
-</span><span id="1966" class="l"><a class="l" href="#1966">1966: </a>
-</span><span id="1967" class="l"><a class="l" href="#1967">1967: </a>}
-</span><span id="1968" class="l"><a class="l" href="#1968">1968: </a>
-</span><span id="1969" class="l"><a class="l" href="#1969">1969: </a></span></code></pre>
+</span><span id="1947" class="l"><a class="l" href="#1947">1947: </a>        <span class="php-var">$configData</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'repeatersRootPageID'</span> =&gt; <span class="php-var">$page</span>-&gt;id); 
+</span><span id="1948" class="l"><a class="l" href="#1948">1948: </a>        <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'modules'</span>)-&gt;saveModuleConfigData(<span class="php-var">$this</span>, <span class="php-var">$configData</span>);
+</span><span id="1949" class="l"><a class="l" href="#1949">1949: </a>    }
+</span><span id="1950" class="l"><a class="l" href="#1950">1950: </a>
+</span><span id="1951" class="l"><a class="l" href="#1951">1951: </a>    <span class="php-comment">/**
+</span></span><span id="1952" class="l"><a class="l" href="#1952">1952: </a><span class="php-comment">     * Uninstall the module (delete the repeaters page)
+</span></span><span id="1953" class="l"><a class="l" href="#1953">1953: </a><span class="php-comment">     *
+</span></span><span id="1954" class="l"><a class="l" href="#1954">1954: </a><span class="php-comment">     */</span>
+</span><span id="1955" class="l"><a class="l" href="#1955">1955: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="____uninstall" href="#____uninstall">___uninstall</a>() {
+</span><span id="1956" class="l"><a class="l" href="#1956">1956: </a>
+</span><span id="1957" class="l"><a class="l" href="#1957">1957: </a>        <span class="php-comment">// don't delete repeaters page unless actually for FieldtypeRepeater</span>
+</span><span id="1958" class="l"><a class="l" href="#1958">1958: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;className() != <span class="php-quote">'FieldtypeRepeater'</span>) <span class="php-keyword1">return</span>;
+</span><span id="1959" class="l"><a class="l" href="#1959">1959: </a>        <span class="php-var">$page</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;get(<span class="php-var">$this</span>-&gt;repeatersRootPageID); 
+</span><span id="1960" class="l"><a class="l" href="#1960">1960: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$page</span>-&gt;id &amp;&amp; <span class="php-var">$page</span>-&gt;name == <span class="php-quote">'repeaters'</span> &amp;&amp; <span class="php-var">$page</span>-&gt;template == <span class="php-quote">'admin'</span>) { 
+</span><span id="1961" class="l"><a class="l" href="#1961">1961: </a>            <span class="php-var">$page</span>-&gt;addStatus(Page::statusSystemOverride); 
+</span><span id="1962" class="l"><a class="l" href="#1962">1962: </a>            <span class="php-var">$page</span>-&gt;removeStatus(Page::statusSystem); 
+</span><span id="1963" class="l"><a class="l" href="#1963">1963: </a>            <span class="php-var">$page</span>-&gt;removeStatus(Page::statusSystemID); 
+</span><span id="1964" class="l"><a class="l" href="#1964">1964: </a>            <span class="php-var">$page</span>-&gt;removeStatus(Page::statusSystemOverride);
+</span><span id="1965" class="l"><a class="l" href="#1965">1965: </a>            <span class="php-var">$page</span>-&gt;removeStatus(Page::statusLocked); 
+</span><span id="1966" class="l"><a class="l" href="#1966">1966: </a>            <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;<span class="php-keyword2">delete</span>(<span class="php-var">$page</span>); 
+</span><span id="1967" class="l"><a class="l" href="#1967">1967: </a>            <span class="php-var">$this</span>-&gt;message(<span class="php-quote">&quot;Removed page </span><span class="php-var">{$page-&gt;path}</span><span class="php-quote">&quot;</span>, Notice::debug); 
+</span><span id="1968" class="l"><a class="l" href="#1968">1968: </a>        }
+</span><span id="1969" class="l"><a class="l" href="#1969">1969: </a>    }
+</span><span id="1970" class="l"><a class="l" href="#1970">1970: </a>
+</span><span id="1971" class="l"><a class="l" href="#1971">1971: </a>}
+</span><span id="1972" class="l"><a class="l" href="#1972">1972: </a>
+</span><span id="1973" class="l"><a class="l" href="#1973">1973: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

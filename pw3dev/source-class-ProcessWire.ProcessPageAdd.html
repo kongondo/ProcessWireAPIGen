@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessPageAdd/ProcessPageAdd.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?1703940170"></script>
+	<script type="text/javascript" src="elementlist.js?3302779862"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -1683,7 +1683,7 @@
 </span></span><span id="1104" class="l"><a class="l" href="#1104">1104: </a><span class="php-comment">     */</span>
 </span><span id="1105" class="l"><a class="l" href="#1105">1105: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="____nameChangedWarning" href="#____nameChangedWarning">___nameChangedWarning</a>(Page <span class="php-var">$page</span>, <span class="php-var">$namePrevious</span>) {
 </span><span id="1106" class="l"><a class="l" href="#1106">1106: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">sprintf</span>(
-</span><span id="1107" class="l"><a class="l" href="#1107">1107: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Warning, the name you selected &quot;%1$s&quot; has been changed to &quot;%2$s&quot;.'</span>),
+</span><span id="1107" class="l"><a class="l" href="#1107">1107: </a>            <span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Warning, the name you selected &quot;%1$s&quot; was already in use and has been changed to &quot;%2$s&quot;.'</span>),
 </span><span id="1108" class="l"><a class="l" href="#1108">1108: </a>            <span class="php-var">$namePrevious</span>, <span class="php-var">$page</span>-&gt;name
 </span><span id="1109" class="l"><a class="l" href="#1109">1109: </a>        );
 </span><span id="1110" class="l"><a class="l" href="#1110">1110: </a>    }
@@ -1776,9 +1776,9 @@
 </span><span id="1197" class="l"><a class="l" href="#1197">1197: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
 </span><span id="1198" class="l"><a class="l" href="#1198">1198: </a>        }
 </span><span id="1199" class="l"><a class="l" href="#1199">1199: </a>
-</span><span id="1200" class="l"><a class="l" href="#1200">1200: </a>        <span class="php-var">$this</span>-&gt;createdPageMessage(<span class="php-var">$this</span>-&gt;page); 
-</span><span id="1201" class="l"><a class="l" href="#1201">1201: </a>        
-</span><span id="1202" class="l"><a class="l" href="#1202">1202: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$pageName</span> != <span class="php-var">$this</span>-&gt;page-&gt;name) {
+</span><span id="1200" class="l"><a class="l" href="#1200">1200: </a>        <span class="php-var">$this</span>-&gt;createdPageMessage(<span class="php-var">$this</span>-&gt;page);
+</span><span id="1201" class="l"><a class="l" href="#1201">1201: </a>
+</span><span id="1202" class="l"><a class="l" href="#1202">1202: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'pages'</span>)-&gt;names()-&gt;hasAdjustedName(<span class="php-var">$this</span>-&gt;page)) {
 </span><span id="1203" class="l"><a class="l" href="#1203">1203: </a>            <span class="php-var">$warning</span> = <span class="php-var">$this</span>-&gt;nameChangedWarning(<span class="php-var">$this</span>-&gt;page, <span class="php-var">$pageName</span>);
 </span><span id="1204" class="l"><a class="l" href="#1204">1204: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$warning</span>) <span class="php-var">$this</span>-&gt;warning(<span class="php-var">$warning</span>);
 </span><span id="1205" class="l"><a class="l" href="#1205">1205: </a>        }
