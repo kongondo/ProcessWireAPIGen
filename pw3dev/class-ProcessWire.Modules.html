@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Modules | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?3302779862"></script>
+	<script type="text/javascript" src="elementlist.js?846870975"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -593,7 +593,7 @@ iterating through these Modules should check to make sure it's not a
 ModulePlaceholder before using it. If it's a ModulePlaceholder, then the real
 Module can be instantiated/retrieved by $modules-&gt;get($className).</p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2019 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <p>#pw-summary Loads and manages all modules in ProcessWire. #pw-body = The
@@ -659,7 +659,7 @@ $modules-&gt;get('MarkupPagerNav');</p>
 				Move all module information methods to a ModulesInfo class<br>
 				<b>Todo:</b>
 				Move all module loading methods to a ModulesLoad class<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Modules.html#4-5085" title="Go to source code">core/Modules.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Modules.html#4-5080" title="Go to source code">core/Modules.php</a><br>
 	</div>
 
 
@@ -3442,14 +3442,14 @@ a string (i.e. has trailing slashes)<br>
 
 		<td class="attributes"><code>
 			 public 
-			array
+			array|string|integer|float
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConfig">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3243-3294" title="Go to source code">getConfig</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3243-3297" title="Go to source code">getConfig</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$class</var></span>, <span>string <var>$property</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3472,10 +3472,9 @@ it</p>
 
 <p>~~~~~~ // Getting, modifying and saving module config data $data =
 $modules-&gt;getConfig('HelloWorld'); $data['greeting'] = 'Hello World! How are
-you today?'; $modules-&gt;saveConfig('HelloWorld', $data); ~~~~~~</p>
+you today?'; $modules-&gt;saveConfig('HelloWorld', $data);</p>
 
-<p>#pw-group-configuration #pw-changelog 3.0.16 Changed from more verbose name
-<code>getModuleConfigData()</code>, which can still be used.</p>
+<p>// Getting just one property 'apiKey' from module config data</p>
 
 
 
@@ -3490,7 +3489,8 @@ config)</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>Module configuration data<br>
+					<code>array|string|integer|float</code><br>Module configuration data, returns array unless a specific $property was
+requested<br>
 				</div>
 
 
@@ -3502,6 +3502,12 @@ config)</dd>
 				<h4>See</h4>
 				<div class="list">
 						Modules::saveConfig()<br>
+				</div>
+				<h4>ApiKey</h4>
+				<div class="list">
+						= $modules-&gt;getConfig('HelloWorld', 'apiKey'); ~~~~~~ #pw-group-configuration
+#pw-changelog 3.0.16 Changed from more verbose name
+<code>getModuleConfigData()</code>, which can still be used.<br>
 				</div>
 
 
@@ -3519,7 +3525,7 @@ config)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getModuleFile">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3304-3420" title="Go to source code">getModuleFile</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$class</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3299-3415" title="Go to source code">getModuleFile</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$class</var></span>, <span>array|boolean <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3567,7 +3573,7 @@ argument, it is assumed to be the $getURL property.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isConfigurable">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3422-3652" title="Go to source code">isConfigurable</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|string <var>$class</var></span>, <span>boolean <var>$useCache</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3417-3647" title="Go to source code">isConfigurable</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|string <var>$class</var></span>, <span>boolean <var>$useCache</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3688,7 +3694,7 @@ two methods.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isConfigurableModule">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3654-3666" title="Go to source code">isConfigurableModule</a>( <span>mixed <var>$className</var></span>, <span>boolean <var>$useCache</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3649-3661" title="Go to source code">isConfigurableModule</a>( <span>mixed <var>$className</var></span>, <span>boolean <var>$useCache</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3734,7 +3740,7 @@ two methods.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setModuleConfigData">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3668-3747" title="Go to source code">setModuleConfigData</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$module</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3663-3742" title="Go to source code">setModuleConfigData</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$module</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3782,7 +3788,7 @@ config data for you.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveModuleConfigData">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3749-3761" title="Go to source code">___saveModuleConfigData</a>( <span>mixed <var>$className</var></span>, <span>array <var>$configData</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3744-3756" title="Go to source code">___saveModuleConfigData</a>( <span>mixed <var>$className</var></span>, <span>array <var>$configData</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3828,7 +3834,7 @@ config data for you.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____saveConfig">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3763-3824" title="Go to source code">___saveConfig</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$class</var></span>, <span>array|string <var>$data</var></span>, <span>mixed|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3758-3819" title="Go to source code">___saveConfig</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$class</var></span>, <span>array|string <var>$data</var></span>, <span>mixed|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3902,7 +3908,7 @@ save.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____getModuleConfigInputfields">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3826-3986" title="Go to source code">___getModuleConfigInputfields</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|integer <var>$moduleName</var></span>, <span><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code> <var>$form</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3821-3981" title="Go to source code">___getModuleConfigInputfields</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|integer <var>$moduleName</var></span>, <span><code><a href="class-ProcessWire.InputfieldWrapper.html">ProcessWire\InputfieldWrapper</a></code> <var>$form</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3950,7 +3956,7 @@ configurable</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSingular">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#3989-4022" title="Go to source code">isSingular</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|string <var>$module</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#3984-4017" title="Go to source code">isSingular</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|string <var>$module</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4002,7 +4008,7 @@ them.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isAutoload">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4024-4068" title="Go to source code">isAutoload</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|string <var>$module</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4019-4063" title="Go to source code">isAutoload</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|string <var>$module</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4047,7 +4053,7 @@ if not. Or null if unavailable.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isInitialized">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4070-4080" title="Go to source code">isInitialized</a>( )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4065-4075" title="Go to source code">isInitialized</a>( )</code>
 
 		<div class="description short">
 			
@@ -4086,7 +4092,7 @@ if not. Or null if unavailable.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isModule">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4082-4127" title="Go to source code">isModule</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$moduleName</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4077-4122" title="Go to source code">isModule</a>( <span>string|<code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$moduleName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4135,7 +4141,7 @@ validated as well.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNamespacePath">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4129-4142" title="Go to source code">getNamespacePath</a>( <span>string <var>$namespace</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4124-4137" title="Go to source code">getNamespacePath</a>( <span>string <var>$namespace</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4181,7 +4187,7 @@ the path to it. If not, returns boolean false;</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____refresh">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4144-4163" title="Go to source code">___refresh</a>( )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4139-4158" title="Go to source code">___refresh</a>( )</code>
 
 		<div class="description short">
 			
@@ -4218,7 +4224,7 @@ the path to it. If not, returns boolean false;</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetCache">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4165-4173" title="Go to source code">resetCache</a>( )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4160-4168" title="Go to source code">resetCache</a>( )</code>
 
 		<div class="description short">
 			
@@ -4253,7 +4259,7 @@ the path to it. If not, returns boolean false;</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRequiredBy">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4175-4202" title="Go to source code">getRequiredBy</a>( <span>string <var>$class</var></span>, <span>boolean <var>$uninstalled</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$installs</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4170-4197" title="Go to source code">getRequiredBy</a>( <span>string <var>$class</var></span>, <span>boolean <var>$uninstalled</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$installs</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -4303,7 +4309,7 @@ is controlled by $class.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRequires">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4204-4292" title="Go to source code">getRequires</a>( <span>string <var>$class</var></span>, <span>boolean <var>$onlyMissing</var> = <span class="php-keyword1">false</span></span>, <span>null|boolean <var>$versions</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4199-4287" title="Go to source code">getRequires</a>( <span>string <var>$class</var></span>, <span>boolean <var>$onlyMissing</var> = <span class="php-keyword1">false</span></span>, <span>null|boolean <var>$versions</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -4361,7 +4367,7 @@ already included when the installed version is not adequate.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_versionCompare">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4295-4330" title="Go to source code">versionCompare</a>( <span>integer|string <var>$currentVersion</var></span>, <span>integer|string <var>$requiredVersion</var></span>, <span>string <var>$operator</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4290-4325" title="Go to source code">versionCompare</a>( <span>integer|string <var>$currentVersion</var></span>, <span>integer|string <var>$requiredVersion</var></span>, <span>string <var>$operator</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4411,7 +4417,7 @@ $operator or FALSE otherwise</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extractModuleOperatorVersion">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4332-4367" title="Go to source code">extractModuleOperatorVersion</a>( <span>string <var>$require</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4327-4362" title="Go to source code">extractModuleOperatorVersion</a>( <span>string <var>$require</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4455,7 +4461,7 @@ $operator or FALSE otherwise</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRequiresForInstall">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4369-4383" title="Go to source code">getRequiresForInstall</a>( <span>string <var>$class</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4364-4378" title="Go to source code">getRequiresForInstall</a>( <span>string <var>$class</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4505,7 +4511,7 @@ getModuleInfo property.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRequiresForUninstall">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4385-4399" title="Go to source code">getRequiresForUninstall</a>( <span>string <var>$class</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4380-4394" title="Go to source code">getRequiresForUninstall</a>( <span>string <var>$class</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4555,7 +4561,7 @@ and version in the string.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDependencyErrors">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4401-4437" title="Go to source code">getDependencyErrors</a>( <span>mixed <var>$moduleName</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4396-4432" title="Go to source code">getDependencyErrors</a>( <span>mixed <var>$moduleName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4600,7 +4606,7 @@ messages)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_formatVersion">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4440-4491" title="Go to source code">formatVersion</a>( <span>mixed <var>$version</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4435-4486" title="Go to source code">formatVersion</a>( <span>mixed <var>$version</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4646,7 +4652,7 @@ messages)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadModuleInfoCache">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4493-4510" title="Go to source code">loadModuleInfoCache</a>( )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4488-4505" title="Go to source code">loadModuleInfoCache</a>( )</code>
 
 		<div class="description short">
 			
@@ -4683,7 +4689,7 @@ messages)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadModuleInfoCacheVerbose">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4512-4530" title="Go to source code">loadModuleInfoCacheVerbose</a>( <span>boolean <var>$uninstalled</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4507-4525" title="Go to source code">loadModuleInfoCacheVerbose</a>( <span>boolean <var>$uninstalled</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -4727,7 +4733,7 @@ core)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_clearModuleInfoCache">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4532-4598" title="Go to source code">clearModuleInfoCache</a>( )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4527-4593" title="Go to source code">clearModuleInfoCache</a>( )</code>
 
 		<div class="description short">
 			
@@ -4760,7 +4766,7 @@ core)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateModuleVersionsCache">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4600-4614" title="Go to source code">updateModuleVersionsCache</a>( )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4595-4609" title="Go to source code">updateModuleVersionsCache</a>( )</code>
 
 		<div class="description short">
 			
@@ -4793,7 +4799,7 @@ core)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_checkModuleVersion">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4616-4636" title="Go to source code">checkModuleVersion</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$module</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4611-4631" title="Go to source code">checkModuleVersion</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$module</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4836,7 +4842,7 @@ turn triggers the $module-&gt;___upgrade($fromVersion, $toVersion) method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____moduleVersionChanged">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4638-4662" title="Go to source code">___moduleVersionChanged</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$module</var></span>, <span>integer|string <var>$fromVersion</var></span>, <span>integer|string <var>$toVersion</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4633-4657" title="Go to source code">___moduleVersionChanged</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code> <var>$module</var></span>, <span>integer|string <var>$fromVersion</var></span>, <span>integer|string <var>$toVersion</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4880,7 +4886,7 @@ turn triggers the $module-&gt;___upgrade($fromVersion, $toVersion) method.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateModuleFlags">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4664-4725" title="Go to source code">updateModuleFlags</a>( <span>mixed <var>$moduleID</var></span>, <span>array <var>$info</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4659-4720" title="Go to source code">updateModuleFlags</a>( <span>mixed <var>$moduleID</var></span>, <span>array <var>$info</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4922,7 +4928,7 @@ moduleInfo</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveModuleInfoCache">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4727-4860" title="Go to source code">saveModuleInfoCache</a>( )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4722-4855" title="Go to source code">saveModuleInfoCache</a>( )</code>
 
 		<div class="description short">
 			
@@ -4955,7 +4961,7 @@ moduleInfo</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_debugTimerStart">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4862-4878" title="Go to source code">debugTimerStart</a>( <span>mixed <var>$note</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4857-4873" title="Go to source code">debugTimerStart</a>( <span>mixed <var>$note</var></span> )</code>
 
 		<div class="description short">
 			
@@ -4999,7 +5005,7 @@ moduleInfo</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_debugTimerStop">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4880-4893" title="Go to source code">debugTimerStop</a>( <span>integer <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4875-4888" title="Go to source code">debugTimerStop</a>( <span>integer <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -5039,7 +5045,7 @@ moduleInfo</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDebugLog">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4895-4905" title="Go to source code">getDebugLog</a>( )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4890-4900" title="Go to source code">getDebugLog</a>( )</code>
 
 		<div class="description short">
 			
@@ -5080,7 +5086,7 @@ debug mode is on ($this-&gt;debug)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSubstitute">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4907-4923" title="Go to source code">setSubstitute</a>( <span>string <var>$moduleName</var></span>, <span>string <var>$substituteName</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4902-4918" title="Go to source code">setSubstitute</a>( <span>string <var>$moduleName</var></span>, <span>string <var>$substituteName</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -5125,7 +5131,7 @@ found. Specify null to remove substitute.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSubstitutes">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4925-4937" title="Go to source code">setSubstitutes</a>( <span>array <var>$substitutes</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4920-4932" title="Go to source code">setSubstitutes</a>( <span>array <var>$substitutes</var></span> )</code>
 
 		<div class="description short">
 			
@@ -5169,7 +5175,7 @@ doesn't exist.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadModuleFileAssets">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4939-4989" title="Go to source code">loadModuleFileAssets</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|integer|string <var>$module</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4934-4984" title="Go to source code">loadModuleFileAssets</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|integer|string <var>$module</var></span> )</code>
 
 		<div class="description short">
 			
@@ -5221,7 +5227,7 @@ doesn't exist.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#4991-5000" title="Go to source code">__invoke</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4986-4995" title="Go to source code">__invoke</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -5265,7 +5271,7 @@ doesn't exist.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_log">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#5002-5017" title="Go to source code">log</a>( <span>string <var>$str</var></span>, <span>string <var>$moduleName</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#4997-5012" title="Go to source code">log</a>( <span>string <var>$str</var></span>, <span>string <var>$moduleName</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -5311,7 +5317,7 @@ doesn't exist.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_error">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#5019-5032" title="Go to source code">error</a>( <span>array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#5014-5027" title="Go to source code">error</a>( <span>array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code>|string <var>$text</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -5359,7 +5365,7 @@ doesn't exist.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compile">#</a>
-		<code><a href="source-class-ProcessWire.Modules.html#5034-5083" title="Go to source code">compile</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|string <var>$moduleName</var></span>, <span>string <var>$file</var> = <span class="php-quote">''</span></span>, <span>string|null <var>$namespace</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Modules.html#5029-5078" title="Go to source code">compile</a>( <span><code><a href="class-ProcessWire.Module.html">ProcessWire\Module</a></code>|string <var>$moduleName</var></span>, <span>string <var>$file</var> = <span class="php-quote">''</span></span>, <span>string|null <var>$namespace</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
