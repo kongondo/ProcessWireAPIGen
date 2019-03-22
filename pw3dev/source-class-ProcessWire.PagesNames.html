@@ -8,7 +8,7 @@
 	<title>File core/PagesNames.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?846870975"></script>
+	<script type="text/javascript" src="elementlist.js?2545857892"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -467,7 +467,6 @@
 				<li><a href="function-ProcessWire.sanitizer.html">sanitizer</a></li>
 				<li><a href="function-ProcessWire.session.html">session</a></li>
 				<li><a href="function-ProcessWire.setting.html">setting</a></li>
-				<li><a href="function-ProcessWire.tabIndent.html">tabIndent</a></li>
 				<li><a href="function-ProcessWire.templates.html">templates</a></li>
 				<li><a href="function-ProcessWire.urls.html">urls</a></li>
 				<li><a href="function-ProcessWire.user.html">user</a></li>
@@ -1298,94 +1297,99 @@
 </span><span id="719" class="l"><a class="l" href="#719">719: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_pageNameHasConflict" href="#_pageNameHasConflict">pageNameHasConflict</a>(Page <span class="php-var">$page</span>) {
 </span><span id="720" class="l"><a class="l" href="#720">720: </a>        
 </span><span id="721" class="l"><a class="l" href="#721">721: </a>        <span class="php-var">$reason</span> = <span class="php-quote">''</span>;
-</span><span id="722" class="l"><a class="l" href="#722">722: </a>        
-</span><span id="723" class="l"><a class="l" href="#723">723: </a>        <span class="php-var">$sql</span> = <span class="php-quote">&quot;SELECT id, status, parent_id FROM pages WHERE name=:name AND id!=:id&quot;</span>;
-</span><span id="724" class="l"><a class="l" href="#724">724: </a>        <span class="php-var">$query</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;prepare(<span class="php-var">$sql</span>);
-</span><span id="725" class="l"><a class="l" href="#725">725: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':name'</span>, <span class="php-var">$page</span>-&gt;name);
-</span><span id="726" class="l"><a class="l" href="#726">726: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':id'</span>, <span class="php-var">$page</span>-&gt;id, \PDO::PARAM_INT);
-</span><span id="727" class="l"><a class="l" href="#727">727: </a>        <span class="php-var">$query</span>-&gt;execute();
-</span><span id="728" class="l"><a class="l" href="#728">728: </a>        
-</span><span id="729" class="l"><a class="l" href="#729">729: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$query</span>-&gt;rowCount()) {
-</span><span id="730" class="l"><a class="l" href="#730">730: </a>            <span class="php-var">$query</span>-&gt;closeCursor();
-</span><span id="731" class="l"><a class="l" href="#731">731: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="732" class="l"><a class="l" href="#732">732: </a>        }
+</span><span id="722" class="l"><a class="l" href="#722">722: </a>        <span class="php-var">$name</span> = <span class="php-var">$page</span>-&gt;name;
+</span><span id="723" class="l"><a class="l" href="#723">723: </a>    
+</span><span id="724" class="l"><a class="l" href="#724">724: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;pageNameCharset == <span class="php-quote">'UTF8'</span>) {
+</span><span id="725" class="l"><a class="l" href="#725">725: </a>            <span class="php-var">$name</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'sanitizer'</span>)-&gt;pageName(<span class="php-var">$name</span>, Sanitizer::toAscii);
+</span><span id="726" class="l"><a class="l" href="#726">726: </a>        }
+</span><span id="727" class="l"><a class="l" href="#727">727: </a>        
+</span><span id="728" class="l"><a class="l" href="#728">728: </a>        <span class="php-var">$sql</span> = <span class="php-quote">&quot;SELECT id, status, parent_id FROM pages WHERE name=:name AND id!=:id&quot;</span>;
+</span><span id="729" class="l"><a class="l" href="#729">729: </a>        <span class="php-var">$query</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'database'</span>)-&gt;prepare(<span class="php-var">$sql</span>);
+</span><span id="730" class="l"><a class="l" href="#730">730: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':name'</span>, <span class="php-var">$name</span>);
+</span><span id="731" class="l"><a class="l" href="#731">731: </a>        <span class="php-var">$query</span>-&gt;bindValue(<span class="php-quote">':id'</span>, <span class="php-var">$page</span>-&gt;id, \PDO::PARAM_INT);
+</span><span id="732" class="l"><a class="l" href="#732">732: </a>        <span class="php-var">$query</span>-&gt;execute();
 </span><span id="733" class="l"><a class="l" href="#733">733: </a>        
-</span><span id="734" class="l"><a class="l" href="#734">734: </a>        <span class="php-keyword1">while</span>(<span class="php-var">$row</span> = <span class="php-var">$query</span>-&gt;fetch(\PDO::FETCH_ASSOC)) {
-</span><span id="735" class="l"><a class="l" href="#735">735: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$row</span>[<span class="php-quote">'status'</span>] &amp; Page::statusUnique) {
-</span><span id="736" class="l"><a class="l" href="#736">736: </a>                <span class="php-comment">// name is already required to be unique globally</span>
-</span><span id="737" class="l"><a class="l" href="#737">737: </a>                <span class="php-var">$reason</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Another page is using name “%s” and requires it to be globally unique&quot;</span>), <span class="php-var">$page</span>-&gt;name);
-</span><span id="738" class="l"><a class="l" href="#738">738: </a>            }
-</span><span id="739" class="l"><a class="l" href="#739">739: </a>            <span class="php-keyword1">if</span>((int) <span class="php-var">$row</span>[<span class="php-quote">'parent_id'</span>] === <span class="php-var">$page</span>-&gt;parent_id) {
-</span><span id="740" class="l"><a class="l" href="#740">740: </a>                <span class="php-comment">// name already consumed by another page with same parent</span>
-</span><span id="741" class="l"><a class="l" href="#741">741: </a>                <span class="php-var">$reason</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Another page with same parent is already using name “%s”'</span>), <span class="php-var">$page</span>-&gt;name);
-</span><span id="742" class="l"><a class="l" href="#742">742: </a>            }
-</span><span id="743" class="l"><a class="l" href="#743">743: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$reason</span>) <span class="php-keyword1">break</span>;
-</span><span id="744" class="l"><a class="l" href="#744">744: </a>        }
-</span><span id="745" class="l"><a class="l" href="#745">745: </a>        
-</span><span id="746" class="l"><a class="l" href="#746">746: </a>        <span class="php-comment">// page requires that it be the only one with this name, so if others have it, then disallow</span>
-</span><span id="747" class="l"><a class="l" href="#747">747: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$reason</span> &amp;&amp; <span class="php-var">$page</span>-&gt;hasStatus(Page::statusUnique)) {
-</span><span id="748" class="l"><a class="l" href="#748">748: </a>            <span class="php-var">$reason</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Cannot use name “%s” as globally unique because it is already used by other page(s)'</span>), <span class="php-var">$page</span>-&gt;name);
+</span><span id="734" class="l"><a class="l" href="#734">734: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$query</span>-&gt;rowCount()) {
+</span><span id="735" class="l"><a class="l" href="#735">735: </a>            <span class="php-var">$query</span>-&gt;closeCursor();
+</span><span id="736" class="l"><a class="l" href="#736">736: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="737" class="l"><a class="l" href="#737">737: </a>        }
+</span><span id="738" class="l"><a class="l" href="#738">738: </a>        
+</span><span id="739" class="l"><a class="l" href="#739">739: </a>        <span class="php-keyword1">while</span>(<span class="php-var">$row</span> = <span class="php-var">$query</span>-&gt;fetch(\PDO::FETCH_ASSOC)) {
+</span><span id="740" class="l"><a class="l" href="#740">740: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$row</span>[<span class="php-quote">'status'</span>] &amp; Page::statusUnique) {
+</span><span id="741" class="l"><a class="l" href="#741">741: </a>                <span class="php-comment">// name is already required to be unique globally</span>
+</span><span id="742" class="l"><a class="l" href="#742">742: </a>                <span class="php-var">$reason</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">&quot;Another page is using name “%s” and requires it to be globally unique&quot;</span>), <span class="php-var">$page</span>-&gt;name);
+</span><span id="743" class="l"><a class="l" href="#743">743: </a>            }
+</span><span id="744" class="l"><a class="l" href="#744">744: </a>            <span class="php-keyword1">if</span>((int) <span class="php-var">$row</span>[<span class="php-quote">'parent_id'</span>] === <span class="php-var">$page</span>-&gt;parent_id) {
+</span><span id="745" class="l"><a class="l" href="#745">745: </a>                <span class="php-comment">// name already consumed by another page with same parent</span>
+</span><span id="746" class="l"><a class="l" href="#746">746: </a>                <span class="php-var">$reason</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Another page with same parent is already using name “%s”'</span>), <span class="php-var">$page</span>-&gt;name);
+</span><span id="747" class="l"><a class="l" href="#747">747: </a>            }
+</span><span id="748" class="l"><a class="l" href="#748">748: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$reason</span>) <span class="php-keyword1">break</span>;
 </span><span id="749" class="l"><a class="l" href="#749">749: </a>        }
 </span><span id="750" class="l"><a class="l" href="#750">750: </a>        
-</span><span id="751" class="l"><a class="l" href="#751">751: </a>        <span class="php-var">$query</span>-&gt;closeCursor();
-</span><span id="752" class="l"><a class="l" href="#752">752: </a>        
-</span><span id="753" class="l"><a class="l" href="#753">753: </a>        <span class="php-keyword1">return</span> <span class="php-var">$reason</span> ? <span class="php-var">$reason</span> : <span class="php-keyword1">false</span>;
-</span><span id="754" class="l"><a class="l" href="#754">754: </a>    }
-</span><span id="755" class="l"><a class="l" href="#755">755: </a>
-</span><span id="756" class="l"><a class="l" href="#756">756: </a>    <span class="php-comment">/**
-</span></span><span id="757" class="l"><a class="l" href="#757">757: </a><span class="php-comment">     * Check given page’s name for conflicts and increment as needed while also triggering a warning notice
-</span></span><span id="758" class="l"><a class="l" href="#758">758: </a><span class="php-comment">     * 
-</span></span><span id="759" class="l"><a class="l" href="#759">759: </a><span class="php-comment">     * @param Page $page
-</span></span><span id="760" class="l"><a class="l" href="#760">760: </a><span class="php-comment">     * @since 3.0.127
-</span></span><span id="761" class="l"><a class="l" href="#761">761: </a><span class="php-comment">     * 
-</span></span><span id="762" class="l"><a class="l" href="#762">762: </a><span class="php-comment">     */</span>
-</span><span id="763" class="l"><a class="l" href="#763">763: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_checkNameConflicts" href="#_checkNameConflicts">checkNameConflicts</a>(Page <span class="php-var">$page</span>) {
-</span><span id="764" class="l"><a class="l" href="#764">764: </a>        
-</span><span id="765" class="l"><a class="l" href="#765">765: </a>        <span class="php-var">$checkName</span> = <span class="php-keyword1">false</span>;
-</span><span id="766" class="l"><a class="l" href="#766">766: </a>        <span class="php-var">$checkStatus</span> = <span class="php-keyword1">false</span>;
-</span><span id="767" class="l"><a class="l" href="#767">767: </a>        <span class="php-var">$namePrevious</span> = <span class="php-var">$page</span>-&gt;namePrevious;
-</span><span id="768" class="l"><a class="l" href="#768">768: </a>        <span class="php-var">$statusPrevious</span> = <span class="php-var">$page</span>-&gt;statusPrevious;
-</span><span id="769" class="l"><a class="l" href="#769">769: </a>        <span class="php-var">$isNew</span> = <span class="php-var">$page</span>-&gt;isNew();
-</span><span id="770" class="l"><a class="l" href="#770">770: </a>        <span class="php-var">$nameChanged</span> = !<span class="php-var">$isNew</span> &amp;&amp; <span class="php-var">$namePrevious</span> !== <span class="php-keyword1">null</span> &amp;&amp; <span class="php-var">$namePrevious</span> !== <span class="php-var">$page</span>-&gt;name;
-</span><span id="771" class="l"><a class="l" href="#771">771: </a>
-</span><span id="772" class="l"><a class="l" href="#772">772: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$isNew</span> || <span class="php-var">$nameChanged</span>) {
-</span><span id="773" class="l"><a class="l" href="#773">773: </a>            <span class="php-comment">// new page or changed name</span>
-</span><span id="774" class="l"><a class="l" href="#774">774: </a>            <span class="php-var">$checkName</span> = <span class="php-keyword1">true</span>;
-</span><span id="775" class="l"><a class="l" href="#775">775: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$statusPrevious</span> !== <span class="php-keyword1">null</span> &amp;&amp; <span class="php-var">$page</span>-&gt;hasStatus(Page::statusUnique) &amp;&amp; !(<span class="php-var">$statusPrevious</span> &amp; Page::statusUnique)) {
-</span><span id="776" class="l"><a class="l" href="#776">776: </a>            <span class="php-comment">// page just received 'unique' status</span>
-</span><span id="777" class="l"><a class="l" href="#777">777: </a>            <span class="php-var">$checkStatus</span> = <span class="php-keyword1">true</span>;
-</span><span id="778" class="l"><a class="l" href="#778">778: </a>        }
-</span><span id="779" class="l"><a class="l" href="#779">779: </a>        
-</span><span id="780" class="l"><a class="l" href="#780">780: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$checkName</span> &amp;&amp; !<span class="php-var">$checkStatus</span>) <span class="php-keyword1">return</span>;
-</span><span id="781" class="l"><a class="l" href="#781">781: </a>    
-</span><span id="782" class="l"><a class="l" href="#782">782: </a>        <span class="php-keyword1">do</span> {
-</span><span id="783" class="l"><a class="l" href="#783">783: </a>            
-</span><span id="784" class="l"><a class="l" href="#784">784: </a>            <span class="php-var">$conflict</span> = <span class="php-var">$this</span>-&gt;pageNameHasConflict(<span class="php-var">$page</span>);
-</span><span id="785" class="l"><a class="l" href="#785">785: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$conflict</span>) <span class="php-keyword1">break</span>;
-</span><span id="786" class="l"><a class="l" href="#786">786: </a>            
-</span><span id="787" class="l"><a class="l" href="#787">787: </a>            <span class="php-var">$this</span>-&gt;warning(<span class="php-var">$conflict</span>);
+</span><span id="751" class="l"><a class="l" href="#751">751: </a>        <span class="php-comment">// page requires that it be the only one with this name, so if others have it, then disallow</span>
+</span><span id="752" class="l"><a class="l" href="#752">752: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$reason</span> &amp;&amp; <span class="php-var">$page</span>-&gt;hasStatus(Page::statusUnique)) {
+</span><span id="753" class="l"><a class="l" href="#753">753: </a>            <span class="php-var">$reason</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$this</span>-&gt;_(<span class="php-quote">'Cannot use name “%s” as globally unique because it is already used by other page(s)'</span>), <span class="php-var">$page</span>-&gt;name);
+</span><span id="754" class="l"><a class="l" href="#754">754: </a>        }
+</span><span id="755" class="l"><a class="l" href="#755">755: </a>        
+</span><span id="756" class="l"><a class="l" href="#756">756: </a>        <span class="php-var">$query</span>-&gt;closeCursor();
+</span><span id="757" class="l"><a class="l" href="#757">757: </a>        
+</span><span id="758" class="l"><a class="l" href="#758">758: </a>        <span class="php-keyword1">return</span> <span class="php-var">$reason</span> ? <span class="php-var">$reason</span> : <span class="php-keyword1">false</span>;
+</span><span id="759" class="l"><a class="l" href="#759">759: </a>    }
+</span><span id="760" class="l"><a class="l" href="#760">760: </a>
+</span><span id="761" class="l"><a class="l" href="#761">761: </a>    <span class="php-comment">/**
+</span></span><span id="762" class="l"><a class="l" href="#762">762: </a><span class="php-comment">     * Check given page’s name for conflicts and increment as needed while also triggering a warning notice
+</span></span><span id="763" class="l"><a class="l" href="#763">763: </a><span class="php-comment">     * 
+</span></span><span id="764" class="l"><a class="l" href="#764">764: </a><span class="php-comment">     * @param Page $page
+</span></span><span id="765" class="l"><a class="l" href="#765">765: </a><span class="php-comment">     * @since 3.0.127
+</span></span><span id="766" class="l"><a class="l" href="#766">766: </a><span class="php-comment">     * 
+</span></span><span id="767" class="l"><a class="l" href="#767">767: </a><span class="php-comment">     */</span>
+</span><span id="768" class="l"><a class="l" href="#768">768: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_checkNameConflicts" href="#_checkNameConflicts">checkNameConflicts</a>(Page <span class="php-var">$page</span>) {
+</span><span id="769" class="l"><a class="l" href="#769">769: </a>        
+</span><span id="770" class="l"><a class="l" href="#770">770: </a>        <span class="php-var">$checkName</span> = <span class="php-keyword1">false</span>;
+</span><span id="771" class="l"><a class="l" href="#771">771: </a>        <span class="php-var">$checkStatus</span> = <span class="php-keyword1">false</span>;
+</span><span id="772" class="l"><a class="l" href="#772">772: </a>        <span class="php-var">$namePrevious</span> = <span class="php-var">$page</span>-&gt;namePrevious;
+</span><span id="773" class="l"><a class="l" href="#773">773: </a>        <span class="php-var">$statusPrevious</span> = <span class="php-var">$page</span>-&gt;statusPrevious;
+</span><span id="774" class="l"><a class="l" href="#774">774: </a>        <span class="php-var">$isNew</span> = <span class="php-var">$page</span>-&gt;isNew();
+</span><span id="775" class="l"><a class="l" href="#775">775: </a>        <span class="php-var">$nameChanged</span> = !<span class="php-var">$isNew</span> &amp;&amp; <span class="php-var">$namePrevious</span> !== <span class="php-keyword1">null</span> &amp;&amp; <span class="php-var">$namePrevious</span> !== <span class="php-var">$page</span>-&gt;name;
+</span><span id="776" class="l"><a class="l" href="#776">776: </a>
+</span><span id="777" class="l"><a class="l" href="#777">777: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$isNew</span> || <span class="php-var">$nameChanged</span>) {
+</span><span id="778" class="l"><a class="l" href="#778">778: </a>            <span class="php-comment">// new page or changed name</span>
+</span><span id="779" class="l"><a class="l" href="#779">779: </a>            <span class="php-var">$checkName</span> = <span class="php-keyword1">true</span>;
+</span><span id="780" class="l"><a class="l" href="#780">780: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$statusPrevious</span> !== <span class="php-keyword1">null</span> &amp;&amp; <span class="php-var">$page</span>-&gt;hasStatus(Page::statusUnique) &amp;&amp; !(<span class="php-var">$statusPrevious</span> &amp; Page::statusUnique)) {
+</span><span id="781" class="l"><a class="l" href="#781">781: </a>            <span class="php-comment">// page just received 'unique' status</span>
+</span><span id="782" class="l"><a class="l" href="#782">782: </a>            <span class="php-var">$checkStatus</span> = <span class="php-keyword1">true</span>;
+</span><span id="783" class="l"><a class="l" href="#783">783: </a>        }
+</span><span id="784" class="l"><a class="l" href="#784">784: </a>        
+</span><span id="785" class="l"><a class="l" href="#785">785: </a>        <span class="php-keyword1">if</span>(!<span class="php-var">$checkName</span> &amp;&amp; !<span class="php-var">$checkStatus</span>) <span class="php-keyword1">return</span>;
+</span><span id="786" class="l"><a class="l" href="#786">786: </a>    
+</span><span id="787" class="l"><a class="l" href="#787">787: </a>        <span class="php-keyword1">do</span> {
 </span><span id="788" class="l"><a class="l" href="#788">788: </a>            
-</span><span id="789" class="l"><a class="l" href="#789">789: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$checkName</span>) {
-</span><span id="790" class="l"><a class="l" href="#790">790: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$nameChanged</span>) {
-</span><span id="791" class="l"><a class="l" href="#791">791: </a>                    <span class="php-comment">// restore previous name</span>
-</span><span id="792" class="l"><a class="l" href="#792">792: </a>                    <span class="php-var">$page</span>-&gt;name = <span class="php-var">$page</span>-&gt;namePrevious;
-</span><span id="793" class="l"><a class="l" href="#793">793: </a>                    <span class="php-var">$nameChanged</span> = <span class="php-keyword1">false</span>;
-</span><span id="794" class="l"><a class="l" href="#794">794: </a>                } <span class="php-keyword1">else</span> {
-</span><span id="795" class="l"><a class="l" href="#795">795: </a>                    <span class="php-comment">// increment name</span>
-</span><span id="796" class="l"><a class="l" href="#796">796: </a>                    <span class="php-var">$page</span>-&gt;name = <span class="php-var">$this</span>-&gt;incrementName(<span class="php-var">$page</span>-&gt;name);
-</span><span id="797" class="l"><a class="l" href="#797">797: </a>                }
-</span><span id="798" class="l"><a class="l" href="#798">798: </a>                
-</span><span id="799" class="l"><a class="l" href="#799">799: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$checkStatus</span>) {
-</span><span id="800" class="l"><a class="l" href="#800">800: </a>                <span class="php-comment">// remove 'unique' status</span>
-</span><span id="801" class="l"><a class="l" href="#801">801: </a>                <span class="php-var">$page</span>-&gt;removeStatus(Page::statusUnique);
-</span><span id="802" class="l"><a class="l" href="#802">802: </a>                <span class="php-keyword1">break</span>;
-</span><span id="803" class="l"><a class="l" href="#803">803: </a>            }
-</span><span id="804" class="l"><a class="l" href="#804">804: </a>            
-</span><span id="805" class="l"><a class="l" href="#805">805: </a>        } <span class="php-keyword1">while</span>(<span class="php-var">$conflict</span>);
-</span><span id="806" class="l"><a class="l" href="#806">806: </a>    }
-</span><span id="807" class="l"><a class="l" href="#807">807: </a>    
-</span><span id="808" class="l"><a class="l" href="#808">808: </a>}
-</span><span id="809" class="l"><a class="l" href="#809">809: </a></span></code></pre>
+</span><span id="789" class="l"><a class="l" href="#789">789: </a>            <span class="php-var">$conflict</span> = <span class="php-var">$this</span>-&gt;pageNameHasConflict(<span class="php-var">$page</span>);
+</span><span id="790" class="l"><a class="l" href="#790">790: </a>            <span class="php-keyword1">if</span>(!<span class="php-var">$conflict</span>) <span class="php-keyword1">break</span>;
+</span><span id="791" class="l"><a class="l" href="#791">791: </a>            
+</span><span id="792" class="l"><a class="l" href="#792">792: </a>            <span class="php-var">$this</span>-&gt;warning(<span class="php-var">$conflict</span>);
+</span><span id="793" class="l"><a class="l" href="#793">793: </a>            
+</span><span id="794" class="l"><a class="l" href="#794">794: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$checkName</span>) {
+</span><span id="795" class="l"><a class="l" href="#795">795: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$nameChanged</span>) {
+</span><span id="796" class="l"><a class="l" href="#796">796: </a>                    <span class="php-comment">// restore previous name</span>
+</span><span id="797" class="l"><a class="l" href="#797">797: </a>                    <span class="php-var">$page</span>-&gt;name = <span class="php-var">$page</span>-&gt;namePrevious;
+</span><span id="798" class="l"><a class="l" href="#798">798: </a>                    <span class="php-var">$nameChanged</span> = <span class="php-keyword1">false</span>;
+</span><span id="799" class="l"><a class="l" href="#799">799: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="800" class="l"><a class="l" href="#800">800: </a>                    <span class="php-comment">// increment name</span>
+</span><span id="801" class="l"><a class="l" href="#801">801: </a>                    <span class="php-var">$page</span>-&gt;name = <span class="php-var">$this</span>-&gt;incrementName(<span class="php-var">$page</span>-&gt;name);
+</span><span id="802" class="l"><a class="l" href="#802">802: </a>                }
+</span><span id="803" class="l"><a class="l" href="#803">803: </a>                
+</span><span id="804" class="l"><a class="l" href="#804">804: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-var">$checkStatus</span>) {
+</span><span id="805" class="l"><a class="l" href="#805">805: </a>                <span class="php-comment">// remove 'unique' status</span>
+</span><span id="806" class="l"><a class="l" href="#806">806: </a>                <span class="php-var">$page</span>-&gt;removeStatus(Page::statusUnique);
+</span><span id="807" class="l"><a class="l" href="#807">807: </a>                <span class="php-keyword1">break</span>;
+</span><span id="808" class="l"><a class="l" href="#808">808: </a>            }
+</span><span id="809" class="l"><a class="l" href="#809">809: </a>            
+</span><span id="810" class="l"><a class="l" href="#810">810: </a>        } <span class="php-keyword1">while</span>(<span class="php-var">$conflict</span>);
+</span><span id="811" class="l"><a class="l" href="#811">811: </a>    }
+</span><span id="812" class="l"><a class="l" href="#812">812: </a>    
+</span><span id="813" class="l"><a class="l" href="#813">813: </a>}
+</span><span id="814" class="l"><a class="l" href="#814">814: </a></span></code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
