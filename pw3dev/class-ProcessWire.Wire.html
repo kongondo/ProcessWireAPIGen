@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Wire | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?2545857892"></script>
+	<script type="text/javascript" src="elementlist.js?2929871096"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -16,7 +16,7 @@
 <div id="left">
 	<div id="menu">
 		<a href="index.html" title="Overview">
-			<span>Overview version 3.0.127 dev</span>
+			<span>Overview version 3.0.128 dev</span>
 		</a>
 
 
@@ -956,7 +956,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.Wire.html#4-1765" title="Go to source code">core/Wire.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Wire.html#4-1769" title="Go to source code">core/Wire.php</a><br>
 	</div>
 
 
@@ -1766,7 +1766,7 @@ supported.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addHook">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#620-659" title="Go to source code">addHook</a>( <span>string <var>$method</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#620-659" title="Go to source code">addHook</a>( <span>string <var>$method</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string|array <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1804,27 +1804,27 @@ May also be Class::Method for same result as using the fromClass option.</dd>
 outside of an object, Or function|callable if $toObject is not applicable or
 function is provided as a closure.</dd>
 					<dt><var>$toMethod</var></dt>
-					<dd><code>string</code><br>$toMethod Method from $toObject, or function name to call on a hook event.
-Optional.</dd>
+					<dd><code>string|array</code><br>$toMethod Method from $toObject, or function name to call on a hook event, or
+$options array. Optional.</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options Options that can modify default behaviors: - <code>type</code>
-(string): May be either 'method' or 'property'. If property, then it will
-respond to $obj-&gt;property rather than $obj-&gt;method(). The default type is
-'method'. - <code>before</code> (bool): Execute the hook before the method call?
-(allows modification of arguments). Not applicable if 'type' is 'property'. -
-<code>after</code> (bool): Execute the hook after the method call? (allows
-modification of return value). Not applicable if 'type' is 'property'. -
-<code>priority</code> (int): A number determining the priority of a hook, where
-lower numbers are executed before higher numbers. The default priority is 100. -
-<code>allInstances</code> (bool): attach the hook to all instances of this
-object? Set automatically, but you may still use in some instances. -
-<code>fromClass</code> (string): The name of the class containing the hooked
-method, if not the object where addHook was called. Set automatically, but you
-may still use in some instances. - <code>argMatch</code> (array|null): An array
-of Selectors objects where the indexed argument (n) to the hooked method must
-match, in order to execute hook. Default is null. - <code>objMatch</code>
-(array|null): Selectors object that the current object must match in order to
-execute hook. Default is null.</dd>
+(string): May be 'method', 'property' or 'either'. If property, then it will
+respond to $obj-&gt;property rather than $obj-&gt;method(). If 'either' it will
+respond to both. The default type is 'method'. - <code>before</code> (bool):
+Execute the hook before the method call? (allows modification of arguments). Not
+applicable if 'type' is 'property'. - <code>after</code> (bool): Execute the
+hook after the method call? (allows modification of return value). Not
+applicable if 'type' is 'property'. - <code>priority</code> (int): A number
+determining the priority of a hook, where lower numbers are executed before
+higher numbers. The default priority is 100. - <code>allInstances</code> (bool):
+attach the hook to all instances of this object? Set automatically, but you may
+still use in some instances. - <code>fromClass</code> (string): The name of the
+class containing the hooked method, if not the object where addHook was called.
+Set automatically, but you may still use in some instances. -
+<code>argMatch</code> (array|null): An array of Selectors objects where the
+indexed argument (n) to the hooked method must match, in order to execute hook.
+Default is null. - <code>objMatch</code> (array|null): Selectors object that the
+current object must match in order to execute hook. Default is null.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1853,7 +1853,7 @@ execute hook. Default is null.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addHookBefore">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#661-708" title="Go to source code">addHookBefore</a>( <span>string <var>$method</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#661-709" title="Go to source code">addHookBefore</a>( <span>string <var>$method</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string|array <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1907,9 +1907,9 @@ instance.</dd>
 is implemented by a procedural function. - Null if you want to use the 3rd
 argument and don't need this argument.</dd>
 					<dt><var>$toMethod</var></dt>
-					<dd><code>string</code><br>$toMethod Method from $toObject, or function name to call on a hook event. This
-argument can be sustituted as the 2nd argument when the 2nd argument isn't
-needed.</dd>
+					<dd><code>string|array</code><br>$toMethod Method from $toObject, or function name to call on a hook event. This
+argument can be sustituted as the 2nd argument when the 2nd argument isn’t
+needed, or it can be the $options argument.</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options Array of options that can modify behavior: - <code>type</code>
 (string): May be either 'method' or 'property'. If property, then it will
@@ -1941,7 +1941,7 @@ priority is 100.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addHookAfter">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#710-754" title="Go to source code">addHookAfter</a>( <span>string <var>$method</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#711-756" title="Go to source code">addHookAfter</a>( <span>string <var>$method</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string|array <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1991,9 +1991,9 @@ instance.</dd>
 is implemented by a procedural function. - Null if you want to use the 3rd
 argument and don't need this argument.</dd>
 					<dt><var>$toMethod</var></dt>
-					<dd><code>string</code><br>$toMethod Method from $toObject, or function name to call on a hook event. This
+					<dd><code>string|array</code><br>$toMethod Method from $toObject, or function name to call on a hook event. This
 argument can be sustituted as the 2nd argument when the 2nd argument isn't
-needed.</dd>
+needed, or it can be the $options argument.</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options Array of options that can modify behavior: - <code>type</code>
 (string): May be either 'method' or 'property'. If property, then it will
@@ -2025,7 +2025,7 @@ priority is 100.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addHookProperty">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#756-798" title="Go to source code">addHookProperty</a>( <span>string <var>$property</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#758-801" title="Go to source code">addHookProperty</a>( <span>string <var>$property</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string|array <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2070,9 +2070,9 @@ object instance.</dd>
 is implemented by a procedural function. - Null if you want to use the 3rd
 argument and don't need this argument.</dd>
 					<dt><var>$toMethod</var></dt>
-					<dd><code>string</code><br>$toMethod Method from $toObject, or function name to call on a hook event. This
-argument can be sustituted as the 2nd argument when the 2nd argument isn't
-needed.</dd>
+					<dd><code>string|array</code><br>$toMethod Method from $toObject, or function name to call on a hook event. This
+argument can be sustituted as the 2nd argument when the 2nd argument isn’t
+needed, or it can be the $options argument.</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options Options typically aren't used in this context, but see
 Wire::addHookBefore() $options if you'd like.</dd>
@@ -2100,7 +2100,7 @@ Wire::addHookBefore() $options if you'd like.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addHookMethod">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#800-855" title="Go to source code">addHookMethod</a>( <span>string <var>$method</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#803-859" title="Go to source code">addHookMethod</a>( <span>string <var>$method</var></span>, <span>object|null|callable <var>$toObject</var></span>, <span>string|array <var>$toMethod</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2153,9 +2153,9 @@ of Class. - <code>method</code> to just add to a single object instance.</dd>
 is implemented by a procedural function. - Null if you want to use the 3rd
 argument and don't need this argument.</dd>
 					<dt><var>$toMethod</var></dt>
-					<dd><code>string</code><br>$toMethod Method from $toObject, or function name to call on a hook event. This
-argument can be sustituted as the 2nd argument when the 2nd argument isn't
-needed.</dd>
+					<dd><code>string|array</code><br>$toMethod Method from $toObject, or function name to call on a hook event. This
+argument can be sustituted as the 2nd argument when the 2nd argument isn’t
+needed, or it can be the $options argument.</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>array</code><br>$options Options typically aren't used in this context, but see
 Wire::addHookBefore() $options if you'd like.</dd>
@@ -2188,7 +2188,7 @@ can use addHook() method with same arguments.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeHook">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#857-887" title="Go to source code">removeHook</a>( <span>string|null <var>$hookId</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#861-891" title="Go to source code">removeHook</a>( <span>string|null <var>$hookId</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2242,7 +2242,7 @@ removeHook on $event }); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isChanged">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#929-955" title="Go to source code">isChanged</a>( <span>string <var>$what</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#933-959" title="Go to source code">isChanged</a>( <span>string <var>$what</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2296,7 +2296,7 @@ changes }</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____changed">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#957-974" title="Go to source code">___changed</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#961-978" title="Go to source code">___changed</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2357,7 +2357,7 @@ tracking is enabled.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trackChange">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#976-1025" title="Go to source code">trackChange</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#980-1029" title="Go to source code">trackChange</a>( <span>string <var>$what</var></span>, <span>mixed <var>$old</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$new</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2410,7 +2410,7 @@ object instance.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_untrackChange">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1027-1039" title="Go to source code">untrackChange</a>( <span>string <var>$what</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1031-1043" title="Go to source code">untrackChange</a>( <span>string <var>$what</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2454,7 +2454,7 @@ object instance.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTrackChanges">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1041-1086" title="Go to source code">setTrackChanges</a>( <span>boolean|integer <var>$trackChanges</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1045-1090" title="Go to source code">setTrackChanges</a>( <span>boolean|integer <var>$trackChanges</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2514,7 +2514,7 @@ Once enabled, the setting will persist through boolean true|false arguments.</dd
 
 		<td class="name"><div>
 		<a class="anchor" href="#_trackChanges">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1088-1100" title="Go to source code">trackChanges</a>( <span>boolean <var>$getMode</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1092-1104" title="Go to source code">trackChanges</a>( <span>boolean <var>$getMode</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2560,7 +2560,7 @@ mode bitmask (int) if requested.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetTrackChanges">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1102-1119" title="Go to source code">resetTrackChanges</a>( <span>boolean <var>$trackChanges</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1106-1123" title="Go to source code">resetTrackChanges</a>( <span>boolean <var>$trackChanges</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2608,7 +2608,7 @@ true is assumed.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getChanges">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1121-1152" title="Go to source code">getChanges</a>( <span>boolean <var>$getValues</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1125-1156" title="Go to source code">getChanges</a>( <span>boolean <var>$getValues</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2664,7 +2664,7 @@ array where both keys and values are changed property names.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__notice">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1170-1189" title="Go to source code">_notice</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var></span>, <span>string <var>$name</var></span>, <span>string <var>$class</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1174-1193" title="Go to source code">_notice</a>( <span>string <var>$text</var></span>, <span>integer <var>$flags</var></span>, <span>string <var>$name</var></span>, <span>string <var>$class</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2714,7 +2714,7 @@ error methods)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_message">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1191-1219" title="Go to source code">message</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1195-1223" title="Go to source code">message</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2781,7 +2781,7 @@ use of HTML markup tags. - <code>true</code> (boolean): Shortcut for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#_warning">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1221-1250" title="Go to source code">warning</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1225-1254" title="Go to source code">warning</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2846,7 +2846,7 @@ use of HTML markup tags. - <code>true</code> (boolean): Shortcut for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#_error">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1252-1281" title="Go to source code">error</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1256-1285" title="Go to source code">error</a>( <span>string|array|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$text</var></span>, <span>integer|boolean <var>$flags</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2916,7 +2916,7 @@ use of HTML markup tags. - <code>true</code> (boolean): Shortcut for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#____trackException">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1283-1318" title="Go to source code">___trackException</a>( <span><code><a href="class-Exception.html">Exception</a></code> <var>$e</var></span>, <span>boolean|integer <var>$severe</var> = <span class="php-keyword1">true</span></span>, <span>string|array|object|true <var>$text</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1287-1322" title="Go to source code">___trackException</a>( <span><code><a href="class-Exception.html">Exception</a></code> <var>$e</var></span>, <span>boolean|integer <var>$severe</var> = <span class="php-keyword1">true</span></span>, <span>string|array|object|true <var>$text</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2983,7 +2983,7 @@ use of HTML markup tags. - <code>true</code> (boolean): Shortcut for the
 
 		<td class="name"><div>
 		<a class="anchor" href="#_errors">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1320-1355" title="Go to source code">errors</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1324-1359" title="Go to source code">errors</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3046,7 +3046,7 @@ was specified.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_warnings">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1357-1393" title="Go to source code">warnings</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1361-1397" title="Go to source code">warnings</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3112,7 +3112,7 @@ option was specified.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_messages">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1395-1462" title="Go to source code">messages</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1399-1466" title="Go to source code">messages</a>( <span>string|array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3178,7 +3178,7 @@ option was specified.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____log">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1464-1497" title="Go to source code">___log</a>( <span>string <var>$str</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1468-1501" title="Go to source code">___log</a>( <span>string <var>$str</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -3234,7 +3234,7 @@ instance, user name, or null to log for current User. (default=null)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1504-1517" title="Go to source code">_</a>( <span>string <var>$text</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1508-1521" title="Go to source code">_</a>( <span>string <var>$text</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3283,7 +3283,7 @@ returns the text as is.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__x">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1519-1533" title="Go to source code">_x</a>( <span>string <var>$text</var></span>, <span>string <var>$context</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1523-1537" title="Go to source code">_x</a>( <span>string <var>$text</var></span>, <span>string <var>$context</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3334,7 +3334,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__n">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1535-1548" title="Go to source code">_n</a>( <span>string <var>$textSingular</var></span>, <span>string <var>$textPlural</var></span>, <span>integer <var>$count</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1539-1552" title="Go to source code">_n</a>( <span>string <var>$textSingular</var></span>, <span>string <var>$textPlural</var></span>, <span>integer <var>$count</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3384,7 +3384,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setWire">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1565-1578" title="Go to source code">setWire</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1569-1582" title="Go to source code">setWire</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3428,7 +3428,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getWire">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1580-1592" title="Go to source code">getWire</a>( )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1584-1596" title="Go to source code">getWire</a>( )</code>
 
 		<div class="description short">
 			
@@ -3471,7 +3471,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isWired">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1594-1604" title="Go to source code">isWired</a>( )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1598-1608" title="Go to source code">isWired</a>( )</code>
 
 		<div class="description short">
 			
@@ -3510,7 +3510,7 @@ other languages.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_wire">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1606-1715" title="Go to source code">wire</a>( <span>string|object <var>$name</var> = <span class="php-quote">''</span></span>, <span>null|mixed <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$lock</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1610-1719" title="Go to source code">wire</a>( <span>string|object <var>$name</var> = <span class="php-quote">''</span></span>, <span>null|mixed <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$lock</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -3611,7 +3611,7 @@ future changes (default=false).</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1717-1746" title="Go to source code">__get</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1721-1750" title="Go to source code">__get</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -3659,7 +3659,7 @@ one when they can't find something.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___debugInfo">#</a>
-		<code><a href="source-class-ProcessWire.Wire.html#1748-1762" title="Go to source code">__debugInfo</a>( )</code>
+		<code><a href="source-class-ProcessWire.Wire.html#1752-1766" title="Go to source code">__debugInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -3702,7 +3702,7 @@ one when they can't find something.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Wire.html#895-901" title="Go to source code"><b>trackChangesOn</b></a>
+				<a href="source-class-ProcessWire.Wire.html#899-905" title="Go to source code"><b>trackChangesOn</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -3728,7 +3728,7 @@ one when they can't find something.</p>
 
 		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-ProcessWire.Wire.html#903-909" title="Go to source code"><b>trackChangesValues</b></a>
+				<a href="source-class-ProcessWire.Wire.html#907-913" title="Go to source code"><b>trackChangesValues</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">4</span></code></td>
 		<td class="description"><div>
@@ -3874,7 +3874,7 @@ $this-&gt;item</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Wire.html#911-917" title="Go to source code"><var>$trackChanges</var></a>
+				<a href="source-class-ProcessWire.Wire.html#915-921" title="Go to source code"><var>$trackChanges</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -3901,7 +3901,7 @@ $this-&gt;item</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Wire.html#919-927" title="Go to source code"><var>$changes</var></a>
+				<a href="source-class-ProcessWire.Wire.html#923-931" title="Go to source code"><var>$changes</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -3933,7 +3933,7 @@ while change tracking was ON.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Wire.html#1160-1168" title="Go to source code"><var>$_notices</var></a>
+				<a href="source-class-ProcessWire.Wire.html#1164-1172" title="Go to source code"><var>$_notices</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
 	<span class="php-quote">'errors'</span> =&gt; <span class="php-keyword1">null</span>, 
@@ -3960,7 +3960,7 @@ while change tracking was ON.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Wire.html#1557-1563" title="Go to source code"><var>$_wire</var></a>
+				<a href="source-class-ProcessWire.Wire.html#1561-1567" title="Go to source code"><var>$_wire</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
