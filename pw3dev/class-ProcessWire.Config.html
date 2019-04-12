@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Config | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4173858139"></script>
+	<script type="text/javascript" src="elementlist.js?1350527533"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -587,7 +587,7 @@
 <p>This file is licensed under the MIT license <a
 href="https://processwire.com/about/license/mit/">https://processwire.com/about/license/mit/</a></p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>ProcessWire 3.x, Copyright 2019 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <p>#pw-summary Holds ProcessWire configuration settings as defined in
@@ -646,7 +646,7 @@ file. #pw-body</p>
 
 				<b>See:</b>
 				/wire/config.php for more detailed descriptions of all config properties.<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Config.html#3-480" title="Go to source code">core/Config.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Config.html#3-511" title="Go to source code">core/Config.php</a><br>
 	</div>
 
 
@@ -707,24 +707,24 @@ file. #pw-body</p>
 
 		<td class="attributes"><code>
 			 public 
-			null|string
+			null|string|<code><a href="class-ProcessWire.Paths.html">ProcessWire\Paths</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_urls">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#204-213" title="Go to source code">urls</a>( <span>string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$for</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#204-216" title="Go to source code">urls</a>( <span>string|<code><a href="class-ProcessWire.Wire.html">ProcessWire\Wire</a></code> <var>$for</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Alias for the url() method</p>
+<p>Get URL for requested resource or module or get all URLs if no argument</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Alias for the url() method</p>
+<p>Get URL for requested resource or module or get all URLs if no argument</p>
 
 <p>#pw-internal</p>
 
@@ -738,10 +738,14 @@ file. #pw-body</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>null|string</code><br>
+					<code>null|string|<code><a href="class-ProcessWire.Paths.html">ProcessWire\Paths</a></code></code><br>
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.130<br>
+				</div>
 
 
 		</div>
@@ -758,7 +762,7 @@ file. #pw-body</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_path">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#215-234" title="Go to source code">path</a>( <span>string <var>$for</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#218-237" title="Go to source code">path</a>( <span>string <var>$for</var></span> )</code>
 
 		<div class="description short">
 			
@@ -802,24 +806,26 @@ $config-&gt;path('root');</p>
 
 		<td class="attributes"><code>
 			 public 
-			null|string
+			null|string|<code><a href="class-ProcessWire.Paths.html">ProcessWire\Paths</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_paths">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#236-245" title="Go to source code">paths</a>( <span>string <var>$for</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#239-251" title="Go to source code">paths</a>( <span>string <var>$for</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Alias for the path() method</p>
+<p>Get disk path for requested resource or module or get all paths if no
+argument</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Alias for the path() method</p>
+<p>Get disk path for requested resource or module or get all paths if no
+argument</p>
 
 <p>#pw-internal</p>
 
@@ -833,10 +839,14 @@ $config-&gt;path('root');</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>null|string</code><br>
+					<code>null|string|<code><a href="class-ProcessWire.Paths.html">ProcessWire\Paths</a></code></code><br>
 				</div>
 
 
+				<h4>Since</h4>
+				<div class="list">
+						3.0.130<br>
+				</div>
 
 
 		</div>
@@ -853,7 +863,7 @@ $config-&gt;path('root');</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_js">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#253-335" title="Go to source code">js</a>( <span>string|array <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#259-341" title="Go to source code">js</a>( <span>string|array <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -924,7 +934,7 @@ console.log(mySettings.bar); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#____callUnknown">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#337-411" title="Go to source code">___callUnknown</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#343-417" title="Go to source code">___callUnknown</a>( <span>string <var>$method</var></span>, <span>array <var>$arguments</var></span> )</code>
 
 		<div class="description short">
 			
@@ -997,7 +1007,7 @@ as second argument $config-&gt;fileCompilerOptions(null, 'siteOnly'); ~~~~~</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_phpVersion">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#413-429" title="Go to source code">phpVersion</a>( <span>string|null <var>$minVersion</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#419-437" title="Go to source code">phpVersion</a>( <span>string|null <var>$minVersion</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1012,6 +1022,8 @@ version</p>
 version</p>
 
 <p>~~~~~ if($config-&gt;phpVersion('7.0.0')) { // PHP version is 7.x } ~~~~~</p>
+
+<p>#pw-group-tools</p>
 
 
 
@@ -1047,25 +1059,27 @@ version</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_version">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#431-451" title="Go to source code">version</a>( <span>string <var>$minVersion</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#439-462" title="Go to source code">version</a>( <span>string <var>$minVersion</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Check if current ProcessWire version is equal to or newer than given
-version</p>
+<p>Check if current ProcessWire version is equal to or newer than given version,
+or return current version</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Check if current ProcessWire version is equal to or newer than given
-version</p>
+<p>Check if current ProcessWire version is equal to or newer than given version,
+or return current version</p>
 
 <p>If no version argument is given, it simply returns the current ProcessWire
-version.</p>
+version (3.0.130+)</p>
 
 <p>~~~~~ if($config-&gt;version('3.0.100')) { // ProcessWire version is 3.0.100
 or newer } ~~~~~</p>
+
+<p>#pw-group-tools</p>
 
 
 
@@ -1078,15 +1092,15 @@ version</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean|string</code><br>Returns current version if no argument given, OR boolean if given a version
-argument: - If given version is older than current, returns false. - If given
-version is equal to or newer than current, returns true.<br>
+					<code>boolean|string</code><br>Returns current version if no argument given (3.0.130+), OR boolean if given a
+version argument: - If given version is older than current, returns false. - If
+given version is equal to or newer than current, returns true.<br>
 				</div>
 
 
 				<h4>Since</h4>
 				<div class="list">
-						3.0.106<br>
+						3.0.106 with no-argument behavior added in 3.0.130<br>
 				</div>
 
 
@@ -1104,7 +1118,7 @@ version is equal to or newer than current, returns true.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_installedAfter">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#453-465" title="Go to source code">installedAfter</a>( <span>integer|string <var>$date</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#464-478" title="Go to source code">installedAfter</a>( <span>integer|string <var>$date</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1115,6 +1129,8 @@ version is equal to or newer than current, returns true.<br>
 		<div class="description detailed hidden">
 			
 <p>Was this ProcessWire installation installed after a particular date?</p>
+
+<p>#pw-group-tools</p>
 
 
 
@@ -1154,7 +1170,7 @@ version is equal to or newer than current, returns true.<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_installedBefore">#</a>
-		<code><a href="source-class-ProcessWire.Config.html#467-479" title="Go to source code">installedBefore</a>( <span>integer|string <var>$date</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Config.html#480-494" title="Go to source code">installedBefore</a>( <span>integer|string <var>$date</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1165,6 +1181,8 @@ version is equal to or newer than current, returns true.<br>
 		<div class="description detailed hidden">
 			
 <p>Was this ProcessWire installation installed before a particular date?</p>
+
+<p>#pw-group-tools</p>
 
 
 
@@ -1189,6 +1207,48 @@ version is equal to or newer than current, returns true.<br>
 						<code><code><a href="class-ProcessWire.Config.html#_installedAfter">ProcessWire\Config::installedAfter()</a></code></code>, Config::installed<br>
 				</div>
 
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setWire" id="_setWire">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setWire">#</a>
+		<code><a href="source-class-ProcessWire.Config.html#496-510" title="Go to source code">setWire</a>( <span><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code> <var>$wire</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the current ProcessWire instance for this object (PW 3.0)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the current ProcessWire instance for this object (PW 3.0)</p>
+
+<p>#pw-internal</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$wire</var></dt>
+					<dd><code><code><a href="class-ProcessWire.ProcessWire.html">ProcessWire\ProcessWire</a></code></code><br>$wire</dd>
+				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-ProcessWire.Wire.html#_setWire">ProcessWire\Wire::setWire()</a></code></div>
 
 		</div>
 		</div></td>
@@ -1248,6 +1308,7 @@ version is equal to or newer than current, returns true.<br>
 			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
+			<a href="class-ProcessWire.Wire.html#_debugInfoSmall">debugInfoSmall()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 
 			<a href="class-ProcessWire.Wire.html#_fuel">fuel()</a>, 
@@ -1266,7 +1327,6 @@ version is equal to or newer than current, returns true.<br>
 			<a href="class-ProcessWire.Wire.html#_runHooks">runHooks()</a>, 
 			<a href="class-ProcessWire.Wire.html#_setLocalHooks">setLocalHooks()</a>, 
 			<a href="class-ProcessWire.Wire.html#_setTrackChanges">setTrackChanges()</a>, 
-			<a href="class-ProcessWire.Wire.html#_setWire">setWire()</a>, 
 			<a href="class-ProcessWire.Wire.html#_trackChange">trackChange()</a>, 
 			<a href="class-ProcessWire.Wire.html#_trackChanges">trackChanges()</a>, 
 			<a href="class-ProcessWire.Wire.html#_untrackChange">untrackChange()</a>, 
@@ -1333,7 +1393,7 @@ version is equal to or newer than current, returns true.<br>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Config.html#247-251" title="Go to source code"><var>$jsFields</var></a>
+				<a href="source-class-ProcessWire.Config.html#253-257" title="Go to source code"><var>$jsFields</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

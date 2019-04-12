@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\Paths | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4173858139"></script>
+	<script type="text/javascript" src="elementlist.js?1350527533"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -580,12 +580,59 @@
 
 	<div class="description">
 	
-<p>ProcessWire Paths</p>
+<p>ProcessWire configuration paths and URLs</p>
 
-<p>Maintains lists of file paths, primarily used by the ProcessWire
-configuration.</p>
+<p>#pw-headline Configuration paths and URLs (Paths class) #pw-summary Maintains
+lists of file paths or URLs, primarily used by the ProcessWire $config-&gt;paths
+and $urls API variables. #pw-summary-paths-only These properties are only useful
+when accessed from <code>$config-&gt;paths</code> as they are not HTTP
+accessible as URLs. #pw-summary-urls-only These properties apply only to the
+<code>$urls</code> or <code>$config-&gt;urls</code>. Do not use them with
+<code>$config-&gt;paths</code>. #pw-summary-pagination These properties apply
+only to the <code>$urls</code> or <code>$config-&gt;urls</code> and only when
+pagination is active for the current request.</p>
 
-<p>ProcessWire 3.x, Copyright 2016 by Ryan Cramer <a
+<p>#pw-body = The Paths class is used by <code>$config-&gt;paths</code> and
+<code>$config-&gt;urls</code>. The <code>$config-&gt;paths</code> refers to
+server disk paths while <code>$config-&gt;urls</code> refers to web server URLs.
+All of the same properties are present on both, though several properties are
+only useful on one or the other (as outlined below). You can access a path or
+URL like this: ~~~~~ $path = $config-&gt;paths-&gt;templates; // i.e.
+/path/to/htdocs/site/templates/ $url = $config-&gt;urls-&gt;templates; // i.e.
+/site/templates/ ~~~~~ The <code>$config-&gt;urls</code> property can also be
+accessed more directly via the <code>$urls</code> API variable (in PW 3.x+):
+~~~~~ $url = $urls-&gt;templates; // i.e. /site/templates/ ~~~~~ For
+<code>$config-&gt;urls</code> (or <code>$urls</code>), if you prepend
+<code>http</code> to any of the property names (making it camelCase) it will
+return the full http/https URL rather then the relative URL: ~~~~~ $httpUrl =
+$config-&gt;urls-&gt;httpTemplates; // i.e. <a
+href="https://domain.com/site/templates/">https://domain.com/site/templates/</a>
+$httpUrl = $urls-&gt;httpTemplates; // same as above ~~~~~ You may optionally
+add your own properties as well. If you add a path/url without a leading slash
+“/” it is assumed to be relative to the <code>root</code> property. If it
+has a leading slash, then it is absolute. ~~~~~ // add new urls properties
+$urls-&gt;set('css', 'site/templates/css/'); // relative to site root
+$urls-&gt;set('uikit', '/uikit/dist/'); // absolute</p>
+
+<p>// get properties that were set echo $urls-&gt;get('css'); // i.e.
+/site/templates/css/ echo $urls-&gt;get('uikit'); // i.e. /uikit/dist/ echo
+$urls-&gt;get('httpCss'); // i.e. <a
+href="https://domain.com/site/templates/css/">https://domain.com/site/templates/css/</a>
+echo $urls-&gt;get('httpUikit'); // i.e. <a
+href="https://domain.com/uikit/dist/">https://domain.com/uikit/dist/</a> echo
+$urls-&gt;httpUikit; // same as above (using get method call is optional for any
+of these) ~~~~~ Do not set <code>http</code> properties directly, as they are
+dynamically generated from <code>urls</code> properties at runtime upon
+request.</p>
+
+<p>In the examples on this page, you can replace the <code>$urls</code> variable
+with <code>$config-&gt;paths</code> if you need to get the server path instead
+of a URL. As indicated earlier, <code>$urls</code> can aso be accessed at the
+more verbose <code>$config-&gt;urls</code> if you prefer.</p>
+
+<p>#pw-body</p>
+
+<p>ProcessWire 3.x, Copyright 2019 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
 <p>This file is licensed under the MIT license <a
@@ -638,11 +685,7 @@ href="https://processwire.com/about/license/mit/">https://processwire.com/about/
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-				<b>See:</b>
-				<a
-href="http://processwire.com/api/variables/config/">http://processwire.com/api/variables/config/</a>
-Offical $config API variable Documentation<br>
-		<b>Located at</b> <a href="source-class-ProcessWire.Paths.html#4-148" title="Go to source code">core/Paths.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.Paths.html#4-195" title="Go to source code">core/Paths.php</a><br>
 	</div>
 
 
@@ -660,7 +703,7 @@ Offical $config API variable Documentation<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.Paths.html#63-72" title="Go to source code">__construct</a>( <span>string <var>$root</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Paths.html#104-113" title="Go to source code">__construct</a>( <span>string <var>$root</var></span> )</code>
 
 		<div class="description short">
 			
@@ -700,7 +743,7 @@ Offical $config API variable Documentation<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_normalizeSeparators">#</a>
-		<code><a href="source-class-ProcessWire.Paths.html#74-86" title="Go to source code">normalizeSeparators</a>( <span>string <var>$path</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Paths.html#115-129" title="Go to source code">normalizeSeparators</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -713,6 +756,8 @@ already</p>
 			
 <p>Given a path, normalize it to "/" style directory separators if they aren't
 already</p>
+
+<p>#pw-internal</p>
 
 
 
@@ -737,24 +782,26 @@ already</p>
 
 		<td class="attributes"><code>
 			 public 
-			this
+			<code><a href="class-ProcessWire.Paths.html">ProcessWire\Paths</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-ProcessWire.Paths.html#88-104" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Paths.html#131-149" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Set the given path key</p>
+<p>Set a new path/URL location</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set the given path key</p>
+<p>Set a new path/URL location</p>
+
+<p>#pw-group-methods</p>
 
 
 
@@ -771,7 +818,7 @@ path.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>this</code><br>
+					<code><code><a href="class-ProcessWire.Paths.html">ProcessWire\Paths</a></code>|<code><a href="class-ProcessWire.WireData.html">ProcessWire\WireData</a></code></code><br>
 				</div>
 
 
@@ -793,17 +840,19 @@ path.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-ProcessWire.Paths.html#106-147" title="Go to source code">get</a>( <span>object|string <var>$key</var></span> )</code>
+		<code><a href="source-class-ProcessWire.Paths.html#151-194" title="Go to source code">get</a>( <span>object|string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Return the requested path variable</p>
+<p>Return the requested path or URL (functionally the same as direct access)</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Return the requested path variable</p>
+<p>Return the requested path or URL (functionally the same as direct access)</p>
+
+<p>#pw-group-methods</p>
 
 
 
@@ -879,6 +928,7 @@ path.</dd>
 			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
+			<a href="class-ProcessWire.Wire.html#_debugInfoSmall">debugInfoSmall()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 
 			<a href="class-ProcessWire.Wire.html#_fuel">fuel()</a>, 
@@ -937,7 +987,7 @@ path.</dd>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.Paths.html#55-61" title="Go to source code"><var>$_root</var></a>
+				<a href="source-class-ProcessWire.Paths.html#96-102" title="Go to source code"><var>$_root</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">''</span></code></td>
 		<td class="description"><div>

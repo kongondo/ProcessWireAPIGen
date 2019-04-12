@@ -7,7 +7,7 @@
 	<title>Class ProcessWire\PagesNames | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4173858139"></script>
+	<script type="text/javascript" src="elementlist.js?1350527533"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -585,6 +585,16 @@
 <p>ProcessWire 3.x, Copyright 2019 by Ryan Cramer <a
 href="https://processwire.com">https://processwire.com</a></p>
 
+<p>#pw-summary This class includes methods for generating and modifying page
+names. #pw-body = While these methods are mosty for internal core use, some may
+at times be useful from the public API as well. You can access methods from this
+class via the Pages API variable at <code>$pages-&gt;names()</code>. ~~~~~
+if($pages-&gt;names()-&gt;pageNameExists('something')) { // A page named
+“something” exists }</p>
+
+<p>// generate a globally unique random page name $name =
+$pages-&gt;names()-&gt;uniqueRandomPageName(); ~~~~~ #pw-body</p>
+
 	</div>
 
 	<dl class="tree">
@@ -621,7 +631,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<b>Namespace:</b> <a href="namespace-ProcessWire.html">ProcessWire</a><br>
 		
 
-		<b>Located at</b> <a href="source-class-ProcessWire.PagesNames.html#4-813" title="Go to source code">core/PagesNames.php</a><br>
+		<b>Located at</b> <a href="source-class-ProcessWire.PagesNames.html#4-859" title="Go to source code">core/PagesNames.php</a><br>
 	</div>
 
 
@@ -639,7 +649,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#51-64" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Pages.html">ProcessWire\Pages</a></code> <var>$pages</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#65-78" title="Go to source code">__construct</a>( <span><code><a href="class-ProcessWire.Pages.html">ProcessWire\Pages</a></code> <var>$pages</var></span> )</code>
 
 		<div class="description short">
 			
@@ -679,7 +689,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setupNewPageName">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#66-97" title="Go to source code">setupNewPageName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$format</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#80-113" title="Go to source code">setupNewPageName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string <var>$format</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -691,14 +701,16 @@ href="https://processwire.com">https://processwire.com</a></p>
 			
 <p>Assign a name to given Page (if it doesn’t already have one)</p>
 
+<p>#pw-group-manipulators</p>
+
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$page</var></dt>
-					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page</dd>
+					<dd><code><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code></code><br>$page Page to setup a new name for</dd>
 					<dt><var>$format</var></dt>
-					<dd><code>string</code><br>$format</dd>
+					<dd><code>string</code><br>$format Optional format string to use for name</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -723,7 +735,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasAutogenName">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#99-110" title="Go to source code">hasAutogenName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#115-128" title="Go to source code">hasAutogenName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -734,6 +746,8 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<div class="description detailed hidden">
 			
 <p>Does the given page have an auto-generated name (during this request)?</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -765,7 +779,7 @@ href="https://processwire.com">https://processwire.com</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasAdjustedName">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#112-123" title="Go to source code">hasAdjustedName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean|null <var>$set</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#130-143" title="Go to source code">hasAdjustedName</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>boolean|null <var>$set</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -776,6 +790,8 @@ href="https://processwire.com">https://processwire.com</a></p>
 		<div class="description detailed hidden">
 			
 <p>Does the given page have a modified “name” during this request?</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -810,17 +826,19 @@ name, or omit just to get</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isUntitledPageName">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#125-135" title="Go to source code">isUntitledPageName</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#145-157" title="Go to source code">isUntitledPageName</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Is given page name an untitled page name?</p>
+<p>Does the given page have an untitled page name?</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Is given page name an untitled page name?</p>
+<p>Does the given page have an untitled page name?</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -852,7 +870,7 @@ name, or omit just to get</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_nameAndNumber">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#137-157" title="Go to source code">nameAndNumber</a>( <span>string <var>$name</var></span>, <span>string <var>$delimiter</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#159-181" title="Go to source code">nameAndNumber</a>( <span>string <var>$name</var></span>, <span>string <var>$delimiter</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -870,6 +888,8 @@ suffix) and the numbered suffix</p>
 name without the suffix, and <code>123</code> is the numbered suffix. If the
 name did not have a numbered suffix, then the 123 will be 0 and
 <code>name</code> will be the given <code>$name</code>.</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -903,7 +923,7 @@ name did not have a numbered suffix, then the 123 will be 0 and
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasNumberSuffix">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#159-172" title="Go to source code">hasNumberSuffix</a>( <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$name</var></span>, <span>boolean <var>$getNamePrefix</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#183-198" title="Go to source code">hasNumberSuffix</a>( <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$name</var></span>, <span>boolean <var>$getNamePrefix</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -916,6 +936,8 @@ or false if not</p>
 			
 <p>Does the given name or Page have a number suffix? Returns the number if yes,
 or false if not</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -951,7 +973,7 @@ prefix (if requested)<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultPageNameFormat">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#174-219" title="Go to source code">defaultPageNameFormat</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#200-247" title="Go to source code">defaultPageNameFormat</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -964,6 +986,8 @@ assigned</p>
 			
 <p>Get the name format string that should be used for given $page if no name was
 assigned</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -1000,7 +1024,7 @@ cannot be determined (default='untitled-time'). - <code>parent</code>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pageNameFromFormat">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#221-375" title="Go to source code">pageNameFromFormat</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$format</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#249-405" title="Go to source code">pageNameFromFormat</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span>, <span>string|array <var>$format</var> = <span class="php-quote">''</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1065,6 +1089,8 @@ cannot be determined (default='untitled-time'). - <code>parent</code>
 date() format, PHP strftime() format, as well as some other predefined
 options.</p>
 
+<p>#pw-group-generators</p>
+
 
 
 				<h4>Parameters</h4>
@@ -1102,7 +1128,7 @@ argument.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_uniquePageName">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#377-466" title="Go to source code">uniquePageName</a>( <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array <var>$name</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>||string|null|array <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#407-498" title="Go to source code">uniquePageName</a>( <span>string|<code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>|array <var>$name</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code>||string|null|array <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1130,6 +1156,8 @@ argument.</dd>
 <p>The returned value is not yet assigned to the given $page, so if it is
 something different than what is already on $page, you’ll want to assign it
 manually after this.</p>
+
+<p>#pw-group-generators</p>
 
 
 
@@ -1178,7 +1206,7 @@ optionally bundle it in the $options array.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_adjustNameLength">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#468-513" title="Go to source code">adjustNameLength</a>( <span>string <var>$name</var></span>, <span>integer <var>$maxLength</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#500-547" title="Go to source code">adjustNameLength</a>( <span>string <var>$name</var></span>, <span>integer <var>$maxLength</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1191,6 +1219,8 @@ in place</p>
 			
 <p>If name exceeds maxLength, truncate it, while keeping any numbered suffixes
 in place</p>
+
+<p>#pw-group-manipulators</p>
 
 
 
@@ -1224,7 +1254,7 @@ in place</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_incrementName">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#515-548" title="Go to source code">incrementName</a>( <span>string <var>$name</var></span>, <span>integer|null <var>$num</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#549-584" title="Go to source code">incrementName</a>( <span>string <var>$name</var></span>, <span>integer|null <var>$num</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1235,6 +1265,8 @@ in place</p>
 		<div class="description detailed hidden">
 			
 <p>Increment the suffix of a page name, or add one if not present</p>
+
+<p>#pw-group-manipulators</p>
 
 
 
@@ -1268,7 +1300,7 @@ in place</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pageNameExists">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#550-622" title="Go to source code">pageNameExists</a>( <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#586-660" title="Go to source code">pageNameExists</a>( <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1284,6 +1316,8 @@ in place</p>
 exists in any language. IF the <code>language</code> option is used, it only
 checks that particular language (regardless of <code>multilang</code>
 option).</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -1321,7 +1355,7 @@ check to only this language (default=null)</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_uniqueRandomPageName">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#624-696" title="Go to source code">uniqueRandomPageName</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#662-736" title="Go to source code">uniqueRandomPageName</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1332,6 +1366,8 @@ check to only this language (default=null)</dd>
 		<div class="description detailed hidden">
 			
 <p>Get a random, globally unique page name</p>
+
+<p>#pw-group-generators</p>
 
 
 
@@ -1374,7 +1410,7 @@ Append this suffix to page name (default='').</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_untitledPageName">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#698-706" title="Go to source code">untitledPageName</a>( )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#738-748" title="Go to source code">untitledPageName</a>( )</code>
 
 		<div class="description short">
 			
@@ -1385,6 +1421,8 @@ Append this suffix to page name (default='').</dd>
 		<div class="description detailed hidden">
 			
 <p>Return the untitled page name string</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -1411,7 +1449,7 @@ Append this suffix to page name (default='').</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pageNameHasConflict">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#708-759" title="Go to source code">pageNameHasConflict</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#750-803" title="Go to source code">pageNameHasConflict</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1424,6 +1462,8 @@ Append this suffix to page name (default='').</dd>
 <p>Does given page have a name that has a conflict/collision?</p>
 
 <p>In multi-language environment this applies to default language only.</p>
+
+<p>#pw-group-informational</p>
 
 
 
@@ -1463,7 +1503,7 @@ Append this suffix to page name (default='').</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_checkNameConflicts">#</a>
-		<code><a href="source-class-ProcessWire.PagesNames.html#761-811" title="Go to source code">checkNameConflicts</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
+		<code><a href="source-class-ProcessWire.PagesNames.html#805-857" title="Go to source code">checkNameConflicts</a>( <span><code><a href="class-ProcessWire.Page.html">ProcessWire\Page</a></code> <var>$page</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1476,6 +1516,8 @@ triggering a warning notice</p>
 			
 <p>Check given page’s name for conflicts and increment as needed while also
 triggering a warning notice</p>
+
+<p>#pw-group-manipulators</p>
 
 
 
@@ -1523,6 +1565,7 @@ triggering a warning notice</p>
 			<a href="class-ProcessWire.Wire.html#_addHookMethod">addHookMethod()</a>, 
 			<a href="class-ProcessWire.Wire.html#_addHookProperty">addHookProperty()</a>, 
 			<a href="class-ProcessWire.Wire.html#_className">className()</a>, 
+			<a href="class-ProcessWire.Wire.html#_debugInfoSmall">debugInfoSmall()</a>, 
 			<a href="class-ProcessWire.Wire.html#_error">error()</a>, 
 			<a href="class-ProcessWire.Wire.html#_errors">errors()</a>, 
 			<a href="class-ProcessWire.Wire.html#_fuel">fuel()</a>, 
@@ -1581,7 +1624,7 @@ triggering a warning notice</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PagesNames.html#13-17" title="Go to source code"><var>$pages</var></a>
+				<a href="source-class-ProcessWire.PagesNames.html#27-31" title="Go to source code"><var>$pages</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -1604,7 +1647,7 @@ triggering a warning notice</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PagesNames.html#19-25" title="Go to source code"><var>$untitledPageName</var></a>
+				<a href="source-class-ProcessWire.PagesNames.html#33-39" title="Go to source code"><var>$untitledPageName</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'untitled'</span></code></td>
 		<td class="description"><div>
@@ -1631,7 +1674,7 @@ triggering a warning notice</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PagesNames.html#27-33" title="Go to source code"><var>$delimiters</var></a>
+				<a href="source-class-ProcessWire.PagesNames.html#41-47" title="Go to source code"><var>$delimiters</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'-'</span>, <span class="php-quote">'_'</span>, <span class="php-quote">'.'</span>)</code></td>
 		<td class="description"><div>
@@ -1658,7 +1701,7 @@ triggering a warning notice</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PagesNames.html#35-41" title="Go to source code"><var>$delimiter</var></a>
+				<a href="source-class-ProcessWire.PagesNames.html#49-55" title="Go to source code"><var>$delimiter</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'-'</span></code></td>
 		<td class="description"><div>
@@ -1685,7 +1728,7 @@ triggering a warning notice</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ProcessWire.PagesNames.html#43-49" title="Go to source code"><var>$nameMaxLength</var></a>
+				<a href="source-class-ProcessWire.PagesNames.html#57-63" title="Go to source code"><var>$nameMaxLength</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">128</span></code></td>
 		<td class="description"><div>

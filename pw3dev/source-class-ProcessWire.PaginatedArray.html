@@ -8,7 +8,7 @@
 	<title>File core/PaginatedArray.php | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4173858139"></script>
+	<script type="text/javascript" src="elementlist.js?1350527533"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -886,14 +886,24 @@
 </span></span><span id="308" class="l"><a class="l" href="#308">308: </a><span class="php-comment">     *
 </span></span><span id="309" class="l"><a class="l" href="#309">309: </a><span class="php-comment">     */</span>
 </span><span id="310" class="l"><a class="l" href="#310">310: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___debugInfo" href="#___debugInfo">__debugInfo</a>() {
-</span><span id="311" class="l"><a class="l" href="#311">311: </a>        <span class="php-var">$info</span> = parent::__debugInfo();
-</span><span id="312" class="l"><a class="l" href="#312">312: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;getLimit()) <span class="php-var">$info</span>[<span class="php-quote">'pager'</span>] = <span class="php-var">$this</span>-&gt;getPaginationString();
-</span><span id="313" class="l"><a class="l" href="#313">313: </a>        <span class="php-var">$info</span>[<span class="php-quote">'total'</span>] = <span class="php-var">$this</span>-&gt;getTotal();
-</span><span id="314" class="l"><a class="l" href="#314">314: </a>        <span class="php-var">$info</span>[<span class="php-quote">'start'</span>] = <span class="php-var">$this</span>-&gt;getStart();
-</span><span id="315" class="l"><a class="l" href="#315">315: </a>        <span class="php-var">$info</span>[<span class="php-quote">'limit'</span>] = <span class="php-var">$this</span>-&gt;getLimit();
-</span><span id="316" class="l"><a class="l" href="#316">316: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>;
-</span><span id="317" class="l"><a class="l" href="#317">317: </a>    }
-</span><span id="318" class="l"><a class="l" href="#318">318: </a></span>}</code></pre>
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>        <span class="php-var">$limit</span> = <span class="php-var">$this</span>-&gt;getLimit();
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>        <span class="php-var">$count</span> = <span class="php-var">$this</span>-&gt;<span class="php-keyword2">count</span>();
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>        <span class="php-var">$total</span> = <span class="php-var">$this</span>-&gt;getTotal();
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$limit</span> || <span class="php-var">$total</span> &gt; <span class="php-var">$count</span>) {
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>            <span class="php-var">$info</span> = <span class="php-keyword1">array</span>(
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>                <span class="php-quote">'count'</span> =&gt; <span class="php-var">$count</span>,
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>                <span class="php-quote">'total'</span> =&gt; <span class="php-var">$total</span>,
+</span><span id="318" class="l"><a class="l" href="#318">318: </a>                <span class="php-quote">'start'</span> =&gt; <span class="php-var">$this</span>-&gt;getStart(),
+</span><span id="319" class="l"><a class="l" href="#319">319: </a>                <span class="php-quote">'limit'</span> =&gt; <span class="php-var">$limit</span>, 
+</span><span id="320" class="l"><a class="l" href="#320">320: </a>                <span class="php-quote">'pager'</span> =&gt; <span class="php-var">$this</span>-&gt;getPaginationString(), 
+</span><span id="321" class="l"><a class="l" href="#321">321: </a>            );
+</span><span id="322" class="l"><a class="l" href="#322">322: </a>            <span class="php-var">$info</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$info</span>, parent::__debugInfo());
+</span><span id="323" class="l"><a class="l" href="#323">323: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="324" class="l"><a class="l" href="#324">324: </a>            <span class="php-var">$info</span> = parent::__debugInfo();
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>        }
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>        <span class="php-keyword1">return</span> <span class="php-var">$info</span>;
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>    }
+</span><span id="328" class="l"><a class="l" href="#328">328: </a></span>}</code></pre>
 
 	<div id="footer">
 		ProcessWire 3 API (dev branch) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

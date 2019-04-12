@@ -8,7 +8,7 @@
 	<title>File modules/Process/ProcessPageView.module | ProcessWire 3 API (dev branch)</title>
 
 	<script type="text/javascript" src="resources/combined.js?3142683295"></script>
-	<script type="text/javascript" src="elementlist.js?4173858139"></script>
+	<script type="text/javascript" src="elementlist.js?1350527533"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2921310712">
 
 </head>
@@ -691,7 +691,7 @@
 </span><span id="113" class="l"><a class="l" href="#113">113: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;dirtyURL) &amp;&amp; !<span class="php-keyword1">empty</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'QUERY_STRING'</span>])) <span class="php-var">$this</span>-&gt;dirtyURL = <span class="php-quote">'?'</span> . <span class="php-var">$_SERVER</span>[<span class="php-quote">'QUERY_STRING'</span>];
 </span><span id="114" class="l"><a class="l" href="#114">114: </a>
 </span><span id="115" class="l"><a class="l" href="#115">115: </a>        <span class="php-comment">// check if there is an 'it' GET variable present in the request URL query string, which we don't want here</span>
-</span><span id="116" class="l"><a class="l" href="#116">116: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$_GET</span>[<span class="php-quote">'it'</span>]) &amp;&amp; <span class="php-keyword2">strpos</span>(<span class="php-var">$this</span>-&gt;dirtyURL, <span class="php-quote">'?it='</span>) !== <span class="php-keyword1">false</span> || <span class="php-keyword2">strpos</span>(<span class="php-var">$this</span>-&gt;dirtyURL, <span class="php-quote">'&amp;it='</span>)) {
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$_GET</span>[<span class="php-quote">'it'</span>]) &amp;&amp; (<span class="php-keyword2">strpos</span>(<span class="php-var">$this</span>-&gt;dirtyURL, <span class="php-quote">'?it='</span>) !== <span class="php-keyword1">false</span> || <span class="php-keyword2">strpos</span>(<span class="php-var">$this</span>-&gt;dirtyURL, <span class="php-quote">'&amp;it='</span>))) {
 </span><span id="117" class="l"><a class="l" href="#117">117: </a>            <span class="php-comment">// force to use path in request url rather than contents of 'it' var</span>
 </span><span id="118" class="l"><a class="l" href="#118">118: </a>            <span class="php-keyword1">list</span>(<span class="php-var">$it</span>,) = <span class="php-keyword2">explode</span>(<span class="php-quote">'?'</span>, <span class="php-var">$this</span>-&gt;dirtyURL);
 </span><span id="119" class="l"><a class="l" href="#119">119: </a>            <span class="php-var">$rootURL</span> = <span class="php-var">$this</span>-&gt;wire(<span class="php-quote">'config'</span>)-&gt;urls-&gt;root;
@@ -922,7 +922,7 @@
 </span><span id="344" class="l"><a class="l" href="#344">344: </a>            <span class="php-var">$indexRedirect</span> = <span class="php-keyword1">true</span>; 
 </span><span id="345" class="l"><a class="l" href="#345">345: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span>(<span class="php-keyword2">strpos</span>(<span class="php-var">$this</span>-&gt;dirtyURL, <span class="php-quote">'index.php'</span>) !== <span class="php-keyword1">false</span> &amp;&amp; <span class="php-keyword2">strpos</span>(<span class="php-var">$it</span>, <span class="php-quote">'index.php'</span>) === <span class="php-keyword1">false</span>) {
 </span><span id="346" class="l"><a class="l" href="#346">346: </a>            <span class="php-comment">// if request contains index.php and the $it string does not, make it redirect to correct version</span>
-</span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-var">$forceRedirect</span> = <span class="php-keyword1">true</span>; 
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>            <span class="php-keyword1">if</span>(<span class="php-keyword2">preg_match</span>(<span class="php-quote">'!/index\.php$!'</span>, <span class="php-keyword2">parse_url</span>(<span class="php-var">$this</span>-&gt;dirtyURL, PHP_URL_PATH))) <span class="php-var">$forceRedirect</span> = <span class="php-keyword1">true</span>; 
 </span><span id="348" class="l"><a class="l" href="#348">348: </a>        }
 </span><span id="349" class="l"><a class="l" href="#349">349: </a>        
 </span><span id="350" class="l"><a class="l" href="#350">350: </a>        <span class="php-var">$numParts</span> = <span class="php-keyword2">substr_count</span>(<span class="php-var">$it</span>, <span class="php-quote">'/'</span>);
